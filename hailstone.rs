@@ -1,3 +1,4 @@
+// Implements http://rosettacode.org/wiki/Hailstone_sequence
 struct Hailstone {
   priv current: int
 }
@@ -37,9 +38,8 @@ fn get_hailstone(n: int) -> ~[int] {
 
 fn main() {
   // Find the hailstone for 27.
-  let test_value = 27;
-  let two_seven = get_hailstone(test_value);
-  println!("Testing: {}, Length: {}, Values: {}...{}", test_value, two_seven.len(), two_seven.slice(0,4).to_str(), two_seven.slice(two_seven.len()-4, two_seven.len()).to_str());
+  let two_seven = get_hailstone(27);
+  println!("Testing: {}, Length: {}, Values: {}...{}", two_seven[0], two_seven.len(), two_seven.slice(0,4).to_str(), two_seven.slice(two_seven.len()-4, two_seven.len()).to_str());
   // Find the longest.
   let mut biggest = ~[];
   for x in range(0, 100000) {
