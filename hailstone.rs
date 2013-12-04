@@ -37,5 +37,5 @@ fn main() {
       biggest = result;
     }
   };
-  println!("Largest: {}, Length: {}, Values: {}...{}", biggest[0], biggest.len(), biggest.slice(0,4).to_str(), biggest.slice(biggest.len()-4, biggest.len()).to_str());
+  println!("Largest: {}, Length: {}", biggest[0], biggest.len());
 }
