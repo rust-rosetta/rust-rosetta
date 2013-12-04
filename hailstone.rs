@@ -1,15 +1,15 @@
 struct Hailstone {
-  priv current: uint
+  priv current: int
 }
 
 impl Hailstone {
-  fn new(start: uint) -> Hailstone {
+  fn new(start: int) -> Hailstone {
     Hailstone { current: start }
   }
 }
 
-impl Iterator<uint> for Hailstone {
-  fn next(&mut self) -> Option<uint> {
+impl Iterator<int> for Hailstone {
+  fn next(&mut self) -> Option<int> {
     let current = self.current;
     match current {
       0               => None,
@@ -30,12 +30,23 @@ impl Iterator<uint> for Hailstone {
   }
 }
 
-fn check_hailstone(n: uint) {
+fn get_hailstone(n: int) -> ~[int] {
   let mut hail = Hailstone::new(n);
-  let result: ~[uint] = hail.collect();
-  println!("Testing: {}, Length: {}, Values: {}...{}", n, result.len(), result.slice(0,4).to_str(), result.slice(result.len()-4, result.len()).to_str())
+  hail.collect()
 }
 
 fn main() {
-  check_hailstone(27);
+  // Find the hailstone for 27.
+  let test_value = 27;
+  let two_seven = get_hailstone(test_value);
+  println!("Testing: {}, Length: {}, Values: {}...{}", test_value, two_seven.len(), two_seven.slice(0,4).to_str(), two_seven.slice(two_seven.len()-4, two_seven.len()).to_str());
+  // Find the longest.
+  let mut biggest = ~[];
+  for x in range(0, 100000) {
+    let result = get_hailstone(x);
+    if result.len() > biggest.len() {
+      biggest = result;
+    }
+  };
+  println!("Largest: {}, Length: {}, Values: {}...{}", biggest[0], biggest.len(), biggest.slice(0,4).to_str(), biggest.slice(biggest.len()-4, biggest.len()).to_str());
 }
