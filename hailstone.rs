@@ -1,13 +1,23 @@
 // Implements http://rosettacode.org/wiki/Hailstone_sequence
 struct Hailstone {
-  priv current: int
+  priv current: int,
+       start:   int
+}
+
+impl Hailstone {
+  fn new(n: int) -> Hailstone {
+    Hailstone { current: n, start: n }
+  }
 }
 
 impl Iterator<int> for Hailstone {
   fn next(&mut self) -> Option<int> {
     let current = self.current;
     match current {
-      0               => None,
+      0               => {
+        self.current = self.start;
+        None
+      },
       1               => {
         self.current = 0;
         Some(1)
@@ -27,15 +37,15 @@ impl Iterator<int> for Hailstone {
 
 fn main() {
   // Find the hailstone for 27.
-  let two_seven: ~[int] = Hailstone{ current: 27 }.collect();
+  let two_seven: ~[int] = Hailstone::new(27).collect();
   println!("Testing: {}, Length: {}, Values: {}...{}", two_seven[0], two_seven.len(), two_seven.slice(0,4).to_str(), two_seven.slice(two_seven.len()-4, two_seven.len()).to_str());
   // Find the longest.
-  let mut biggest = ~[];
+  let mut biggest = Hailstone::new(1); // Has size 0. :(
   for x in range(0, 100000) {
-    let result: ~[int] = Hailstone{ current: x }.collect();
+    let mut result = Hailstone::new(x);
     if result.len() > biggest.len() {
-      biggest = result;
+      biggest = result
     }
   };
-  println!("Largest: {}, Length: {}", biggest[0], biggest.len());
+  println!("Largest: {}", biggest.start);
 }
