@@ -47,5 +47,6 @@ fn main() {
       biggest = result
     }
   };
-  println!("Largest: {}", biggest.start);
+  let size = biggest.len();
+  println!("Largest: {}, Size: {}", biggest.start, size);
 }
