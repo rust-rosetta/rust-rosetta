@@ -15,7 +15,7 @@ impl Iterator<int> for Hailstone {
     let current = self.current;
     match current {
       0               => {
-        self.current = self.start;
+        self.current = self.start; // Resets the iterator.
         None
       },
       1               => {
@@ -40,13 +40,7 @@ fn main() {
   let two_seven: ~[int] = Hailstone::new(27).collect();
   println!("Testing: {}, Length: {}, Values: {}...{}", two_seven[0], two_seven.len(), two_seven.slice(0,4).to_str(), two_seven.slice(two_seven.len()-4, two_seven.len()).to_str());
   // Find the longest.
-  let mut biggest = Hailstone::new(1); // Has size 0. :(
-  for x in range(0, 100000) {
-    let mut result = Hailstone::new(x);
-    if result.len() > biggest.len() {
-      biggest = result
-    }
-  };
+  let mut biggest = range(0, 100000).map(|x| Hailstone::new(x)).max_by(|&mut x| x.len()).unwrap();
   let size = biggest.len();
   println!("Largest: {}, Size: {}", biggest.start, size);
 }
