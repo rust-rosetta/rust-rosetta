@@ -1,32 +1,40 @@
 // Implements http://rosettacode.org/wiki/Hailstone_sequence
+// Define a struct which we can make into an interator.
 struct Hailstone {
-  priv current: int,
-       start:   int
+  priv current: int, // Accessible online only to itself.
+       start:   int  // Accessible to everything.
 }
 
+// Define a constructor for the struct.
 impl Hailstone {
   fn new(n: int) -> Hailstone {
     Hailstone { current: n, start: n }
   }
 }
 
+// Implement the hailstone iteration sequence.
 impl Iterator<int> for Hailstone {
+  // This gets called to fetch the next item of the iterator.
   fn next(&mut self) -> Option<int> {
-    let current = self.current;
+    let current = self.current;    // We need to cache the current value.
     match current {
       0               => {
-        self.current = self.start; // Resets the iterator.
+        // Resets the iterator.
+        self.current = self.start; 
         None
       },
       1               => {
+        // At the end, yield 1 and roll over next time called.
         self.current = 0;
         Some(1)
       },
       x if x % 2 == 0 => {
+        // Got an even.
         self.current = x / 2;
         Some(current)
       },
       x if x % 2 == 1 => {
+        // Got an odd.
         self.current = (3 * x) + 1;
         Some(current)
       },
