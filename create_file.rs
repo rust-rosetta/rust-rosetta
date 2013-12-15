@@ -7,7 +7,7 @@ fn main () {
   // Create a new file.
   let mut new_file = File::create(&Path::new("output.txt")).unwrap();
   // Write something trivial to it.
-  new_file.write(bytes!("Nothing here..."));
+  write!(&mut new_file as &mut Writer, "Nothing here...");
   // Create a directory.
   fs::mkdir(&Path::new("docs"), S_IRWXU as u32)
 }
