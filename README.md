@@ -8,3 +8,4 @@ Tasks: http://rosettacode.org/wiki/Reports:Tasks_not_implemented_in_Rust
 Done:
 * [Hailstone Sequence](http://rosettacode.org/wiki/Hailstone_sequence) - `hailstone.rs`
 * [Create a file](http://rosettacode.org/wiki/Create_a_file) - `create_file.rs`
+* [Check that file exists](rosettacode.org/wiki/Check_that_file_exists#Aikido) - `check_file.rs`
