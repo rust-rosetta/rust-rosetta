@@ -9,3 +9,4 @@ Done:
 * [Hailstone Sequence](http://rosettacode.org/wiki/Hailstone_sequence) - `hailstone.rs`
 * [Create a file](http://rosettacode.org/wiki/Create_a_file) - `create_file.rs`
 * [Check that file exists](rosettacode.org/wiki/Check_that_file_exists#Aikido) - `check_file.rs`
+* [Generic Swap](http://rosettacode.org/wiki/Generic_swap) - `swap.rs`
