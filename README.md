@@ -10,3 +10,4 @@ Done:
 * [Create a file](http://rosettacode.org/wiki/Create_a_file) - `create_file.rs`
 * [Check that file exists](rosettacode.org/wiki/Check_that_file_exists#Aikido) - `check_file.rs`
 * [Generic Swap](http://rosettacode.org/wiki/Generic_swap) - `swap.rs`
+* [Apply a callback to an array](http://rosettacode.org/wiki/Apply_a_callback_to_an_array) - `callback_to_array.rs`
