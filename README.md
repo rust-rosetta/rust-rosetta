@@ -11,3 +11,5 @@ Done:
 * [Check that file exists](rosettacode.org/wiki/Check_that_file_exists#Aikido) - `check_file.rs`
 * [Generic Swap](http://rosettacode.org/wiki/Generic_swap) - `swap.rs`
 * [Apply a callback to an array](http://rosettacode.org/wiki/Apply_a_callback_to_an_array) - `callback_to_array.rs`
+* [Calculate the information entropy (Shannon entropy) of a given input string](http://rosettacode.org/wiki/Entropy) - `entropy.rs`
+* [Generate Fibonacci Words](http://rosettacode.org/wiki/Fibonacci_word) - `fibonacci_word.rs`
