@@ -1,3 +1,5 @@
+// Implements http://rosettacode.org/wiki/Entropy
+
 use std::num::Real;
 use std::hashmap::HashMap;
 use std::str::StrSlice;
