@@ -13,3 +13,4 @@ Done:
 * [Apply a callback to an array](http://rosettacode.org/wiki/Apply_a_callback_to_an_array) - `callback_to_array.rs`
 * [Calculate the information entropy (Shannon entropy) of a given input string](http://rosettacode.org/wiki/Entropy) - `entropy.rs`
 * [Generate Fibonacci Words](http://rosettacode.org/wiki/Fibonacci_word) - `fibonacci_word.rs`
+* [Read 2 ints from stdin, print their sum](http://rosettacode.org/wiki/A%2BB#Go) - `a+b.rs`
