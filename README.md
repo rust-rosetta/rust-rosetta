@@ -14,3 +14,4 @@ Done:
 * [Calculate the information entropy (Shannon entropy) of a given input string](http://rosettacode.org/wiki/Entropy) - `entropy.rs`
 * [Generate Fibonacci Words](http://rosettacode.org/wiki/Fibonacci_word) - `fibonacci_word.rs`
 * [LZW Compression Algorithm](http://rosettacode.org/wiki/LZW_compression) - `lwz.rs`
+* [Read 2 ints from stdin, print their sum](http://rosettacode.org/wiki/A%2BB#Go) - `a+b.rs`
