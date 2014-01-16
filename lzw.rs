@@ -67,11 +67,9 @@ fn decompress(compressed: &[int]) -> ~str {
 
 fn main() {
    let original = "TOBEORNOTTOBEORTOBEORNOT";
+
    let compressed = compress(original);
-   
-   for &v in compressed.iter() {
-      print!("{} ", v);
-   }
+   println!("{:?}", compressed);
 
    let decompressed = decompress(compressed);
    println(decompressed);
