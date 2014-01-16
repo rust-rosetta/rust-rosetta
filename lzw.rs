@@ -62,7 +62,7 @@ fn decompress(compressed: &[int]) -> ~str {
       w = entry; 
    }
 
-   str::from_utf8(result)
+   str::from_utf8_owned(result)
 }
 
 fn main() {
@@ -74,7 +74,7 @@ fn main() {
    }
 
    let decompressed = decompress(compressed);
-   println(decompressed);
+   println!("{:s}", decompressed);
 
    // Check if the decompressed string corresponds to the original string
    assert!(original == decompressed);
