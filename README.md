@@ -14,4 +14,5 @@ Done:
 * [Calculate the information entropy (Shannon entropy) of a given input string](http://rosettacode.org/wiki/Entropy) - `entropy.rs`
 * [Generate Fibonacci Words](http://rosettacode.org/wiki/Fibonacci_word) - `fibonacci_word.rs`
 * [LZW Compression Algorithm](http://rosettacode.org/wiki/LZW_compression) - `lwz.rs`
-* [Read 2 ints from stdin, print their sum](http://rosettacode.org/wiki/A%2BB#Go) - `a+b.rs`
+* [Read 2 ints from stdin, print their sum](http://rosettacode.org/wiki/A%2BB) - `a+b.rs`
+* [Test the primality of an int by successive divisions](http://rosettacode.org/wiki/Primality_by_Trial_Division) - `primality_trial_div.rs`
