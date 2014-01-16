@@ -16,3 +16,4 @@ Done:
 * [LZW Compression Algorithm](http://rosettacode.org/wiki/LZW_compression) - `lwz.rs`
 * [Read 2 ints from stdin, print their sum](http://rosettacode.org/wiki/A%2BB) - `a+b.rs`
 * [Test the primality of an int by successive divisions](http://rosettacode.org/wiki/Primality_by_Trial_Division) - `primality_trial_div.rs`
+* [Extract the prime factors from a composite number](http://rosettacode.org/wiki/Prime_decomposition) - `prime_decomposition.rs`
