@@ -18,3 +18,4 @@ Done:
 * [Test the primality of an int by successive divisions](http://rosettacode.org/wiki/Primality_by_Trial_Division) - `primality_trial_div.rs`
 * [Extract the prime factors from a composite number](http://rosettacode.org/wiki/Prime_decomposition) - `prime_decomposition.rs`
 * [Averages/Arithmetic mean](http://rosettacode.org/wiki/Averages/Arithmetic_mean) - `arithmetic_mean.rs`
+* [Show off concurrent computing](http://rosettacode.org/wiki/Concurrent_computing) - `concurrent_computing.rs`
