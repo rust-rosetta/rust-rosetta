@@ -19,3 +19,4 @@ Done:
 * [Extract the prime factors from a composite number](http://rosettacode.org/wiki/Prime_decomposition) - `prime_decomposition.rs`
 * [Averages/Arithmetic mean](http://rosettacode.org/wiki/Averages/Arithmetic_mean) - `arithmetic_mean.rs`
 * [Show off concurrent computing](http://rosettacode.org/wiki/Concurrent_computing) - `concurrent_computing.rs`
+* [Read a file line by line](http://rosettacode.org/wiki/Read_a_file_line_by_line) - `read_file_line.rs`
