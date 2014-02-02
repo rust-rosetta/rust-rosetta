@@ -6,9 +6,9 @@ fn main() {
     let strings = ~[~"Enjoy", ~"Rosetta", ~"Code"];
 
     for s in strings.move_iter(){
-        do spawn {
+        spawn(proc() {
             sleep(random::<u8>() as u64);
             println!("{:s}", s);
-        }
+        });
     }
 }
