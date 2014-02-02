@@ -62,7 +62,7 @@ fn decompress(compressed: &[int]) -> ~str {
       w = entry; 
    }
 
-   str::from_utf8_owned(result)
+   str::from_utf8_owned(result).unwrap()
 }
 
 fn main() {
