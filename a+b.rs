@@ -1,7 +1,7 @@
 // Implements http://rosettacode.org/wiki/A%2BB#Go
 use std::io::stdio::stdin;
 use std::from_str::from_str;
-use std::io::buffered::BufferedReader;
+use std::io::BufferedReader;
 
 fn main() {
     let input = BufferedReader::new(stdin()).read_line().unwrap();
