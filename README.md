@@ -25,3 +25,4 @@ Done:
 * [Check input device is a terminal](http://rosettacode.org/wiki/Check_input_device_is_a_terminal) - `input_is_terminal.rs`
 * [Check output device is a terminal](http://rosettacode.org/wiki/Check_output_device_is_a_terminal) - `output_is_terminal.rs`
 * [Find limit of recursion](http://rosettacode.org/wiki/Find_limit_of_recursion) - `recursion_depth.rs`
+* [File size](http://rosettacode.org/wiki/File_size) - `filesize.rs`
