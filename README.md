@@ -22,7 +22,6 @@ Done:
 * [Read a file line by line](http://rosettacode.org/wiki/Read_a_file_line_by_line) - `read_file_line.rs`
 * [Integer sequence](http://rosettacode.org/wiki/Integer_sequence) - `integer_sequence.rs`
 * [Sequential count in octal](http://rosettacode.org/wiki/Count_in_octal) - `count_in_octal.rs`
-* [Flatten a list](http://rosettacode.org/wiki/Flatten_a_list) - `flatten_list.rs`
 * [Check input device is a terminal](http://rosettacode.org/wiki/Check_input_device_is_a_terminal) - `input_is_terminal.rs`
 * [Check output device is a terminal](http://rosettacode.org/wiki/Check_output_device_is_a_terminal) - `output_is_terminal.rs`
 * [Find limit of recursion](http://rosettacode.org/wiki/Find_limit_of_recursion) - `recursion_depth.rs`
