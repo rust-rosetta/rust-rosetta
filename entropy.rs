@@ -19,5 +19,5 @@ pub fn shannon_entropy(s: &str) -> f64 {
 }
 
 fn main() {
-    println!("{:f}", shannon_entropy("1223334444"));  
+    println!("{:f}", shannon_entropy("1223334444"));
 }
