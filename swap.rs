@@ -1,5 +1,5 @@
 // Implements http://rosettacode.org/wiki/Generic_swap
-use std::util::swap;
+use std::mem::swap;
 
 struct Gizmo(&'static str);
 //struct Waffle(&'static str);
