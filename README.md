@@ -1,5 +1,6 @@
 rust-rosetta
 ============
+[![Build Status](https://travis-ci.org/JIghtuse/rust-rosetta.png?branch=master)](https://travis-ci.org/JIghtuse/rust-rosetta)
 
 Just a start on helping with https://github.com/mozilla/rust/issues/10513
 
@@ -27,3 +28,4 @@ Done:
 * [Find limit of recursion](http://rosettacode.org/wiki/Find_limit_of_recursion) - `recursion_depth.rs`
 * [File size](http://rosettacode.org/wiki/File_size) - `filesize.rs`
 * [Rename a file](http://rosettacode.org/wiki/Rename_a_file) - `rename_a_file.rs`
+* [Empty program](http://rosettacode.org/wiki/Empty_program) - `empty.rs`

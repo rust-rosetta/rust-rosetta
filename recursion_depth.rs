@@ -1,5 +1,5 @@
 fn recursion(n: int) {
-	println(fmt!("%?", n));
+	println!("deep: {:d}", n);
 	recursion(n + 1);
 }
 
