@@ -20,3 +20,4 @@ Done:
 * [Averages/Arithmetic mean](http://rosettacode.org/wiki/Averages/Arithmetic_mean) - `arithmetic_mean.rs`
 * [Show off concurrent computing](http://rosettacode.org/wiki/Concurrent_computing) - `concurrent_computing.rs`
 * [Read a file line by line](http://rosettacode.org/wiki/Read_a_file_line_by_line) - `read_file_line.rs`
+* [Mutual Recursion](http://rosettacode.org/wiki/Mutual_recursion) - `mutual_recursion.rs`
