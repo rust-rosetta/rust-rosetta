@@ -9,5 +9,5 @@ fn main () {
   // Write something trivial to it.
   write!(&mut new_file as &mut Writer, "Nothing here...");
   // Create a directory.
-  fs::mkdir(&Path::new("docs"), S_IRWXU as u32)
+  fs::mkdir(&Path::new("docs"), S_IRWXU as u32);
 }
