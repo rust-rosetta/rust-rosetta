@@ -30,5 +30,4 @@ Done:
 * [File size](http://rosettacode.org/wiki/File_size) - `filesize.rs`
 * [Rename a file](http://rosettacode.org/wiki/Rename_a_file) - `rename_a_file.rs`
 * [Empty program](http://rosettacode.org/wiki/Empty_program) - `empty.rs`
-
 * [Sieve of Eratosthenes](http://rosettacode.org/wiki/Sieve_of_Eratosthenes) - `sieve_eratosthenes.rs`
