@@ -1,4 +1,4 @@
-extern mod std;
+extern crate std;
 use std::libc;
 
 fn main() {

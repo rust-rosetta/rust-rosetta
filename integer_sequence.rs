@@ -1,4 +1,4 @@
-extern mod num;
+extern crate num;
 
 use num::bigint::BigUint;
 use std::num::One;
