@@ -1,6 +1,8 @@
 // Implements http://rosettacode.org/wiki/LZW_compression
 
-use std::hashmap::HashMap;
+extern crate collections;
+
+use collections::hashmap::HashMap;
 use std::vec;
 use std::str;
 

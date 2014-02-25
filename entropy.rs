@@ -1,7 +1,8 @@
 // Implements http://rosettacode.org/wiki/Entropy
+extern crate collections;
 
-use std::hashmap::HashMap;
 use std::str::StrSlice;
+use collections::hashmap::HashMap;
 
 pub fn shannon_entropy(s: &str) -> f64 {
     let mut map = HashMap::<char, uint>::new();
