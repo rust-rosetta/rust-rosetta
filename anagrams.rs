@@ -28,7 +28,6 @@ fn main () {
 
 	let max_length = map.iter().fold(0, |s, (_k, v)| cmp::max(s, v.len()));
 
-
 	for (_k, v) in map.iter() {
 		if v.len() == max_length {
 			for s in v.iter() {
