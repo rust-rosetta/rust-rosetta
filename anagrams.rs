@@ -4,11 +4,12 @@ use std::str;
 use collections::HashMap;
 use std::io::File;
 use std::io::BufferedReader;
+use std::cmp;
 
-fn sort_string(string: ~str) -> ~str {
-	let mut chars = string.to_utf16();
+fn sort_string(string: &str) -> ~str {
+	let mut chars = string.chars().to_owned_vec();
 	chars.sort();
-	str::from_utf16(chars).unwrap()
+	str::from_chars(chars)
 }
 
 fn main () {
@@ -22,15 +23,11 @@ fn main () {
 		map.mangle(sort_string(s.clone()), s,
 				   |_k, v| ~[v],
 				   |_k, v, string| v.push(string)
-				);//, sort_string(line))
+				);
 	}
 
-	let mut max_length = 0;
-	for (_k, v) in map.iter() {
-		if v.len() > max_length {
-			max_length = v.len()
-		}
-	}
+	let max_length = map.iter().fold(0, |s, (_k, v)| cmp::max(s, v.len()));
+
 
 	for (_k, v) in map.iter() {
 		if v.len() == max_length {
