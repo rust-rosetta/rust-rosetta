@@ -32,3 +32,4 @@ Done:
 * [Empty program](http://rosettacode.org/wiki/Empty_program) - `empty.rs`
 * [Sieve of Eratosthenes](http://rosettacode.org/wiki/Sieve_of_Eratosthenes) - `sieve_eratosthenes.rs`
 * [Rot-13] (http://rosettacode.org/wiki/Rot-13) - `rot13.rs`
+* [N-Queens](http://rosettacode.org/wiki/N-queens_problem) - `N_queens_problem.rs`
