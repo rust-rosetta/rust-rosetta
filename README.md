@@ -36,3 +36,4 @@ Done:
 * [Anagrams](http://rosettacode.org/wiki/Anagrams) - `anagrams.rs`
 * [Gray Code] (http://rosettacode.org/wiki/Gray_code) - `gray_code.rs`
 * [Palindrome detection] (http://rosettacode.org/wiki/Palindrome_detection) - `palindrome.rs`
+* [Balanced brackets] (http://rosettacode.org/wiki/Balanced_brackets) - `balanced_brackets.rs`
