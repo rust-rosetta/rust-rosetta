@@ -6,10 +6,7 @@ fn palindrome(string: &str) -> bool {
     let reverse = string.chars_rev();
     let mut both_directions = forward.zip(reverse);
     
-    for (a,b) in both_directions {
-        if (a != b) { return false; }
-    }
-    return true;
+    both_directions.count(|(a,b)|{a != b}) == 0
 }
 
 // Demonstration code
