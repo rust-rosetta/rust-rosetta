@@ -35,3 +35,4 @@ Done:
 * [N-Queens](http://rosettacode.org/wiki/N-queens_problem) - `N_queens_problem.rs`
 * [Anagrams](http://rosettacode.org/wiki/Anagrams) - `anagrams.rs`
 * [Gray Code] (http://rosettacode.org/wiki/Gray_code) - `gray_code.rs`
+* [Factorial] (http://rosettacode.org/wiki/Factorial) - `factorial.rs`
