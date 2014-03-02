@@ -1,4 +1,3 @@
-use std::from_str::FromStr;
 
 struct MarkovRule {
     pattern: ~str,
@@ -12,19 +11,12 @@ impl MarkovRule {
     }
 }
 
-struct MarkovRuleSet {
+struct MarkovAlgorithm {
     rules: ~[MarkovRule]
 }
 
-impl MarkovRuleSet {
-    fn new(rules: ~[MarkovRule]) -> MarkovRuleSet {
-        MarkovRuleSet {rules: rules}
-    }
-}
-
-//impl FromStr for MarkovRuleSet {
-impl MarkovRuleSet {
-    fn from_str(s: &str) -> Option<MarkovRuleSet> {
+impl MarkovAlgorithm {
+    fn build_from_string(s: &str) -> Option<MarkovAlgorithm> {
         let mut rules: ~[MarkovRule] = ~[];
         for line in s.lines() {
             // skip comment lines
@@ -63,8 +55,13 @@ impl MarkovRuleSet {
                 }
             }
         }
-        let rule_set = MarkovRuleSet::new(rules);
+        let rule_set = MarkovAlgorithm{rules: rules};
         Some(rule_set)
+    }
+    
+    fn apply(self, input: &str) -> ~str {
+        drop(input);
+        ~"nope"
     }
 }
 
@@ -74,6 +71,5 @@ fn main() {
 #comment
 nothing -> oh noes";
 
-    let rule_set = MarkovRuleSet::from_str(a);
-
+    let markov_algorithm = MarkovAlgorithm::build_from_string(a);
 }
