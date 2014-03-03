@@ -26,7 +26,7 @@ impl MarkovAlgorithm {
         let mut rules: ~[MarkovRule] = ~[];
         for line in s.lines() {
             // skip comment lines
-            if line.char_at(0) == '#'
+            if (line.char_len() > 0) && (line.char_at(0) == '#')
             {
                 continue;
             }
@@ -50,7 +50,7 @@ impl MarkovAlgorithm {
                     let line_end = line.slice_from(arrow + 3).trim_left();
                     
                     // check for . (stop)
-                    let stop = (line_end.char_at(0) == '.');
+                    let stop = (line_end.char_len() > 0) && (line_end.char_at(0) == '.');
                     
                     // extract replacement
                     let replacement = if stop {line_end.slice_from(1)} else {line_end};
