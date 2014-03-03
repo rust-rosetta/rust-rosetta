@@ -105,7 +105,7 @@ impl MarkovAlgorithm {
 
 fn main() {
     let a =
-~"somehing -> .nothing
+~"something -> .nothing
 #comment
 nothing -> oh noes";
 
