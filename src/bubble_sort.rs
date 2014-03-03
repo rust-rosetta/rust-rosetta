@@ -1,5 +1,5 @@
 //Implements http://rosettacode.org/wiki/Sorting_algorithms/Bubble_sort
-fn bubble_sort(v: &mut[int]) {
+fn bubble_sort<T: Ord>(v: &mut[T]) {
     let mut done = v.len()<1;
     let mut length = v.len();
     while !done {
@@ -14,7 +14,7 @@ fn bubble_sort(v: &mut[int]) {
     }
 }
 
-fn check_sort(v: &[int]) {
+fn check_sort<T: Ord>(v: &[T]) {
     if v.len() > 1 {
         for i in range(0, v.len()-1) {
             assert!(v[i] <= v[i+1]);
@@ -31,7 +31,7 @@ fn test_rosetta_vector() {
 
 #[test]
 fn test_empty_vector() {
-    let mut numbers = [];
+    let mut numbers: ~[int] = ~[];
     bubble_sort(numbers);
     check_sort(numbers);
 }
