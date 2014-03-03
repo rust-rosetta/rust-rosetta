@@ -1,3 +1,5 @@
+// Solution for http://rosettacode.org/wiki/Execute_a_Markov_algorithm
+// written for Rust 0.9
 
 // Individual markov rule
 struct MarkovRule {
@@ -110,19 +112,106 @@ impl MarkovAlgorithm {
     }
 }
 
-fn main() {
-    let a =
-~"something -> .nothing
-#comment
-nothing -> oh noes";
+// Demonstration of rosetta code samples
 
-    let markov_algorithm = MarkovAlgorithm::build_from_string(a);
+struct RCSample {
+    ruleset: ~str,
+    input: ~str,
+    expected_result: ~str
+}
+
+fn main() {
+    // Sample markow algorithms from rosetta code
+    // Left aligned to avoid extra whitespace in strings
+    let samples = [
+        RCSample{
+            ruleset: 
+~"# This rules file is extracted from Wikipedia:
+# http://en.wikipedia.org/wiki/Markov_Algorithm
+A -> apple
+B -> bag
+S -> shop
+T -> the
+the shop -> my brother
+a never used -> .terminating rule",
+            input: ~"I bought a B of As from T S.",
+            expected_result: ~"I bought a bag of apples from my brother."
+        },
+        RCSample{
+            ruleset: 
+~"# Slightly modified from the rules on Wikipedia
+A -> apple
+B -> bag
+S -> .shop
+T -> the
+the shop -> my brother
+a never used -> .terminating rule",
+            input: ~"I bought a B of As from T S.",
+            expected_result: ~"I bought a bag of apples from T shop."
+        },
+        RCSample{
+            ruleset: 
+~"# BNF Syntax testing rules
+A -> apple
+WWWW -> with
+Bgage -> ->.*
+B -> bag
+->.* -> money
+W -> WW
+S -> .shop
+T -> the
+the shop -> my brother
+a never used -> .terminating rule",
+            input: ~"I bought a B of As W my Bgage from T S.",
+            expected_result: ~"I bought a bag of apples with my money from T shop."
+        },
+        RCSample{
+            ruleset: 
+~"### Unary Multiplication Engine, for testing Markov Algorithm implementations
+### By Donal Fellows.
+# Unary addition engine
+_+1 -> _1+
+1+1 -> 11+
+# Pass for converting from the splitting of multiplication into ordinary
+# addition
+1! -> !1
+,! -> !+
+_! -> _
+# Unary multiplication by duplicating left side, right side times
+1*1 -> x,@y
+1x -> xX
+X, -> 1,1
+X1 -> 1X
+_x -> _X
+,x -> ,X
+y1 -> 1y
+y_ -> _
+# Next phase of applying
+1@1 -> x,@y
+1@_ -> @_
+,@_ -> !_
+++ -> +
+# Termination cleanup for addition
+_1 -> 1
+1+_ -> 1
+_+_ -> ",
+            input: ~"_1111*11111_",
+            expected_result: ~"11111111111111111111"
+        }
+    ];
     
-    let output = markov_algorithm.map(|algorithm|{
-        algorithm.apply("something")
-    });
-    
-    output.map(|output_string|{
-        println!("{}", output_string);
-    });
+    for (index, sample) in samples.iter().enumerate() {
+        let markov_algorithm = MarkovAlgorithm::build_from_string(sample.ruleset);
+        
+        let output = markov_algorithm.map(|algorithm|{
+            algorithm.apply(sample.input)
+        });
+        
+        output.map(|output_string|{
+            println!("Sample {}", (index + 1))
+            println!("Expected: {}", sample.expected_result)
+            println!("Actual  : {}", output_string);
+            assert!(sample.expected_result == output_string);
+        });
+    }
 }
