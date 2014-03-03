@@ -1,12 +1,14 @@
 RUSTC=printf "\033[32;1mRustc:\033[33m %s\033[m\n" $@; rustc
-SRC=$(wildcard *.rs)
-PROG:=$(patsubst %.rs,%,$(SRC))
+SRCDIR:=src
+SRC:=$(wildcard $(SRCDIR)/*.rs)
+PROGDIR:=dist
+PROG:=$(patsubst $(SRCDIR)/%.rs,$(PROGDIR)/%,$(SRC))
 
 .SILENT:
 
 all:
 	# Test compiling executables
-	for item in *.rs; \
+	for item in $(SRCDIR)/*.rs; \
 	do \
 		echo Compiling $$item; \
 		rustc $$item -o /tmp/tmp || exit; \
@@ -25,5 +27,8 @@ clean:
 exe: $(PROG)
 	# Build executables
 
-% : %.rs
+$(PROGDIR):
+	mkdir $(PROGDIR)
+
+$(PROGDIR)/% : $(SRCDIR)/%.rs | $(PROGDIR)
 	$(RUSTC) $(RUSTFLAGS) $< -o $@
