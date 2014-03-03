@@ -38,3 +38,4 @@ Done:
 * [Factorial] (http://rosettacode.org/wiki/Factorial) - `factorial.rs`
 * [Palindrome detection] (http://rosettacode.org/wiki/Palindrome_detection) - `palindrome.rs`
 * [Balanced brackets] (http://rosettacode.org/wiki/Balanced_brackets) - `balanced_brackets.rs`
+* [Guess the number] (http://rosettacode.org/wiki/Guess_the_number) - `guess_number.rs`
