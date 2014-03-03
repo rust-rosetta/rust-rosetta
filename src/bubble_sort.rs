@@ -1,9 +1,11 @@
 //Implements http://rosettacode.org/wiki/Sorting_algorithms/Bubble_sort
 fn bubble_sort(v: &mut[int]) {
     let mut done = v.len()<1;
+    let mut length = v.len();
     while !done {
         done = true;
-        for index in range(0, v.len()-1) {
+        length = length-1;
+        for index in range(0, length) {
             if v[index] > v[index+1] {
                 done = false;
                 v.swap(index, index+1);
