@@ -37,3 +37,4 @@ Done:
 * [Gray Code] (http://rosettacode.org/wiki/Gray_code) - `gray_code.rs`
 * [Palindrome detection] (http://rosettacode.org/wiki/Palindrome_detection) - `palindrome.rs`
 * [Balanced brackets] (http://rosettacode.org/wiki/Balanced_brackets) - `balanced_brackets.rs`
+* [Markov algorithm] (http://rosettacode.org/wiki/Execute_a_Markov_algorithm) - `markov_algorithm.rs`
