@@ -35,8 +35,29 @@ fn test_empty_vector() {
 }
 
 #[test]
+fn test_one_element_vector() {
+    let mut numbers = [0];
+    bubble_sort(numbers);
+    check_sort(numbers);
+}
+
+#[test]
 fn test_repeat_vector() {
     let mut numbers = [1, 1, 1, 1, 1];
+    bubble_sort(numbers);
+    check_sort(numbers);
+}
+
+#[test]
+fn test_worst_case_vector() {
+    let mut numbers = [20, 10, 0, -1, -5];
+    bubble_sort(numbers);
+    check_sort(numbers);
+}
+
+#[test]
+fn test_already_sorted_vector() {
+    let mut numbers = [-1, 0, 3, 6, 99];
     bubble_sort(numbers);
     check_sort(numbers);
 }
