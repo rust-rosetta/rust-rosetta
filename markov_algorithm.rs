@@ -197,7 +197,30 @@ _1 -> 1
 _+_ -> ",
             input: ~"_1111*11111_",
             expected_result: ~"11111111111111111111"
-        }
+        },
+        RCSample{
+            ruleset: 
+~"# Turing machine: three-state busy beaver
+#
+# state A, symbol 0 => write 1, move right, new state B
+A0 -> 1B
+# state A, symbol 1 => write 1, move left, new state C
+0A1 -> C01
+1A1 -> C11
+# state B, symbol 0 => write 1, move left, new state A
+0B0 -> A01
+1B0 -> A11
+# state B, symbol 1 => write 1, move right, new state B
+B1 -> 1B
+# state C, symbol 0 => write 1, move left, new state B
+0C0 -> B01
+1C0 -> B11
+# state C, symbol 1 => write 1, move left, halt
+0C1 -> H01
+1C1 -> H11",
+            input: ~"000000A000000",
+            expected_result: ~"00011H1111000"
+        },
     ];
     
     for (index, sample) in samples.iter().enumerate() {
