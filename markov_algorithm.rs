@@ -1,4 +1,5 @@
 
+// Individual markov rule
 struct MarkovRule {
     pattern: ~str,
     replacement: ~str,
@@ -11,11 +12,14 @@ impl MarkovRule {
     }
 }
 
+// Struct for the complete markov algorithm
 struct MarkovAlgorithm {
     rules: ~[MarkovRule]
 }
 
 impl MarkovAlgorithm {
+    
+    // parse an algorithm description to build a markov algorithm
     pub fn build_from_string(s: &str) -> Option<MarkovAlgorithm> {
         let mut rules: ~[MarkovRule] = ~[];
         for line in s.lines() {
@@ -59,7 +63,10 @@ impl MarkovAlgorithm {
         Some(rule_set)
     }
     
+    // transform a text string by applying the markov algorithm
     pub fn apply(&self, input: &str) -> ~str {
+        
+        // get a writable version of the input to work with
         let mut state = input.into_owned();
         
         // Don't allow input to be used after this
