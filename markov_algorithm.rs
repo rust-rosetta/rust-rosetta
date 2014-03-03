@@ -16,7 +16,7 @@ struct MarkovAlgorithm {
 }
 
 impl MarkovAlgorithm {
-    fn build_from_string(s: &str) -> Option<MarkovAlgorithm> {
+    pub fn build_from_string(s: &str) -> Option<MarkovAlgorithm> {
         let mut rules: ~[MarkovRule] = ~[];
         for line in s.lines() {
             // skip comment lines
@@ -59,17 +59,63 @@ impl MarkovAlgorithm {
         Some(rule_set)
     }
     
-    fn apply(self, input: &str) -> ~str {
+    pub fn apply(&self, input: &str) -> ~str {
+        let mut state = input.into_owned();
+        
+        // Don't allow input to be used after this
         drop(input);
-        ~"nope"
+        
+        // loop while operations are possible
+        loop {
+            // find the first rule that is applicable
+            // (pattern string is in state)
+            let mut rule_iterator = self.rules.iter();
+            let possible_rule = rule_iterator.find(|rule|{
+                state.find_str(rule.pattern).is_some()
+            });
+            
+            match possible_rule {
+                // stop if no rule found
+                None => { break; }
+                Some(rule) => {
+                    // replace the first instnace (only) of the pattern
+                    // Note: cannot use str::replace as that replaces all instances
+                    
+                    // unwrap is safe here as the code for finding a rule
+                    // already established that the pattern is present
+                    let pos = state.find_str(rule.pattern).unwrap();
+                    let width = rule.pattern.len();
+                    
+                    // string parts
+                    let left = state.slice_to(pos).to_owned();
+                    let right = state.slice_from(pos + width).to_owned();
+                    
+                    // construct new string
+                    state = left + rule.replacement + right;
+                    
+                    // stop if required
+                    if (rule.stop) { break; }
+                }
+            }
+        }
+        
+        state
     }
 }
 
 fn main() {
     let a =
-"somehing -> .nothing
+~"somehing -> .nothing
 #comment
 nothing -> oh noes";
 
     let markov_algorithm = MarkovAlgorithm::build_from_string(a);
+    
+    let output = markov_algorithm.map(|algorithm|{
+        algorithm.apply("something")
+    });
+    
+    output.map(|output_string|{
+        println!("{}", output_string);
+    });
 }
