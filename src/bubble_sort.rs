@@ -14,6 +14,12 @@ fn bubble_sort<T: Ord>(v: &mut[T]) {
     }
 }
 
+fn main() {
+    let mut numbers = [4, 65, 2, -31, 0, 99, 2, 83, 782, 1];
+    bubble_sort(numbers);
+}
+
+#[cfg(test)]
 fn check_sort<T: Ord>(v: &[T]) {
     if v.len() > 1 {
         for i in range(0, v.len()-1) {
