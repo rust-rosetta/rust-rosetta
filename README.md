@@ -12,6 +12,7 @@ Done:
 * [Apply a callback to an array](http://rosettacode.org/wiki/Apply_a_callback_to_an_array) - `callback_to_array.rs`
 * [Averages/Arithmetic mean](http://rosettacode.org/wiki/Averages/Arithmetic_mean) - `arithmetic_mean.rs`
 * [Balanced brackets] (http://rosettacode.org/wiki/Balanced_brackets) - `balanced_brackets.rs`
+* [Bubble sort] (http://rosettacode.org/wiki/Sorting_algorithms/Bubble_sort) - `bubble_sort.rs`
 * [Check input device is a terminal](http://rosettacode.org/wiki/Check_input_device_is_a_terminal) - `input_is_terminal.rs`
 * [Check output device is a terminal](http://rosettacode.org/wiki/Check_output_device_is_a_terminal) - `output_is_terminal.rs`
 * [Check that file exists](http://rosettacode.org/wiki/Check_that_file_exists) - `check_file.rs`
