@@ -25,6 +25,7 @@ Done:
 * [File size](http://rosettacode.org/wiki/File_size) - `filesize.rs`
 * [Find limit of recursion](http://rosettacode.org/wiki/Find_limit_of_recursion) - `recursion_depth.rs`
 * [Generic swap](http://rosettacode.org/wiki/Generic_swap) - `swap.rs`
+* [Guess the number] (http://rosettacode.org/wiki/Guess_the_number) - `guess_number.rs`
 * [Gray code] (http://rosettacode.org/wiki/Gray_code) - `gray_code.rs`
 * [Hailstone sequence](http://rosettacode.org/wiki/Hailstone_sequence) - `hailstone.rs`
 * [Integer sequence](http://rosettacode.org/wiki/Integer_sequence) - `integer_sequence.rs`
