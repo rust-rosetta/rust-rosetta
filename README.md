@@ -37,6 +37,7 @@ Done:
 * [Palindrome detection] (http://rosettacode.org/wiki/Palindrome_detection) - `palindrome.rs`
 * [Primality by Trial Division](http://rosettacode.org/wiki/Primality_by_Trial_Division) - `primality_trial_div.rs`
 * [Prime decomposition](http://rosettacode.org/wiki/Prime_decomposition) - `prime_decomposition.rs`
+* [Quick Sort](http://rosettacode.org/wiki/Sorting_algorithms/Quicksort) - `quick_sort.rs`
 * [Read a file line by line](http://rosettacode.org/wiki/Read_a_file_line_by_line) - `read_file_line.rs`
 * [Rename a file](http://rosettacode.org/wiki/Rename_a_file) - `rename_a_file.rs`
 * [Rot-13] (http://rosettacode.org/wiki/Rot-13) - `rot13.rs`
