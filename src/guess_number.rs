@@ -1,5 +1,7 @@
 // Implements http://rosettacode.org/wiki/Guess_the_number
-use std::rand::{task_rng, Rng};
+extern crate rand;
+
+use rand::{task_rng, Rng};
 use std::io::stdio::stdin;
 use std::io::BufferedReader;
 

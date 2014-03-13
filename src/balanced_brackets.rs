@@ -1,7 +1,9 @@
 // Solution for http://rosettacode.org/wiki/Balanced_brackets
 // Written for rust 0.9
 
-use std::rand::random;
+extern crate rand;
+
+use rand::random;
 
 fn check_balanced(bracket_str: &str) -> bool {
     let mut count: int = 0;
@@ -12,7 +14,7 @@ fn check_balanced(bracket_str: &str) -> bool {
             }
             ']' => {
                 count -= 1;
-                if (count < 0) {
+                if count < 0 {
                     return false;
                 }
             }
