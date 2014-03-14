@@ -20,9 +20,8 @@ fn main () {
 
 	for line in file.lines() {
 		let s = line.trim().to_owned();
-		map.mangle(sort_string(s.clone()), s,
-				   |_k, v| ~[v],
-				   |_k, v, string| v.push(string)
+		map.insert_or_update_with(sort_string(s.clone()), ~[s.clone()],
+				   |_k, v| v.push(s.clone())
 				);
 	}
 

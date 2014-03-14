@@ -1,6 +1,8 @@
 // Implements http://rosettacode.org/wiki/Concurrent_computing
+extern crate rand;
+
 use std::io::timer::sleep;
-use std::rand::random;
+use rand::random;
 
 fn main() {
     let strings = ~[~"Enjoy", ~"Rosetta", ~"Code"];
