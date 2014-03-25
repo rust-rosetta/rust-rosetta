@@ -30,7 +30,7 @@ fn tryplace(b : [i8,..side*side],ix:i8, nq: i8, mut score: u32) -> u32 {
     for ind in range(ix, side*side) {
         score = match place(b, ind) {
             Some(b2) => tryplace(b2, ind+1, nq+1, score),
-            None() => score
+            None => score
         };
     }
     return score
