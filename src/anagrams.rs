@@ -7,7 +7,7 @@ use std::io::BufferedReader;
 use std::cmp;
 
 fn sort_string(string: &str) -> ~str {
-	let mut chars = string.chars().to_owned_vec();
+	let mut chars = string.chars().collect();
 	chars.sort();
 	str::from_chars(chars)
 }
