@@ -7,7 +7,7 @@ use std::io::BufferedReader;
 use std::cmp;
 
 fn sort_string(string: &str) -> ~str {
-	let mut chars = string.chars().collect();
+	let mut chars: ~[char] = string.chars().collect();
 	chars.sort();
 	str::from_chars(chars)
 }
@@ -19,7 +19,7 @@ fn main () {
 	let mut map: HashMap<~str, ~[~str]> = HashMap::new();
 
 	for line in file.lines() {
-		let s = line.trim().to_owned();
+		let s = line.unwrap().trim().to_owned();
 		map.insert_or_update_with(sort_string(s.clone()), ~[s.clone()],
 				   |_k, v| v.push(s.clone())
 				);
