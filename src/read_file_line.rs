@@ -13,7 +13,7 @@ fn main() {
     let mut reader = BufferedReader::new(file);
 
     for line in reader.lines() {
-        print!("{:s}", line);
+        print!("{:s}", line.unwrap());
     }
     
     println!("");
