@@ -103,7 +103,7 @@ impl MarkovAlgorithm {
                     state = left + rule.replacement + right;
                     
                     // stop if required
-                    if (rule.stop) { break; }
+                    if rule.stop { break; }
                 }
             }
         }
