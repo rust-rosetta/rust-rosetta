@@ -3,7 +3,7 @@
 extern crate collections;
 
 use collections::hashmap::HashMap;
-use std::vec;
+use std::slice;
 use std::str;
 
 fn compress(original_str: &str) -> ~[int] {
@@ -54,12 +54,12 @@ fn decompress(compressed: &[int]) -> ~str {
       let entry = 
          match dictionary.find(&k) {
             Some(v) => v.clone(),
-            None if k == dict_size => vec::append_one(w.clone(), w[0]),
+            None if k == dict_size => slice::append_one(w.clone(), w[0]),
             None => fail!("Invalid compressed string")
          };
       
-      result = vec::append(result, entry);
-      dictionary.insert(dict_size, vec::append_one(w, entry[0]));
+      result = slice::append(result, entry);
+      dictionary.insert(dict_size, slice::append_one(w, entry[0]));
       dict_size += 1;
       w = entry; 
    }
