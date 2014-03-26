@@ -1,4 +1,4 @@
-use std::vec;
+use std::slice;
 use std::num;
 use std::iter;
 
@@ -11,7 +11,7 @@ fn simple_sieve(limit: uint) -> ~[uint] {
         return ~[];
     }
 
-    let mut primes = vec::from_elem(limit + 1, true);
+    let mut primes = slice::from_elem(limit + 1, true);
 
     for prime in iter::range_inclusive(2, int_sqrt(limit) + 1) {
         if primes[prime] {
