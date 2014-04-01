@@ -1,7 +1,7 @@
 // Implements http://rosettacode.org/wiki/Check_that_file_exists
 fn main() {
   let paths = ["input.txt", "docs"];
-  paths.map(|&x| check_file(x));
+  paths.iter().map(|&x| check_file(x));
 }
 
 fn check_file(i: &'static str) -> () {

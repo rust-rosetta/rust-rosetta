@@ -8,7 +8,8 @@ fn rot13 (string: ~str) -> ~str {
 			_ => c
 		}
 	}
-	std::str::from_utf8_owned(string.as_bytes().map(|c| rot13u8(*c))).unwrap()
+        let translated = string.as_bytes().iter().map(|c| rot13u8(*c)).collect();
+	std::str::from_utf8_owned(translated).unwrap()
 }
 
 fn main () {
