@@ -35,6 +35,7 @@ Done:
 * [Loops/For](http://rosettacode.org/wiki/Loops/For) - `loops-for.rs`
 * [Loops/Foreach](http://rosettacode.org/wiki/Loops/Foreach) - `loops-foreach.rs`
 * [Loops/Infinite](http://rosettacode.org/wiki/Loops/Infinite) - `loops-infinite.rs`
+* [Loops/N plus one half](http://rosettacode.org/wiki/Loops/N_plus_one_half) - `loops-n-plus-one-half.rs`
 * [LZW compression](http://rosettacode.org/wiki/LZW_compression) - `lwz.rs`
 * [Markov algorithm] (http://rosettacode.org/wiki/Execute_a_Markov_algorithm) - `markov_algorithm.rs`
 * [Mutual recursion](http://rosettacode.org/wiki/Mutual_recursion) - `mutual_recursion.rs`
