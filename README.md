@@ -8,6 +8,7 @@ Tasks: http://rosettacode.org/wiki/Reports:Tasks_not_implemented_in_Rust
 
 Done:
 * [A+B](http://rosettacode.org/wiki/A%2BB) - `a+b.rs`
+* [Almost prime](http://rosettacode.org/wiki/Almost_prime) - `almost_prime.rs` 
 * [Anagrams](http://rosettacode.org/wiki/Anagrams) - `anagrams.rs`
 * [Apply a callback to an array](http://rosettacode.org/wiki/Apply_a_callback_to_an_array) - `callback_to_array.rs`
 * [Averages/Arithmetic mean](http://rosettacode.org/wiki/Averages/Arithmetic_mean) - `arithmetic_mean.rs`
