@@ -33,6 +33,7 @@ Done:
 * [Hailstone sequence](http://rosettacode.org/wiki/Hailstone_sequence) - `hailstone.rs`
 * [Integer sequence](http://rosettacode.org/wiki/Integer_sequence) - `integer_sequence.rs`
 * [Loops/For](http://rosettacode.org/wiki/Loops/For) - `loops-for.rs`
+* [Loops/Foreach](http://rosettacode.org/wiki/Loops/Foreach) - `loops-foreach.rs`
 * [LZW compression](http://rosettacode.org/wiki/LZW_compression) - `lwz.rs`
 * [Markov algorithm] (http://rosettacode.org/wiki/Execute_a_Markov_algorithm) - `markov_algorithm.rs`
 * [Mutual recursion](http://rosettacode.org/wiki/Mutual_recursion) - `mutual_recursion.rs`
