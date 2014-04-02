@@ -1,9 +1,8 @@
 use std::slice;
-use std::num;
 use std::iter;
 
 fn int_sqrt(n: uint) -> uint {
-    num::sqrt(n as f64) as uint
+    (n as f64).sqrt() as uint
 }
 
 fn simple_sieve(limit: uint) -> ~[uint] {
