@@ -2,25 +2,25 @@ static side: i8 = 8;
 static queens: i8 = 8;
 
 fn place(mut board: [i8,..side*side], ix:i8) -> Option<[i8,..side*side]> {
-    if board[ix] == 0 {
+    if board[ix as uint] == 0 {
         return None
     };
-    board[ix] = -1;
-    let i1 = ix/side;
+    board[ix as uint] = -1;
+    let i1 = ix / side;
     let j1 = ix % side;
-    for k in range(1,side) {
-        let mut loc :i8 = i1 * side + k;
-        board[loc] = 0;
+    for k in range(1, side) {
+        let mut loc: i8 = i1 * side + k;
+        board[loc as uint] = 0;
         loc = k * side + j1;
-        board[loc] = 0;
+        board[loc as uint] = 0;
         loc = (i1-k) * side + (j1-k);
-        if loc / side == i1 -k && loc % side == j1 - k && loc != ix && loc >= 0 { board[loc] = 0 };
+        if loc / side == i1 -k && loc % side == j1 - k && loc != ix && loc >= 0 { board[loc as uint] = 0 };
         loc = loc + 2 * k;
-        if loc / side == i1 - k && loc % side == j1 + k && loc != ix && loc >= 0 { board[loc] = 0};
+        if loc / side == i1 - k && loc % side == j1 + k && loc != ix && loc >= 0 { board[loc as uint] = 0};
         loc = loc + 2 * side * k;
-        if loc / side == i1 + k && loc % side == j1 + k && loc != ix && loc < side*side { board[loc] = 0};
+        if loc / side == i1 + k && loc % side == j1 + k && loc != ix && loc < side*side { board[loc as uint] = 0};
         loc = loc - 2 * k;
-        if loc / side == i1 + k && loc % side == j1 - k && loc != ix && loc < side*side { board[loc] = 0};
+        if loc / side == i1 + k && loc % side == j1 - k && loc != ix && loc < side*side { board[loc as uint] = 0};
     }
     Some(board)
 }
