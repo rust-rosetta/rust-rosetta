@@ -1,6 +1,8 @@
 // Implements http://rosettacode.org/wiki/Call_a_foreign-language_function
 
-use std::libc::c_char;
+extern crate libc;
+
+use libc::c_char;
 use std::c_str::CString;
 
 extern "C" {

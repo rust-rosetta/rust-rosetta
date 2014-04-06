@@ -1,5 +1,4 @@
-extern crate std;
-use std::libc;
+extern crate libc;
 
 fn main() {
     let istty = unsafe { libc::isatty(libc::STDIN_FILENO as i32) } != 0;
