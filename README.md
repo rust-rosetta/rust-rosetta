@@ -33,6 +33,7 @@ Done:
 * [Gray code] (http://rosettacode.org/wiki/Gray_code) - [gray_code.rs](src/gray_code.rs)
 * [Hailstone sequence](http://rosettacode.org/wiki/Hailstone_sequence) - [hailstone.rs](src/hailstone.rs)
 * [Integer sequence](http://rosettacode.org/wiki/Integer_sequence) - [integer_sequence.rs](src/integer_sequence.rs)
+* [Letter frequency](http://rosettacode.org/wiki/Letter_frequency) - [letter_frequency.rs](src/letter_frequency.rs)
 * [Loops/For](http://rosettacode.org/wiki/Loops/For) - [loops-for.rs](src/loops-for.rs)
 * [Loops/Foreach](http://rosettacode.org/wiki/Loops/Foreach) - [loops-foreach.rs](src/loops-foreach.rs)
 * [Loops/Infinite](http://rosettacode.org/wiki/Loops/Infinite) - [loops-infinite.rs](src/loops-infinite.rs)
