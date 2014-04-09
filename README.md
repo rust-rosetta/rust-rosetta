@@ -51,5 +51,6 @@ Done:
 * [Rename a file](http://rosettacode.org/wiki/Rename_a_file) - [rename_a_file.rs](src/rename_a_file.rs)
 * [Rot-13] (http://rosettacode.org/wiki/Rot-13) - [rot13.rs](src/rot13.rs)
 * [Sieve of Eratosthenes](http://rosettacode.org/wiki/Sieve_of_Eratosthenes) - [sieve_eratosthenes.rs](src/sieve_eratosthenes.rs)
+* [Sort an integer array](http://rosettacode.org/wiki/Sort_an_integer_array) - [sort_int.rs](src/sort_int.rs)
 * [Standard error](http://rosettacode.org/wiki/Hello_world/Standard_error) - [stderr.rs](src/stderr.rs)
 * [Webserver](http://rosettacode.org/wiki/Hello_world/Web_server) - [webserver.rs](src/webserver.rs)
