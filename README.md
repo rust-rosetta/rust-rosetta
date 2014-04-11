@@ -14,6 +14,7 @@ Done:
 * [Averages/Arithmetic mean](http://rosettacode.org/wiki/Averages/Arithmetic_mean) - [arithmetic_mean.rs](src/arithmetic_mean.rs)
 * [Averages/Arithmetic mean](http://rosettacode.org/wiki/Averages/Arithmetic_mean) - [averages_arithmetic_mean](src/averages_arithmetic_mean.rs)
 * [Balanced brackets] (http://rosettacode.org/wiki/Balanced_brackets) - [balanced_brackets.rs](src/balanced_brackets.rs)
+* [Binary digits] (http://rosettacode.org/wiki/Binary_digits) - [Binary_digits.rs](src/binary_digits.rs)
 * [Bubble sort] (http://rosettacode.org/wiki/Sorting_algorithms/Bubble_sort) - [bubble_sort.rs](src/bubble_sort.rs)
 * [Call a foreign-language function](http://rosettacode.org/wiki/Call_a_foreign-language_function) - [call_foreign_function.rs](src/call_foreign_function.rs)
 * [Check input device is a terminal](http://rosettacode.org/wiki/Check_input_device_is_a_terminal) - [input_is_terminal.rs](src/input_is_terminal.rs)
