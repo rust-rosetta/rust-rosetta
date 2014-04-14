@@ -1,5 +1,4 @@
 // Solution for http://rosettacode.org/wiki/Balanced_brackets
-// Written for rust 0.9
 
 extern crate rand;
 
@@ -24,8 +23,8 @@ fn check_balanced(bracket_str: &str) -> bool {
     return count == 0;
 }
 
-fn generate_brackets(mut num: uint) -> ~str {
-    let mut brackets = ~"";
+fn generate_brackets(mut num: uint) -> StrBuf {
+    let mut brackets = StrBuf::new();
     while num > 0 {
         num -= 1;
         if random() {
@@ -41,9 +40,8 @@ fn main() {
     for i in range (0u, 10u)
     {
         let brackets = generate_brackets(i);
-        let balanced = check_balanced(brackets);
-        
+        let balanced = check_balanced(brackets.as_slice());
+
         println!("{:s}    {:b}", brackets, balanced)
     }
 }
-
