@@ -1,3 +1,5 @@
+// Implements http://rosettacode.org/wiki/Mutual_recursion
+
 fn f(n: int) -> int {
     match n {
         0 => 1,

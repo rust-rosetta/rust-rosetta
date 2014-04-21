@@ -1,3 +1,5 @@
+// Implements http://rosettacode.org/wiki/Rot-13
+
 fn rot13 (string: ~str) -> ~str {
 	fn rot13u8 (c: u8) -> u8 {
 		match c {
@@ -8,7 +10,8 @@ fn rot13 (string: ~str) -> ~str {
 			_ => c
 		}
 	}
-        let translated = string.as_bytes().iter().map(|c| rot13u8(*c)).collect();
+    
+    let translated = string.as_bytes().iter().map(|c| rot13u8(*c)).collect();
 	std::str::from_utf8_owned(translated).unwrap()
 }
 
