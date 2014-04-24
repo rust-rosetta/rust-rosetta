@@ -5,10 +5,10 @@ extern crate collections;
 use collections::HashSet;
 
 fn main() {
-    // The first set contains integers from 0 to 10
+    // The first set contains integers from 0 to 7
     let set1 = range(0, 7).collect::<HashSet<int>>();
     
-    // The second set contains integers from 5 to 15
+    // The second set contains integers from 5 to 10
     let set2 = range(5, 10).collect();
     
     // A subset of set1
