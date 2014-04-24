@@ -56,6 +56,7 @@ Done:
 * [Read a file line by line](http://rosettacode.org/wiki/Read_a_file_line_by_line) - [read_file_line.rs](src/read_file_line.rs)
 * [Rename a file](http://rosettacode.org/wiki/Rename_a_file) - [rename_a_file.rs](src/rename_a_file.rs)
 * [Rot-13] (http://rosettacode.org/wiki/Rot-13) - [rot13.rs](src/rot13.rs)
+* [Set](http://rosettacode.org/wiki/Set) - [set.rs](src/set.rs)
 * [Sieve of Eratosthenes](http://rosettacode.org/wiki/Sieve_of_Eratosthenes) - [sieve_eratosthenes.rs](src/sieve_eratosthenes.rs)
 * [Sort an integer array](http://rosettacode.org/wiki/Sort_an_integer_array) - [sort_int.rs](src/sort_int.rs)
 * [Standard error](http://rosettacode.org/wiki/Hello_world/Standard_error) - [stderr.rs](src/stderr.rs)
