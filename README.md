@@ -1,6 +1,7 @@
 rust-rosetta
 ============
 [![Build Status](https://travis-ci.org/Hoverbear/rust-rosetta.png)](https://travis-ci.org/Hoverbear/rust-rosetta)
+[![Gitter chat](https://badges.gitter.im/Hoverbear/rust-rosetta.png)](https://gitter.im/Hoverbear/rust-rosetta)
 
 Just a start on helping with https://github.com/mozilla/rust/issues/10513
 
