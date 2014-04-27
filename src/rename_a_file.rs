@@ -1,3 +1,5 @@
+// Implements http://rosettacode.org/wiki/Rename_a_file
+
 use std::io::fs;
 
 fn main() {

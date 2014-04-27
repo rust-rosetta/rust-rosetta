@@ -1,4 +1,4 @@
-// http://rosettacode.org/wiki/Arithmetic/Integer
+// Implements http://rosettacode.org/wiki/Arithmetic/Integer
 
 use std::io::stdio::stdin;
 use std::from_str::from_str;

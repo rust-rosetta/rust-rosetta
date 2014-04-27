@@ -1,12 +1,12 @@
-// This was written for Rust 0.9
+// Implements http://rosettacode.org/wiki/Palindrome_detection
 
 // Simple character by character palindrome detector
 fn palindrome(string: &str) -> bool {
-    let forward = string.chars();
-    let reverse = string.chars_rev();
+    let forward = string.chars().take(string.len() / 2);
+    let reverse = string.chars_rev().take(string.len() / 2);
     let mut both_directions = forward.zip(reverse);
     
-    !both_directions.any(|(a,b)|{a != b})
+    both_directions.all(|(a, b)| {a == b})
 }
 
 // Demonstration code

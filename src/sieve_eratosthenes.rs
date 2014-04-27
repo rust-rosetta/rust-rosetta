@@ -1,3 +1,5 @@
+// Implements http://rosettacode.org/wiki/Sieve_of_Eratosthenes
+
 use std::slice;
 use std::iter;
 

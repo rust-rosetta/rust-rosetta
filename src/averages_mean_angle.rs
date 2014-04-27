@@ -1,4 +1,4 @@
-// http://rosettacode.org/wiki/Averages/Mean_angle
+// Implements http://rosettacode.org/wiki/Averages/Mean_angle
 
 use std::num::Float;
 

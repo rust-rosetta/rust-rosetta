@@ -1,3 +1,5 @@
+// Implements http://rosettacode.org/wiki/Gray_code
+
 fn gray_encode(integer: uint) -> uint {
 	(integer >> 1) ^ integer
 }

@@ -1,3 +1,5 @@
+// Implements http://rosettacode.org/wiki/Averages/Arithmetic_mean
+
 fn sum(arr: &[f64]) -> f64 {
     return arr.iter().fold(0.0, |p,q| p + *q);
 }
