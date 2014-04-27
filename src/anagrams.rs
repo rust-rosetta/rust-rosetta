@@ -16,11 +16,11 @@ fn main () {
 	let path = Path::new("unixdict.txt");
 	let mut file = BufferedReader::new(File::open(&path));
 
-	let mut map: HashMap<~str, ~[~str]> = HashMap::new();
+	let mut map: HashMap<~str, Vec<~str>> = HashMap::new();
 
 	for line in file.lines() {
 		let s = line.unwrap().trim().to_owned();
-		map.insert_or_update_with(sort_string(s.clone()), ~[s.clone()],
+		map.insert_or_update_with(sort_string(s.clone()), vec!(s.clone()),
 				   |_k, v| v.push(s.clone())
 				);
 	}
