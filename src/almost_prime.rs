@@ -19,7 +19,7 @@ fn kprime(n: int, k: int) -> bool {
 fn main() {
     for k in range(1, 6) {
         let mut i = 2;
-        let mut v: ~[int] = ~[];
+        let mut v = Vec::new();
 
         while v.len() < 10 {
             if kprime(i, k) {
