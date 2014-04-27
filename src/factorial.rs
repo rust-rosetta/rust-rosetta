@@ -1,3 +1,5 @@
+// Implements http://rosettacode.org/wiki/Factorial
+
 fn factorial_recursive (n: uint) -> uint {
 	match n {
 		0 => 1,

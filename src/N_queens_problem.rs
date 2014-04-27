@@ -1,3 +1,5 @@
+// Implements http://rosettacode.org/wiki/N-queens_problem
+
 static side: i8 = 8;
 static queens: i8 = 8;
 

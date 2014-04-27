@@ -1,3 +1,5 @@
+// Implements http://rosettacode.org/wiki/Count_in_octal
+
 use std::uint;
 
 fn main() {

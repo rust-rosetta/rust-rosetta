@@ -1,4 +1,4 @@
-// Solution for http://rosettacode.org/wiki/Balanced_brackets
+// Implements http://rosettacode.org/wiki/Balanced_brackets
 
 extern crate rand;
 

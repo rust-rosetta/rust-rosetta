@@ -1,3 +1,5 @@
+// Implements http://rosettacode.org/wiki/Hello_world/Web_server
+
 use std::io::net::tcp::{TcpListener, TcpStream};
 use std::io::net::ip::{Ipv4Addr, SocketAddr};
 use std::io::{Acceptor, Listener};

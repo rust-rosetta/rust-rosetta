@@ -1,4 +1,5 @@
 // Implements http://rosettacode.org/wiki/Hailstone_sequence
+
 // Define a struct which we can make into an interator.
 struct Hailstone {
   current: int, // Accessible online only to itself.

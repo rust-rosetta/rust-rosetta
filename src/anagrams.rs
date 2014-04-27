@@ -1,3 +1,5 @@
+// Implements http://rosettacode.org/wiki/Anagrams
+
 extern crate collections;
 
 use std::str;
