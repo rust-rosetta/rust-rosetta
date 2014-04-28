@@ -1,5 +1,4 @@
 // Solution for http://rosettacode.org/wiki/Execute_a_Markov_algorithm
-// written for Rust 0.9
 
 // Individual markov rule
 struct MarkovRule {
@@ -16,14 +15,14 @@ impl MarkovRule {
 
 // Struct for the complete markov algorithm
 struct MarkovAlgorithm {
-    rules: ~[MarkovRule]
+    rules: Vec<MarkovRule>
 }
 
 impl MarkovAlgorithm {
     
     // parse an algorithm description to build a markov algorithm
     pub fn build_from_string(s: &str) -> Option<MarkovAlgorithm> {
-        let mut rules: ~[MarkovRule] = ~[];
+        let mut rules: Vec<MarkovRule> = vec!();
         for line in s.lines() {
             // skip comment lines
             if (line.char_len() > 0) && (line.char_at(0) == '#')
