@@ -1,4 +1,5 @@
-// Implements http://rosettacode.org/wiki/A%2BB#Go
+// Implements http://rosettacode.org/wiki/A%2BB
+
 use std::io::stdio::stdin;
 use std::from_str::from_str;
 use std::io::BufferedReader;
