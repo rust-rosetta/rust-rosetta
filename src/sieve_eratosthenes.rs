@@ -1,6 +1,5 @@
 // Implements http://rosettacode.org/wiki/Sieve_of_Eratosthenes
 
-use std::slice;
 use std::iter;
 
 fn int_sqrt(n: uint) -> uint {
@@ -12,16 +11,17 @@ fn simple_sieve(limit: uint) -> ~[uint] {
         return ~[];
     }
 
-    let mut primes = slice::from_elem(limit + 1, true);
+    let mut primes = Vec::from_fn(limit + 1, |_| true);
 
     for prime in iter::range_inclusive(2, int_sqrt(limit) + 1) {
-        if primes[prime] {
+        if *primes.get(0) {
             for multiple in iter::range_step(prime * prime, limit + 1, prime) {
-                primes[multiple] = false
+                *primes.get_mut(multiple) = false
             }
         }
     }
-    iter::range_inclusive(2, limit).filter(|&n| primes[n]).collect()
+    
+    iter::range_inclusive(2, limit).filter(|&n| *primes.get(n)).collect()
 }
 
 fn main() {
