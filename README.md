@@ -12,7 +12,7 @@ Looking to help out? Great, thanks! We have a few guidelines:
 * The code you contribute *is* public domain.
 * Your code should build cleanly on the `master` branch of Rust.
 * Keep your code as simple as possible, please avoid Dead Code warnings.
-* Don't be afraid of comments, they code is going to be written once, read hundreds of times, and maintained until the 1.0 release of Rust.
+* Don't be afraid of comments, the code is going to be written once, read hundreds of times, and maintained until the 1.0 release of Rust.
 * Include a link to the Rosetta Code Problem at the top of the code sample.
 * Add a line to the Readme section below. (It's alphabetical!)
 * Unit tests are a bonus.
