@@ -15,7 +15,7 @@ fn sort_string(string: &str) -> ~str {
 }
 
 fn main () {
-	let path = Path::new("unixdict.txt");
+	let path = Path::new("resources/unixdict.txt");
 	let mut file = BufferedReader::new(File::open(&path));
 
 	let mut map: HashMap<~str, Vec<~str>> = HashMap::new();
