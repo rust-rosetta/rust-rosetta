@@ -2,11 +2,10 @@
 
 extern crate collections;
 
-use std::str;
 use collections::HashMap;
-use std::io::File;
-use std::io::BufferedReader;
-use std::cmp;
+use std::str;
+use std::io::{File, BufferedReader};
+use std::cmp::max;
 
 fn sort_string(string: &str) -> ~str {
 	let mut chars: ~[char] = string.chars().collect();
@@ -14,27 +13,40 @@ fn sort_string(string: &str) -> ~str {
 	str::from_chars(chars)
 }
 
-fn main () {
-	let path = Path::new("resources/unixdict.txt");
-	let mut file = BufferedReader::new(File::open(&path));
+// Returns groups of anagrams (each group consists of a vector containing the words)
+fn get_anagrams<T: Reader>(mut reader: BufferedReader<T>) -> HashMap<~str, Vec<~str>> {
+    let mut map: HashMap<~str, Vec<~str>> = HashMap::new();
 
-	let mut map: HashMap<~str, Vec<~str>> = HashMap::new();
-
-	for line in file.lines() {
+    // Make groups of words according to the letters they contain
+    // i.e. evil, live would be in the same group because they share the same letters
+	for line in reader.lines() {
 		let s = line.unwrap().trim().to_owned();
 		map.insert_or_update_with(sort_string(s.clone()), vec!(s.clone()),
 				   |_k, v| v.push(s.clone())
 				);
 	}
+    
+    map
+}
 
-	let max_length = map.iter().fold(0, |s, (_k, v)| cmp::max(s, v.len()));
+// Returns the groups of anagrams that contain the most words in them
+fn get_biggest_groups_anagrams(groups: &HashMap<~str, Vec<~str>>) -> HashMap<~str, Vec<~str>> {
+    let max_length = groups.iter().fold(0, |s, (_, v)| max(s, v.len())); 
+    
+    groups.iter().filter(|&(_, v)| v.len() == max_length).map(|(x, y)| (x.clone(), y.clone())).collect()
+}
 
-	for (_k, v) in map.iter() {
-		if v.len() == max_length {
-			for s in v.iter() {
-				print!("{} ", *s)
-			}
-			println!("")
-		}
+fn main () {
+	let path = Path::new("resources/unixdict.txt");
+	let reader = BufferedReader::new(File::open(&path));
+
+	let map = get_anagrams(reader);
+	let biggest_groups = get_biggest_groups_anagrams(&map);
+
+	for (_, v) in biggest_groups.iter() {
+        for s in v.iter() {
+            print!("{} ", *s)
+        }
+        println!("")
 	}
 }
