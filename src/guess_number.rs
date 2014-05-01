@@ -6,18 +6,19 @@ use std::io::stdio::stdin;
 use std::io::BufferedReader;
 
 fn main() {
-    let mysteryNumber: int = task_rng().gen_range(0, 10)+1;
+    let mystery_number = task_rng().gen_range(0, 10) + 1;
     println!("Guess my number between 1 and 10");
-    let mut goodGuess = false;
 
-    while !goodGuess {
-        let userInput = BufferedReader::new(stdin()).read_line().unwrap();
-        let userNumber = match from_str::<int>(userInput.slice_to(userInput.len() - 1)) {
-            Some(number) => number,
-            _            => fail!("Please enter an integer")
-        };
-        goodGuess = userNumber == mysteryNumber;
+    let mut input = BufferedReader::new(stdin());
+    loop {
+        let line = input.read_line().unwrap();
+        match from_str::<int>(line.trim()) {
+            Some(number) if (number == mystery_number) => break,
+            Some(_) => println!("Wrong! Try again!"),
+            None    => println!("Please enter an integer")
+        }
     }
+    
+    // The loop ends only if the player wins
     println!("Well guessed!");
 }
-
