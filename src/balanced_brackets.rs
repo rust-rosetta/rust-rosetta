@@ -4,8 +4,10 @@ extern crate rand;
 
 use rand::random;
 
+// Returns true if the brackets are balanced
 fn check_balanced(bracket_str: &str) -> bool {
-    let mut count: int = 0;
+    let mut count = 0;
+    
     for bracket in bracket_str.chars() {
         match bracket {
             '[' => {
@@ -17,25 +19,29 @@ fn check_balanced(bracket_str: &str) -> bool {
                     return false;
                 }
             }
-            _ => { fail!(); }
+            _ => { fail!("Strings containing characters other than brackets are not allowed"); }
         }
     }
-    return count == 0;
+    
+    count == 0
 }
 
+// Generates random brackets
 fn generate_brackets(mut num: uint) -> StrBuf {
     let mut brackets = StrBuf::new();
-    while num > 0 {
-        num -= 1;
+    
+    for _ in range(0, num) {
         if random() {
             brackets.push_char('[')
         } else {
             brackets.push_char(']')
         }
     }
+    
     brackets
 }
 
+#[cfg(not(test))]
 fn main() {
     for i in range (0u, 10u)
     {
@@ -44,4 +50,23 @@ fn main() {
 
         println!("{:s}    {:b}", brackets, balanced)
     }
+}
+
+#[test]
+fn test_empty_string() {
+    assert!(check_balanced(""));
+}
+
+#[test]
+fn test_wrong_brackets() {
+    assert!(!check_balanced("]["));
+    assert!(!check_balanced("][]["));
+    assert!(!check_balanced("[]][[]"));
+}
+
+#[test]
+fn test_good_brackets() {
+    assert!(check_balanced("[]"));
+    assert!(check_balanced("[][]"));
+    assert!(check_balanced("[[][]]"));
 }
