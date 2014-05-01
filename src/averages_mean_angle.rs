@@ -11,6 +11,7 @@ fn mean_angle(angles: &[f64]) -> f64 {
     mean_sin.atan2(mean_cos) * 180. / Float::pi()
 }
 
+#[cfg(not(test))]
 fn main() {
     let set1 = [350., 10.];
     let set2 = [90., 180., 270., 360.];
@@ -19,4 +20,16 @@ fn main() {
     println!("Mean angle of first set is {} degrees", mean_angle(set1));
     println!("Mean angle of second set is {} degrees", mean_angle(set2));
     println!("Mean angle of third set is {} degrees", mean_angle(set3));
+}
+
+#[test]
+fn basic_tests() {
+    let set1 = [350., 10.];
+    let set2 = [90., 180., 270., 360.];
+    let set3 = [10., 20., 30.];
+    
+    // We need to round the numbers
+    assert!(mean_angle(set1).round() == 0.);
+    assert!(mean_angle(set2).round() == -90.);
+    assert!(mean_angle(set3).round() == 20.);
 }
