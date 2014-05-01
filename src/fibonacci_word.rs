@@ -2,24 +2,42 @@
 extern crate collections;
 
 use entropy::shannon_entropy;
+use std::iter::range_inclusive;
 mod entropy;
 
-fn main() {
-    println!("{:>2s}:{:>10s} {:s}", "N", "length", "entropy");
-
+// Returns "amount" fibonacci words as a vector of tuples
+// The first value of the tuple is the length of the word
+// and the second one its entropy
+fn fib_words(amount: uint) -> Vec<(uint, f64)> {
+    let mut data = Vec::with_capacity(amount);
     let mut previous = StrBuf::from_str("1");
-    println!("{:>2i}:{:>10u} {:f}", 1, previous.len(),
-             shannon_entropy(previous.as_slice()));
-
     let mut next = StrBuf::from_str("0");
-    println!("{:>2i}:{:>10u} {:f}", 2, next.len(),
-             shannon_entropy(next.as_slice()));
-
-    for i in range(3, 38) {
+    
+    // The first two words (we need to add them manually because
+    // they are the base of the sequence)
+    data.push((previous.len(), shannon_entropy(previous.as_slice())));
+    data.push((next.len(), shannon_entropy(next.as_slice())));
+    
+    // The rest of the words
+    for _ in range_inclusive(3, amount) {
         let temp = next.clone();
         next.push_str(previous.as_slice());
         previous = temp;
-        println!("{:>2i}:{:>10u} {:.15f}", i, next.len(),
-                 shannon_entropy(next.as_slice()));
+        data.push((next.len(), shannon_entropy(next.as_slice())));
+    }
+    
+    data
+}
+
+fn main() {
+    println!("Calculating... This may take a couple of minutes...\n");
+    
+    let words = fib_words(18);
+    let mut i = 1;
+    
+    println!("{:>2}:{:>10} {}", "N", "length", "entropy");
+    for &(length, entropy) in words.iter() {
+        println!("{:>2i}:{:>10u} {:.15f}", i, length, entropy);
+        i += 1;
     }
 }
