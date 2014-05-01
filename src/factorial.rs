@@ -67,21 +67,21 @@ mod tests {
     #[bench]
     fn bench_fac_recursive(b: &mut Bencher) {
         b.iter(|| {
-            factorial_recursive(10);
+            test::black_box(factorial_recursive(10));
         });
     }
     
     #[bench]
     fn bench_fac_iterative(b: &mut Bencher) {
         b.iter(|| {
-            factorial_iterative(10);
+            test::black_box(factorial_iterative(10));
         });
     }
     
     #[bench]
     fn bench_fac_loop(b: &mut Bencher) {
         b.iter(|| {
-            factorial_loop(10);
+            test::black_box(factorial_loop(10));
         });
     }
 }
