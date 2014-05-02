@@ -5,6 +5,7 @@ extern crate collections;
 use collections::hashmap::HashMap;
 use std::str;
 
+// Compress using LZW
 fn compress(original_str: &str) -> Vec<int> {
    let original = original_str.as_bytes();
    let mut dict_size = 256;
@@ -38,6 +39,7 @@ fn compress(original_str: &str) -> Vec<int> {
    result
 }
 
+// Decompress using LZW
 fn decompress(compressed: &Vec<int>) -> ~str {
    let mut dict_size = 256;
    let mut dictionary = HashMap::new();
@@ -67,15 +69,31 @@ fn decompress(compressed: &Vec<int>) -> ~str {
    str::from_utf8(result.as_slice()).unwrap().to_owned()
 }
 
+#[cfg(not(test))]
 fn main() {
+   // Show original
    let original = "TOBEORNOTTOBEORTOBEORNOT";
-
+    println!("Original: {}", original);
+   
+   // Show compressed
    let compressed = compress(original);
-   println!("{:?}", compressed);
+   println!("Compressed: {}", compressed);
 
+   // Show decompressed
    let decompressed = decompress(&compressed);
-   println!("{:s}", decompressed);
+   println!("Decompressed: {}", decompressed);
+}
 
-   // Check if the decompressed string corresponds to the original string
-   assert!(original == decompressed);
+#[test]
+fn test_coherence() {
+    for n in range(50000, 50100) {
+        let rand_str = n.to_str();
+        assert!(decompress(&compress(rand_str)) == rand_str);
+    }
+}
+
+#[test]
+fn test_example() {
+    let original = "TOBEORNOTTOBEORTOBEORNOT";
+    assert!(compress(original).as_slice() == [84, 79, 66, 69, 79, 82, 78, 79, 84, 256, 258, 260, 265, 259, 261, 263]);
 }
