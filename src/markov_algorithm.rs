@@ -81,7 +81,7 @@ impl MarkovAlgorithm {
                 // stop if no rule found
                 None => { break; }
                 Some(rule) => {
-                    // replace the first instnace (only) of the pattern
+                    // replace the first instance (only) of the pattern
                     // Note: cannot use str::replace as that replaces all instances
                     
                     // unwrap is safe here as the code for finding a rule
