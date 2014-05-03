@@ -1,5 +1,6 @@
 // Implements http://rosettacode.org/wiki/Stack
 
+#[deriving(Show)]
 struct Stack<T> {
     // We use a vector because of simplicity
     vec: Vec<T>
@@ -31,7 +32,21 @@ impl<T> Stack<T> {
     }
 }
 
+#[cfg(not(test))]
 fn main() {
+    let mut stack = Stack::new();
+    
+    // Fill the stack
+    stack.push(5);
+    stack.push(8);
+    stack.push(9);
+    
+    // Show the element at the top
+    println!("{}", stack.peek().unwrap());
+}
+
+#[test]
+fn test_basic() {
     let mut stack = Stack::new();
     
     // The stack is empty
