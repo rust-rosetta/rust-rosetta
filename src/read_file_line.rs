@@ -17,7 +17,7 @@ fn main() {
         // Handle any errors that may arise
         match line {
             Ok(ln) => print!("{}", ln),
-            Err(msg) => print!("{}", msg)
+            Err(error) => print!("{}", error.desc)
         }
     }
     
