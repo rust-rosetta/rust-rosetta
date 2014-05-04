@@ -5,7 +5,7 @@ use std::io::timer::sleep;
 use rand::random;
 
 fn main() {
-    let strings = ~[~"Enjoy", ~"Rosetta", ~"Code"];
+    let strings = vec!["Enjoy", "Rosetta", "Code"];
 
     for s in strings.move_iter(){
         spawn(proc() {
