@@ -2,6 +2,7 @@
 
 extern crate collections;
 use collections::treemap::TreeSet;
+#[cfg(not(test))]
 use std::iter::count;
 
 fn digits(mut n: uint) -> Vec<uint> {
@@ -22,13 +23,13 @@ fn is_happy(mut x: uint) -> bool {
     while x != 1 {
         // Take the sum of the squares of the digits of x
         x = digits(x).iter().fold(0, |a, &b| a + b * b);
-        
+
         // The number is not happy if there is an endless loop
         if past.contains(&x) {
             return false
         }
-        
-        past.insert(d);
+
+        past.insert(x);
     }
     true
 }
@@ -37,7 +38,7 @@ fn is_happy(mut x: uint) -> bool {
 fn main() {
     // Print the first 8 happy numbers
     let v: Vec<uint> = count(1u, 1)
-        .filter(|&x| is_happy(*x))
+        .filter(|x| is_happy(*x))
         .take(8)
         .collect();
     println!("{}", v)
@@ -58,7 +59,7 @@ fn test_digits() {
 fn test_is_happy() {
     let happys = [1u, 7, 10, 13, 19, 23, 28, 31, 1607, 1663];
     let unhappys = [0u, 2, 3, 4, 5, 6, 8, 9, 29, 1662];
-    
+
     assert!(happys.iter().all(|&n| is_happy(n)));
-    assert_eq!(unhappys.iter().all(|&n| !is_happy(n)), false);
+    assert!(unhappys.iter().all(|&n| !is_happy(n)));
 }
