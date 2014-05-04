@@ -67,7 +67,7 @@ If you'd like, you're welcome to add your contact details, name, or other inform
 * [LZW compression](http://rosettacode.org/wiki/LZW_compression) - [lwz.rs](src/lwz.rs)
 * [Markov algorithm](http://rosettacode.org/wiki/Execute_a_Markov_algorithm) - [markov_algorithm.rs](src/markov_algorithm.rs)
 * [Mutual recursion](http://rosettacode.org/wiki/Mutual_recursion) - [mutual_recursion.rs](src/mutual_recursion.rs)
-* [N-queens problem](http://rosettacode.org/wiki/N-queens_problem) - [N_queens_problem.rs](src/N_queens_problem.rs)
+* [N-queens problem](http://rosettacode.org/wiki/N-queens_problem) - [n_queens.rs](src/n_queens.rs)
 * [Palindrome detection](http://rosettacode.org/wiki/Palindrome_detection) - [palindrome.rs](src/palindrome.rs)
 * [Primality by Trial Division](http://rosettacode.org/wiki/Primality_by_Trial_Division) - [primality_trial_div.rs](src/primality_trial_div.rs)
 * [Prime decomposition](http://rosettacode.org/wiki/Prime_decomposition) - [prime_decomposition.rs](src/prime_decomposition.rs)
