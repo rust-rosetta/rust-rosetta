@@ -4,6 +4,8 @@ extern crate collections;
 
 use collections::{HashMap, HashSet};
 use std::str;
+
+#[cfg(not(test))]
 use std::io::{File, BufferedReader};
 use std::cmp::max;
 
@@ -26,13 +28,13 @@ fn get_anagrams<T: Buffer>(mut reader: T) -> HashMap<~str, HashSet<~str>> {
 			|_, group| { group.insert(s.clone()); }                       // The closure to update the value
 		);
 	}
-    
+
     groups
 }
 
 // Returns the groups of anagrams that contain the most words in them
 fn get_biggest_groups(groups: &HashMap<~str, HashSet<~str>>) -> HashMap<~str, HashSet<~str>> {
-    let max_length = groups.iter().fold(0, |current_max, (_, group)| max(current_max, group.len())); 
+    let max_length = groups.iter().fold(0, |current_max, (_, group)| max(current_max, group.len()));
     groups.iter().filter(|&(_, group)| group.len() == max_length).map(|(x, y)| (x.clone(), y.clone())).collect()
 }
 
@@ -64,22 +66,22 @@ fn basic_test() {
     // We will get a string like "lane\nneal\nlean\nangel\nangle\ngalen\nglare\nlarge"
     let mut word_iter = group1.iter().chain(group2.iter().chain(group3.iter()));
     let mut words = StrBuf::new();
-    
+
     words.push_str(word_iter.next().unwrap().as_slice());
     for word in word_iter {
         words.push_str("\n");
         words.push_str(word.as_slice());
     }
-    
+
     // Here begins the real testing
     let all_groups = get_anagrams(std::io::MemReader::new(words.to_str().bytes().collect()));
     let biggest_groups = get_biggest_groups(&all_groups);
-    
+
     // Groups 1, 2 and 3 are contained in "all_groups"
     assert!(all_groups.iter().any(|(_, group)| *group == group1));
     assert!(all_groups.iter().any(|(_, group)| *group == group2));
     assert!(all_groups.iter().any(|(_, group)| *group == group3));
-    
+
     // Groups 1 and 2 are contained in "biggest_groups". Group 3 is not.
     assert!(biggest_groups.iter().any(|(_, group)| *group == group1));
     assert!(biggest_groups.iter().any(|(_, group)| *group == group2));

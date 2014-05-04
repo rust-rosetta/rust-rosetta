@@ -11,6 +11,7 @@ fn mean(list: &[f64]) -> Option<f64> {
     }
 }
 
+#[cfg(not(test))]
 fn main() {
     let input = vec!(3.0, 1.0, 4.0, 1.0, 5.0, 9.0);
 

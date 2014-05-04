@@ -4,6 +4,7 @@ extern crate rand;
 use std::io::timer::sleep;
 use rand::random;
 
+#[cfg(not(test))]
 fn main() {
     let strings = ~[~"Enjoy", ~"Rosetta", ~"Code"];
 
