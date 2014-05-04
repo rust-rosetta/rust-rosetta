@@ -14,6 +14,7 @@ fn bubble_sort<T: Ord>(v: &mut[T]) {
     }
 }
 
+#[cfg(not(test))]
 fn main() {
     let mut numbers = [4, 65, 2, -31, 0, 99, 2, 83, 782, 1];
     bubble_sort(numbers);
