@@ -31,8 +31,16 @@ fn factor(mut nb: i32) -> Vec<i32> {
 
 #[cfg(not(test))]
 fn main() {
-	println!("{:?}", factor(5) == vec!(5));
-	println!("{:?}", factor(15) == vec!(3, 5));
-	println!("{:?}", factor(16) == vec!(2, 2, 2, 2));
-	println!("{:?}", factor(10287) == vec!(3, 3, 3, 3, 127));
+	println!("Factors of 5: {}", factor(5));
+	println!("Factors of 15: {}", factor(15));
+	println!("Factors of 16: {}", factor(16));
+	println!("Factors of 10287: {}", factor(10287));
+}
+
+#[test]
+fn test_basic() {
+    assert!(factor(5) == vec!(5));
+    assert!(factor(15) == vec!(3, 5));
+    assert!(factor(16) == vec!(2, 2, 2, 2));
+    assert!(factor(10287) == vec!(3, 3, 3, 3, 127));
 }
