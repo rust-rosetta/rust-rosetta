@@ -5,6 +5,7 @@ fn recursion(n: int) {
 	recursion(n + 1);
 }
 
+#[cfg(not(test))]
 fn main() {
 	recursion(0);
 }

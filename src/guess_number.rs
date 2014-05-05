@@ -5,6 +5,7 @@ use rand::{task_rng, Rng};
 use std::io::stdio::stdin;
 use std::io::BufferedReader;
 
+#[cfg(not(test))]
 fn main() {
     let mystery_number = task_rng().gen_range(0, 10) + 1;
     println!("Guess my number between 1 and 10");

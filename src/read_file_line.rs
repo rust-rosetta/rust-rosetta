@@ -4,6 +4,7 @@ use std::io::fs::File;
 use std::io::BufferedReader;
 use std::os::args;
 
+#[cfg(not(test))]
 fn main() {
     let filename = match args().len() {
         1 => fail!("You must enter a filename to read line by line"),

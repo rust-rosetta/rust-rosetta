@@ -4,6 +4,7 @@ extern crate collections;
 
 use collections::HashSet;
 
+#[cfg(not(test))]
 fn main() {
     // The first set contains integers from 0 to 7
     let set1 = range(0, 7).collect::<HashSet<int>>();

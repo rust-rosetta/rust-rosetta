@@ -29,6 +29,7 @@ charset=UTF-8
     }
 }
 
+#[cfg(not(test))]
 fn main() {
     let addr = SocketAddr { ip: Ipv4Addr(127, 0, 0, 1), port: 80 };
     let listener = TcpListener::bind(addr).unwrap();

@@ -3,6 +3,7 @@
 #![allow(unused_must_use)]
 use std::io;
 
+#[cfg(not(test))]
 fn main() {
     let mut stderr = io::stderr();
     stderr.write(bytes!("Goodbye, World!\n"));

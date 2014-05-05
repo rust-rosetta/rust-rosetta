@@ -21,6 +21,7 @@ pub fn shannon_entropy(s: &str) -> f64 {
     })
 }
 
+#[cfg(not(test))]
 fn main() {
     println!("{:f}", shannon_entropy("1223334444"));
 }

@@ -14,6 +14,7 @@ fn m(n: int) -> int {
     }
 }
 
+#[cfg(not(test))]
 fn main() {
     for i in range(0, 20).map(f) {
         print!("{} ", i);

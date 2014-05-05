@@ -4,6 +4,7 @@ extern crate num;
 
 use num::complex::Cmplx;
 
+#[cfg(not(test))]
 fn main() {
     let a = Cmplx::new(-4.0, 5.0);
     let b = Cmplx::new(1.0, 1.0);
