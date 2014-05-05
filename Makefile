@@ -26,6 +26,22 @@ all:
 		echo; \
 	done;
 
+changed:
+	# Make files which changed from master
+	for item in $(git diff --name-only master..HEAD); \
+	do \
+		echo Compiling $$item; \
+		rustc --test $$item -o /tmp/rosetta/$$item || exit; \
+		echo Compiled $$item; \
+		echo; \
+	done;
+	for item in $(git diff --name-only master..HEAD); \
+	do \
+		echo Testing $$item; \
+		$$item; \
+		echo Tested $$item; \
+		echo; \
+	done;
 
 help:
 	# Show this help

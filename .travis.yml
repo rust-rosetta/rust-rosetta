@@ -1,7 +1,16 @@
+# Use something that's not 'ruby' so we don't set up things like
+# RVM/bundler/ruby and whatnot. Right now 'rust' isn't a language on
+# travis and it treats unknown languages as ruby
+language: c
+
 before_install:
   - yes | sudo add-apt-repository ppa:hansjorg/rust
   - sudo apt-get update
 install:
   - sudo apt-get install rust-nightly
-script:
-  - make all
+script: |
+  if [[ $TRAVIS_PULL_REQUEST != 'false' ]]; then
+    make changed;
+  else
+    make all;
+  fi
