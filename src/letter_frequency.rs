@@ -2,30 +2,40 @@
 
 extern crate collections;
 
+#[cfg(not(test))]
 use std::io::fs::File;
+#[cfg(not(test))]
 use std::io::BufferedReader;
-use std::os;
+use collections::HashMap;
+
+fn count_chars<T: Iterator<char>>(mut chars: T) -> HashMap<char, uint> {
+    let mut map: collections::HashMap<char, uint> = collections::HashMap::new();
+    for letter in chars {
+        map.insert_or_update_with(letter, 1, |_, count| *count += 1);
+    }
+    map
+}
 
 #[cfg(not(test))]
 fn main() {
-    let filename = match os::args().len() {
-        1 => fail!("You must enter a filename to read line by line"),
-        _ => os::args()[1]
-    };
-
-    let file = File::open(&Path::new(filename));
+    let file = File::open(&Path::new("resources/unixdict.txt"));
     let mut reader = BufferedReader::new(file);
 
-    let mut s : collections::HashMap<char,uint> = collections::HashMap::new();
+    println!("{}", count_chars(reader.chars().map(|c| c.unwrap())));
+}
 
-    for c in reader.chars() {
-        let letter = c.unwrap();
-        let counter = match s.contains_key(&letter) {
-            true => s.get(&letter) + 1,
-            false => 1,
-        };
-        s.insert(letter, counter);
-    }
+#[test]
+fn test_empty() {
+    let map = count_chars("".chars());
+    assert!(map.len() == 0);
+}
 
-    println!("{}", s);
+#[test]
+fn test_basic() {
+    let map = count_chars("aaaabbbbc".chars());
+
+    assert!(map.len() == 3);
+    assert!(*map.get(&'a') == 4);
+    assert!(*map.get(&'b') == 4);
+    assert!(*map.get(&'c') == 1);
 }
