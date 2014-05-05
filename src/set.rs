@@ -2,6 +2,7 @@
 
 extern crate collections;
 
+#[cfg(not(test))]
 use collections::HashSet;
 
 #[cfg(not(test))]

@@ -1,8 +1,11 @@
 // Implements http://rosettacode.org/wiki/Guess_the_number
 extern crate rand;
 
+#[cfg(not(test))]
 use rand::{task_rng, Rng};
+#[cfg(not(test))]
 use std::io::stdio::stdin;
+#[cfg(not(test))]
 use std::io::BufferedReader;
 
 #[cfg(not(test))]

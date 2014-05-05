@@ -1,5 +1,6 @@
 // Implements http://rosettacode.org/wiki/Prime_decomposition
 
+#[cfg(not(test))]
 fn factor(mut nb: i32) -> Vec<i32> {
 	let mut result = vec!();
 

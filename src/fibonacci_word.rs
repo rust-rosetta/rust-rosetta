@@ -1,13 +1,17 @@
 // Implements http://rosettacode.org/wiki/Fibonacci_word
 extern crate collections;
 
+#[cfg(not(test))]
 use entropy::shannon_entropy;
+#[cfg(not(test))]
 use std::iter::range_inclusive;
+#[cfg(not(test))]
 mod entropy;
 
 // Returns "amount" fibonacci words as a vector of tuples
 // The first value of the tuple is the length of the word
 // and the second one its entropy
+#[cfg(not(test))]
 fn fib_words(amount: uint) -> Vec<(uint, f64)> {
     let mut data = Vec::with_capacity(amount);
     let mut previous = StrBuf::from_str("1");
