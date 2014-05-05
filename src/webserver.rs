@@ -1,9 +1,13 @@
 // Implements http://rosettacode.org/wiki/Hello_world/Web_server
 
+#[cfg(not(test))]
 use std::io::net::tcp::{TcpListener, TcpStream};
+#[cfg(not(test))]
 use std::io::net::ip::{Ipv4Addr, SocketAddr};
+#[cfg(not(test))]
 use std::io::{Acceptor, Listener};
 
+#[cfg(not(test))]
 fn handle_client(mut stream: TcpStream) {
     let response = bytes!(
 "HTTP/1.1 200 OK

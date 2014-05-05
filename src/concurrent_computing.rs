@@ -1,7 +1,9 @@
 // Implements http://rosettacode.org/wiki/Concurrent_computing
 extern crate rand;
 
+#[cfg(not(test))]
 use std::io::timer::sleep;
+#[cfg(not(test))]
 use rand::random;
 
 #[cfg(not(test))]

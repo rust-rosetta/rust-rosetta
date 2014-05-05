@@ -1,6 +1,8 @@
 // Implements http://rosettacode.org/wiki/Count_in_octal
 
+#[cfg(not(test))]
 use std::u8;
+#[cfg(not(test))]
 use std::iter::range_inclusive;
 
 #[cfg(not(test))]
