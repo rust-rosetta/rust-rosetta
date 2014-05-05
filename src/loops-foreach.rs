@@ -3,6 +3,7 @@ extern crate collections;
 
 use collections::HashMap;
 
+#[cfg(not(test))]
 fn main() {
     // Iterate through the characters of a string
     let s = "hello, world!";

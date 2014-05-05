@@ -5,6 +5,7 @@ extern crate num;
 use num::bigint::BigUint;
 use std::num::One;
 
+#[cfg(not(test))]
 fn main() {
 	let one: BigUint = One::one();
 	let mut i: BigUint = One::one();

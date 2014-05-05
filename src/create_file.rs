@@ -5,6 +5,7 @@ extern crate libc;
 use std::io::{File, fs};
 use libc::S_IRWXU;
 
+#[cfg(not(test))]
 fn main () {
     // Create a new file.
     // We get a Result object from File::create. We could check if there is an error

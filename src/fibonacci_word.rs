@@ -29,6 +29,7 @@ fn fib_words(amount: uint) -> Vec<(uint, f64)> {
     data
 }
 
+#[cfg(not(test))]
 fn main() {
     println!("Calculating... This may take a couple of minutes...\n");
     

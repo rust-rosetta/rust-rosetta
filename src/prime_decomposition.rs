@@ -29,6 +29,7 @@ fn factor(mut nb: i32) -> Vec<i32> {
 	result
 }
 
+#[cfg(not(test))]
 fn main() {
 	println!("{:?}", factor(5) == vec!(5));
 	println!("{:?}", factor(15) == vec!(3, 5));
