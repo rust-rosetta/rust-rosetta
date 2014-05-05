@@ -2,8 +2,11 @@
 
 extern crate collections;
 
+#[cfg(not(test))]
 use std::io::fs::File;
+#[cfg(not(test))]
 use std::io::BufferedReader;
+#[cfg(not(test))]
 use std::os;
 
 #[cfg(not(test))]

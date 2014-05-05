@@ -1,4 +1,5 @@
 // Implements http://rosettacode.org/wiki/Generic_swap
+#[cfg(not(test))]
 use std::mem::swap;
 
 #[cfg(not(test))]

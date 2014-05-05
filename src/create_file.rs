@@ -2,7 +2,9 @@
 
 extern crate libc;
 
+#[cfg(not(test))]
 use std::io::{File, fs};
+#[cfg(not(test))]
 use libc::S_IRWXU;
 
 #[cfg(not(test))]

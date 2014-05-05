@@ -1,5 +1,6 @@
 // Implements http://rosettacode.org/wiki/Mutual_recursion
 
+#[cfg(not(test))]
 fn f(n: int) -> int {
     match n {
         0 => 1,
@@ -7,6 +8,7 @@ fn f(n: int) -> int {
     }
 }
 
+#[cfg(not(test))]
 fn m(n: int) -> int {
     match n {
         0 => 0,
