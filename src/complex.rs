@@ -2,6 +2,7 @@
 
 extern crate num;
 
+#[cfg(not(test))]
 use num::complex::Cmplx;
 
 #[cfg(not(test))]

@@ -2,7 +2,9 @@
 
 extern crate num;
 
+#[cfg(not(test))]
 use num::bigint::BigUint;
+#[cfg(not(test))]
 use std::num::One;
 
 #[cfg(not(test))]

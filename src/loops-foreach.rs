@@ -1,6 +1,7 @@
 // Implements http://rosettacode.org/wiki/Loops/For
 extern crate collections;
 
+#[cfg(not(test))]
 use collections::HashMap;
 
 #[cfg(not(test))]

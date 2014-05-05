@@ -1,7 +1,10 @@
 // Implements http://rosettacode.org/wiki/Read_a_file_line_by_line
 
+#[cfg(not(test))]
 use std::io::fs::File;
+#[cfg(not(test))]
 use std::io::BufferedReader;
+#[cfg(not(test))]
 use std::os::args;
 
 #[cfg(not(test))]
