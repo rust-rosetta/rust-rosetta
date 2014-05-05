@@ -27,7 +27,7 @@ fn basic_tests() {
     let set1 = [350., 10.];
     let set2 = [90., 180., 270., 360.];
     let set3 = [10., 20., 30.];
-    
+
     // We need to round the numbers
     assert!(mean_angle(set1).round() == 0.);
     assert!(mean_angle(set2).round() == -90.);

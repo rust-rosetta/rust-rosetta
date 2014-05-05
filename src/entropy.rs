@@ -6,7 +6,7 @@ use collections::hashmap::HashMap;
 
 pub fn shannon_entropy(s: &str) -> f64 {
     let mut map = HashMap::<char, uint>::new();
-    
+
     // Count occurrences of each char
     for c in s.chars() {
         map.insert_or_update_with(c, 1, |_,v| *v += 1);
@@ -16,7 +16,7 @@ pub fn shannon_entropy(s: &str) -> f64 {
     let len = s.len() as f64;
     map.iter().fold(0f64, |mut acc, (_, nb)| {
         let p = (*nb as f64) / len;
-        acc -= p * p.log2(); 
+        acc -= p * p.log2();
         acc
     })
 }

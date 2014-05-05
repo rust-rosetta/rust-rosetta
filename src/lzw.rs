@@ -10,7 +10,7 @@ fn compress(original_str: &str) -> Vec<int> {
    let original = original_str.as_bytes();
    let mut dict_size = 256;
    let mut dictionary = HashMap::new();
-   
+
    for i in range(0, dict_size) {
       dictionary.insert(vec!(i as u8), i);
    }
@@ -43,7 +43,7 @@ fn compress(original_str: &str) -> Vec<int> {
 fn decompress(compressed: &Vec<int>) -> ~str {
    let mut dict_size = 256;
    let mut dictionary = HashMap::new();
-   
+
    for i in range(0, dict_size) {
       dictionary.insert(i, vec!(i as u8));
    }
@@ -52,18 +52,18 @@ fn decompress(compressed: &Vec<int>) -> ~str {
    let compressed = compressed.slice(1, compressed.len());
    let mut result = w.clone();
    for &k in compressed.iter() {
-      let entry = 
+      let entry =
          match dictionary.find(&k) {
             Some(v) => v.clone(),
             None if k == dict_size => { let mut new = w.clone(); new.push(w.get(0).clone()); new }
             None => fail!("Invalid compressed string")
          };
-      
+
       result.extend(entry.iter().map(|&x| x.clone()));
       w.push(entry.get(0).clone());
       dictionary.insert(dict_size, w);
       dict_size += 1;
-      w = entry; 
+      w = entry;
    }
 
    str::from_utf8(result.as_slice()).unwrap().to_owned()
@@ -74,7 +74,7 @@ fn main() {
    // Show original
    let original = "TOBEORNOTTOBEORTOBEORNOT";
     println!("Original: {}", original);
-   
+
    // Show compressed
    let compressed = compress(original);
    println!("Compressed: {}", compressed);

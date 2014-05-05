@@ -21,7 +21,7 @@ impl Iterator<uint> for Hailstone {
     match current {
       0               => {
         // Resets the iterator.
-        self.current = self.start; 
+        self.current = self.start;
         None
       },
       1               => {
@@ -55,7 +55,7 @@ fn main() {
   // Find the hailstone for 27.
   let two_seven: ~[uint] = Hailstone::new(27).collect();
   println!("Testing: {}, Length: {}, Values: {}...{}", two_seven[0], two_seven.len(), two_seven.slice(0,4).to_str(), two_seven.slice(two_seven.len()-4, two_seven.len()).to_str());
-  
+
   // Find the longest.
   let (biggest, length) = biggest_hailstone(100000);
   println!("Largest: {}, Size: {}", biggest, length);
@@ -64,7 +64,7 @@ fn main() {
 #[test]
 fn test_27() {
     let seq: ~[uint] = Hailstone::new(27).collect();
-    
+
     assert!(seq.slice(0, 4) == [27, 82, 41, 124]);
     assert!(seq.slice(seq.len() - 4, seq.len()) == [8, 4, 2, 1]);
 }

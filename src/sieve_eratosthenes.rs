@@ -21,7 +21,7 @@ fn simple_sieve(limit: uint) -> Vec<uint> {
             }
         }
     }
-    
+
     range_inclusive(2, limit).filter(|&n| *primes.get(n)).collect()
 }
 

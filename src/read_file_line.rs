@@ -20,6 +20,6 @@ fn main() {
             Err(error) => print!("{}", error.desc)
         }
     }
-    
+
     println!("");
 }

@@ -25,7 +25,7 @@ impl MarkovAlgorithm {
         for line in s.lines()
             .map(|l| l.trim()) // Ignore whitespace before and after
             .filter(|l| l.char_len() > 0 && l.char_at(0) != '#') { // Ignore comments
-            
+
             // check for -> (must be preceded by whitespace)
             // invalid ruleset if absent
             // whitespace rules mean there's 2 possible variations: " ->" and "\t->"
@@ -38,17 +38,17 @@ impl MarkovAlgorithm {
                 Some(arrow) => {
                     // extract pattern (trim trailing whitespace)
                     let pattern = line.slice_to(arrow).trim_right();
-                    
+
                     // get the string after the arrow
                     // this adds 3 to skip the arrow itself
                     let line_end = line.slice_from(arrow + 3).trim_left();
-                    
+
                     // check for . (stop)
                     let stop = (line_end.char_len() > 0) && (line_end.char_at(0) == '.');
-                    
+
                     // extract replacement
                     let replacement = if stop {line_end.slice_from(1)} else {line_end};
-                    
+
                     // add to rules
                     let new_rule = MarkovRule::new(pattern.to_owned(), replacement.to_owned(), stop);
                     rules.push(new_rule);
@@ -58,16 +58,16 @@ impl MarkovAlgorithm {
         let rule_set = MarkovAlgorithm{rules: rules};
         Ok(rule_set)
     }
-    
+
     // Transform a text string by applying the markov algorithm
     pub fn apply(&self, input: &str) -> ~str {
-        
+
         // get a writable version of the input to work with
         let mut state = input.into_owned();
-        
+
         // Don't allow input to be used after this
         drop(input);
-        
+
         // loop while operations are possible
         loop {
             // find the first rule that is applicable
@@ -76,32 +76,32 @@ impl MarkovAlgorithm {
             let possible_rule = rule_iterator.find(|rule|{
                 state.find_str(rule.pattern).is_some()
             });
-            
+
             match possible_rule {
                 // stop if no rule found
                 None => { break; }
                 Some(rule) => {
                     // replace the first instance (only) of the pattern
                     // Note: cannot use str::replace as that replaces all instances
-                    
+
                     // unwrap is safe here as the code for finding a rule
                     // already established that the pattern is present
                     let pos = state.find_str(rule.pattern).unwrap();
                     let width = rule.pattern.len();
-                    
+
                     // string parts
                     let left = state.slice_to(pos).to_owned();
                     let right = state.slice_from(pos + width).to_owned();
-                    
+
                     // construct new string
                     state = left + rule.replacement + right;
-                    
+
                     // stop if required
                     if rule.stop { break; }
                 }
             }
         }
-        
+
         state
     }
 }
