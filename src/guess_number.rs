@@ -19,7 +19,7 @@ fn main() {
             None    => println!("Please enter an integer")
         }
     }
-    
+
     // The loop ends only if the player wins
     println!("Well guessed!");
 }

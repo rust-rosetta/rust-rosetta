@@ -14,20 +14,20 @@ fn format_fasta<T: Buffer>(reader: &mut T) -> ~str {
     for line in reader.lines() {
         // Using the same name for the next variable will just shadow the previous one
         let ln = line.unwrap();
-        
+
         // We need to trim new lines
         let ln = ln.as_slice().trim();
-        
+
         // Lines that begin with '>' require special treatment
         if ln.slice(0,1) == ">" {
             if result.len() > 0 {
                 result.push_str("\n");
             }
-            
+
             // Push skipping the '>'
             result.push_str(ln.slice_from(1) + ": ");
         }
-        
+
         // Other lines are just pushed
         else {
             result.push_str(ln);

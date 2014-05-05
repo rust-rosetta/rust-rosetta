@@ -16,5 +16,5 @@ fn main() {
         _                  => fail!("Please enter 2 integers")
     };
 
-    println!("{:i}", sum);     
+    println!("{:i}", sum);
 }

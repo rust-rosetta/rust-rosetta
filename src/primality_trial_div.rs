@@ -8,7 +8,7 @@ fn is_prime(number: int) -> bool {
     }
 
     let limit = (number as f32).sqrt() as int + 1;
-    
+
     // We test if the number is divisible by any odd number up to the limit
     range_step(3, limit, 2).all(|x| number % x != 0)
 }

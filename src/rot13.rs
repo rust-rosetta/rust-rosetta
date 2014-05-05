@@ -10,7 +10,7 @@ fn rot13 (string: &str) -> ~str {
 			_ => c
 		}
 	}
-    
+
     let translated = string.as_bytes().iter().map(|&c| rot13u8(c)).collect();
 	std::str::from_utf8_owned(translated).unwrap()
 }
@@ -18,7 +18,7 @@ fn rot13 (string: &str) -> ~str {
 #[cfg(not(test))]
 fn main () {
     let string = "Do you love apples?";
-    
+
     println!("Original: {}", string);
     println!("Encoded: {}", rot13(string));
 }

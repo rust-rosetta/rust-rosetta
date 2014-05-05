@@ -70,14 +70,14 @@ mod tests {
             test::black_box(factorial_recursive(10));
         });
     }
-    
+
     #[bench]
     fn bench_fac_iterative(b: &mut Bencher) {
         b.iter(|| {
             test::black_box(factorial_iterative(10));
         });
     }
-    
+
     #[bench]
     fn bench_fac_loop(b: &mut Bencher) {
         b.iter(|| {
