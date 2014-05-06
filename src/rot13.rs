@@ -12,7 +12,7 @@ fn rot13 (string: &str) -> ~str {
 	}
 
     let translated = string.as_bytes().iter().map(|&c| rot13u8(c)).collect();
-	std::str::from_utf8_owned(translated).unwrap()
+    std::str::from_utf8_owned(translated).unwrap()
 }
 
 #[cfg(not(test))]
@@ -25,7 +25,7 @@ fn main () {
 
 #[test]
 fn test_basic() {
-    assert!(rot13("abc") == ~"nop");
+    assert!(rot13("abc") == "nop".to_owned());
 }
 
 #[test]
