@@ -14,7 +14,7 @@ all:
 	for item in $(SRCDIR)/*.rs; \
 	do \
 		echo Compiling $$item; \
-		rustc --test $$item -o /tmp/rosetta/$$item || exit; \
+		rustc --test $$item -o $(DSTDIR)/$$item || exit; \
 		echo Compiled $$item; \
 		echo; \
 	done;
@@ -28,19 +28,15 @@ all:
 
 changed:
 	# Make files which changed from master
-	for item in $(git diff --name-only master..HEAD); \
+	for item in $$(git diff --name-only master..HEAD | grep ".rs$$"); \
 	do \
 		echo Compiling $$item; \
 		rustc --test $$item -o /tmp/rosetta/$$item || exit; \
 		echo Compiled $$item; \
 		echo; \
-	done;
-	for item in $(git diff --name-only master..HEAD); \
-	do \
 		echo Testing $$item; \
-		$$item; \
+		$(DSTDIR)/$$item; \
 		echo Tested $$item; \
-		echo; \
 	done;
 
 help:
