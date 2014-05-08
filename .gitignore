@@ -1,2 +1,4 @@
-dist
 *.exe
+build/
+build-tests/
+
