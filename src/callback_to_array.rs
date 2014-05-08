@@ -1,6 +1,6 @@
 // Implements http://rosettacode.org/wiki/Apply_a_callback_to_an_array
+#![cfg(not_tested)]
 
-#[cfg(not(test))]
 fn main () {
     let array = [1,2,3,4,5];
 
@@ -11,7 +11,6 @@ fn main () {
     println!("{}", array.iter().map(callback).collect::<Vec<int>>());
 }
 
-#[cfg(not(test))]
 fn callback(val: &int) -> int {
     val + 1
 }

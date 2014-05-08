@@ -1,10 +1,9 @@
 // Implements http://rosettacode.org/wiki/Loops/For
+#![cfg(not_tested)]
 extern crate collections;
 
-#[cfg(not(test))]
 use collections::HashMap;
 
-#[cfg(not(test))]
 fn main() {
     // Iterate through the characters of a string
     let s = "hello, world!";

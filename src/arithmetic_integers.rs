@@ -1,11 +1,11 @@
 // Implements http://rosettacode.org/wiki/Arithmetic/Integer
+#![cfg(not_tested)]
 
 #![allow(unused_imports)]
 use std::io::stdio::stdin;
 use std::from_str::from_str;
 use std::io::BufferedReader;
 
-#[cfg(not(test))]
 fn main() {
     let input = BufferedReader::new(stdin()).read_line().unwrap();
     let mut words = input.words();

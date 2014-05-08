@@ -1,8 +1,7 @@
 // Implements http://rosettacode.org/wiki/Generic_swap
-#[cfg(not(test))]
+#![cfg(not_tested)]
 use std::mem::swap;
 
-#[cfg(not(test))]
 fn main() {
   println!("Same type:");
   let mut thing_one = "The First String";

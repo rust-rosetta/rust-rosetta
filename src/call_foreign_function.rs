@@ -1,19 +1,16 @@
 // Implements http://rosettacode.org/wiki/Call_a_foreign-language_function
+#![cfg(not_tested)]
 
 extern crate libc;
 
-#[cfg(not(test))]
 use libc::c_char;
-#[cfg(not(test))]
 use std::c_str::CString;
 
-#[cfg(not(test))]
 extern "C" {
     // C functions are declared in an `extern "C"` block.
     fn strdup(s: *c_char) -> *c_char;
 }
 
-#[cfg(not(test))]
 fn main() {
     // Create a Rust static string. No allocations.
     let rust_str = "Hello World!";
