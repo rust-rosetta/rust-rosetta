@@ -1,11 +1,10 @@
 // Implements http://rosettacode.org/wiki/Set
+#![cfg(not_tested)]
 
 extern crate collections;
 
-#[cfg(not(test))]
 use collections::HashSet;
 
-#[cfg(not(test))]
 fn main() {
     // The first set contains integers from 0 to 7
     let set1 = range(0, 7).collect::<HashSet<int>>();

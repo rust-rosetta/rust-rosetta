@@ -1,13 +1,11 @@
 // Implements http://rosettacode.org/wiki/Integer_sequence
+#![cfg(not_tested)]
 
 extern crate num;
 
-#[cfg(not(test))]
 use num::bigint::BigUint;
-#[cfg(not(test))]
 use std::num::One;
 
-#[cfg(not(test))]
 fn main() {
 	let one: BigUint = One::one();
 	let mut i: BigUint = One::one();
