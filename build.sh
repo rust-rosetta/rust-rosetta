@@ -48,7 +48,7 @@ RESTORE='\033[0m'
 RED='\033[00;31m'
 GREEN='\033[00;32m'
 YELLOW='\033[00;33m'
-UWHITE='\e[4;37m'
+BLUE='\033[00;34m'
 
 if [[ -z "$MAKELEVEL" ]]; then
     echo -e "${YELLOW}warning${RESTORE}: $0 not run from Makefile, \
@@ -114,7 +114,7 @@ compilation_status_to_string() {
 }
 
 # Used to delimit compilation output, test output, etc.
-section_bullet="\n ${UWHITE}*${RESTORE}"
+section_bullet="\n ${BLUE}*${RESTORE}"
 
 test_rust_file() {
     local source_file="$1"
