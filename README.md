@@ -74,6 +74,7 @@ If you'd like, you're welcome to add your contact details, name, or other inform
 * [Quick Sort](http://rosettacode.org/wiki/Sorting_algorithms/Quicksort) - [quick_sort.rs](src/quick_sort.rs)
 * [Read a file line by line](http://rosettacode.org/wiki/Read_a_file_line_by_line) - [read_file_line.rs](src/read_file_line.rs)
 * [Rename a file](http://rosettacode.org/wiki/Rename_a_file) - [rename_a_file.rs](src/rename_a_file.rs)
+* [Repeat a string](http://rosettacode.org/wiki/Repeat_a_string) - [repeat_str.rs](src/repeat_str.rs)
 * [Rot-13](http://rosettacode.org/wiki/Rot-13) - [rot13.rs](src/rot13.rs)
 * [Set](http://rosettacode.org/wiki/Set) - [set.rs](src/set.rs)
 * [Stack](http://rosettacode.org/wiki/Stack) - [stack.rs](src/stack.rs)
