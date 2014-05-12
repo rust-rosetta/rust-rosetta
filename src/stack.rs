@@ -43,6 +43,13 @@ fn main() {
 
     // Show the element at the top
     println!("{}", stack.peek().unwrap());
+    // Show the element we popped
+    println!("{}", stack.pop().unwrap());
+    if stack.empty() {
+        println!("The stack is empty.")
+    } else {
+        println!("The stack is not empty.")
+    }
 }
 
 #[test]
