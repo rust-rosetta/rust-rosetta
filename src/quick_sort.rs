@@ -2,6 +2,7 @@
 
 // Used by the tests
 extern crate rand;
+#[cfg(test)]
 use rand::Rng;
 
 // We use in place quick sort
