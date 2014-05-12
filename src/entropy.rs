@@ -20,7 +20,9 @@ pub fn shannon_entropy(s: &str) -> f64 {
         acc
     })
 }
-
+// Needed so fibonacci_word compiles cleanly, because fibonacci_word
+// uses this code as a library
+#[allow(dead_code)]
 #[cfg(not(test))]
 fn main() {
     println!("{:f}", shannon_entropy("1223334444"));
