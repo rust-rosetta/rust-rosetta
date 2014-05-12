@@ -6,6 +6,24 @@ Just a start on helping with https://github.com/mozilla/rust/issues/10513
 
 Tasks: http://rosettacode.org/wiki/Reports:Tasks_not_implemented_in_Rust
 
+## Contributing ##
+Looking to help out? Great, thanks! We have a few guidelines:
+
+* The code you contribute *is* public domain.
+* Your code should build cleanly on the `master` branch of Rust.
+* Keep your code as simple as possible, please avoid Dead Code warnings.
+* Don't be afraid of comments, the code is going to be written once, read hundreds of times, and maintained until the 1.0 release of Rust.
+* Include a link to the Rosetta Code Problem at the top of the code sample.
+* Add a line to the Readme section below. (It's alphabetical!)
+* Unit tests are a bonus.
+
+The top of your code should look like this:
+
+```rust
+// http://rosettacode.org/wiki/foo
+```
+If you'd like, you're welcome to add your contact details, name, or other information as well.
+
 Done:
 * [A+B](http://rosettacode.org/wiki/A%2BB) - [a+b.rs](src/a+b.rs)
 * [Almost prime](http://rosettacode.org/wiki/Almost_prime) - [almost_prime.rs](src/almost_prime.rs)
