@@ -3,9 +3,7 @@
 extern crate libc;
 
 #[cfg(not(test))]
-use std::io::{File, fs};
-#[cfg(not(test))]
-use libc::S_IRWXU;
+use std::io::{File, UserRead, UserWrite, UserExecute, fs};
 
 #[cfg(not(test))]
 fn main () {
@@ -25,8 +23,8 @@ fn main () {
 
     // Create a directory
     // Here we handle a possible error by using the functions provided by result
-    // The second argument is an unsigned int that sets the file permissions
-    let result = fs::mkdir(&Path::new("docs"), S_IRWXU as u32);
+    // The second argument sets the file permissions
+    let result = fs::mkdir(&Path::new("docs"), UserRead|UserWrite|UserExecute);
     if result.is_err() {
         println!("Failed to create a directory: {}", result.err().unwrap());
     }

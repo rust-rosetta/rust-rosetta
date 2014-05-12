@@ -20,8 +20,29 @@ pub fn shannon_entropy(s: &str) -> f64 {
         acc
     })
 }
-
+// Needed so fibonacci_word compiles cleanly, because fibonacci_word
+// uses this code as a library
+#[allow(dead_code)]
 #[cfg(not(test))]
 fn main() {
     println!("{:f}", shannon_entropy("1223334444"));
+}
+
+
+#[test]
+fn test_entropy() {
+    let tests = vec![
+        ("1223334444", 1.846439344671f64),
+        ("1223334444555555555", 1.969811065121),
+        ("122333", 1.459147917061),
+        ("1227774444", 1.846439344671),
+        ("aaBBcccDDDD", 1.936260027482),
+        ("1234567890abcdefghijklmnopqrstuvwxyz", 5.169925004424),
+        ("Rosetta Code", 3.084962500407)];
+    // Good enough, actual float epsilon is much smaller
+    let epsilon: f64 = 0.0000001;
+    for (input, expected) in tests.move_iter() {
+        let output = shannon_entropy(input);
+        assert!((output - expected).abs() < epsilon);
+    }
 }

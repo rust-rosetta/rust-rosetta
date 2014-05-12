@@ -1,18 +1,19 @@
 // Implements http://rosettacode.org/wiki/Rot-13
 
 fn rot13 (string: &str) -> ~str {
-	fn rot13u8 (c: u8) -> u8 {
-		match c {
-			97..109 => c+13,
-			65..77 => c+13,
-			110..122 => c-13,
-			78..90 => c-13,
-			_ => c
-		}
+	fn rot13u8 (c: char) -> char {
+            let d = c as u8;
+            match c {
+		'a' .. 'm' => (d + 13) as char,
+		'n' .. 'z' => (d - 13) as char,
+		'A' .. 'M' => (d + 13) as char,
+		'N' .. 'Z' => (d - 13) as char,
+		_ => c
+	    }
 	}
 
-    let translated = string.as_bytes().iter().map(|&c| rot13u8(c)).collect();
-    std::str::from_utf8_owned(translated).unwrap()
+    let translated: Vec<char> = string.chars().map(|c| rot13u8(c)).collect();
+    std::str::from_chars(translated.as_slice())
 }
 
 #[cfg(not(test))]
@@ -30,5 +31,6 @@ fn test_basic() {
 
 #[test]
 fn test_coherence() {
-    assert!(range(50000, 50050).all(|x| rot13(rot13(x.to_str())) == x.to_str()));
+    assert!(range(50000, 50050).all(|x|
+                                    rot13(rot13(x.to_str())) == x.to_str()));
 }

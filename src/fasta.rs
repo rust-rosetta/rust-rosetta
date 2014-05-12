@@ -37,7 +37,7 @@ fn format_fasta<T: Buffer>(reader: &mut T) -> ~str {
 }
 
 fn read_file() -> ~str {
-    let file = File::open(&Path::new("resources/test_data.fasta"));
+    let file = File::open(&Path::new("src/resources/test_data.fasta"));
     format_fasta(&mut BufferedReader::new(file))
 }
 
@@ -50,5 +50,6 @@ fn main() {
 #[test]
 fn test_format_fasta() {
     let s = read_file();
-    assert_eq!(s.as_slice(), "Rosetta_Example_1: THERECANBENOSPACE\nRosetta_Example_2: THERECANBESEVERALLINESBUTTHEYALLMUSTBECONCATENATED");
+    assert_eq!(s.as_slice(), "Rosetta_Example_1: THERECANBENOSPACE
+Rosetta_Example_2: THERECANBESEVERALLINESBUTTHEYALLMUSTBECONCATENATED");
 }

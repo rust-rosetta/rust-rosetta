@@ -1,20 +1,17 @@
 // Implements http://rosettacode.org/wiki/Read_a_file_line_by_line
+#![cfg(not_tested)]
 
-#[cfg(not(test))]
 use std::io::fs::File;
-#[cfg(not(test))]
 use std::io::BufferedReader;
-#[cfg(not(test))]
 use std::os::args;
 
-#[cfg(not(test))]
 fn main() {
     let filename = match args().len() {
         1 => fail!("You must enter a filename to read line by line"),
-        _ => args()[1]
+        _ => args().get(1).clone()
     };
 
-    let file = File::open(&Path::new(filename));
+    let file = File::open(&Path::new(filename.as_slice()));
     let mut reader = BufferedReader::new(file);
 
     for line in reader.lines() {

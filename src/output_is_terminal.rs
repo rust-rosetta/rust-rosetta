@@ -1,8 +1,8 @@
 // Implements http://rosettacode.org/wiki/Check_output_device_is_a_terminal
+#![cfg(not_tested)]
 
 extern crate libc;
 
-#[cfg(not(test))]
 fn main() {
     let istty = unsafe { libc::isatty(libc::STDOUT_FILENO as i32) } != 0;
     if istty {

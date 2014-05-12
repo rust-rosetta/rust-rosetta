@@ -1,12 +1,10 @@
 // Implements http://rosettacode.org/wiki/Concurrent_computing
+#![cfg(not_tested)]
 extern crate rand;
 
-#[cfg(not(test))]
 use std::io::timer::sleep;
-#[cfg(not(test))]
 use rand::random;
 
-#[cfg(not(test))]
 fn main() {
     let strings = vec!["Enjoy", "Rosetta", "Code"];
 
