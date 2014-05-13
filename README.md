@@ -70,6 +70,7 @@ If you'd like, you're welcome to add your contact details, name, or other inform
 * [Mutual recursion](http://rosettacode.org/wiki/Mutual_recursion) - [mutual_recursion.rs](src/mutual_recursion.rs)
 * [N-queens problem](http://rosettacode.org/wiki/N-queens_problem) - [n_queens.rs](src/n_queens.rs)
 * [Palindrome detection](http://rosettacode.org/wiki/Palindrome_detection) - [palindrome.rs](src/palindrome.rs)
+* [Parallel calculations](http://rosettacode.org/wiki/Parallel_calculations) - [parallel_calculations.rs](src/parallel_calculations.rs)
 * [Primality by Trial Division](http://rosettacode.org/wiki/Primality_by_Trial_Division) - [primality_trial_div.rs](src/primality_trial_div.rs)
 * [Prime decomposition](http://rosettacode.org/wiki/Prime_decomposition) - [prime_decomposition.rs](src/prime_decomposition.rs)
 * [Quick Sort](http://rosettacode.org/wiki/Sorting_algorithms/Quicksort) - [quick_sort.rs](src/quick_sort.rs)
