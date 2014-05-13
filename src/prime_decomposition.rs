@@ -1,6 +1,7 @@
 // Implements http://rosettacode.org/wiki/Prime_decomposition
 
-fn factor(mut nb: i32) -> Vec<i32> {
+// We need this to be public because it is used from another file
+pub fn factor(mut nb: uint) -> Vec<uint> {
 	let mut result = vec!();
 
 	// First we take out all even factors.
@@ -11,14 +12,14 @@ fn factor(mut nb: i32) -> Vec<i32> {
 
 	// Then (if any left) we take out the odd ones.
 	let mut cand = 3;
-	let mut max_bound = (nb as f32).sqrt() as i32 + 1;
+	let mut max_bound = (nb as f32).sqrt() as uint + 1;
 
 	while cand <= max_bound {
 		while nb % cand == 0 {
 			result.push(cand);
 			nb /= cand;
 		}
-		max_bound = (nb as f32).sqrt() as i32 + 1;
+		max_bound = (nb as f32).sqrt() as uint + 1;
 		cand += 2;
 	}
 
