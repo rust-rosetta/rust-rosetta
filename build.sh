@@ -113,6 +113,30 @@ compilation_status_to_string() {
     esac
 }
 
+lint_results=''
+
+80_column_lint() {
+    local source_file="$1"
+    if grep  -q '.\{81,\}' "$source_file"; then
+        lint_results+="\n  $source_file: warning: file contains lines over 80 \
+columns"
+    fi
+}
+
+trailing_whitespace_lint() {
+    local source_file="$1"
+    if grep -Eq ".* +$" "$source_file"; then
+        lint_results+="\n  $source_file: warning: file contains trailing \
+whitespace"
+    fi
+}
+
+run_all_lints() {
+    local source_file="$1"
+    80_column_lint "$source_file"
+    trailing_whitespace_lint "$source_file"
+}
+
 # Used to delimit compilation output, test output, etc.
 section_bullet="\n ${BLUE}*${RESTORE}"
 
@@ -141,19 +165,31 @@ test_rust_file() {
     elif ! grep -Fq '#[test]' "$source_file"; then
         test_status_string="${YELLOW}not run${RESTORE}"
         test_summary=" - ${YELLOW}0/0${RESTORE}"
-        test_failures=" $section_bullet Lint Output\n  $source_file: warning: \
-no tests; add tests or annotate no tests with #![cfg(not_tested)]"
+        # Special case lint, since it changes colors
+        lint_results="\n  $source_file: warning: no tests; add tests or \
+annotate no tests with #![cfg(not_tested)]"
         touch "$TEST_DIR/ERRORS_HAPPENED"
         compile_tests=false
     fi
 
-    if ! "$compile_tests"; then
-        if "$test_only"; then
-            echo -e "$test_status_string$test_summary: $source_file\
-$test_output$test_failures"
+    if "$test_only"; then
+        run_all_lints "$source_file"
+
+        if [[ "$lint_results" ]]; then
+            lint_results=" $section_bullet Lint Results$lint_results"
         fi
+
+        if ! "$compile_tests"; then
+            echo -e "$test_status_string$test_summary: $source_file\
+$test_output$test_failures$lint_results"
+        fi
+    fi
+
+    # Exit here because everything below requires test compilation
+    if ! "$compile_tests"; then
         return 0
     fi
+
     # remove extension and paths
     file_name=$(basename "${source_file%.rs}")
 
@@ -214,7 +250,7 @@ $test_output$test_failures"
     fi
     if "$test_only"; then
         echo -e "$test_status_string$test_summary: $source_file\
-$test_output$test_failures"
+$test_output$test_failures$lint_results"
     fi
 
 }
@@ -247,6 +283,11 @@ build_rust_file() {
         fi
     fi
 
+    run_all_lints "$source_file"
+    if [[ "$lint_results" ]]; then
+        lint_results=" $section_bullet Lint Results$lint_results"
+    fi
+
     if [[ "$build_status" -gt 0 ]]; then
         touch "$BUILD_DIR/ERRORS_HAPPENED"
     fi
@@ -257,7 +298,7 @@ build_rust_file() {
     local build_status_string="$compilation_status_string"
 
     echo -e "$build_status_string$test_summary: $source_file$build_output\
-$test_output$test_failures"
+$test_output$test_failures$lint_results"
 }
 
 for f in "$@"; do
