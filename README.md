@@ -27,7 +27,7 @@ If you'd like, you're welcome to add your contact details, name, or other inform
 
 ## Done ##
 * [A+B](http://rosettacode.org/wiki/A%2BB) - [a+b.rs](src/a+b.rs)
-* [Almost prime](http://rosettacode.org/wiki/Almost_prime) - [almost_prime.rs](src/almost_prime.rs) 
+* [Almost prime](http://rosettacode.org/wiki/Almost_prime) - [almost_prime.rs](src/almost_prime.rs)
 * [Anagrams](http://rosettacode.org/wiki/Anagrams) - [anagrams.rs](src/anagrams.rs)
 * [Apply a callback to an array](http://rosettacode.org/wiki/Apply_a_callback_to_an_array) - [callback_to_array.rs](src/callback_to_array.rs)
 * [Averages/Arithmetic mean](http://rosettacode.org/wiki/Averages/Arithmetic_mean) - [arithmetic_mean.rs](src/arithmetic_mean.rs)
@@ -54,6 +54,7 @@ If you'd like, you're welcome to add your contact details, name, or other inform
 * [Generic swap](http://rosettacode.org/wiki/Generic_swap) - [swap.rs](src/swap.rs)
 * [Guess the number](http://rosettacode.org/wiki/Guess_the_number) - [guess_number.rs](src/guess_number.rs)
 * [Gray code](http://rosettacode.org/wiki/Gray_code) - [gray_code.rs](src/gray_code.rs)
+* [Greatest element of a list](http://rosettacode.org/wiki/Greatest_element_of_a_list) - [greater_element_list.rs](src/greater_element_list.rs)
 * [Hailstone sequence](http://rosettacode.org/wiki/Hailstone_sequence) - [hailstone.rs](src/hailstone.rs)
 * [Happy numbers](http://rosettacode.org/wiki/Happy_numbers) - [happy_numbers.rs](src/happy_numbers.rs)
 * [Infinity](http://rosettacode.org/wiki/Infinity) - [infinity.rs](src/infinity.rs)
