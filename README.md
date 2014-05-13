@@ -50,6 +50,7 @@ Done:
 * [Fibonacci word](http://rosettacode.org/wiki/Fibonacci_word) - [fibonacci_word.rs](src/fibonacci_word.rs)
 * [File size](http://rosettacode.org/wiki/File_size) - [filesize.rs](src/filesize.rs)
 * [Find limit of recursion](http://rosettacode.org/wiki/Find_limit_of_recursion) - [recursion_depth.rs](src/recursion_depth.rs)
+* [Function Definition](http://rosettacode.org/wiki/Function_definition) - [function_def.rs](src/function_def.rs)
 * [Generic swap](http://rosettacode.org/wiki/Generic_swap) - [swap.rs](src/swap.rs)
 * [Guess the number](http://rosettacode.org/wiki/Guess_the_number) - [guess_number.rs](src/guess_number.rs)
 * [Gray code](http://rosettacode.org/wiki/Gray_code) - [gray_code.rs](src/gray_code.rs)
