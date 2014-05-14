@@ -30,6 +30,9 @@ pub fn factor(mut nb: uint) -> Vec<uint> {
 	result
 }
 
+// Needed so parallel_calculations compiles cleanly, because it
+// uses this code as a library
+#[allow(dead_code)]
 #[cfg(not(test))]
 fn main() {
 	println!("Factors of 5: {}", factor(5));
