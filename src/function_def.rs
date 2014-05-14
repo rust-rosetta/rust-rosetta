@@ -4,7 +4,8 @@
 
 fn multiply(x: int, y: int) -> int
 {
-  //in Rust a statement is a expression. An expression without semicolon is a return expression
+  // In Rust a statement is a expression. An expression at the end of a
+  // function without semicolon is a return expression
   x * y //equivalent "return x * y;"
 }
 
@@ -26,6 +27,7 @@ fn test_multiply()
   assert_eq!(multiply(2,2), 4);
 }
 
+#[cfg(not(test))]
 fn main()
 {
   println!("2 multiply 4 = {}", multiply(2,4));
