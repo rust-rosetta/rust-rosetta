@@ -1,4 +1,5 @@
 // http://rosettacode.org/wiki/Greatest_element_of_a_list
+
 #![cfg(not_tested)]
 /*
 	Generic function to find max value in list.
