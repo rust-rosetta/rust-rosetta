@@ -115,11 +115,11 @@ compilation_status_to_string() {
 
 lint_results=''
 
-80_column_lint() {
+max_column_lint() {
     local source_file="$1"
-    if grep  -q '.\{81,\}' "$source_file"; then
-        lint_results+="\n  $source_file: warning: file contains lines over 80 \
-columns"
+    if grep  -q '.\{101,\}' "$source_file"; then
+        lint_results+="\n  $source_file: warning: file contains lines over \
+100 columns"
     fi
 }
 
@@ -133,7 +133,7 @@ whitespace"
 
 run_all_lints() {
     local source_file="$1"
-    80_column_lint "$source_file"
+    max_column_lint "$source_file"
     trailing_whitespace_lint "$source_file"
 }
 
