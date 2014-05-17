@@ -1,6 +1,6 @@
-# rust-rosetta #
+rust-rosetta
+============
 [![Build Status](https://travis-ci.org/Hoverbear/rust-rosetta.png)](https://travis-ci.org/Hoverbear/rust-rosetta)
-[![Gitter chat](https://badges.gitter.im/Hoverbear/rust-rosetta.png)](https://gitter.im/Hoverbear/rust-rosetta)
 
 Just a start on helping with https://github.com/mozilla/rust/issues/10513
 
@@ -24,14 +24,14 @@ The top of your code should look like this:
 ```
 If you'd like, you're welcome to add your contact details, name, or other information as well.
 
-
-## Done ##
+Done:
 * [A+B](http://rosettacode.org/wiki/A%2BB) - [a+b.rs](src/a+b.rs)
 * [Almost prime](http://rosettacode.org/wiki/Almost_prime) - [almost_prime.rs](src/almost_prime.rs)
 * [Anagrams](http://rosettacode.org/wiki/Anagrams) - [anagrams.rs](src/anagrams.rs)
 * [Apply a callback to an array](http://rosettacode.org/wiki/Apply_a_callback_to_an_array) - [callback_to_array.rs](src/callback_to_array.rs)
 * [Averages/Arithmetic mean](http://rosettacode.org/wiki/Averages/Arithmetic_mean) - [arithmetic_mean.rs](src/arithmetic_mean.rs)
 * [Arithmetic mean](http://rosettacode.org/wiki/Arithmetic/Integer) - [arithmetic_integers.rs](src/artihmetic_integers.rs)
+* [Averages/Arithmetic mean](http://rosettacode.org/wiki/Averages/Arithmetic_mean) - [averages_arithmetic_mean](src/averages_arithmetic_mean.rs)
 * [Averages/Mean angle](http://rosettacode.org/wiki/Averages/Mean_angle) - [averages_mean_angle.rs](src/averages_mean_angle.rs)
 * [Balanced brackets](http://rosettacode.org/wiki/Balanced_brackets) - [balanced_brackets.rs](src/balanced_brackets.rs)
 * [Binary digits](http://rosettacode.org/wiki/Binary_digits) - [Binary_digits.rs](src/binary_digits.rs)
@@ -69,7 +69,7 @@ If you'd like, you're welcome to add your contact details, name, or other inform
 * [LZW compression](http://rosettacode.org/wiki/LZW_compression) - [lwz.rs](src/lwz.rs)
 * [Markov algorithm](http://rosettacode.org/wiki/Execute_a_Markov_algorithm) - [markov_algorithm.rs](src/markov_algorithm.rs)
 * [Mutual recursion](http://rosettacode.org/wiki/Mutual_recursion) - [mutual_recursion.rs](src/mutual_recursion.rs)
-* [N-queens problem](http://rosettacode.org/wiki/N-queens_problem) - [n_queens.rs](src/n_queens.rs)
+* [N-queens problem](http://rosettacode.org/wiki/N-queens_problem) - [N_queens_problem.rs](src/N_queens_problem.rs)
 * [Palindrome detection](http://rosettacode.org/wiki/Palindrome_detection) - [palindrome.rs](src/palindrome.rs)
 * [Parallel calculations](http://rosettacode.org/wiki/Parallel_calculations) - [parallel_calculations.rs](src/parallel_calculations.rs)
 * [Primality by Trial Division](http://rosettacode.org/wiki/Primality_by_Trial_Division) - [primality_trial_div.rs](src/primality_trial_div.rs)
