@@ -50,8 +50,13 @@ GREEN='\033[00;32m'
 YELLOW='\033[00;33m'
 BLUE='\033[00;34m'
 
+OK="${GREEN}ok${RESTORE}"
+WARN="${YELLOW}warn${RESTORE}"
+WARNING="${YELLOW}warning${RESTORE}"
+ERROR="${RED}error${RESTORE}"
+
 if [[ -z "$MAKELEVEL" ]]; then
-    echo -e "${YELLOW}warning${RESTORE}: $0 not run from Makefile, \
+    echo -e "$WARNING: $0 not run from Makefile, \
 assuming sane defaults"
 fi
 
@@ -93,6 +98,9 @@ compile_file() {
         # poorly with MSYS bash.
         compilation_output+=$(echo "$raw_output" | sed -e "s/^/  /" \
             | tr '\\' '/')
+        compilation_output="${compilation_output//warning:/$WARNING:}"
+        compilation_output="${compilation_output//error:/$ERROR:}"
+
     fi
     return "$compilation_status"
 }
@@ -102,38 +110,38 @@ compilation_status_to_string() {
     local s="$1"
     case "$s" in
         0)
-            compilation_status_string="${GREEN}ok${RESTORE}"
+            compilation_status_string="$OK"
             ;;
         1)
-            compilation_status_string="${YELLOW}warn${RESTORE}"
+            compilation_status_string="$WARNING"
             ;;
         2)
-            compilation_status_string="${RED}error${RESTORE}"
+            compilation_status_string="$ERROR"
             ;;
     esac
 }
 
 lint_results=''
 
-80_column_lint() {
+max_column_lint() {
     local source_file="$1"
-    if grep  -q '.\{81,\}' "$source_file"; then
-        lint_results+="\n  $source_file: warning: file contains lines over 80 \
-columns"
+    if grep  -q '.\{101,\}' "$source_file"; then
+        lint_results+="\n  $source_file: warning: file contains lines over \
+100 columns"
     fi
 }
 
 trailing_whitespace_lint() {
     local source_file="$1"
     if grep -Eq ".* +$" "$source_file"; then
-        lint_results+="\n  $source_file: warning: file contains trailing \
+        lint_results+="\n  $source_file: $WARNING: file contains trailing \
 whitespace"
     fi
 }
 
 run_all_lints() {
     local source_file="$1"
-    80_column_lint "$source_file"
+    max_column_lint "$source_file"
     trailing_whitespace_lint "$source_file"
 }
 
@@ -166,7 +174,7 @@ test_rust_file() {
         test_status_string="${YELLOW}not run${RESTORE}"
         test_summary=" - ${YELLOW}0/0${RESTORE}"
         # Special case lint, since it changes colors
-        lint_results="\n  $source_file: warning: no tests; add tests or \
+        lint_results="\n  $source_file: $WARNING: no tests; add tests or \
 annotate no tests with #![cfg(not_tested)]"
         touch "$TEST_DIR/ERRORS_HAPPENED"
         compile_tests=false

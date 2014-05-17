@@ -2,7 +2,6 @@
 #![cfg(not_tested)]
 
 use std::io::net::tcp::{TcpListener, TcpStream};
-use std::io::net::ip::{Ipv4Addr, SocketAddr};
 use std::io::{Acceptor, Listener};
 
 fn handle_client(mut stream: TcpStream) {
@@ -31,11 +30,11 @@ charset=UTF-8
 }
 
 fn main() {
-    let addr = SocketAddr { ip: Ipv4Addr(127, 0, 0, 1), port: 80 };
-    let listener = TcpListener::bind(addr).unwrap();
+    let (ip, port) = ("127.0.0.1", 80);
+    let listener = TcpListener::bind(ip, port).unwrap();
 
     let mut acceptor = listener.listen();
-    println!("Listening for connections on port {}", addr.port);
+    println!("Listening for connections on port {}", port);
 
     for stream in acceptor.incoming() {
         spawn(proc() {

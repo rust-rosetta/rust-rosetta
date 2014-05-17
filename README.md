@@ -47,6 +47,7 @@ Done:
 * [Empty program](http://rosettacode.org/wiki/Empty_program) - [empty.rs](src/empty.rs)
 * [Entropy](http://rosettacode.org/wiki/Entropy) - [entropy.rs](src/entropy.rs)
 * [Factorial](http://rosettacode.org/wiki/Factorial) - [factorial.rs](src/factorial.rs)
+* [FASTA format](http://rosettacode.org/wiki/FASTA_format) - [fasta.rs](src/fasta.rs)
 * [Fibonacci word](http://rosettacode.org/wiki/Fibonacci_word) - [fibonacci_word.rs](src/fibonacci_word.rs)
 * [File size](http://rosettacode.org/wiki/File_size) - [filesize.rs](src/filesize.rs)
 * [Find limit of recursion](http://rosettacode.org/wiki/Find_limit_of_recursion) - [recursion_depth.rs](src/recursion_depth.rs)
