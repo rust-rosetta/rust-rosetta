@@ -27,6 +27,7 @@ If you'd like, you're welcome to add your contact details, name, or other inform
 
 ## Done ##
 * [99 bottles of beer](http://rosettacode.org/wiki/99_Bottles_of_Beer) - [99_bottles_of_beer.rs](src/99_bottles_of_beer.rs)
+* [100 doors](http://rosettacode.org/wiki/100_doors) - [100_doors.rs](src/100_doors.rs)
 * [A+B](http://rosettacode.org/wiki/A%2BB) - [a+b.rs](src/a+b.rs)
 * [Almost prime](http://rosettacode.org/wiki/Almost_prime) - [almost_prime.rs](src/almost_prime.rs)
 * [Anagrams](http://rosettacode.org/wiki/Anagrams) - [anagrams.rs](src/anagrams.rs)
