@@ -27,6 +27,7 @@ If you'd like, you're welcome to add your contact details, name, or other inform
 
 ## Done ##
 * [A+B](http://rosettacode.org/wiki/A%2BB) - [a+b.rs](src/a+b.rs)
+* [Ackermann function](http://rosettacode.org/wiki/Ackermann_function) - [ackermann_function.rs](src/ackermann_function.rs)
 * [Almost prime](http://rosettacode.org/wiki/Almost_prime) - [almost_prime.rs](src/almost_prime.rs)
 * [Anagrams](http://rosettacode.org/wiki/Anagrams) - [anagrams.rs](src/anagrams.rs)
 * [Apply a callback to an array](http://rosettacode.org/wiki/Apply_a_callback_to_an_array) - [callback_to_array.rs](src/callback_to_array.rs)
