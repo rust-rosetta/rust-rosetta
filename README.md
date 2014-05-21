@@ -44,6 +44,7 @@ If you'd like, you're welcome to add your contact details, name, or other inform
 * [Concurrent computing](http://rosettacode.org/wiki/Concurrent_computing) - [concurrent_computing.rs](src/concurrent_computing.rs)
 * [Count in octal](http://rosettacode.org/wiki/Count_in_octal) - [count_in_octal.rs](src/count_in_octal.rs)
 * [Create a file](http://rosettacode.org/wiki/Create_a_file) - [create_file.rs](src/create_file.rs)
+* [Dot product](http://rosettacode.org/wiki/Dot_product) - [dot_product.rs](src/dot_product.rs)
 * [Empty program](http://rosettacode.org/wiki/Empty_program) - [empty.rs](src/empty.rs)
 * [Entropy](http://rosettacode.org/wiki/Entropy) - [entropy.rs](src/entropy.rs)
 * [Factorial](http://rosettacode.org/wiki/Factorial) - [factorial.rs](src/factorial.rs)
