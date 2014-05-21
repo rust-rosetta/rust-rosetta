@@ -34,19 +34,20 @@ impl Iterator<uint> for Hailstone {
         self.current = x / 2;
         Some(current)
       },
-      x if x % 2 == 1 => {
-        // Got an odd.
+      x               => {
+        // All remaining numbers are odd.
         self.current = (3 * x) + 1;
         Some(current)
       },
-      _               => None
     }
   }
 }
 
 // Returns the number and length of the longest hailstone sequence up to `limit`
 fn biggest_hailstone(limit: uint) -> (uint, uint) {
-    let mut biggest = range(0u, limit).map(|x| Hailstone::new(x)).max_by(|&mut x| x.len()).unwrap();
+    let mut biggest = range(0u, limit).map(Hailstone::new)
+                                      .max_by(|&mut x| x.len())
+                                      .unwrap();
     (biggest.start, biggest.len())
 }
 
@@ -54,7 +55,12 @@ fn biggest_hailstone(limit: uint) -> (uint, uint) {
 fn main() {
   // Find the hailstone for 27.
   let two_seven: Vec<uint> = Hailstone::new(27).collect();
-  println!("Testing: {}, Length: {}, Values: {}...{}", two_seven.get(0), two_seven.len(), two_seven.slice(0,4).to_str(), two_seven.slice(two_seven.len()-4, two_seven.len()).to_str());
+  let ts_len = two_seven.len();
+  println!("Testing: {}, Length: {}, Values: {}...{}",
+          two_seven.get(0),
+          ts_len,
+          two_seven.slice(0, 4),
+          two_seven.slice(ts_len - 4, ts_len));
 
   // Find the longest.
   let (biggest, length) = biggest_hailstone(100000);
@@ -65,13 +71,13 @@ fn main() {
 fn test_27() {
     let seq: Vec<uint> = Hailstone::new(27).collect();
 
-    assert!(seq.slice(0, 4) == [27, 82, 41, 124]);
-    assert!(seq.slice(seq.len() - 4, seq.len()) == [8, 4, 2, 1]);
+    assert_eq!(seq.slice(0, 4), &[27, 82, 41, 124]);
+    assert_eq!(seq.slice(seq.len() - 4, seq.len()), &[8, 4, 2, 1]);
 }
 
 #[test]
 fn test_biggest() {
     let (biggest, length) = biggest_hailstone(100000);
-    assert!(biggest == 77031);
-    assert!(length == 351);
+    assert_eq!(biggest, 77031);
+    assert_eq!(length, 351);
 }

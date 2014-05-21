@@ -22,31 +22,28 @@ fn min_factor(x: uint) -> uint {
 #[cfg(test)]
 fn largest_min_factor_chan(numbers: &[uint]) -> uint {
     let (sender, receiver) = channel();
-    
+
     // Send all the minimal factors
     for &x in numbers.iter() {
         let child_sender = sender.clone();
         spawn(proc() { child_sender.send(min_factor(x)) });
     }
-    
+
     // Receive them and keep the largest one
-    let mut max = 0u;
-    for _ in numbers.iter() {
-        max = std::cmp::max(receiver.recv(), max);
-    }
-    
-    max
+    numbers.iter().fold(0u, |max, _| {
+        std::cmp::max(receiver.recv(), max)
+    })
 }
 
 // Returns the largest minimal factor of the numbers in a slice
 // The function is implemented using the Future struct
 fn largest_min_factor_fut(numbers: &[uint]) -> uint {
     // We will save the future values of the minimal factor in the results vec
-    let mut results = Vec::with_capacity(numbers.len());
-    for &number in numbers.iter() {
-        results.push(Future::spawn(proc() min_factor(number)));
-    }
-    
+    let mut results = Vec::from_fn(numbers.len(), |i| {
+        let number = numbers[i];
+        Future::spawn(proc() { min_factor(number) })
+    });
+
     // Get the largest minimal factor of all results
     results.mut_iter().map(|r| r.get()).max().unwrap()
 }
@@ -54,32 +51,32 @@ fn largest_min_factor_fut(numbers: &[uint]) -> uint {
 #[cfg(not(test))]
 fn main() {
     // Numbers to be factorized
-    let numbers = [1122725u,
+    let numbers = &[1122725u,
                    1125827,
                    1122725,
                    1152800,
                    1157978,
                    1099726];
-    
-    let max = largest_min_factor_fut(numbers.as_slice());
+
+    let max = largest_min_factor_fut(numbers);
     println!("The largest minimal factor is {}", max);
 }
 
 // We dont have benchmarks because the Bencher doesn't work good with tasks
 #[test]
 fn test_basic() {
-    let numbers = [25, 80, 256, 55, 18, 19];
-    assert!(largest_min_factor_fut(numbers.as_slice()) == 19);
+    let numbers = &[25, 80, 256, 55, 18, 19];
+    assert_eq!(largest_min_factor_fut(numbers), 19);
 }
 
 #[test]
 fn test_equivalence() {
-    let numbers = [1122725u,
+    let numbers = &[1122725u,
                    1125827,
                    1122725,
                    1152800,
                    1157978,
                    1099726];
-    assert_eq!(largest_min_factor_chan(numbers.as_slice()),
-        largest_min_factor_fut(numbers.as_slice()));
+    assert_eq!(largest_min_factor_chan(numbers),
+                largest_min_factor_fut(numbers));
 }
