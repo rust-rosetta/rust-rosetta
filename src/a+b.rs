@@ -8,12 +8,13 @@ use std::io::BufferedReader;
 
 fn main() {
     let input = BufferedReader::new(stdin()).read_line().unwrap();
-    let mut words = input.words();
+    let words = input.words().take(2)
+                            .map(from_str::<int>)
+                            .collect::<Vec<Option<int>>>();
 
-    let sum = match (words.next().and_then(from_str::<int>),
-                     words.next().and_then(from_str)) {
-        (Some(a), Some(b)) => a + b,
-        _                  => fail!("Please enter 2 integers")
+    let sum = match words.as_slice() {
+        [Some(x), Some(y)] => x + y,
+		_                  => fail!("Please enter 2 integers")
     };
 
     println!("{:i}", sum);
