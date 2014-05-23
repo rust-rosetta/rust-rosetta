@@ -90,6 +90,35 @@ Looking to help out? Great, thanks! We have a few guidelines:
 * Add a line to the Readme section below. (It's alphabetical!)
 * Unit tests are strongly encouraged. Having troubles getting the build to work? Check about [Not Test Flags](https://github.com/Hoverbear/rust-rosetta/pull/96#issuecomment-43816696)
 
+If you have unit-tests, you will need to mark `fn main`, and possibly
+some other `fn`s with `#[cfg(not(test))]` to avoid dead-code warnings.
+The reason dead-code warnings appear is because `main` is never called
+during a test.
+
+```rust
+#[cfg(not(test))]
+fn main() {
+    println!("I need to be not compiled during tests");
+}
+
+#[test]
+fn test_me() {
+    assert!(true);
+}
+```
+
+If you are unable to test your program then mark the entire file with
+`#![cfg(not_tested)]`.  This will disable testing completely for that
+file.
+
+```rust
+#![cfg(not_tested)]
+
+fn main(){
+    println!("Please add unit-tests later.");
+}
+```
+
 The top of your code should look like this:
 
 ```rust
