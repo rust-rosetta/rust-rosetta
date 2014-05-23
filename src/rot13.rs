@@ -1,19 +1,18 @@
 // Implements http://rosettacode.org/wiki/Rot-13
 
-fn rot13 (string: &str) -> ~str {
-	fn rot13u8 (c: char) -> char {
-            let d = c as u8;
-            match c {
-		'a' .. 'm' => (d + 13) as char,
-		'n' .. 'z' => (d - 13) as char,
-		'A' .. 'M' => (d + 13) as char,
-		'N' .. 'Z' => (d - 13) as char,
-		_ => c
-	    }
-	}
+fn rot13 (string: &str) -> StrBuf {
+    fn rot13u8 (c: char) -> char {
+        let d = c as u8;
+        match c {
+            'a' .. 'm'
+            | 'A' .. 'M' => (d + 13) as char,
+            'n' .. 'z'
+            | 'N' .. 'Z' => (d - 13) as char,
+            _ => c
+        }
+    }
 
-    let translated: Vec<char> = string.chars().map(|c| rot13u8(c)).collect();
-    std::str::from_chars(translated.as_slice())
+    string.chars().map(rot13u8).collect::<StrBuf>()
 }
 
 #[cfg(not(test))]
@@ -26,11 +25,14 @@ fn main () {
 
 #[test]
 fn test_basic() {
-    assert!(rot13("abc") == "nop".to_owned());
+    assert_eq!(rot13("abc").as_slice(), "nop");
 }
 
 #[test]
 fn test_coherence() {
-    assert!(range(50000, 50050).all(|x|
-                                    rot13(rot13(x.to_str())) == x.to_str()));
+    assert!(range(50000, 50050).map(|x| format!("{}", x)).all(|s| {
+        let encoded = rot13(s);
+        let decoded = rot13(encoded.as_slice());
+        decoded.as_slice() == s
+    }));
 }

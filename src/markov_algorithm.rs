@@ -2,13 +2,13 @@
 
 // Individual markov rule
 struct MarkovRule {
-    pattern: ~str,
-    replacement: ~str,
+    pattern: StrBuf,
+    replacement: StrBuf,
     stop: bool
 }
 
 impl MarkovRule {
-    fn new(pattern: ~str, replacement: ~str, stop: bool) -> MarkovRule {
+    fn new(pattern: StrBuf, replacement: StrBuf, stop: bool) -> MarkovRule {
         MarkovRule {pattern: pattern, replacement: replacement, stop: stop}
     }
 }
@@ -20,7 +20,7 @@ struct MarkovAlgorithm {
 
 impl MarkovAlgorithm {
     // Parse an algorithm description to build a markov algorithm
-    pub fn from_str(s: &str) -> Result<MarkovAlgorithm, ~str> {
+    pub fn from_str(s: &str) -> Result<MarkovAlgorithm, StrBuf> {
         let mut rules: Vec<MarkovRule> = vec!();
         for line in s.lines()
             .map(|l| l.trim()) // Ignore whitespace before and after
@@ -33,7 +33,7 @@ impl MarkovAlgorithm {
             match arrow_pos {
                 None => {
                     // Ruleset is invalid
-                    return Err(format!("Invalid rule \"{}\"", line));
+                    return Err(format_strbuf!("Invalid rule \"{}\"", line));
                 }
                 Some(arrow) => {
                     // extract pattern (trim trailing whitespace)
@@ -50,7 +50,9 @@ impl MarkovAlgorithm {
                     let replacement = if stop {line_end.slice_from(1)} else {line_end};
 
                     // add to rules
-                    let new_rule = MarkovRule::new(pattern.to_owned(), replacement.to_owned(), stop);
+                    let new_rule = MarkovRule::new(pattern.to_strbuf(),
+                                                    replacement.to_strbuf(),
+                                                    stop);
                     rules.push(new_rule);
                 }
             }
@@ -60,10 +62,10 @@ impl MarkovAlgorithm {
     }
 
     // Transform a text string by applying the markov algorithm
-    pub fn apply(&self, input: &str) -> ~str {
+    pub fn apply(&self, input: &str) -> StrBuf {
 
         // get a writable version of the input to work with
-        let mut state = input.into_owned();
+        let mut state = input.to_strbuf();
 
         // Don't allow input to be used after this
         drop(input);
@@ -72,9 +74,8 @@ impl MarkovAlgorithm {
         loop {
             // find the first rule that is applicable
             // (pattern string is in state)
-            let mut rule_iterator = self.rules.iter();
-            let possible_rule = rule_iterator.find(|rule|{
-                state.find_str(rule.pattern).is_some()
+            let possible_rule = self.rules.iter().find(|rule|{
+                state.as_slice().find_str(rule.pattern.as_slice()).is_some()
             });
 
             match possible_rule {
@@ -86,15 +87,15 @@ impl MarkovAlgorithm {
 
                     // unwrap is safe here as the code for finding a rule
                     // already established that the pattern is present
-                    let pos = state.find_str(rule.pattern).unwrap();
+                    let pos = state.as_slice().find_str(rule.pattern.as_slice()).unwrap();
                     let width = rule.pattern.len();
 
                     // string parts
-                    let left = state.slice_to(pos).to_owned();
-                    let right = state.slice_from(pos + width).to_owned();
+                    let left = state.as_slice().slice_to(pos).to_owned();
+                    let right = state.as_slice().slice_from(pos + width).to_owned();
 
                     // construct new string
-                    state = left + rule.replacement + right;
+                    state = format_strbuf!("{}{}{}", left, rule.replacement, right);
 
                     // stop if required
                     if rule.stop { break; }
@@ -107,15 +108,15 @@ impl MarkovAlgorithm {
 }
 
 // A Rosetta Code sample
-struct RCSample {
-    ruleset: ~str,
-    input: ~str,
-    expected_result: ~str
+struct RCSample<'a> {
+    ruleset: &'a str,
+    input: &'a str,
+    expected_result: &'a str
 }
 
 // Sample markow algorithms from rosetta code
 // The extra whitespaces are trimmed when MarkovAlgorithm::from_str is called
-fn get_samples() -> [RCSample, ..5] {
+fn get_samples<'a>() -> [RCSample<'a>, ..5] {
     [
         RCSample {
             ruleset:
@@ -126,9 +127,9 @@ fn get_samples() -> [RCSample, ..5] {
                 S -> shop
                 T -> the
                 the shop -> my brother
-                a never used -> .terminating rule".to_owned(),
-            input: "I bought a B of As from T S.".to_owned(),
-            expected_result: "I bought a bag of apples from my brother.".to_owned()
+                a never used -> .terminating rule",
+            input: "I bought a B of As from T S.",
+            expected_result: "I bought a bag of apples from my brother.",
         },
         RCSample{
             ruleset:
@@ -138,9 +139,9 @@ fn get_samples() -> [RCSample, ..5] {
                 S -> .shop
                 T -> the
                 the shop -> my brother
-                a never used -> .terminating rule".to_owned(),
-            input: "I bought a B of As from T S.".to_owned(),
-            expected_result: "I bought a bag of apples from T shop.".to_owned()
+                a never used -> .terminating rule",
+            input: "I bought a B of As from T S.",
+            expected_result: "I bought a bag of apples from T shop.",
         },
         RCSample{
             ruleset:
@@ -154,9 +155,9 @@ fn get_samples() -> [RCSample, ..5] {
                 S -> .shop
                 T -> the
                 the shop -> my brother
-                a never used -> .terminating rule".to_owned(),
-            input: "I bought a B of As W my Bgage from T S.".to_owned(),
-            expected_result: "I bought a bag of apples with my money from T shop.".to_owned()
+                a never used -> .terminating rule",
+            input: "I bought a B of As W my Bgage from T S.",
+            expected_result: "I bought a bag of apples with my money from T shop.",
         },
         RCSample{
             ruleset:
@@ -187,9 +188,9 @@ fn get_samples() -> [RCSample, ..5] {
                 # Termination cleanup for addition
                 _1 -> 1
                 1+_ -> 1
-                _+_ -> ".to_owned(),
-            input: "_1111*11111_".to_owned(),
-            expected_result: "11111111111111111111".to_owned()
+                _+_ -> ",
+            input: "_1111*11111_",
+            expected_result: "11111111111111111111",
         },
         RCSample{
             ruleset:
@@ -210,9 +211,9 @@ fn get_samples() -> [RCSample, ..5] {
                 1C0 -> B11
                 # state C, symbol 1 => write 1, move left, halt
                 0C1 -> H01
-                1C1 -> H11".to_owned(),
-            input: "000000A000000".to_owned(),
-            expected_result: "00011H1111000".to_owned()
+                1C1 -> H11",
+            input: "000000A000000",
+            expected_result: "00011H1111000",
         },
     ]
 }
@@ -234,7 +235,8 @@ fn main() {
 fn test_samples() {
     for sample in get_samples().iter() {
         match MarkovAlgorithm::from_str(sample.ruleset) {
-            Ok(algorithm) => assert!(sample.expected_result == algorithm.apply(sample.input)),
+            Ok(algorithm) => assert_eq!(sample.expected_result,
+                                        algorithm.apply(sample.input).as_slice()),
             Err(message) => fail!("{}", message)
         }
     }

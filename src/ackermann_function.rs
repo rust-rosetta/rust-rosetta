@@ -20,5 +20,5 @@ fn test_ack() {
 #[cfg(not(test))]
 fn main() {
 	let a = ack(3, 4);
-	println!("{}", a.to_str());
+	println!("{}", a);
 }

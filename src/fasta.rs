@@ -8,7 +8,7 @@ use std::io::BufferedReader;
 use std::strbuf::StrBuf;
 
 // Best to use type parameter <T: Buffer> to accept all kinds of buffers
-fn format_fasta<T: Buffer>(reader: &mut T) -> ~str {
+fn format_fasta<T: Buffer>(reader: &mut T) -> StrBuf {
     let mut result = StrBuf::new();
 
     for line in reader.lines() {
@@ -21,22 +21,21 @@ fn format_fasta<T: Buffer>(reader: &mut T) -> ~str {
         // Lines that begin with '>' require special treatment
         if ln.slice(0,1) == ">" {
             if result.len() > 0 {
-                result.push_str("\n");
+                result.push_char('\n');
             }
 
             // Push skipping the '>'
             result.push_str(ln.slice_from(1) + ": ");
-        }
-
-        // Other lines are just pushed
-        else {
+        } else {
+            // Other lines are just pushed
             result.push_str(ln);
         }
     }
-    result.to_str()
+
+    result
 }
 
-fn read_file() -> ~str {
+fn read_file() -> StrBuf {
     let file = File::open(&Path::new("src/resources/test_data.fasta"));
     format_fasta(&mut BufferedReader::new(file))
 }
