@@ -14,10 +14,9 @@ pub fn shannon_entropy(s: &str) -> f64 {
 
     // Calculate the entropy
     let len = s.len() as f64;
-    map.iter().fold(0f64, |mut acc, (_, nb)| {
+    map.iter().fold(0f64, |acc, (_, nb)| {
         let p = (*nb as f64) / len;
-        acc -= p * p.log2();
-        acc
+        acc - p * p.log2()
     })
 }
 // Needed so fibonacci_word compiles cleanly, because fibonacci_word
