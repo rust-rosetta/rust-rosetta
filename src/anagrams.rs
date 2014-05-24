@@ -12,7 +12,7 @@ use std::io::MemReader;
 use std::io::{File, BufferedReader};
 use std::cmp::max;
 
-fn sort_string(string: &str) -> ~str {
+fn sort_string(string: &str) -> StrBuf {
     let mut chars: Vec<char> = string.chars().collect();
     chars.sort();
     str::from_chars(chars.as_slice())
@@ -20,15 +20,15 @@ fn sort_string(string: &str) -> ~str {
 
 // Returns groups of anagrams where each group consists of a set
 // containing the words
-fn get_anagrams<T: Buffer>(mut reader: T) -> HashMap<~str, HashSet<~str>> {
-    let mut groups: HashMap<~str, HashSet<~str>> = HashMap::new();
+fn get_anagrams<T: Buffer>(mut reader: T) -> HashMap<StrBuf, HashSet<StrBuf>> {
+    let mut groups = HashMap::new();
 
     // Make groups of words according to the letters they contain
     for line in reader.lines() {
-	let s = line.unwrap().trim().to_owned();
+	let s = line.unwrap().as_slice().trim().to_owned();
 	groups.insert_or_update_with(
             // The key
-            sort_string(s.clone()),
+            sort_string(s.clone().as_slice()),
             // The value
             {
                 let mut set = HashSet::new();
@@ -44,8 +44,8 @@ fn get_anagrams<T: Buffer>(mut reader: T) -> HashMap<~str, HashSet<~str>> {
 }
 
 // Returns the groups of anagrams that contain the most words in them
-fn get_biggest_groups(groups: &HashMap<~str, HashSet<~str>>)
-                      -> HashMap<~str, HashSet<~str>> {
+fn get_biggest_groups(groups: &HashMap<StrBuf, HashSet<StrBuf>>)
+                      -> HashMap<StrBuf, HashSet<StrBuf>> {
     let max_length = groups.iter()
         .fold(0, |current_max, (_, group)| max(current_max,
                                                group.len()));
@@ -75,14 +75,17 @@ fn main () {
 #[test]
 fn basic_test() {
     // Groups of anagrams
-    let group1: HashSet<~str> = vec!("lane".to_owned(),
-                                     "neal".to_owned(),
-                                     "lean".to_owned()).move_iter().collect();
-    let group2: HashSet<~str> = vec!("angel".to_owned(),
-                                     "angle".to_owned(),
-                                     "galen".to_owned()).move_iter().collect();
-    let group3: HashSet<~str> = vec!("glare".to_owned(),
-                                     "large".to_owned()).move_iter().collect();
+    let group1: HashSet<StrBuf> = vec!["lane".to_strbuf(),
+                                       "neal".to_strbuf(),
+                                       "lean".to_strbuf()]
+                                       .move_iter().collect();
+    let group2: HashSet<StrBuf> = vec!["angel".to_owned(),
+                                       "angle".to_owned(),
+                                       "galen".to_owned()]
+                                       .move_iter().collect();
+    let group3: HashSet<StrBuf> = vec!["glare".to_owned(),
+                                       "large".to_owned()]
+                                       .move_iter().collect();
 
     // Prepare the input for the program
     // We will get a string like "lane\nneal\nlean\nangel\nangle..."
@@ -96,7 +99,7 @@ fn basic_test() {
     }
 
     // Here begins the real testing
-    let all_groups = get_anagrams(MemReader::new(words.to_str()
+    let all_groups = get_anagrams(MemReader::new(words.to_str().as_slice()
                                                  .bytes().collect()));
     let biggest_groups = get_biggest_groups(&all_groups);
 

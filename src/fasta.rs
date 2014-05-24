@@ -25,7 +25,8 @@ fn format_fasta<T: Buffer>(reader: &mut T) -> StrBuf {
             }
 
             // Push skipping the '>'
-            result.push_str(ln.slice_from(1) + ": ");
+            result.push_str(ln.slice_from(1));
+            result.push_str(": ");
         } else {
             // Other lines are just pushed
             result.push_str(ln);

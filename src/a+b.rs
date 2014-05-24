@@ -8,7 +8,7 @@ use std::io::BufferedReader;
 
 fn main() {
     let input = BufferedReader::new(stdin()).read_line().unwrap();
-    let words = input.words().take(2)
+    let words = input.as_slice().words().take(2)
                             .map(from_str::<int>)
                             .collect::<Vec<Option<int>>>();
 
