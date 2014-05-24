@@ -13,7 +13,7 @@ fn main() {
     let mut input = BufferedReader::new(stdin());
     loop {
         let line = input.read_line().unwrap();
-        match from_str::<int>(line.trim()) {
+        match from_str::<int>(line.as_slice().trim()) {
             Some(number) if (number == mystery_number) => break,
             Some(_) => println!("Wrong! Try again!"),
             None    => println!("Please enter an integer")
