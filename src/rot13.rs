@@ -1,6 +1,6 @@
 // Implements http://rosettacode.org/wiki/Rot-13
 
-fn rot13 (string: &str) -> StrBuf {
+fn rot13 (string: &str) -> String {
     fn rot13u8 (c: char) -> char {
         let d = c as u8;
         match c {
@@ -12,7 +12,7 @@ fn rot13 (string: &str) -> StrBuf {
         }
     }
 
-    string.chars().map(rot13u8).collect::<StrBuf>()
+    string.chars().map(rot13u8).collect::<String>()
 }
 
 #[cfg(not(test))]

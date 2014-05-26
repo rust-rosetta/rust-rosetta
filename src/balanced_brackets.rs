@@ -29,8 +29,8 @@ fn check_balanced(bracket_str: &str) -> bool {
 
 // Generates random brackets
 #[cfg(not(test))]
-fn generate_brackets(num: uint) -> StrBuf {
-    let mut brackets = StrBuf::new();
+fn generate_brackets(num: uint) -> String {
+    let mut brackets = String::new();
 
     for _ in range(0, num) {
         if random() {

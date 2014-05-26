@@ -10,8 +10,8 @@ mod entropy;
 // and the second one its entropy
 fn fib_words(amount: uint) -> Vec<(uint, f64)> {
     let mut data = Vec::with_capacity(amount);
-    let mut previous = StrBuf::from_str("1");
-    let mut next = StrBuf::from_str("0");
+    let mut previous = String::from_str("1");
+    let mut next = String::from_str("0");
 
     // The first two words (we need to add them manually because
     // they are the base of the sequence)

@@ -12,7 +12,7 @@ use std::io::MemReader;
 use std::io::{File, BufferedReader};
 use std::cmp::max;
 
-fn sort_string(string: &str) -> StrBuf {
+fn sort_string(string: &str) -> String {
     let mut chars: Vec<char> = string.chars().collect();
     chars.sort();
     str::from_chars(chars.as_slice())
@@ -20,7 +20,7 @@ fn sort_string(string: &str) -> StrBuf {
 
 // Returns groups of anagrams where each group consists of a set
 // containing the words
-fn get_anagrams<T: Buffer>(mut reader: T) -> HashMap<StrBuf, HashSet<StrBuf>> {
+fn get_anagrams<T: Buffer>(mut reader: T) -> HashMap<String, HashSet<String>> {
     let mut groups = HashMap::new();
 
     // Make groups of words according to the letters they contain
@@ -44,8 +44,8 @@ fn get_anagrams<T: Buffer>(mut reader: T) -> HashMap<StrBuf, HashSet<StrBuf>> {
 }
 
 // Returns the groups of anagrams that contain the most words in them
-fn get_biggest_groups(groups: &HashMap<StrBuf, HashSet<StrBuf>>)
-                      -> HashMap<StrBuf, HashSet<StrBuf>> {
+fn get_biggest_groups(groups: &HashMap<String, HashSet<String>>)
+                      -> HashMap<String, HashSet<String>> {
     let max_length = groups.iter()
         .fold(0, |current_max, (_, group)| max(current_max,
                                                group.len()));
@@ -75,22 +75,22 @@ fn main () {
 #[test]
 fn basic_test() {
     // Groups of anagrams
-    let group1: HashSet<StrBuf> = vec!["lane".to_strbuf(),
-                                       "neal".to_strbuf(),
-                                       "lean".to_strbuf()]
+    let group1: HashSet<String> = vec!["lane".to_str(),
+                                       "neal".to_str(),
+                                       "lean".to_str()]
                                        .move_iter().collect();
-    let group2: HashSet<StrBuf> = vec!["angel".to_owned(),
-                                       "angle".to_owned(),
-                                       "galen".to_owned()]
+    let group2: HashSet<String> = vec!["angel".to_str(),
+                                       "angle".to_str(),
+                                       "galen".to_str()]
                                        .move_iter().collect();
-    let group3: HashSet<StrBuf> = vec!["glare".to_owned(),
-                                       "large".to_owned()]
+    let group3: HashSet<String> = vec!["glare".to_str(),
+                                       "large".to_str()]
                                        .move_iter().collect();
 
     // Prepare the input for the program
     // We will get a string like "lane\nneal\nlean\nangel\nangle..."
     let mut word_iter = group1.iter().chain(group2.iter().chain(group3.iter()));
-    let mut words = StrBuf::new();
+    let mut words = String::new();
 
     words.push_str(word_iter.next().unwrap().as_slice());
     for word in word_iter {

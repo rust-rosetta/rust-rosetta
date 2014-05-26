@@ -39,7 +39,7 @@ fn compress(original_str: &str) -> Vec<int> {
 }
 
 // Decompress using LZW
-fn decompress(compressed: &Vec<int>) -> StrBuf {
+fn decompress(compressed: &Vec<int>) -> String {
    let mut dict_size = 256;
    let mut dictionary = HashMap::new();
 
@@ -64,7 +64,7 @@ fn decompress(compressed: &Vec<int>) -> StrBuf {
       w = entry;
    }
 
-   StrBuf::from_utf8(result).unwrap()
+   String::from_utf8(result).unwrap()
 }
 
 #[cfg(not(test))]
@@ -84,7 +84,7 @@ fn main() {
 
 #[test]
 fn test_coherence() {
-    for s in range(50000, 50100).map(|n| n.to_str().to_strbuf()) {
+    for s in range(50000, 50100).map(|n| n.to_str()) {
         assert_eq!(decompress(&compress(s.as_slice())), s);
     }
 }

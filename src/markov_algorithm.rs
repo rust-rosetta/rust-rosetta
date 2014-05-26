@@ -2,13 +2,13 @@
 
 // Individual markov rule
 struct MarkovRule {
-    pattern: StrBuf,
-    replacement: StrBuf,
+    pattern: String,
+    replacement: String,
     stop: bool
 }
 
 impl MarkovRule {
-    fn new(pattern: StrBuf, replacement: StrBuf, stop: bool) -> MarkovRule {
+    fn new(pattern: String, replacement: String, stop: bool) -> MarkovRule {
         MarkovRule {pattern: pattern, replacement: replacement, stop: stop}
     }
 }
@@ -20,7 +20,7 @@ struct MarkovAlgorithm {
 
 impl MarkovAlgorithm {
     // Parse an algorithm description to build a markov algorithm
-    pub fn from_str(s: &str) -> Result<MarkovAlgorithm, StrBuf> {
+    pub fn from_str(s: &str) -> Result<MarkovAlgorithm, String> {
         let mut rules: Vec<MarkovRule> = vec!();
         for line in s.lines()
             .map(|l| l.trim()) // Ignore whitespace before and after
@@ -50,9 +50,7 @@ impl MarkovAlgorithm {
                     let replacement = if stop {line_end.slice_from(1)} else {line_end};
 
                     // add to rules
-                    let new_rule = MarkovRule::new(pattern.to_strbuf(),
-                                                    replacement.to_strbuf(),
-                                                    stop);
+                    let new_rule = MarkovRule::new(pattern.to_str(), replacement.to_str(), stop);
                     rules.push(new_rule);
                 }
             }
@@ -62,10 +60,10 @@ impl MarkovAlgorithm {
     }
 
     // Transform a text string by applying the markov algorithm
-    pub fn apply(&self, input: &str) -> StrBuf {
+    pub fn apply(&self, input: &str) -> String {
 
         // get a writable version of the input to work with
-        let mut state = input.to_strbuf();
+        let mut state = input.to_str();
 
         // Don't allow input to be used after this
         drop(input);

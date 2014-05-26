@@ -5,11 +5,11 @@
 use std::path::Path;
 use std::io::fs::File;
 use std::io::BufferedReader;
-use std::strbuf::StrBuf;
+use std::string::String;
 
 // Best to use type parameter <T: Buffer> to accept all kinds of buffers
-fn format_fasta<T: Buffer>(reader: &mut T) -> StrBuf {
-    let mut result = StrBuf::new();
+fn format_fasta<T: Buffer>(reader: &mut T) -> String {
+    let mut result = String::new();
 
     for line in reader.lines() {
         // Using the same name for the next variable will just shadow the previous one
@@ -36,7 +36,7 @@ fn format_fasta<T: Buffer>(reader: &mut T) -> StrBuf {
     result
 }
 
-fn read_file() -> StrBuf {
+fn read_file() -> String {
     let file = File::open(&Path::new("src/resources/test_data.fasta"));
     format_fasta(&mut BufferedReader::new(file))
 }
