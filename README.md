@@ -15,7 +15,7 @@ Get in touch with @Hoverbear if you need help setting up.
 Rosetta Code                                                                                       | Source Link                                            
 ---------------------------------------------------------------------------------------------------|----------------------------------------------------------
 [99 bottles of beer](http://rosettacode.org/wiki/99_Bottles_of_Beer)                               | [99_bottles_of_beer.rs](src/99_bottles_of_beer.rs)
-[100 doors](http://rosettacode.org/wiki/100_doors)                                                 | [100_doors.rs](src/100_doors.rs)
+[100 doors](http://rosettacode.org/wiki/100_doors)                                                 | [100_doors.rs](src/100_doors.rs), [100_doors_unoptimized.rs](src/100_doors_unoptimized.rs) 
 [A+B](http://rosettacode.org/wiki/A%2BB)                                                           | [a+b.rs](src/a+b.rs)
 [Ackermann function](http://rosettacode.org/wiki/Ackermann_function)                               | [ackermann_function.rs](src/ackermann_function.rs)
 [Almost prime](http://rosettacode.org/wiki/Almost_prime)                                           | [almost_prime.rs](src/almost_prime.rs)
