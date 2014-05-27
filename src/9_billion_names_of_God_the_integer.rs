@@ -11,11 +11,8 @@ use std::cmp::min;
 
  fn cumu<'a>(num: uint, cache: &'a mut Vec<Vec<BigUint>>) -> &'a Vec<BigUint> {
 	
-    let mut len =0;
-    for num in cache.iter()
-    {
-    	len = len+1;
-    }
+    let len = cache.len();
+
 
     for l in range(len, num+1)
     {
@@ -40,7 +37,7 @@ use std::cmp::min;
 }
 
 // Returns a line
-#[cfg(not(test))]
+
 fn row(num: uint,  cache: &mut Vec<Vec<BigUint>>) -> String {
 	 
 	let r = cumu(num,cache);
@@ -123,6 +120,26 @@ fn test_cumu()
 			
 
 	   }
+}
+
+
+#[test]
+fn test_row()
+{
+
+	    let mut cache: Vec<Vec<BigUint>> = Vec::new();
+
+	    let initial_value:BigUint = FromStr::from_str("1").unwrap();
+
+	    let initial_vector : Vec<BigUint> = vec!(initial_value);
+	    cache.push(initial_vector);
+	   
+	    let a: String = FromStr::from_str("1, 2, 1, 1, ").unwrap();
+
+		let x = 4;
+			assert!(a == row(x,&mut cache));
+
+
 }
 
 
