@@ -14,7 +14,7 @@ fn main() {
     let mut hamming = Hamming::new(1691);
 
     println!("first 20 Hamming numbers")
-    for _ in range(0,19) {
+    for _ in range_inclusive(0,19) {
         print!("{} ", hamming.next().unwrap());
     }
 
