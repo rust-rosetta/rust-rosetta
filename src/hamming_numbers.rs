@@ -5,6 +5,9 @@ use num::bigint::BigUint;
 use std::cmp::min;
 use std::sync::spsc_queue::Queue;
 
+// helper function to avoid repeating
+// FromPrimitive::from_int(i).unwrap()
+// for every BigUint creation
 fn int_to_biguint(i: int) -> BigUint {
     FromPrimitive::from_int(i).unwrap()
 }
@@ -19,9 +22,15 @@ fn main() {
     }
 
     println!("\n\n1691st Hamming number");
+    // we've already iterated over the first 20 numbers
+    // so to get at number 1691 we have to subtract 20
     println!("{}",hamming.nth(1691-20).unwrap())
 }
 
+// Hamming numbers are multiples
+// of 2, 3 or 5. We keep them on three
+// queues and extract the lowest (leftmost) value
+// from the three queues at each iteration
 struct Hamming {
     q2: Queue<BigUint>,
     q3: Queue<BigUint>,
@@ -29,6 +38,8 @@ struct Hamming {
 }
 
 impl Hamming {
+    // constructor method
+    // n initializes the capacity of the queues
     fn new(n: uint) -> Hamming {
         let h = Hamming {
             q2: Queue::new(n),
@@ -43,15 +54,21 @@ impl Hamming {
         h
     }
 
+    // adds the next multiple (x2, x3, x5)
+    // to the queues
     fn enqueue(&self, n: BigUint) {
         self.q2.push(n * int_to_biguint(2));
         self.q3.push(n * int_to_biguint(3));
         self.q5.push(n * int_to_biguint(5));
     }
-
 }
 
+// implements an Iterator, so we
+// can extract Hamming numbers more easily
 impl Iterator<BigUint> for Hamming {
+    // the core of the work is done in the next method.
+    // We check which of the 3 queues has the lowest
+    // candidate and extract it as the next Hamming number
     fn next(&mut self) -> Option<BigUint> {
         let (head2, head3, head5) =
             (   self.q2.peek().unwrap(),
