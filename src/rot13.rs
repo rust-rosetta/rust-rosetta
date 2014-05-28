@@ -12,7 +12,7 @@ fn rot13 (string: &str) -> String {
         }
     }
 
-    string.chars().map(rot13u8).collect::<String>()
+    string.chars().map(rot13u8).collect()
 }
 
 #[cfg(not(test))]
