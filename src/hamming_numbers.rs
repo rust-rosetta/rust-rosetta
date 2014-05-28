@@ -4,6 +4,7 @@ extern crate num;
 use num::bigint::BigUint;
 use std::cmp::min;
 use std::sync::spsc_queue::Queue;
+use std::iter::range_inclusive;
 
 fn int_to_biguint(i: int) -> BigUint {
     FromPrimitive::from_int(i).unwrap()
