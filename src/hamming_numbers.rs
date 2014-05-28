@@ -23,9 +23,9 @@ fn main() {
 }
 
 struct Hamming {
-    pub q2: Queue<BigUint>,
-    pub q3: Queue<BigUint>,
-    pub q5: Queue<BigUint>
+    q2: Queue<BigUint>,
+    q3: Queue<BigUint>,
+    q5: Queue<BigUint>
 }
 
 impl Hamming {
@@ -54,18 +54,18 @@ impl Hamming {
 impl Iterator<BigUint> for Hamming {
     fn next(&mut self) -> Option<BigUint> {
         let (head2, head3, head5) =
-            (   self.q2.peek().unwrap().clone(),
-                self.q3.peek().unwrap().clone(),
-                self.q5.peek().unwrap().clone());
+            (   self.q2.peek().unwrap(),
+                self.q3.peek().unwrap(),
+                self.q5.peek().unwrap());
 
         let n = min(head2.clone(), min(head3.clone(), head5.clone()));
 
-        if head2 == n {self.q2.pop();}
-        if head3 == n {self.q3.pop();}
-        if head5 == n {self.q5.pop();}
+        if *head2 == n {self.q2.pop();}
+        if *head3 == n {self.q3.pop();}
+        if *head5 == n {self.q5.pop();}
 
         self.enqueue(n.clone());
-        Some(n.clone())
+        Some(n)
     }
 }
 
