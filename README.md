@@ -51,6 +51,7 @@ Rosetta Code                                                                    
 [Greatest element of a list](http://rosettacode.org/wiki/Greatest_element_of_a_list)               | [greater_element_list.rs](src/greater_element_list.rs)
 [Guess the number](http://rosettacode.org/wiki/Guess_the_number)                                   | [guess_number.rs](src/guess_number.rs)
 [Hailstone sequence](http://rosettacode.org/wiki/Hailstone_sequence)                               | [hailstone.rs](src/hailstone.rs)
+[Hamming numbers](http://rosettacode.org/wiki/Hamming_numbers)                                     | [hamming_numbers.rs](src/hamming_numbers.rs)
 [Happy numbers](http://rosettacode.org/wiki/Happy_numbers)                                         | [happy_numbers.rs](src/happy_numbers.rs)
 [Infinity](http://rosettacode.org/wiki/Infinity)                                                   | [infinity.rs](src/infinity.rs)
 [Integer sequence](http://rosettacode.org/wiki/Integer_sequence)                                   | [integer_sequence.rs](src/integer_sequence.rs)
