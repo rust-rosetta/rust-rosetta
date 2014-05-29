@@ -6,10 +6,10 @@ fn main() {
 	for num_bottles in std::iter::range_step_inclusive(99, 1, -1) {
         let num_bottles=num_bottles as uint;
 
-		println!("{}",bottles_line(num_bottles as uint, true));
-		println!("{}",bottles_line(num_bottles as uint, false));
+		println!("{}",bottles_line(num_bottles, true));
+		println!("{}",bottles_line(num_bottles, false));
 		println!("Take one down, pass it around...");
-		println!("{}",bottles_line(num_bottles - 1, true).as_slice());
+		println!("{}",bottles_line(num_bottles - 1, true));
 		println!("-----------------------------------");
 	}
 }
