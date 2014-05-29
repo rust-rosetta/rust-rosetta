@@ -1,25 +1,38 @@
 // Implements http://rosettacode.org/wiki/99_Bottles_of_Beer
-#![cfg(not_tested)]
-use std::iter::range_step_inclusive;
+use std::string::String;
 
-fn sing_bottles_line(num_bottles: int, on_the_wall: bool) {
-	// the print! macro uses a built in internationalization formatting language
-	// check out the docs for std::fmt
-	print!("{0, plural, =0{No bottles} =1{One bottle} other{# bottles}} of beer", num_bottles as uint);
-
-	if on_the_wall {
-		print!(" on the wall!");
-	}
-
-	print!("\n");
-}
-
+#[cfg(not(test))]
 fn main() {
-	for num_bottles in range_step_inclusive(99, 1, -1) {
-		sing_bottles_line(num_bottles, true);
-		sing_bottles_line(num_bottles, false);
+	for num_bottles in std::iter::range_step_inclusive(99, 1, -1) {
+        let num_bottles=num_bottles as uint;
+
+		println!("{}",bottles_line(num_bottles as uint, true));
+		println!("{}",bottles_line(num_bottles as uint, false));
 		println!("Take one down, pass it around...");
-		sing_bottles_line(num_bottles - 1, true);
+		println!("{}",bottles_line(num_bottles - 1, true).as_slice());
 		println!("-----------------------------------");
 	}
+}
+
+fn bottles_line(num_bottles: uint, on_the_wall: bool) -> String {
+	// the format! macro uses a built in internationalization formatting language
+	// check out the docs for std::fmt
+	let mut ln=format!("{0, plural, =0{No bottles} =1{One bottle} other{# bottles}} of beer",
+                                                                                num_bottles);
+
+	if on_the_wall {
+		ln.push_str(" on the wall!");
+	}
+
+	ln.push_str("\n");
+    ln
+}
+
+#[test]
+fn gen_bottle_line() {
+    let ln=bottles_line(42, false);
+    let ln2=bottles_line(42, true);
+
+    assert_eq!(ln.as_slice(),"42 bottles of beer\n");
+    assert_eq!(ln2.as_slice(),"42 bottles of beer on the wall!\n");
 }
