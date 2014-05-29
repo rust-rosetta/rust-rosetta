@@ -1,4 +1,6 @@
 // Implements http://rosettacode.org/wiki/100_doors
+use std::iter::range_inclusive;
+
 #[cfg(not(test))]
 fn main() {
     let drs = doors();
@@ -7,14 +9,20 @@ fn main() {
     }
 }
 
-fn doors() -> Vec<&'static str> {
-   let mut ret = Vec :: with_capacity(100);
-   for i in std::iter::range_inclusive(1,100) {
-        let x = (i as f64).powf(0.5);
-        let state = if x == x.round() {"open"} else {"closed"};
+fn doors() -> Vec<DoorState> {
+   let mut ret = Vec::with_capacity(100);
+   for f in range_inclusive(1f64,100f64) {
+        let x = f.sqrt();
+        let state = if x == x.round() {Open} else {Closed};
         ret.push(state);
     }
     ret
+}
+
+#[deriving(Show, Eq)]
+enum DoorState {
+    Open,
+    Closed
 }
 
 #[test]
@@ -23,7 +31,7 @@ fn solution() {
 
     // test that the doors with index corresponding to
     // a perfect square are now open
-    for i in std::iter::range_inclusive(1u,10u) {
-        assert!(*drs.get(i*i - 1)=="open");
+    for i in range_inclusive(1u,10u) {
+        assert_eq!(*drs.get(i*i - 1), Open);
     }
 }
