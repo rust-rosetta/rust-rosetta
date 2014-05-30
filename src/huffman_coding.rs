@@ -1,8 +1,9 @@
+// Implement data structures for a Huffman encoding tree:
+//   http://rosettacode.org/wiki/Huffman_coding
+
 extern crate collections;
 use collections::HashMap;
 use collections::priority_queue::PriorityQueue;
-
-// Implement data structures for a Huffman encoding tree
 
 // Each HNode has a weight, representing the sum of the frequencies for all its
 // children. It is either a leaf (containing a character), or a HTree

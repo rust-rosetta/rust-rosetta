@@ -3,7 +3,7 @@
 
 A repository for completing [this issue on mozilla/rust](https://github.com/mozilla/rust/issues/10513). This repository contains minimal working code for many simple (and not so simple) tasks. New contributors and learners of the language are welcome. We will try to work with you to make the code more idiomatic over time.
 
-> Working on a problem, need some help? Drop by #rust-rosetta on irc.mozilla.org. 
+> Working on a problem, need some help? Drop by #rust-rosetta on irc.mozilla.org.
 Get in touch with @Hoverbear if you need help setting up.
 
 ## Tasks Remaining ##
@@ -12,11 +12,11 @@ Get in touch with @Hoverbear if you need help setting up.
 
 ## Tasks Complete ##
 
-Rosetta Code                                                                                       | Source Link                                            
+Rosetta Code                                                                                       | Source Link
 ---------------------------------------------------------------------------------------------------|----------------------------------------------------------
-[9 billion names of God the integer](rosettacode.org/wiki/9_billion_names_of_God_the_integer)	   | [9 billion names of God the integer](src/9_billion_names_of_God_the_integer.rs)	   
+[9 billion names of God the integer](rosettacode.org/wiki/9_billion_names_of_God_the_integer)	   | [9 billion names of God the integer](src/9_billion_names_of_God_the_integer.rs)
 [99 bottles of beer](http://rosettacode.org/wiki/99_Bottles_of_Beer)                               | [99_bottles_of_beer.rs](src/99_bottles_of_beer.rs)
-[100 doors](http://rosettacode.org/wiki/100_doors)                                                 | [100_doors.rs](src/100_doors.rs), [100_doors_unoptimized.rs](src/100_doors_unoptimized.rs) 
+[100 doors](http://rosettacode.org/wiki/100_doors)                                                 | [100_doors.rs](src/100_doors.rs), [100_doors_unoptimized.rs](src/100_doors_unoptimized.rs)
 [A+B](http://rosettacode.org/wiki/A%2BB)                                                           | [a+b.rs](src/a+b.rs)
 [Ackermann function](http://rosettacode.org/wiki/Ackermann_function)                               | [ackermann_function.rs](src/ackermann_function.rs)
 [Almost prime](http://rosettacode.org/wiki/Almost_prime)                                           | [almost_prime.rs](src/almost_prime.rs)
@@ -53,6 +53,7 @@ Rosetta Code                                                                    
 [Hailstone sequence](http://rosettacode.org/wiki/Hailstone_sequence)                               | [hailstone.rs](src/hailstone.rs)
 [Hamming numbers](http://rosettacode.org/wiki/Hamming_numbers)                                     | [hamming_numbers.rs](src/hamming_numbers.rs)
 [Happy numbers](http://rosettacode.org/wiki/Happy_numbers)                                         | [happy_numbers.rs](src/happy_numbers.rs)
+[Huffman encoding](http://rosettacode.org/wiki/Huffman_coding)                                     | [huffman_coding.rs](src/huffman_coding.rs)
 [Infinity](http://rosettacode.org/wiki/Infinity)                                                   | [infinity.rs](src/infinity.rs)
 [Integer sequence](http://rosettacode.org/wiki/Integer_sequence)                                   | [integer_sequence.rs](src/integer_sequence.rs)
 [Letter frequency](http://rosettacode.org/wiki/Letter_frequency)                                   | [letter_frequency.rs](src/letter_frequency.rs)
