@@ -42,29 +42,17 @@ impl Eq for HNode {
     fn eq(&self, other: &HNode) -> bool {
         self.weight == other.weight
     }
-    fn ne(&self, other: &HNode) -> bool {
-        ! self.eq(other)
-    }
 }
 
 impl Ord for HNode {
     fn lt(&self, other: &HNode) -> bool {
         self.weight > other.weight
     }
-    fn le(&self, other: &HNode) -> bool {
-        self.weight >= other.weight
-    }
-    fn gt(&self, other: &HNode) -> bool {
-        self.weight < other.weight
-    }
-    fn ge(&self, other: &HNode) -> bool {
-        self.weight <= other.weight
-    }
 }
 
 // Takes a non-empty string (function will fail if string is empty) and computes
 // the Huffman encoding tree for that string.
-fn huffmanTree(input: &str) -> HNode {
+fn huffman_tree(input: &str) -> HNode {
     // 1. Loop through all the characters in that string, adding them to a HashMap
     //    of character to frequency.
     let mut freq = HashMap::new();
@@ -104,14 +92,14 @@ fn huffmanTree(input: &str) -> HNode {
 
 // Takes a Huffman Tree, traverse it and build a table with each character and
 // its encoding string.
-fn buildEncodingTable(tree: &HNode,
+fn build_encoding_table(tree: &HNode,
                       table: &mut HashMap<char,String>,
                       startStr: &str) {
     match tree.item {
         HTree(ref data) => {
-            buildEncodingTable(data.left, table,
+            build_encoding_table(data.left, table,
                                String::from_str(startStr).append("0").as_slice());
-            buildEncodingTable(data.right, table,
+            build_encoding_table(data.right, table,
                                String::from_str(startStr).append("1").as_slice());
         },
         HLeaf(ch)   => {table.insert(ch, String::from_str(startStr));}
@@ -127,9 +115,9 @@ fn buildEncodingTable(tree: &HNode,
 //     /     \
 //    2:'2'  1:'1'
 #[test]
-fn testTreeConstruction() {
+fn test_tree_construction() {
     let to_encode = "4444221";
-    let tree = huffmanTree(to_encode);
+    let tree = huffman_tree(to_encode);
     assert!(tree.weight == 7);
     let children = match tree.item {
         HTree(data) => data,
@@ -179,11 +167,11 @@ fn testTreeConstruction() {
 //  '2': 01 OR 00
 //  '1': 00    01
 // And tests that the table was correctly constructed
-fn testTableConstruction() {
+fn test_table_construction() {
     let to_encode = "4444221";
-    let tree = huffmanTree(to_encode);
+    let tree = huffman_tree(to_encode);
     let mut table = HashMap::<char,String>::new();
-    buildEncodingTable(&tree, &mut table, "");
+    build_encoding_table(&tree, &mut table, "");
     let one  = table.get(&'1').as_slice();
     let two  = table.get(&'2').as_slice();
     let four = table.get(&'4').as_slice();
@@ -195,9 +183,9 @@ fn testTableConstruction() {
 #[cfg(not(test))]
 fn main() {
     let to_encode = "this is an example for huffman encoding";
-    let tree = huffmanTree(to_encode);
+    let tree = huffman_tree(to_encode);
     let mut table = HashMap::<char,String>::new();
-    buildEncodingTable(&tree, &mut table, "");
+    build_encoding_table(&tree, &mut table, "");
 
     for (ch, encoding) in table.iter() {
         println!("{}: {}", *ch, encoding);
