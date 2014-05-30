@@ -33,7 +33,7 @@ impl MarkovAlgorithm {
             match arrow_pos {
                 None => {
                     // Ruleset is invalid
-                    return Err(format_strbuf!("Invalid rule \"{}\"", line));
+                    return Err(format!("Invalid rule \"{}\"", line));
                 }
                 Some(arrow) => {
                     // extract pattern (trim trailing whitespace)
@@ -93,7 +93,7 @@ impl MarkovAlgorithm {
                     let right = state.as_slice().slice_from(pos + width).to_string();
 
                     // construct new string
-                    state = format_strbuf!("{}{}{}", left, rule.replacement, right);
+                    state = format!("{}{}{}", left, rule.replacement, right);
 
                     // stop if required
                     if rule.stop { break; }
