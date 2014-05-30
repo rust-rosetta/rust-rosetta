@@ -89,8 +89,8 @@ impl MarkovAlgorithm {
                     let width = rule.pattern.len();
 
                     // string parts
-                    let left = state.as_slice().slice_to(pos).to_owned();
-                    let right = state.as_slice().slice_from(pos + width).to_owned();
+                    let left = state.as_slice().slice_to(pos).to_string();
+                    let right = state.as_slice().slice_from(pos + width).to_string();
 
                     // construct new string
                     state = format_strbuf!("{}{}{}", left, rule.replacement, right);

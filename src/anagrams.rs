@@ -25,7 +25,7 @@ fn get_anagrams<T: Buffer>(mut reader: T) -> HashMap<String, HashSet<String>> {
 
     // Make groups of words according to the letters they contain
     for line in reader.lines() {
-	let s = line.unwrap().as_slice().trim().to_owned();
+	let s = line.unwrap().as_slice().trim().to_string();
 	groups.insert_or_update_with(
             // The key
             sort_string(s.clone().as_slice()),
