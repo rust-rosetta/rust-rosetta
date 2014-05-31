@@ -1,38 +1,40 @@
 // Implements http://rosettacode.org/wiki/String_matching
 
-fn matchString(container: &str, target: &str) -> (bool,bool,bool) {
+fn match_string(container: &str, target: &str) -> (bool, bool, bool) {
   let starts = container.starts_with(target);
   let ends = container.ends_with(target);
-  (starts, starts||ends||container.contains(target), ends)
+  let contains = starts || ends || container.contains(target);
+
+  (starts, contains, ends)
 }
 
 #[cfg(not(test))]
-fn printInfo(container: &str, target: &str) {
-  println!("Matching \"{}\" in the string \"{}\"", target, container);
-  let (starts,contains,ends) = matchString(container,target);
+fn print_info(container: &str, target: &str) {
+  println!(r#"Matching "{}" in the string "{}""#, target, container);
+  let (starts, contains, ends) = match_string(container,target);
+
   if starts {
-    println!("\"{}\" starts with \"{}\"", container, target);
+    println!(r#""{}" starts with "{}""#, container, target);
   }
   if contains {
-    println!("\"{}\" contains \"{}\"", container, target);
+    println!(r#""{}" contains "{}""#, container, target);
   }
   if ends {
-    println!("\"{}\" ends with \"{}\"", container, target);
+    println!(r#""{}" ends with "{}""#, container, target);
   }
 }
 
 #[cfg(not(test))]
 fn main() {
-  printInfo("abcd","ab");
-  printInfo("abcd","bc");
-  printInfo("abcd","cd");
+  print_info("abcd", "ab");
+  print_info("abcd", "bc");
+  print_info("abcd", "cd");
 }
 
-
 #[test]
-fn testMatchString() {
-  assert_eq!( matchString("abcd", "ab"), (true,true,false) );
-  assert_eq!( matchString("abcd", "ba"), (false,false,false) );
-  assert_eq!( matchString("abcd", "bc"), (false,true,false) );
-  assert_eq!( matchString("abcd", "cd"), (false,true,true) );
+fn test_match_string() {
+  assert_eq!(match_string("abcd", "ab"), (true,  true, false));
+  assert_eq!(match_string("abcd", "ba"), (false, false, false));
+  assert_eq!(match_string("abcd", "bc"), (false, true,  false));
+  assert_eq!(match_string("abcd", "cd"), (false, true,  true));
 }
