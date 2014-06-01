@@ -1,5 +1,5 @@
 // Implements http://rosettacode.org/wiki/Guess_the_number
-#![cfg(not_tested)]
+// not_tested
 extern crate rand;
 
 use rand::{task_rng, Rng};

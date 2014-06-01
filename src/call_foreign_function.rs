@@ -1,5 +1,5 @@
 // Implements http://rosettacode.org/wiki/Call_a_foreign-language_function
-#![cfg(not_tested)]
+// not_tested
 
 extern crate libc;
 
