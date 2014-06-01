@@ -126,7 +126,7 @@ lint_results=''
 max_column_lint() {
     local source_file="$1"
     if grep  -q '.\{101,\}' "$source_file"; then
-        lint_results+="\n  $source_file: warning: file contains lines over \
+        lint_results+="\n  $source_file: $WARNING: file contains lines over \
 100 columns"
     fi
 }
