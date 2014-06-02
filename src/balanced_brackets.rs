@@ -1,9 +1,7 @@
 // Implements http://rosettacode.org/wiki/Balanced_brackets
 
-extern crate rand;
-
 #[cfg(not(test))]
-use rand::random;
+use std::rand::random;
 
 // Returns true if the brackets are balanced
 fn check_balanced(bracket_str: &str) -> bool {
