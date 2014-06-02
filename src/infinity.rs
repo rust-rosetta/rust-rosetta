@@ -1,5 +1,5 @@
 // Implements http://rosettacode.org/wiki/Infinity
-#![cfg(not_tested)]
+// not_tested
 
 fn main() {
     let inf : f32 = Float::infinity();

@@ -114,11 +114,11 @@ fn test_me() {
 ```
 
 If you are unable to test your program then mark the entire file with
-`#![cfg(not_tested)]`.  This will disable testing completely for that
+`// not_tested`.  This will disable testing completely for that
 file.
 
 ```rust
-#![cfg(not_tested)]
+// not_tested
 
 fn main(){
     println!("Please add unit-tests later.");

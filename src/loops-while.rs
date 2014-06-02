@@ -1,6 +1,6 @@
 // Implements http://rosettacode.org/wiki/Loops/While
 
-#![cfg(not_tested)]
+// not_tested
 
 fn main() {
     let mut i = 1024;

@@ -1,6 +1,6 @@
 // Implements http://rosettacode.org/wiki/Loops/For
 
-#![cfg(not_tested)]
+// not_tested
 
 use std::iter;
 

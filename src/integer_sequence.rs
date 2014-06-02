@@ -1,5 +1,5 @@
 // Implements http://rosettacode.org/wiki/Integer_sequence
-#![cfg(not_tested)]
+// not_tested
 
 extern crate num;
 

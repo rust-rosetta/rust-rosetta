@@ -162,7 +162,7 @@ test_rust_file() {
     # convention, rustc doesn't care one bit about it.  If this
     # attribute is used, we won't throw warnings about the lack of
     # tests.
-    if grep -Fq '#![cfg(not_tested)]' "$source_file"; then
+    if grep -Fq '// not_tested' "$source_file"; then
         test_status_string="${GREEN}no tests${RESTORE}"
         test_summary=" - ${GREEN}0/0${RESTORE}"
         compile_tests=false
@@ -175,8 +175,9 @@ test_rust_file() {
         test_summary=" - ${YELLOW}0/0${RESTORE}"
         # Special case lint, since it changes colors
         lint_results="\n  $source_file: $WARNING: no tests; add tests or \
-annotate no tests with #![cfg(not_tested)]"
-        touch "$TEST_DIR/ERRORS_HAPPENED"
+annotate no tests with the magic comment: // not_tested"
+        # don't break build for the lack of tests
+        # touch "$TEST_DIR/ERRORS_HAPPENED"
         compile_tests=false
     fi
 

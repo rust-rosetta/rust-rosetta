@@ -1,5 +1,5 @@
 // Implements http://rosettacode.org/wiki/String_interpolation
-#![cfg(not_tested)]
+// not_tested
 
 #[cfg(not(test))]
 fn main() {

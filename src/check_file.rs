@@ -1,5 +1,5 @@
 // Implements http://rosettacode.org/wiki/Check_that_file_exists
-#![cfg(not_tested)]
+// not_tested
 
 fn main() {
     let paths = ["input.txt", "docs"];
