@@ -6,7 +6,7 @@ use std::rand::{task_rng, Rng};
 
 // We use in place quick sort
 // For details see http://en.wikipedia.org/wiki/Quicksort#In-place_version
-fn quick_sort<T: Ord>(v: &mut[T]) {
+fn quick_sort<T: TotalOrd>(v: &mut[T]) {
     let len = v.len();
     if len < 2 {
         return;
@@ -24,7 +24,7 @@ fn quick_sort<T: Ord>(v: &mut[T]) {
 // Reorders the slice with values lower than the pivot at the left side,
 // and values bigger than it at the right side.
 // Also returns the store index.
-fn partition<T: Ord>(v: &mut [T]) -> uint {
+fn partition<T: TotalOrd>(v: &mut [T]) -> uint {
     let len = v.len();
     let pivot_index = len / 2;
 
@@ -60,7 +60,7 @@ fn main() {
 }
 
 #[cfg(test)]
-fn check_sort<T: Ord>(v: &[T]) {
+fn check_sort<T: TotalOrd>(v: &[T]) {
     if v.len() > 1 {
         for i in range(0, v.len()-1) {
             assert!(v[i] <= v[i+1]);

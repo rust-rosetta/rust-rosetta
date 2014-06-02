@@ -1,4 +1,5 @@
 // Implements http://rosettacode.org/wiki/100_doors
+
 use std::iter::range_inclusive;
 
 #[cfg(not(test))]
@@ -19,7 +20,7 @@ fn doors() -> Vec<DoorState> {
     ret
 }
 
-#[deriving(Show, Eq)]
+#[deriving(Show, PartialEq, TotalEq)]
 enum DoorState {
     Open,
     Closed

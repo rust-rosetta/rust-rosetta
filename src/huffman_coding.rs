@@ -1,6 +1,7 @@
 // Implement data structures for a Huffman encoding tree:
 //   http://rosettacode.org/wiki/Huffman_coding
 
+extern crate core;
 extern crate collections;
 use collections::HashMap;
 use collections::priority_queue::PriorityQueue;
@@ -37,14 +38,13 @@ impl TotalOrd for HNode {
 }
 
 impl TotalEq for HNode {}
-
-impl Eq for HNode {
+impl PartialEq for HNode {
     fn eq(&self, other: &HNode) -> bool {
         self.weight == other.weight
     }
 }
 
-impl Ord for HNode {
+impl PartialOrd for HNode {
     fn lt(&self, other: &HNode) -> bool {
         self.weight > other.weight
     }

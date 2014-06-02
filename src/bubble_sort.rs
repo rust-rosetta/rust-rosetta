@@ -1,5 +1,5 @@
 //Implements http://rosettacode.org/wiki/Sorting_algorithms/Bubble_sort
-fn bubble_sort<T: Ord>(v: &mut[T]) {
+fn bubble_sort<T: PartialOrd>(v: &mut[T]) {
     let mut done = v.len()<1;
     let mut length = v.len();
     while !done {
@@ -21,7 +21,7 @@ fn main() {
 }
 
 #[cfg(test)]
-fn check_sort<T: Ord>(v: &[T]) {
+fn check_sort<T: PartialOrd>(v: &[T]) {
     if v.len() > 1 {
         for i in range(0, v.len()-1) {
             assert!(v[i] <= v[i+1]);
