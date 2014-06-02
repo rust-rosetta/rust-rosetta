@@ -1,5 +1,5 @@
 // Implements http://rosettacode.org/wiki/Loops/N_plus_one_half
-#![cfg(not_tested)]
+// not_tested
 
 use std::iter;
 

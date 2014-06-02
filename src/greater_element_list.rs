@@ -1,6 +1,6 @@
 // http://rosettacode.org/wiki/Greatest_element_of_a_list
 
-#![cfg(not_tested)]
+// not_tested
 fn main()
 {
 	//greater element of a list main

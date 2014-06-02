@@ -1,5 +1,5 @@
 // Implements http://rosettacode.org/wiki/File_size
-#![cfg(not_tested)]
+// not_tested
 
 fn main() {
     let path_wd = Path::new("input.txt");

@@ -1,5 +1,5 @@
 // Implements http://rosettacode.org/wiki/Arithmetic/Integer
-#![cfg(not_tested)]
+// not_tested
 
 #![allow(unused_imports)]
 use std::io::stdio::stdin;

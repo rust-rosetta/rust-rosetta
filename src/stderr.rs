@@ -1,5 +1,5 @@
 // Implements http://rosettacode.org/wiki/Hello_world/Standard_error
-#![cfg(not_tested)]
+// not_tested
 #![allow(unused_must_use)]
 
 use std::io;

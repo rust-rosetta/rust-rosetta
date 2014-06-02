@@ -1,5 +1,5 @@
 // Implements http://rosettacode.org/wiki/Rename_a_file
-#![cfg(not_tested)]
+// not_tested
 
 use std::io::fs;
 

@@ -1,5 +1,5 @@
 // Implements http://rosettacode.org/wiki/Find_limit_of_recursion
-#![cfg(not_tested)]
+// not_tested
 
 fn recursion(n: int) {
 	println!("deep: {:d}", n);
