@@ -7,141 +7,101 @@ use std::from_str::FromStr;
 use std::string::String;
 use std::cmp::min;
 
-
-
- fn cumu<'a>(num: uint, cache: &'a mut Vec<Vec<BigUint>>) -> &'a Vec<BigUint> {
-	
+fn cumu<'a>(num: uint, cache: &'a mut Vec<Vec<BigUint>>) -> &'a Vec<BigUint> {
     let len = cache.len();
+    for l in range(len, num+1) {
+	let initial_value:BigUint = FromStr::from_str("0").unwrap();
+	let mut r: Vec<BigUint> = vec!(initial_value);
 
+	for x in range(1, l+1) {
+	    let y = r.get(x -1).clone();
+	    let z = cache.get(l-x).get(min(x, l-x)).clone();
+	    let w = y+z;
 
-    for l in range(len, num+1)
-    {
-	    let initial_value:BigUint = FromStr::from_str("0").unwrap();
-	    let mut r: Vec<BigUint> = vec!(initial_value);
-		
-	    for x in range(1, l+1)
-	    {
-		 let y = r.get(x -1).clone();
-		 let z = cache.get(l-x).get(min(x, l-x)).clone();
-		 let w = y+z;
-		
-		 r.push(w)
-                
-	    }
-
-	    cache.push(r);
-
+	    r.push(w)
+	}
+	cache.push(r);
     }
-
     cache.get(num)
 }
 
 // Returns a line
-
 fn row(num: uint,  cache: &mut Vec<Vec<BigUint>>) -> String {
-	 
-	let r = cumu(num,cache);
-	let mut returned_string = String::new();
-	for i in range(0,num)
-	{
-		let i = *r.get(i+1) - *r.get (i);
-		let z = i.to_str();
-		let y = z.as_slice();
-		returned_string.push_str(y);
-		returned_string.push_str(", ");
-	}
-	returned_string
-	
-	 
-
-
+    let r = cumu(num,cache);
+    let mut returned_string = String::new();
+    for i in range(0,num) {
+	let i = *r.get(i+1) - *r.get (i);
+	let z = i.to_str();
+	let y = z.as_slice();
+	returned_string.push_str(y);
+	returned_string.push_str(", ");
+    }
+    returned_string
 }
 
 #[cfg(not(test))]
-fn main()
-{
+fn main() {
+    let mut cache: Vec<Vec<BigUint>> = Vec::new();
+    let initial_value:BigUint = FromStr::from_str("1").unwrap();
+    let initial_vector : Vec<BigUint> = vec!(initial_value);
+    cache.push(initial_vector);
 
-	    let mut cache: Vec<Vec<BigUint>> = Vec::new();
+    println!("rows");
+    for n in range(1, 11) {
+	let x = n as uint;
+	println!("{}: {}", n, row(x,&mut cache));
+    }
 
-	    let initial_value:BigUint = FromStr::from_str("1").unwrap();
+    println!("sums");
 
-	    let initial_vector : Vec<BigUint> = vec!(initial_value);
-	    cache.push(initial_vector);
-	   
+    let x: Vec<uint> = vec!(23, 123, 1234, 12345);
+    for y in x.iter() {
+	let z = cumu(*y,&mut cache);
+	let w = z.last();
+	println!("{}: {}", y, w.unwrap());
+    }
+}
+
+#[test]
+fn test_cumu() {
+    let mut cache: Vec<Vec<BigUint>> = Vec::new();
+
+    let initial_value:BigUint = FromStr::from_str("1").unwrap();
+
+    let initial_vector : Vec<BigUint> = vec!(initial_value);
+    cache.push(initial_vector);
 
 
-	    println!("rows");
-	    for n in range(1, 11)
-	    {	
-			let x = n as uint;
-			println!("{}: {}", n, row(x,&mut cache));
-	    }
+    let a: Vec<uint> = vec!(23, 123, 1234);
+    let b: Vec<BigUint> = vec!(
+        FromStr::from_str("1255").unwrap(),
+        FromStr::from_str("2552338241").unwrap(),
+        FromStr::from_str("156978797223733228787865722354959930").unwrap());
 
-	    println!("sums");
-
-	    let x: Vec<uint> = vec!(23, 123, 1234, 12345);
-	    for y in x.iter()
-	    {
-			let z = cumu(*y,&mut cache);
-			let w = z.last();
-			println!("{}: {}", y, w.unwrap());
-			
-
-	   }
-		
-
-	    
-           
-
+    let mut n=0;
+    for y in a.iter() {
+	let z = cumu(*y,&mut cache);
+	let w = z.last().unwrap();
+	assert!(w == b.get(n));
+	n= n+1;
+    }
 }
 
 
 #[test]
-fn test_cumu()
-{
+fn test_row() {
 
-	    let mut cache: Vec<Vec<BigUint>> = Vec::new();
+    let mut cache: Vec<Vec<BigUint>> = Vec::new();
 
-	    let initial_value:BigUint = FromStr::from_str("1").unwrap();
+    let initial_value:BigUint = FromStr::from_str("1").unwrap();
 
-	    let initial_vector : Vec<BigUint> = vec!(initial_value);
-	    cache.push(initial_vector);
+    let initial_vector : Vec<BigUint> = vec!(initial_value);
+    cache.push(initial_vector);
 
+    let a: String = FromStr::from_str("1, 2, 1, 1, ").unwrap();
 
-	    let a: Vec<uint> = vec!(23, 123, 1234);
-	    let b: Vec<BigUint> = vec!(FromStr::from_str("1255").unwrap(), FromStr::from_str("2552338241").unwrap(), FromStr::from_str("156978797223733228787865722354959930").unwrap());
-	    let mut n=0;
-	    for y in a.iter()
-	    {
-			let z = cumu(*y,&mut cache);
-			let w = z.last().unwrap();
-			assert!(w == b.get(n));
-			n= n+1;
-			
-
-	   }
-}
-
-
-#[test]
-fn test_row()
-{
-
-	    let mut cache: Vec<Vec<BigUint>> = Vec::new();
-
-	    let initial_value:BigUint = FromStr::from_str("1").unwrap();
-
-	    let initial_vector : Vec<BigUint> = vec!(initial_value);
-	    cache.push(initial_vector);
-	   
-	    let a: String = FromStr::from_str("1, 2, 1, 1, ").unwrap();
-
-		let x = 4;
-			assert!(a == row(x,&mut cache));
+    let x = 4;
+    assert!(a == row(x,&mut cache));
 
 
 }
-
-
-
-
