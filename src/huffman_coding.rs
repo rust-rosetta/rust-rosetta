@@ -24,10 +24,10 @@ struct HTreeData {
     right: Box<HNode>,
 }
 
-// Implementing comparison traits (TotalOrd and all its dependencies) such that
+// Implementing comparison traits (Ord and all its dependencies) such that
 // the HNode with the greatest weight is the smallest in a comparison. Basically
 // reversing all the comparison operators.
-impl TotalOrd for HNode {
+impl Ord for HNode {
     fn cmp(&self, other: &HNode) -> Ordering {
         match self.weight.cmp(&other.weight) {
             Less    => Greater,
@@ -37,7 +37,7 @@ impl TotalOrd for HNode {
     }
 }
 
-impl TotalEq for HNode {}
+impl Eq for HNode {}
 impl PartialEq for HNode {
     fn eq(&self, other: &HNode) -> bool {
         self.weight == other.weight

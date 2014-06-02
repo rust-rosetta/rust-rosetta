@@ -20,7 +20,7 @@ fn doors() -> Vec<DoorState> {
     ret
 }
 
-#[deriving(Show, PartialEq, TotalEq)]
+#[deriving(Show, PartialEq, Eq)]
 enum DoorState {
     Open,
     Closed
