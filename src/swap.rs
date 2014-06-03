@@ -1,5 +1,5 @@
 // Implements http://rosettacode.org/wiki/Generic_swap
-#![cfg(not_tested)]
+// not_tested
 use std::mem::swap;
 
 fn main() {
