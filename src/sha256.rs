@@ -8,8 +8,8 @@ fn main() {
 
 fn sha_256(input: &str) -> String {
     let mut sh = box Sha256::new();
-    sh.input_str(input);       
-    sh.result_str()    
+    sh.input_str(input);
+    sh.result_str()
 }
 
 #[test]
