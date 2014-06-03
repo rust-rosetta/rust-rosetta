@@ -79,6 +79,7 @@ Rosetta Code                                                                    
 [Rot-13](http://rosettacode.org/wiki/Rot-13)                                                       | [rot13.rs](src/rot13.rs)
 [Set](http://rosettacode.org/wiki/Set)                                                             | [set.rs](src/set.rs)
 [Sha-1](http://rosettacode.org/wiki/SHA-1)                                                             | [sha1.rs](src/sha1.rs)
+[Sha-256](http://rosettacode.org/wiki/SHA-256)                                                             | [sha256.rs](src/sha256.rs)
 [Sieve of Eratosthenes](http://rosettacode.org/wiki/Sieve_of_Eratosthenes)                         | [sieve_eratosthenes.rs](src/sieve_eratosthenes.rs)
 [Sort an integer array](http://rosettacode.org/wiki/Sort_an_integer_array)                         | [sort_int.rs](src/sort_int.rs)
 [Stack](http://rosettacode.org/wiki/Stack)                                                         | [stack.rs](src/stack.rs)
