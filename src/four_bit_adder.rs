@@ -1,195 +1,135 @@
 // Implements http://rosettacode.org/wiki/Four_bit_adder
-extern crate arena;
+use std::{fmt, num};
 
-use arena::Arena;
+// primitive gates
+fn not(a: bool) -> bool { !a }
+fn or(a: bool, b: bool) -> bool { a || b }
+fn and(a: bool, b: bool) -> bool { a && b }
 
-static TRUE: bool = true;
-static FALSE: bool = false;
+// xor gate [2x not, 2x and, 1x or]
+// (A & !B) | (B & !A)
+fn xor(a: bool, b: bool) -> bool { or(and(a, not(b)), and(b, not(a))) }
 
-trait Gate {
-  fn get(&self) -> bool;
+// half adder [1x xor, 1x and]
+// S = A ^ B, C = A & B
+fn half_adder(a: bool, b: bool) -> (bool, bool) { (xor(a, b), and(a, b)) }
+
+// full adder [2x half_adder, 1x or]
+// t = (C0 + A), t2 = t.S + B
+// S = t2.S, C = t.C | t2.C
+fn full_adder(a: bool, b: bool, carry: bool) -> (bool, bool) {
+  let (s0, c0) = half_adder(carry, a);
+  let (s1, c1) = half_adder(s0, b);
+
+  (s1, or(c0, c1))
 }
 
-impl Gate for bool {
-  fn get(&self) -> bool {
-    *self
+struct Nibble([bool,.. 4]);
+impl Nibble {
+  fn new(arr: [u8,.. 4]) -> Nibble {
+    Nibble([arr[0] != 0, arr[1] != 0, arr[2] != 0, arr[3] != 0])
+  }
+
+  fn from_u8(n: u8) -> Nibble {
+    Nibble::new([n & 8, n & 4, n & 2, n & 1])
+  }
+
+  fn to_u8(&self, carry: bool) -> u8 {
+    match num::from_str_radix::<u8>(format!("{}", self).as_slice(), 2) {
+      Some(n) if carry => n + 16,
+      Some(n) => n,
+      None => unreachable!()
+    }
   }
 }
 
-struct NotGate<'a>{
-  inp: &'a Gate,
-}
-
-impl<'a> Gate for NotGate<'a> {
- fn get(&self) -> bool {
-    !self.inp.get()
+impl fmt::Show for Nibble {
+  fn fmt(&self, f: &mut fmt::Formatter) -> Result<(), fmt::FormatError> {
+    write!(f, "{}", self.iter().map(|&b| if b { '1' } else { '0' }).collect::<String>())
   }
 }
 
-struct OrGate<'a>{
-  inp1: &'a Gate,
-  inp2: &'a Gate,
-}
-
-impl<'a> Gate for OrGate<'a> {
-  fn get(&self) -> bool {
-    self.inp1.get() || self.inp2.get()
+// We implement Deref so we can index the Nibble easily
+impl<'a> Deref<[bool,.. 4]> for Nibble {
+  fn deref<'a>(&'a self) -> &'a [bool,.. 4] {
+    let Nibble(ref inner) = *self;
+    inner
   }
 }
 
-struct AndGate<'a>{
-  inp1: &'a Gate,
-  inp2: &'a Gate,
-}
+// 4bit adder [4x full_adder]
+// calculate each bit of the sum, propogate the carry
+fn four_bit_adder(a: Nibble, b: Nibble, carry: bool) -> (Nibble, bool) {
+  let (s0, carry) = full_adder(a[3], b[3], carry);
+  let (s1, carry) = full_adder(a[2], b[2], carry);
+  let (s2, carry) = full_adder(a[1], b[1], carry);
+  let (s3, carry) = full_adder(a[0], b[0], carry);
 
-impl<'a> Gate for AndGate<'a> {
-  fn get(&self) -> bool {
-    self.inp1.get() && self.inp2.get()
-  }
-}
-
-fn not<'a>(ar: &'a Arena, inp: &'a Gate) -> &'a Gate {
-  ar.alloc(||NotGate{inp:inp}) as &'a Gate
-}
-
-fn or<'a>(ar: &'a Arena, inp1: &'a Gate, inp2: &'a Gate) -> &'a Gate {
-  ar.alloc(||OrGate{inp1:inp1,inp2:inp2}) as &'a Gate
-}
-
-fn and<'a>(ar: &'a Arena, inp1: &'a Gate, inp2: &'a Gate) -> &'a Gate {
-  ar.alloc(||AndGate{inp1:inp1,inp2:inp2}) as &'a Gate
-}
-
-fn xor<'a>(ar: &'a Arena, inp1: &'a Gate, inp2: &'a Gate) -> &'a Gate {
-  or(ar,and(ar,inp1,not(ar,inp2)),and(ar,not(ar,inp1),inp2))
-}
-
-fn half_add<'a>(ar: &'a Arena, inp1: &'a Gate, inp2: &'a Gate) -> (&'a Gate, &'a Gate) {
-  (xor(ar,inp1,inp2),and(ar,inp1,inp2))
-}
-
-fn full_add<'a>(ar: &'a Arena, inp1: &'a Gate, inp2: &'a Gate, inp3: &'a Gate)
-    -> (&'a Gate, &'a Gate) {
-  let (ha1_s,ha1_c) = half_add(ar,inp1, inp3);
-  let (ha2_s,ha2_c) = half_add(ar,ha1_s,inp2);
-  (ha2_s,or(ar,ha1_c,ha2_c))
-}
-
-type Nibble<'a> = (&'a Gate, &'a Gate, &'a Gate, &'a Gate);
-
-fn four_bit_adder<'a>(ar: &'a Arena, a: Nibble<'a>, b: Nibble<'a>, ci: &'a Gate)
-    -> (&'a Gate, Nibble<'a>) {
-  let (a4,a3,a2,a1) = a;
-  let (b4,b3,b2,b1) = b;
-  let (fa1_s,fa1_c) = full_add(ar,a1,b1,ci);
-  let (fa2_s,fa2_c) = full_add(ar,a2,b2,fa1_c);
-  let (fa3_s,fa3_c) = full_add(ar,a3,b3,fa2_c);
-  let (fa4_s,fa4_c) = full_add(ar,a4,b4,fa3_c);
-  (fa4_c, (fa4_s,fa3_s,fa2_s,fa1_s))
+  (Nibble([s3, s2, s1, s0]), carry)
 }
 
 #[cfg(not(test))]
 fn main() {
-  fn show_nibble<'a>(nib: Nibble<'a>) -> (bool,bool,bool,bool) {
-    let (n4,n3,n2,n1) = nib;
-    (n4.get(),n3.get(),n2.get(),n1.get())
-  }
-  fn show_result<'a>((c,nib): (&'a Gate,Nibble<'a>)) -> (bool,(bool,bool,bool,bool)) {
-    (c.get(), show_nibble(nib))
-  }
-  let ref ar = Arena::new();
-  let gTrue = &TRUE as &Gate;
-  let gFalse = &FALSE as &Gate;
-  let inp1 = (gTrue,gFalse,gTrue,gTrue);
-  let inp2 = (gFalse,gTrue,gTrue,gFalse);
-  let (oflow,res) = show_result(four_bit_adder(ar,inp1,inp2,gFalse));
-  println!("{} + {} = {}, overflow: {}", show_nibble(inp1), show_nibble(inp2), res, oflow);
+  let nib_a = Nibble::new([1u8, 0, 1, 1]);
+  let a = nib_a.to_u8(false);
+  let b = 6;
+  let nib_b = Nibble::from_u8(b);
+  let (result, carry) = four_bit_adder(nib_a, nib_b, false);
+  println!("{} + {} = {} | {} + {} = {} | overflow: {}",
+            a, b, result.to_u8(carry), nib_a, nib_b, result, carry)
 }
 
 #[test]
 fn test_not() {
-  let ref ar = Arena::new();
-  let gTrue = &TRUE as &Gate;
-  let gFalse = &FALSE as &Gate;
-  assert_eq!(true, not(ar,gFalse).get());
-  assert_eq!(false, not(ar,gTrue).get());
+  assert_eq!(true, not(false));
+  assert_eq!(false, not(true));
 }
 
 #[test]
 fn test_or() {
-  let ref ar = Arena::new();
-  let gTrue = &TRUE as &Gate;
-  let gFalse = &FALSE as &Gate;
-  assert_eq!(false, or(ar,gFalse,gFalse).get());
-  assert_eq!(true, or(ar,gTrue,gFalse).get());
-  assert_eq!(true, or(ar,gFalse,gTrue).get());
-  assert_eq!(true, or(ar,gTrue,gTrue).get());
+  assert_eq!(false, or(false, false));
+  assert_eq!(true, or(true, false));
+  assert_eq!(true, or(false, true));
+  assert_eq!(true, or(true, true));
 }
 
 #[test]
 fn test_and() {
-  let ref ar = Arena::new();
-  let gTrue = &TRUE as &Gate;
-  let gFalse = &FALSE as &Gate;
-  assert_eq!(false, and(ar,gFalse,gFalse).get());
-  assert_eq!(false, and(ar,gFalse,gTrue).get());
-  assert_eq!(false, and(ar,gTrue,gFalse).get());
-  assert_eq!(true, and(ar,gTrue,gTrue).get());
+  assert_eq!(false, and(false, false));
+  assert_eq!(false, and(false, true));
+  assert_eq!(false, and(true, false));
+  assert_eq!(true, and(true, true));
 }
 
 #[test]
 fn test_xor() {
-  let ref ar = Arena::new();
-  let gTrue = &TRUE as &Gate;
-  let gFalse = &FALSE as &Gate;
-  assert_eq!(false, xor(ar,gFalse,gFalse).get());
-  assert_eq!(true, xor(ar,gFalse,gTrue).get());
-  assert_eq!(true, xor(ar,gTrue,gFalse).get());
-  assert_eq!(false, xor(ar,gTrue,gTrue).get());
+  assert_eq!(false, xor(false, false));
+  assert_eq!(true, xor(false, true));
+  assert_eq!(true, xor(true, false));
+  assert_eq!(false, xor(true, true));
 }
 
 #[test]
 fn test_full_add() {
-  let ref ar = Arena::new();
-  let gTrue = &TRUE as &Gate;
-  let gFalse = &FALSE as &Gate;
-  fn eval((a,b): (&Gate,&Gate)) -> (bool,bool) { (a.get(),b.get()) }
-  assert_eq!( (false,false), eval(full_add(ar,gFalse,gFalse,gFalse)) );
-  assert_eq!( (true,false), eval(full_add(ar,gFalse,gFalse,gTrue)) );
-  assert_eq!( (true,false), eval(full_add(ar,gFalse,gTrue,gFalse)) );
-  assert_eq!( (true,false), eval(full_add(ar,gTrue,gFalse,gFalse)) );
-  assert_eq!( (false,true), eval(full_add(ar,gFalse,gTrue,gTrue)) );
-  assert_eq!( (false,true), eval(full_add(ar,gTrue,gFalse,gTrue)) );
-  assert_eq!( (false,true), eval(full_add(ar,gTrue,gTrue,gFalse)) );
-  assert_eq!( (true,true), eval(full_add(ar,gTrue,gTrue,gTrue)) );
+  assert_eq!((false, false), full_adder(false, false, false));
+  assert_eq!((true, false), full_adder(false, false, true));
+  assert_eq!((true, false), full_adder(false, true, false));
+  assert_eq!((true, false), full_adder(true, false, false));
+  assert_eq!((false, true), full_adder(false, true, true));
+  assert_eq!((false, true), full_adder(true, false, true));
+  assert_eq!((false, true), full_adder(true, true, false));
+  assert_eq!((true, true), full_adder(true, true, true));
 }
 
 #[test]
-fn test_full_add4() {
- fn to_nib(n:u8)->(Nibble){
-    let (gt,gf) = (&TRUE as &Gate, &FALSE as &Gate);
-    (
-      if n&8!=0 {gt} else {gf},
-      if n&4!=0 {gt} else {gf},
-      if n&2!=0 {gt} else {gf},
-      if n&1!=0 {gt} else {gf}
-    )
-  }
-  fn from_result<'a>((c,(n4,n3,n2,n1)): (&'a Gate,Nibble<'a>)) -> u8 {
-    let mut n = 0u8;
-    if c.get()  { n += 16};
-    if n4.get() { n += 8 };
-    if n3.get() { n += 4 };
-    if n2.get() { n += 2 };
-    if n1.get() { n += 1 };
-    n
-  }
-  let ref ar = Arena::new();
-  let gTrue = &TRUE as &Gate;
-  let gFalse = &FALSE as &Gate;
-  for n in range(0,std::u8::MAX) {
-    let (nib1,nib2) = (n >> 4,n & 15);
-    assert_eq!( nib1+nib2, from_result(four_bit_adder(ar,to_nib(nib1),to_nib(nib2),gFalse)) );
-    assert_eq!(nib1+nib2+1,from_result(four_bit_adder(ar,to_nib(nib1),to_nib(nib2),gTrue )) );
+fn test_four_bit_adder() {
+  for (a, b) in range(0, std::u8::MAX).map(|n| (n >> 4, n & 15)) {
+    let nib_a = Nibble::from_u8(a);
+    let nib_b = Nibble::from_u8(b);
+
+    let (result, carry) = four_bit_adder(nib_a, nib_b, false);
+    assert_eq!(a + b, result.to_u8(carry));
+    let (result, carry) = four_bit_adder(nib_a, nib_b, true);
+    assert_eq!(a + b + 1, result.to_u8(carry));
   }
 }
