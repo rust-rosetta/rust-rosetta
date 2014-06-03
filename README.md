@@ -14,7 +14,7 @@ Get in touch with @Hoverbear if you need help setting up.
 
 Rosetta Code                                                                                       | Source Link
 ---------------------------------------------------------------------------------------------------|----------------------------------------------------------
-[9 billion names of God the integer](rosettacode.org/wiki/9_billion_names_of_God_the_integer)	   | [9 billion names of God the integer](src/9_billion_names_of_God_the_integer.rs)
+[9 billion names of God the integer](http://rosettacode.org/wiki/9_billion_names_of_God_the_integer)	   | [9 billion names of God the integer](src/9_billion_names_of_God_the_integer.rs)
 [99 bottles of beer](http://rosettacode.org/wiki/99_Bottles_of_Beer)                               | [99_bottles_of_beer.rs](src/99_bottles_of_beer.rs)
 [100 doors](http://rosettacode.org/wiki/100_doors)                                                 | [100_doors.rs](src/100_doors.rs), [100_doors_unoptimized.rs](src/100_doors_unoptimized.rs)
 [A+B](http://rosettacode.org/wiki/A%2BB)                                                           | [a+b.rs](src/a+b.rs)
@@ -78,6 +78,7 @@ Rosetta Code                                                                    
 [Repeat a string](http://rosettacode.org/wiki/Repeat_a_string)                                     | [repeat_str.rs](src/repeat_str.rs)
 [Rot-13](http://rosettacode.org/wiki/Rot-13)                                                       | [rot13.rs](src/rot13.rs)
 [Set](http://rosettacode.org/wiki/Set)                                                             | [set.rs](src/set.rs)
+[Sha-1](http://rosettacode.org/wiki/SHA-1)                                                             | [sha1.rs](src/sha1.rs)
 [Sieve of Eratosthenes](http://rosettacode.org/wiki/Sieve_of_Eratosthenes)                         | [sieve_eratosthenes.rs](src/sieve_eratosthenes.rs)
 [Sort an integer array](http://rosettacode.org/wiki/Sort_an_integer_array)                         | [sort_int.rs](src/sort_int.rs)
 [Stack](http://rosettacode.org/wiki/Stack)                                                         | [stack.rs](src/stack.rs)
