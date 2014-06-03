@@ -1,6 +1,4 @@
 // Implements http://rosettacode.org/wiki/Four_bit_adder
-#![allow(non_snake_case_functions)]
-
 extern crate arena;
 
 use arena::Arena;
