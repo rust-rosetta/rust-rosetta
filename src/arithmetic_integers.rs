@@ -6,7 +6,7 @@ use std::io::stdio::stdin;
 use std::io::BufferedReader;
 
 fn main() {
-    let input = BufferedReader::new(stdin()).read_line().unwrap();
+    let input = stdin().read_line().unwrap();
     let words = input.as_slice().words().take(2)
                             .map(from_str)
                             .collect::<Vec<Option<int>>>();
