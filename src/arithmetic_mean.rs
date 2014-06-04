@@ -1,11 +1,12 @@
 // Implements http://rosettacode.org/wiki/Averages/Arithmetic_mean
+use std::iter::AdditiveIterator;
 
 // The mean is not defined for an empty list, so we must return an Option
 fn mean(list: &[f64]) -> Option<f64> {
     match list.len() {
         0 => None,
         n => {
-            let sum = list.iter().fold(0 as f64, |acc, &x| acc + x);
+            let sum = list.iter().map(|&x| x).sum();
             Some(sum / n as f64)
         }
     }
