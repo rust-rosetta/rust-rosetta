@@ -11,13 +11,10 @@ fn main() {
 }
 
 fn doors() -> Vec<DoorState> {
-   let mut ret = Vec::with_capacity(100);
-   for f in range_inclusive(1f64,100f64) {
+    range_inclusive(1.0, 100.0).map(|f| {
         let x = f.sqrt();
-        let state = if x == x.round() {Open} else {Closed};
-        ret.push(state);
-    }
-    ret
+        if x == x.round() {Open} else {Closed}
+    }).collect()
 }
 
 #[deriving(Show, PartialEq, Eq)]
