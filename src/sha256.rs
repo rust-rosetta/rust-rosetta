@@ -1,3 +1,8 @@
+// Implements http://rosettacode.org/wiki/SHA-256
+
+// note that for now the rustc::util::sha2::Sha256 docs state:
+// This implementation is not intended for external use or for any use where security is
+// important.
 extern crate rustc;
 use rustc::util::sha2::{Sha256, Digest};
 
