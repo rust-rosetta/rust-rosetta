@@ -29,16 +29,16 @@ fn is_valid(iban: &str) -> bool {
         Some(l) if l == iban_chars.len() => { }
         _                                => return false
     };
-    
+
     // Rearrange (first four characters go to the back)
     for _ in range(0, 4) {
         let front = iban_chars.shift().unwrap();
         iban_chars.push(front);
     }
-    
+
     // Expand letters to digits
     let iban_int = parse_digits(iban_chars);
-    
+
     // Check if the remainder is one
     match iban_int {
         Some(x) => x % 97u.to_bigint().unwrap() == 1u.to_bigint().unwrap(),
@@ -49,7 +49,7 @@ fn is_valid(iban: &str) -> bool {
 // Returns a BigInt made from the digits and letters of the IBAN
 fn parse_digits(chars: Vec<char>) -> Option<BigInt> {
     let mut vec = Vec::with_capacity(chars.len() + 10);
-    
+
     // Copy the digits to the vector and expand the letters to digits
     // We convert the characters to Ascii to be able to transform the vector in a String directly
     for &c in chars.iter() {
@@ -58,7 +58,7 @@ fn parse_digits(chars: Vec<char>) -> Option<BigInt> {
             None    => return None
         };
     }
-    
+
     FromStr::from_str(vec.into_str().as_slice())
 }
 
@@ -128,7 +128,7 @@ fn country_length(country_code: &str) -> Option<uint> {
         ("AE", 23),
         ("GB", 22),
         ("VG", 24)];
-        
+
     countries.iter()
              .find(|&&(country, _)| country == country_code)
              .map(|&(_, length)| length)
