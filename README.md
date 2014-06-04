@@ -54,6 +54,7 @@ Rosetta Code                                                                    
 [Hamming numbers](http://rosettacode.org/wiki/Hamming_numbers)                                     | [hamming_numbers.rs](src/hamming_numbers.rs)
 [Happy numbers](http://rosettacode.org/wiki/Happy_numbers)                                         | [happy_numbers.rs](src/happy_numbers.rs)
 [Huffman encoding](http://rosettacode.org/wiki/Huffman_coding)                                     | [huffman_coding.rs](src/huffman_coding.rs)
+[IBAN](http://rosettacode.org/wiki/IBAN)                                                           | [iban.rs](src/iban.rs)
 [Infinity](http://rosettacode.org/wiki/Infinity)                                                   | [infinity.rs](src/infinity.rs)
 [Integer sequence](http://rosettacode.org/wiki/Integer_sequence)                                   | [integer_sequence.rs](src/integer_sequence.rs)
 [Knapsack 01](http://rosettacode.org/wiki/Knapsack_problem/0-1)                                    | [knapsack_0-1.rs](src/knapsack_0-1.rs)
