@@ -11,11 +11,7 @@ fn main() {
 }
 
 fn binaries(n:uint) -> Vec<String> {
-    let mut bins = Vec::<String>::with_capacity(n);
-    for i in range(0u, n) {
-        bins.push(format!("{:t}", i));
-    }
-    bins
+    range(0, n).map(|i| format!("{:t}", i)).collect()
 }
 
 #[test]
