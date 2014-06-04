@@ -3,7 +3,6 @@
 
 #![allow(unused_imports)]
 use std::io::stdio::stdin;
-use std::from_str::from_str;
 use std::io::BufferedReader;
 
 fn main() {
