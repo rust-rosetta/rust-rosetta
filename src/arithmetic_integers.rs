@@ -1,15 +1,10 @@
 // Implements http://rosettacode.org/wiki/Arithmetic/Integer
 // not_tested
 
-#![allow(unused_imports)]
-use std::io::stdio::stdin;
-use std::from_str::from_str;
-use std::io::BufferedReader;
-
 fn main() {
-    let input = BufferedReader::new(stdin()).read_line().unwrap();
+    let input = std::io::stdin().read_line().unwrap();
     let words = input.as_slice().words().take(2)
-                            .map(from_str::<int>)
+                            .map(from_str)
                             .collect::<Vec<Option<int>>>();
 
     let (a, b) = match words.as_slice() {
