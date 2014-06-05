@@ -1,10 +1,8 @@
 // Implements http://rosettacode.org/wiki/Perfect_numbers
+use std::iter::{range_inclusive, AdditiveIterator};
 
 fn perfect_number(n: uint) -> bool {
-  let limit = (n / 2) + 1;
-  let sum = range(1, limit).filter(|&i| n % i == 0)
-                           .fold(0, |sum, u| sum + u);
-  sum == n
+  range_inclusive(1, n / 2).filter(|&i| n % i == 0).sum() == n
 }
 
 #[cfg(not(test))]
