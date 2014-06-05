@@ -85,6 +85,7 @@ Rosetta Code                                                                    
 [Sort an integer array](http://rosettacode.org/wiki/Sort_an_integer_array)                         | [sort_int.rs](src/sort_int.rs)
 [Stack](http://rosettacode.org/wiki/Stack)                                                         | [stack.rs](src/stack.rs)
 [Standard error](http://rosettacode.org/wiki/Hello_world/Standard_error)                           | [stderr.rs](src/stderr.rs)
+[String_concatenation](http://rosettacode.org/wiki/String_concatenation)                           | [string_concatenation.rs](src/string_concatenation.rs)
 [String matching](http://rosettacode.org/wiki/String_matching)                                     | [string_matching.rs](src/string_matching.rs)
 [Webserver](http://rosettacode.org/wiki/Hello_world/Web_server)                                    | [webserver.rs](src/webserver.rs)
 
