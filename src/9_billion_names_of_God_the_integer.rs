@@ -3,14 +3,13 @@
 extern crate num;
 
 use num::bigint::BigUint;
-use std::from_str::FromStr;
 use std::string::String;
 use std::cmp::min;
 
 fn cumu<'a>(num: uint, cache: &'a mut Vec<Vec<BigUint>>) -> &'a Vec<BigUint> {
     let len = cache.len();
     for l in range(len, num+1) {
-	let initial_value:BigUint = FromStr::from_str("0").unwrap();
+	let initial_value:BigUint = from_str("0").unwrap();
 	let mut r: Vec<BigUint> = vec!(initial_value);
 
 	for x in range(1, l+1) {
@@ -42,7 +41,7 @@ fn row(num: uint,  cache: &mut Vec<Vec<BigUint>>) -> String {
 #[cfg(not(test))]
 fn main() {
     let mut cache: Vec<Vec<BigUint>> = Vec::new();
-    let initial_value:BigUint = FromStr::from_str("1").unwrap();
+    let initial_value:BigUint = from_str("1").unwrap();
     let initial_vector : Vec<BigUint> = vec!(initial_value);
     cache.push(initial_vector);
 
@@ -66,7 +65,7 @@ fn main() {
 fn test_cumu() {
     let mut cache: Vec<Vec<BigUint>> = Vec::new();
 
-    let initial_value:BigUint = FromStr::from_str("1").unwrap();
+    let initial_value:BigUint = from_str("1").unwrap();
 
     let initial_vector : Vec<BigUint> = vec!(initial_value);
     cache.push(initial_vector);
@@ -74,9 +73,9 @@ fn test_cumu() {
 
     let a: Vec<uint> = vec!(23, 123, 1234);
     let b: Vec<BigUint> = vec!(
-        FromStr::from_str("1255").unwrap(),
-        FromStr::from_str("2552338241").unwrap(),
-        FromStr::from_str("156978797223733228787865722354959930").unwrap());
+        from_str("1255").unwrap(),
+        from_str("2552338241").unwrap(),
+        from_str("156978797223733228787865722354959930").unwrap());
 
     let mut n=0;
     for y in a.iter() {
@@ -93,12 +92,12 @@ fn test_row() {
 
     let mut cache: Vec<Vec<BigUint>> = Vec::new();
 
-    let initial_value:BigUint = FromStr::from_str("1").unwrap();
+    let initial_value:BigUint = from_str("1").unwrap();
 
     let initial_vector : Vec<BigUint> = vec!(initial_value);
     cache.push(initial_vector);
 
-    let a: String = FromStr::from_str("1, 2, 1, 1, ").unwrap();
+    let a: String = from_str("1, 2, 1, 1, ").unwrap();
 
     let x = 4;
     assert!(a == row(x,&mut cache));

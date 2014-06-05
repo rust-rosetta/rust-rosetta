@@ -2,7 +2,6 @@
 
 extern crate num;
 
-use std::from_str::FromStr;
 use num::bigint::{BigInt, ToBigInt};
 
 #[cfg(not(test))]
@@ -59,7 +58,7 @@ fn parse_digits(chars: Vec<char>) -> Option<BigInt> {
         };
     }
 
-    FromStr::from_str(vec.into_str().as_slice())
+    from_str(vec.into_str().as_slice())
 }
 
 fn country_length(country_code: &str) -> Option<uint> {
