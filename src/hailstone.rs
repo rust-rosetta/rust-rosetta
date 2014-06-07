@@ -46,9 +46,9 @@ impl Iterator<uint> for Hailstone {
 // Returns the number and length of the longest hailstone sequence up to `limit`
 fn biggest_hailstone(limit: uint) -> (uint, uint) {
     let mut biggest = range(0u, limit).map(Hailstone::new)
-                                      .max_by(|&mut x| x.len())
+                                      .max_by(|&mut x| x.count())
                                       .unwrap();
-    (biggest.start, biggest.len())
+    (biggest.start, biggest.count())
 }
 
 #[cfg(not(test))]
