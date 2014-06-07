@@ -78,6 +78,7 @@ Rosetta Code                                                                    
 [Read a file line by line](http://rosettacode.org/wiki/Read_a_file_line_by_line)                   | [read_file_line.rs](src/read_file_line.rs)
 [Rename a file](http://rosettacode.org/wiki/Rename_a_file)                                         | [rename_a_file.rs](src/rename_a_file.rs)
 [Repeat a string](http://rosettacode.org/wiki/Repeat_a_string)                                     | [repeat_str.rs](src/repeat_str.rs)
+[Reverse words in a string](http://rosettacode.org/wiki/Reverse_words_in_a_string)                 | [reverse_words_str.rs](src/reverse_words_str.rs)
 [Rot-13](http://rosettacode.org/wiki/Rot-13)                                                       | [rot13.rs](src/rot13.rs)
 [Set](http://rosettacode.org/wiki/Set)                                                             | [set.rs](src/set.rs)
 [Sha-1](http://rosettacode.org/wiki/SHA-1)                                                         | [sha1.rs](src/sha1.rs)
