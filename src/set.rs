@@ -3,7 +3,7 @@
 
 extern crate collections;
 
-use collections::HashSet;
+use std::collections::HashSet;
 
 fn main() {
     // The first set contains integers from 0 to 7

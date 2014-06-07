@@ -3,8 +3,8 @@
 
 extern crate core;
 extern crate collections;
-use collections::HashMap;
-use collections::priority_queue::PriorityQueue;
+use std::collections::HashMap;
+use std::collections::priority_queue::PriorityQueue;
 
 // Each HNode has a weight, representing the sum of the frequencies for all its
 // children. It is either a leaf (containing a character), or a HTree

@@ -2,7 +2,7 @@
 
 extern crate collections;
 
-use collections::hashmap::HashMap;
+use std::collections::hashmap::HashMap;
 
 // Compress using LZW
 fn compress(original_str: &str) -> Vec<int> {

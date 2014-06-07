@@ -2,7 +2,7 @@
 
 extern crate collections;
 
-use collections::{HashMap, HashSet};
+use std::collections::{HashMap, HashSet};
 use std::str;
 
 #[cfg(test)]

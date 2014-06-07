@@ -6,10 +6,10 @@ extern crate collections;
 use std::io::fs::File;
 #[cfg(not(test))]
 use std::io::BufferedReader;
-use collections::HashMap;
+use std::collections::HashMap;
 
 fn count_chars<T: Iterator<char>>(mut chars: T) -> HashMap<char, uint> {
-    let mut map: collections::HashMap<char, uint> = collections::HashMap::new();
+    let mut map: HashMap<char, uint> = HashMap::new();
     for letter in chars {
         map.insert_or_update_with(letter, 1, |_, count| *count += 1);
     }

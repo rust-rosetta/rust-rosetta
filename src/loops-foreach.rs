@@ -2,7 +2,7 @@
 // not_tested
 extern crate collections;
 
-use collections::HashMap;
+use std::collections::HashMap;
 
 fn main() {
     // Iterate through the characters of a string
