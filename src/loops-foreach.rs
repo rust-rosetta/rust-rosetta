@@ -1,6 +1,5 @@
 // Implements http://rosettacode.org/wiki/Loops/For
 // not_tested
-extern crate collections;
 
 use std::collections::HashMap;
 

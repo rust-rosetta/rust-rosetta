@@ -1,8 +1,6 @@
 // Implements http://rosettacode.org/wiki/Set
 // not_tested
 
-extern crate collections;
-
 use std::collections::HashSet;
 
 fn main() {

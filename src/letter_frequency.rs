@@ -1,7 +1,5 @@
 // Implements http://rosettacode.org/wiki/Letter_frequency
 
-extern crate collections;
-
 #[cfg(not(test))]
 use std::io::fs::File;
 #[cfg(not(test))]

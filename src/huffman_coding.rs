@@ -2,7 +2,6 @@
 //   http://rosettacode.org/wiki/Huffman_coding
 
 extern crate core;
-extern crate collections;
 use std::collections::HashMap;
 use std::collections::priority_queue::PriorityQueue;
 
