@@ -57,6 +57,7 @@ Rosetta Code                                                                    
 [IBAN](http://rosettacode.org/wiki/IBAN)                                                           | [iban.rs](src/iban.rs)
 [Infinity](http://rosettacode.org/wiki/Infinity)                                                   | [infinity.rs](src/infinity.rs)
 [Integer sequence](http://rosettacode.org/wiki/Integer_sequence)                                   | [integer_sequence.rs](src/integer_sequence.rs)
+[JSON](http://rosettacode.org/wiki/JSON)                                                           | [json.rs](src/json.rs)
 [Knapsack 01](http://rosettacode.org/wiki/Knapsack_problem/0-1)                                    | [knapsack_0-1.rs](src/knapsack_0-1.rs)
 [Letter frequency](http://rosettacode.org/wiki/Letter_frequency)                                   | [letter_frequency.rs](src/letter_frequency.rs)
 [Loops/For](http://rosettacode.org/wiki/Loops/For)                                                 | [loops-for.rs](src/loops-for.rs)
