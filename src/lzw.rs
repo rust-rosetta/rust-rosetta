@@ -1,7 +1,5 @@
 // Implements http://rosettacode.org/wiki/LZW_compression
 
-extern crate collections;
-
 use std::collections::hashmap::HashMap;
 
 // Compress using LZW

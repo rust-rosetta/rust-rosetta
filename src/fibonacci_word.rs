@@ -1,5 +1,4 @@
 // Implements http://rosettacode.org/wiki/Fibonacci_word
-extern crate collections;
 
 use entropy::shannon_entropy;
 use std::iter::range_inclusive;

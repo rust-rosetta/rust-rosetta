@@ -1,6 +1,5 @@
 // Implements http://rosettacode.org/wiki/Happy_numbers
 
-extern crate collections;
 use std::collections::treemap::TreeSet;
 #[cfg(not(test))]
 use std::iter::count;

@@ -1,5 +1,4 @@
 // Implements http://rosettacode.org/wiki/Entropy
-extern crate collections;
 
 use std::str::StrSlice;
 use std::collections::hashmap::HashMap;

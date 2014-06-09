@@ -1,7 +1,5 @@
 // Implements http://rosettacode.org/wiki/Anagrams
 
-extern crate collections;
-
 use std::collections::{HashMap, HashSet};
 use std::str;
 
