@@ -16,8 +16,9 @@ fn main() {
                 bytes!("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"),
                 bytes!("12345678901234567890123456789012345678901234567890123456789012345678901234567890")];
 
-    inputs.iter().map(|&i|md5(i))
-        .advance(|x| {println!("{} ", x); true});
+    for &input in inputs.iter() {
+        println!("{}", md5(input));
+    }
 }
 
 // Constants are the integer part of the sines of integers (in radians) * 2^32.
@@ -49,12 +50,11 @@ static r:[u32,..64] = [7, 12, 17, 22, 7, 12, 17, 22, 7, 12, 17, 22, 7, 12, 17, 2
 struct MD5([u8,..16]);
 impl Show for MD5 {
     fn fmt(&self, f: &mut Formatter) -> Result {
-        let mut ret = String :: with_capacity(32u);
         let MD5(md5)=*self;
-        for b in md5.as_slice().iter() {
-            ret=ret.append(format!("{:02x}", *b).as_slice());
+        for b in md5.iter() {
+            try!(write!(f, "{:02x}", *b));
         }
-        write!(f,"{}", ret)
+        Ok(())
     }
 }
 
@@ -99,10 +99,6 @@ fn md5(initial_msg: &[u8]) -> MD5
 
         // append the len in bits at the end of the buffer.
         let msg=msg.append(to_bytes(initial_len << 3));
-//                   .append(to_bytes(initial_len >>29));
-        // initial_len>>29 == initial_len*8>>32, but avoids overflow.
-
-
 
         assert_eq!(msg.len() % 64, 0);
  
@@ -166,9 +162,8 @@ fn md5(initial_msg: &[u8]) -> MD5
 fn helper_fns() {
     assert_eq!(64, left_rotate(8, 3));
 
-    //let exp:[u8,..4] = [64u8, 226, 1, 0];
-    //assert!(to_bytes(123456) == exp);
-    
+    let exp:[u8,..8] = [64u8, 226, 1, 0, 0, 0, 0, 0];
+    assert!(to_bytes(123456) == exp);
 }
 
 #[test]
