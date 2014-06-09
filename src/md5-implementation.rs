@@ -9,12 +9,13 @@ use std::fmt::{Show, Formatter, Result};
 
 #[cfg(not(test))]
 fn main() {
-    let inputs= [bytes!("a"),
-                bytes!("abc"),
-                bytes!("message digest"),
-                bytes!("abcdefghijklmnopqrstuvwxyz"),
-                bytes!("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"),
-                bytes!("12345678901234567890123456789012345678901234567890123456789012345678901234567890")];
+    let inputs=
+    [bytes!("a"),
+    bytes!("abc"),
+    bytes!("message digest"),
+    bytes!("abcdefghijklmnopqrstuvwxyz"),
+    bytes!("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"),
+    bytes!("12345678901234567890123456789012345678901234567890123456789012345678901234567890")];
 
     for &input in inputs.iter() {
         println!("{}", md5(input));
@@ -101,11 +102,11 @@ fn md5(initial_msg: &[u8]) -> MD5
         let msg=msg.append(to_bytes(initial_len << 3));
 
         assert_eq!(msg.len() % 64, 0);
- 
+
         let mut w:[u32,..16] = [0u32,..16];
         // Process the message in successive 512-bit chunks:
         //for each 512-bit chunk of message:
-        for offset in range_step(0u64, new_len, (512/8)) { 
+        for offset in range_step(0u64, new_len, (512/8)) {
             // break chunk into sixteen 32-bit words w[j], 0 ≤ j ≤ 15
             for i in range(0u32, 16) {
                 let j = i as uint * 4 + offset as uint;
@@ -113,12 +114,12 @@ fn md5(initial_msg: &[u8]) -> MD5
                         (*msg.get(j)   as u32)      |
                         (*msg.get(j+1) as u32) <<8  |
                         (*msg.get(j+2) as u32) <<16 |
-                         *msg.get(j+3) as u32  <<24; 
+                         *msg.get(j+3) as u32  <<24;
             }
             //println!("chunk {}", w);
             // Initialize hash value for this chunk:
             let (mut a, mut b, mut c, mut d) = (h[0], h[1], h[2], h[3]);
- 
+
             // Main loop:
             for ind in range(0u, 64) {
                 let (f,g) = match ind {
@@ -138,7 +139,7 @@ fn md5(initial_msg: &[u8]) -> MD5
                 b = b + left_rotate((a + f + k[ind] + w[g]), r[ind]);
                 a = temp;
             }
- 
+
             // Add this chunk's hash to result so far:
             h[0] += a;
             h[1] += b;
@@ -146,14 +147,14 @@ fn md5(initial_msg: &[u8]) -> MD5
             h[3] += d;
         }
     } // cleanup (end block, msg is freed)
- 
+
     //var char digest[16] := h0 append h1 append h2 append h3 //(Output is in little-endian)
     let mut digest: [u8,..16]=[0u8,..16];
     for (i, s) in h.iter().enumerate() {
         digest[i*4] = (*s ) as u8;
         digest[i*4+1] = (*s >> 8) as u8;
         digest[i*4+2] = (*s >> 16) as u8;
-        digest[i*4+3] = (*s >> 24) as u8;        
+        digest[i*4+3] = (*s >> 24) as u8;
     }
     MD5(digest)
 }
@@ -168,16 +169,17 @@ fn helper_fns() {
 
 #[test]
 fn known_hashes() {
-    let in_out=[(bytes!(""), 
+    let in_out=
+    [(bytes!(""),
         "d41d8cd98f00b204e9800998ecf8427e"),
-    (bytes!("a"), 
+    (bytes!("a"),
         "0cc175b9c0f1b6a831c399e269772661"),
-    (bytes!("abc"), 
+    (bytes!("abc"),
         "900150983cd24fb0d6963f7d28e17f72"),
-    (bytes!("message digest"), 
+    (bytes!("message digest"),
         "f96b697d7cb7938d525a2f31aaf161d0"),
     (bytes!("abcdefghijklmnopqrstuvwxyz"),
-        "c3fcd3d76192e4007dfb496cca67e13b"), 
+        "c3fcd3d76192e4007dfb496cca67e13b"),
     (bytes!("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"),
         "d174ab98d277d9f5a5611c2c9f419d9f"),
     (bytes!("12345678901234567890123456789012345678901234567890123456789012345678901234567890"),
