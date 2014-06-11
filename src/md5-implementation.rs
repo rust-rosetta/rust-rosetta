@@ -149,7 +149,7 @@ fn md5(initial_msg: &[u8]) -> MD5
     } // cleanup (end block, msg is freed)
 
     //var char digest[16] := h0 append h1 append h2 append h3 //(Output is in little-endian)
-    let mut digest: [u8,..16]=[0u8,..16];
+    let mut digest = [0u8,..16];
     for (i, s) in h.iter().enumerate() {
         digest[i*4] = (*s ) as u8;
         digest[i*4+1] = (*s >> 8) as u8;
