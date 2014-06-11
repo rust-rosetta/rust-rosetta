@@ -7,6 +7,7 @@ use std::vec::Vec;
 //
 // Show is for displaying the fields.
 struct Want<'a> {
+    #[allow(dead_code)]
     name: &'a str,
     weight: uint,
     value: uint
