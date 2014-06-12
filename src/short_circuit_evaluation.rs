@@ -13,7 +13,7 @@ fn b(x: bool) -> bool {
 
 fn main() {
     let booleans = [true, false];
-    
+
     for &i in booleans.iter() {
         for &j in booleans.iter() {
             println!("{} and {} is {}", i, j, a(i) && b(j));

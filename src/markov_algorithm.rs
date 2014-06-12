@@ -223,6 +223,7 @@ fn main() {
             Ok(algorithm) => {
                 println!("Sample {}", (index + 1));
                 println!("Output: {}", algorithm.apply(sample.input));
+                println!("Expected result: {}", sample.expected_result);
             }
             Err(message) => println!("{}", message)
         }

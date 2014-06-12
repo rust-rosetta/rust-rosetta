@@ -16,7 +16,7 @@ fn main() {
     let c = Contact { name: "John".to_str(), city: "Paris".to_str() };
     let json = encode_contact(&c);
     println!("Encoded: {}", json.as_slice());
-    
+
     // Decode json to contact
     let json_str = "{\"name\":\"Alan\", \"city\":\"Tokyo\"}";
     let contact = decode_contact(json_str);
