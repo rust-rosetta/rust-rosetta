@@ -6,6 +6,8 @@ use std::vec::Vec;
 // This struct is used to store our items that we want in our knap-sack.
 //
 // Show is for displaying the fields.
+// allow(dead_code) removes a dead code warning when the name of the struct is not
+// used (as in this case happens in the tests)
 struct Want<'a> {
     #[allow(dead_code)]
     name: &'a str,
