@@ -92,6 +92,7 @@ Rosetta Code                                                                    
 [String_concatenation](http://rosettacode.org/wiki/String_concatenation)                           | [string_concatenation.rs](src/string_concatenation.rs)
 [String matching](http://rosettacode.org/wiki/String_matching)                                     | [string_matching.rs](src/string_matching.rs)
 [Webserver](http://rosettacode.org/wiki/Hello_world/Web_server)                                    | [webserver.rs](src/webserver.rs)
+[Zig-zag matrix](http://rosettacode.org/wiki/Zig-zag_matrix)                                       | [zig-zag_matrix.rs](src/zig-zag_matrix.rs)
 
 ## Contributing ##
 Looking to help out? Great, thanks! We have a few guidelines:
