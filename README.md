@@ -67,6 +67,7 @@ Rosetta Code                                                                    
 [Loops/While](http://rosettacode.org/wiki/Loops/While)                                             | [loops-while.rs](src/loops-while.rs)
 [LZW compression](http://rosettacode.org/wiki/LZW_compression)                                     | [lwz.rs](src/lwz.rs)
 [Markov algorithm](http://rosettacode.org/wiki/Execute_a_Markov_algorithm)                         | [markov_algorithm.rs](src/markov_algorithm.rs)
+[MD5 implementation](http://rosettacode.org/wiki/MD5/Implementation)                               | [md5-implementation.rs](src/md5-implementation.rs)
 [Mutual recursion](http://rosettacode.org/wiki/Mutual_recursion)                                   | [mutual_recursion.rs](src/mutual_recursion.rs)
 [N-queens problem](http://rosettacode.org/wiki/N-queens_problem)                                   | [n_queens.rs](src/n_queens.rs)
 [Palindrome detection](http://rosettacode.org/wiki/Palindrome_detection)                           | [palindrome.rs](src/palindrome.rs)
