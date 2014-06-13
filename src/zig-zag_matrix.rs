@@ -42,10 +42,8 @@ fn zigzag(n:uint) -> Vec<Vec<uint>> {
     l.sort();
 
     let mut result : Vec<Vec<uint>> = Vec::from_elem(n, Vec::from_elem(n,0u));
-    for t_ind in l.iter().zip(range(0,n*n)) {
-        match t_ind {
-            (&SortIndex{x,y},i) => *result.get_mut(y).get_mut(x) = i
-        }
+    for (i,&SortIndex{x,y}) in l.iter().enumerate() {
+        *result.get_mut(y).get_mut(x) = i
     }
     result
 }
@@ -57,10 +55,10 @@ fn main() {
 
 #[test]
 fn result() {
-   let exp =vec![vec![0, 1, 5, 6, 14],
-                 vec![2, 4, 7, 13, 15],
-                 vec![3, 8, 12, 16, 21],
-                 vec![9, 11, 17, 20, 22],
-                 vec![10, 18, 19, 23, 24]];
+   let exp =vec![vec![0,  1, 5, 6,14],
+                 vec![2,  4, 7,13,15],
+                 vec![3,  8,12,16,21],
+                 vec![9, 11,17,20,22],
+                 vec![10,18,19,23,24]];
     assert_eq!(zigzag(5), exp);
 }
