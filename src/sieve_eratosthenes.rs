@@ -12,7 +12,7 @@ fn simple_sieve(limit: uint) -> Vec<uint> {
         return vec!();
     }
 
-    let mut primes = Vec::from_fn(limit + 1, |_| true);
+    let mut primes = Vec::from_elem(limit + 1, true);
 
     for prime in range_inclusive(2, int_sqrt(limit) + 1) {
         if *primes.get(0) {
