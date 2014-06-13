@@ -6,7 +6,7 @@
 extern crate test;
 extern crate sync;
 
-use sync::Future;
+use std::sync::Future;
 use prime_decomposition::factor;
 
 mod prime_decomposition;
