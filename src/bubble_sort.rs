@@ -38,7 +38,7 @@ fn test_rosetta_vector() {
 
 #[test]
 fn test_empty_vector() {
-    let mut numbers: ~[int] = ~[];
+    let numbers: &mut[int] = &mut[];
     bubble_sort(numbers);
     check_sort(numbers);
 }
