@@ -42,8 +42,7 @@ fn zigzag(n:uint) -> Vec<Vec<uint>> {
     l.sort();
 
     let mut result : Vec<Vec<uint>> = Vec::from_elem(n, Vec::from_elem(n,0u));
-    for t_ind in l.iter().enumerate() {
-        let (i,&SortIndex{x,y}) = t_ind;
+    for (i,&SortIndex{x,y}) in l.iter().enumerate() {
         *result.get_mut(y).get_mut(x) = i
     }
     result
