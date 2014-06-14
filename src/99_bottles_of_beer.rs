@@ -15,10 +15,13 @@ fn main() {
 }
 
 fn bottles_line(num_bottles: uint, on_the_wall: bool) -> String {
-	// the format! macro uses a built in internationalization formatting language
-	// check out the docs for std::fmt
-	let mut ln=format!("{0, plural, =0{No bottles} =1{One bottle} other{# bottles}} of beer",
-                                                                                num_bottles);
+    let mut ln = match num_bottles {
+        0 => "No bottles".to_string(),
+        1 => "One bottle".to_string(),
+        n => format!("{} bottles", n)
+    };
+
+    ln.push_str(" of beer");
 
 	if on_the_wall {
 		ln.push_str(" on the wall!");
