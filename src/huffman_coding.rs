@@ -63,11 +63,11 @@ fn huffman_tree(input: &str) -> HNode {
     //    PriorityQueue
     let mut queue = PriorityQueue::<HNode>::new();
     for (ch, freq) in freq.iter() {
-        let newNode = HNode{
+        let new_node = HNode{
             weight: *freq,
             item: HLeaf(*ch),
         };
-        queue.push(newNode);
+        queue.push(new_node);
     }
 
     // 3. Pop two items with the least weight from the queue, combine them into
@@ -77,14 +77,14 @@ fn huffman_tree(input: &str) -> HNode {
     while queue.len() > 1 {
         let item1 = queue.pop().unwrap();
         let item2 = queue.pop().unwrap();
-        let newNode = HNode {
+        let new_node = HNode {
             weight: item1.weight + item2.weight,
             item: HTree(HTreeData{
                 left: box item1,
                 right: box item2,
             }),
         };
-        queue.push(newNode);
+        queue.push(new_node);
     }
     queue.pop().unwrap()
 }
@@ -126,33 +126,33 @@ fn test_tree_construction() {
     let right = &children.right;
     assert!(right.weight == 4);
     assert!(left.weight == 3);
-    let rightChar = match right.item {
+    let right_char = match right.item {
         HTree(_)  => fail!("Node is not Leaf Node!"),
         HLeaf(ch) => ch,
     };
-    assert!(rightChar == '4');
+    assert!(right_char == '4');
     let children = match left.item {
         HTree(ref data) => data,
         HLeaf(_)    => fail!("Tree Missing Children!"),
     };
     let left  = &children.left;
     let right = &children.right;
-    let leftChar = match left.item {
+    let left_char = match left.item {
         HTree(_)  => fail!("Node is not Leaf Node!"),
         HLeaf(ch) => ch,
     };
-    let rightChar = match right.item {
+    let right_char = match right.item {
         HTree(_)  => fail!("Node is not Leaf Node!"),
         HLeaf(ch) => ch,
     };
     match (left.weight, right.weight) {
         (1, 2) => {
-            assert!(leftChar == '1');
-            assert!(rightChar == '2');
+            assert!(left_char == '1');
+            assert!(right_char == '2');
         },
         (2, 1) => {
-            assert!(leftChar == '2');
-            assert!(rightChar == '1');
+            assert!(left_char == '2');
+            assert!(right_char == '1');
         },
         (_, _) => {
             fail!("Incorrect Leaf Nodes");
