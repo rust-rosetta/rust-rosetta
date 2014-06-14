@@ -38,9 +38,9 @@ fn test_rosetta_vector() {
 
 #[test]
 fn test_empty_vector() {
-    let mut numbers: ~[int] = ~[];
-    bubble_sort(numbers);
-    check_sort(numbers);
+    let mut numbers: Vec<int> = Vec::new();
+    bubble_sort(numbers.as_mut_slice());
+    check_sort(numbers.as_mut_slice());
 }
 
 #[test]
