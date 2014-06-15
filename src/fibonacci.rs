@@ -6,9 +6,12 @@ fn main() {
         (fib_tail_recursive, "tail recursive implementation"),
         (fib_iterative, "iterative implementation")];
 
-    for &(f, desc) in fns.iter() {
-        let r: Vec<u64> = range(0u64, 10).map(|i| f(i)).collect();
-        println!("{}:\n {}\n", desc, r);
+for &(f, desc) in fns.iter() {
+    println!("{}", desc);
+    for i in range(0u64, 10) {
+        print!("{} ", f(i));
+    }
+    println!("\n");
     }
 }
 
@@ -18,7 +21,7 @@ fn main() {
 fn fib_recursive(n: u64) -> u64 {
     match n {
         n if n<2 => n,
-        m => fib_recursive(m - 1) + fib_recursive(m-2)
+        m => fib_recursive(m - 1) + fib_recursive(m - 2)
     }
 }
 
