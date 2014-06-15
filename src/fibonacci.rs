@@ -6,7 +6,7 @@ fn main() {
         (fib_tail_recursive, "tail recursive implementation"),
         (fib_iterative, "iterative implementation")];
 
-    for (f, desc) in fns.move_iter() {
+    for &(f, desc) in fns.iter() {
         let r: Vec<u64> = range(0u64, 10).map(|i| f(i)).collect();
         println!("{}:\n {}\n", desc, r);
     }
@@ -14,7 +14,7 @@ fn main() {
 
 // Fibonacci "classic" recursive version
 // not tail recursive (it's going to blow the stack
-// for n too high
+// for n too high)
 fn fib_recursive(n: u64) -> u64 {
     match n {
         n if n<2 => n,
@@ -46,19 +46,20 @@ fn fib_iterative(n: u64) -> u64 {
     fib
 }
 
+// helper function to test that all versions of the fib function
+// return the expected values.
 #[cfg(test)]
-fn tester(f: fn(u64)->u64) -> bool {
+fn tester(f: fn(u64)->u64) {
     let exp = [0u64,1,1,2,3,5,8,13,21,34];
-    for i in range(0u, 10) {
-        let ret=f(i as u64);
-        assert_eq!(ret, exp[i]);
+    for i in range(0u64, 10) {
+        let ret=f(i);
+        assert_eq!(ret, exp[i as uint]);
     }
-    true
 }
 
 #[test]
 fn fib_values() {
     let fns=vec![fib_recursive, fib_tail_recursive, fib_iterative];
-    fns.move_iter()
-        .advance(|f| tester(f));
+    fns.iter()
+        .advance(|&f| {tester(f); true});
 }
