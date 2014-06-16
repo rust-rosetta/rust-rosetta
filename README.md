@@ -78,6 +78,7 @@ Rosetta Code                                                                    
 [Primality by Trial Division](http://rosettacode.org/wiki/Primality_by_Trial_Division)             | [primality_trial_div.rs](src/primality_trial_div.rs)
 [Prime decomposition](http://rosettacode.org/wiki/Prime_decomposition)                             | [prime_decomposition.rs](src/prime_decomposition.rs)
 [Quick Sort](http://rosettacode.org/wiki/Sorting_algorithms/Quicksort)                             | [quick_sort.rs](src/quick_sort.rs)
+[Range Expansion](http://rosettacode.org/wiki/Range_expansion)                                     | [range_expansion.rs](src/range_expansion.rs)
 [Read a file line by line](http://rosettacode.org/wiki/Read_a_file_line_by_line)                   | [read_file_line.rs](src/read_file_line.rs)
 [Rename a file](http://rosettacode.org/wiki/Rename_a_file)                                         | [rename_a_file.rs](src/rename_a_file.rs)
 [Repeat a string](http://rosettacode.org/wiki/Repeat_a_string)                                     | [repeat_str.rs](src/repeat_str.rs)
