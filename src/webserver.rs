@@ -5,8 +5,8 @@ use std::io::net::tcp::{TcpListener, TcpStream};
 use std::io::{Acceptor, Listener};
 
 fn handle_client(mut stream: TcpStream) {
-    let response = bytes!(
-"HTTP/1.1 200 OK
+    let response =
+b"HTTP/1.1 200 OK
 Content-Type: text/html;
 charset=UTF-8
 
@@ -22,7 +22,7 @@ charset=UTF-8
     <body>
         <h1>Goodbye, world!</h1>
     </body>
-</html>");
+</html>";
     match stream.write(response) {
         Ok(_) => println!("Response sent!"),
         Err(e) => println!("Failed sending response: {}!", e),
