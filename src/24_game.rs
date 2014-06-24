@@ -10,18 +10,15 @@
 use std::char::to_digit;
 
 #[cfg(not(test))]
-use std::rand::{task_rng, sample};
-#[cfg(not(test))]
-use std::io::stdio::stdin;
-#[cfg(not(test))]
-use std::io::BufferedReader;
+use std::rand;
 
 #[cfg(not(test))]
 fn main() {
-    let mut rng=task_rng();
-    let mut input = BufferedReader::new(stdin());
+    let mut rng=rand::task_rng();
+    let mut input = std::io::stdin();
+
     loop {
-        let mut sample = sample(&mut rng, range(1u, 10), 4);
+        let mut sample = rand::sample(&mut rng, range(1u, 10), 4);
 
         println!("make 24 by combining the following 4 numbers with + - * / or (q)uit");
         println!("{}", sample);
@@ -42,8 +39,7 @@ fn main() {
     }
 }
 
-// check that the entered expression uses the random values
-// that have been proposed
+// Returns true if the entered expression uses the values contained in sample
 fn check_values(sample:&mut [uint], input:&str) -> bool {
     let lex=Lexer::new(input);
 
@@ -348,13 +344,13 @@ fn lexer_iter() {
 #[test]
 fn parse()
 {
-    assert_eq!(Parser::new("2+2").parse(), Ok(4f32));
-    assert_eq!(Parser::new("2+3*4").parse(), Ok(14f32));
-    assert_eq!(Parser::new("4*(3+2)").parse(), Ok(20f32));
-    assert_eq!(Parser::new("5/(3+2)*3").parse(), Ok(3f32));
+    assert_eq!(Parser::new("2+2").parse(), Ok(4.));
+    assert_eq!(Parser::new("2+3*4").parse(), Ok(14.));
+    assert_eq!(Parser::new("4*(3+2)").parse(), Ok(20.));
+    assert_eq!(Parser::new("5/(3+2)*3").parse(), Ok(3.));
     assert_eq!(Parser::new("2++12").parse(), Err("unexpected token Plus".to_string()));
-    assert_eq!(Parser::new("-2+12").parse(), Ok(10f32));
-    assert_eq!(Parser::new("-2*(2+3)").parse(), Ok(-10f32));
+    assert_eq!(Parser::new("-2+12").parse(), Ok(10.));
+    assert_eq!(Parser::new("-2*(2+3)").parse(), Ok(-10.));
 }
 
 #[test]
