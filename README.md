@@ -15,6 +15,7 @@ Get in touch with @Hoverbear if you need help setting up.
 Rosetta Code                                                                                       | Source Link
 ---------------------------------------------------------------------------------------------------|----------------------------------------------------------
 [9 billion names of God the integer](http://rosettacode.org/wiki/9_billion_names_of_God_the_integer)	   | [9 billion names of God the integer](src/9_billion_names_of_God_the_integer.rs)
+[24 game](http://rosettacode.org/wiki/24_game)                                                     | [24_game.rs](src/24_game.rs)
 [99 bottles of beer](http://rosettacode.org/wiki/99_Bottles_of_Beer)                               | [99_bottles_of_beer.rs](src/99_bottles_of_beer.rs)
 [100 doors](http://rosettacode.org/wiki/100_doors)                                                 | [100_doors.rs](src/100_doors.rs), [100_doors_unoptimized.rs](src/100_doors_unoptimized.rs)
 [A+B](http://rosettacode.org/wiki/A%2BB)                                                           | [a+b.rs](src/a+b.rs)
