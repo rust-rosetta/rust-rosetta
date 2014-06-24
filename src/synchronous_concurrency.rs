@@ -1,9 +1,10 @@
+// http://rosettacode.org/wiki/Synchronous_concurrency
+// not_tested
+//
 // Reader unit reads lines from input.txt, send lines one at a time to printer
 // unit, which then prints lines, keeping track of lines printed. At the end of
 // the file, the reader unit requests number of lines printed from the printer
 // unit, and then prints them.
-//
-// http://rosettacode.org/wiki/Synchronous_concurrency
 
 use std::io::File;
 use std::io::BufferedReader;
@@ -39,7 +40,6 @@ fn reader(chan: DuplexStream<Message, int>) {
     println!("Total Lines: {}", chan.recv());
 }
 
-// not_tested
 fn main() {
     let (to_reader, to_printer) = duplex();
     spawn(proc() printer(to_reader));
