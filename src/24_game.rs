@@ -7,7 +7,7 @@
 // and allows the use of parentheses
 
 #![feature(macro_rules)]
-use std::char::to_digit;
+use std::char;
 
 #[cfg(not(test))]
 use std::rand;
@@ -68,15 +68,15 @@ impl Token {
 
 #[inline]
 // map a character to its corresponding token
-fn single_char_to_token(ch:Option<char>) -> Option<Token> {
+fn single_char_to_token(ch: char) -> Option<Token> {
     match ch {
-            Some('(') => Some(LParen),
-            Some(')') => Some(RParen),
-            Some('+') => Some(Plus),
-            Some('-') => Some(Minus),
-            Some('/') => Some(Slash),
-            Some('*') => Some(Star),
-            _         => None
+            '(' => Some(LParen),
+            ')' => Some(RParen),
+            '+' => Some(Plus),
+            '-' => Some(Minus),
+            '/' => Some(Slash),
+            '*' => Some(Star),
+            _    => None
     }
 }
 
@@ -85,52 +85,55 @@ fn single_char_to_token(ch:Option<char>) -> Option<Token> {
 // Int(a), LParen, Plus, Int(b), RParen...
 struct Lexer<'a> {
     input_str:  &'a str,
-    position:   uint
+    offset:     uint
 }
 
 impl <'a> Lexer<'a> {
     fn new(input_str: &'a str) -> Lexer<'a> {
-        Lexer { input_str: input_str, position: 0u }
+        Lexer { input_str: input_str, offset: 0u }
     }
 
     fn expect(&mut self, expected:&[Token]) -> Result<Token, String> {
-        let n = self.position;
+        let n = self.offset;
         match self.next() {
             Some(a) if expected.contains(&a)  => Ok(a),
-            other  => Err(format!("Parsing error: {} was unexpected at position {}", other, n))
+            other  => Err(format!("Parsing error: {} was unexpected at offset {}", other, n))
         }
     }
 }
 
 impl <'a> Iterator<Token> for Lexer<'a> {
     fn next(&mut self) -> Option<Token> {
-        let remaining_input=self.input_str.slice_from(self.position);
-        let ch_iter=remaining_input.chars();
+        // slice the original string starting from the current offset
+        let remaining_input=self.input_str.slice_from(self.offset);
 
-        // skip spaces and update position
-        let mut spaces=ch_iter.take_while(|ch| ch.is_whitespace());
-        let n_spaces=spaces.count();
-        self.position+=n_spaces;
-        let mut trimmed=ch_iter.skip(n_spaces);
+        // keep track of the offset while advancing chars, with enumerate()
+        let ch_iter=remaining_input.chars().enumerate();
 
-        // read digits (note: not checking length, risks overflowing uint)
-        let digits=trimmed.take_while(|d| d.is_digit());
-        // transform char digits to a uint and update position
-        let val=digits.map(|c| to_digit(c, 10).unwrap())
-            .fold(0u, |a, b| {
-                self.position+=1;
-                b + a * 10
-            });
+        // advance to the next non-whitespace character
+        let mut trimmed=ch_iter.skip_while(|&(_, ch)| ch.is_whitespace());
 
-        let ret = if val > 0 {
-            Some(Int(val))
-        } else {
-            // not a value. Read other tokens
-            let cur=trimmed.next();
-            self.position +=1;
-            single_char_to_token(cur)
+        let (tok, cur_offset) = match trimmed.next() {
+            // found digit, check if there are others
+            // and transform them to a uint
+            Some((o, d)) if d.is_digit() => { 
+                let (mut val, mut offset)=(char::to_digit(d, 10).unwrap(), o);
+                for (idx, ch) in trimmed {
+                    if ch.is_digit() {val=val*10 + char::to_digit(ch, 10).unwrap();}
+                    else {
+                        offset=idx;
+                        break;
+                    }
+                }
+                (Some(Int(val)), offset)
+            },
+            // found non-digit, try transforming it to the corresponding token
+            Some((o, t)) => (single_char_to_token(t), o+1),
+            _   => (None, 0u)
         };
-        ret
+        // update the offset for the next iteration
+        self.offset += cur_offset;
+        tok
     }
 }
 
@@ -313,9 +316,9 @@ fn test_precedence() {
 
 #[test]
 fn lexer_iter() {
-    // test read token and character's position in the iterator
+    // test read token and character's offset in the iterator
     macro_rules! test_tok( ($tok:ident, $exp_tok:expr, $exp_pos:expr) =>
-        ( assert_eq!(($tok.next(), $tok.position), (Some($exp_tok), $exp_pos));))
+        ( assert_eq!(($tok.next(), $tok.offset), (Some($exp_tok), $exp_pos));))
 
     let mut tok=Lexer::new("  15 + 4");
     test_tok!(tok, Int(15), 4);
