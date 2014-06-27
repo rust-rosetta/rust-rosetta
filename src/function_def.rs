@@ -18,19 +18,19 @@ fn multiply_gen<T: Mul<T, T>>(x: T, y: T) -> T
 #[test]
 fn test_multiply_gen()
 {
-  assert_eq!(multiply_gen(2,2), 4);
+  assert_eq!(multiply_gen(2i,2), 4);
 }
 
 #[test]
 fn test_multiply()
 {
-  assert_eq!(multiply(2,2), 4);
+  assert_eq!(multiply(2i,2), 4);
 }
 
 #[cfg(not(test))]
 fn main()
 {
-  println!("2 multiply 4 = {}", multiply(2,4));
-  println!("2.0 multiply 4.0 = {}", multiply_gen(2.0, 4.0));
+  println!("2 multiply 4 = {}", multiply(2i,4));
+  println!("2.0 multiply 4.0 = {}", multiply_gen(2.0f32, 4.0));
   println!("5.0 multiply 7.0 is {}", multiply_gen(5.0 as f32, 7.0 as f32));
 }

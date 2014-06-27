@@ -11,7 +11,7 @@ fn main() {
 }
 
 fn doors() -> Vec<DoorState> {
-    range_inclusive(1.0, 100.0).map(|f| {
+    range_inclusive(1.0f32, 100.0).map(|f| {
         let x = f.sqrt();
         if x == x.round() {Open} else {Closed}
     }).collect()

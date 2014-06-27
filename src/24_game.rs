@@ -116,7 +116,7 @@ impl <'a> Iterator<Token> for Lexer<'a> {
         let (tok, cur_offset) = match trimmed.next() {
             // found digit, check if there are others
             // and transform them to a uint
-            Some((o, d)) if d.is_digit() => { 
+            Some((o, d)) if d.is_digit() => {
                 let (mut val, mut offset)=(char::to_digit(d, 10).unwrap(), o);
                 for (idx, ch) in trimmed {
                     if ch.is_digit() {val=val*10 + char::to_digit(ch, 10).unwrap();}

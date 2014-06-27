@@ -62,7 +62,7 @@ impl Show for MD5 {
 // leftrotate function definition
 #[inline]
 fn left_rotate(x: u32, c: u32) -> u32 {
-    (x << c) | (x >> (32 - c))
+    (x << c as uint) | (x >> (32 - c) as uint)
 }
 
 fn to_bytes(val: u64) -> [u8,..8]

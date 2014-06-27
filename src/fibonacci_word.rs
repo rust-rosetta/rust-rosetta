@@ -32,7 +32,7 @@ fn main() {
     println!("Calculating... This may take a couple of minutes...\n");
 
     let words = fib_words(18);
-    let mut i = 1;
+    let mut i = 1i;
 
     println!("{:>2}:{:>10} {}", "N", "length", "entropy");
     for &(length, entropy) in words.iter() {
@@ -43,7 +43,7 @@ fn main() {
 #[test]
 fn test_fibonacii_words() {
     let expected = vec![
-        (1u, 0.000000000000000),
+        (1u, 0.000000000000000f64),
         (1, 0.000000000000000),
         (2, 1.000000000000000),
         (3, 0.918295834054490),
@@ -62,7 +62,7 @@ fn test_fibonacii_words() {
         (1597, 0.959418849957810),
         (2584, 0.959418681724032)];
 
-    let epsilon = 0.0000000001;
+    let epsilon = 0.0000000001f64;
     let output = fib_words(18);
 
     for ((output_length, output_entropy), (expected_length, expected_entropy))
