@@ -3,7 +3,7 @@ use std::string::String;
 
 #[cfg(not(test))]
 fn main() {
-	for num_bottles in std::iter::range_step_inclusive(99, 1, -1) {
+	for num_bottles in std::iter::range_step_inclusive(99i, 1, -1) {
         let num_bottles=num_bottles as uint;
 
 		println!("{}",bottles_line(num_bottles, true));

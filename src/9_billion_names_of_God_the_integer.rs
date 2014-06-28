@@ -46,9 +46,9 @@ fn main() {
     cache.push(initial_vector);
 
     println!("rows");
-    for n in range(1, 11) {
-	let x = n as uint;
-	println!("{}: {}", n, row(x,&mut cache));
+    for n in range(1u, 11) {
+        let x = n;
+        println!("{}: {}", n, row(x,&mut cache));
     }
 
     println!("sums");
