@@ -12,7 +12,7 @@ fn main() {
     println!("");
 
     // Iterate through the elements of a slice
-    let array = [1, 2, 3, 4, 5];
+    let array = [1u, 2, 3, 4, 5];
     for i in array.iter() {
         print!("{}", i);
     }
@@ -20,7 +20,7 @@ fn main() {
 
     // Iterate through the elements of a hasmap
     let mut hashmap = HashMap::new();
-    hashmap.insert("a", 1);
+    hashmap.insert("a", 1u);
     hashmap.insert("b", 2);
     hashmap.insert("c", 3);
     for (c, i) in hashmap.iter() {

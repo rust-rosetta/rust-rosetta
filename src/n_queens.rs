@@ -30,7 +30,7 @@ fn main() {
 // Returns the number of solutions for a given n.
 fn n_queens(n: i32) -> uint {
     // Pass off to our helper function.
-    return n_queens_helper((1 << n) -1, 0, 0, 0);
+    return n_queens_helper((1 << n as uint) -1, 0, 0, 0);
 }
 
 // The meat of the algorithm is in here, a recursive helper function
@@ -109,7 +109,7 @@ fn n_queens_helper(all_ones: i32, left_diags: i32, columns: i32, right_diags: i3
 // This is much slower for smaller numbers (under 16~17) but outperforms
 // the sequential algorithm after that.
 fn semi_parallel_n_queens(n: i32) -> uint {
-    let all_ones = (1 << n) - 1;
+    let all_ones = (1 << n as uint) - 1;
     let (columns, left_diags, right_diags) = (0, 0, 0);
 
     let mut receivers = Vec::new();
