@@ -37,7 +37,7 @@ fn main() {
     let mut stack = Stack::new();
 
     // Fill the stack
-    stack.push(5);
+    stack.push(5i);
     stack.push(8);
     stack.push(9);
 
@@ -60,7 +60,7 @@ fn test_basic() {
     assert!(stack.empty());
 
     // Fill the stack
-    stack.push(5);
+    stack.push(5i);
     stack.push(8);
     stack.push(9);
 
