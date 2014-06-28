@@ -24,6 +24,7 @@ Rosetta Code                                                                    
 [Anagrams](http://rosettacode.org/wiki/Anagrams)                                                   | [anagrams.rs](src/anagrams.rs)
 [Apply a callback to an array](http://rosettacode.org/wiki/Apply_a_callback_to_an_array)           | [callback_to_array.rs](src/callback_to_array.rs)
 [Arithmetic mean](http://rosettacode.org/wiki/Arithmetic/Integer)                                  | [arithmetic_integers.rs](src/artihmetic_integers.rs)
+[Arithmetic/rational](http://rosettacode.org/wiki/Arithmetic/Rational                              | [arithmetic_rational.rs](src/arithmetic_rational.rs)
 [Averages/Arithmetic mean](http://rosettacode.org/wiki/Averages/Arithmetic_mean)                   | [arithmetic_mean.rs](src/arithmetic_mean.rs)
 [Averages/Mean angle](http://rosettacode.org/wiki/Averages/Mean_angle)                             | [averages_mean_angle.rs](src/averages_mean_angle.rs)
 [Balanced brackets](http://rosettacode.org/wiki/Balanced_brackets)                                 | [balanced_brackets.rs](src/balanced_brackets.rs)
