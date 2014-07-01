@@ -141,10 +141,10 @@ impl <'a> Iterator<Token> for Lexer<'a> {
 // as they define the semantics of the expression language
 // e.g. token "Minus" can correspond to the unary Neg Operator (-a)
 // or to the binary Sub operator (a - b)
-#[deriving(PartialEq,Eq)]
+#[deriving(PartialEq, Eq)]
 enum Operator {Neg, Add, Sub, Mul, Div, Sentinel}
 
-#[deriving(PartialEq,Eq)]
+#[deriving(PartialEq, Eq)]
 struct OperatorPrecedence(Operator);
 
 impl Operator {
@@ -173,23 +173,21 @@ impl OperatorPrecedence {
     (division first, multiplication second) otherwise results are different
 */
 impl PartialOrd for OperatorPrecedence {
-    fn lt(&self, other: &OperatorPrecedence) -> bool {
-        match (self, other) {
+    fn partial_cmp(&self, other: &OperatorPrecedence) -> Option<Ordering> {
+        let lower = match (self, other) {
             (&OperatorPrecedence(Mul), &OperatorPrecedence(Div)) => false,
             (&OperatorPrecedence(Div), &OperatorPrecedence(Mul)) => false,
             (&OperatorPrecedence(Add), &OperatorPrecedence(Sub)) => false,
             (&OperatorPrecedence(Sub), &OperatorPrecedence(Add)) => false,
             _  => self.prec() < other.prec()
-        }
-    }
-
-    fn gt(&self, other: &OperatorPrecedence) -> bool {
-        match (self, other) {
-            (&OperatorPrecedence(Mul), &OperatorPrecedence(Div)) => true,
-            (&OperatorPrecedence(Div), &OperatorPrecedence(Mul)) => true,
-            (&OperatorPrecedence(Add), &OperatorPrecedence(Sub)) => true,
-            (&OperatorPrecedence(Sub), &OperatorPrecedence(Add)) => true,
-            _          => self.prec() > other.prec()
+        };
+        
+        if lower {
+            Some(Less)
+        } else if self == other {
+            Some(Equal)
+        } else {
+            Some(Greater)
         }
     }
 }
