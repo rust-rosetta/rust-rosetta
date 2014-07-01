@@ -36,16 +36,16 @@ impl Ord for HNode {
     }
 }
 
+impl PartialOrd for HNode {
+    fn partial_cmp(&self, other: &HNode) -> Option<Ordering> {
+        Some(self.cmp(other))
+    }
+}
+
 impl Eq for HNode {}
 impl PartialEq for HNode {
     fn eq(&self, other: &HNode) -> bool {
         self.weight == other.weight
-    }
-}
-
-impl PartialOrd for HNode {
-    fn lt(&self, other: &HNode) -> bool {
-        self.weight > other.weight
     }
 }
 
