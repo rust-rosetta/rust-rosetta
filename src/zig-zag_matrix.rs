@@ -16,8 +16,14 @@ impl SortIndex {
 }
 
 impl PartialOrd for SortIndex {
-    fn lt(&self, other: &SortIndex) -> bool {
-        if self.x + self.y == other.x + other.y {
+    fn partial_cmp(&self, other: &SortIndex) -> Option<Ordering> {
+        Some(self.cmp(other))
+    }
+}
+
+impl Ord for SortIndex {
+    fn cmp(&self, other: &SortIndex) -> Ordering {
+        let lower = if self.x + self.y == other.x + other.y {
             if (self.x + self.y) % 2 == 0 {
                 self.x < other.x
             } else {
@@ -25,15 +31,15 @@ impl PartialOrd for SortIndex {
             }
         } else {
             (self.x + self.y) < (other.x + other.y)
+        };
+        
+        if lower {
+            Less
+        } else if self == other {
+            Equal
+        } else {
+            Greater
         }
-    }
-}
-
-impl Ord for SortIndex {
-    fn cmp(&self, other: &SortIndex) -> Ordering {
-        if self < other { Less }
-        else if self > other { Greater }
-        else {Equal}
     }
 }
 
