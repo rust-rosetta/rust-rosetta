@@ -5,7 +5,7 @@ use std::rand::random;
 
 // Returns true if the brackets are balanced
 fn check_balanced(bracket_str: &str) -> bool {
-    let mut count = 0;
+    let mut count = 0i;
 
     for bracket in bracket_str.chars() {
         match bracket {
