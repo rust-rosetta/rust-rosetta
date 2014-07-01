@@ -8,7 +8,7 @@ use std::c_str::CString;
 
 extern "C" {
     // C functions are declared in an `extern "C"` block.
-    fn strdup(s: *c_char) -> *c_char;
+    fn strdup(s: *const c_char) -> *const c_char;
 }
 
 fn main() {
