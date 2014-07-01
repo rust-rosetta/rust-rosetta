@@ -181,7 +181,7 @@ impl PartialOrd for OperatorPrecedence {
             (&OperatorPrecedence(Sub), &OperatorPrecedence(Add)) => false,
             _  => self.prec() < other.prec()
         };
-        
+
         if lower {
             Some(Less)
         } else if self == other {

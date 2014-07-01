@@ -32,7 +32,7 @@ impl Ord for SortIndex {
         } else {
             (self.x + self.y) < (other.x + other.y)
         };
-        
+
         if lower {
             Less
         } else if self == other {
