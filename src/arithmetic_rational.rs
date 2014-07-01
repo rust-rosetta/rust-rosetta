@@ -101,8 +101,8 @@ impl PartialEq for Frac {
 impl Eq for Frac {}
 
 impl PartialOrd for Frac {
-    fn lt(&self, other: &Frac) -> bool {
-        (self.num * other.den) < (self.den * other.num)
+    fn partial_cmp(&self, other: &Frac) -> Option<Ordering> {
+        Some(self.cmp(other))
     }
 }
 
