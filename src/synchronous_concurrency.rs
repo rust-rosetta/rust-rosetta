@@ -8,7 +8,7 @@
 
 use std::io::File;
 use std::io::BufferedReader;
-use std::comm::{DuplexStream, duplex};
+use std::comm::{channel, Sender, Receiver};
 
 static FILENAME: &'static str = "resources/input.txt";
 
@@ -17,10 +17,10 @@ enum Message {
     End
 }
 
-fn printer(chan: DuplexStream<int, Message>) {
+fn printer(i_snd: Sender<int>, msg_rcv: Receiver<Message>) {
     let mut count = 0;
     loop {
-        match chan.recv() {
+        match msg_rcv.recv() {
             Line(line) => {
                 print!("{}", line);
                 count += 1;
@@ -28,20 +28,22 @@ fn printer(chan: DuplexStream<int, Message>) {
             End => {break;}
         }
     }
-    chan.send(count);
+    i_snd.send(count);
 }
 
-fn reader(chan: DuplexStream<Message, int>) {
+fn reader(msg_snd: Sender<Message>, i_rcv: Receiver<int>) {
     let mut file = BufferedReader::new(File::open(&Path::new(FILENAME)));
     for line in file.lines() {
-        chan.send(Line(line.unwrap()));
+        msg_snd.send(Line(line.unwrap()));
     }
-    chan.send(End);
-    println!("Total Lines: {}", chan.recv());
+    msg_snd.send(End);
+    println!("Total Lines: {}", i_rcv.recv());
 }
 
 fn main() {
-    let (to_reader, to_printer) = duplex();
-    spawn(proc() printer(to_reader));
-    spawn(proc() reader(to_printer));
+    let (msg_snd, msg_rcv) = channel();
+    let (i_snd, i_rcv) = channel();
+
+    spawn(proc() printer(i_snd, msg_rcv));
+    spawn(proc() reader(msg_snd, i_rcv));
 }
