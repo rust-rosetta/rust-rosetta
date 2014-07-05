@@ -16,6 +16,7 @@ Rosetta Code                                                                    
 ---------------------------------------------------------------------------------------------------|----------------------------------------------------------
 [9 billion names of God the integer](http://rosettacode.org/wiki/9_billion_names_of_God_the_integer)	   | [9 billion names of God the integer](src/9_billion_names_of_God_the_integer.rs)
 [24 game](http://rosettacode.org/wiki/24_game)                                                     | [24_game.rs](src/24_game.rs)
+[24 game/solve](http://rosettacode.org/wiki/24_game/Solve)                                         | [24_game_solve.rs](src/24_game_solve.rs)
 [99 bottles of beer](http://rosettacode.org/wiki/99_Bottles_of_Beer)                               | [99_bottles_of_beer.rs](src/99_bottles_of_beer.rs)
 [100 doors](http://rosettacode.org/wiki/100_doors)                                                 | [100_doors.rs](src/100_doors.rs), [100_doors_unoptimized.rs](src/100_doors_unoptimized.rs)
 [A+B](http://rosettacode.org/wiki/A%2BB)                                                           | [a+b.rs](src/a+b.rs)
@@ -24,7 +25,7 @@ Rosetta Code                                                                    
 [Anagrams](http://rosettacode.org/wiki/Anagrams)                                                   | [anagrams.rs](src/anagrams.rs)
 [Apply a callback to an array](http://rosettacode.org/wiki/Apply_a_callback_to_an_array)           | [callback_to_array.rs](src/callback_to_array.rs)
 [Arithmetic mean](http://rosettacode.org/wiki/Arithmetic/Integer)                                  | [arithmetic_integers.rs](src/artihmetic_integers.rs)
-[Arithmetic/rational](http://rosettacode.org/wiki/Arithmetic/Rational                              | [arithmetic_rational.rs](src/arithmetic_rational.rs)
+[Arithmetic/Rational](http://rosettacode.org/wiki/Arithmetic/Rational)                             | [arithmetic_rational.rs](src/arithmetic_rational.rs)
 [Averages/Arithmetic mean](http://rosettacode.org/wiki/Averages/Arithmetic_mean)                   | [arithmetic_mean.rs](src/arithmetic_mean.rs)
 [Averages/Mean angle](http://rosettacode.org/wiki/Averages/Mean_angle)                             | [averages_mean_angle.rs](src/averages_mean_angle.rs)
 [Balanced brackets](http://rosettacode.org/wiki/Balanced_brackets)                                 | [balanced_brackets.rs](src/balanced_brackets.rs)
