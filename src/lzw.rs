@@ -82,7 +82,7 @@ fn main() {
 
 #[test]
 fn test_coherence() {
-    for s in range(50000i, 50100).map(|n| n.to_str()) {
+    for s in range(50000i, 50100).map(|n| n.to_string()) {
         assert_eq!(decompress(&compress(s.as_slice())), s);
     }
 }
