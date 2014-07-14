@@ -73,16 +73,16 @@ fn main () {
 #[test]
 fn basic_test() {
     // Groups of anagrams
-    let group1: HashSet<String> = vec!["lane".to_str(),
-                                       "neal".to_str(),
-                                       "lean".to_str()]
+    let group1: HashSet<String> = vec!["lane".to_string(),
+                                       "neal".to_string(),
+                                       "lean".to_string()]
                                        .move_iter().collect();
-    let group2: HashSet<String> = vec!["angel".to_str(),
-                                       "angle".to_str(),
-                                       "galen".to_str()]
+    let group2: HashSet<String> = vec!["angel".to_string(),
+                                       "angle".to_string(),
+                                       "galen".to_string()]
                                        .move_iter().collect();
-    let group3: HashSet<String> = vec!["glare".to_str(),
-                                       "large".to_str()]
+    let group3: HashSet<String> = vec!["glare".to_string(),
+                                       "large".to_string()]
                                        .move_iter().collect();
 
     // Prepare the input for the program
@@ -97,7 +97,7 @@ fn basic_test() {
     }
 
     // Here begins the real testing
-    let all_groups = get_anagrams(MemReader::new(words.to_str().as_slice()
+    let all_groups = get_anagrams(MemReader::new(words.to_string().as_slice()
                                                  .bytes().collect()));
     let biggest_groups = get_biggest_groups(&all_groups);
 

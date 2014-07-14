@@ -29,11 +29,9 @@ fn row(num: uint,  cache: &mut Vec<Vec<BigUint>>) -> String {
     let r = cumu(num,cache);
     let mut returned_string = String::new();
     for i in range(0,num) {
-	let i = *r.get(i+1) - *r.get (i);
-	let z = i.to_str();
-	let y = z.as_slice();
-	returned_string.push_str(y);
-	returned_string.push_str(", ");
+        let i = *r.get(i+1) - *r.get (i);
+        returned_string.push_str(i.to_string().as_slice());
+        returned_string.push_str(", ");
     }
     returned_string
 }

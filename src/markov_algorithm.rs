@@ -50,7 +50,8 @@ impl MarkovAlgorithm {
                     let replacement = if stop {line_end.slice_from(1)} else {line_end};
 
                     // add to rules
-                    let new_rule = MarkovRule::new(pattern.to_str(), replacement.to_str(), stop);
+                    let new_rule = MarkovRule::new(pattern.to_string(),
+                                            replacement.to_string(), stop);
                     rules.push(new_rule);
                 }
             }
@@ -63,7 +64,7 @@ impl MarkovAlgorithm {
     pub fn apply(&self, input: &str) -> String {
 
         // get a writable version of the input to work with
-        let mut state = input.to_str();
+        let mut state = input.to_string();
 
         // Don't allow input to be used after this
         drop(input);
