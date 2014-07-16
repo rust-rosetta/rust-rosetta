@@ -60,6 +60,7 @@ Rosetta Code                                                                    
 [Hailstone sequence](http://rosettacode.org/wiki/Hailstone_sequence)                               | [hailstone.rs](src/hailstone.rs)
 [Hamming numbers](http://rosettacode.org/wiki/Hamming_numbers)                                     | [hamming_numbers.rs](src/hamming_numbers.rs)
 [Happy numbers](http://rosettacode.org/wiki/Happy_numbers)                                         | [happy_numbers.rs](src/happy_numbers.rs)
+[HTTP](http://rosettacode.org/wiki/HTTP)                                                           | [http.rs](src/http.rs)
 [Huffman encoding](http://rosettacode.org/wiki/Huffman_coding)                                     | [huffman_coding.rs](src/huffman_coding.rs)
 [IBAN](http://rosettacode.org/wiki/IBAN)                                                           | [iban.rs](src/iban.rs)
 [Infinity](http://rosettacode.org/wiki/Infinity)                                                   | [infinity.rs](src/infinity.rs)
