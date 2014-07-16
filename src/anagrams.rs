@@ -1,10 +1,6 @@
 // Implements http://rosettacode.org/wiki/Anagrams
 
 use std::collections::{HashMap, HashSet};
-use std::str;
-
-#[cfg(test)]
-use std::io::MemReader;
 
 #[cfg(not(test))]
 use std::io::{File, BufferedReader};
@@ -13,7 +9,7 @@ use std::cmp::max;
 fn sort_string(string: &str) -> String {
     let mut chars: Vec<char> = string.chars().collect();
     chars.sort();
-    str::from_chars(chars.as_slice())
+    String::from_chars(chars.as_slice())
 }
 
 // Returns groups of anagrams where each group consists of a set
@@ -72,6 +68,8 @@ fn main () {
 
 #[test]
 fn basic_test() {
+    use std::io::MemReader;
+
     // Groups of anagrams
     let group1: HashSet<String> = vec!["lane".to_string(),
                                        "neal".to_string(),
