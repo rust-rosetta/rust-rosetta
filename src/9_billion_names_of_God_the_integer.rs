@@ -27,7 +27,7 @@ fn row(num: uint,  cache: &mut Vec<Vec<BigUint>>) -> String {
     let r = cumu(num,cache);
     let mut returned_string = String::new();
     for i in range(0,num) {
-        let i = (*r)[i+1] - (*r)[i];
+        let i = r[i+1] - r[i];
         returned_string.push_str(i.to_string().as_slice());
         returned_string.push_str(", ");
     }
@@ -75,10 +75,10 @@ fn test_cumu() {
 
     let mut n=0;
     for y in a.iter() {
-  let z = cumu(*y,&mut cache);
-  let w = z.last().unwrap();
-  assert!(w == b.get(n));
-  n= n+1;
+        let z = cumu(*y,&mut cache);
+        let w = z.last().unwrap();
+        assert!(w == &b[n]);
+        n= n+1;
     }
 }
 
