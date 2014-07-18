@@ -9,19 +9,17 @@ use std::cmp::min;
 fn cumu<'a>(num: uint, cache: &'a mut Vec<Vec<BigUint>>) -> &'a Vec<BigUint> {
     let len = cache.len();
     for l in range(len, num+1) {
-	let initial_value:BigUint = from_str("0").unwrap();
-	let mut r: Vec<BigUint> = vec!(initial_value);
-
-	for x in range(1, l+1) {
-	    let y = r.get(x -1).clone();
-	    let z = cache.get(l-x).get(min(x, l-x)).clone();
-	    let w = y+z;
-
-	    r.push(w)
-	}
-	cache.push(r);
+        let initial_value:BigUint = from_str("0").unwrap();
+        let mut r: Vec<BigUint> = vec!(initial_value);
+        for x in range(1, l+1) {
+            let y = r[x -1].clone();
+            let z = (*cache)[l-x][min(x, l-x)].clone();
+            let w = y+z;
+            r.push(w)
+        }
+        cache.push(r);
     }
-    cache.get(num)
+    &(*cache)[num]
 }
 
 // Returns a line
@@ -29,7 +27,7 @@ fn row(num: uint,  cache: &mut Vec<Vec<BigUint>>) -> String {
     let r = cumu(num,cache);
     let mut returned_string = String::new();
     for i in range(0,num) {
-        let i = *r.get(i+1) - *r.get (i);
+        let i = (*r)[i+1] - (*r)[i];
         returned_string.push_str(i.to_string().as_slice());
         returned_string.push_str(", ");
     }
@@ -53,9 +51,9 @@ fn main() {
 
     let x: Vec<uint> = vec!(23, 123, 1234, 12345);
     for y in x.iter() {
-	let z = cumu(*y,&mut cache);
-	let w = z.last();
-	println!("{}: {}", y, w.unwrap());
+  let z = cumu(*y,&mut cache);
+  let w = z.last();
+  println!("{}: {}", y, w.unwrap());
     }
 }
 
@@ -77,10 +75,10 @@ fn test_cumu() {
 
     let mut n=0;
     for y in a.iter() {
-	let z = cumu(*y,&mut cache);
-	let w = z.last().unwrap();
-	assert!(w == b.get(n));
-	n= n+1;
+  let z = cumu(*y,&mut cache);
+  let w = z.last().unwrap();
+  assert!(w == b.get(n));
+  n= n+1;
     }
 }
 
