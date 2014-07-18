@@ -15,14 +15,14 @@ fn simple_sieve(limit: uint) -> Vec<uint> {
     let mut primes = Vec::from_elem(limit + 1, true);
 
     for prime in range_inclusive(2, int_sqrt(limit) + 1) {
-        if *primes.get(prime) {
+        if primes[prime] {
             for multiple in range_step(prime * prime, limit + 1, prime) {
                 *primes.get_mut(multiple) = false
             }
         }
     }
 
-    range_inclusive(2, limit).filter(|&n| *primes.get(n)).collect()
+    range_inclusive(2, limit).filter(|&n| primes[n]).collect()
 }
 
 #[cfg(not(test))]
