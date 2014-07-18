@@ -91,13 +91,13 @@ fn knap_01_dp<'a>(xs: &[Want<'a>], max_weight: uint) -> Vec<Want<'a>> {
             if xs[i].weight > w {
                 // if we don't, then we'll say that the value doesn't change
                 // when considering this item
-                *best_value.get_mut(i + 1).get_mut(w) = best_value.get(i).get(w).clone();
+                *best_value.get_mut(i + 1).get_mut(w) = best_value[i][w].clone();
             } else {
                 // if we do, then we have to see if the value we gain by adding
                 // the item, given the weight, is better than not adding the item
                 *best_value.get_mut(i + 1).get_mut(w) =
-                    max(best_value.get(i).get(w).clone(),
-                        best_value.get(i).get(w - xs[i].weight) + xs[i].value);
+                    max(best_value[i][w].clone(),
+                        best_value[i][w - xs[i].weight] + xs[i].value);
             }
         }
     }
@@ -114,7 +114,7 @@ fn knap_01_dp<'a>(xs: &[Want<'a>], max_weight: uint) -> Vec<Want<'a>> {
         // We can check if an item should be added to the knap-sack by comparing
         // best_value with and without this item. If best_value added this
         // item then so should we.
-        if best_value.get(i).get(left_weight) != best_value.get(i - 1).get(left_weight) {
+        if best_value[i][left_weight] != best_value[i - 1][left_weight] {
             result.push(xs[i - 1]);
             // we remove the weight of the object from the remaining weight
             // we can add to the bag
