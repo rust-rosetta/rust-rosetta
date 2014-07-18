@@ -14,7 +14,7 @@ mod prime_decomposition;
 // Returns the minimal prime factor of a number
 fn min_factor(x: uint) -> uint {
     // factor returns a sorted vector, so we just take the first element
-    *factor(x).get(0)
+    factor(x)[0]
 }
 
 // Returns the largest minimal factor of the numbers in a slice

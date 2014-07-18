@@ -111,10 +111,10 @@ fn md5(initial_msg: &[u8]) -> MD5
             for i in range(0u32, 16) {
                 let j = i as uint * 4 + offset as uint;
                 w[i as uint] =
-                        (*msg.get(j)   as u32)      |
-                        (*msg.get(j+1) as u32) <<8  |
-                        (*msg.get(j+2) as u32) <<16 |
-                         *msg.get(j+3) as u32  <<24;
+                        (msg[j]   as u32)      |
+                        (msg[j+1] as u32) <<8  |
+                        (msg[j+2] as u32) <<16 |
+                         msg[j+3] as u32  <<24;
             }
             //println!("chunk {}", w);
             // Initialize hash value for this chunk:

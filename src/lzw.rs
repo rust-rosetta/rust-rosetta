@@ -45,18 +45,18 @@ fn decompress(compressed: &Vec<int>) -> String {
       dictionary.insert(i, vec!(i as u8));
    }
 
-   let mut w = vec!(compressed.get(0).clone() as u8);
+   let mut w = vec!(compressed[0].clone() as u8);
    let compressed = compressed.slice_from(1);
    let mut result = w.clone();
    for &k in compressed.iter() {
       let entry = match dictionary.find(&k) {
           Some(v) => v.clone(),
-          None if k == dict_size => { let mut new = w.clone(); new.push(w.get(0).clone()); new }
+          None if k == dict_size => { let mut new = w.clone(); new.push(w[0].clone()); new }
           None => fail!("Invalid compressed string")
       };
 
       result.extend(entry.iter().map(|&x| x.clone()));
-      w.push(entry.get(0).clone());
+      w.push(entry[0].clone());
       dictionary.insert(dict_size, w);
       dict_size += 1;
       w = entry;

@@ -30,6 +30,6 @@ fn solution() {
     // test that the doors with index corresponding to
     // a perfect square are now open
     for i in range_inclusive(1u,10u) {
-        assert_eq!(*drs.get(i*i - 1), Open);
+        assert_eq!(drs[i*i - 1], Open);
     }
 }
