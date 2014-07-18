@@ -7,7 +7,11 @@ fn get_index(target: &str) -> IoResult<String> {
     let mut socket = TcpStream::connect(target, 80);
     // Write to the socket as bytes.
     // try! and write! are useful macros when working with writers.
-    try!(write!(socket, "GET / HTTP/1.1\nHost: {}\n\n", target));
+    // We send the `Connection: close` header so the server closes the connection
+    // after sending its response. This allows us to use `read_to_string()` which
+    // reads until EOF. Alternatively, we could use HTTP/1.0. In the future, this
+    // will be handled by a HTTP library.
+    try!(write!(socket, "GET / HTTP/1.1\nHost: {}\nConnection: close\n\n", target));
     // Read any response.
     socket.read_to_string()
 }
@@ -27,6 +31,6 @@ fn test_request() {
     let target = "rust-lang.org";
     match get_index(target) {
         Ok(_) => (),
-        Err(e) => println!("Error: {}", e)
+        Err(e) => fail!("Error: {}", e),
     }
 }
