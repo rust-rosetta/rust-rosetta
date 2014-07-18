@@ -137,7 +137,7 @@ fn semi_parallel_n_queens(n: i32) -> uint {
 fn test_n_queens() {
     let real = vec!(1, 1, 0, 0, 2, 10, 4, 40, 92u);
     for num in range(0, 9i32) {
-        assert_eq!(n_queens(num), *real.get(num as uint));
+        assert_eq!(n_queens(num), real[num as uint]);
     }
 }
 
@@ -145,7 +145,7 @@ fn test_n_queens() {
 fn test_parallel_n_queens() {
     let real = vec!(1, 1, 0, 0, 2, 10, 4, 40, 92u);
     for num in range(0, 9i32) {
-        assert_eq!(semi_parallel_n_queens(num), *real.get(num as uint));
+        assert_eq!(semi_parallel_n_queens(num), real[num as uint]);
     }
 }
 
