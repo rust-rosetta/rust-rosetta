@@ -8,7 +8,7 @@ use std::os::args;
 fn main() {
     let filename = match args().len() {
         1 => fail!("You must enter a filename to read line by line"),
-        _ => args().get(1).clone()
+        _ => args()[1].clone()
     };
 
     let file = File::open(&Path::new(filename.as_slice()));
@@ -21,6 +21,5 @@ fn main() {
             Err(error) => print!("{}", error.desc)
         }
     }
-
     println!("");
 }
