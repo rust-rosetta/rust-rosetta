@@ -57,7 +57,7 @@ fn main() {
   let two_seven: Vec<uint> = Hailstone::new(27).collect();
   let ts_len = two_seven.len();
   println!("Testing: {}, Length: {}, Values: {}...{}",
-          two_seven.get(0),
+          two_seven[0],
           ts_len,
           two_seven.slice(0, 4),
           two_seven.slice(ts_len - 4, ts_len));
