@@ -22,7 +22,7 @@ impl<T> Stack<T> {
     }
 
     // Returns a reference of the element at the top of the stack
-    fn peek<'r>(&'r self) -> Option<&'r T> {
+    fn peek(&self) -> Option<&T> {
         self.vec.last()
     }
 

@@ -6,7 +6,7 @@ use num::bigint::BigUint;
 use std::string::String;
 use std::cmp::min;
 
-fn cumu<'a>(num: uint, cache: &'a mut Vec<Vec<BigUint>>) -> &'a Vec<BigUint> {
+fn cumu(num: uint, cache: &mut Vec<Vec<BigUint>>) -> &Vec<BigUint> {
     let len = cache.len();
     for l in range(len, num+1) {
         let initial_value:BigUint = from_str("0").unwrap();
