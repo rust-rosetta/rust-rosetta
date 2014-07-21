@@ -51,7 +51,7 @@ impl fmt::Show for Nibble {
 
 // We implement Deref so we can index the Nibble easily
 impl<'a> Deref<[bool,.. 4]> for Nibble {
-  fn deref<'a>(&'a self) -> &'a [bool,.. 4] {
+  fn deref(&self) -> &[bool,.. 4] {
     let Nibble(ref inner) = *self;
     inner
   }
