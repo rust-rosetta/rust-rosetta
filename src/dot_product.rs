@@ -3,7 +3,7 @@
 use std::ops::{Add, Mul};
 use std::num::Zero;
 
-fn dotp<'a, T:Add<T, T> + Mul<T, T> + Zero + Copy>(this: &'a [T], other: &'a [T]) -> T {
+fn dotp<T:Add<T, T> + Mul<T, T> + Zero + Copy>(this: &[T], other: &[T]) -> T {
   assert!(this.len() == other.len(), "The dimensions must be equal");
 
   let zero : T = Zero::zero();

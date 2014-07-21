@@ -89,7 +89,7 @@ struct Lexer<'a> {
 }
 
 impl <'a> Lexer<'a> {
-    fn new(input_str: &'a str) -> Lexer<'a> {
+    fn new(input_str: &str) -> Lexer {
         Lexer { input_str: input_str, offset: 0u }
     }
 
@@ -204,7 +204,7 @@ struct Parser<'a> {
 }
 
 impl <'a> Parser<'a> {
-    fn new(input_str: &'a str) -> Parser<'a> {
+    fn new(input_str: &str) -> Parser {
         Parser {
             operators:  Vec::new(),
             operands:   Vec::new(),
