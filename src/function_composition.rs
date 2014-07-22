@@ -9,8 +9,8 @@ fn main() {
 
     // just a silly example
     // turn PI to a uint and then
-    // the the uint to a String
-    // via funciton composition
+    // the uint to a String
+    // via function composition
     let comp = compose(f, g);
     println!("{}", comp(consts::PI));
 }
