@@ -54,6 +54,7 @@ Rosetta Code                                                                    
 [File size](http://rosettacode.org/wiki/File_size)                                                 | [filesize.rs](src/filesize.rs)
 [Find limit of recursion](http://rosettacode.org/wiki/Find_limit_of_recursion)                     | [recursion_depth.rs](src/recursion_depth.rs)
 [Four bit adder](http://rosettacode.org/wiki/Four_bit_adder)                                       | [four_bit_adder.rs](src/four_bit_adder.rs)
+[Function composition](http://rosettacode.org/wiki/Function_composition)                           | [function_composition.rs](src/function_composition.rs)
 [Function Definition](http://rosettacode.org/wiki/Function_definition)                             | [function_def.rs](src/function_def.rs)
 [Generic swap](http://rosettacode.org/wiki/Generic_swap)                                           | [swap.rs](src/swap.rs)
 [Gray code](http://rosettacode.org/wiki/Gray_code)                                                 | [gray_code.rs](src/gray_code.rs)
