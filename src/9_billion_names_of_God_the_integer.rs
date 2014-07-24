@@ -3,100 +3,102 @@
 extern crate num;
 
 use num::bigint::BigUint;
-use std::string::String;
 use std::cmp::min;
+use std::iter::range_inclusive;
+use std::num::{Zero, One};
 
-fn cumu(num: uint, cache: &mut Vec<Vec<BigUint>>) -> &Vec<BigUint> {
-    let len = cache.len();
-    for l in range(len, num+1) {
-        let initial_value:BigUint = from_str("0").unwrap();
-        let mut r: Vec<BigUint> = vec!(initial_value);
-        for x in range(1, l+1) {
-            let y = r[x -1].clone();
-            let z = (*cache)[l-x][min(x, l-x)].clone();
-            let w = y+z;
-            r.push(w)
-        }
-        cache.push(r);
-    }
-    &(*cache)[num]
+pub struct Solver {
+    // The `cache` is a private implementation detail,
+    // it would be an improvement to throw away unused values
+    // from the cache (to reduce memory for larger inputs)
+    cache: Vec<Vec<BigUint>>
 }
 
-// Returns a line
-fn row(num: uint,  cache: &mut Vec<Vec<BigUint>>) -> String {
-    let r = cumu(num,cache);
-    let mut returned_string = String::new();
-    for i in range(0,num) {
-        let i = r[i+1] - r[i];
-        returned_string.push_str(i.to_string().as_slice());
-        returned_string.push_str(", ");
+impl Solver {
+    pub fn new() -> Solver {
+        // Setup the cache with the initial row
+        Solver { cache: vec![vec![One::one()]] }
     }
-    returned_string
+
+    // Returns a string representing a line
+    pub fn row_string(&mut self, idx: uint) -> String {
+        let r = self.cumulative(idx);
+
+        range(0, idx).map(|i| r[i+1] - r[i])
+                     .map(|n| n.to_string())
+                     .collect::<Vec<String>>()
+                     .connect(", ")
+    }
+
+    // Convenience method to access the last column in a culmulated calculation
+    pub fn row_sum(&mut self, idx: uint) -> &BigUint {
+        // This can never fail as we always add zero or one, so it's never empty.
+        self.cumulative(idx).last().unwrap()
+    }
+
+    fn cumulative(&mut self, idx: uint) -> &[BigUint] {
+        for l in range_inclusive(self.cache.len(), idx) {
+            let mut r : Vec<BigUint> = vec![Zero::zero()];
+
+            for x in range_inclusive(1, l) {
+                let w = {
+                    let y = &r[x-1];
+                    let z = &self.cache[l-x][min(x, l-x)];
+                    y + *z
+                };
+                r.push(w)
+            }
+            self.cache.push(r);
+        }
+
+        self.cache[idx].as_slice()
+    }
 }
 
 #[cfg(not(test))]
 fn main() {
-    let mut cache: Vec<Vec<BigUint>> = Vec::new();
-    let initial_value:BigUint = from_str("1").unwrap();
-    let initial_vector : Vec<BigUint> = vec!(initial_value);
-    cache.push(initial_vector);
+    let mut solver = Solver::new();
 
     println!("rows");
     for n in range(1u, 11) {
-        let x = n;
-        println!("{}: {}", n, row(x,&mut cache));
+        println!("{}: {}", n, solver.row_string(n));
     }
 
     println!("sums");
-
-    let x: Vec<uint> = vec!(23, 123, 1234, 12345);
-    for y in x.iter() {
-  let z = cumu(*y,&mut cache);
-  let w = z.last();
-  println!("{}: {}", y, w.unwrap());
+    for &y in [23u, 123, 1234, 12345].iter() {
+        println!("{}: {}", y, solver.row_sum(y));
     }
 }
 
-#[test]
-fn test_cumu() {
-    let mut cache: Vec<Vec<BigUint>> = Vec::new();
+#[cfg(test)]
+mod test {
+    use super::Solver;
 
-    let initial_value:BigUint = from_str("1").unwrap();
+    #[test]
+    fn test_cumulative() {
+        let mut solver = Solver::new();
+        let t = |n: uint, expected: &str| {
+            assert_eq!(solver.row_sum(n), &from_str(expected).unwrap())
+        };
 
-    let initial_vector : Vec<BigUint> = vec!(initial_value);
-    cache.push(initial_vector);
-
-
-    let a: Vec<uint> = vec!(23, 123, 1234);
-    let b: Vec<BigUint> = vec!(
-        from_str("1255").unwrap(),
-        from_str("2552338241").unwrap(),
-        from_str("156978797223733228787865722354959930").unwrap());
-
-    let mut n=0;
-    for y in a.iter() {
-        let z = cumu(*y,&mut cache);
-        let w = z.last().unwrap();
-        assert!(w == &b[n]);
-        n= n+1;
+        t(23, "1255");
+        t(123, "2552338241");
+        t(1234, "156978797223733228787865722354959930");
     }
-}
 
 
-#[test]
-fn test_row() {
+    #[test]
+    fn test_row() {
+        let mut solver = Solver::new();
+        let t = |n: uint, expected: &str| {
+            assert_eq!(solver.row_string(n).as_slice(), expected);
+        };
 
-    let mut cache: Vec<Vec<BigUint>> = Vec::new();
-
-    let initial_value:BigUint = from_str("1").unwrap();
-
-    let initial_vector : Vec<BigUint> = vec!(initial_value);
-    cache.push(initial_vector);
-
-    let a: String = from_str("1, 2, 1, 1, ").unwrap();
-
-    let x = 4;
-    assert!(a == row(x,&mut cache));
-
-
+        t(1, "1");
+        t(2, "1, 1");
+        t(3, "1, 1, 1");
+        t(4, "1, 2, 1, 1");
+        t(5, "1, 2, 2, 1, 1");
+        t(6, "1, 3, 3, 2, 1, 1");
+    }
 }
