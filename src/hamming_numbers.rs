@@ -14,17 +14,16 @@ fn int_to_biguint(i: int) -> BigUint {
 
 #[cfg(not(test))]
 fn main() {
-    let mut hamming = Hamming::new(1691);
+    let hamming = Hamming::new(100);
 
-    println!("first 20 Hamming numbers")
-    for _ in range(0u,20) {
-        print!("{} ", hamming.next().unwrap());
+    for (idx, h) in hamming.enumerate() {
+        match idx + 1 {
+            1..20 => print!("{} ", h),
+            i @ 1691 | i @ 1000000 => println!("\n{}th number: {}", i, h),
+            i if i < 1000000 =>  continue ,
+            _ => break
+        }
     }
-
-    println!("\n\n1691st Hamming number");
-    // we've already iterated over the first 20 numbers
-    // so to get at number 1691 we have to subtract 20
-    println!("{}",hamming.nth(1691-20).unwrap())
 }
 
 // Hamming numbers are multiples
@@ -56,7 +55,7 @@ impl Hamming {
 
     // adds the next multiple (x2, x3, x5)
     // to the queues
-    fn enqueue(&self, n: BigUint) {
+    fn enqueue(&self, n: &BigUint) {
         self.q2.push(n * int_to_biguint(2));
         self.q3.push(n * int_to_biguint(3));
         self.q5.push(n * int_to_biguint(5));
@@ -71,18 +70,20 @@ impl Iterator<BigUint> for Hamming {
     // candidate and extract it as the next Hamming number
     fn next(&mut self) -> Option<BigUint> {
         let (head2, head3, head5) =
-            (   self.q2.peek().unwrap(),
-                self.q3.peek().unwrap(),
-                self.q5.peek().unwrap());
+            ( self.q2.peek().unwrap(),
+              self.q3.peek().unwrap(),
+              self.q5.peek().unwrap());
 
-        let n = min(head2.clone(), min(head3.clone(), head5.clone()));
+        let n = min(&head2, min(&head3, &head5));
 
-        if *head2 == n {self.q2.pop();}
-        if *head3 == n {self.q3.pop();}
-        if *head5 == n {self.q5.pop();}
+        let h2 = { if &head2 == n { self.q2.pop() } else { None} };
+        let h3 = { if &head3 == n { self.q3.pop() } else { None} };
+        let h5 = { if &head5 == n { self.q5.pop() } else { None} };
 
-        self.enqueue(n.clone());
-        Some(n)
+        let m = h2.or(h3).or(h5).unwrap();
+
+        self.enqueue(&m);
+        Some(m)
     }
 }
 
@@ -100,9 +101,9 @@ fn create() {
 #[test]
 fn try_enqueue() {
     let h = Hamming::new(5);
-    h.enqueue(int_to_biguint(1));
-    h.enqueue(int_to_biguint(2));
-    h.enqueue(int_to_biguint(3));
+    h.enqueue(&int_to_biguint(1));
+    h.enqueue(&int_to_biguint(2));
+    h.enqueue(&int_to_biguint(3));
 
     assert!(h.q2.pop().unwrap() == int_to_biguint(1));
     assert!(h.q3.pop().unwrap() == int_to_biguint(1));
