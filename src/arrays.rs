@@ -8,39 +8,35 @@ fn create_array() {
 	let empty_vec: Vec<int> = vec![];
 	assert!(empty_vec.len() == 0);
 
-	let prepopulated_vec = vec![1i, 2i, 3i];
+	let prepopulated_vec = vec![1i, 2, 3];
 	assert!(prepopulated_vec.len() == 3);
 
-	// Three strings.
-	let string_vec = vec!(
-		"Foo".to_string(),
-		"Bar".to_string(),
-		"Baz".to_string()
-	);
+	// Three string slices.
+	let string_vec = vec!["Foo", "Bar", "Baz"];
 	assert!(string_vec.len() == 3);
 }
 
 #[test]
 fn add_to_array() {
 	// Mutatable adding.
-	let mut a_vec: Vec<int> = vec![];
+	let mut a_vec = vec![];
 	a_vec.push(1i);
-	assert!(a_vec == vec![1i]);
+	assert_eq!(a_vec[0], 1);
 
 	// Immutable adding.
-	let b_vec = vec![2i, 3i, 4i];
+	let b_vec = vec![2, 3, 4];
 	let c_vec = a_vec.append(b_vec.as_slice());
-	assert!(c_vec == vec![1i, 2i, 3i, 4i]);
+	assert_eq!(c_vec.as_slice(), &[1, 2, 3, 4]);
 }
 
 #[test]
 fn retrieving_from_array() {
 	// Indexing.
-	let a_vec = vec![1i, 2i, 3i];
+	let a_vec = vec![1i, 2, 3];
 	assert!(a_vec[0] == 1i);
 
 	// A full copy of the vector, but mutable.
 	let mut mut_vec = a_vec.clone();
-	assert!(mut_vec.pop() == Some(3i));
-	assert!(mut_vec == vec![1i, 2i]);
+	assert_eq!(mut_vec.pop(), Some(3));
+	assert_eq!(mut_vec.as_slice(), &[1, 2]);
 }
