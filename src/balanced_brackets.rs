@@ -1,72 +1,70 @@
 // Implements http://rosettacode.org/wiki/Balanced_brackets
 
-#[cfg(not(test))]
-use std::rand::random;
-
-// Returns true if the brackets are balanced
-fn check_balanced(bracket_str: &str) -> bool {
-    let mut count = 0i;
-
-    for bracket in bracket_str.chars() {
-        match bracket {
-            '[' => {
-                count += 1;
-            }
-            ']' => {
-                count -= 1;
-                if count < 0 {
-                    return false;
-                }
-            }
-            _ => { fail!("Strings containing characters other than brackets are not allowed"); }
-        }
-    }
-
-    count == 0
+trait Balanced {
+    /// Returns true if the brackets are balanced
+    fn is_balanced(&self) -> bool;
 }
 
-// Generates random brackets
+impl<'a> Balanced for &'a str {
+    fn is_balanced(&self) -> bool {
+        let mut count = 0i;
+
+        for bracket in self.chars() {
+            let change = match bracket {
+                '[' => 1,
+                ']' => -1,
+                _ => fail!("Strings should only contain brackers")
+            };
+
+            count += change;
+            if count < 0 { return false; }
+        }
+
+        count == 0
+    }
+}
+
+// For convenience this delegates to it's slice form
+impl Balanced for String {
+    fn is_balanced(&self) -> bool { self.as_slice().is_balanced() }
+}
+
+/// Generates random brackets
 #[cfg(not(test))]
 fn generate_brackets(num: uint) -> String {
-    let mut brackets = String::new();
+    use std::rand::random;
 
-    for _ in range(0, num) {
-        if random() {
-            brackets.push_char('[')
-        } else {
-            brackets.push_char(']')
-        }
-    }
-
-    brackets
+    range(0, num).fold(String::new(), |mut out, _| {
+        let next = if random() { '[' } else { ']' };
+        out.push_char(next);
+        out
+    })
 }
 
 #[cfg(not(test))]
 fn main() {
-    for i in range (0u, 10u)
-    {
+    for i in range (0u, 10) {
         let brackets = generate_brackets(i);
-        let balanced = check_balanced(brackets.as_slice());
 
-        println!("{:s}    {:b}", brackets, balanced)
+        println!("{:s}    {:b}", brackets, brackets.is_balanced())
     }
 }
 
 #[test]
 fn test_empty_string() {
-    assert!(check_balanced(""));
+    assert!("".is_balanced());
 }
 
 #[test]
 fn test_wrong_brackets() {
-    assert!(!check_balanced("]["));
-    assert!(!check_balanced("][]["));
-    assert!(!check_balanced("[]][[]"));
+    assert!(!"][".is_balanced());
+    assert!(!"][][".is_balanced());
+    assert!(!"[]][[]".is_balanced());
 }
 
 #[test]
 fn test_good_brackets() {
-    assert!(check_balanced("[]"));
-    assert!(check_balanced("[][]"));
-    assert!(check_balanced("[[][]]"));
+    assert!("[]".is_balanced());
+    assert!("[][]".is_balanced());
+    assert!("[[][]]".is_balanced());
 }
