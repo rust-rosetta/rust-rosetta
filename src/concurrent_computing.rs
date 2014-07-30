@@ -1,7 +1,5 @@
 // Implements http://rosettacode.org/wiki/Concurrent_computing
 // not_tested
-extern crate rand;
-
 use std::io::timer::sleep;
 use std::rand::random;
 
