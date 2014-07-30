@@ -1,36 +1,31 @@
 // Implements http://rosettacode.org/wiki/Binary_digits
-use std::vec::Vec;
-use std::string::String;
+use std::iter::range_inclusive;
 
-#[cfg(not(test))]
-fn main() {
-    let bins=binaries(16u);
-    for s in bins.iter() {
-        println!("{}", s);
+trait BinaryString {
+    fn to_binary_string(&self) -> String;
+}
+
+impl BinaryString for uint {
+    fn to_binary_string(&self) -> String {
+        format!("{:t}", *self)
     }
 }
 
-fn binaries(n:uint) -> Vec<String> {
-    range(0, n).map(|i| format!("{:t}", i)).collect()
+#[cfg(not(test))]
+fn main() {
+    for s in range_inclusive(0, 16u) {
+        println!("{}", s.to_binary_string());
+    }
 }
 
 #[test]
 fn test_digits() {
-    let bins=binaries(16u);
-    assert_eq!(bins, vec![String::from_str("0")
-                        ,String::from_str("1")
-                        ,String::from_str("10")
-                        ,String::from_str("11")
-                        ,String::from_str("100")
-                        ,String::from_str("101")
-                        ,String::from_str("110")
-                        ,String::from_str("111")
-                        ,String::from_str("1000")
-                        ,String::from_str("1001")
-                        ,String::from_str("1010")
-                        ,String::from_str("1011")
-                        ,String::from_str("1100")
-                        ,String::from_str("1101")
-                        ,String::from_str("1110")
-                        ,String::from_str("1111")]);
+    let expected = ["0", "1", "10", "11",
+                    "100", "101", "110", "111",
+                    "1000", "1001", "1010", "1011",
+                    "1100", "1101", "1110", "1111"];
+
+    for (n, expected) in range_inclusive(0, 16u).zip(expected.iter()) {
+        assert_eq!(n.to_binary_string().as_slice(), *expected);
+    }
 }
