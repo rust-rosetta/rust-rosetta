@@ -26,15 +26,14 @@ fn main() {
         let line = input.read_line().unwrap();
         match line.as_slice().trim() {
             "q" => break,
-            input if check_values(sample.as_mut_slice(), input) => {
+            input => if check_values(sample.as_mut_slice(), input) {
                     let mut p = Parser :: new(input);
                     match p.parse() {
                         Ok(i) if i==24f32 => println!("you made it!"),
                         Ok(i) => println!("you entered {}, try again!", i),
                         Err(s)  => println!("{}",s)
                     };
-                }
-            _ => println!("unrecognized input, try again")
+                } else { println!("unrecognized input, try again")}
         }
     }
 }
