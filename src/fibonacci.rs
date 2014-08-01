@@ -1,66 +1,68 @@
 // Implements http://rosettacode.org/wiki/Fibonacci_sequence
 #[cfg(not(test))]
 fn main() {
-    let fns=vec![
-        (fib_recursive, "recursive implementation"),
-        (fib_tail_recursive, "tail recursive implementation"),
-        (fib_iterative, "iterative implementation")];
+    let fns = vec![(fib_recursive, "recursive"),
+                   (fib_tail_recursive, "tail recursive"),
+                   (fib_iterative, "iterative")];
 
     for (f, desc) in fns.move_iter() {
-        let r: Vec<u64> = range(0u64, 10).map(|i| f(i)).collect();
-        println!("{}:\n {}\n", desc, r);
+        let r = range(0u64, 10).map(|i| f(i)).collect::<Vec<u64>>();
+        println!("{} implementation:\n{}\n", desc, r);
     }
 }
 
 // Fibonacci "classic" recursive version
-// not tail recursive (it's going to blow the stack
-// for n too high)
+// not tail recursive (it's going to blow the stack for n too high)
 fn fib_recursive(n: u64) -> u64 {
     match n {
-        n if n<2 => n,
-        m => fib_recursive(m - 1) + fib_recursive(m - 2)
+        0 | 1 => n,
+        n => fib_recursive(n - 1) + fib_recursive(n - 2)
     }
 }
 
 // tail recursive version
 fn fib_tail_recursive(n: u64) -> u64 {
-        fn in_fib(n : u64, current : u64, next : u64) -> u64 {
-            match n {
-                0 => current,
-                _ => in_fib(n - 1, next, current + next)
-            }
+    fn in_fib(n : u64, current : u64, next : u64) -> u64 {
+        match n {
+            0 => current,
+            n => in_fib(n - 1, next, current + next)
         }
-        in_fib(n, 0, 1)
+    }
+
+    in_fib(n, 0, 1)
 }
 
 // iterative version
 fn fib_iterative(n: u64) -> u64 {
-    let (mut fib1, mut fib2) = (0u64, 1u64);
-    let mut fib = n;
+    let (mut cur, mut next) = (0u64, 1u64);
 
-    for _ in range(1u64,n) {
-        fib = fib1 + fib2;
-        fib1 = fib2;
-        fib2 = fib;
+    for _ in range(0u64, n) {
+        let tmp = cur + next;
+        cur = next;
+        next = tmp;
     }
-    fib
+
+    cur
 }
 
-// helper function to test that all versions of the fib function
-// return the expected values.
 #[cfg(test)]
-fn tester(f: fn(u64)->u64) {
-    let exp = [0u64,1,1,2,3,5,8,13,21,34];
-    for i in range(0u64, 10) {
-        let ret=f(i);
-        assert_eq!(ret, exp[i as uint]);
-    }
-}
+mod test {
+    use super::{fib_recursive, fib_iterative, fib_tail_recursive};
 
-#[test]
-fn fib_values() {
-    let fns=vec![fib_recursive, fib_tail_recursive, fib_iterative];
-    for &f in fns.iter() {
-        tester(f);
+    // helper function to test that all versions of the fib function
+    // return the expected values.
+    fn tester(f: fn(u64) -> u64) {
+        let exp = [0u64, 1, 1, 2, 3, 5, 8, 13, 21, 34];
+        for (i, expected) in range(0u64, 10).zip(exp.iter()) {
+            assert_eq!(f(i), *expected);
+        }
+    }
+
+    #[test]
+    fn fib_values() {
+        let fns = vec![fib_recursive, fib_tail_recursive, fib_iterative];
+        for &f in fns.iter() {
+            tester(f);
+        }
     }
 }
