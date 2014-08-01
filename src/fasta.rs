@@ -2,38 +2,30 @@
 // Fasta reader in Rust 0.11-pre
 // Ported and adapted from rosettacode D example
 
-use std::path::Path;
 use std::io::fs::File;
 use std::io::BufferedReader;
-use std::string::String;
 
-// Best to use type parameter <T: Buffer> to accept all kinds of buffers
+// We use a type parameter bound `<T: Buffer>` to accept all kinds of buffers
 fn format_fasta<T: Buffer>(reader: &mut T) -> String {
-    let mut result = String::new();
-
-    for line in reader.lines() {
-        // Using the same name for the next variable will just shadow the previous one
-        let ln = line.unwrap();
-
+    reader.lines().map(|l| l.unwrap()).fold(String::new(), |mut out, line| {
         // We need to trim new lines
-        let ln = ln.as_slice().trim();
+        let ln = line.as_slice().trim();
 
         // Lines that begin with '>' require special treatment
-        if ln.slice(0,1) == ">" {
-            if result.len() > 0 {
-                result.push_char('\n');
+        match ln.slice_to(1) {
+            ">" => {
+                if out.len() > 0 {
+                    out.push_char('\n');
+                }
+
+                // Push skipping the '>'
+                out.append(ln.slice_from(1))
+                   .append(": ")
             }
-
-            // Push skipping the '>'
-            result.push_str(ln.slice_from(1));
-            result.push_str(": ");
-        } else {
             // Other lines are just pushed
-            result.push_str(ln);
+            _ => out.append(ln)
         }
-    }
-
-    result
+    })
 }
 
 fn read_file() -> String {
