@@ -1,74 +1,87 @@
-// Implements http://rosettacode.org/wiki/Hamming_numbers
-// port of one of the scala solutions
 extern crate num;
-use num::bigint::BigUint;
+use num::bigint::{BigUint, ToBigUint};
 use std::cmp::min;
 use std::sync::spsc_queue::Queue;
 
-// helper function to avoid repeating
-// FromPrimitive::from_int(i).unwrap()
-// for every BigUint creation
-fn int_to_biguint(i: int) -> BigUint {
-    FromPrimitive::from_int(i).unwrap()
-}
-
+// needed because hamming_numbers_alt uses this as a library
+#[allow(dead_code)]
 #[cfg(not(test))]
 fn main() {
-    let hamming = Hamming::new(100);
+    let hamming : Hamming<BigUint> = Hamming::new(100);
 
-    for (idx, h) in hamming.enumerate() {
+    for (idx, h) in hamming.enumerate().take(1_000_000) {
         match idx + 1 {
-            1..20 => print!("{} ", h),
-            i @ 1691 | i @ 1000000 => println!("\n{}th number: {}", i, h),
-            i if i < 1000000 =>  continue ,
-            _ => break
+            1..20 => print!("{} ", h.to_biguint().unwrap()),
+            i @ 1691 | i @ 1000000 => println!("\n{}th number: {}", i, h.to_biguint().unwrap()),
+            _ =>  continue
         }
     }
+}
+//representing a Hamming number as a BigUint
+impl HammingNumber for BigUint {
+    fn times_2(&self)-> BigUint {self * 2u.to_biguint().unwrap()}
+    fn times_3(&self)-> BigUint {self * 3u.to_biguint().unwrap()}
+    fn times_5(&self)-> BigUint {self * 5u.to_biguint().unwrap()}
+    fn one() -> BigUint {1u.to_biguint().unwrap()}
+}
+
+#[allow(dead_code)]
+#[inline(always)]
+pub fn one<T: HammingNumber>() -> T { HammingNumber :: one() }
+
+// representation of a Hamming number
+// allows to abstract on how the hamming number is stored
+// i.e. as BigUint diretly or just as the powers of 2, 3 and 5 used to build it
+pub trait HammingNumber : Eq + Ord + Send + ToBigUint {
+    fn times_2(&self)-> Self;
+    fn times_3(&self)-> Self;
+    fn times_5(&self)-> Self;
+    fn one() -> Self;
 }
 
 // Hamming numbers are multiples
 // of 2, 3 or 5. We keep them on three
 // queues and extract the lowest (leftmost) value
 // from the three queues at each iteration
-struct Hamming {
-    q2: Queue<BigUint>,
-    q3: Queue<BigUint>,
-    q5: Queue<BigUint>
+pub struct Hamming<T> {
+    q2: Queue<T>,
+    q3: Queue<T>,
+    q5: Queue<T>
 }
 
-impl Hamming {
+impl<T: HammingNumber> Hamming<T> {
     // constructor method
     // n initializes the capacity of the queues
-    fn new(n: uint) -> Hamming {
+    pub fn new(n: uint) -> Hamming<T> {
         let h = Hamming {
-            q2: Queue::new(n),
-            q3: Queue::new(n),
-            q5: Queue::new(n)
+            q2: unsafe { Queue::new(n) },
+            q3: unsafe { Queue::new(n) },
+            q5: unsafe { Queue::new(n) }
         };
 
-        h.q2.push(int_to_biguint(1));
-        h.q3.push(int_to_biguint(1));
-        h.q5.push(int_to_biguint(1));
+        h.q2.push(HammingNumber::one());
+        h.q3.push(HammingNumber::one());
+        h.q5.push(HammingNumber::one());
 
         h
     }
 
     // adds the next multiple (x2, x3, x5)
     // to the queues
-    fn enqueue(&self, n: &BigUint) {
-        self.q2.push(n * int_to_biguint(2));
-        self.q3.push(n * int_to_biguint(3));
-        self.q5.push(n * int_to_biguint(5));
+    pub fn enqueue(&self, n: &T) {
+        self.q2.push(n.times_2());
+        self.q3.push(n.times_3());
+        self.q5.push(n.times_5());
     }
 }
 
 // implements an Iterator, so we
 // can extract Hamming numbers more easily
-impl Iterator<BigUint> for Hamming {
+impl<T: HammingNumber> Iterator<T> for Hamming<T> {
     // the core of the work is done in the next method.
     // We check which of the 3 queues has the lowest
     // candidate and extract it as the next Hamming number
-    fn next(&mut self) -> Option<BigUint> {
+    fn next(&mut self) -> Option<T> {
         let (head2, head3, head5) =
             ( self.q2.peek().unwrap(),
               self.q3.peek().unwrap(),
@@ -89,32 +102,30 @@ impl Iterator<BigUint> for Hamming {
 
 #[test]
 fn create() {
-    let h = Hamming::new(5);
-    h.q2.push(int_to_biguint(1));
-    h.q2.push(int_to_biguint(2));
-    h.q2.push(int_to_biguint(4));
+    let h = Hamming::<BigUint>::new(5);
+    h.q2.push(one::<BigUint>());
+    h.q2.push(one::<BigUint>().times_3());
 
     let _ = h.q2.peek();
-    assert!(h.q2.pop().unwrap() == int_to_biguint(1));
+    assert!(h.q2.pop().unwrap() == one::<BigUint>());
 }
 
 #[test]
 fn try_enqueue() {
-    let h = Hamming::new(5);
-    h.enqueue(&int_to_biguint(1));
-    h.enqueue(&int_to_biguint(2));
-    h.enqueue(&int_to_biguint(3));
+    let h = Hamming::<BigUint>::new(5);
+    h.enqueue(&one::<BigUint>());
+    h.enqueue(&one::<BigUint>().times_2());
 
-    assert!(h.q2.pop().unwrap() == int_to_biguint(1));
-    assert!(h.q3.pop().unwrap() == int_to_biguint(1));
-    assert!(h.q5.pop().unwrap() == int_to_biguint(1));
-    assert!(h.q2.pop().unwrap() == int_to_biguint(2));
-    assert!(h.q3.pop().unwrap() == int_to_biguint(3));
-    assert!(h.q5.pop().unwrap() == int_to_biguint(5));
+    assert!(h.q2.pop().unwrap() == one::<BigUint>());
+    assert!(h.q3.pop().unwrap() == one::<BigUint>());
+    assert!(h.q5.pop().unwrap() == one::<BigUint>());
+    assert!(h.q2.pop().unwrap() == one::<BigUint>().times_2());
+    assert!(h.q3.pop().unwrap() == one::<BigUint>().times_3());
+    assert!(h.q5.pop().unwrap() == one::<BigUint>().times_5());
  }
 
 #[test]
 fn hamming_iter() {
-    let mut hamming = Hamming::new(20);
-    assert!(hamming.nth(19).unwrap() == int_to_biguint(36));
+    let mut hamming = Hamming::<BigUint>::new(20);
+    assert!(hamming.nth(19).unwrap().to_biguint() == 36u.to_biguint());
 }
