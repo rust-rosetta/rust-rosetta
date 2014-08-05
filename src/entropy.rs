@@ -4,20 +4,21 @@ use std::str::StrSlice;
 use std::collections::hashmap::HashMap;
 
 pub fn shannon_entropy(s: &str) -> f64 {
-    let mut map = HashMap::<char, uint>::new();
+    let mut map = HashMap::new();
 
     // Count occurrences of each char
     for c in s.chars() {
-        map.insert_or_update_with(c, 1, |_,v| *v += 1);
+        map.insert_or_update_with(c, 1u, |_,v| *v += 1);
     }
 
     // Calculate the entropy
     let len = s.len() as f64;
-    map.iter().fold(0f64, |acc, (_, nb)| {
-        let p = (*nb as f64) / len;
+    map.iter().fold(0f64, |acc, (_, &nb)| {
+        let p = nb as f64 / len;
         acc - p * p.log2()
     })
 }
+
 // Needed so fibonacci_word compiles cleanly, because fibonacci_word
 // uses this code as a library
 #[allow(dead_code)]
@@ -25,7 +26,6 @@ pub fn shannon_entropy(s: &str) -> f64 {
 fn main() {
     println!("{:f}", shannon_entropy("1223334444"));
 }
-
 
 #[test]
 fn test_entropy() {

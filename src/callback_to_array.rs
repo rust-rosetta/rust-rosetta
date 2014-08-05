@@ -2,13 +2,16 @@
 // not_tested
 
 fn main () {
-    let array = [1,2,3,4,5];
+    let array = &[1,2,3,4,5];
+    println!("{}", array);
 
-    println!("{}", array.as_slice());
-
-    // The map does not mofify the array. It just returns an iterator.
-    // We iterate through the results of map and collect them into a vector.
-    println!("{}", array.iter().map(callback).collect::<Vec<int>>());
+    println!("{}", array.iter()
+                        // The map does not modify the original array.
+                        // It just returns a 'lazy' iterator.
+                        .map(callback)
+                        // To get a result, we 'consume' the iterator by
+                        // collecting it into a `Vec`.
+                        .collect::<Vec<int>>());
 }
 
 fn callback(val: &int) -> int {

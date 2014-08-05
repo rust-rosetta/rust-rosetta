@@ -26,14 +26,14 @@ fn factorial_loop(n: uint) -> uint {
 
 #[cfg(not(test))]
 fn main () {
-	for i in range(1u, 10) {
-		println!("{}", factorial_recursive(i))
-	}
-	for i in range(1u, 10) {
-		println!("{}", factorial_iterative(i))
-	}
-    for i in range(1u, 10) {
-        println!("{}", factorial_loop(i));
+    let fs = vec![("Recursive", factorial_recursive),
+                  ("Iterative", factorial_iterative),
+                  ("Looooooop", factorial_loop)];
+	for (name, f) in fs.move_iter() {
+        println!("---------\n{}", name)
+        for i in range(1u, 10) {
+            println!("{}", f(i))
+        }
     }
 }
 
@@ -45,22 +45,33 @@ mod tests {
     use super::{factorial_recursive, factorial_iterative, factorial_loop};
 
     // Tests
+    fn t(f: |uint| -> uint) {
+        assert_eq!(f(0), 1);
+        assert_eq!(f(1), 1);
+        assert_eq!(f(2), 2);
+        assert_eq!(f(3), 6);
+        assert_eq!(f(4), 24);
+        assert_eq!(f(5), 120);
+        assert_eq!(f(6), 720);
+        assert_eq!(f(7), 5040);
+        assert_eq!(f(8), 40320);
+        assert_eq!(f(9), 362880);
+        assert_eq!(f(10), 3628800);
+    }
+
     #[test]
     fn test_fac_recursive() {
-        assert!(factorial_recursive(0) == 1);
-        assert!(factorial_recursive(10) == 3628800);
+        t(factorial_recursive)
     }
 
     #[test]
     fn test_fac_iterative() {
-        assert!(factorial_iterative(0) == 1);
-        assert!(factorial_iterative(10) == 3628800);
+        t(factorial_iterative)
     }
 
     #[test]
     fn test_fac_loop() {
-        assert!(factorial_loop(0) == 1);
-        assert!(factorial_loop(10) == 3628800);
+        t(factorial_loop)
     }
 
     // Benchmarks
