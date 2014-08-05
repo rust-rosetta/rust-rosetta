@@ -40,11 +40,11 @@ impl Hamming {
     // constructor method
     // n initializes the capacity of the queues
     fn new(n: uint) -> Hamming {
-        let h = Hamming {
+        let h = unsafe { Hamming {
             q2: Queue::new(n),
             q3: Queue::new(n),
             q5: Queue::new(n)
-        };
+        } };
 
         h.q2.push(int_to_biguint(1));
         h.q3.push(int_to_biguint(1));
