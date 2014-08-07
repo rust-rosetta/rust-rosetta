@@ -15,7 +15,7 @@ fn int_to_biguint(i: int) -> BigUint {
 
 #[cfg(not(test))]
 fn main() {
-    let hamming = Hamming::new(100);
+    let hamming = Hamming::new(128);
 
     for (idx, h) in hamming.enumerate() {
         match idx + 1 {

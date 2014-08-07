@@ -1,10 +1,10 @@
 // http://rosettacode.org/wiki/ABC_Problem
 use std::collections::HashSet;
 
-static words: &'static [&'static str] = &["A", "BARK", "BOOK", "TREAT",
+static WORDS: &'static [&'static str] = &["A", "BARK", "BOOK", "TREAT",
                                          "COMMON", "SQUAD", "CONFUSE"];
 
-static blocks: &'static [&'static str] = &["BO", "XK", "DQ", "CP", "NA",
+static BLOCKS: &'static [&'static str] = &["BO", "XK", "DQ", "CP", "NA",
                                            "GT", "RE", "TG", "QD", "FS",
                                            "JW", "HU", "VI", "AN", "OB",
                                            "ER", "FS", "LY", "PC", "ZM"];
@@ -12,12 +12,12 @@ static blocks: &'static [&'static str] = &["BO", "XK", "DQ", "CP", "NA",
 #[cfg(not(test))]
 fn main() {
     println!("******\nmethod 1\n******");
-    for word in words.iter() {
+    for word in WORDS.iter() {
         println!("can {} be built? {}", word, can_be_built_input_first(*word))
     }
 
     println!("\n******\nmethod 2\n******");
-    for word in words.iter() {
+    for word in WORDS.iter() {
         println!("can {} be built? {}", word, can_be_built_blocks_first(*word))
     }
 }
@@ -30,7 +30,7 @@ fn can_be_built_input_first(input: &str) -> bool {
     let mut used = HashSet::new();
 
     for chr in input.as_slice().chars() {
-        for (ind, block) in blocks.iter().enumerate() {
+        for (ind, block) in BLOCKS.iter().enumerate() {
             if !used.contains(&ind) && block.contains_char(chr) {
                 used.insert(ind);
                 break
@@ -52,7 +52,7 @@ fn can_be_built_input_first(input: &str) -> bool {
 fn can_be_built_blocks_first(input: &str) -> bool {
     let mut matched = HashSet::new();
 
-    blocks.iter().any(|block| {
+    BLOCKS.iter().any(|block| {
         for letter in block.chars() {
             let needle = input.char_indices().find(|&(i, c)| {
                 // See if any of the letters in the block can be used for this word
@@ -83,7 +83,7 @@ fn can_be_built_blocks_first(input: &str) -> bool {
 fn test_solutions() {
     let expected = [true, true, false, true, false, true, true];
 
-    for (&word, &exp) in words.iter().zip(expected.iter()) {
+    for (&word, &exp) in WORDS.iter().zip(expected.iter()) {
         assert_eq!(can_be_built_input_first(word), exp);
         assert_eq!(can_be_built_blocks_first(word), exp);
     }
