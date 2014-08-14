@@ -21,7 +21,7 @@ fn compress(original_str: &str) -> Vec<int> {
       match dictionary.find(&wc) {
          Some(_) => w = wc,
          None => {
-            result.push(*dictionary.get(&w));
+            result.push(dictionary[w]);
             dictionary.insert(wc, dict_size);
             dict_size += 1;
             w = vec!(c);
@@ -30,7 +30,7 @@ fn compress(original_str: &str) -> Vec<int> {
    }
 
    if w.len() > 0 {
-      result.push(*dictionary.get(&w));
+      result.push(dictionary[w]);
    }
 
    result
