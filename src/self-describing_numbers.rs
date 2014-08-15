@@ -1,6 +1,8 @@
 // http://rosettacode.org/wiki/Self-describing_numbers
 
 fn is_self_describing(mut n: u64) -> bool {
+
+    // Compute the length of the number (the number of digits)
     let mut tmp = n;
     let mut len = 0u;
     while tmp > 0 {
@@ -8,10 +10,13 @@ fn is_self_describing(mut n: u64) -> bool {
         tmp /= 10;
     }
 
+    // In base 10, numbers with more than 10 digits can't be self-describing
     if len > 10 || len == 0 {
         return false;
     }
 
+    // Go through each digit of the number, count how many times each digit occurs, and then
+    // subtract how often each digit is supposed to occur according to the number
     let mut cnt = [0i, ..10];
     for i in range(0u, len) {
         cnt[(n % 10) as uint] += 1;
@@ -19,11 +24,13 @@ fn is_self_describing(mut n: u64) -> bool {
         n /= 10;
     }
 
+    // If the number is self-describing, then all counters should be zero
     cnt.iter().all(|&c| c == 0)
 }
 
 #[cfg(not(test))]
 fn main() {
+    // Print out all self-describing numbers below 10^8
     for i in range(0, 100_000_000) {
         if is_self_describing(i) {
             println!("{} is self-describing", i);
