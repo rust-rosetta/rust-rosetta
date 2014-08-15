@@ -100,6 +100,7 @@ Rosetta Code                                                                    
 [Reverse words in a string](http://rosettacode.org/wiki/Reverse_words_in_a_string)                 | [reverse_words_str.rs](src/reverse_words_str.rs)
 [Rot-13](http://rosettacode.org/wiki/Rot-13)                                                       | [rot13.rs](src/rot13.rs)
 [Run-length encoding](http://rosettacode.org/wiki/Run-length_encoding)                             | [run_length_encoding.rs](src/run_length_encoding.rs)
+[Self-describing numbers](http://rosettacode.org/wiki/Self-describing_numbers)                     | [self-describing_numbers.rs](src/self-describing_numbers.rs)
 [Sequence of non-squares](http://rosettacode.org/wiki/Sequence_of_non-squares)                     | [sequence_of_non-squares.rs](src/sequence_of_non-squares.rs)
 [Set](http://rosettacode.org/wiki/Set)                                                             | [set.rs](src/set.rs)
 [Sha-1](http://rosettacode.org/wiki/SHA-1)                                                         | [sha1.rs](src/sha1.rs)
