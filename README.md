@@ -49,6 +49,7 @@ Rosetta Code                                                                    
 [Empty program](http://rosettacode.org/wiki/Empty_program)                                         | [empty.rs](src/empty.rs)
 [Entropy](http://rosettacode.org/wiki/Entropy)                                                     | [entropy.rs](src/entropy.rs)
 [Equilibrium index](http://rosettacode.org/wiki/Equilibrium_index)                                 | [equilibrium_index.rs](src/equilibrium_index.rs)
+[Evaluate binomial coefficients](http://rosettacode.org/wiki/Evaluate_binomial_coefficients)       | [binomial_coefficients.rs](src/binomial_coefficients.rs)
 [Factorial](http://rosettacode.org/wiki/Factorial)                                                 | [factorial.rs](src/factorial.rs)
 [FASTA format](http://rosettacode.org/wiki/FASTA_format)                                           | [fasta.rs](src/fasta.rs)
 [Fibonacci sequence](http://rosettacode.org/wiki/Fibonacci_sequence)                               | [fibonacci.rs](src/fibonacci.rs)
