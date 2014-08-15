@@ -1,3 +1,4 @@
+// http://rosettacode.org/wiki/Sierpinski_triangle
 // not_tested
 
 use std::iter::range_step;
