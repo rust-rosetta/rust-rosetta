@@ -31,7 +31,7 @@ fn main() {
     let a: BigUint = FromStr::from_str(a_str).unwrap();
     let b: BigUint = FromStr::from_str(b_str).unwrap();
     let m: BigUint = pow(FromPrimitive::from_int(10).unwrap(), 40);
-    println!("{}", mod_exp(a.clone(), b.clone(), m.clone()));
+    println!("{}", mod_exp(a, b, m));
 }
 
 #[test]
