@@ -93,6 +93,7 @@ Rosetta Code                                                                    
 [Power Set](http://rosettacode.org/wiki/Power_set)                                                 | [power_set.rs](src/power_set.rs)
 [Primality by Trial Division](http://rosettacode.org/wiki/Primality_by_Trial_Division)             | [primality_trial_div.rs](src/primality_trial_div.rs)
 [Prime decomposition](http://rosettacode.org/wiki/Prime_decomposition)                             | [prime_decomposition.rs](src/prime_decomposition.rs)
+[Pythagorean triples](http://rosettacode.org/wiki/Pythagorean_triples)                             | [pythagorean_triples.rs](src/pythagorean_triples.rs)
 [Quick Sort](http://rosettacode.org/wiki/Sorting_algorithms/Quicksort)                             | [quick_sort.rs](src/quick_sort.rs)
 [Range Expansion](http://rosettacode.org/wiki/Range_expansion)                                     | [range_expansion.rs](src/range_expansion.rs)
 [Read a file line by line](http://rosettacode.org/wiki/Read_a_file_line_by_line)                   | [read_file_line.rs](src/read_file_line.rs)
