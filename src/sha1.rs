@@ -143,7 +143,7 @@ impl Digest {
             h3 += d;
             h4 += e;
 
-            p = p.tailn(chunk);
+            p = p.slice_from(chunk);
         }
         [h0, h1, h2, h3, h4]
     }
@@ -170,13 +170,13 @@ impl Writer for Digest {
                 self.h=self.process_block(x);
                 self.nx = 0;
             }
-            buf_m = buf_m.tailn(n);
+            buf_m = buf_m.slice_from(n);
         }
         if buf_m.len() >= chunk {
             let n = buf_m.len() &!(chunk - 1);
             let x = self.x.slice_from(n);
             self.h=self.process_block(x);
-            buf_m = buf_m.tailn(n);
+            buf_m = buf_m.slice_from(n);
         }
         let ln=buf_m.len();
         if ln > 0 {
