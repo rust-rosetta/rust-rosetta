@@ -2,14 +2,14 @@
 
 fn strip_comments(str: &str) -> &str {
     let markers = ['#', ';'];
-    str.find(markers.as_slice()).map_or(str, |i| str.slice_to(i)).trim_right()
+    str.find(markers.as_slice()).map_or(str, |i| str.slice_to(i)).trim()
 }
 
 #[test]
 fn test_strip_comments() {
     let inputs = ["apples, pears # and bananas",
                   "apples, pears ; and bananas",
-                  "apples, pears "];
+                  "  apples, pears "];
     let output = "apples, pears";
 
     for &input in inputs.iter() {
@@ -21,7 +21,7 @@ fn test_strip_comments() {
 fn main() {
     let inputs = ["apples, pears # and bananas",
                   "apples, pears ; and bananas",
-                  "apples, pears "];
+                  "  apples, pears "];
 
     for &input in inputs.iter() {
         println!("Input: {}\nStripped: {}", input, strip_comments(input))
