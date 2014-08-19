@@ -101,6 +101,7 @@ Rosetta Code                                                                    
 [Rename a file](http://rosettacode.org/wiki/Rename_a_file)                                         | [rename_a_file.rs](src/rename_a_file.rs)
 [Repeat a string](http://rosettacode.org/wiki/Repeat_a_string)                                     | [repeat_str.rs](src/repeat_str.rs)
 [Reverse words in a string](http://rosettacode.org/wiki/Reverse_words_in_a_string)                 | [reverse_words_str.rs](src/reverse_words_str.rs)
+[Roots of unity](http://rosettacode.org/wiki/Roots_of_unity)                                        | [roots_of_unity.rs](src/roots_of_unity.rs)
 [Rot-13](http://rosettacode.org/wiki/Rot-13)                                                       | [rot13.rs](src/rot13.rs)
 [Run-length encoding](http://rosettacode.org/wiki/Run-length_encoding)                             | [run_length_encoding.rs](src/run_length_encoding.rs)
 [Self-describing numbers](http://rosettacode.org/wiki/Self-describing_numbers)                     | [self-describing_numbers.rs](src/self-describing_numbers.rs)
