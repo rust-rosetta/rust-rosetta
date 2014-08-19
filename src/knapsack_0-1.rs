@@ -1,7 +1,4 @@
-extern crate std;
 use std::cmp::max;
-use std::vec::Vec;
-
 
 // This struct is used to store our items that we want in our knap-sack.
 //
@@ -14,7 +11,6 @@ struct Want<'a> {
     weight: uint,
     value: uint
 }
-
 
 // Global, immutable allocation of our items. This is so we can reference
 // this in multiple functions.
@@ -42,7 +38,6 @@ static items : &'static [Want<'static>] = &[
     Want {name: "socks",                  weight: 4,   value: 50},
     Want {name: "book",                   weight: 30,  value: 10}
 ];
-
 
 // This is a bottom-up dynamic programming solution to the 0-1 knap-sack problem.
 //      maximize value
@@ -125,7 +120,6 @@ fn knap_01_dp<'a>(xs: &[Want<'a>], max_weight: uint) -> Vec<Want<'a>> {
     return result;
 }
 
-
 #[cfg(not(test))]
 fn main () {
     let xs = knap_01_dp(items, 400);
@@ -145,7 +139,6 @@ fn main () {
     println!("Total Value: {}", values);
 
 }
-
 
 #[test]
 fn test_dp_results() {
