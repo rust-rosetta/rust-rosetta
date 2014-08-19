@@ -321,7 +321,8 @@ impl <'a> Parser<'a> {
 
 #[cfg(test)]
 mod test {
-    use super::*;
+    use super::{Token, Lexer, Parser, Add, Sub, Mul, Div};
+    use super::{check_values, LParen, RParen, Plus, Slash, Star, Int};
 
     #[test]
     fn test_precedence() {
