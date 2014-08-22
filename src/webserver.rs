@@ -2,9 +2,9 @@
 // not_tested
 
 use std::io::net::tcp::{TcpListener, TcpStream};
-use std::io::{Acceptor, Listener};
+use std::io::{Acceptor, Listener, IoResult};
 
-fn handle_client(mut stream: TcpStream) {
+fn handle_client(mut stream: TcpStream) -> IoResult<()> {
     let response =
 b"HTTP/1.1 200 OK
 Content-Type: text/html;
@@ -23,10 +23,10 @@ charset=UTF-8
         <h1>Goodbye, world!</h1>
     </body>
 </html>";
-    match stream.write(response) {
-        Ok(_) => println!("Response sent!"),
-        Err(e) => println!("Failed sending response: {}!", e),
-    }
+
+    try!(stream.write(response));
+    let _ = stream.close_write();
+    Ok(())
 }
 
 fn main() {
@@ -38,7 +38,13 @@ fn main() {
 
     for stream in acceptor.incoming() {
         spawn(proc() {
-            handle_client(stream.unwrap());
+            match handle_client(stream.unwrap()) {
+                Ok(_) => println!("Response sent!"),
+                Err(e) => println!("Failed sending response: {}!", e),
+            }
         });
     }
+
+    // close the socket server
+    drop(acceptor);
 }
