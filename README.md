@@ -82,7 +82,7 @@ Rosetta Code                                                                    
 [Loops/Infinite](http://rosettacode.org/wiki/Loops/Infinite)                                       | [loops-infinite.rs](src/loops-infinite.rs)
 [Loops/N plus one half](http://rosettacode.org/wiki/Loops/N_plus_one_half)                         | [loops-n-plus-one-half.rs](src/loops-n-plus-one-half.rs)
 [Loops/While](http://rosettacode.org/wiki/Loops/While)                                             | [loops-while.rs](src/loops-while.rs)
-[LZW compression](http://rosettacode.org/wiki/LZW_compression)                                     | [lwz.rs](src/lwz.rs)
+[LZW compression](http://rosettacode.org/wiki/LZW_compression)                                     | [lzw.rs](src/lzw.rs)
 [Markov algorithm](http://rosettacode.org/wiki/Execute_a_Markov_algorithm)                         | [markov_algorithm.rs](src/markov_algorithm.rs)
 [MD5 implementation](http://rosettacode.org/wiki/MD5/Implementation)                               | [md5-implementation.rs](src/md5-implementation.rs)
 [Modular exponentiation](http://rosettacode.org/wiki/Modular_exponentiation)                       | [modular_exponentation.rs](src/modular_exponentiation.rs)
