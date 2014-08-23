@@ -1,4 +1,4 @@
-// http://rosettacode.org/wiki/Towers_of_Hanoi#Rust
+// http://rosettacode.org/wiki/Towers_of_Hanoi
 // not_tested
 
 fn move(n: int, from: int, to: int, via: int) {
