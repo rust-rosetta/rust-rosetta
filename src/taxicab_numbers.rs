@@ -78,11 +78,10 @@ impl Iterator<Vec<SumCubes>> for TaxicabNumbers {
 
 #[cfg(not(test))]
 fn main() {
-    use std::iter::count;
     let numbers = TaxicabNumbers::new();
-    for (at, ways) in count(1u, 1).zip(numbers.take(2006))
-                                  .filter(|&(at, _)| at <= 25 || at >= 2000) {
-        print!("{:>4u}:{:>10u}", at, ways[0].value);
+    for (at, ways) in numbers.take(2006).enumerate()
+                             .filter(|&(at, _)| at + 1 <= 25 || at + 1 >= 2000) {
+        print!("{:>4u}:{:>10u}", at + 1, ways[0].value);
         for &SumCubes{ a, b, value } in ways.iter() {
             print!(" = {:>4u}^3 + {:>4u}^3", a, b);
         }
