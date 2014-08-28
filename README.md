@@ -118,6 +118,7 @@ Rosetta Code                                                                    
 [String_concatenation](http://rosettacode.org/wiki/String_concatenation)                           | [string_concatenation.rs](src/string_concatenation.rs)
 [String matching](http://rosettacode.org/wiki/String_matching)                                     | [string_matching.rs](src/string_matching.rs)
 [Synchronous Concurrency](http://rosettacode.org/wiki/Synchronous_concurrency)                     | [synchronous_concurrency.rs](src/synchronous_concurrency.rs)
+[Taxicab numbers](http://rosettacode.org/wiki/Taxicab_numbers)                                     | [taxicab_numbers.rs](src/taxicab_numbers.rs)
 [Webserver](http://rosettacode.org/wiki/Hello_world/Web_server)                                    | [webserver.rs](src/webserver.rs)
 [Zig-zag matrix](http://rosettacode.org/wiki/Zig-zag_matrix)                                       | [zig-zag_matrix.rs](src/zig-zag_matrix.rs)
 
