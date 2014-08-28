@@ -90,6 +90,6 @@ fn test_coherence() {
 #[test]
 fn test_example() {
     let original = "TOBEORNOTTOBEORTOBEORNOT";
-    assert_eq!(compress(original).as_slice(), &[84i, 79, 66, 69, 79, 82, 78, 79, 84,
-                                                256, 258, 260, 265, 259, 261, 263]);
+    assert_eq!(compress(original).as_slice(), [84i, 79, 66, 69, 79, 82, 78, 79, 84,
+                                                256, 258, 260, 265, 259, 261, 263].as_slice());
 }

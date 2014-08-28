@@ -65,8 +65,8 @@ fn main() {
 fn test_27() {
     let seq = Hailstone::new(27).collect::<Vec<uint>>();
 
-    assert_eq!(seq.slice(0, 4), &[27, 82, 41, 124]);
-    assert_eq!(seq.slice(seq.len() - 4, seq.len()), &[8, 4, 2, 1]);
+    assert_eq!(seq.slice(0, 4), [27, 82, 41, 124].as_slice());
+    assert_eq!(seq.slice(seq.len() - 4, seq.len()), [8, 4, 2, 1].as_slice());
 }
 
 #[test]

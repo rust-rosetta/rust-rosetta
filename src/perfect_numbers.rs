@@ -16,7 +16,7 @@ fn main() {
 fn test_first_four() {
   let nums = range(2, 10_000u).filter(|&n| perfect_number(n))
                               .collect::<Vec<uint>>();
-  assert_eq!(nums.as_slice(), &[6, 28, 496, 8128]);
+  assert_eq!(nums.as_slice(), [6, 28, 496, 8128].as_slice());
 }
 
 #[test]
