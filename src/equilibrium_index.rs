@@ -21,9 +21,9 @@ fn equilibrium_indices<T: Add<T, T> + Sub<T, T> + Eq + Zero + Copy>(v: &[T]) -> 
 
 #[cfg(not(test))]
 fn main() {
-    let v = &[-7i, 1, 5, 2, -4, 3, 0];
+    let v = [-7i, 1, 5, 2, -4, 3, 0];
     let indices = equilibrium_indices(v);
-    println!("Equilibrium indices for {} are: {}", v, indices);
+    println!("Equilibrium indices for {} are: {}", v.as_slice(), indices);
 }
 
 #[test]

@@ -53,12 +53,12 @@ fn test_solution() {
                             vec![1, -5, 10, -10, 5, -1],
                             vec![1, -6, 15, -20, 15, -6, 1],
                             vec![1, -7, 21, -35, 35, -21, 7, -1]];
-    let exp_primes = &[2u, 3, 4, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47];
+    let exp_primes = [2u, 3, 4, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47];
 
     for (i, exp) in exp_coefficients.iter().enumerate() {
         assert_eq!(*exp, coefficients(i));
     }
 
     let primes: Vec<uint> = range(1u, 51).filter(|&i| is_prime(i)).collect();
-    assert_eq!(exp_primes, primes.as_slice());
+    assert_eq!(exp_primes.as_slice(), primes.as_slice());
 }

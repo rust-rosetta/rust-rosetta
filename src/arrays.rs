@@ -26,7 +26,7 @@ fn add_to_array() {
 	// Immutable adding.
 	let b_vec = vec![2, 3, 4];
 	let c_vec = a_vec.append(b_vec.as_slice());
-	assert_eq!(c_vec.as_slice(), &[1, 2, 3, 4]);
+	assert_eq!(c_vec.as_slice(), [1, 2, 3, 4].as_slice());
 }
 
 #[test]
@@ -38,5 +38,5 @@ fn retrieving_from_array() {
 	// A full copy of the vector, but mutable.
 	let mut mut_vec = a_vec.clone();
 	assert_eq!(mut_vec.pop(), Some(3));
-	assert_eq!(mut_vec.as_slice(), &[1, 2]);
+	assert_eq!(mut_vec.as_slice(), [1, 2].as_slice());
 }
