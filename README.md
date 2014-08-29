@@ -23,6 +23,7 @@ Rosetta Code                                                                    
 [ABC Problem](http://rosettacode.org/wiki/ABC_Problem)                                             | [abc_problem.rs](src/abc_problem.rs)
 [Ackermann function](http://rosettacode.org/wiki/Ackermann_function)                               | [ackermann_function.rs](src/ackermann_function.rs)
 [AKS test for primes](http://rosettacode.org/wiki/AKS_test_for_primes)                             | [aks_test_for_primes.rs](src/aks_test_for_primes.rs)
+[Align columns](http://rosettacode.org/wiki/Align_columns)                                         | [align_columns.rs](src/align_columns.rs)
 [Almost prime](http://rosettacode.org/wiki/Almost_prime)                                           | [almost_prime.rs](src/almost_prime.rs)
 [Anagrams](http://rosettacode.org/wiki/Anagrams)                                                   | [anagrams.rs](src/anagrams.rs)
 [Apply a callback to an array](http://rosettacode.org/wiki/Apply_a_callback_to_an_array)           | [callback_to_array.rs](src/callback_to_array.rs)
