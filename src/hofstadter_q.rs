@@ -1,3 +1,5 @@
+// Implements http://rosettacode.org/wiki/Hofstadter_Q_sequence
+
 #[cfg(not(test))]
 fn main() {
 	let q_array: Vec<uint> = hofstadter_q_wrapper(1000);

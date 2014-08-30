@@ -1,3 +1,5 @@
+// Implements http://rosettacode.org/wiki/Align_columns
+
 #[cfg(not(test))]
 fn main() {
 	let text: &str = "Given$a$text$file$of$many$lines,$where$fields$within$a$line$\nare$delineated$by$a$single$'dollar'$character,$write$a$program\nthat$aligns$each$column$of$fields$by$ensuring$that$words$in$each$\ncolumn$are$separated$by$at$least$one$space.\nFurther,$allow$for$each$word$in$a$column$to$be$either$left$\njustified,$right$justified,$or$center$justified$within$its$column.\n";
