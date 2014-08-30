@@ -97,11 +97,11 @@ fn build_encoding_table(tree: &HNode,
     match tree.item {
         HTree(ref data) => {
             build_encoding_table(&*data.left, table,
-                               String::from_str(start_str).append("0").as_slice());
+                               format!("{}0", start_str).as_slice());
             build_encoding_table(&*data.right, table,
-                               String::from_str(start_str).append("1").as_slice());
+                               format!("{}1", start_str).as_slice());
         },
-        HLeaf(ch)   => {table.insert(ch, String::from_str(start_str));}
+        HLeaf(ch)   => {table.insert(ch, start_str.to_string());}
     };
 }
 
