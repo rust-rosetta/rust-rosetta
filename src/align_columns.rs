@@ -1,12 +1,12 @@
 #[cfg(not(test))]
 fn main() {
-	let text: String = "Given$a$text$file$of$many$lines,$where$fields$within$a$line$\nare$delineated$by$a$single$'dollar'$character,$write$a$program\nthat$aligns$each$column$of$fields$by$ensuring$that$words$in$each$\ncolumn$are$separated$by$at$least$one$space.\nFurther,$allow$for$each$word$in$a$column$to$be$either$left$\njustified,$right$justified,$or$center$justified$within$its$column.\n".to_string();
-	let (chunks, max_lengths) = align_columns(&text);
+	let text: &str = "Given$a$text$file$of$many$lines,$where$fields$within$a$line$\nare$delineated$by$a$single$'dollar'$character,$write$a$program\nthat$aligns$each$column$of$fields$by$ensuring$that$words$in$each$\ncolumn$are$separated$by$at$least$one$space.\nFurther,$allow$for$each$word$in$a$column$to$be$either$left$\njustified,$right$justified,$or$center$justified$within$its$column.\n";
+	let (chunks, max_lengths) = align_columns(text);
 	print_aligned_columns(&chunks, &max_lengths);
 }
 
-fn align_columns(text: &String) -> (Vec<Vec<String>>, Vec<uint>) {
-	let mut lines: Vec<String> = text.as_slice().split('\n').map(|s| s.to_string()).collect();
+fn align_columns(text: &str) -> (Vec<Vec<String>>, Vec<uint>) {
+	let mut lines: Vec<String> = text.split('\n').map(|s| s.to_string()).collect();
 	let mut max_lengths: Vec<uint> = Vec::new();
 	let mut chunks: Vec<Vec<String>> = Vec::new();
 
@@ -64,8 +64,8 @@ fn print_aligned_columns(chunks: &Vec<Vec<String>>, max_lengths: &Vec<uint>) {
 
 #[test]
 fn test_result() {
-	let text: String = "Given$a$text$file$of$many$lines,$where$fields$within$a$line$\nare$delineated$by$a$single$'dollar'$character,$write$a$program\nthat$aligns$each$column$of$fields$by$ensuring$that$words$in$each$\ncolumn$are$separated$by$at$least$one$space.\nFurther,$allow$for$each$word$in$a$column$to$be$either$left$\njustified,$right$justified,$or$center$justified$within$its$column.\n".to_string();
-	let (chunks, max_lengths) = align_columns(&text);
+	let text: &str = "Given$a$text$file$of$many$lines,$where$fields$within$a$line$\nare$delineated$by$a$single$'dollar'$character,$write$a$program\nthat$aligns$each$column$of$fields$by$ensuring$that$words$in$each$\ncolumn$are$separated$by$at$least$one$space.\nFurther,$allow$for$each$word$in$a$column$to$be$either$left$\njustified,$right$justified,$or$center$justified$within$its$column.\n";
+	let (chunks, max_lengths) = align_columns(text);
 	for chunkset in chunks.iter() {
 		// the number of words in a chunkset is <= the number of values in max_lengths
 		assert!(chunkset.len() <= max_lengths.len());
