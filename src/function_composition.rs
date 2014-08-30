@@ -18,7 +18,7 @@ fn main() {
 // the future unboxed closures should
 // allow to compose closures, not just bare functions (so that environment can be captured)
 // Also returning a proc has the limitation that the composed function can only be called once
-fn compose<A, B, C>(f: fn(A) -> B, g: fn(C) -> A) -> proc(C) -> B {
+fn compose<A, B, C>(f: fn(A) -> B, g: fn(C) -> A) -> proc(C): 'static -> B {
     proc(x: C) {f(g(x))}
 }
 
