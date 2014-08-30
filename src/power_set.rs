@@ -8,7 +8,7 @@ use std::slice::Items;
 //   return {{}}
 // else if set == {a} U rest
 //   return power_set(rest) U ({a} U each set in power_set(rest))
-fn power_set<'a, T: Clone>(items: &mut Items<'a,T>) -> Vec<Vec<T>> {
+fn power_set<'a, T: Clone + 'a>(items: &mut Items<'a,T>) -> Vec<Vec<T>> {
     let mut power = Vec::new();
     match items.next() {
         None       => power.push(Vec::new()),
