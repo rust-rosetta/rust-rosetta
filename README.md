@@ -121,6 +121,7 @@ Rosetta Code                                                                    
 [String matching](http://rosettacode.org/wiki/String_matching)                                     | [string_matching.rs](src/string_matching.rs)
 [Synchronous Concurrency](http://rosettacode.org/wiki/Synchronous_concurrency)                     | [synchronous_concurrency.rs](src/synchronous_concurrency.rs)
 [Taxicab numbers](http://rosettacode.org/wiki/Taxicab_numbers)                                     | [taxicab_numbers.rs](src/taxicab_numbers.rs)
+[The ISAAC cipher](http://rosettacode.org/wiki/The_ISAAC_Cipher)                                     | [isaac.rs](src/isaac.rs)
 [Towers of Hanoi](http://rosettacode.org/wiki/Towers_of_Hanoi)                                     | [towers_of_hanoi.rs](src/towers_of_hanoi.rs)
 [Webserver](http://rosettacode.org/wiki/Hello_world/Web_server)                                    | [webserver.rs](src/webserver.rs)
 [Zig-zag matrix](http://rosettacode.org/wiki/Zig-zag_matrix)                                       | [zig-zag_matrix.rs](src/zig-zag_matrix.rs)
