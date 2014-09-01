@@ -1,4 +1,5 @@
 // http://rosettacode.org/wiki/The_ISAAC_Cipher
+// includes the XOR version of the encryption scheme
 #![feature(macro_rules)]
 use std::iter::range_step;
 
@@ -9,7 +10,7 @@ static KEY: &'static str = "this is my secret key";
 fn main () {
     let mut isaac = Isaac::new();
     isaac.seed(KEY, true);
-    let encr = isaac.vernam(MSG);
+    let encr = isaac.vernam(MSG.as_bytes());
 
     println!("msg: {}", MSG);
     println!("key: {}", KEY);
@@ -20,9 +21,9 @@ fn main () {
 
     let mut isaac = Isaac::new();
     isaac.seed(KEY, true);
-    let decr = isaac.vernam((String::from_utf8(encr).unwrap()).as_slice());
+    let decr = isaac.vernam(encr.as_slice());
 
-    print!("\nXOR dcr:");
+    print!("\nXOR dcr: ");
     for a in decr.iter() {
         print!("{}", a.to_ascii());
     }
@@ -145,8 +146,8 @@ impl Isaac {
     }
 
     /// XOR message
-    fn vernam(&mut self, msg :&str) -> Vec<u8> {
-        msg.bytes().map(|b| (self.i_rand_ascii() ^ b))
+    fn vernam(&mut self, msg :&[u8]) -> Vec<u8> {
+        msg.iter().map(|&b| (self.i_rand_ascii() ^ b))
             .collect::<Vec<u8>>()
     }
 }
@@ -162,7 +163,7 @@ mod test {
     fn encrypt() {
         let mut isaac = Isaac::new();
         isaac.seed(KEY, true);
-        let encr = isaac.vernam(MSG);
+        let encr = isaac.vernam(MSG.as_bytes());
 
         for (a, b) in encr.iter().zip(encripted.iter()) {
             assert_eq!(a, b);
@@ -175,8 +176,7 @@ mod test {
 
         let mut isaac = Isaac::new();
         isaac.seed(KEY, true);
-        let encr_msg = String::from_utf8(encripted.to_vec()).unwrap();
-        let decr = isaac.vernam(encr_msg.as_slice());
+        let decr = isaac.vernam(encripted.as_slice());
 
         for (&a, b) in decr.iter().zip(expected.bytes()) {
             assert_eq!(a, b);
