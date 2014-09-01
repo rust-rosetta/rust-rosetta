@@ -1,58 +1,80 @@
-// Implements http://rosettacode.org/wiki/Hofstadter_Q_sequence
+// Implements an iterable version of http://rosettacode.org/wiki/Hofstadter_Q_sequence
+
+// Define a struct which stores the state for the iterator.
+struct HofstadterQ {
+    next: uint,
+    memoize_vec: Vec<uint>
+}
+
+impl HofstadterQ {
+  // Define a constructor for the struct.
+    fn new() -> HofstadterQ {
+        HofstadterQ { next: 1, memoize_vec: vec![1] }
+    }
+}
+
+// Implement the hofstadter q iteration sequence.
+impl Iterator<uint> for HofstadterQ {
+    // This gets called to fetch the next item of the iterator.
+    fn next(&mut self) -> Option<uint> {
+        // Cache the current value.
+        self.memoize_vec.push(self.next);
+        // And then calculate the 'next'.
+        // First, make the four recursive calls.
+        let current: uint = self.memoize_vec.len();
+        let rec_call_1: uint = self.memoize_vec[current - 1];
+        let rec_call_2: uint = self.memoize_vec[current - 2];
+        let rec_call_3: uint = self.memoize_vec[current - rec_call_1];
+        let rec_call_4: uint = self.memoize_vec[current - rec_call_2];
+        // Then update self.next and return it.
+        self.next = rec_call_3 + rec_call_4;
+        Some(self.next)
+    }
+}
 
 #[cfg(not(test))]
 fn main() {
-	let q_array: Vec<uint> = hofstadter_q_wrapper(1000);
-	for i in range(1u, 1+q_array.len()) {
-		println!("H({}) = {}", i, q_array[i-1]);
-	}
-}
-
-// Fill up the array A from indices 0 to maxval-1 (inclusive)
-// where A[i] is equal to the Hofstadter Q sequence indexed at i+1
-fn hofstadter_q_wrapper(maxval: uint) -> Vec<uint> {
-	let mut memoize_vec: Vec<uint> = Vec::from_fn(maxval, |_| 0u);
-	// Initialize the first two elements of the array
-	*memoize_vec.get_mut(0) = 1;
-	*memoize_vec.get_mut(1) = 1;
-	// Fill up the array
-	for n in range(1u, 1+maxval) {
-		hofstadter_q(n, &mut memoize_vec);
-	}
-	// Return the array
-	memoize_vec
-}
-
-// Returns the n-th element (counting starts from 1) of the Hofstadter Q sequence
-fn hofstadter_q(n: uint, memoize_vec: &mut Vec<uint>) -> uint {
-	if (*memoize_vec)[n-1] > 0u {
-		(*memoize_vec)[n-1]
-	} else {
-		// Make the required recursive calls...
-		let rec_call_1: uint = hofstadter_q(n - 1, memoize_vec);
-		let rec_call_2: uint = hofstadter_q(n - 2, memoize_vec);
-		let rec_call_3: uint = hofstadter_q(n - rec_call_1, memoize_vec);
-		let rec_call_4: uint = hofstadter_q(n - rec_call_2, memoize_vec);
-		// ...update the memoization vector...
-		let new_val: uint = rec_call_3 + rec_call_4;
-		*memoize_vec.get_mut(n-1) = new_val;
-		// ...and return the result
-		new_val
-	}
+    // Set up the iterable.
+    let hof: HofstadterQ = HofstadterQ::new();
+    // The number of terms we want from the iterator.
+    let upto: uint = 1000;
+    // Create the iterator.
+    let mut it = hof.take(upto - 2);
+    // Print the base values.
+    println!("H(1) = 1");
+    println!("H(2) = 1");
+    // Print the rest of the sequence.
+    for i in range(3u, 1+upto) {
+        println!("H({}) = {}", i, it.next().unwrap());
+    }
 }
 
 #[test]
-fn test_result() {
-	let q_array: Vec<uint> = hofstadter_q_wrapper(1000);
-	assert_eq!(q_array[0], 1);
-	assert_eq!(q_array[1], 1);
-	assert_eq!(q_array[2], 2);
-	assert_eq!(q_array[3], 3);
-	assert_eq!(q_array[4], 3);
-	assert_eq!(q_array[5], 4);
-	assert_eq!(q_array[6], 5);
-	assert_eq!(q_array[7], 5);
-	assert_eq!(q_array[8], 6);
-	assert_eq!(q_array[9], 6);
-	assert_eq!(q_array[999], 502);
+fn test_first_ten() {
+    // Set up the iterable.
+    let hof: HofstadterQ = HofstadterQ::new();
+    // Create the iterator.
+    let mut it = hof.take(10);
+    // Test that the first ten values are as expected
+    // The first two values are hardcoded, so no need to test those.
+    let hofstadter_q_expected = vec![2,3,3,4,5,5,6,6];
+    for i in range(0u, 8) {
+        assert_eq!(hofstadter_q_expected[i], it.next().unwrap());
+    }
+}
+
+#[test]
+fn test_thousandth() {
+    // Set up the iterable.
+    let hof: HofstadterQ = HofstadterQ::new();
+    // The number of terms we want from the iterator.
+    let upto: uint = 1000;
+    // Create the iterator.
+    let mut it = hof.take(upto - 2);
+    let expected: uint = 502;
+    // Test that the upto-th term is as expected.
+    for i in range(3u, upto) {
+        it.next();
+    }
+    assert_eq!(expected, it.next().unwrap());
 }
