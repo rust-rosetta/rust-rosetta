@@ -1,12 +1,5 @@
-# Use something that's not 'ruby' so we don't set up things like
-# RVM/bundler/ruby and whatnot. Right now 'rust' isn't a language on
-# travis and it treats unknown languages as ruby
-language: c
+language: rust
 
-install:
-  - curl -O http://static.rust-lang.org/dist/rust-nightly-x86_64-unknown-linux-gnu.tar.gz
-  - tar xfz rust-nightly-x86_64-unknown-linux-gnu.tar.gz
-  - (cd rust-nightly-x86_64-unknown-linux-gnu/ && sudo ./install.sh)
 script: |
   if [[ $TRAVIS_PULL_REQUEST != 'false' ]]; then
     make changed;
