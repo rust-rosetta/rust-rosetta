@@ -42,7 +42,7 @@ fn compute_all_operations(l: &[Rational]) -> Vec<(Rational, String)> {
     match l {
         []         => vec![],
         [x]  => vec![(x, (format!("{}", x)))],
-        [x,..rest] => {
+        [x,rest..] => {
             let mut rt=Vec::new();
             for &(y, ref exp) in compute_all_operations(rest).iter() {
                 let mut sub=vec![(x * y, "*"),(x + y, "+"), (x - y, "-")];
