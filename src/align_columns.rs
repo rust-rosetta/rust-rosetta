@@ -1,9 +1,15 @@
 // Implements http://rosettacode.org/wiki/Align_columns
 
+static TEST_STR: &'static str =
+    "Given$a$text$file$of$many$lines,$where$fields$within$a$line$\nare$delineated\
+    $by$a$single$'dollar'$character,$write$a$program\nthat$aligns$each$column$of\
+    $fields$by$ensuring$that$words$in$each$\ncolumn$are$separated$by$at$least$one\
+    $space.\nFurther,$allow$for$each$word$in$a$column$to$be$either$left$\n\
+    justified,$right$justified,$or$center$justified$within$its$column.\n";
+
 #[cfg(not(test))]
 fn main() {
-	let text: &str = "Given$a$text$file$of$many$lines,$where$fields$within$a$line$\nare$delineated$by$a$single$'dollar'$character,$write$a$program\nthat$aligns$each$column$of$fields$by$ensuring$that$words$in$each$\ncolumn$are$separated$by$at$least$one$space.\nFurther,$allow$for$each$word$in$a$column$to$be$either$left$\njustified,$right$justified,$or$center$justified$within$its$column.\n";
-	let (chunks, max_lengths) = align_columns(text);
+	let (chunks, max_lengths) = align_columns(TEST_STR);
 	print_aligned_columns(&chunks, &max_lengths);
 }
 
@@ -66,8 +72,7 @@ fn print_aligned_columns(chunks: &Vec<Vec<String>>, max_lengths: &Vec<uint>) {
 
 #[test]
 fn test_result() {
-	let text: &str = "Given$a$text$file$of$many$lines,$where$fields$within$a$line$\nare$delineated$by$a$single$'dollar'$character,$write$a$program\nthat$aligns$each$column$of$fields$by$ensuring$that$words$in$each$\ncolumn$are$separated$by$at$least$one$space.\nFurther,$allow$for$each$word$in$a$column$to$be$either$left$\njustified,$right$justified,$or$center$justified$within$its$column.\n";
-	let (chunks, max_lengths) = align_columns(text);
+	let (chunks, max_lengths) = align_columns(TEST_STR);
 	for chunkset in chunks.iter() {
 		// the number of words in a chunkset is <= the number of values in max_lengths
 		assert!(chunkset.len() <= max_lengths.len());
