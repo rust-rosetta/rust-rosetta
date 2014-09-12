@@ -42,6 +42,7 @@ Rosetta Code                                                                    
 [Check input device is a terminal](http://rosettacode.org/wiki/Check_input_device_is_a_terminal)   | [input_is_terminal.rs](src/input_is_terminal.rs)
 [Check output device is a terminal](http://rosettacode.org/wiki/Check_output_device_is_a_terminal) | [output_is_terminal.rs](src/output_is_terminal.rs)
 [Check that file exists](http://rosettacode.org/wiki/Check_that_file_exists)                       | [check_file.rs](src/check_file.rs)
+[Comma quibbling](http://rosettacode.org/wiki/Comma_quibbling)                                     | [comma_quibbling.rs](src/comma_quibbling.rs)
 [Complex](http://rosettacode.org/wiki/Arithmetic/Complex)                                          | [complex.rs](src/complex.rs)
 [Concurrent computing](http://rosettacode.org/wiki/Concurrent_computing)                           | [concurrent_computing.rs](src/concurrent_computing.rs)
 [Count in octal](http://rosettacode.org/wiki/Count_in_octal)                                       | [count_in_octal.rs](src/count_in_octal.rs)
