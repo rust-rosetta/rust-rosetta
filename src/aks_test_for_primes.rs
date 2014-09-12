@@ -1,4 +1,23 @@
 // http://rosettacode.org/wiki/AKS_test_for_primes
+// need to allow dead code becaus this is used as a library
+// by pernicious numbers
+
+pub fn is_prime(p: uint) -> bool {
+    if p<2 {
+        false
+    } else {
+        let mut c = coefficients(p);
+        *c.get_mut(0) -= 1;
+        for i in range(0, (c.len() + 1) / 2) {
+            if (c[i] % (p as i64)) != 0 {
+                return false
+            }
+        }
+        true
+    }
+}
+
+#[allow(dead_code)]
 #[cfg(not(test))]
 fn main() {
     for p in range(0u, 8) {
@@ -27,21 +46,6 @@ fn coefficients(p: uint) -> Vec<i64> {
     }
 }
 
-fn is_prime(p: uint) -> bool {
-    if p<2 {
-        false
-    } else {
-        let mut c = coefficients(p);
-        *c.get_mut(0) -= 1;
-        for i in range(0, c.len()/2) {
-            if (c[i] % (p as i64)) != 0 {
-                return false
-            }
-        }
-        true
-    }
-}
-
 #[test]
 fn test_solution() {
     let exp_coefficients =  vec![
@@ -53,7 +57,7 @@ fn test_solution() {
                             vec![1, -5, 10, -10, 5, -1],
                             vec![1, -6, 15, -20, 15, -6, 1],
                             vec![1, -7, 21, -35, 35, -21, 7, -1]];
-    let exp_primes = [2u, 3, 4, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47];
+    let exp_primes = [2u, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47];
 
     for (i, exp) in exp_coefficients.iter().enumerate() {
         assert_eq!(*exp, coefficients(i));
