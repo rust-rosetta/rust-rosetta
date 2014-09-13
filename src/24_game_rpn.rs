@@ -2,11 +2,11 @@
 // Uses RPN expression 
 // Runs with rustc 0.12.0-pre-nightly (2e92c67dc 2014-08-28 23:56:20 +0000)
 
-use std::io;
-use std::rand::{task_rng, Rng};
-
 #[cfg(not(test))]
 fn main() {
+    use std::rand::{task_rng, Rng};
+    use std::io;
+
     // generating 4 numbers
     let mut rng = task_rng();
     let choices: Vec<uint> = range(1u, 5).map(|_| rng.gen_range(1u, 10)).collect();
