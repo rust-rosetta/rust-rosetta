@@ -1,6 +1,4 @@
 // http://rosettacode.org/wiki/AKS_test_for_primes
-// need to allow dead code becaus this is used as a library
-// by pernicious numbers
 
 pub fn is_prime(p: uint) -> bool {
     if p<2 {
@@ -17,6 +15,8 @@ pub fn is_prime(p: uint) -> bool {
     }
 }
 
+// need to allow dead code because this is used as a library
+// by pernicious numbers
 #[allow(dead_code)]
 #[cfg(not(test))]
 fn main() {
