@@ -96,6 +96,8 @@ Rosetta Code                                                                    
 [Palindrome detection](http://rosettacode.org/wiki/Palindrome_detection)                           | [palindrome.rs](src/palindrome.rs)
 [Parallel calculations](http://rosettacode.org/wiki/Parallel_calculations)                         | [parallel_calculations.rs](src/parallel_calculations.rs)
 [Perfect numbers](http://rosettacode.org/wiki/Perfect_numbers)                                     | [perfect_numbers.rs](src/perfect_numbers.rs)
+[Pernicious numbers](http://rosettacode.org/wiki/Pernicious_numbers)                               | [pernicious_numbers.rs](src/pernicious_numbers.rs)
+[Population count](http://rosettacode.org/wiki/Population_count)                                   | [population_count.rs](src/population_count.rs)
 [Power Set](http://rosettacode.org/wiki/Power_set)                                                 | [power_set.rs](src/power_set.rs)
 [Primality by Trial Division](http://rosettacode.org/wiki/Primality_by_Trial_Division)             | [primality_trial_div.rs](src/primality_trial_div.rs)
 [Prime decomposition](http://rosettacode.org/wiki/Prime_decomposition)                             | [prime_decomposition.rs](src/prime_decomposition.rs)
