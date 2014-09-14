@@ -1,6 +1,5 @@
 // Implements http://rosettacode.org/wiki/24_game
 // Uses RPN expression 
-// Runs with rustc 0.12.0-pre-nightly (2e92c67dc 2014-08-28 23:56:20 +0000)
 
 #[cfg(not(test))]
 fn main() {
@@ -9,16 +8,17 @@ fn main() {
 
     // generating 4 numbers
     let mut rng = task_rng();
-    let choices: Vec<uint> = range(1u, 5).map(|_| rng.gen_range(1u, 10)).collect();
+    let mut reader = io::stdin();
+    let choices = Vec::from_fn(5, |_| rng.gen_range(1u, 10));
     println!("Make 24 with the following numbers");
     
     // start the game loop
     loop {
         print!("Your numbers: {}, {}, {}, {}\n", choices[0], choices[1], choices[2], choices[3]);
-        let expr = io::stdin().read_line().ok().expect("Failed to read line!");
+        let expr = reader.read_line().ok().expect("Failed to read line!");
         if check_input(expr, &choices) { break; }
         print!("Try again? (y/n): ");
-        let choice = io::stdin().read_line().ok().expect("Failed to read line!");
+        let choice = reader.read_line().ok().expect("Failed to read line!");
         if choice.as_slice().trim() != "y" { break; }
     }
 }
@@ -26,7 +26,7 @@ fn main() {
 fn check_input(expr: String, choices: &Vec<uint>) -> bool {
     let mut stack: Vec<uint> = Vec::new();
     for token in expr.as_slice().words() {
-        if is_operator(token) {
+        if is_operator(&token) {
             let (a, b) = (stack.pop(), stack.pop());
             match (a, b) {
                 (Some(x), Some(y)) => stack.push(evaluate(y, x, token)),
@@ -39,7 +39,8 @@ fn check_input(expr: String, choices: &Vec<uint>) -> bool {
             let v: Option<uint> = from_str(token);
             match v {
                 Some(n) => {
-                    if !is_valid_number(n, choices) { 
+                    // check if the number is valid
+                    if !choices.contains(&n) {
                         println!("Cannot use {}", n); 
                         return false; 
                     }
@@ -78,22 +79,13 @@ fn evaluate(a: uint, b: uint, op: &str) -> uint {
         "+" => a + b,
         "-" => a - b,
         "*" => a * b,
-         _  => a / b, // has to be /
+        "/" => a / b,
+        _   => unreachable!()
     }
 }
 
-fn is_operator(op: &str) -> bool {
-    match op {
-        "*" | "-" | "+" | "/" => true,
-        _                     => false
-    }
-}
-
-fn is_valid_number(n: uint, choices: &Vec<uint>) -> bool {
-    for i in choices.iter() {
-        if n == *i { return true } 
-    }
-    false
+fn is_operator(op: &&str) -> bool {
+    ["*", "-", "+", "/"].contains(op)
 }
 
 #[test]
