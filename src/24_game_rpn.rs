@@ -6,9 +6,10 @@ fn main() {
     use std::rand::{task_rng, Rng};
     use std::io;
 
-    // generating 4 numbers
     let mut rng = task_rng();
     let mut reader = io::stdin();
+
+    // generating 4 numbers
     let choices = Vec::from_fn(5, |_| rng.gen_range(1u, 10));
     println!("Make 24 with the following numbers");
     
@@ -16,24 +17,24 @@ fn main() {
     loop {
         print!("Your numbers: {}, {}, {}, {}\n", choices[0], choices[1], choices[2], choices[3]);
         let expr = reader.read_line().ok().expect("Failed to read line!");
-        if check_input(expr, &choices) { break; }
+        match check_input(expr, &choices) {
+            Ok(()) => { println!("Good job!"); break; },
+            Err(e) => println!("{}", e)
+        }
         print!("Try again? (y/n): ");
         let choice = reader.read_line().ok().expect("Failed to read line!");
         if choice.as_slice().trim() != "y" { break; }
     }
 }
 
-fn check_input(expr: String, choices: &Vec<uint>) -> bool {
+fn check_input(expr: String, choices: &Vec<uint>) -> Result<(), String> {
     let mut stack: Vec<uint> = Vec::new();
     for token in expr.as_slice().words() {
         if is_operator(&token) {
             let (a, b) = (stack.pop(), stack.pop());
             match (a, b) {
                 (Some(x), Some(y)) => stack.push(evaluate(y, x, token)),
-                (_, _) => { 
-                    println!("Not a valid RPN expression!"); 
-                    return false ;
-                }
+                (_, _) => return Err("Not a valid RPN expression!".to_string())
             }
         } else {
             let v: Option<uint> = from_str(token);
@@ -41,35 +42,26 @@ fn check_input(expr: String, choices: &Vec<uint>) -> bool {
                 Some(n) => {
                     // check if the number is valid
                     if !choices.contains(&n) {
-                        println!("Cannot use {}", n); 
-                        return false; 
+                        return Err(format!("Cannot use {}", n));
                     }
                     stack.push(n) 
                 },
-                None => { 
-                    println!("Invalid input: {}", token); 
-                    return false; 
-                }
+                None => return Err(format!("Invalid input: {}", token))
             }
         }
     }
 
     let ans = stack.pop();
     if stack.len() > 0 {
-        println!("Not a valid RPN expression!");
-        return false;
+        return Err("Not a valid RPN expression!".to_string());
     }
     match ans {
         Some(x) => {
-            if x == 24 { 
-                println!("Good job!"); 
-                return true;
-            }
-            println!("Wrong answer. Result: {}", x);
+            if x == 24 { return Ok(()); }
+            return Err(format!("Wrong answer. Result: {}", x));
         }
-        None => println!("Error encountered!"),
+        None => return Err("Error encountered!".to_string()),
     }
-    false
 }
 
 // since evaluate is wrapped in is_operator the last
@@ -93,22 +85,32 @@ fn test_check_input() {
     let v1: Vec<uint> = vec![4, 3, 6, 2];
 
     // correct result
-    let result1 = check_input("4 3 * 6 2 * +".to_string(), &v1);
-    assert!(result1);
+    match check_input("4 3 * 6 2 * +".to_string(), &v1) {
+        Ok(()) => assert!(true),
+        Err(_) => assert!(false)
+    }
 
     // incorrect result
-    let result2 = check_input("4 3 + 2 6 + -".to_string(), &v1);
-    assert!(!result2);
+    match check_input("4 3 * 2 6 + -".to_string(), &v1) {
+        Ok(()) => assert!(false),
+        Err(e) => assert_eq!(e, "Wrong answer. Result: 4".to_string())
+    }
     
     // wrong numbers in input
-    let result3 = check_input("4 5 + 6 2 * -".to_string(), &v1);
-    assert!(!result3);
+    match check_input("4 5 + 6 2 * -".to_string(), &v1) {
+        Ok(()) => assert!(false),
+        Err(e) => assert_eq!(e, "Cannot use 5".to_string())
+    }
 
     // invalid chars in input
-    let result4 = check_input("4 ) + _ 2 * -".to_string(), &v1);
-    assert!(!result4);
+    match check_input("4 ) + _ 2 * -".to_string(), &v1) {
+        Ok(()) => assert!(false),
+        Err(e) => assert_eq!(e, "Invalid input: )".to_string())
+    }
 
     // invalid RPN expression
-    let result5 = check_input("4 3 + 6 2 *".to_string(), &v1);
-    assert!(!result5);
+    match check_input("4 3 + 6 2 *".to_string(), &v1) {
+        Ok(()) => assert!(false),
+        Err(e) => assert_eq!(e, "Not a valid RPN expression!".to_string())
+    }
 }
