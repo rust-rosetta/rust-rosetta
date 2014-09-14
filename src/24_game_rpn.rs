@@ -30,7 +30,7 @@ fn main() {
 fn check_input(expr: &str, choices: &Vec<uint>) -> Result<(), String> {
     let mut stack: Vec<uint> = Vec::new();
     for token in expr.words() {
-        if is_operator(&token) {
+        if is_operator(token) {
             let (a, b) = (stack.pop(), stack.pop());
             match (a, b) {
                 (Some(x), Some(y)) => stack.push(evaluate(y, x, token)),
