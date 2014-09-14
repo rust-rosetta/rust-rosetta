@@ -17,7 +17,7 @@ fn main() {
     loop {
         print!("Your numbers: {}, {}, {}, {}\n", choices[0], choices[1], choices[2], choices[3]);
         let expr = reader.read_line().ok().expect("Failed to read line!");
-        match check_input(expr, &choices) {
+        match check_input(expr.as_slice(), &choices) {
             Ok(()) => { println!("Good job!"); break; },
             Err(e) => println!("{}", e)
         }
@@ -27,9 +27,9 @@ fn main() {
     }
 }
 
-fn check_input(expr: String, choices: &Vec<uint>) -> Result<(), String> {
+fn check_input(expr: &str, choices: &Vec<uint>) -> Result<(), String> {
     let mut stack: Vec<uint> = Vec::new();
-    for token in expr.as_slice().words() {
+    for token in expr.words() {
         if is_operator(&token) {
             let (a, b) = (stack.pop(), stack.pop());
             match (a, b) {
@@ -64,8 +64,6 @@ fn check_input(expr: String, choices: &Vec<uint>) -> Result<(), String> {
     }
 }
 
-// since evaluate is wrapped in is_operator the last
-// pattern has to be "/"
 fn evaluate(a: uint, b: uint, op: &str) -> uint {
     match op {
         "+" => a + b,
@@ -76,8 +74,8 @@ fn evaluate(a: uint, b: uint, op: &str) -> uint {
     }
 }
 
-fn is_operator(op: &&str) -> bool {
-    ["*", "-", "+", "/"].contains(op)
+fn is_operator(op: &str) -> bool {
+    ["*", "-", "+", "/"].contains(&op)
 }
 
 #[test]
@@ -85,32 +83,17 @@ fn test_check_input() {
     let v1: Vec<uint> = vec![4, 3, 6, 2];
 
     // correct result
-    match check_input("4 3 * 6 2 * +".to_string(), &v1) {
-        Ok(()) => assert!(true),
-        Err(_) => assert!(false)
-    }
+    assert_eq!(check_input("4 3 * 6 2 * +", &v1), Ok(()));
 
     // incorrect result
-    match check_input("4 3 * 2 6 + -".to_string(), &v1) {
-        Ok(()) => assert!(false),
-        Err(e) => assert_eq!(e, "Wrong answer. Result: 4".to_string())
-    }
+    assert_eq!(check_input("4 3 * 2 6 + -", &v1), Err("Wrong answer. Result: 4".to_string()));
     
     // wrong numbers in input
-    match check_input("4 5 + 6 2 * -".to_string(), &v1) {
-        Ok(()) => assert!(false),
-        Err(e) => assert_eq!(e, "Cannot use 5".to_string())
-    }
+    assert_eq!(check_input("4 5 + 6 2 * -", &v1), Err("Cannot use 5".to_string()));
 
     // invalid chars in input
-    match check_input("4 ) + _ 2 * -".to_string(), &v1) {
-        Ok(()) => assert!(false),
-        Err(e) => assert_eq!(e, "Invalid input: )".to_string())
-    }
+    assert_eq!(check_input("4 ) + _ 2 * -", &v1), Err("Invalid input: )".to_string()));
 
     // invalid RPN expression
-    match check_input("4 3 + 6 2 *".to_string(), &v1) {
-        Ok(()) => assert!(false),
-        Err(e) => assert_eq!(e, "Not a valid RPN expression!".to_string())
-    }
+    assert_eq!(check_input("4 3 + 6 2 *", &v1), Err("Not a valid RPN expression!".to_string()));
 }
