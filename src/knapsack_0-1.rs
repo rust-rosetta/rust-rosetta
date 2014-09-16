@@ -1,3 +1,5 @@
+// http://rosettacode.org/wiki/Knapsack_problem/0-1
+
 use std::cmp::max;
 
 // This struct is used to store our items that we want in our knap-sack.
