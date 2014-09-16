@@ -2,8 +2,7 @@
 
 extern crate libc;
 
-use std::io;
-use std::io::{File, fs};
+use std::io::{mod, File, fs};
 
 #[cfg(not(test))]
 fn main () {
@@ -33,6 +32,8 @@ fn main () {
 
 #[test]
 fn test_create_file() {
+    use std::io::fs::PathExtensions;
+
     let build_dir = Path::new("build-tests");
     if !(build_dir.exists() && build_dir.is_dir()) {
         let r = fs::mkdir(&build_dir, io::UserRWX);
