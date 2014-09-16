@@ -1,6 +1,8 @@
 // Implements http://rosettacode.org/wiki/Check_that_file_exists
 // not_tested
 
+use std::io::fs::PathExtensions;
+
 fn main() {
     let paths = ["input.txt", "docs"];
     for path in paths.iter().map(|&x| Path::new(x)) {
