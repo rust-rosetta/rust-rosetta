@@ -1,5 +1,5 @@
 // Implements http://rosettacode.org/wiki/24_game
-// Uses RPN expression 
+// Uses RPN expression
 
 #[cfg(not(test))]
 fn main() {
@@ -12,7 +12,7 @@ fn main() {
     // generating 4 numbers
     let choices = Vec::from_fn(5, |_| rng.gen_range(1u, 10));
     println!("Make 24 with the following numbers");
-    
+
     // start the game loop
     loop {
         print!("Your numbers: {}, {}, {}, {}\n", choices[0], choices[1], choices[2], choices[3]);
@@ -44,7 +44,7 @@ fn check_input(expr: &str, choices: &Vec<uint>) -> Result<(), String> {
                     if !choices.contains(&n) {
                         return Err(format!("Cannot use {}", n));
                     }
-                    stack.push(n) 
+                    stack.push(n)
                 },
                 None => return Err(format!("Invalid input: {}", token))
             }
@@ -87,7 +87,7 @@ fn test_check_input() {
 
     // incorrect result
     assert_eq!(check_input("4 3 * 2 6 + -", &v1), Err("Wrong answer. Result: 4".to_string()));
-    
+
     // wrong numbers in input
     assert_eq!(check_input("4 5 + 6 2 * -", &v1), Err("Cannot use 5".to_string()));
 
