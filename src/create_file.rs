@@ -4,6 +4,8 @@ extern crate libc;
 
 use std::io::{mod, File, fs};
 
+#[cfg(test)] use std::io::fs::PathExtensions;
+
 #[cfg(not(test))]
 fn main () {
     // Create a new file.  We get a Result object from
