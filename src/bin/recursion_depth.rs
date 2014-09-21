@@ -1,0 +1,11 @@
+// Implements http://rosettacode.org/wiki/Find_limit_of_recursion
+#![allow(dead_code)] // not_tested
+
+fn recursion(n: int) {
+	println!("deep: {:d}", n);
+	recursion(n + 1);
+}
+
+fn main() {
+	recursion(0);
+}

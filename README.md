@@ -160,11 +160,11 @@ fn test_me() {
 ```
 
 If you are unable to test your program then mark the entire file with
-`// not_tested`.  This will disable testing completely for that
+`#![allow(dead_code)] // not_tested`.  This will disable testing completely for that
 file.
 
 ```rust
-// not_tested
+#![allow(dead_code)] // not_tested
 
 fn main(){
     println!("Please add unit-tests later.");
