@@ -1,0 +1,21 @@
+// Implements http://rosettacode.org/wiki/Arithmetic/Integer
+#![allow(dead_code)] // not_tested
+use std::io::stdin;
+
+fn main() {
+    let input = stdin().read_line().unwrap();
+    let words = input.as_slice().words().take(2)
+                                        .map(from_str)
+                                        .collect::<Vec<Option<int>>>();
+
+    let (a, b) = match words.as_slice() {
+            [Some(x), Some(y)] => (x, y),
+            _ => fail!("Please enter 2 integers")
+    };
+
+    println!("a + b = {}", a + b);
+    println!("a - b = {}", a - b);
+    println!("a * b = {}", a * b);
+    println!("a / b = {}", a / b);
+    println!("a % b = {}", a % b);
+}

@@ -1,0 +1,7 @@
+[project]
+name = "rust-rosetta"
+version = "0.0.1-pre"
+authors = ["Andrew Hobden <andrew@hoverbear.org>"]
+
+[dependencies.num]
+git = "https://github.com/rust-lang/num"
