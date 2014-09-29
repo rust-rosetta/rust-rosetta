@@ -11,11 +11,8 @@ fn count_chars<T: Iterator<char>>(mut chars: T) -> HashMap<char, uint> {
     let mut map: HashMap<char, uint> = HashMap::new();
     for letter in chars {
         match map.entry(letter) {
-            Vacant(entry) => entry.set(1u),
-            Occupied(mut entry) => {
-                *entry.get_mut() += 1;
-                entry.into_mut()
-            }
+            Vacant(entry) => { entry.set(1u); },
+            Occupied(mut entry) => { *entry.get_mut() += 1; }
         };
     }
     map

@@ -89,63 +89,62 @@ fn md5(initial_msg: &[u8]) -> MD5
         new_len+=1;
     }
 
-    { // new block (so msg is freed as soon as not needed any longer)
-        let mut msg = initial_msg.to_vec();
-        msg.push(0x80u8); // append the "1" bit; most significant bit is "first"
+    let mut msg = initial_msg.to_vec();
+    msg.push(0x80u8); // append the "1" bit; most significant bit is "first"
 
-        for _ in range (initial_len + 1, new_len) {
-            msg.push(0); // append "0" bits
+    for _ in range (initial_len + 1, new_len) {
+        msg.push(0); // append "0" bits
+    }
+
+    // append the len in bits at the end of the buffer.
+    msg.push_all(to_bytes(initial_len << 3).as_slice());
+
+    assert_eq!(msg.len() % 64, 0);
+
+    let mut w:[u32,..16] = [0u32,..16];
+    // Process the message in successive 512-bit chunks:
+    //for each 512-bit chunk of message:
+    for offset in range_step(0u64, new_len, (512/8)) {
+        // break chunk into sixteen 32-bit words w[j], 0 ≤ j ≤ 15
+        for i in range(0u32, 16) {
+            let j = i as uint * 4 + offset as uint;
+            w[i as uint] =
+                    (msg[j]   as u32)      |
+                    (msg[j+1] as u32) <<8  |
+                    (msg[j+2] as u32) <<16 |
+                     msg[j+3] as u32  <<24;
         }
 
-        // append the len in bits at the end of the buffer.
-        msg.push_all(to_bytes(initial_len << 3).as_slice());
+        // Initialize hash value for this chunk:
+        let (mut a, mut b, mut c, mut d) = (h[0], h[1], h[2], h[3]);
 
-        assert_eq!(msg.len() % 64, 0);
+        // Main loop:
+        for ind in range(0u, 64) {
+            let (f,g) = match ind {
+                i @ 0..15   => ( (b & c) | ((!b) & d), //f
+                                i ),                   //g
+                i @ 16..31  => ( (d & b) | ((!d) & c),
+                                (5*i + 1) % 16 ),
+                i @ 32..47  => ( b ^ c ^ d,
+                                (3*i + 5) % 16 ),
+                i           => ( c ^ (b | (!d)),
+                                (7*i) % 16 )
+            };
 
-        let mut w:[u32,..16] = [0u32,..16];
-        // Process the message in successive 512-bit chunks:
-        //for each 512-bit chunk of message:
-        for offset in range_step(0u64, new_len, (512/8)) {
-            // break chunk into sixteen 32-bit words w[j], 0 ≤ j ≤ 15
-            for i in range(0u32, 16) {
-                let j = i as uint * 4 + offset as uint;
-                w[i as uint] =
-                        (msg[j]   as u32)      |
-                        (msg[j+1] as u32) <<8  |
-                        (msg[j+2] as u32) <<16 |
-                         msg[j+3] as u32  <<24;
-            }
-            //println!("chunk {}", w);
-            // Initialize hash value for this chunk:
-            let (mut a, mut b, mut c, mut d) = (h[0], h[1], h[2], h[3]);
-
-            // Main loop:
-            for ind in range(0u, 64) {
-                let (f,g) = match ind {
-                    i @ 0..15   => ( (b & c) | ((!b) & d), //f
-                                    i ),                   //g
-                    i @ 16..31  => ( (d & b) | ((!d) & c),
-                                    (5*i + 1) % 16 ),
-                    i @ 32..47  => ( b ^ c ^ d,
-                                    (3*i + 5) % 16 ),
-                    i @ _       => ( c ^ (b | (!d)),
-                                    (7*i) % 16 )
-                };
-
-                let temp = d;
-                d = c;
-                c = b;
-                b = b + left_rotate((a + f + k[ind] + w[g]), r[ind]);
-                a = temp;
-            }
-
-            // Add this chunk's hash to result so far:
-            h[0] += a;
-            h[1] += b;
-            h[2] += c;
-            h[3] += d;
+            let temp = d;
+            d = c;
+            c = b;
+            b = b + left_rotate((a + f + k[ind] + w[g]), r[ind]);
+            a = temp;
         }
-    } // cleanup (end block, msg is freed)
+
+        // Add this chunk's hash to result so far:
+        h[0] += a;
+        h[1] += b;
+        h[2] += c;
+        h[3] += d;
+    }
+    drop(msg); // cleanup, msg is freed
 
     //var char digest[16] := h0 append h1 append h2 append h3 //(Output is in little-endian)
     let mut digest = [0u8,..16];
