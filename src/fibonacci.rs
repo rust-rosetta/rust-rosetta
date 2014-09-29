@@ -5,7 +5,7 @@ fn main() {
                    (fib_tail_recursive, "tail recursive"),
                    (fib_iterative, "iterative")];
 
-    for (f, desc) in fns.move_iter() {
+    for (f, desc) in fns.into_iter() {
         let r = range(0u64, 10).map(|i| f(i)).collect::<Vec<u64>>();
         println!("{} implementation:\n{}\n", desc, r);
     }

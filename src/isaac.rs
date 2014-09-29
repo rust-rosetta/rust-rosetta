@@ -89,7 +89,7 @@ impl Isaac {
     {
         let mut a_v = [0x9e3779b9u32, ..8];
 
-        for i in range(0u, 4) {
+        for _ in range(0u, 4) {
             // scramble it
             mix_v!(a_v);
         }

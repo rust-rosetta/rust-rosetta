@@ -1,13 +1,10 @@
 // http://rosettacode.org/wiki/String_concatenation
 
-fn add_world(x: String) -> String {
+fn add_world(mut x: String) -> String {
     // world is a &'a[u8]
     let world = " world";
-    // The call append() does a vec.push(other) to x.
-    // Note that this call implies a move, so we cannot do an in-place append
-    // and we cannot continue to use x outside of the body of this function.
-    // It is not a copy operation though.
-    x.append(world)
+    x.push_str(world);
+    x
 }
 
 #[cfg(not(test))]

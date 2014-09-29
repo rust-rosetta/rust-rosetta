@@ -1,14 +1,18 @@
 // Implements http://rosettacode.org/wiki/Entropy
 
 use std::str::StrSlice;
-use std::collections::hashmap::HashMap;
+use std::collections::HashMap;
+use std::collections::hashmap::{Occupied, Vacant};
 
 pub fn shannon_entropy(s: &str) -> f64 {
     let mut map = HashMap::new();
 
     // Count occurrences of each char
     for c in s.chars() {
-        map.insert_or_update_with(c, 1u, |_,v| *v += 1);
+        match map.entry(c) {
+            Vacant(entry) => { entry.set(1u); },
+            Occupied(mut entry) => { *entry.get_mut() += 1; },
+        };
     }
 
     // Calculate the entropy
@@ -39,7 +43,7 @@ fn test_entropy() {
         ("Rosetta Code", 3.084962500407)];
     // Good enough, actual float epsilon is much smaller
     let epsilon: f64 = 0.0000001;
-    for (input, expected) in tests.move_iter() {
+    for (input, expected) in tests.into_iter() {
         let output = shannon_entropy(input);
         assert!((output - expected).abs() < epsilon);
     }
