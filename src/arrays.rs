@@ -25,8 +25,8 @@ fn add_to_array() {
 
 	// Immutable adding.
 	let b_vec = vec![2, 3, 4];
-	let c_vec = a_vec.append(b_vec.as_slice());
-	assert_eq!(c_vec.as_slice(), [1, 2, 3, 4].as_slice());
+	a_vec.extend(b_vec.into_iter());
+	assert_eq!(a_vec.as_slice(), [1, 2, 3, 4].as_slice());
 }
 
 #[test]

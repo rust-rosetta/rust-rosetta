@@ -29,7 +29,7 @@ fn main () {
     let fs = vec![("Recursive", factorial_recursive),
                   ("Iterative", factorial_iterative),
                   ("Looooooop", factorial_loop)];
-	for (name, f) in fs.move_iter() {
+	for (name, f) in fs.into_iter() {
         println!("---------\n{}", name)
         for i in range(1u, 10) {
             println!("{}", f(i))

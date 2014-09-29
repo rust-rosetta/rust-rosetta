@@ -73,7 +73,7 @@ fn test_thousandth() {
     let mut it = hof.take(upto - 2);
     let expected: uint = 502;
     // Test that the upto-th term is as expected.
-    for i in range(3u, upto) {
+    for _ in range(3u, upto) {
         it.next();
     }
     assert_eq!(expected, it.next().unwrap());

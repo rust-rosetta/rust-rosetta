@@ -4,7 +4,6 @@
 * on Wikipedia https://en.wikipedia.org/wiki/MD5
 */
 use std::iter::range_step;
-use std::vec::Vec;
 use std::fmt::{Show, Formatter, Result};
 
 #[cfg(not(test))]
@@ -91,7 +90,7 @@ fn md5(initial_msg: &[u8]) -> MD5
     }
 
     { // new block (so msg is freed as soon as not needed any longer)
-        let mut msg = Vec::<u8>::from_slice(initial_msg);
+        let mut msg = initial_msg.to_vec();
         msg.push(0x80u8); // append the "1" bit; most significant bit is "first"
 
         for _ in range (initial_len + 1, new_len) {
@@ -99,7 +98,7 @@ fn md5(initial_msg: &[u8]) -> MD5
         }
 
         // append the len in bits at the end of the buffer.
-        let msg=msg.append(to_bytes(initial_len << 3));
+        msg.push_all(to_bytes(initial_len << 3).as_slice());
 
         assert_eq!(msg.len() % 64, 0);
 

@@ -66,7 +66,7 @@ fn test_fibonacii_words() {
     let output = fib_words(18);
 
     for ((output_length, output_entropy), (expected_length, expected_entropy))
-         in output.move_iter().zip(expected.move_iter()) {
+         in output.into_iter().zip(expected.into_iter()) {
              assert!(output_length == expected_length);
              assert!((output_entropy - expected_entropy).abs() < epsilon);
     }

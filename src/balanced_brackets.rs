@@ -36,7 +36,7 @@ fn generate_brackets(num: uint) -> String {
 
     range(0, num).fold(String::new(), |mut out, _| {
         let next = if random() { '[' } else { ']' };
-        out.push_char(next);
+        out.push(next);
         out
     })
 }

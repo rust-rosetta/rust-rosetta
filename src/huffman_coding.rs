@@ -3,13 +3,14 @@
 
 extern crate core;
 use std::collections::HashMap;
+use std::collections::hashmap::{Occupied, Vacant};
 use std::collections::priority_queue::PriorityQueue;
 
 // Each HNode has a weight, representing the sum of the frequencies for all its
 // children. It is either a leaf (containing a character), or a HTree
 // (containing two children)
 struct HNode {
-    weight: int,
+    weight: uint,
     item: HTreeOrHLeaf,
 }
 
@@ -56,7 +57,14 @@ fn huffman_tree(input: &str) -> HNode {
     //    of character to frequency.
     let mut freq = HashMap::new();
     for ch in input.chars() {
-        freq.insert_or_update_with(ch, 1, |_k, v: &mut int| {*v += 1;});
+        //freq.insert_or_update_with(ch, 1, |_k, v: &mut int| {*v += 1;});
+        match freq.entry(ch) {
+            Vacant(entry) => entry.set(1u),
+            Occupied(mut entry) => {
+                *entry.get_mut() += 1;
+                entry.into_mut()
+            }
+        };
     }
 
     // 2. For each (character, frequency) pair in the HashMap, add a Leaf to a

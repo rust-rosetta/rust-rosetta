@@ -15,16 +15,17 @@ fn format_fasta<T: Buffer>(reader: &mut T) -> String {
         match ln.slice_to(1) {
             ">" => {
                 if out.len() > 0 {
-                    out.push_char('\n');
+                    out.push('\n');
                 }
 
                 // Push skipping the '>'
-                out.append(ln.slice_from(1))
-                   .append(": ")
+                out.push_str(ln.slice_from(1));
+                out.push_str(": ");
             }
             // Other lines are just pushed
-            _ => out.append(ln)
+            _ => out.push_str(ln)
         }
+        out
     })
 }
 

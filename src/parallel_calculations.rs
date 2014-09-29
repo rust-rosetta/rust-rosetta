@@ -45,7 +45,7 @@ fn largest_min_factor_fut(numbers: &[uint]) -> uint {
     });
 
     // Get the largest minimal factor of all results
-    results.mut_iter().map(|r| r.get()).max().unwrap()
+    results.iter_mut().map(|r| r.get()).max().unwrap()
 }
 
 #[cfg(not(test))]

@@ -18,7 +18,7 @@ fn expand_range(range: &str) -> Vec<int> {
     let mut result = vec![];
 
     for item in range.split(',') {
-        result.extend(expand_item(item).move_iter());
+        result.extend(expand_item(item).into_iter());
     }
 
     result
