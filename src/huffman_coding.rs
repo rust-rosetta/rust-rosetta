@@ -57,13 +57,9 @@ fn huffman_tree(input: &str) -> HNode {
     //    of character to frequency.
     let mut freq = HashMap::new();
     for ch in input.chars() {
-        //freq.insert_or_update_with(ch, 1, |_k, v: &mut int| {*v += 1;});
         match freq.entry(ch) {
-            Vacant(entry) => entry.set(1u),
-            Occupied(mut entry) => {
-                *entry.get_mut() += 1;
-                entry.into_mut()
-            }
+            Vacant(entry) => { entry.set(1u); },
+            Occupied(mut entry) => { *entry.get_mut() += 1; },
         };
     }
 
