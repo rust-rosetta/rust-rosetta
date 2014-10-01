@@ -50,6 +50,10 @@ name = "ackermann_function"
 path = "src/ackermann_function.rs"
 
 [[bin]]
+name = "active_object"
+path = "src/active_object.rs"
+
+[[bin]]
 name = "aks_test_for_primes"
 path = "src/aks_test_for_primes.rs"
 
