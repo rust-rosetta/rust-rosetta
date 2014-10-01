@@ -21,6 +21,7 @@ Rosetta Code                                                                    
 [100 doors](http://rosettacode.org/wiki/100_doors)                                                 | [100_doors.rs](src/100_doors.rs), [100_doors_unoptimized.rs](src/100_doors_unoptimized.rs)
 [A+B](http://rosettacode.org/wiki/A%2BB)                                                           | [a_plus_b.rs](src/a_plus_b.rs)
 [ABC Problem](http://rosettacode.org/wiki/ABC_Problem)                                             | [abc_problem.rs](src/abc_problem.rs)
+[Active object](http://rosettacode.org/wiki/Active_object)                                         | [active_object.rs](src/active_object.rs)
 [Ackermann function](http://rosettacode.org/wiki/Ackermann_function)                               | [ackermann_function.rs](src/ackermann_function.rs)
 [AKS test for primes](http://rosettacode.org/wiki/AKS_test_for_primes)                             | [aks_test_for_primes.rs](src/aks_test_for_primes.rs)
 [Align columns](http://rosettacode.org/wiki/Align_columns)                                         | [align_columns.rs](src/align_columns.rs)
