@@ -1,0 +1,538 @@
+[package]
+name = "rust-rosetta"
+version = "0.0.1"
+authors = [
+  "andrew@hoverbear.org",
+]
+
+[dependencies.num]
+git = "https://github.com/rust-lang/num"
+
+[[bin]]
+name = "100_doors"
+path = "src/100_doors.rs"
+
+[[bin]]
+name = "100_doors_unoptimized"
+path = "src/100_doors_unoptimized.rs"
+
+[[bin]]
+name = "24_game"
+path = "src/24_game.rs"
+
+[[bin]]
+name = "24_game_rpn"
+path = "src/24_game_rpn.rs"
+
+[[bin]]
+name = "24_game_solve"
+path = "src/24_game_solve.rs"
+
+[[bin]]
+name = "99_bottles_of_beer"
+path = "src/99_bottles_of_beer.rs"
+
+[[bin]]
+name = "9_billion_names_of_God_the_integer"
+path = "src/9_billion_names_of_God_the_integer.rs"
+
+[[bin]]
+name = "a_plus_b"
+path = "src/a_plus_b.rs"
+test = false
+
+[[bin]]
+name = "abc_problem"
+path = "src/abc_problem.rs"
+
+[[bin]]
+name = "ackermann_function"
+path = "src/ackermann_function.rs"
+
+[[bin]]
+name = "aks_test_for_primes"
+path = "src/aks_test_for_primes.rs"
+
+[[bin]]
+name = "align_columns"
+path = "src/align_columns.rs"
+
+[[bin]]
+name = "almost_prime"
+path = "src/almost_prime.rs"
+
+[[bin]]
+name = "anagrams"
+path = "src/anagrams.rs"
+
+[[bin]]
+name = "arithmetic_integers"
+path = "src/arithmetic_integers.rs"
+test = false
+
+[[bin]]
+name = "arithmetic_mean"
+path = "src/arithmetic_mean.rs"
+
+[[bin]]
+name = "arithmetic_rational"
+path = "src/arithmetic_rational.rs"
+
+[[bin]]
+name = "arrays"
+path = "src/arrays.rs"
+
+[[bin]]
+name = "assertions"
+path = "src/assertions.rs"
+test = false
+
+[[bin]]
+name = "averages_mean_angle"
+path = "src/averages_mean_angle.rs"
+
+[[bin]]
+name = "balanced_brackets"
+path = "src/balanced_brackets.rs"
+
+[[bin]]
+name = "binary_digits"
+path = "src/binary_digits.rs"
+
+[[bin]]
+name = "binary_search"
+path = "src/binary_search.rs"
+
+[[bin]]
+name = "binomial_coefficients"
+path = "src/binomial_coefficients.rs"
+
+[[bin]]
+name = "bitwise_operations"
+path = "src/bitwise_operations.rs"
+test = false
+
+[[bin]]
+name = "bubble_sort"
+path = "src/bubble_sort.rs"
+
+[[bin]]
+name = "call_foreign_function"
+path = "src/call_foreign_function.rs"
+test = false
+
+[[bin]]
+name = "callback_to_array"
+path = "src/callback_to_array.rs"
+test = false
+
+[[bin]]
+name = "check_file"
+path = "src/check_file.rs"
+test = false
+
+[[bin]]
+name = "comma_quibbling"
+path = "src/comma_quibbling.rs"
+
+[[bin]]
+name = "complex"
+path = "src/complex.rs"
+test = false
+
+[[bin]]
+name = "concurrent_computing"
+path = "src/concurrent_computing.rs"
+test = false
+
+[[bin]]
+name = "count_in_octal"
+path = "src/count_in_octal.rs"
+test = false
+
+[[bin]]
+name = "crc_32"
+path = "src/crc_32.rs"
+
+[[bin]]
+name = "create_file"
+path = "src/create_file.rs"
+
+[[bin]]
+name = "dot_product"
+path = "src/dot_product.rs"
+
+[[bin]]
+name = "empty"
+path = "src/empty.rs"
+test = false
+
+[[bin]]
+name = "entropy"
+path = "src/entropy.rs"
+
+[[bin]]
+name = "equilibrium_index"
+path = "src/equilibrium_index.rs"
+
+[[bin]]
+name = "factorial"
+path = "src/factorial.rs"
+
+[[bin]]
+name = "fasta"
+path = "src/fasta.rs"
+
+[[bin]]
+name = "fibonacci"
+path = "src/fibonacci.rs"
+
+[[bin]]
+name = "fibonacci_word"
+path = "src/fibonacci_word.rs"
+
+[[bin]]
+name = "filesize"
+path = "src/filesize.rs"
+test = false
+
+[[bin]]
+name = "four_bit_adder"
+path = "src/four_bit_adder.rs"
+
+[[bin]]
+name = "function_composition"
+path = "src/function_composition.rs"
+
+[[bin]]
+name = "function_def"
+path = "src/function_def.rs"
+
+[[bin]]
+name = "gray_code"
+path = "src/gray_code.rs"
+
+[[bin]]
+name = "greater_element_list"
+path = "src/greater_element_list.rs"
+test = false
+
+[[bin]]
+name = "guess_number"
+path = "src/guess_number.rs"
+test = false
+
+[[bin]]
+name = "hailstone"
+path = "src/hailstone.rs"
+
+[[bin]]
+name = "hamming_numbers"
+path = "src/hamming_numbers.rs"
+
+[[bin]]
+name = "hamming_numbers_alt"
+path = "src/hamming_numbers_alt.rs"
+
+[[bin]]
+name = "happy_numbers"
+path = "src/happy_numbers.rs"
+
+[[bin]]
+name = "harshad_or_niven_series"
+path = "src/harshad_or_niven_series.rs"
+test = false
+
+[[bin]]
+name = "hofstadter_q"
+path = "src/hofstadter_q.rs"
+
+[[bin]]
+name = "http"
+path = "src/http.rs"
+
+[[bin]]
+name = "huffman_coding"
+path = "src/huffman_coding.rs"
+
+[[bin]]
+name = "iban"
+path = "src/iban.rs"
+
+[[bin]]
+name = "infinity"
+path = "src/infinity.rs"
+test = false
+
+[[bin]]
+name = "input_is_terminal"
+path = "src/input_is_terminal.rs"
+test = false
+
+[[bin]]
+name = "input_loop"
+path = "src/input_loop.rs"
+test = false
+
+[[bin]]
+name = "integer_sequence"
+path = "src/integer_sequence.rs"
+test = false
+
+[[bin]]
+name = "isaac"
+path = "src/isaac.rs"
+
+[[bin]]
+name = "json"
+path = "src/json.rs"
+
+[[bin]]
+name = "knapsack_0-1"
+path = "src/knapsack_0-1.rs"
+
+[[bin]]
+name = "letter_frequency"
+path = "src/letter_frequency.rs"
+
+[[bin]]
+name = "lib"
+path = "src/lib.rs"
+
+[[bin]]
+name = "look-and-say_sequence"
+path = "src/look-and-say_sequence.rs"
+
+[[bin]]
+name = "loops-for"
+path = "src/loops-for.rs"
+test = false
+
+[[bin]]
+name = "loops-foreach"
+path = "src/loops-foreach.rs"
+test = false
+
+[[bin]]
+name = "loops-infinite"
+path = "src/loops-infinite.rs"
+test = false
+
+[[bin]]
+name = "loops-n-plus-one-half"
+path = "src/loops-n-plus-one-half.rs"
+test = false
+
+[[bin]]
+name = "loops-while"
+path = "src/loops-while.rs"
+test = false
+
+[[bin]]
+name = "luhn_test"
+path = "src/luhn_test.rs"
+
+[[bin]]
+name = "lzw"
+path = "src/lzw.rs"
+
+[[bin]]
+name = "markov_algorithm"
+path = "src/markov_algorithm.rs"
+
+[[bin]]
+name = "md5-implementation"
+path = "src/md5-implementation.rs"
+
+[[bin]]
+name = "modular_exponentiation"
+path = "src/modular_exponentiation.rs"
+
+[[bin]]
+name = "mutual_recursion"
+path = "src/mutual_recursion.rs"
+
+[[bin]]
+name = "n_queens"
+path = "src/n_queens.rs"
+
+[[bin]]
+name = "output_is_terminal"
+path = "src/output_is_terminal.rs"
+test = false
+
+[[bin]]
+name = "palindrome"
+path = "src/palindrome.rs"
+
+[[bin]]
+name = "parallel_calculations"
+path = "src/parallel_calculations.rs"
+
+[[bin]]
+name = "perfect_numbers"
+path = "src/perfect_numbers.rs"
+
+[[bin]]
+name = "pernicious_numbers"
+path = "src/pernicious_numbers.rs"
+
+[[bin]]
+name = "population_count"
+path = "src/population_count.rs"
+
+[[bin]]
+name = "power_set"
+path = "src/power_set.rs"
+
+[[bin]]
+name = "primality_trial_div"
+path = "src/primality_trial_div.rs"
+
+[[bin]]
+name = "prime_decomposition"
+path = "src/prime_decomposition.rs"
+
+[[bin]]
+name = "pythagorean_triples"
+path = "src/pythagorean_triples.rs"
+
+[[bin]]
+name = "quick_sort"
+path = "src/quick_sort.rs"
+
+[[bin]]
+name = "range_expansion"
+path = "src/range_expansion.rs"
+
+[[bin]]
+name = "read_file_line"
+path = "src/read_file_line.rs"
+test = false
+
+[[bin]]
+name = "recursion_depth"
+path = "src/recursion_depth.rs"
+test = false
+
+[[bin]]
+name = "rename_a_file"
+path = "src/rename_a_file.rs"
+test = false
+
+[[bin]]
+name = "repeat_str"
+path = "src/repeat_str.rs"
+
+[[bin]]
+name = "reverse_words_str"
+path = "src/reverse_words_str.rs"
+
+[[bin]]
+name = "roots_of_a_function"
+path = "src/roots_of_a_function.rs"
+
+[[bin]]
+name = "roots_of_unity"
+path = "src/roots_of_unity.rs"
+
+[[bin]]
+name = "rot13"
+path = "src/rot13.rs"
+
+[[bin]]
+name = "run_length_encoding"
+path = "src/run_length_encoding.rs"
+
+[[bin]]
+name = "self-describing_numbers"
+path = "src/self-describing_numbers.rs"
+
+[[bin]]
+name = "sequence_of_non-squares"
+path = "src/sequence_of_non-squares.rs"
+
+[[bin]]
+name = "set"
+path = "src/set.rs"
+test = false
+
+[[bin]]
+name = "sha1"
+path = "src/sha1.rs"
+
+[[bin]]
+name = "sha256"
+path = "src/sha256.rs"
+
+[[bin]]
+name = "short_circuit_evaluation"
+path = "src/short_circuit_evaluation.rs"
+test = false
+
+[[bin]]
+name = "sierpinski_triangle"
+path = "src/sierpinski_triangle.rs"
+test = false
+
+[[bin]]
+name = "sieve_eratosthenes"
+path = "src/sieve_eratosthenes.rs"
+
+[[bin]]
+name = "sort_int"
+path = "src/sort_int.rs"
+
+[[bin]]
+name = "stack"
+path = "src/stack.rs"
+
+[[bin]]
+name = "stderr"
+path = "src/stderr.rs"
+test = false
+
+[[bin]]
+name = "string_concatenation"
+path = "src/string_concatenation.rs"
+
+[[bin]]
+name = "string_interpolation"
+path = "src/string_interpolation.rs"
+test = false
+
+[[bin]]
+name = "string_matching"
+path = "src/string_matching.rs"
+
+[[bin]]
+name = "strip_comments_from_a_string"
+path = "src/strip_comments_from_a_string.rs"
+
+[[bin]]
+name = "swap"
+path = "src/swap.rs"
+test = false
+
+[[bin]]
+name = "synchronous_concurrency"
+path = "src/synchronous_concurrency.rs"
+test = false
+
+[[bin]]
+name = "taxicab_numbers"
+path = "src/taxicab_numbers.rs"
+
+[[bin]]
+name = "towers_of_hanoi"
+path = "src/towers_of_hanoi.rs"
+test = false
+
+[[bin]]
+name = "webserver"
+path = "src/webserver.rs"
+test = false
+
+[[bin]]
+name = "zig-zag_matrix"
+path = "src/zig-zag_matrix.rs"
