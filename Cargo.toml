@@ -46,6 +46,10 @@ name = "abc_problem"
 path = "src/abc_problem.rs"
 
 [[bin]]
+name = "accumulator_factory"
+path = "src/accumulator_factory.rs"
+
+[[bin]]
 name = "ackermann_function"
 path = "src/ackermann_function.rs"
 
