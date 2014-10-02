@@ -164,7 +164,7 @@ fn from_io_result<T>(res: io::IoResult<T>) -> Result<T, Error> {
 // twice, but it avoids having to write our own number parsing logic.
 fn parse_literal(literal: &str) -> SExp {
     match literal.bytes().next() {
-        Some(b'0'..b'9') => match num::from_str_radix(literal, 10) {
+        Some(b'0'..b'9') | Some(b'-') => match num::from_str_radix(literal, 10) {
             Some(f) => F64(f),
             None => Str(literal)
         },
