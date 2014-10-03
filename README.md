@@ -113,6 +113,7 @@ Rosetta Code                                                                    
 [Roots of unity](http://rosettacode.org/wiki/Roots_of_unity)                                       | [roots_of_unity.rs](src/roots_of_unity.rs)
 [Rot-13](http://rosettacode.org/wiki/Rot-13)                                                       | [rot13.rs](src/rot13.rs)
 [Run-length encoding](http://rosettacode.org/wiki/Run-length_encoding)                             | [run_length_encoding.rs](src/run_length_encoding.rs)
+[S-expressions](http://rosettacode.org/wiki/S-Expressions)                                         | [s_expressions.rs](src/s_expressions.rs)
 [Self-describing numbers](http://rosettacode.org/wiki/Self-describing_numbers)                     | [self-describing_numbers.rs](src/self-describing_numbers.rs)
 [Sequence of non-squares](http://rosettacode.org/wiki/Sequence_of_non-squares)                     | [sequence_of_non-squares.rs](src/sequence_of_non-squares.rs)
 [Set](http://rosettacode.org/wiki/Set)                                                             | [set.rs](src/set.rs)
