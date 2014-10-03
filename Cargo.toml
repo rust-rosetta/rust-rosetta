@@ -453,6 +453,10 @@ name = "run_length_encoding"
 path = "src/run_length_encoding.rs"
 
 [[bin]]
+name = "s_expressions"
+path = "src/s_expressions.rs"
+
+[[bin]]
 name = "self-describing_numbers"
 path = "src/self-describing_numbers.rs"
 
