@@ -18,41 +18,12 @@ All tasks that have been completed are listed (along with a link to the problem)
 Looking to help out? Great, thanks! We have a few guidelines:
 
 * The code you contribute *is* public domain.
-* Your code should build cleanly on the `master` branch of Rust.
+* Your code should build cleanly latest nightly provided by [`rustup.sh`](http://www.hoverbear.org/2014/07/16/ruststrap/)
 * Keep your code as simple as possible, please avoid Dead Code warnings.
 * Don't be afraid of comments, the code is going to be written once, read hundreds of times, and maintained until past the 1.0 release of Rust.
 * Include a link to the Rosetta Code Problem at the top of the code sample.
-* Add a line to the Readme section below. (It's alphabetical!)
-* Unit tests are strongly encouraged. Having troubles getting the build to work? Check about [Not Test Flags](https://github.com/Hoverbear/rust-rosetta/pull/96#issuecomment-43816696)
+* Add a line to the `Cargo.toml` below. (It's alphabetical!)
 
-If you have unit-tests, you will need to mark `fn main`, and possibly
-some other `fn`s with `#[cfg(not(test))]` to avoid dead-code warnings.
-The reason dead-code warnings appear is because `main` is never called
-during a test.
-
-```rust
-#[cfg(not(test))]
-fn main() {
-    println!("I need to be not compiled during tests");
-}
-
-#[test]
-fn test_me() {
-    assert!(true);
-}
-```
-
-If you are unable to test your program then mark the entire file with
-`// not_tested`.  This will disable testing completely for that
-file.
-
-```rust
-// not_tested
-
-fn main(){
-    println!("Please add unit-tests later.");
-}
-```
 
 The top of your code should look like this:
 
@@ -60,6 +31,15 @@ The top of your code should look like this:
 // http://rosettacode.org/wiki/foo
 ```
 If you'd like, you're welcome to add your contact details, name, or other information as well.
+
+Then add the entry in *lexiographical* ordering into [`Cargo.toml`](./Cargo.toml) like this:
+
+```toml
+[[bin]]
+# http://rosettacode.org/wiki/Hailstone_sequence
+name = "hailstone"
+path = "src/hailstone.rs"
+```
 
 [Contributors](https://github.com/Hoverbear/rust-rosetta/graphs/contributors)
 
@@ -81,7 +61,7 @@ Here's an idea of what a workflow would look like (in general-ish):
 * Update your fork ([Details](https://help.github.com/articles/syncing-a-fork))
 * Create a branch that is reasonably unique `Ein06-func-impl` is a good example.
 * Make your changes for this problem.
-    - Add the new definition to the README.md
+    - Add the new definition to the `Cargo.toml`
     - Add one code file with the appropriate name to the `src/` directory. If you need any data there is a separate folder for that.
     - Make sure to include unit tests for us, and comments! :)
 * Check `git status` to make sure you don't mangle anything else.
