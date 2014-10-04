@@ -17,7 +17,7 @@ fn main() {
 
     for (idx, h) in hamming.enumerate().take(1_000_000) {
         match idx + 1 {
-            1..20 => print!("{} ", h.to_biguint().unwrap()),
+            1...20 => print!("{} ", h.to_biguint().unwrap()),
             i @ 1691 | i @ 1_000_000 => println!("\n{}th number: {}", i, h.to_biguint().unwrap()),
             _ =>  continue
         }
