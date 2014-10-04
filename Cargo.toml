@@ -9,297 +9,366 @@ authors = [
 git = "https://github.com/rust-lang/num"
 
 [[bin]]
+# http://rosettacode.org/wiki/100_doors
 name = "100_doors"
 path = "src/100_doors.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/100_doors
 name = "100_doors_unoptimized"
 path = "src/100_doors_unoptimized.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/24_game
 name = "24_game"
 path = "src/24_game.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/24_game
 name = "24_game_rpn"
 path = "src/24_game_rpn.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/24_game/Solve
 name = "24_game_solve"
 path = "src/24_game_solve.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/99_Bottles_of_Beer
 name = "99_bottles_of_beer"
 path = "src/99_bottles_of_beer.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/9_billion_names_of_God_the_integer
 name = "9_billion_names_of_God_the_integer"
 path = "src/9_billion_names_of_God_the_integer.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/A%2BB
 name = "a_plus_b"
 path = "src/a_plus_b.rs"
 test = false
 
 [[bin]]
+# http://rosettacode.org/wiki/ABC_Problem
 name = "abc_problem"
 path = "src/abc_problem.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/Accumulator_factory
 name = "accumulator_factory"
 path = "src/accumulator_factory.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/Ackermann_function
 name = "ackermann_function"
 path = "src/ackermann_function.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/Active_object
 name = "active_object"
 path = "src/active_object.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/AKS_test_for_primes
 name = "aks_test_for_primes"
 path = "src/aks_test_for_primes.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/Align_columns
 name = "align_columns"
 path = "src/align_columns.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/Almost_prime
 name = "almost_prime"
 path = "src/almost_prime.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/Anagrams
 name = "anagrams"
 path = "src/anagrams.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/Arithmetic/Integer
 name = "arithmetic_integers"
 path = "src/arithmetic_integers.rs"
 test = false
 
 [[bin]]
+# http://rosettacode.org/wiki/Averages/Arithmetic_mean
 name = "arithmetic_mean"
 path = "src/arithmetic_mean.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/Arithmetic/Rational
 name = "arithmetic_rational"
 path = "src/arithmetic_rational.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/Arrays
 name = "arrays"
 path = "src/arrays.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/Assertions
 name = "assertions"
 path = "src/assertions.rs"
 test = false
 
 [[bin]]
+# http://rosettacode.org/wiki/Averages/Mean_angle
 name = "averages_mean_angle"
 path = "src/averages_mean_angle.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/Balanced_brackets
 name = "balanced_brackets"
 path = "src/balanced_brackets.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/Binary_digits
 name = "binary_digits"
 path = "src/binary_digits.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/Binary_search
 name = "binary_search"
 path = "src/binary_search.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/Evaluate_binomial_coefficients
 name = "binomial_coefficients"
 path = "src/binomial_coefficients.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/Bitwise_operations
 name = "bitwise_operations"
 path = "src/bitwise_operations.rs"
 test = false
 
 [[bin]]
+# http://rosettacode.org/wiki/Sorting_algorithms/Bubble_sort
 name = "bubble_sort"
 path = "src/bubble_sort.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/Call_a_foreign-language_function
 name = "call_foreign_function"
 path = "src/call_foreign_function.rs"
 test = false
 
 [[bin]]
+# http://rosettacode.org/wiki/Apply_a_callback_to_an_array
 name = "callback_to_array"
 path = "src/callback_to_array.rs"
 test = false
 
 [[bin]]
+# http://rosettacode.org/wiki/Check_that_file_exists
 name = "check_file"
 path = "src/check_file.rs"
 test = false
 
 [[bin]]
+# http://rosettacode.org/wiki/Comma_quibbling
 name = "comma_quibbling"
 path = "src/comma_quibbling.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/Arithmetic/Complex
 name = "complex"
 path = "src/complex.rs"
 test = false
 
 [[bin]]
+# http://rosettacode.org/wiki/Concurrent_computing
 name = "concurrent_computing"
 path = "src/concurrent_computing.rs"
 test = false
 
 [[bin]]
+# http://rosettacode.org/wiki/Count_in_octal
 name = "count_in_octal"
 path = "src/count_in_octal.rs"
 test = false
 
 [[bin]]
+# http://rosettacode.org/wiki/CRC-32
 name = "crc_32"
 path = "src/crc_32.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/Create_a_file
 name = "create_file"
 path = "src/create_file.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/Dot_product
 name = "dot_product"
 path = "src/dot_product.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/Empty_program
 name = "empty"
 path = "src/empty.rs"
 test = false
 
 [[bin]]
+# http://rosettacode.org/wiki/Entropy
 name = "entropy"
 path = "src/entropy.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/Equilibrium_index
 name = "equilibrium_index"
 path = "src/equilibrium_index.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/Factorial
 name = "factorial"
 path = "src/factorial.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/FASTA_format
 name = "fasta"
 path = "src/fasta.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/Fibonacci_sequence
 name = "fibonacci"
 path = "src/fibonacci.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/Fibonacci_word
 name = "fibonacci_word"
 path = "src/fibonacci_word.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/File_size
 name = "filesize"
 path = "src/filesize.rs"
 test = false
 
 [[bin]]
+# http://rosettacode.org/wiki/Four_bit_adder
 name = "four_bit_adder"
 path = "src/four_bit_adder.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/Function_composition
 name = "function_composition"
 path = "src/function_composition.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/Function_definition
 name = "function_def"
 path = "src/function_def.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/Gray_code
 name = "gray_code"
 path = "src/gray_code.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/Greatest_element_of_a_list
 name = "greater_element_list"
 path = "src/greater_element_list.rs"
 test = false
 
 [[bin]]
+# http://rosettacode.org/wiki/Guess_the_number
 name = "guess_number"
 path = "src/guess_number.rs"
 test = false
 
 [[bin]]
+# http://rosettacode.org/wiki/Hailstone_sequence
 name = "hailstone"
 path = "src/hailstone.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/Hamming_numbers
 name = "hamming_numbers"
 path = "src/hamming_numbers.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/Hamming_numbers
 name = "hamming_numbers_alt"
 path = "src/hamming_numbers_alt.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/Happy_numbers
 name = "happy_numbers"
 path = "src/happy_numbers.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/Harshad_or_Niven_series
 name = "harshad_or_niven_series"
 path = "src/harshad_or_niven_series.rs"
 test = false
 
 [[bin]]
+# http://rosettacode.org/wiki/Hofstadter_Q_sequence
 name = "hofstadter_q"
 path = "src/hofstadter_q.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/HTTP
 name = "http"
 path = "src/http.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/Huffman_coding
 name = "huffman_coding"
 path = "src/huffman_coding.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/IBAN
 name = "iban"
 path = "src/iban.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/Infinity
 name = "infinity"
 path = "src/infinity.rs"
 test = false
 
 [[bin]]
+# http://rosettacode.org/wiki/Check_input_device_is_a_terminal
 name = "input_is_terminal"
 path = "src/input_is_terminal.rs"
 test = false
 
 [[bin]]
+# http://rosettacode.org/wiki/Input_loop
 name = "input_loop"
 path = "src/input_loop.rs"
 test = false
 
 [[bin]]
+# http://rosettacode.org/wiki/Integer_sequence
 name = "integer_sequence"
 path = "src/integer_sequence.rs"
 test = false
 
 [[bin]]
+# http://rosettacode.org/wiki/The_ISAAC_Cipher
 name = "isaac"
 path = "src/isaac.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/JSON
 name = "json"
 path = "src/json.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/Knapsack_problem/0-1
 name = "knapsack_0-1"
 path = "src/knapsack_0-1.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/Letter_frequency
 name = "letter_frequency"
 path = "src/letter_frequency.rs"
 
@@ -308,243 +377,299 @@ name = "lib"
 path = "src/lib.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/Look-and-say_sequence
 name = "look-and-say_sequence"
 path = "src/look-and-say_sequence.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/Loops/For
 name = "loops-for"
 path = "src/loops-for.rs"
 test = false
 
 [[bin]]
+# http://rosettacode.org/wiki/Loops/Foreach
 name = "loops-foreach"
 path = "src/loops-foreach.rs"
 test = false
 
 [[bin]]
+# http://rosettacode.org/wiki/Loops/Infinite
 name = "loops-infinite"
 path = "src/loops-infinite.rs"
 test = false
 
 [[bin]]
+# http://rosettacode.org/wiki/Loops/N_plus_one_half
 name = "loops-n-plus-one-half"
 path = "src/loops-n-plus-one-half.rs"
 test = false
 
 [[bin]]
+# http://rosettacode.org/wiki/Loops/While
 name = "loops-while"
 path = "src/loops-while.rs"
 test = false
 
 [[bin]]
+# http://http://rosettacode.org/wiki/Luhn_test_of_credit_card_numbers
 name = "luhn_test"
 path = "src/luhn_test.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/LZW_compression
 name = "lzw"
 path = "src/lzw.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/Execute_a_Markov_algorithm
 name = "markov_algorithm"
 path = "src/markov_algorithm.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/MD5/Implementation
 name = "md5-implementation"
 path = "src/md5-implementation.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/Modular_exponentiation
 name = "modular_exponentiation"
 path = "src/modular_exponentiation.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/Mutual_recursion
 name = "mutual_recursion"
 path = "src/mutual_recursion.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/N-queens_problem
 name = "n_queens"
 path = "src/n_queens.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/Check_output_device_is_a_terminal
 name = "output_is_terminal"
 path = "src/output_is_terminal.rs"
 test = false
 
 [[bin]]
+# http://rosettacode.org/wiki/Palindrome_detection
 name = "palindrome"
 path = "src/palindrome.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/Parallel_calculations
 name = "parallel_calculations"
 path = "src/parallel_calculations.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/Perfect_numbers
 name = "perfect_numbers"
 path = "src/perfect_numbers.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/Pernicious_numbers
 name = "pernicious_numbers"
 path = "src/pernicious_numbers.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/Population_count
 name = "population_count"
 path = "src/population_count.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/Power_set
 name = "power_set"
 path = "src/power_set.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/Primality_by_Trial_Division
 name = "primality_trial_div"
 path = "src/primality_trial_div.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/Prime_decomposition
 name = "prime_decomposition"
 path = "src/prime_decomposition.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/Pythagorean_triples
 name = "pythagorean_triples"
 path = "src/pythagorean_triples.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/Sorting_algorithms/Quicksort
 name = "quick_sort"
 path = "src/quick_sort.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/Range_expansion
 name = "range_expansion"
 path = "src/range_expansion.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/Read_a_file_line_by_line
 name = "read_file_line"
 path = "src/read_file_line.rs"
 test = false
 
 [[bin]]
+# http://rosettacode.org/wiki/Find_limit_of_recursion
 name = "recursion_depth"
 path = "src/recursion_depth.rs"
 test = false
 
 [[bin]]
+# http://rosettacode.org/wiki/Rename_a_file
 name = "rename_a_file"
 path = "src/rename_a_file.rs"
 test = false
 
 [[bin]]
+# http://rosettacode.org/wiki/Repeat_a_string
 name = "repeat_str"
 path = "src/repeat_str.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/Reverse_words_in_a_string
 name = "reverse_words_str"
 path = "src/reverse_words_str.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/Roots_of_a_function
 name = "roots_of_a_function"
 path = "src/roots_of_a_function.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/Roots_of_unity
 name = "roots_of_unity"
 path = "src/roots_of_unity.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/Rot-13
 name = "rot13"
 path = "src/rot13.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/Run-length_encoding
 name = "run_length_encoding"
 path = "src/run_length_encoding.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/S-Expressions
 name = "s_expressions"
 path = "src/s_expressions.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/Self-describing_numbers
 name = "self-describing_numbers"
 path = "src/self-describing_numbers.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/Sequence_of_non-squares
 name = "sequence_of_non-squares"
 path = "src/sequence_of_non-squares.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/Set
 name = "set"
 path = "src/set.rs"
 test = false
 
 [[bin]]
+# http://rosettacode.org/wiki/SHA-1
 name = "sha1"
 path = "src/sha1.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/SHA-256
 name = "sha256"
 path = "src/sha256.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/Short-circuit_evaluation
 name = "short_circuit_evaluation"
 path = "src/short_circuit_evaluation.rs"
 test = false
 
 [[bin]]
+# http://rosettacode.org/wiki/Sierpinski_triangle
 name = "sierpinski_triangle"
 path = "src/sierpinski_triangle.rs"
 test = false
 
 [[bin]]
+# http://rosettacode.org/wiki/Sieve_of_Eratosthenes
 name = "sieve_eratosthenes"
 path = "src/sieve_eratosthenes.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/Sort_an_integer_array
 name = "sort_int"
 path = "src/sort_int.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/Stack
 name = "stack"
 path = "src/stack.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/Hello_world/Standard_error
 name = "stderr"
 path = "src/stderr.rs"
 test = false
 
 [[bin]]
+# http://rosettacode.org/wiki/String_concatenation
 name = "string_concatenation"
 path = "src/string_concatenation.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/String_interpolation_%28included%29
 name = "string_interpolation"
 path = "src/string_interpolation.rs"
 test = false
 
 [[bin]]
+# http://rosettacode.org/wiki/String_matching
 name = "string_matching"
 path = "src/string_matching.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/Strip_comments_from_a_string
 name = "strip_comments_from_a_string"
 path = "src/strip_comments_from_a_string.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/Generic_swap
 name = "swap"
 path = "src/swap.rs"
 test = false
 
 [[bin]]
+# http://rosettacode.org/wiki/Synchronous_concurrency
 name = "synchronous_concurrency"
 path = "src/synchronous_concurrency.rs"
 test = false
 
 [[bin]]
+# http://rosettacode.org/wiki/Taxicab_numbers
 name = "taxicab_numbers"
 path = "src/taxicab_numbers.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/Towers_of_Hanoi
 name = "towers_of_hanoi"
 path = "src/towers_of_hanoi.rs"
 test = false
 
 [[bin]]
+# http://rosettacode.org/wiki/Hello_world/Web_server
 name = "webserver"
 path = "src/webserver.rs"
 test = false
 
 [[bin]]
+# http://rosettacode.org/wiki/Zig-zag_matrix
 name = "zig-zag_matrix"
 path = "src/zig-zag_matrix.rs"
