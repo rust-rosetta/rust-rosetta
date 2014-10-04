@@ -2,30 +2,30 @@
 name = "rust-rosetta"
 version = "0.0.1"
 authors = [
-    "Andrew Hobden, https://github.com/Hoverbear"
-    "Adolfo Ochagavía, https://github.com/aochagavia"
-    "Paolo Falabella, https://github.com/pfalabella"
-    "Boris Egorov, https://github.com/JIghtuse"
-    "Joe Schafer, https://github.com/jschaf"
-    "Thomas P, https://github.com/TisButMe"
-    "Bjarki Ágúst Guðmundsson, https://github.com/SuprDewd"
-    "Thiez, https://github.com/Thiez"
-    "Simon Morris simon,-https://github.com/morris"
-    "eliovir, https://github.com/eliovir"
-    "Joshua Yanovski, https://github.com/pythonesque"
-    "Nicolas Barbey, https://github.com/nbarbey"
-    "yuanchenyang, https://github.com/yuanchenyang"
-    "Jonathan S, https://github.com/gereeter"
-    "JakeMick, https://github.com/JakeMick"
-    "Rohan Prinja, https://github.com/wenderen"
-    "Andres Nötzli, https://github.com/4tXJ7f"
-    "Eric S. Bullington, https://github.com/esbullington"
-    "Gulshan Singh, https://github.com/gsingh93"
-    "SiegeLord, https://github.com/SiegeLord"
-    "Tim Joseph Dumol, https://github.com/TimDumol"
-    "Utkarsh Kukreti, https://github.com/utkarshkukreti"
-    "Florian MOREL, https://github.com/Einh06"
-    "webmobster, https://github.com/webmobster"
+    "Andrew Hobden, https://github.com/Hoverbear",
+    "Adolfo Ochagavía, https://github.com/aochagavia",
+    "Paolo Falabella, https://github.com/pfalabella",
+    "Boris Egorov, https://github.com/JIghtuse",
+    "Joe Schafer, https://github.com/jschaf",
+    "Thomas P, https://github.com/TisButMe",
+    "Bjarki Ágúst Guðmundsson, https://github.com/SuprDewd",
+    "Thiez, https://github.com/Thiez",
+    "Simon Morris simon,-https://github.com/morris",
+    "eliovir, https://github.com/eliovir",
+    "Joshua Yanovski, https://github.com/pythonesque",
+    "Nicolas Barbey, https://github.com/nbarbey",
+    "yuanchenyang, https://github.com/yuanchenyang",
+    "Jonathan S, https://github.com/gereeter",
+    "JakeMick, https://github.com/JakeMick",
+    "Rohan Prinja, https://github.com/wenderen",
+    "Andres Nötzli, https://github.com/4tXJ7f",
+    "Eric S. Bullington, https://github.com/esbullington",
+    "Gulshan Singh, https://github.com/gsingh93",
+    "SiegeLord, https://github.com/SiegeLord",
+    "Tim Joseph Dumol, https://github.com/TimDumol",
+    "Utkarsh Kukreti, https://github.com/utkarshkukreti",
+    "Florian MOREL, https://github.com/Einh06",
+    "webmobster, https://github.com/webmobster",
     "Mathias Labeyrie, https://github.com/Nojan"
 ]
 
