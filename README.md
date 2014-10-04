@@ -4,7 +4,6 @@
 A repository for completing [this issue on mozilla/rust](https://github.com/mozilla/rust/issues/10513). This repository contains minimal working code for many simple (and not so simple) tasks. New contributors and learners of the language are welcome. We will try to work with you to make the code more idiomatic over time.
 
 > Working on a problem, need some help? Drop by #rust-rosetta on irc.mozilla.org.
-Get in touch with @Hoverbear if you need help setting up.
 
 ## Tasks Remaining ##
 
@@ -41,10 +40,7 @@ name = "hailstone"
 path = "src/hailstone.rs"
 ```
 
-[Contributors](https://github.com/Hoverbear/rust-rosetta/graphs/contributors)
-
-## Beginners Guide to Contributing ##
-If you look [here](https://github.com/Hoverbear/rust-rosetta/network) you can see how most contributions "merge" over time with the main tree. People will create multiple branches off the same main repo. So you see your long one? Instead of multiple branches coming and going off the main repo, it's one long one.
+## Contributing ##
 
 Here's an idea of what a workflow would look like (in general-ish):
 
@@ -53,19 +49,22 @@ Here's an idea of what a workflow would look like (in general-ish):
 * Choose a problem off Rosetta Code.
 * Fork this repo on Github. ([Help here!](https://help.github.com/articles/fork-a-repo))
 * Clone your resulting repo onto your machine.
+* When you contribute your first pull request, include yourself in the authors of the `Cargo.toml`!
 
 **Every other time**
 
 * Navigate to your `rust-rosetta` directory.
 * Make sure you're on `master` branch.
 * Update your fork ([Details](https://help.github.com/articles/syncing-a-fork))
-* Create a branch that is reasonably unique `Ein06-func-impl` is a good example.
+* Create a branch that is reasonably unique:
+    - `git branch hoverbear-hailstone`
 * Make your changes for this problem.
     - Add the new definition to the `Cargo.toml`
     - Add one code file with the appropriate name to the `src/` directory. If you need any data there is a separate folder for that.
     - Make sure to include unit tests for us, and comments! :)
 * Check `git status` to make sure you don't mangle anything else.
-* Commit your changes (`git commit -a -m "Implement blah blah blah"`)
+* Commit your changes 
+    - `git commit -a -m "Implement blah blah blah"`
 * Submit a [Pull request](https://help.github.com/articles/creating-a-pull-request) here.
 
 **After it's accepted**
