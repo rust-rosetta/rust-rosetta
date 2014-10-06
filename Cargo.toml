@@ -146,6 +146,11 @@ name = "averages_mean_angle"
 path = "src/averages_mean_angle.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/Atomic_updates
+name = "atomic_updates"
+path = "src/atomic_updates.rs"
+
+[[bin]]
 # http://rosettacode.org/wiki/Balanced_brackets
 name = "balanced_brackets"
 path = "src/balanced_brackets.rs"
