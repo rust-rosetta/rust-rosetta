@@ -16,7 +16,7 @@ struct Want<'a> {
 
 // Global, immutable allocation of our items. This is so we can reference
 // this in multiple functions.
-static items : &'static [Want<'static>] = &[
+static ITEMS: &'static [Want<'static>] = &[
     Want {name: "map",                    weight: 9,   value: 150},
     Want {name: "compass",                weight: 13,  value: 35},
     Want {name: "water",                  weight: 153, value: 200},
@@ -124,7 +124,7 @@ fn knap_01_dp<'a>(xs: &[Want<'a>], max_weight: uint) -> Vec<Want<'a>> {
 
 #[cfg(not(test))]
 fn main () {
-    let xs = knap_01_dp(items, 400);
+    let xs = knap_01_dp(ITEMS, 400);
 
     // Print the items. We have to reverse the order because we solved the
     // problem backward.
@@ -144,7 +144,7 @@ fn main () {
 
 #[test]
 fn test_dp_results() {
-    let dp_results = knap_01_dp(items, 400);
+    let dp_results = knap_01_dp(ITEMS, 400);
     let dp_weights= dp_results.iter().fold(0, |a, &b| a + b.weight);
     let dp_values = dp_results.iter().fold(0, |a, &b| a + b.value);
     assert_eq!(dp_weights, 396);

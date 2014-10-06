@@ -6,11 +6,11 @@ use std::io::IoResult;
 use std::slice::bytes::copy_memory;
 
 // The size of a SHA1 checksum in bytes.
-static size: uint = 20;
+static SIZE: uint = 20;
 
 // The blocksize of SHA1 in bytes.
-static chunk:uint = 64;
-static init:[u32,..5] = [0x67452301,0xEFCDAB89, 0x98BADCFE, 0x10325476, 0xC3D2E1F0];
+static CHUNK:uint = 64;
+static INIT:[u32,..5] = [0x67452301,0xEFCDAB89, 0x98BADCFE, 0x10325476, 0xC3D2E1F0];
 
 #[cfg(not(test))]
 fn main() {
@@ -26,7 +26,7 @@ fn main() {
 // digest represents the partial evaluation of a checksum.
 struct Digest {
 	h:      [u32, ..5],
-	x:      [u8, ..chunk],
+	x:      [u8, ..CHUNK],
 	nx:     uint,
 	len:    u64
 }
@@ -34,14 +34,14 @@ struct Digest {
 impl Digest {
     fn new() -> Digest {
         Digest {
-            h:  init,
-            x:  [0u8, ..chunk],
+            h:  INIT,
+            x:  [0u8, ..CHUNK],
             nx: 0u,
             len:0u64
         }
     }
 
-    fn sha1(&mut self) -> [u8,..size] {
+    fn sha1(&mut self) -> [u8,..SIZE] {
         let mut len = self.len;
         // Padding.  Add a 1 bit and 0 bits until 56 bytes mod 64.
         let mut tmp : [u8,..64] = [0u8,..64];
@@ -63,7 +63,7 @@ impl Digest {
 
         assert!(self.nx == 0);
 
-        let mut digest : [u8,..size]=[0u8,..size];
+        let mut digest : [u8,..SIZE]=[0u8,..SIZE];
         for (i, s) in self.h.iter().enumerate() {
             digest[i*4] = (*s >> 24) as u8;
             digest[i*4+1] = (*s >> 16) as u8;
@@ -88,7 +88,7 @@ impl Digest {
 
         let mut p = data;
 
-        while p.len() >= chunk {
+        while p.len() >= CHUNK {
             for i in range(0u, 16) {
                 let j = i * 4;
                 w[i] =  (p[j]   as u32)<<24 |
@@ -143,7 +143,7 @@ impl Digest {
             h3 += d;
             h4 += e;
 
-            p = p.slice_from(chunk);
+            p = p.slice_from(CHUNK);
         }
         [h0, h1, h2, h3, h4]
     }
@@ -158,22 +158,22 @@ impl Writer for Digest {
 
         if self.nx > 0 {
             let mut n = buf_m.len();
-            if n > chunk - self.nx {
-                n = chunk - self.nx;
+            if n > CHUNK - self.nx {
+                n = CHUNK - self.nx;
             }
             for i in range(0,n) {
                 self.x[self.nx + i] = *buf_m.get(i).unwrap();
             }
             self.nx += n;
-            if self.nx == chunk {
+            if self.nx == CHUNK {
                 let x = self.x.as_slice();
                 self.h=self.process_block(x);
                 self.nx = 0;
             }
             buf_m = buf_m.slice_from(n);
         }
-        if buf_m.len() >= chunk {
-            let n = buf_m.len() &!(chunk - 1);
+        if buf_m.len() >= CHUNK {
+            let n = buf_m.len() &!(CHUNK - 1);
             let x = self.x.slice_from(n);
             self.h=self.process_block(x);
             buf_m = buf_m.slice_from(n);

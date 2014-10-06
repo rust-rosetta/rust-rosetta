@@ -285,16 +285,16 @@ impl<'a> SExp<'a> {
     }
 }
 
-static sexp_struct: SExp<'static> = List([
+static SEXP_STRUCT: SExp<'static> = List([
     List([Str("data"), Str("quoted data"), F64(123.), F64(4.5)]),
     List([Str("data"), List([Str("!@#"), List([F64(4.5)]), Str("(more"), Str("data)")])]),
 ]);
 
 fn try_encode() -> Result<String, Error> {
-    sexp_struct.buffer_encode()
+    SEXP_STRUCT.buffer_encode()
 }
 
-static sexp_string_in: &'static str = r#"((data "quoted data" 123 4.5)
+static SEXP_STRING_IN: &'static str = r#"((data "quoted data" 123 4.5)
 (data (!@# (4.5) "(more" "data)")))"#;
 
 fn try_decode<'a>(ctx: &'a mut ParseContext<'a>) -> Result<SExp<'a>, Error> {
@@ -304,14 +304,14 @@ fn try_decode<'a>(ctx: &'a mut ParseContext<'a>) -> Result<SExp<'a>, Error> {
 #[cfg(not(test))]
 fn main() {
     println!("{}", try_encode());
-    let ref mut ctx = ParseContext::new(sexp_string_in);
+    let ref mut ctx = ParseContext::new(SEXP_STRING_IN);
     println!("{}", try_decode(ctx));
 }
 
 #[bench]
 fn bench_decode(b: &mut test::Bencher)
 {
-    let ref mut ctx = ParseContext::new(sexp_string_in);
+    let ref mut ctx = ParseContext::new(SEXP_STRING_IN);
     b.iter(|| {
         assert!(try_decode(ctx).is_ok());
     })
@@ -327,13 +327,13 @@ fn bench_encode(b: &mut test::Bencher)
 
 #[test]
 fn test_sexp_encode() {
-    static sexp_string: &'static str =
+    static SEXP_STRING: &'static str =
 r#"(("data" "quoted data" 123 4.5) ("data" ("!@#" (4.5) "(more" "data)")))"#;
-    assert_eq!(Ok(sexp_string), try_encode().as_ref().map( |s| s[]));
+    assert_eq!(Ok(SEXP_STRING), try_encode().as_ref().map( |s| s[]));
 }
 
 #[test]
 fn test_sexp_decode() {
-    let ref mut ctx = ParseContext::new(sexp_string_in);
-    assert_eq!(Ok(sexp_struct), try_decode(ctx));
+    let ref mut ctx = ParseContext::new(SEXP_STRING_IN);
+    assert_eq!(Ok(SEXP_STRUCT), try_decode(ctx));
 }
