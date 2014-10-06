@@ -141,14 +141,14 @@ path = "src/assertions.rs"
 test = false
 
 [[bin]]
-# http://rosettacode.org/wiki/Averages/Mean_angle
-name = "averages_mean_angle"
-path = "src/averages_mean_angle.rs"
-
-[[bin]]
 # http://rosettacode.org/wiki/Atomic_updates
 name = "atomic_updates"
 path = "src/atomic_updates.rs"
+
+[[bin]]
+# http://rosettacode.org/wiki/Averages/Mean_angle
+name = "averages_mean_angle"
+path = "src/averages_mean_angle.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Balanced_brackets
