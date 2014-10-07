@@ -24,7 +24,7 @@ fn main () {
     // Create a directory. Here we handle a possible error by using
     // the functions provided by result.  The second argument sets the
     // file permissions
-    let result = fs::mkdir(&Path::new("build/docs"), io::UserRWX);
+    let result = fs::mkdir(&Path::new("build/docs"), io::USER_RWX);
     if result.is_err() {
         println!("Failed to create a directory: {}", result.err().unwrap());
     }
