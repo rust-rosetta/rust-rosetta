@@ -3,7 +3,7 @@
 // Rust uses condition variables (Condvars) for asynchronous event processing.  Each Mutex has a
 // list of zero or more Condvars, which are essentially events that the task may wait on or signal
 // when it holds the mutex.  When a task begins to wait on a condvar, it enters a waiting state
-// until the condvar is sgnaled by another task, at which point it resumes processing.  However,
+// until the condvar is signaled by another task, at which point it resumes processing.  However,
 // there is one subtlety--if another task signals the condvar before the task that wishes to be
 // notified can begin waiting, the message will be missed.  For this reason, condvars alone are not
 // enough to represent events--one must also include the event state within the mutex, setting it
