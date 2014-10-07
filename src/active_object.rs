@@ -159,6 +159,6 @@ fn solution() {
     }).ok().expect("Failed to set input");
     timer.sleep(Duration::seconds(2) / 10);
     object.input(|_| 0.).ok().expect("Failed to set input");
-    timer.sleep(Duration::seconds(1) / 20);
+    timer.sleep(Duration::seconds(1) / 10);
     assert_eq!(object.output() as i64, 0)
 }
