@@ -127,6 +127,7 @@ impl<S: Mul<f64, T> + Zero,
 
 // This function is fairly straightforward.  We create the integrator, set its input function k(t)
 // to 2pi * f * t, and then wait as described in the Rosetta stone problem.
+#[cfg(not(test))]
 fn integrate() -> f64 {
     let object = Integrator::new(Duration::milliseconds(10));
     let mut timer = Timer::new().unwrap();
@@ -147,5 +148,17 @@ fn main() {
 
 #[test]
 fn solution() {
-    assert_eq!(integrate() as i64, 0);
+    // We should just be able to call integrate, but can't represent the closure properly due to
+    // rust-lang/rust issue #17060 if we make frequency or period a variable.
+    // FIXME(pythonesque): When unboxed closures are fixed, fix integrate() to take two arguments.
+    let object = Integrator::new(Duration::milliseconds(1));
+    let mut timer = Timer::new().unwrap();
+    object.input(|t| {
+        let f = 1. / (Duration::seconds(2) / 10).num_milliseconds() as f64;
+        (2. * PI * f * t as f64).sin()
+    }).ok().expect("Failed to set input");
+    timer.sleep(Duration::seconds(2) / 10);
+    object.input(|_| 0.).ok().expect("Failed to set input");
+    timer.sleep(Duration::seconds(1) / 20);
+    assert_eq!(object.output() as i64, 0)
 }
