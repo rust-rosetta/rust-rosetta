@@ -151,7 +151,7 @@ fn solution() {
     // We should just be able to call integrate, but can't represent the closure properly due to
     // rust-lang/rust issue #17060 if we make frequency or period a variable.
     // FIXME(pythonesque): When unboxed closures are fixed, fix integrate() to take two arguments.
-    let object = Integrator::new(Duration::milliseconds(1));
+    let object = Integrator::new(Duration::milliseconds(10));
     let mut timer = Timer::new().unwrap();
     object.input(|t| {
         let f = 1. / (Duration::seconds(2) / 10).num_milliseconds() as f64;
