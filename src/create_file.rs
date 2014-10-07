@@ -36,7 +36,7 @@ fn test_create_file() {
 
     let build_dir = Path::new("build-tests");
     if !(build_dir.exists() && build_dir.is_dir()) {
-        let r = fs::mkdir(&build_dir, io::UserRWX);
+        let r = fs::mkdir(&build_dir, io::USER_RWX);
         assert!(r.is_ok());
     }
 
