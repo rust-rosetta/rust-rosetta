@@ -277,6 +277,6 @@ fn main() {
 
 #[test]
 fn test_atomic_updates() {
-    // Run for 1 second
-    perform_atomic_updates(Duration::seconds(1), ORIGINAL_TOTAL, NUM_TICKS);
+    // Run for 1/10th of a second
+    perform_atomic_updates(Duration::seconds(1) / 10, ORIGINAL_TOTAL, NUM_TICKS);
 }
