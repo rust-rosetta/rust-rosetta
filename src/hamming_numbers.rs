@@ -11,25 +11,17 @@ use std::collections::{RingBuf, Deque};
 #[allow(dead_code)]
 #[cfg(not(test))]
 fn main() {
-    static HAMMING_1_MILLION: &'static str =
-"519312780448388736089589843750000000000000000000000000000000000000000000000000000000";
     // capacity of the queue currently needs to be a power of 2 because of a bug with RingBuf
     let hamming : Hamming<BigUint> = Hamming::new(128);
 
     for (idx, h) in hamming.enumerate().take(1_000_000) {
         match idx + 1 {
             1...20 => print!("{} ", h.to_biguint().unwrap()),
-            i @ 1691 => println!("\n{}th number: {}", i, h.to_biguint().unwrap()),
-            i @ 1000000 => {
-                let n = h.to_biguint().unwrap();
-                println!("\n{}th number: {}", i, n);
-                assert_eq!(n, from_str(HAMMING_1_MILLION).unwrap())
-            },
+            i @ 1691 | i @ 1000000 => println!("\n{}th number: {}", i, h.to_biguint().unwrap()),
             _ =>  continue
         }
     }
 }
-
 //representing a Hamming number as a BigUint
 impl HammingNumber for BigUint {
     // returns the multipliers 2, 3 and 5 in the representation for the HammingNumber
@@ -143,4 +135,14 @@ fn try_enqueue() {
 fn hamming_iter() {
     let mut hamming = Hamming::<BigUint>::new(20);
     assert!(hamming.nth(19).unwrap().to_biguint() == 36u.to_biguint());
+}
+
+#[test]
+fn hamming_iter_1million() {
+    let mut hamming = Hamming::<BigUint>::new(128);
+    // one-million-th hamming number has index 999_999 because indexes are zero-based
+    assert_eq!(hamming.nth(999_999).unwrap().to_biguint(),
+        from_str(
+        "519312780448388736089589843750000000000000000000000000000000000000000000000000000000")
+        );
 }
