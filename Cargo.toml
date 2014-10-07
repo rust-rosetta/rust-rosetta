@@ -114,6 +114,12 @@ name = "anagrams"
 path = "src/anagrams.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/Arena_storage_pool
+name = "arena_storage_pool"
+path = "src/arena_storage_pool.rs"
+test = false
+
+[[bin]]
 # http://rosettacode.org/wiki/Arithmetic/Integer
 name = "arithmetic_integers"
 path = "src/arithmetic_integers.rs"
