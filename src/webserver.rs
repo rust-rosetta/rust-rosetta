@@ -1,7 +1,7 @@
 // Implements http://rosettacode.org/wiki/Hello_world/Web_server
 // not_tested
 
-use std::io::net::tcp::{TcpListener, TcpStream};
+use std::io::net::tcp::{TcpAcceptor, TcpListener, TcpStream};
 use std::io::{Acceptor, Listener, IoResult};
 
 fn handle_client(mut stream: TcpStream) -> IoResult<()> {
@@ -29,22 +29,38 @@ charset=UTF-8
     Ok(())
 }
 
-fn main() {
-    let (ip, port) = ("127.0.0.1", 80);
-    let listener = TcpListener::bind(ip, port).unwrap();
+pub fn handle_server(ip: &'static str, port: u16) -> IoResult<TcpAcceptor> {
+    let listener = try!(TcpListener::bind(ip, port));
 
     let mut acceptor = listener.listen();
     println!("Listening for connections on port {}", port);
 
-    for stream in acceptor.incoming() {
-        spawn(proc() {
-            match handle_client(stream.unwrap()) {
-                Ok(_) => println!("Response sent!"),
-                Err(e) => println!("Failed sending response: {}!", e),
+    let acceptor_ = acceptor.clone();
+    spawn(proc() {
+        for stream in acceptor.incoming() {
+            match stream {
+                Ok(s) => spawn(proc() {
+                    match handle_client(s) {
+                        Ok(_) => println!("Response sent!"),
+                        Err(e) => println!("Failed sending response: {}!", e),
+                    }
+                }),
+                Err(e) => {
+                    println!("No longer accepting new requests: {}", e);
+                    break
+                }
             }
-        });
-    }
+        }
+        // close the socket server
+        drop(acceptor);
+    });
+    acceptor_
+}
 
-    // close the socket server
+#[cfg(not(test))]
+fn main() {
+    static HOST: &'static str = "127.0.0.1";
+    static PORT: u16 = 80;
+    let acceptor = handle_server(HOST, PORT).unwrap();
     drop(acceptor);
 }
