@@ -1,6 +1,4 @@
 // http://rosettacode.org/wiki/Hamming_numbers
-// NOTE: If you change this file please make sure you run main().  It has a larger test that can
-// trip up on large floating point values, but is too expensive to run every time we run the tests.
 extern crate num;
 use num::bigint::{BigUint, ToBigUint};
 use std::cmp::min;
