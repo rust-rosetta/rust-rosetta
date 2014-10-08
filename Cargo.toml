@@ -249,6 +249,12 @@ name = "dot_product"
 path = "src/dot_product.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/Echo_server
+name = "echo_server"
+path = "src/echo_server.rs"
+test = false
+
+[[bin]]
 # http://rosettacode.org/wiki/Empty_program
 name = "empty"
 path = "src/empty.rs"
