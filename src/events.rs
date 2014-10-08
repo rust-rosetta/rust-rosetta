@@ -16,9 +16,6 @@ use std::sync::Arc;
 use std::time::duration::Duration;
 use sync::raw::Mutex;
 
-// Helper states to demonstrate the control flow of the program.
-#[deriving(PartialEq, Show)]
-
 // Given a duration to wait before sending an event from one process to another, returns the
 // elapsed time before the event was actually sent.
 fn handle_event(duration: Duration) -> Duration {
