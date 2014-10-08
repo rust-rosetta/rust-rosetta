@@ -2,9 +2,12 @@
 use std::io::net::tcp::TcpStream;
 use std::io::IoResult;
 
-fn get_index(target: &str) -> IoResult<String> {
+#[cfg(test)]
+mod webserver;
+
+fn get_index(target: &str, port: u16) -> IoResult<String> {
     // Create a socket. Mutable so we can write to it.
-    let mut socket = TcpStream::connect(target, 80);
+    let mut socket = try!(TcpStream::connect(target, port));
     // Write to the socket as bytes.
     // try! and write! are useful macros when working with writers.
     // We send the `Connection: close` header so the server closes the connection
@@ -18,9 +21,11 @@ fn get_index(target: &str) -> IoResult<String> {
 
 #[cfg(not(test))]
 fn main() {
+    static PORT: u16 = 80;
+
     let target = std::os::args().pop().unwrap();
     println!("Making the request... This might take a minute.");
-    match get_index(target.as_slice()) {
+    match get_index(target.as_slice(), PORT) {
         Ok(out) => println!("{}", out),
         Err(e) => println!("Error: {}", e)
     }
@@ -28,9 +33,15 @@ fn main() {
 
 #[test]
 fn test_request() {
-    let target = "rust-lang.org";
-    match get_index(target) {
-        Ok(_) => (),
-        Err(e) => fail!("Error: {}", e),
-    }
+    static HOST: &'static str = "127.0.0.1";
+    static PORT: u16 = 12321;
+
+    let (port, acceptor) = range(PORT, ::std::u16::MAX)
+        .map( |port| (port, webserver::handle_server(HOST, port)) )
+        .find( |&(_, ref acceptor)| acceptor.is_ok() )
+        .unwrap();
+
+    let res = get_index(HOST, port);
+    acceptor.unwrap().close_accept().unwrap();
+    res.unwrap();
 }

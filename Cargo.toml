@@ -115,6 +115,12 @@ name = "anagrams"
 path = "src/anagrams.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/Arena_storage_pool
+name = "arena_storage_pool"
+path = "src/arena_storage_pool.rs"
+test = false
+
+[[bin]]
 # http://rosettacode.org/wiki/Arithmetic/Integer
 name = "arithmetic_integers"
 path = "src/arithmetic_integers.rs"
@@ -140,6 +146,11 @@ path = "src/arrays.rs"
 name = "assertions"
 path = "src/assertions.rs"
 test = false
+
+[[bin]]
+# http://rosettacode.org/wiki/Atomic_updates
+name = "atomic_updates"
+path = "src/atomic_updates.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Averages/Mean_angle
