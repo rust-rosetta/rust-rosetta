@@ -10,31 +10,25 @@ type Edge = (Node, Node);
 
 
 /// The DistPair struct is for the Priority Queue.
-#[deriving(Eq, PartialEq)]
+#[deriving(Eq, PartialEq, PartialOrd)]
 struct DistPair(Node, Cost);
-impl Ord for DistPair{
-    fn cmp(&self, other:&DistPair) -> Ordering{
+impl Ord for DistPair {
+    fn cmp(&self, other:&DistPair) -> Ordering {
         let DistPair(_, dist_a) = *self;
         let DistPair(_, dist_b) = *other;
         dist_b.cmp(&dist_a) //Intentionally reversed
     }
 }
 
-impl PartialOrd for DistPair{
-    fn partial_cmp(&self, other:&DistPair) -> Option<Ordering> {
-        Some(self.cmp(other))
-    }
-}
-
 /// Graph structure, represented as an Adjancency List.
-struct Graph<'a>{
+struct Graph<'a> {
     vertices: Vec<&'a str>,
     adj_list: Vec<Vec<Node>>,
     costs: HashMap<Edge, Cost>,
 }
 
 impl<'a> Graph<'a> {
-    fn new() -> Graph<'a>{
+    fn new() -> Graph<'a> {
         let vertices:Vec<&str> = Vec::new();
         let adj_list:Vec<Vec<Node>> = Vec::new();
         let costs:HashMap<Edge, Cost> = HashMap::new();
@@ -44,7 +38,7 @@ impl<'a> Graph<'a> {
 
     /// Returns the index of the vertex, or None if vertex 
     /// not found.
-    fn vertex_index(&self, vertex: &str)->Option<Node>{
+    fn vertex_index(&self, vertex: &str) -> Option<Node> {
         for (idx, &v) in self.vertices.iter().enumerate(){
             if v == vertex{return Some(idx)}
         }
@@ -54,25 +48,20 @@ impl<'a> Graph<'a> {
     /// Returns the index of the vertex. If vertex is not found, inserts
     /// the vertex.
     fn get_or_insert_vertex(&mut self, vertex: &'a str) -> Node {
-        
-        let new_idx = match self.vertex_index(vertex){
-            Some(idx) => idx,
-            None => {
-                let new_str = vertex;
+        self.vertex_index(vertex)
+            .unwrap_or_else( || {
                 self.adj_list.push(Vec::new());
-                self.vertices.push(new_str);
+                self.vertices.push(vertex);
                 self.vertices.len()-1
-            }
-        };
-        new_idx
+            })
     }
     
     /// Adds the given edge to the graph.
-    fn add_edge(&mut self, from: &'a str, to: &'a str, cost: uint){
+    fn add_edge(&mut self, from: &'a str, to: &'a str, cost: uint) {
         let from_idx = self.get_or_insert_vertex(from);
         let to_idx = self.get_or_insert_vertex(to);
 
-        match self.costs.entry((from_idx, to_idx)){
+        match self.costs.entry((from_idx, to_idx)) {
             Vacant(entry)   => {
                 self.adj_list.get_mut(from_idx).push(to_idx);
                 entry.set(cost);
@@ -83,24 +72,24 @@ impl<'a> Graph<'a> {
         };
     }
 
-    /// Implements Djikstra's Algorithm. This uses a Priority Queue to 
+    /// Implements Dijkstra's Algorithm. This uses a Priority Queue to 
     /// determine which vertex to visit first. Terminates on discovering 
     /// the target vertex.
     ///
     /// Returns vector of vertices representing the path, or an empty vector
     /// if there's no path, or if the source or target is not in the graph.
-    fn dijkstra(&self, source: &str, target: &str)->Vec<&str>{
+    fn dijkstra(&self, source: &str, target: &str) -> Vec<&str> {
         let num_vert = self.vertices.len();
         let mut dist:Vec<uint> = Vec::from_elem(num_vert, uint::MAX); //Close enough to infinity
         let mut prev:HashMap<Node, Node> = HashMap::new();
         let mut queue:PriorityQueue<DistPair> = PriorityQueue::new();
 
-        let source_idx = match self.vertex_index(source){
+        let source_idx = match self.vertex_index(source) {
             Some(idx) => idx,
             None      => return Vec::new() // Source not in graph, return empty path.
         };
 
-        let target_idx = match self.vertex_index(target){
+        let target_idx = match self.vertex_index(target) {
             Some(idx) => idx,
             None      => return Vec::new() // Target not in graph, return empty path.
         };
@@ -109,17 +98,17 @@ impl<'a> Graph<'a> {
         queue.push(DistPair(source_idx, dist[source_idx]));
 
         loop{
-            match queue.pop(){
+            match queue.pop() {
                 None     => break,
                 Some(DistPair(u, dist_u)) => {
-                    for &v in self.adj_list[u].iter(){
-                        let cost_uv = match self.costs.find(&(u, v)){
+                    for &v in self.adj_list[u].iter() {
+                        let cost_uv = match self.costs.find(&(u, v)) {
                             Some(&x) => x,
                             None    => uint::MAX,
                         };
                         let alt = dist_u + cost_uv;
                         if alt < dist[v] {
-                            match prev.entry(v){
+                            match prev.entry(v) {
                                 Vacant(entry) => {entry.set(u);},
                                 Occupied(entry) => {
                                     *entry.into_mut() = u;
@@ -128,11 +117,12 @@ impl<'a> Graph<'a> {
                             *dist.get_mut(v) = alt;
                             queue.push(DistPair(v, dist[v]));
                         }
-                        if v == target_idx {break;}
+                        if v == target_idx { break; }
                     }   
                 }
             };
         }
+
         let mut temp_path:DList<&str> = DList::new();
         let mut curr = target_idx;
         temp_path.push_front(self.vertices[curr]);
@@ -141,7 +131,7 @@ impl<'a> Graph<'a> {
                 Some(&parent) => {
                     curr = parent;
                     temp_path.push_front(self.vertices[curr]);
-                    if curr == source_idx {break;}
+                    if curr == source_idx { break; }
                 },
                 None => return Vec::new(),
             }
