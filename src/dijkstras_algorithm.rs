@@ -104,7 +104,7 @@ impl<'a> Graph<'a> {
                     for &v in self.adj_list[u].iter() {
                         let cost_uv = match self.costs.find(&(u, v)) {
                             Some(&x) => x,
-                            None    => uint::MAX,
+                            None     => uint::MAX,
                         };
                         let alt = dist_u + cost_uv;
                         if alt < dist[v] {
