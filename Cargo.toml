@@ -26,7 +26,8 @@ authors = [
     "Utkarsh Kukreti, https://github.com/utkarshkukreti",
     "Florian MOREL, https://github.com/Einh06",
     "webmobster, https://github.com/webmobster",
-    "Mathias Labeyrie, https://github.com/Nojan"
+    "Mathias Labeyrie, https://github.com/Nojan",
+    "Wei Yen, https://github.com/yen223",
 ]
 
 [dependencies.num]
@@ -226,6 +227,11 @@ path = "src/crc_32.rs"
 # http://rosettacode.org/wiki/Create_a_file
 name = "create_file"
 path = "src/create_file.rs"
+
+[[bin]]
+# http://rosettacode.org/wiki/Dijkstra's_algorithm
+name = "dijkstras_algorithm"
+path = "src/dijkstras_algorithm.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Dot_product
