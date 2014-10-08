@@ -135,6 +135,7 @@ fn hamming_iter() {
     assert!(hamming.nth(19).unwrap().to_biguint() == 36u.to_biguint());
 }
 
+#[ignore] // Please run this if you modify the file.  It is too slow to run normally.
 #[test]
 fn hamming_iter_1million() {
     let mut hamming = Hamming::<BigUint>::new(128);
