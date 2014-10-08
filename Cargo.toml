@@ -207,6 +207,11 @@ path = "src/check_file.rs"
 test = false
 
 [[bin]]
+# http://rosettacode.org/wiki/Checkpoint_synchronization
+name = "checkpoint_synchronization"
+path = "src/checkpoint_synchronization.rs"
+
+[[bin]]
 # http://rosettacode.org/wiki/Comma_quibbling
 name = "comma_quibbling"
 path = "src/comma_quibbling.rs"
@@ -248,6 +253,12 @@ path = "src/dijkstras_algorithm.rs"
 # http://rosettacode.org/wiki/Dot_product
 name = "dot_product"
 path = "src/dot_product.rs"
+
+[[bin]]
+# http://rosettacode.org/wiki/Echo_server
+name = "echo_server"
+path = "src/echo_server.rs"
+test = false
 
 [[bin]]
 # http://rosettacode.org/wiki/Empty_program
