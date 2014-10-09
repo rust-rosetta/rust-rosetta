@@ -429,6 +429,11 @@ name = "lib"
 path = "src/lib.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/Linear_congruential_generator
+name = "linear_congruential_generator"
+path = "src/linear_congruential_generator.rs"
+
+[[bin]]
 # http://rosettacode.org/wiki/Look-and-say_sequence
 name = "look-and-say_sequence"
 path = "src/look-and-say_sequence.rs"
