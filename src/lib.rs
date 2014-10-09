@@ -2,6 +2,7 @@
 // It also contains a test module, which checks if all source files are covered by `Cargo.toml`
 
 #![feature(phase)]
+#![feature(slicing_syntax)]
 
 extern crate regex;
 #[phase(plugin)] extern crate regex_macros;

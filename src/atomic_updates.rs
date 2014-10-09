@@ -9,6 +9,7 @@
 // (previously I tried, in order, std::sync::RwLock, std::sync::Mutex, and std::sync::Semaphore)
 // and this type still appears to have quite a bit of overhead.
 #![feature(tuple_indexing)]
+#![feature(slicing_syntax)]
 
 extern crate sync;
 
