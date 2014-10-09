@@ -1,0 +1,68 @@
+// Implements http://rosettacode.org/wiki/Sorting_algorithms/Merge_sort
+
+// This is an idiomatic-but-slow implementation. A more efficient implementation
+// would use `unsafe` to avoid allocating so many temporary vectors.
+
+fn merge_sort<E: PartialOrd + Clone>(arr: &[E]) -> Vec<E> {
+    if arr.len() <= 1 {
+        return arr.to_vec();
+    }
+    let midpoint = arr.len()/2;
+    let left = merge_sort(arr.slice(0u, midpoint));
+    let right = merge_sort(arr.slice(midpoint, arr.len()));
+    merge(left.as_slice(), right.as_slice())
+}
+
+fn merge<E: PartialOrd + Clone>(left: &[E], right: &[E]) -> Vec<E> {
+    let mut merged = Vec::with_capacity(left.len() + right.len());
+    let mut i = 0;
+    let mut j = 0;
+    while i < left.len() && j < right.len() {
+        if left[i] <= right[j] {
+            merged.push(left[i].clone());
+            i += 1;
+        } else {
+            merged.push(right[j].clone());
+            j += 1;
+        }
+    }
+    while i < left.len() {
+        merged.push(left[i].clone());
+        i += 1;
+    }
+    while j < right.len() {
+        merged.push(right[j].clone());
+        j += 1;
+    }
+    merged
+}
+
+#[cfg(not(test))]
+pub fn main() {
+    let arr = [1i, 9, 3, 2, 1003, 23, -123, 7];
+    let sorted = merge_sort(&arr);
+    println!("{}", sorted);
+}
+
+#[cfg(test)]
+mod test {
+    use super::merge_sort;
+
+    #[test]
+    fn sorted() {
+        let arr = [1u, 2, 3, 4, 6, 8];
+        assert_eq!(merge_sort(&arr), arr.to_vec());
+    }
+
+    #[test]
+    fn reverse() {
+        let arr = [8i, 6, 4, 3, 2, 1];
+        assert_eq!(merge_sort(&arr), vec![1i, 2, 3, 4, 6, 8]);
+    }
+
+    #[test]
+    fn random() {
+        let arr = [12u, 54, 2, 93, 13, 43, 15, 299, 234];
+        assert_eq!(merge_sort(&arr), vec![2u, 12, 13, 15, 43, 54, 93, 234, 299]);
+    }
+}
