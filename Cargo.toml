@@ -489,6 +489,11 @@ name = "md5-implementation"
 path = "src/md5-implementation.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/Sorting_algorithms/Merge_sort
+name = "merge-sort"
+path = "src/merge-sort.rs"
+
+[[bin]]
 # http://rosettacode.org/wiki/Modular_exponentiation
 name = "modular_exponentiation"
 path = "src/modular_exponentiation.rs"
