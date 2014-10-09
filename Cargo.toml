@@ -566,6 +566,12 @@ path = "src/read_file_line.rs"
 test = false
 
 [[bin]]
+# http://rosettacode.org/wiki/Read_a_specific_line_from_a_file
+name = "read_file_specific_line"
+path = "src/read_file_specific_line.rs"
+test = false
+
+[[bin]]
 # http://rosettacode.org/wiki/Find_limit_of_recursion
 name = "recursion_depth"
 path = "src/recursion_depth.rs"
