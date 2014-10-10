@@ -58,8 +58,8 @@ pub fn handle_server(ip: &'static str, port: u16) -> IoResult<TcpAcceptor> {
 
 #[cfg(not(test))]
 fn main() {
-    static HOST: &'static str = "127.0.0.1";
-    static PORT: u16 = 80;
+    const HOST: &'static str = "127.0.0.1";
+    const PORT: u16 = 80;
     let acceptor = handle_server(HOST, PORT).unwrap();
     drop(acceptor);
 }

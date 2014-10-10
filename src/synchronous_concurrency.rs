@@ -9,7 +9,7 @@ use std::io::File;
 use std::io::BufferedReader;
 use std::comm::{channel, Sender, Receiver};
 
-static FILENAME: &'static str = "resources/input.txt";
+const FILENAME: &'static str = "resources/input.txt";
 
 enum Message {
     Line(String),
