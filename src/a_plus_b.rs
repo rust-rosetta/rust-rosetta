@@ -11,7 +11,7 @@ fn main() {
 
     let sum = match words.as_slice() {
         [Some(x), Some(y)] => x + y,
-		    _ => fail!("Please enter 2 integers")
+            _ => fail!("Please enter 2 integers")
     };
 
     println!("{:i}", sum);
