@@ -1,5 +1,4 @@
 // Implements http://rosettacode.org/wiki/Short-circuit_evaluation
-// not_tested
 
 fn a(x: bool) -> bool {
     println!("Inside function a");

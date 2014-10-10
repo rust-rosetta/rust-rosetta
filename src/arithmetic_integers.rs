@@ -1,5 +1,4 @@
 // Implements http://rosettacode.org/wiki/Arithmetic/Integer
-// not_tested
 use std::io::stdin;
 
 fn main() {

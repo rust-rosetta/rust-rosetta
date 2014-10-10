@@ -1,5 +1,4 @@
 // Implements http://rosettacode.org/wiki/Concurrent_computing
-// not_tested
 use std::io::timer::sleep;
 use std::rand::random;
 use std::time::duration::Duration;

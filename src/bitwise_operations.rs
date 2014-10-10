@@ -1,5 +1,4 @@
 // http://rosettacode.org/wiki/Bitwise_operations
-// not_tested
 fn main() {
     let a: u8 = 105;
     let b: u8 = 91;

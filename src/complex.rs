@@ -1,5 +1,4 @@
 // Implements http://rosettacode.org/wiki/Arithmetic/Complex
-// not_tested
 
 extern crate num;
 

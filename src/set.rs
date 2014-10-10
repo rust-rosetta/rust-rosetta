@@ -1,5 +1,4 @@
 // Implements http://rosettacode.org/wiki/Set
-// not_tested
 
 use std::collections::HashSet;
 
