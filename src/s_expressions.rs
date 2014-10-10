@@ -18,6 +18,8 @@
 // decoding technique doesn't allocate extra space for strings.  Does support numbers, but only
 // float types (supporting more types is possible but would complicate the code significantly).
 //
+#![feature(slicing_syntax)]
+
 extern crate arena;
 extern crate test;
 
