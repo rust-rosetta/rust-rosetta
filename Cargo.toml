@@ -297,6 +297,11 @@ name = "fasta"
 path = "src/fasta.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/Fast_Fourier_transform
+name = "fast_fourier_transform"
+path = "src/fast_fourier_transform.rs"
+
+[[bin]]
 # http://rosettacode.org/wiki/Fibonacci_sequence
 name = "fibonacci"
 path = "src/fibonacci.rs"
