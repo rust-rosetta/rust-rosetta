@@ -1,5 +1,4 @@
 // Implements http://rosettacode.org/wiki/Read_a_specific_line_from_a_file
-// not_tested
 
 use std::io::fs::File;
 use std::io::BufferedReader;

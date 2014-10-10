@@ -1,5 +1,4 @@
 // Implements http://rosettacode.org/wiki/Generic_swap
-// not_tested
 use std::mem::swap;
 
 fn main() {

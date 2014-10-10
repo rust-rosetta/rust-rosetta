@@ -1,5 +1,4 @@
 // Implements http://rosettacode.org/wiki/A%2BB
-// not_tested
 
 use std::io::stdio;
 

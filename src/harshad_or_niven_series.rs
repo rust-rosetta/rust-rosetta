@@ -1,5 +1,4 @@
 // http://rosettacode.org/wiki/Harshad_or_Niven_series
-// not_tested
 use std::uint;
 fn main() {
     let digit_sum = |i: uint| i.to_string().as_slice().chars()
