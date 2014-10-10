@@ -62,28 +62,38 @@ impl<'a> Drop for CountingSemaphoreGuard<'a> {
     }
 }
 
-fn metered(duration: Duration, backoff: Duration) {
+fn metered(duration: Duration) {
     static MAX_COUNT: uint = 4; // Total available resources
     static NUM_WORKERS: u8 = 10; // Number of workers contending for the resources
+    let backoff = Duration::milliseconds(1); // Linear backoff time
+    // Create a shared reference to the semaphore
     let sem = Arc::new(CountingSemaphore::new(MAX_COUNT, backoff));
+    // Create a channel for notifying the main task that the workers are done
     let (tx, rx) = channel();
     for i in range(0, NUM_WORKERS) {
         let sem = sem.clone();
         let tx = tx.clone();
         spawn(proc() {
+            // Acquire the resource
             let guard = sem.acquire();
             let count = sem.count();
+            // Make sure the count is legal
             assert!(count < MAX_COUNT);
             println!("Worker {} after acquire: count = {}", i, count);
+            // Sleep for `duration`
             timer::sleep(duration);
+            // Release the resource
             drop(guard);
+            // Make sure the count is legal
             let count = sem.count();
             assert!(count <= MAX_COUNT);
             println!("Worker {} after release: count = {}", i, count);
+            // Notify the main task of completion
             tx.send(());
         })
     }
     drop(tx);
+    // Wait for all the subtasks to finish
     for _ in range(0, NUM_WORKERS) {
         rx.recv();
     }
@@ -91,10 +101,12 @@ fn metered(duration: Duration, backoff: Duration) {
 
 #[test]
 fn test_metered_concurrency() {
-    metered(Duration::seconds(1) / 20, Duration::seconds(1) / 20);
+    // Hold each resource for 1/20 of a second per worker
+    metered(Duration::seconds(1) / 20);
 }
 
 #[cfg(not(test))]
 fn main() {
-    metered(Duration::seconds(2), Duration::seconds(1) / 10);
+    // Hold each resource for 2 seconds per worker
+    metered(Duration::seconds(2));
 }
