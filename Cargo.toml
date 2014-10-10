@@ -504,6 +504,11 @@ name = "merge-sort"
 path = "src/merge-sort.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/Metered_concurrency
+name = "metered_concurrency"
+path = "src/metered_concurrency.rs"
+
+[[bin]]
 # http://rosettacode.org/wiki/Modular_exponentiation
 name = "modular_exponentiation"
 path = "src/modular_exponentiation.rs"
