@@ -4,15 +4,15 @@ use std::iter::range_inclusive;
 
 // Calculate the factorial using recursion
 fn factorial_recursive (n: uint) -> uint {
-	match n {
-		0 => 1,
-		_ => n * factorial_recursive(n-1)
-	}
+    match n {
+        0 => 1,
+        _ => n * factorial_recursive(n-1)
+    }
 }
 
 // Calculate the factorial using a fold
 fn factorial_iterative(n: uint) -> uint {
-	range_inclusive(1, n).fold(1, |p, t| p * t)
+    range_inclusive(1, n).fold(1, |p, t| p * t)
 }
 
 // Calculate the factorial using a for loop
@@ -29,7 +29,7 @@ fn main () {
     let fs = vec![("Recursive", factorial_recursive),
                   ("Iterative", factorial_iterative),
                   ("Looooooop", factorial_loop)];
-	for (name, f) in fs.into_iter() {
+    for (name, f) in fs.into_iter() {
         println!("---------\n{}", name)
         for i in range(1u, 10) {
             println!("{}", f(i))
