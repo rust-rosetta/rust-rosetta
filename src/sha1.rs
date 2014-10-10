@@ -6,11 +6,11 @@ use std::io::IoResult;
 use std::slice::bytes::copy_memory;
 
 // The size of a SHA1 checksum in bytes.
-static SIZE: uint = 20;
+const SIZE: uint = 20;
 
 // The blocksize of SHA1 in bytes.
-static CHUNK:uint = 64;
-static INIT:[u32,..5] = [0x67452301,0xEFCDAB89, 0x98BADCFE, 0x10325476, 0xC3D2E1F0];
+const CHUNK:uint = 64;
+const INIT:[u32,..5] = [0x67452301,0xEFCDAB89, 0x98BADCFE, 0x10325476, 0xC3D2E1F0];
 
 #[cfg(not(test))]
 fn main() {

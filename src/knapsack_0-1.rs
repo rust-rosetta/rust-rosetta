@@ -16,7 +16,7 @@ struct Want<'a> {
 
 // Global, immutable allocation of our items. This is so we can reference
 // this in multiple functions.
-static ITEMS: &'static [Want<'static>] = &[
+const ITEMS: &'static [Want<'static>] = &[
     Want {name: "map",                    weight: 9,   value: 150},
     Want {name: "compass",                weight: 13,  value: 35},
     Want {name: "water",                  weight: 153, value: 200},

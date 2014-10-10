@@ -287,7 +287,7 @@ impl<'a> SExp<'a> {
     }
 }
 
-static SEXP_STRUCT: SExp<'static> = List([
+const SEXP_STRUCT: SExp<'static> = List([
     List([Str("data"), Str("quoted data"), F64(123.), F64(4.5)]),
     List([Str("data"), List([Str("!@#"), List([F64(4.5)]), Str("(more"), Str("data)")])]),
 ]);
@@ -296,7 +296,7 @@ fn try_encode() -> Result<String, Error> {
     SEXP_STRUCT.buffer_encode()
 }
 
-static SEXP_STRING_IN: &'static str = r#"((data "quoted data" 123 4.5)
+const SEXP_STRING_IN: &'static str = r#"((data "quoted data" 123 4.5)
 (data (!@# (4.5) "(more" "data)")))"#;
 
 fn try_decode<'a>(ctx: &'a mut ParseContext<'a>) -> Result<SExp<'a>, Error> {
@@ -329,7 +329,7 @@ fn bench_encode(b: &mut test::Bencher)
 
 #[test]
 fn test_sexp_encode() {
-    static SEXP_STRING: &'static str =
+    const SEXP_STRING: &'static str =
 r#"(("data" "quoted data" 123 4.5) ("data" ("!@#" (4.5) "(more" "data)")))"#;
     assert_eq!(Ok(SEXP_STRING), try_encode().as_ref().map( |s| s[]));
 }

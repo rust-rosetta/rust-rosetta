@@ -1,10 +1,10 @@
 // http://rosettacode.org/wiki/ABC_Problem
 use std::collections::HashSet;
 
-static WORDS: &'static [&'static str] = &["A", "BARK", "BOOK", "TREAT",
+const  WORDS: &'static [&'static str] = &["A", "BARK", "BOOK", "TREAT",
                                          "COMMON", "SQUAD", "CONFUSE"];
 
-static BLOCKS: &'static [&'static str] = &["BO", "XK", "DQ", "CP", "NA",
+const  BLOCKS: &'static [&'static str] = &["BO", "XK", "DQ", "CP", "NA",
                                            "GT", "RE", "TG", "QD", "FS",
                                            "JW", "HU", "VI", "AN", "OB",
                                            "ER", "FS", "LY", "PC", "ZM"];

@@ -12,8 +12,8 @@ use std::sync::atomics;
 use std::sync::{Arc, Barrier};
 
 pub fn checkpoint() {
-    static NUM_TASKS: uint = 10;
-    static NUM_ITERATIONS: u8 = 10;
+    const NUM_TASKS: uint = 10;
+    const NUM_ITERATIONS: u8 = 10;
 
     let barrier = Barrier::new(NUM_TASKS);
     let mut events: [AtomicBool, ..NUM_TASKS];
