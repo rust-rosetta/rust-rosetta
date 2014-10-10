@@ -212,6 +212,11 @@ name = "checkpoint_synchronization"
 path = "src/checkpoint_synchronization.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/Closest-pair_problem
+name = "closest-pair"
+path = "src/closest-pair.rs"
+
+[[bin]]
 # http://rosettacode.org/wiki/Comma_quibbling
 name = "comma_quibbling"
 path = "src/comma_quibbling.rs"
