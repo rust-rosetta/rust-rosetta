@@ -277,6 +277,11 @@ name = "equilibrium_index"
 path = "src/equilibrium_index.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/Events
+name = "events"
+path = "src/events.rs"
+
+[[bin]]
 # http://rosettacode.org/wiki/Factorial
 name = "factorial"
 path = "src/factorial.rs"
