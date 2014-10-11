@@ -430,6 +430,11 @@ name = "json"
 path = "src/json.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/K-d_tree
+name = "k-d-tree"
+path = "src/k-d-tree.rs"
+
+[[bin]]
 # http://rosettacode.org/wiki/Knapsack_problem/0-1
 name = "knapsack_0-1"
 path = "src/knapsack_0-1.rs"
