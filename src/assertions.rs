@@ -1,7 +1,7 @@
 // Implements http://rosettacode.org/wiki/Assertions
 
 fn main() {
-	let my_number = 42i;
-	assert!(my_number == 42);
-	assert_eq!(my_number, 42);
+    let my_number = 42i;
+    assert!(my_number == 42);
+    assert_eq!(my_number, 42);
 }

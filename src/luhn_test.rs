@@ -33,13 +33,13 @@ fn luhn_test(n: u64) -> bool {
 #[cfg(not(test))]
 fn main() {
     let nos = [49927398716, 49927398717, 1234567812345678, 1234567812345670];
-	for n in nos.iter() {
-		if luhn_test(*n) {
-			println!("{} passes.", n);
-		} else {
-		    println!("{} fails.", n);
-	    }
-	}
+    for n in nos.iter() {
+        if luhn_test(*n) {
+            println!("{} passes.", n);
+        } else {
+            println!("{} fails.", n);
+        }
+    }
 }
 
 #[test]

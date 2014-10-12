@@ -2,32 +2,32 @@
 
 // We need this to be public because it is used from another file
 pub fn factor(mut nb: uint) -> Vec<uint> {
-	let mut result = vec!();
+    let mut result = vec!();
 
-	// First we take out all even factors.
-	while nb % 2 == 0 {
-		result.push(2);
-		nb /= 2;
-	}
+    // First we take out all even factors.
+    while nb % 2 == 0 {
+        result.push(2);
+        nb /= 2;
+    }
 
-	// Then (if any left) we take out the odd ones.
-	let mut cand = 3;
-	let mut max_bound = (nb as f32).sqrt() as uint + 1;
+    // Then (if any left) we take out the odd ones.
+    let mut cand = 3;
+    let mut max_bound = (nb as f32).sqrt() as uint + 1;
 
-	while cand <= max_bound {
-		while nb % cand == 0 {
-			result.push(cand);
-			nb /= cand;
-		}
-		max_bound = (nb as f32).sqrt() as uint + 1;
-		cand += 2;
-	}
+    while cand <= max_bound {
+        while nb % cand == 0 {
+            result.push(cand);
+            nb /= cand;
+        }
+        max_bound = (nb as f32).sqrt() as uint + 1;
+        cand += 2;
+    }
 
-	if nb > 1 {
-		result.push(nb);
-	}
+    if nb > 1 {
+        result.push(nb);
+    }
 
-	result
+    result
 }
 
 // Needed so parallel_calculations compiles cleanly, because it
@@ -35,10 +35,10 @@ pub fn factor(mut nb: uint) -> Vec<uint> {
 #[allow(dead_code)]
 #[cfg(not(test))]
 fn main() {
-	println!("Factors of 5: {}", factor(5));
-	println!("Factors of 15: {}", factor(15));
-	println!("Factors of 16: {}", factor(16));
-	println!("Factors of 10287: {}", factor(10287));
+    println!("Factors of 5: {}", factor(5));
+    println!("Factors of 15: {}", factor(15));
+    println!("Factors of 16: {}", factor(16));
+    println!("Factors of 10287: {}", factor(10287));
 }
 
 #[test]
