@@ -28,6 +28,7 @@ authors = [
     "webmobster, https://github.com/webmobster",
     "Mathias Labeyrie, https://github.com/Nojan",
     "Wei Yen, https://github.com/yen223",
+    "Hugh Manning, https://github.com/hmanning77",
 ]
 
 [dependencies.num]
@@ -290,6 +291,11 @@ path = "src/events.rs"
 # http://rosettacode.org/wiki/Factorial
 name = "factorial"
 path = "src/factorial.rs"
+
+[[bin]]
+# http://rosettacode.org/wiki/Factors_of_an_integer
+name = "factor_int"
+path = "src/factor_int.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/FASTA_format
