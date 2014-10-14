@@ -164,6 +164,11 @@ name = "balanced_brackets"
 path = "src/balanced_brackets.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/Basic_bitmap_storage
+name = "bitmap"
+path = "src/bitmap.rs"
+
+[[bin]]
 # http://rosettacode.org/wiki/Binary_digits
 name = "binary_digits"
 path = "src/binary_digits.rs"
@@ -767,6 +772,11 @@ test = false
 name = "webserver"
 path = "src/webserver.rs"
 test = false
+
+[[bin]]
+# http://rosettacode.org/wiki/Write_ppm_file
+name = "write_ppm"
+path = "src/write_ppm.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Zig-zag_matrix
