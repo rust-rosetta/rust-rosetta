@@ -29,6 +29,7 @@ authors = [
     "Mathias Labeyrie, https://github.com/Nojan",
     "Wei Yen, https://github.com/yen223",
     "Hugh Manning, https://github.com/hmanning77",
+    "Gavin Baker, https://github.com/gavinb",
 ]
 
 [dependencies.num]
@@ -385,6 +386,11 @@ test = false
 # http://rosettacode.org/wiki/Hofstadter_Q_sequence
 name = "hofstadter_q"
 path = "src/hofstadter_q.rs"
+
+[[bin]]
+# http://rosettacode.org/wiki/Hough_transform
+name = "hough_transform"
+path = "src/hough_transform.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/HTTP
