@@ -1,4 +1,4 @@
-    // http://rosettacode.org/wiki/Taxicab_numbers
+// http://rosettacode.org/wiki/Taxicab_numbers
 use std::collections::PriorityQueue;
 use std::num::pow;
 
