@@ -1,5 +1,4 @@
 // Implements http://rosettacode.org/wiki/Guess_the_number
-// not_tested
 use std::rand::{task_rng, Rng};
 use std::io::stdio::stdin;
 

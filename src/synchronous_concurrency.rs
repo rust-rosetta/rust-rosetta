@@ -1,5 +1,4 @@
 // http://rosettacode.org/wiki/Synchronous_concurrency
-// not_tested
 //
 // Reader unit reads lines from input.txt, send lines one at a time to printer
 // unit, which then prints lines, keeping track of lines printed. At the end of
@@ -10,7 +9,7 @@ use std::io::File;
 use std::io::BufferedReader;
 use std::comm::{channel, Sender, Receiver};
 
-static FILENAME: &'static str = "resources/input.txt";
+const FILENAME: &'static str = "resources/input.txt";
 
 enum Message {
     Line(String),

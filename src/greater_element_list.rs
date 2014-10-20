@@ -1,5 +1,4 @@
 // http://rosettacode.org/wiki/Greatest_element_of_a_list
-// not_tested
 
 use std::fmt::Show;
 

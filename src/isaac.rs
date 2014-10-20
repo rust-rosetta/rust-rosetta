@@ -3,8 +3,8 @@
 #![feature(macro_rules)]
 use std::iter::range_step;
 
-static MSG :&'static str = "a Top Secret secret";
-static KEY: &'static str = "this is my secret key";
+const MSG :&'static str = "a Top Secret secret";
+const KEY: &'static str = "this is my secret key";
 
 #[cfg(not(test))]
 fn main () {
@@ -155,7 +155,7 @@ impl Isaac {
 #[cfg(test)]
 mod test {
     use super::{Isaac, MSG, KEY};
-    static ENCRIPTED: [u8,..19] = [0x1C, 0x06, 0x36, 0x19, 0x0B, 0x12,
+    const ENCRIPTED: [u8,..19] = [0x1C, 0x06, 0x36, 0x19, 0x0B, 0x12,
         0x60, 0x23, 0x3B, 0x35, 0x12, 0x5F, 0x1E, 0x1D, 0x0E, 0x2F,
         0x4C, 0x54, 0x22];
 

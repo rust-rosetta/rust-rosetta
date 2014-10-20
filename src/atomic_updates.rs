@@ -54,12 +54,12 @@ mod buckets {
     // fully baked, this seems like the sanest solution.
     //
     // (Another way to solve this would be associated constants, something Rust does not have yet).
-    pub static N_BUCKETS: uint = 20;
+    pub const N_BUCKETS: uint = 20;
 
     // We don't really have to hardcode the workers.  This is left over from the Go implementation.
     // All the counting statistics could be moved outside of buckets and probably should, since
     // they have no influence on the correctness of the algorithm.
-    pub static N_WORKERS: uint = 2;
+    pub const N_WORKERS: uint = 2;
 
     struct Bucket {
         data: AtomicUint, // The actual data.  It is atomic because it is read (not written)
@@ -245,8 +245,8 @@ fn display(bl: &buckets::Buckets, running: &AtomicBool, original_total: uint, du
 fn perform_atomic_updates(duration: Duration, original_total: uint, num_ticks: i32)
 {
     // Worker IDs for the two updater tasks.
-    static ID_EQUALIZE: uint = 0;
-    static ID_RANDOMIZE: uint = 1;
+    const ID_EQUALIZE: uint = 0;
+    const ID_RANDOMIZE: uint = 1;
 
     // `running` is an atomic boolean that we use to signal when to stop to the updater tasks.
     let running = AtomicBool::new(true);
@@ -266,8 +266,8 @@ fn perform_atomic_updates(duration: Duration, original_total: uint, num_ticks: i
     display(bl, running, original_total, duration, num_ticks);
 }
 
-static ORIGINAL_TOTAL: uint = 1000;
-static NUM_TICKS: i32 = 10;
+const ORIGINAL_TOTAL: uint = 1000;
+const NUM_TICKS: i32 = 10;
 
 #[cfg(not(test))]
 fn main() {

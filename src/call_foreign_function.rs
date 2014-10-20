@@ -1,5 +1,4 @@
 // Implements http://rosettacode.org/wiki/Call_a_foreign-language_function
-// not_tested
 
 extern crate libc;
 

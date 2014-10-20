@@ -1,5 +1,4 @@
 // Implements http://rosettacode.org/wiki/A%2BB
-// not_tested
 
 use std::io::stdio;
 
@@ -11,7 +10,7 @@ fn main() {
 
     let sum = match words.as_slice() {
         [Some(x), Some(y)] => x + y,
-		    _ => fail!("Please enter 2 integers")
+            _ => fail!("Please enter 2 integers")
     };
 
     println!("{:i}", sum);

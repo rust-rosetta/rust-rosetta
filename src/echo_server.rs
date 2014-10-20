@@ -57,8 +57,8 @@ fn echo_session(mut stream: TcpStream) -> IoResult<()> {
     Ok(())
 }
 
-static HOST: &'static str = "127.0.0.1";
-static PORT: u16 = 12321;
+const HOST: &'static str = "127.0.0.1";
+const PORT: u16 = 12321;
 
 pub fn run_server(duration: Option<Duration>) -> IoResult<()> {
     echo_server(HOST, PORT, duration)

@@ -1,5 +1,4 @@
 // Implements http://rosettacode.org/wiki/Loops/For
-// not_tested
 
 use std::collections::HashMap;
 

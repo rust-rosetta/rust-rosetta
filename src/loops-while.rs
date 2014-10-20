@@ -1,6 +1,5 @@
 // Implements http://rosettacode.org/wiki/Loops/While
 
-// not_tested
 
 fn main() {
     let mut i = 1024u;

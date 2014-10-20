@@ -21,7 +21,7 @@ fn get_index(target: &str, port: u16) -> IoResult<String> {
 
 #[cfg(not(test))]
 fn main() {
-    static PORT: u16 = 80;
+    const PORT: u16 = 80;
 
     let target = std::os::args().pop().unwrap();
     println!("Making the request... This might take a minute.");
@@ -33,8 +33,8 @@ fn main() {
 
 #[test]
 fn test_request() {
-    static HOST: &'static str = "127.0.0.1";
-    static PORT: u16 = 12321;
+    const HOST: &'static str = "127.0.0.1";
+    const PORT: u16 = 12321;
 
     let (port, acceptor) = range(PORT, ::std::u16::MAX)
         .map( |port| (port, webserver::handle_server(HOST, port)) )

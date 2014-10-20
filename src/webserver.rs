@@ -1,5 +1,4 @@
 // Implements http://rosettacode.org/wiki/Hello_world/Web_server
-// not_tested
 
 use std::io::net::tcp::{TcpAcceptor, TcpListener, TcpStream};
 use std::io::{Acceptor, Listener, IoResult};
@@ -59,8 +58,8 @@ pub fn handle_server(ip: &'static str, port: u16) -> IoResult<TcpAcceptor> {
 
 #[cfg(not(test))]
 fn main() {
-    static HOST: &'static str = "127.0.0.1";
-    static PORT: u16 = 80;
+    const HOST: &'static str = "127.0.0.1";
+    const PORT: u16 = 80;
     let acceptor = handle_server(HOST, PORT).unwrap();
     drop(acceptor);
 }

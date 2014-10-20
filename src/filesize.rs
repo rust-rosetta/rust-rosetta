@@ -1,5 +1,4 @@
 // Implements http://rosettacode.org/wiki/File_size
-// not_tested
 
 use std::io::fs::PathExtensions;
 

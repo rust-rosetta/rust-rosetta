@@ -6,16 +6,16 @@ use std::io::IoResult;
 use std::slice::bytes::copy_memory;
 
 // The size of a SHA1 checksum in bytes.
-static SIZE: uint = 20;
+const SIZE: uint = 20;
 
 // The blocksize of SHA1 in bytes.
-static CHUNK:uint = 64;
-static INIT:[u32,..5] = [0x67452301,0xEFCDAB89, 0x98BADCFE, 0x10325476, 0xC3D2E1F0];
+const CHUNK:uint = 64;
+const INIT:[u32,..5] = [0x67452301,0xEFCDAB89, 0x98BADCFE, 0x10325476, 0xC3D2E1F0];
 
 #[cfg(not(test))]
 fn main() {
-	let mut d = Digest::new();
-	d.write(b"The quick brown fox jumps over the lazy dog").unwrap();
+    let mut d = Digest::new();
+    d.write(b"The quick brown fox jumps over the lazy dog").unwrap();
     let sha1=d.sha1();
 
     for h in sha1.iter() {
@@ -25,10 +25,10 @@ fn main() {
 
 // digest represents the partial evaluation of a checksum.
 struct Digest {
-	h:      [u32, ..5],
-	x:      [u8, ..CHUNK],
-	nx:     uint,
-	len:    u64
+    h:      [u32, ..5],
+    x:      [u8, ..CHUNK],
+    nx:     uint,
+    len:    u64
 }
 
 impl Digest {

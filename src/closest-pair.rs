@@ -118,7 +118,7 @@ pub fn main() {
 
 #[cfg(test)]
 mod test {
-    use super::{Point, closest_pair};
+    use super::closest_pair;
     use num::complex::Complex;
 
     #[test]

@@ -1,5 +1,4 @@
 // Implements http://rosettacode.org/wiki/Check_output_device_is_a_terminal
-// not_tested
 
 extern crate libc;
 

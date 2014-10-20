@@ -28,6 +28,7 @@ authors = [
     "webmobster, https://github.com/webmobster",
     "Mathias Labeyrie, https://github.com/Nojan",
     "Wei Yen, https://github.com/yen223",
+    "Hugh Manning, https://github.com/hmanning77",
 ]
 
 [dependencies.num]
@@ -163,6 +164,11 @@ name = "balanced_brackets"
 path = "src/balanced_brackets.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/Basic_bitmap_storage
+name = "bitmap"
+path = "src/bitmap.rs"
+
+[[bin]]
 # http://rosettacode.org/wiki/Binary_digits
 name = "binary_digits"
 path = "src/binary_digits.rs"
@@ -292,9 +298,19 @@ name = "factorial"
 path = "src/factorial.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/Factors_of_an_integer
+name = "factor_int"
+path = "src/factor_int.rs"
+
+[[bin]]
 # http://rosettacode.org/wiki/FASTA_format
 name = "fasta"
 path = "src/fasta.rs"
+
+[[bin]]
+# http://rosettacode.org/wiki/Fast_Fourier_transform
+name = "fast_fourier_transform"
+path = "src/fast_fourier_transform.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Fibonacci_sequence
@@ -431,6 +447,11 @@ name = "json"
 path = "src/json.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/K-d_tree
+name = "k-d-tree"
+path = "src/k-d-tree.rs"
+
+[[bin]]
 # http://rosettacode.org/wiki/Knapsack_problem/0-1
 name = "knapsack_0-1"
 path = "src/knapsack_0-1.rs"
@@ -508,6 +529,11 @@ path = "src/md5-implementation.rs"
 # http://rosettacode.org/wiki/Sorting_algorithms/Merge_sort
 name = "merge-sort"
 path = "src/merge-sort.rs"
+
+[[bin]]
+# http://rosettacode.org/wiki/Metered_concurrency
+name = "metered_concurrency"
+path = "src/metered_concurrency.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Modular_exponentiation
@@ -752,6 +778,11 @@ test = false
 name = "webserver"
 path = "src/webserver.rs"
 test = false
+
+[[bin]]
+# http://rosettacode.org/wiki/Write_ppm_file
+name = "write_ppm"
+path = "src/write_ppm.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Zig-zag_matrix
