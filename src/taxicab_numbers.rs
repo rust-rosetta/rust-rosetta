@@ -1,4 +1,4 @@
-// http://rosettacode.org/wiki/Taxicab_numbers
+    // http://rosettacode.org/wiki/Taxicab_numbers
 use std::collections::PriorityQueue;
 use std::num::pow;
 
@@ -82,7 +82,7 @@ fn main() {
     for (at, ways) in numbers.take(2006).enumerate()
                              .filter(|&(at, _)| at + 1 <= 25 || at + 1 >= 2000) {
         print!("{:>4u}:{:>10u}", at + 1, ways[0].value);
-        for &SumCubes{ a, b, value } in ways.iter() {
+        for &SumCubes{ a, b, .. } in ways.iter() {
             print!(" = {:>4u}^3 + {:>4u}^3", a, b);
         }
         print!("\n");
