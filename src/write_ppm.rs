@@ -44,13 +44,14 @@ mod test {
     use std::io::{File, BufferedReader};
     use std::rand;
     use std::rand::Rng;
+    use std::os;
 
     #[test]
     fn write_ppm() {
         let mut image = Image::new(2,1);
         image[(0, 0)] = Color { red: 1, green: 2, blue: 3 };
         image[(1, 0)] = Color { red: 4, green: 5, blue: 6 };
-        let fname = format!("/tmp/test-{}.ppm", rand::task_rng().gen::<int>());
+        let fname = format!("{}/test-{}.ppm", os::tmpdir().as_str().unwrap(), rand::task_rng().gen::<int>());
         // Can't use try! macro because we want to fail, not return.
         match image.write_ppm(fname.as_slice()) {
             Ok(_) => {},

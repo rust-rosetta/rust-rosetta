@@ -9,7 +9,7 @@ fn main() {
 
     // Compute the triangle line-by-line by viewing it as Pascal's triangle (mod 2)
     for i in range(0u, height) {
-        for j in range(0u, height - i - 1) {
+        for _ in range(0u, height - i - 1) {
             print!(" ");
         }
 
