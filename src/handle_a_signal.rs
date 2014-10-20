@@ -5,8 +5,6 @@
 extern crate libc;
 extern crate time;
 
-use libc::consts::os::posix88::SIGINT;
-use libc::funcs::posix01::signal;
 use std::io::timer::Timer;
 use std::mem;
 use std::sync::atomic::{AtomicBool, INIT_ATOMIC_BOOL};
@@ -16,6 +14,9 @@ use std::time::duration::Duration;
 #[cfg(all(unix, not(test)))]
 fn main()
 {
+    use libc::consts::os::posix88::SIGINT;
+    use libc::funcs::posix01::signal;
+
     // The time between ticks of our counter.
     let duration = Duration::seconds(1) / 2;
     let mut timer = Timer::new().unwrap();
