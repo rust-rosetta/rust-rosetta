@@ -313,8 +313,8 @@ fn main() {
 #[bench]
 fn bench_decode(b: &mut test::Bencher)
 {
-    let ref mut ctx = ParseContext::new(SEXP_STRING_IN);
     b.iter(|| {
+        let ref mut ctx = ParseContext::new(SEXP_STRING_IN);
         assert!(try_decode(ctx).is_ok());
     })
 }

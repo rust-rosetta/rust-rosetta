@@ -58,11 +58,11 @@ fn print_aligned_columns(chunks: &Vec<Vec<String>>, max_lengths: &Vec<uint>) {
         for j in range(0u, chunks[i].len()) {
             let ref string: String = chunks[i][j];
             let spaces: uint = 1 + max_lengths[j] - string.len();
-            for k in range(0u, spaces>>1) {
+            for _ in range(0u, spaces>>1) {
                 print!(" ");
             }
             print!("{}", string);
-            for k in range(0u, spaces - (spaces>>1)) {
+            for _ in range(0u, spaces - (spaces>>1)) {
                 print!(" ");
             }
         }
