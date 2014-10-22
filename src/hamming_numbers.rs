@@ -23,13 +23,21 @@ fn main() {
 //representing a Hamming number as a BigUint
 impl HammingNumber for BigUint {
     // returns the multipliers 2, 3 and 5 in the representation for the HammingNumber
-    fn multipliers()-> (BigUint, BigUint, BigUint) {
+    fn multipliers() -> (BigUint, BigUint, BigUint) {
         (2u.to_biguint().unwrap(),
         3u.to_biguint().unwrap(),
         5u.to_biguint().unwrap())
     }
 }
 
+// not sctrictly needed
+// workaround for https://github.com/Hoverbear/rust-rosetta/issues/276
+// can be removed when upstream issue with rustc is fixed
+impl HammingNumber for uint {
+    // returns the multipliers 2, 3 and 5 in the representation for the HammingNumber
+    fn multipliers() -> (uint, uint, uint) { (2u, 3, 5) }
+}
+    
 /// representation of a Hamming number
 /// allows to abstract on how the hamming number is stored
 /// i.e. as BigUint directly or just as the powers of 2, 3 and 5 used to build it

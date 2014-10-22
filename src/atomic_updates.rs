@@ -18,7 +18,7 @@ use std::rand::{Rng, weak_rng};
 use std::rand::distributions::{IndependentSample, Range};
 use std::sync::Arc;
 use std::sync::atomic::AtomicBool;
-use std::sync::atomics;
+use std::sync::atomic;
 use std::time::duration::Duration;
 
 // The reason I used a module here is simply to keep it clearer who can access what.  Rust
@@ -26,7 +26,7 @@ use std::time::duration::Duration;
 // other types of race conditions.
 mod buckets {
     use std::sync::atomic::AtomicUint;
-    use std::sync::atomics;
+    use std::sync::atomic;
     use sync::mutex::Mutex;
 
     // We hardcode the number of buckets mostly for convenience.  Now that Rust has dynamically
@@ -100,7 +100,7 @@ mod buckets {
         pub fn get(&self, i: uint) -> Option<uint> {
             // This is used as an estimate, and is used without the mutex lock, so there's no
             // compelling reason to demand consistency here.
-            self.buckets.get(i).map( |b| b.data.load(atomics::Relaxed) )
+            self.buckets.get(i).map( |b| b.data.load(atomic::Relaxed) )
         }
 
         // Transfer at most `amount` from the bucket at index `from` to that at index `to`, and
@@ -127,16 +127,16 @@ mod buckets {
                 let _s2 = high.mutex.lock();
                 // It is possible that SeqCst is too strong for this section, but it is hard to
                 // test on x86 because it has unusually strong consistency by default.
-                let v1 = b1.data.load(atomics::SeqCst);
+                let v1 = b1.data.load(atomic::SeqCst);
                 let real_amount = ::std::cmp::min(v1, amount);
-                b1.data.store(v1 - real_amount, atomics::SeqCst);
-                b2.data.fetch_add(real_amount, atomics::SeqCst);
+                b1.data.store(v1 - real_amount, atomic::SeqCst);
+                b2.data.fetch_add(real_amount, atomic::SeqCst);
             }
             // Doing this outside the critical section increases throughput substantially.  Since
             // this is just a summary statistic, it's okay for it to be a few off.  That's also why
             // we use Acquire semantics rather than AcqRel or SeqCst here--we only really care that
             // we synchronize when the transfer count is set to 0.
-            self.transfers[worker].fetch_add(1, atomics::Acquire);
+            self.transfers[worker].fetch_add(1, atomic::Acquire);
         }
 
         // Acquire a consistent snapshot of the state of the bucket list.  This should maintain the
@@ -151,13 +151,13 @@ mod buckets {
             let locks = buckets.iter_mut().zip(self.buckets.iter()).map( |(dest, src)| {
                 let lock = src.mutex.lock();
                 // Is SeqCst necessary here?  Maybe, maybe not, but when in doubt go with SeqCst.
-                *dest = src.data.load(atomics::SeqCst);
+                *dest = src.data.load(atomic::SeqCst);
                 lock
             }).collect::<Vec<_>>();
             for (dest, src) in transfers.iter_mut().zip(self.transfers.iter()) {
                 // We synchronize with the Acquire in transfer, making sure that our zeroing out
                 // gets noticed.
-                *dest = src.swap(0, atomics::Release);
+                *dest = src.swap(0, atomic::Release);
             }
             // We can drop the locks before we return.  This probably gets optimized out, but it's
             // rarely a bad idea to drop locks explicitly.
@@ -187,7 +187,7 @@ fn equalize(bl: &buckets::Buckets, running: &AtomicBool, worker: uint) {
     let ref mut r = weak_rng();
     // Running is read Relaxed because it's not important that the task stop right away as long as
     // it happens eventually.
-    while running.load(atomics::Relaxed) {
+    while running.load(atomic::Relaxed) {
         let b1 = between.ind_sample(r);
         let b2 = between.ind_sample(r);
         let v1 = bl.get(b1).unwrap();
@@ -208,7 +208,7 @@ fn randomize(bl: &buckets::Buckets, running: &AtomicBool, worker: uint) {
     let ref mut r = weak_rng();
     // Running is read Relaxed because it's not important that the task stop right away as long as
     // it happens eventually.
-    while running.load(atomics::Relaxed) {
+    while running.load(atomic::Relaxed) {
         let b1 = between.ind_sample(r);
         let b2 = between.ind_sample(r);
         bl.transfer(b1, b2, r.gen_range(0, bl.get(b1).unwrap() + 1), worker);
@@ -238,7 +238,7 @@ fn display(bl: &buckets::Buckets, running: &AtomicBool, original_total: uint, du
         timer.sleep(duration);
     }
     // We're done--cleanly exit the other update tasks.
-    running.store(false, atomics::Relaxed);
+    running.store(false, atomic::Relaxed);
 }
 
 // Putting together all three tasks.

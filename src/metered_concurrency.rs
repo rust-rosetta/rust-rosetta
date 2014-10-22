@@ -8,7 +8,7 @@ extern crate sync;
 use std::io::timer;
 use std::sync::Arc;
 use std::sync::atomic::AtomicUint;
-use std::sync::atomics;
+use std::sync::atomic;
 use std::time::duration::Duration;
 
 pub struct CountingSemaphore {
@@ -33,10 +33,10 @@ impl CountingSemaphore {
         let mut backoff: Duration = self.backoff;
         loop {
             // Probably don't need SeqCst here, but it doesn't hurt.
-            let count = self.count.load(atomics::SeqCst);
+            let count = self.count.load(atomic::SeqCst);
             // The check for 0 is necessary to make sure we don't go negative, which is why this
             // must be a compare-and-swap rather than a straight decrement.
-            if count == 0 || self.count.compare_and_swap(count, count - 1, atomics::SeqCst) != count {
+            if count == 0 || self.count.compare_and_swap(count, count - 1, atomic::SeqCst) != count {
                 // Linear backoff a la Servo's spinlock contention.
                 timer::sleep(backoff);
                 backoff = backoff + self.backoff;
@@ -50,7 +50,7 @@ impl CountingSemaphore {
 
     // Return remaining resource count
     pub fn count(&self) -> uint {
-        self.count.load(atomics::SeqCst)
+        self.count.load(atomic::SeqCst)
     }
 }
 
@@ -58,7 +58,7 @@ impl CountingSemaphore {
 impl<'a> Drop for CountingSemaphoreGuard<'a> {
     // When the guard is dropped, a resource is released back to the pool.
     fn drop(&mut self) {
-        self.sem.count.fetch_add(1, atomics::SeqCst);
+        self.sem.count.fetch_add(1, atomic::SeqCst);
     }
 }
 
