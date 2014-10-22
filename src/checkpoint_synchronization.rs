@@ -8,7 +8,7 @@
 // at checkpoints.
 
 use std::sync::atomic::AtomicBool;
-use std::sync::atomics;
+use std::sync::atomic;
 use std::sync::{Arc, Barrier};
 
 pub fn checkpoint() {
@@ -40,19 +40,19 @@ pub fn checkpoint() {
             // Start processing events
             for _ in range(0, NUM_ITERATIONS) {
                 // Between checkpoints 4 and 1, turn this task's event on.
-                event.store(true, atomics::Release);
+                event.store(true, atomic::Release);
                 // Checkpoint 1
                 barrier.wait();
                 // Between checkpoints 1 and 2, all events are on.
-                assert!(events.iter().all( |e| e.load(atomics::Acquire) ));
+                assert!(events.iter().all( |e| e.load(atomic::Acquire) ));
                 // Checkpoint 2
                 barrier.wait();
                 // Between checkpoints 2 and 3, turn this task's event off.
-                event.store(false, atomics::Release);
+                event.store(false, atomic::Release);
                 // Checkpoint 3
                 barrier.wait();
                 // Between checkpoints 3 and 4, all events are off.
-                assert!(events.iter().all( |e| !e.load(atomics::Acquire) ));
+                assert!(events.iter().all( |e| !e.load(atomic::Acquire) ));
                 // Checkpoint 4
                 barrier.wait();
             }
