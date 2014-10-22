@@ -3,6 +3,8 @@
 // Contributed by Gavin Baker <gavinb@antonym.org>
 // Adapted from the Go version
 
+#![allow(dead_code)]
+
 use std::io::{BufferedReader, BufferedWriter, File};
 
 // Simple 8-bit grayscale image
@@ -127,6 +129,7 @@ fn hough(image: &ImageGray8, out_width: uint, out_height: uint) -> ImageGray8 {
     accum
 }
 
+#[cfg(not(test))]
 fn main() {
 
     let image = load_pgm("../src/resources/Pentagon.pgm");
