@@ -2,6 +2,7 @@
 // this is the unoptimized version that performs all 100
 // passes, as per the original description of the problem
 use std::iter::range_inclusive;
+use std::iter::range_step_inclusive;
 
 #[cfg(not(test))]
 fn main() {
@@ -22,11 +23,9 @@ fn main() {
 // the states in place
 fn solve(doors: &mut [bool, ..100])  {
     for pass in range_inclusive(1u, 100u) {
-        for door in range_inclusive(1u, 100u) {
-            if (door % pass) == 0 {
-                // flip the state of the door
-                doors[door-1] = !(doors[door-1])
-            }
+        for door in range_step_inclusive(pass, 100u, pass) {
+            // flip the state of the door
+            doors[door-1] = !doors[door-1]
         }
      }
 }
