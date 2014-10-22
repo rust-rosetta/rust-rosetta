@@ -30,8 +30,9 @@ impl HammingNumber for BigUint {
     }
 }
 
-// not sctrictly needed
-// workaround for https://github.com/Hoverbear/rust-rosetta/issues/276
+// not used by the rest of code but fomally correct if
+// one wanted to use uints as representation for Hamming Numbers
+// introduced as a workaround for https://github.com/Hoverbear/rust-rosetta/issues/276
 // can be removed when upstream issue with rustc is fixed
 impl HammingNumber for uint {
     // returns the multipliers 2, 3 and 5 in the representation for the HammingNumber
