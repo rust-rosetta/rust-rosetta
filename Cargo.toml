@@ -30,6 +30,7 @@ authors = [
     "Wei Yen, https://github.com/yen223",
     "Hugh Manning, https://github.com/hmanning77",
     "Gavin Baker, https://github.com/gavinb",
+    "Rupert Lane, https://github.com/rupertl",
 ]
 
 [dependencies.num]
@@ -461,6 +462,11 @@ path = "src/k-d-tree.rs"
 # http://rosettacode.org/wiki/Knapsack_problem/0-1
 name = "knapsack_0-1"
 path = "src/knapsack_0-1.rs"
+
+[[bin]]
+# http://rosettacode.org/wiki/Leap_year
+name = "leap_year"
+path = "src/leap_year.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Letter_frequency
