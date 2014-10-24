@@ -11,13 +11,13 @@
 #[cfg(not(test))] 
 fn main() {
     // we can invoke factorial_10! as a regular macro
-    println!("{}", factorial_10!());
+    println!("{}", factorial!(10u));
 }
 
 #[test]
 fn output() {
     // just testing the output
-    // don't know how to prove programmatically that
-    // factorial_10 is calculated at compile time
-    assert_eq!(factorial_10!(), 3628800u);
+    // I can't prove programmatically that factorial_10 is actually
+    // calculated at compile time
+    assert_eq!(factorial!(10u), 3628800u);
 }
