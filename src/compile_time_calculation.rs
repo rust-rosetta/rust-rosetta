@@ -19,5 +19,5 @@ fn output() {
     // just testing the output
     // don't know how to prove programmatically that
     // factorial_10 is calculated at compile time
-    assert_eq!(factorial_10!(), 36288899u);
+    assert_eq!(factorial_10!(), 3628800u);
 }
