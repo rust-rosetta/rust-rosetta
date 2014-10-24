@@ -413,9 +413,9 @@ name = "hofstadter_q"
 path = "src/hofstadter_q.rs"
 
 [[bin]]
-+# http://rosettacode.org/wiki/Horner%27s_rule_for_polynomial_evaluation
-+name = "horners_rule"
-+path = "src/horners_rule.rs"
+# http://rosettacode.org/wiki/Horner%27s_rule_for_polynomial_evaluation
+name = "horners_rule"
+path = "src/horners_rule.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Hough_transform
