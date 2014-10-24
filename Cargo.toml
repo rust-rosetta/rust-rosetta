@@ -36,6 +36,14 @@ authors = [
 [dependencies.num]
 git = "https://github.com/rust-lang/num"
 
+[lib]
+# used by compile_time_calculation.rs
+# http://rosettacode.org/wiki/Compile-time_calculation
+name = "factorial_plugin"
+crate-type = ["dylib"]
+path = "src/factorial_plugin.rs"
+test = false
+
 [[bin]]
 # http://rosettacode.org/wiki/100_doors
 name = "100_doors"
@@ -228,6 +236,11 @@ path = "src/closest-pair.rs"
 # http://rosettacode.org/wiki/Comma_quibbling
 name = "comma_quibbling"
 path = "src/comma_quibbling.rs"
+
+[[bin]]
+# http://rosettacode.org/wiki/Compile-time_calculation
+name = "compile_time_calculation"
+path = "src/compile_time_calculation.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Arithmetic/Complex
