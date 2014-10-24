@@ -13,7 +13,7 @@ fn main()
     use std::io::timer::Timer;
     use std::mem;
     use std::sync::atomic::{AtomicBool, INIT_ATOMIC_BOOL};
-    use std::sync::atomics;
+    use std::sync::atomic;
     use std::time::duration::Duration;
 
     // The time between ticks of our counter.
@@ -23,12 +23,12 @@ fn main()
     static mut GOT_SIGINT: AtomicBool = INIT_ATOMIC_BOOL;
     unsafe {
         // Initially, "SIGINT received" is false.
-        GOT_SIGINT.store(false, atomics::Release);
+        GOT_SIGINT.store(false, atomic::Release);
         // Interrupt handler that handles the SIGINT signal
         unsafe fn handle_sigint() {
             // It is dangerous to perform any system calls in interrupts, so just set the atomic
             // "SIGINT received" global to true when it arrives.
-            GOT_SIGINT.store(true, atomics::Release);
+            GOT_SIGINT.store(true, atomic::Release);
         }
         // Make handle_sigint the signal handler for SIGINT.
         signal::signal(SIGINT, mem::transmute(handle_sigint));
@@ -41,7 +41,7 @@ fn main()
     // Every `duration`...
     for _ in periodic.iter() {
         // Break if SIGINT was handled
-        if unsafe { GOT_SIGINT.load(atomics::Acquire) } { break }
+        if unsafe { GOT_SIGINT.load(atomic::Acquire) } { break }
         // Otherwise, increment and display the integer and continue the loop.
         i += 1;
         println!("{}", i);
