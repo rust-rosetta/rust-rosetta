@@ -815,6 +815,11 @@ name = "write_ppm"
 path = "src/write_ppm.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/Word_wrap
+name = "word_wrap"
+path = "src/word_wrap.rs"
+
+[[bin]]
 # http://rosettacode.org/wiki/Zig-zag_matrix
 name = "zig-zag_matrix"
 path = "src/zig-zag_matrix.rs"
