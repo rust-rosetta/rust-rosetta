@@ -1,32 +1,68 @@
 // http://rosettacode.org/wiki/Word_wrap
 
-// Implements the minimum length greedy algorithm
+// Using the minimum length greedy algorithm
 // http://en.wikipedia.org/wiki/Word_wrap#Minimum_length
-fn word_wrap(text: &str, line_length: uint) -> String {
-    let mut wrapped = String::new();
-    let mut space_left = line_length;
-    let space_width = 1u;
 
-    for word in text.words() {
-        let word_length = word.char_len();
+// Implemented as a lazy String iterator, returning a wrapped line each time
 
-        if space_left != line_length {
-            if word_length + space_width > space_left {
-                wrapped.push('\n');
-                space_left = line_length;
-            }
-            else {
-                wrapped.push(' ');
-                space_left -= space_width;
+use std::str::Words;
+use std::mem::swap;
+
+pub struct WordWrap<'a> {
+    words: Words<'a>,
+    line_length: uint,
+    next_line: String
+}
+
+impl<'a> WordWrap<'a> {
+    fn new(text: &'a str, line_length: uint) -> WordWrap {
+        WordWrap {
+            words : text.words(),
+            line_length : line_length,
+            next_line: String::new(),
+        }
+    }
+}
+
+impl<'a> Iterator<String> for WordWrap<'a> {
+    fn next(&mut self) -> Option<String> {
+        // Move anything left over from last run to this_line
+        let mut this_line = String::new();
+        swap(&mut self.next_line, &mut this_line);
+
+        let mut space_left = self.line_length - this_line.as_slice().char_len();
+        let space_width = 1u;
+
+        // Loop, adding words until we run out of words or hit the line length
+        loop {
+            match self.words.next() {
+                None => break,
+                Some(word) => {
+                    let word_length = word.char_len();
+
+                    // If not the first word for this line
+                    if space_left != self.line_length {
+                        if word_length + space_width > space_left {
+                            // Out of space, save word for next line
+                            self.next_line.push_str(word);
+                            break;
+                        }
+                        else {
+                            // Add a space and keep going
+                            this_line.push(' ');
+                            space_left -= space_width;
+                        }
+                    }
+
+                    // Add word to this line
+                    this_line.push_str(word);
+                    space_left -= word_length;
+                }
             }
         }
 
-        wrapped.push_str(word);
-        space_left =
-            if word_length > line_length { 0 } else { space_left - word_length }
+        match this_line.is_empty() { true => None, false => Some(this_line) }
     }
-
-    wrapped
 }
 
 #[cfg(not(test))]
@@ -43,55 +79,60 @@ fn main () {
          ball was her favorite plaything.";
 
     for &length in [72u, 80u].iter() {
-        println!("Text wrapped at {}:\n{}\n", length, word_wrap(text, length));
+        println!("Text wrapped at {}", length);
+        for line in WordWrap::new(text, length) {
+            println!("{}", line);
+        }
+        println!("");
     }
+
 }
 
 #[test]
 fn test_empty_string() {
-    assert_eq!(word_wrap("", 80).as_slice(), "");
+    assert_eq!(WordWrap::new("", 80).next(), None);
 }
 
 #[test]
 fn test_single_word_shorter_than_line() {
-    assert_eq!(word_wrap("Hello", 80).as_slice(), "Hello");
+    assert_eq!(WordWrap::new("Hello", 80).next().unwrap().as_slice(), "Hello");
 }
 
 #[test]
 fn test_two_words_shorter_than_line() {
-    assert_eq!(word_wrap("Hello world", 80).as_slice(), "Hello world");
-}
-
-#[test]
-fn test_single_word_longer_than_line() {
-    assert_eq!(word_wrap("Hello", 4).as_slice(), "Hello");
+    assert_eq!(WordWrap::new("Hello world", 80).next().unwrap().as_slice(),
+               "Hello world");
 }
 
 #[test]
 fn test_wrap_second_word() {
-    assert_eq!(word_wrap("Hello world", 10).as_slice(), "Hello\nworld");
-}
-
-#[test]
-fn test_wrap_all_as_words_shorter_than_line_length() {
-    assert_eq!(word_wrap("Words frequently wrapped", 4).as_slice(),
-               "Words\nfrequently\nwrapped");
+    let mut w = WordWrap::new("Hello world", 10);
+    assert_eq!(w.next().unwrap().as_slice(), "Hello");
+    assert_eq!(w.next().unwrap().as_slice(), "world");
 }
 
 #[test]
 fn test_wrap_punctuation() {
-    assert_eq!(word_wrap("Hello, world", 6).as_slice(), "Hello,\nworld");
+    let mut w = WordWrap::new("Hello, world", 6);
+    assert_eq!(w.next().unwrap().as_slice(), "Hello,");
+    assert_eq!(w.next().unwrap().as_slice(), "world");
 }
 
 #[test]
 fn test_squash_multiple_spaces() {
-    assert_eq!(word_wrap(" Hello  to the    world    ", 10).as_slice(),
-               "Hello to\nthe world");
+    let mut w = WordWrap::new(" Hello  to the    world    ", 10);
+    assert_eq!(w.next().unwrap().as_slice(), "Hello to");
+    assert_eq!(w.next().unwrap().as_slice(), "the world");
+    assert_eq!(w.next(), None);
 }
 
 #[test]
 fn test_unicode() {
-    assert_eq!(word_wrap("Nous étions à l'Étude, quand le Proviseur entra",
-                         11).as_slice(),
-               "Nous étions\nà l'Étude,\nquand le\nProviseur\nentra");
+    let mut w =
+        WordWrap::new("Nous étions à l'Étude, quand le Proviseur entra", 11);
+    assert_eq!(w.next().unwrap().as_slice(), "Nous étions");
+    assert_eq!(w.next().unwrap().as_slice(), "à l'Étude,");
+    assert_eq!(w.next().unwrap().as_slice(), "quand le");
+    assert_eq!(w.next().unwrap().as_slice(), "Proviseur");
+    assert_eq!(w.next().unwrap().as_slice(), "entra");
 }
