@@ -810,6 +810,11 @@ path = "src/webserver.rs"
 test = false
 
 [[bin]]
+# http://rosettacode.org/wiki/Word_wrap
+name = "word_wrap"
+path = "src/word_wrap.rs"
+
+[[bin]]
 # http://rosettacode.org/wiki/Write_ppm_file
 name = "write_ppm"
 path = "src/write_ppm.rs"
