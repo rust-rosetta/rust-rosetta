@@ -31,37 +31,32 @@ impl<'a> Iterator<String> for WordWrap<'a> {
         swap(&mut self.next_line, &mut this_line);
 
         let mut space_left = self.line_length - this_line.as_slice().char_len();
-        let space_width = 1u;
+        const SPACE_WIDTH: uint = 1;
 
         // Loop, adding words until we run out of words or hit the line length
-        loop {
-            match self.words.next() {
-                None => break,
-                Some(word) => {
-                    let word_length = word.char_len();
+        for word in self.words {
+            let word_length = word.char_len();
 
-                    // If not the first word for this line
-                    if space_left != self.line_length {
-                        if word_length + space_width > space_left {
-                            // Out of space, save word for next line
-                            self.next_line.push_str(word);
-                            break;
-                        }
-                        else {
-                            // Add a space and keep going
-                            this_line.push(' ');
-                            space_left -= space_width;
-                        }
-                    }
-
-                    // Add word to this line
-                    this_line.push_str(word);
-                    space_left -= word_length;
+            // If not the first word for this line
+            if space_left != self.line_length {
+                if word_length + SPACE_WIDTH > space_left {
+                    // Out of space, save word for next line
+                    self.next_line.push_str(word);
+                    break;
+                }
+                else {
+                    // Add a space and keep going
+                    this_line.push(' ');
+                    space_left -= SPACE_WIDTH;
                 }
             }
+
+            // Add word to this line
+            this_line.push_str(word);
+            space_left -= word_length;
         }
 
-        match this_line.is_empty() { true => None, false => Some(this_line) }
+        if this_line.is_empty() { None } else { Some(this_line) }
     }
 }
 
