@@ -239,6 +239,11 @@ name = "closest-pair"
 path = "src/closest-pair.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/Closures/Value_capture
+name = "closures-value_capture"
+path = "src/closures-value_capture.rs"
+
+[[bin]]
 # http://rosettacode.org/wiki/Comma_quibbling
 name = "comma_quibbling"
 path = "src/comma_quibbling.rs"
