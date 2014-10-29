@@ -804,6 +804,12 @@ path = "src/synchronous_concurrency.rs"
 test = false
 
 [[bin]]
+# http://rosettacode.org/wiki/System_time
+name = "system_time"
+path = "src/system_time.rs"
+test = false
+
+[[bin]]
 # http://rosettacode.org/wiki/Taxicab_numbers
 name = "taxicab_numbers"
 path = "src/taxicab_numbers.rs"
