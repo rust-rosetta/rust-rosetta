@@ -9,7 +9,7 @@ fn main () {
     let time_ts = get_time();
     println!("seconds: {} nanoseconds: {}", time_ts.sec, time_ts.nsec);
 
-    // Comvert the timespec to a broken-down time value Tm
+    // Convert the timespec to a broken-down time value Tm
     // Could also use "let time_tm = now();" to get directly
     let time_tm = at(time_ts);
 
