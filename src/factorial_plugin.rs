@@ -24,7 +24,7 @@ fn exp_factorial(cx: &mut ExtCtxt, sp: Span, tts: &[TokenTree])
     let mut parser = parse::new_parser_from_tts(cx.parse_sess(), cx.cfg(), tts.to_vec());
 
     // Try to parse a literal (doesn't need to be a number)
-    let literal = if parser.token != token::EOF {
+    let literal = if parser.token != token::Eof {
         parser.parse_lit()
     } else {
         // span_err shows a compile time error to the user

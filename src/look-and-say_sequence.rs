@@ -13,7 +13,7 @@ fn main() {
 }
 
 fn look_and_say(value: &str) -> String {
-    if value.chars().any(|c| !c.is_digit()) { fail!("this task requires all digits"); }
+    if value.chars().any(|c| !c.is_digit()) { panic!("this task requires all digits"); }
     encode(value)
 }
 

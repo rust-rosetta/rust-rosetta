@@ -6,7 +6,7 @@ use std::os::args;
 
 fn main() {
     let filename = match args().len() {
-        1 => fail!("You must enter a filename to read line by line"),
+        1 => panic!("You must enter a filename to read line by line"),
         _ => args()[1].clone()
     };
 

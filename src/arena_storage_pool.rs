@@ -15,12 +15,12 @@ fn main() {
     // can allocate only objects of one type.  The type is determined by type inference--if you try
     // to allocate an integer, then Rust's compiler knows it is an integer arena.
     let v1 = arena.alloc(1i32);
-    // Note that the current implementation of TypedArena returns a & (shared) reference, not a
-    // mutable reference.  Therefore, unless the type has interior mutability (like Cell) it is not
-    // modifiable after it is allocated.  This is to prevent the reference from being dropped
-    // accidentally before the arena is deallocated.
+
+    // TypedArena returns a mutable reference
     let v2 = arena.alloc(3);
-    println!("{}", v1 + *v2);
+    *v2 += 38;
+    println!("{}", *v1 + *v2);
+
     // The arena's destructor is called as it goes out of scope, at which point it deallocates
     // everything stored within it at once.
 }

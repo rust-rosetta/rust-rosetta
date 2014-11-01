@@ -9,7 +9,7 @@ fn main() {
 
     let (a, b) = match words.as_slice() {
             [Some(x), Some(y)] => (x, y),
-            _ => fail!("Please enter 2 integers")
+            _ => panic!("Please enter 2 integers")
     };
 
     println!("a + b = {}", a + b);

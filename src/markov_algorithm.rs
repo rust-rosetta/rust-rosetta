@@ -237,7 +237,7 @@ fn test_samples() {
         match MarkovAlgorithm::from_str(sample.ruleset) {
             Ok(algorithm) => assert_eq!(sample.expected_result,
                                         algorithm.apply(sample.input).as_slice()),
-            Err(message) => fail!("{}", message)
+            Err(message) => panic!("{}", message)
         }
     }
 }

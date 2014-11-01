@@ -13,7 +13,7 @@ impl<'a> Balanced for &'a str {
             let change = match bracket {
                 '[' => 1,
                 ']' => -1,
-                _ => fail!("Strings should only contain brackets")
+                _ => panic!("Strings should only contain brackets")
             };
 
             count += change;

@@ -30,7 +30,7 @@ mod test {
                 println!("{}", source);
             }
 
-            fail!("Please add the previous source files to Cargo.toml");
+            panic!("Please add the previous source files to Cargo.toml");
         }
     }
 

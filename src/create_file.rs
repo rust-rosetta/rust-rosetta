@@ -47,7 +47,7 @@ fn test_create_file() {
     }
     match File::create(&file_path) {
         Ok(_) => assert!(true),
-        Err(e) => fail!("failed to create_file at {}, error: {}",
+        Err(e) => panic!("failed to create_file at {}, error: {}",
                         file_path.display(),
                         e.desc)
     }
