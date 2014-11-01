@@ -259,14 +259,14 @@ impl<'a> SExp<'a> {
                     Some(mut l) => {
                         // We allocate a slot for the current list in our parse context (needed for
                         // safety) before pushing it onto its parent list.
-                        l.push(List(arena.alloc(list)[]));
+                        l.push(List(arena.alloc(list).as_slice()));
                         // Now reset the current list to the parent list
                         list = l;
                     },
                     // There was nothing on the stack, so we're at the end of the topmost list.
                     // The check to make sure there are no more tokens is required for correctness.
                     None => return match try!(tokens.next()) {
-                        EOF => Ok(List(arena.alloc(list)[])),
+                        EOF => Ok(List(arena.alloc(list).as_slice())),
                         _ => Err(ExpectedEOF),
                     }
                 },
