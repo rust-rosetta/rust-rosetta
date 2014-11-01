@@ -40,7 +40,7 @@ fn expand_item(item: &str) -> Vec<int> {
         return range_inclusive(left, right).collect()
     }
 
-    fail!("The item `{}` is not a number or a range!", item);
+    panic!("The item `{}` is not a number or a range!", item);
 }
 
 #[test]

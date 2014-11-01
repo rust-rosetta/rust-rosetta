@@ -52,7 +52,7 @@ fn decompress(compressed: &Vec<int>) -> String {
       let entry = match dictionary.find(&k) {
           Some(v) => v.clone(),
           None if k == dict_size => { let mut new = w.clone(); new.push(w[0].clone()); new }
-          None => fail!("Invalid compressed string")
+          None => panic!("Invalid compressed string")
       };
 
       result.extend(entry.iter().map(|&x| x.clone()));

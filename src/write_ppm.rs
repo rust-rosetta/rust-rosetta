@@ -52,10 +52,10 @@ mod test {
         image[(0, 0)] = Color { red: 1, green: 2, blue: 3 };
         image[(1, 0)] = Color { red: 4, green: 5, blue: 6 };
         let fname = format!("{}/test-{}.ppm", os::tmpdir().as_str().unwrap(), rand::task_rng().gen::<int>());
-        // Can't use try! macro because we want to fail, not return.
+        // Can't use try! macro because we want to panic, not return.
         match image.write_ppm(fname.as_slice()) {
             Ok(_) => {},
-            Err(e) => fail!(e)
+            Err(e) => panic!(e)
         }
 
         let file = File::open(&Path::new(fname.as_slice()));

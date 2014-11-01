@@ -124,29 +124,29 @@ fn test_tree_construction() {
     assert!(tree.weight == 7);
     let children = match tree.item {
         HTree(data) => data,
-        HLeaf(_)    => fail!("Tree Missing Children!"),
+        HLeaf(_)    => panic!("Tree Missing Children!"),
     };
     let left  = &children.left;
     let right = &children.right;
     assert!(right.weight == 4);
     assert!(left.weight == 3);
     let right_char = match right.item {
-        HTree(_)  => fail!("Node is not Leaf Node!"),
+        HTree(_)  => panic!("Node is not Leaf Node!"),
         HLeaf(ch) => ch,
     };
     assert!(right_char == '4');
     let children = match left.item {
         HTree(ref data) => data,
-        HLeaf(_)    => fail!("Tree Missing Children!"),
+        HLeaf(_)    => panic!("Tree Missing Children!"),
     };
     let left  = &children.left;
     let right = &children.right;
     let left_char = match left.item {
-        HTree(_)  => fail!("Node is not Leaf Node!"),
+        HTree(_)  => panic!("Node is not Leaf Node!"),
         HLeaf(ch) => ch,
     };
     let right_char = match right.item {
-        HTree(_)  => fail!("Node is not Leaf Node!"),
+        HTree(_)  => panic!("Node is not Leaf Node!"),
         HLeaf(ch) => ch,
     };
     match (left.weight, right.weight) {
@@ -159,7 +159,7 @@ fn test_tree_construction() {
             assert!(right_char == '1');
         },
         (_, _) => {
-            fail!("Incorrect Leaf Nodes");
+            panic!("Incorrect Leaf Nodes");
         }
     };
 }
