@@ -2,11 +2,11 @@
 name = "rust-rosetta"
 version = "0.0.1"
 dependencies = [
- "num 0.0.1 (git+https://github.com/rust-lang/num#6c56fe940ca2a45df438cf02b05b82a10465d28e)",
+ "num 0.0.1 (git+https://github.com/rust-lang/num#52e2afa3040134b06384fb3ac6f78184cf9a6257)",
 ]
 
 [[package]]
 name = "num"
 version = "0.0.1"
-source = "git+https://github.com/rust-lang/num#6c56fe940ca2a45df438cf02b05b82a10465d28e"
+source = "git+https://github.com/rust-lang/num#52e2afa3040134b06384fb3ac6f78184cf9a6257"
 
