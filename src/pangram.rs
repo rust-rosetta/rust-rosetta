@@ -1,12 +1,11 @@
 // Implements http://rosettacode.org/wiki/Pangram_checker
 
-use std::ascii::OwnedAsciiExt;
 use std::collections::HashSet;
 
 // Returns true if the sentence uses all 26 letters in the English
 // alphabet at least once.
 fn is_pangram(sentence: &str) -> bool {
-    sentence.to_string().into_ascii_lower().chars()
+    sentence.chars().map(|c| c.to_lowercase())
         .filter(|&c| c >= 'a' && c <= 'z')
         .collect::<HashSet<char>>().len() == 26
 }
