@@ -603,6 +603,11 @@ name = "palindrome"
 path = "src/palindrome.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/Pangram_checker
+name = "pangram"
+path = "src/pangram.rs"
+
+[[bin]]
 # http://rosettacode.org/wiki/Parallel_calculations
 name = "parallel_calculations"
 path = "src/parallel_calculations.rs"
