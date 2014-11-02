@@ -147,6 +147,7 @@ fn main() {
 }
 
 #[test]
+#[ignore] // Will fail on a heavily loaded machine
 fn solution() {
     // We should just be able to call integrate, but can't represent the closure properly due to
     // rust-lang/rust issue #17060 if we make frequency or period a variable.
