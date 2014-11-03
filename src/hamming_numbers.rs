@@ -3,7 +3,7 @@ extern crate num;
 use num::bigint::{BigUint, ToBigUint};
 use std::cmp::min;
 use std::num::{One, one};
-use std::collections::{RingBuf, Deque};
+use std::collections::RingBuf;
 
 // needed because hamming_numbers_alt uses this as a library
 #[allow(dead_code)]

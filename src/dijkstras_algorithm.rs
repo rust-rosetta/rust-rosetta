@@ -1,6 +1,6 @@
 // Implements http://rosettacode.org/wiki/Dijkstra's_algorithm
 
-use std::collections::{HashMap, PriorityQueue, DList, Deque};
+use std::collections::{HashMap, PriorityQueue, DList};
 use std::collections::hashmap::{Occupied, Vacant};
 use std::uint;
 
