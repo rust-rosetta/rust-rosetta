@@ -26,8 +26,8 @@ fn fft(arr: &[Complex<f32>]) -> Vec<Complex<f32>> {
     let mut out = Vec::from_elem(arr.len(), Complex::new(0f32, 0f32));
     for i in range(0u, arr.len()/2) {
         let twiddle: Complex<f32> = Complex::from_polar(&1f32, &(-2f32*Float::pi()*(i as f32)/(arr.len() as f32)));
-        *out.get_mut(i) = even_fft[i] + twiddle*odd_fft[i];
-        *out.get_mut(i + arr.len()/2) = even_fft[i] - twiddle*odd_fft[i];
+        out[i] = even_fft[i] + twiddle*odd_fft[i];
+        out[i + arr.len()/2] = even_fft[i] - twiddle*odd_fft[i];
     }
 
     out

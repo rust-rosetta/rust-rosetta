@@ -1,5 +1,5 @@
 // http://rosettacode.org/wiki/Taxicab_numbers
-use std::collections::PriorityQueue;
+use std::collections::BinaryHeap;
 use std::num::pow;
 
 /// A type to represent a pair-sum of cubes.
@@ -32,14 +32,14 @@ impl Ord for SumCubes {
 
 /// An iterator through all Taxicab numbers
 struct TaxicabNumbers {
-    // Use a priority queue to iterate through sums
-    // of cubes efficiently in increasing order
-    pq: PriorityQueue<SumCubes>,
+    // Use a BinaryHeap as a priority queue to iterate through sums of
+    // cubes efficiently in increasing order
+    pq: BinaryHeap<SumCubes>,
 }
 
 impl TaxicabNumbers {
     fn new() -> TaxicabNumbers {
-        let mut res = TaxicabNumbers{ pq: PriorityQueue::new() };
+        let mut res = TaxicabNumbers{ pq: BinaryHeap::new() };
         res.pq.push(SumCubes::new(1, 1)); // Start with 1^3 + 1^3
         res
     }

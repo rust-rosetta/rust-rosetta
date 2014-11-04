@@ -1,7 +1,7 @@
 // Implements http://rosettacode.org/wiki/Dijkstra's_algorithm
 
-use std::collections::{HashMap, PriorityQueue, DList};
-use std::collections::hashmap::{Occupied, Vacant};
+use std::collections::{HashMap, BinaryHeap, DList};
+use std::collections::hash_map::{Occupied, Vacant};
 use std::uint;
 
 type Node = uint;
@@ -63,7 +63,7 @@ impl<'a> Graph<'a> {
 
         match self.costs.entry((from_idx, to_idx)) {
             Vacant(entry)   => {
-                self.adj_list.get_mut(from_idx).push(to_idx);
+                self.adj_list[from_idx].push(to_idx);
                 entry.set(cost);
             },
             Occupied(entry) => {
@@ -82,7 +82,7 @@ impl<'a> Graph<'a> {
         let num_vert = self.vertices.len();
         let mut dist:Vec<uint> = Vec::from_elem(num_vert, uint::MAX); //Close enough to infinity
         let mut prev:HashMap<Node, Node> = HashMap::new();
-        let mut queue:PriorityQueue<DistPair> = PriorityQueue::new();
+        let mut queue:BinaryHeap<DistPair> = BinaryHeap::new();
 
         let source_idx = match self.vertex_index(source) {
             Some(idx) => idx,
@@ -94,7 +94,7 @@ impl<'a> Graph<'a> {
             None      => return Vec::new() // Target not in graph, return empty path.
         };
 
-        *dist.get_mut(source_idx) = 0u;
+        dist[source_idx] = 0u;
         queue.push(DistPair(source_idx, dist[source_idx]));
 
         loop{
@@ -114,7 +114,7 @@ impl<'a> Graph<'a> {
                                     *entry.into_mut() = u;
                                 }
                             }
-                            *dist.get_mut(v) = alt;
+                            dist[v] = alt;
                             queue.push(DistPair(v, dist[v]));
                         }
                         if v == target_idx { break; }
