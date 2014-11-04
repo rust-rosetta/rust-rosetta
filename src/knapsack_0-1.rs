@@ -88,11 +88,11 @@ fn knap_01_dp<'a>(xs: &[Want<'a>], max_weight: uint) -> Vec<Want<'a>> {
             if xs[i].weight > w {
                 // if we don't, then we'll say that the value doesn't change
                 // when considering this item
-                *best_value.get_mut(i + 1).get_mut(w) = best_value[i][w].clone();
+                best_value[i + 1][w] = best_value[i][w].clone();
             } else {
                 // if we do, then we have to see if the value we gain by adding
                 // the item, given the weight, is better than not adding the item
-                *best_value.get_mut(i + 1).get_mut(w) =
+                best_value[i + 1][w] =
                     max(best_value[i][w].clone(),
                         best_value[i][w - xs[i].weight] + xs[i].value);
             }

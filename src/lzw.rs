@@ -1,6 +1,6 @@
 // Implements http://rosettacode.org/wiki/LZW_compression
 
-use std::collections::hashmap::HashMap;
+use std::collections::hash_map::HashMap;
 
 // Compress using LZW
 fn compress(original_str: &str) -> Vec<int> {

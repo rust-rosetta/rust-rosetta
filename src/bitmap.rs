@@ -52,7 +52,7 @@ impl Index<(uint, uint), Color> for Image {
 
 impl IndexMut<(uint, uint), Color> for Image {
     fn index_mut<'a>(&'a mut self, &(x, y): &(uint, uint)) -> &'a mut Color {
-        self.data.get_mut(x + y*self.width)
+        & mut self.data[x + y*self.width]
     }
 }
 

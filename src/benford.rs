@@ -30,7 +30,7 @@ fn benford_distrib(numbers: &Vec<u64>) -> Vec<f32> {
 
     for num in numbers.iter() {
         let first = first_digit_of(*num);
-        *counts.get_mut(first) += 1;
+        counts[first] += 1;
     }
 
     // Frequencies
@@ -38,13 +38,11 @@ fn benford_distrib(numbers: &Vec<u64>) -> Vec<f32> {
     let mut freq = Vec::<f32>::from_elem(10, 0.0);
 
     for digit in range(1, 10) {
-        *freq.get_mut(digit) = counts[digit] as f32 / numbers.len() as f32;
+        freq[digit] = counts[digit] as f32 / numbers.len() as f32;
     }
 
     freq
 }
-
-const N: uint = 100;
 
 fn main() {
 
@@ -52,7 +50,7 @@ fn main() {
 
     let mut expected_distrib = Vec::<f32>::from_elem(10, 0.0);
     for digit in range(1, 10) {
-        *expected_distrib.get_mut(digit) = benford_freq(digit as u64);
+        expected_distrib[digit] = benford_freq(digit as u64);
     }
 
     // Load data from the Fibonacci sequence

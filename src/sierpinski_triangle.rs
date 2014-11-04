@@ -19,7 +19,7 @@ fn main() {
 
         // Compute the next line
         for j in range_step(i as int, 0, -1) {
-            *state.get_mut(j as uint) ^= state[(j - 1) as uint];
+            state[j as uint] ^= state[(j - 1) as uint];
         }
 
         print!("\n");

@@ -1,6 +1,6 @@
 // Implements http://rosettacode.org/wiki/Happy_numbers
 
-use std::collections::treemap::TreeSet;
+use std::collections::tree_set::TreeSet;
 #[cfg(not(test))]
 use std::iter::count;
 

@@ -14,19 +14,19 @@ fn main() {
 }
 
 fn align_columns(text: &str) -> (Vec<Vec<String>>, Vec<uint>) {
-    let mut lines: Vec<String> = text.split('\n').map(|s| s.to_string()).collect();
+    let lines: Vec<String> = text.split('\n').map(|s| s.to_string()).collect();
     let mut max_lengths: Vec<uint> = Vec::new();
     let mut chunks: Vec<Vec<String>> = Vec::new();
 
     for i in range(0u, lines.len()) {
-        let input = lines.get_mut(i);
+        let ref input = lines[i];
         let split_input: Vec<String> = input.as_slice().split('$').map(|s| s.to_string()).collect();
         chunks.push(split_input.clone());
         let v: Vec<uint> = split_input.iter().map(|chunk| chunk.len() ).collect();
 
         for i in range(0u, v.len()) {
             if i < max_lengths.len() {
-                *max_lengths.get_mut(i) = std::cmp::max(max_lengths[i], v[i]);
+                max_lengths[i] = std::cmp::max(max_lengths[i], v[i]);
             } else {
                 max_lengths.push(v[i]);
             }

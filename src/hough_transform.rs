@@ -121,7 +121,7 @@ fn hough(image: &ImageGray8, out_width: uint, out_height: uint) -> ImageGray8 {
                 let out_idx = jtx + iry * out_width;
                 let col = accum.data[out_idx];
                 if col > 0 {
-                    *accum.data.get_mut(out_idx) = col - 1;
+                    accum.data[out_idx] = col - 1;
                 }
             }
         }

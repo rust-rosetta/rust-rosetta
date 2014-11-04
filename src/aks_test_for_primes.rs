@@ -5,7 +5,7 @@ pub fn is_prime(p: uint) -> bool {
         false
     } else {
         let mut c = coefficients(p);
-        *c.get_mut(0) -= 1;
+        c[0] -= 1;
         for i in range(0, (c.len() + 1) / 2) {
             if (c[i] % (p as i64)) != 0 {
                 return false
