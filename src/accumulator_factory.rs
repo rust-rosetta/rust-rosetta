@@ -1,17 +1,22 @@
-// Implements http://rosettacode.org/wiki/Accumulator_factory
-#![feature(overloaded_calls)]
+#![feature(overloaded_calls, macro_rules)]
 pub struct G<T, U> {
     n: T,
 }
 
-impl<T: Add<U, T> + Clone, U> FnMut<(U,), T> for G<T, U> {
-    extern "rust-call" fn call_mut(&mut self, (i,):(U,)) -> T {
-        self.n = self.n + i;
-        self.n.clone()
-    }
-}
+macro_rules! add_impl(
+    ($($t:ty)*) => ($(
+        impl FnMut<($t,), $t> for G<$t, $t> {
+            extern "rust-call" fn call_mut(&mut self, (i,):($t,)) -> $t {
+                self.n = self.n + i;
+                self.n
+            }
+        }
+    )*)
+)
 
-pub fn accum<T: Add<T, U> + Clone, U>(n: T) -> G<T, U> {
+add_impl!(uint u8 u16 u32 u64 int i8 i16 i32 i64 f32 f64)
+
+pub fn accum<T: Add<T, U>, U>(n: T) -> G<T, U> {
     G { n: n }
 }
 
