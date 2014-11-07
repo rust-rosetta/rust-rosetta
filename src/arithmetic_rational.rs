@@ -131,7 +131,7 @@ impl Add<Frac, Frac> for Frac {
 
 impl Sub<Frac, Frac> for Frac {
     fn sub(&self, other: &Frac) -> Frac {
-        self + (-other)
+        *self + (- *other)
     }
 }
 

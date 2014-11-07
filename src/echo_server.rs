@@ -8,7 +8,7 @@ use std::time::Duration;
 // The actual echo server
 fn echo_server(host: &'static str, port: u16, timeout: Option<Duration>) -> IoResult<()> {
     // Create a new TCP listener at host:port.
-    let mut listener = try!(TcpListener::bind(host, port));
+    let mut listener = try!(TcpListener::bind((host, port)));
     println!("Starting echo server on {}", listener.socket_name());
 
     let mut acceptor = try!(listener.listen());

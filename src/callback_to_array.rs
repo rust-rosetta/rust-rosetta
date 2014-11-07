@@ -14,5 +14,5 @@ fn main () {
 }
 
 fn callback(val: &int) -> int {
-    val + 1
+    *val + 1
 }

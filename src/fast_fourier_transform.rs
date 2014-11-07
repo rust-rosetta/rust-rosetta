@@ -82,7 +82,7 @@ mod test {
         println!("{}", target.to_vec());
         println!("{}", test_fft);
         for (test_item, target_item) in test_fft.iter().zip(target.iter()) {
-            assert!((test_item - *target_item).norm_sqr() < 1e-6);
+            assert!((*test_item - *target_item).norm_sqr() < 1e-6);
         }
     }
 }

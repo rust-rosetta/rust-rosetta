@@ -81,7 +81,7 @@ fn closest_pair(points: &mut [Point]) -> Option<(Point, Point)> {
                     // we've reached the end of the box
                     break;
                 }
-                let dist_sqr = (point - point2).norm_sqr();
+                let dist_sqr = (*point - point2).norm_sqr();
                 if dist_sqr < closest_distance_sqr {
                     closest_pair = (point2, *point);
                     closest_distance_sqr = dist_sqr;

@@ -26,6 +26,6 @@ fn test_result() {
     ];
 
     for (root, &exp) in roots_of_unity(3u).iter().zip(expected.iter()) {
-        assert!((root - exp).norm() < 1e-6);
+        assert!((*root - exp).norm() < 1e-6);
     }
 }

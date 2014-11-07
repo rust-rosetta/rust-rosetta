@@ -119,7 +119,7 @@ fn try_enqueue() {
     let mut h = Hamming::<BigUint>::new(5);
     let (two, three, five) = HammingNumber::multipliers();
     h.enqueue(&one::<BigUint>());
-    h.enqueue(&(&one::<BigUint>() * two));
+    h.enqueue(&(one::<BigUint>() * two));
 
     assert!(h.q2.pop_front().unwrap() == one::<BigUint>());
     assert!(h.q3.pop_front().unwrap() == one::<BigUint>());

@@ -1,6 +1,5 @@
 // Implements http://rosettacode.org/wiki/Accumulator_factory
 #![feature(overloaded_calls)]
-
 pub struct G<T, U> {
     n: T,
 }

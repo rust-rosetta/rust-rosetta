@@ -44,7 +44,7 @@ impl Solver {
                 let w = {
                     let y = &r[x-1];
                     let z = &self.cache[l-x][min(x, l-x)];
-                    y + *z
+                    *y + *z
                 };
                 r.push(w)
             }
