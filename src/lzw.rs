@@ -18,7 +18,7 @@ fn compress(original_str: &str) -> Vec<int> {
       let mut wc = w.clone();
       wc.push(c);
 
-      match dictionary.find(&wc) {
+      match dictionary.get(&wc) {
          Some(_) => w = wc,
          None => {
             result.push(dictionary[w]);
@@ -49,7 +49,7 @@ fn decompress(compressed: &Vec<int>) -> String {
    let compressed = compressed.slice_from(1);
    let mut result = w.clone();
    for &k in compressed.iter() {
-      let entry = match dictionary.find(&k) {
+      let entry = match dictionary.get(&k) {
           Some(v) => v.clone(),
           None if k == dict_size => { let mut new = w.clone(); new.push(w[0].clone()); new }
           None => panic!("Invalid compressed string")

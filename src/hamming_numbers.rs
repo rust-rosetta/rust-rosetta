@@ -58,9 +58,9 @@ impl<T: HammingNumber> Hamming<T> {
             q5: RingBuf::with_capacity(n)
         };
 
-        h.q2.push(one());
-        h.q3.push(one());
-        h.q5.push(one());
+        h.q2.push_back(one());
+        h.q3.push_back(one());
+        h.q5.push_back(one());
 
         h
     }
@@ -68,9 +68,9 @@ impl<T: HammingNumber> Hamming<T> {
     /// Pushes the next multiple of `n` (x2, x3, x5) to the queues
     pub fn enqueue(&mut self, n: &T) {
         let (two, three, five) = HammingNumber::multipliers();
-        self.q2.push(*n * two);
-        self.q3.push(*n * three);
-        self.q5.push(*n * five);
+        self.q2.push_back(*n * two);
+        self.q3.push_back(*n * three);
+        self.q5.push_back(*n * five);
     }
 }
 
@@ -108,8 +108,8 @@ impl<T: HammingNumber> Iterator<T> for Hamming<T> {
 #[test]
 fn create() {
     let mut h = Hamming::<BigUint>::new(5);
-    h.q2.push(one::<BigUint>());
-    h.q2.push(one::<BigUint>() * 3u.to_biguint().unwrap());
+    h.q2.push_back(one::<BigUint>());
+    h.q2.push_back(one::<BigUint>() * 3u.to_biguint().unwrap());
 
     assert_eq!(h.q2.pop_front().unwrap(), one::<BigUint>());
 }
