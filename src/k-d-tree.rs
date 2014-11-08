@@ -15,7 +15,7 @@ struct Point {
 impl Sub<Point, Point> for Point {
     fn sub(&self, rhs: &Point) -> Point {
         assert_eq!(self.coords.len(), rhs.coords.len());
-        Point {coords: self.coords.iter().zip(rhs.coords.iter()).map(|(x, &y)| x - y).collect()}
+        Point {coords: self.coords.iter().zip(rhs.coords.iter()).map(|(x, &y)| *x - y).collect()}
     }
 }
 
@@ -71,7 +71,7 @@ impl KDTreeNode {
     }
 
     pub fn find_nearest_neighbor<'a>(&'a self, point: &Point) -> (&'a Point, uint) {
-        self.find_nearest_neighbor_helper(point, &self.point, (point - self.point).norm_sq(), 1)
+        self.find_nearest_neighbor_helper(point, &self.point, (*point - self.point).norm_sq(), 1)
     }
 
     fn find_nearest_neighbor_helper<'a>(&'a self, point: &Point, best: &'a Point,
@@ -109,7 +109,7 @@ impl KDTreeNode {
             // self can only be nearer than best if axis_dist_sq is less than
             // best_dist_sq because axis_dist_sq is a lower bound for
             // self_dist_sq
-            let self_dist_sq = (point - self.point).norm_sq();
+            let self_dist_sq = (*point - self.point).norm_sq();
             if self_dist_sq < my_best_dist_sq {
                 my_best = &self.point;
                 my_best_dist_sq = self_dist_sq;
@@ -164,7 +164,7 @@ pub fn main() {
     println!("Wikipedia example data:");
     println!("Point: [9, 2]");
     println!("Nearest neighbor: {}", point);
-    println!("Distance: {}", (point - wp_target).norm_sq().sqrt());
+    println!("Distance: {}", (*point - wp_target).norm_sq().sqrt());
     println!("Nodes visited: {}", n_visited);
 
     // randomly generated 3D
@@ -186,7 +186,7 @@ pub fn main() {
     let (point, n_visited) = random_tree.find_nearest_neighbor(&random_target);
     println!("Point: {}", random_target);
     println!("Nearest neighbor: {}", point);
-    println!("Distance: {}", (point - random_target).norm_sq().sqrt());
+    println!("Distance: {}", (*point - random_target).norm_sq().sqrt());
     println!("Nodes visited: {}", n_visited);
     
     // benchmark search time

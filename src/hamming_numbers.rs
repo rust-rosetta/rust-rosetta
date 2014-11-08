@@ -30,15 +30,6 @@ impl HammingNumber for BigUint {
     }
 }
 
-// not used by the rest of code but fomally correct if
-// one wanted to use uints as representation for Hamming Numbers
-// introduced as a workaround for https://github.com/Hoverbear/rust-rosetta/issues/276
-// can be removed when upstream issue with rustc is fixed
-impl HammingNumber for uint {
-    // returns the multipliers 2, 3 and 5 in the representation for the HammingNumber
-    fn multipliers() -> (uint, uint, uint) { (2u, 3, 5) }
-}
-    
 /// representation of a Hamming number
 /// allows to abstract on how the hamming number is stored
 /// i.e. as BigUint directly or just as the powers of 2, 3 and 5 used to build it
@@ -67,9 +58,9 @@ impl<T: HammingNumber> Hamming<T> {
             q5: RingBuf::with_capacity(n)
         };
 
-        h.q2.push(one());
-        h.q3.push(one());
-        h.q5.push(one());
+        h.q2.push_back(one());
+        h.q3.push_back(one());
+        h.q5.push_back(one());
 
         h
     }
@@ -77,9 +68,9 @@ impl<T: HammingNumber> Hamming<T> {
     /// Pushes the next multiple of `n` (x2, x3, x5) to the queues
     pub fn enqueue(&mut self, n: &T) {
         let (two, three, five) = HammingNumber::multipliers();
-        self.q2.push(*n * two);
-        self.q3.push(*n * three);
-        self.q5.push(*n * five);
+        self.q2.push_back(*n * two);
+        self.q3.push_back(*n * three);
+        self.q5.push_back(*n * five);
     }
 }
 
@@ -117,8 +108,8 @@ impl<T: HammingNumber> Iterator<T> for Hamming<T> {
 #[test]
 fn create() {
     let mut h = Hamming::<BigUint>::new(5);
-    h.q2.push(one::<BigUint>());
-    h.q2.push(one::<BigUint>() * 3u.to_biguint().unwrap());
+    h.q2.push_back(one::<BigUint>());
+    h.q2.push_back(one::<BigUint>() * 3u.to_biguint().unwrap());
 
     assert_eq!(h.q2.pop_front().unwrap(), one::<BigUint>());
 }
@@ -128,7 +119,7 @@ fn try_enqueue() {
     let mut h = Hamming::<BigUint>::new(5);
     let (two, three, five) = HammingNumber::multipliers();
     h.enqueue(&one::<BigUint>());
-    h.enqueue(&(&one::<BigUint>() * two));
+    h.enqueue(&(one::<BigUint>() * two));
 
     assert!(h.q2.pop_front().unwrap() == one::<BigUint>());
     assert!(h.q3.pop_front().unwrap() == one::<BigUint>());

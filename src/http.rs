@@ -7,7 +7,7 @@ mod webserver;
 
 fn get_index(target: &str, port: u16) -> IoResult<String> {
     // Create a socket. Mutable so we can write to it.
-    let mut socket = try!(TcpStream::connect(target, port));
+    let mut socket = try!(TcpStream::connect((target, port)));
     // Write to the socket as bytes.
     // try! and write! are useful macros when working with writers.
     // We send the `Connection: close` header so the server closes the connection

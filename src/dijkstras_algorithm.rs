@@ -102,7 +102,7 @@ impl<'a> Graph<'a> {
                 None     => break,
                 Some(DistPair(u, dist_u)) => {
                     for &v in self.adj_list[u].iter() {
-                        let cost_uv = match self.costs.find(&(u, v)) {
+                        let cost_uv = match self.costs.get(&(u, v)) {
                             Some(&x) => x,
                             None     => uint::MAX,
                         };
@@ -127,7 +127,7 @@ impl<'a> Graph<'a> {
         let mut curr = target_idx;
         temp_path.push_front(self.vertices[curr]);
         loop{
-            match prev.find(&curr){
+            match prev.get(&curr){
                 Some(&parent) => {
                     curr = parent;
                     temp_path.push_front(self.vertices[curr]);

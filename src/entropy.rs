@@ -1,6 +1,5 @@
 // Implements http://rosettacode.org/wiki/Entropy
 
-use std::str::StrSlice;
 use std::collections::HashMap;
 use std::collections::hash_map::{Occupied, Vacant};
 

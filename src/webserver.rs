@@ -29,7 +29,7 @@ charset=UTF-8
 }
 
 pub fn handle_server(ip: &'static str, port: u16) -> IoResult<TcpAcceptor> {
-    let listener = try!(TcpListener::bind(ip, port));
+    let listener = try!(TcpListener::bind((ip, port)));
 
     let mut acceptor = listener.listen();
     println!("Listening for connections on port {}", port);

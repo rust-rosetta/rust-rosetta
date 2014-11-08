@@ -39,7 +39,7 @@ fn coefficients(p: uint) -> Vec<i64> {
             result = {
                 let a = result.iter().chain(zero.iter());
                 let b = zero.iter().chain(result.iter());
-                a.zip(b).map(|(x, &y)| x-y).collect()
+                a.zip(b).map(|(x, &y)| *x-y).collect()
             };
         }
         result
