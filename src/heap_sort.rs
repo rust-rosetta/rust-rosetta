@@ -3,7 +3,7 @@
 // This is ported from the Dart heap sort implementation
 
 fn heap_sort<T: Ord>(a: &mut [T]) {
-    let count:uint = a.len();
+    let count = a.len();
     
     // first place 'a' in max-heap order
     heapify(a, count);
