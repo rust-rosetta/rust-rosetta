@@ -1,9 +1,12 @@
 // Implements http://rosettacode.org/wiki/Sorting_algorithms/Heapsort
 
 // This is ported from the Dart heap sort implementation
-
 fn heap_sort<T: Ord>(a: &mut [T]) {
     let count = a.len();
+
+    if count == 0 {
+        return;
+    }
     
     // first place 'a' in max-heap order
     heapify(a, count);
@@ -24,10 +27,14 @@ fn heap_sort<T: Ord>(a: &mut [T]) {
 }
  
 fn heapify<T: Ord>(a: &mut [T], count: uint) {
+    if count < 2 {
+        return;
+    }
+
     // start is assigned the index in 'a' of the last parent node
-    let mut start:int = (count - 2 / 2) as int; // binary heap
+    let mut start:int = count as int - 2 / 2; // binary heap
     
-    while start >= 0 {
+    while start >= 0 {        
         // sift down the node at index 'start' to the proper place
         // such that all nodes below the 'start' index are in heap order
         sift_down(a, start as uint, count - 1);
@@ -100,5 +107,20 @@ mod test {
         let mut arr = [12u, 54, 2, 93, 13, 43, 15, 299, 234];
         heap_sort(arr);
         assert_eq!(arr.as_slice(), [2u, 12, 13, 15, 43, 54, 93, 234, 299].as_slice());
+    }
+
+    #[test]
+    fn one() {
+        let mut arr = [9u];
+        heap_sort(arr);
+        assert_eq!(arr.as_slice(), [9u].as_slice());
+    }
+
+    #[test]
+    fn empty() {
+        let mut arr: [int, ..0] = [];
+        let empty: [int, ..0] = [];
+        heap_sort(arr);
+        assert_eq!(arr.as_slice(), empty.as_slice());
     }
 }
