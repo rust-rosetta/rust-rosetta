@@ -31,6 +31,7 @@ authors = [
     "Hugh Manning, https://github.com/hmanning77",
     "Gavin Baker, https://github.com/gavinb",
     "Rupert Lane, https://github.com/rupertl",
+    "Joshua Skootsky, https://github.com/JoshuaSkootsky",
 ]
 
 [dependencies.num]
@@ -78,6 +79,11 @@ path = "src/99_bottles_of_beer.rs"
 # http://rosettacode.org/wiki/9_billion_names_of_God_the_integer
 name = "9_billion_names_of_God_the_integer"
 path = "src/9_billion_names_of_God_the_integer.rs"
+
+[[bin]]
+# http://rosettacode.org/wiki/Arithmetic-geometric_mean
+name = "agm"
+path = "src/agm.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/A%2BB
