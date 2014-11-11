@@ -1,6 +1,7 @@
 // rust
 // http://rosettacode.org/wiki/foo
 // Accepts two command line arguments
+// cargo run --name agm arg1 arg2
 
 use std::os;
 use std::num;
