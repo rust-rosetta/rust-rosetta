@@ -846,3 +846,8 @@ path = "src/write_ppm.rs"
 # http://rosettacode.org/wiki/Zig-zag_matrix
 name = "zig-zag_matrix"
 path = "src/zig-zag_matrix.rs"
+
+[[bin]]
+# http://rosettacode.org/wiki/Sorting_algorithms/Heapsort
+name = "heap_sort"
+path = "src/heap_sort.rs"
