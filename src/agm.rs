@@ -1,11 +1,10 @@
-// rust
-// http://rosettacode.org/wiki/foo
+// http://rosettacode.org/wiki/Arithmetric-geometric_mean
 // Accepts two command line arguments
 // cargo run --name agm arg1 arg2
 
-use std::os;
-use std::num;
+use std::{num, os};
 
+#[cfg(not(test))]
 fn main () {
     let args = os::args();
     let args = args.as_slice();
@@ -17,7 +16,7 @@ fn main () {
     println!("The arithmetic-geometric mean is {}", result);
 }
 
-fn agm (x: f32, y: f32) -> (f32) {
+fn agm (x: f32, y: f32) -> f32 {
     let e: f32 = 0.000001;
     let mut a = x;
     let mut g = y;
@@ -25,12 +24,12 @@ fn agm (x: f32, y: f32) -> (f32) {
     let mut g1: f32;
 
     loop {
-            a1 = (a + g) / 2f32;
-            g1 = (a * g).sqrt();
-            a = a1;
-            g = g1;
-            if num::abs( a - g) < e {  return a; }
-        }
+        a1 = (a + g) / 2f32;
+        g1 = (a * g).sqrt();
+        a = a1;
+        g = g1;
+        if num::abs( a - g) < e {  return a; }
+    }
 
 }
 
