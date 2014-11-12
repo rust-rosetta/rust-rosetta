@@ -1,0 +1,126 @@
+// Implements http://rosettacode.org/wiki/Sorting_algorithms/Heapsort
+
+// This is ported from the Dart heap sort implementation
+fn heap_sort<T: Ord>(a: &mut [T]) {
+    let count = a.len();
+
+    if count == 0 {
+        return;
+    }
+    
+    // first place 'a' in max-heap order
+    heapify(a, count);
+    
+    let mut end = count - 1;
+    while end > 0 {
+        // swap the root (maximum value) of the heap with the
+        // last element of the heap
+        a.swap(0, end);
+        
+        // put the heap back in max-heap order
+        sift_down(a, 0, end - 1);
+        
+        // decrement the size of the heap so that the previous
+        // max value will stay in its proper place
+        end -= 1;
+    }
+}
+ 
+fn heapify<T: Ord>(a: &mut [T], count: uint) {
+    if count < 2 {
+        return;
+    }
+
+    // start is assigned the index in 'a' of the last parent node
+    let mut start:int = count as int - 2 / 2; // binary heap
+    
+    while start >= 0 {        
+        // sift down the node at index 'start' to the proper place
+        // such that all nodes below the 'start' index are in heap order
+        sift_down(a, start as uint, count - 1);
+        start -= 1;
+    }
+}
+ 
+ 
+fn sift_down<T: Ord>(a: &mut [T], start: uint, end: uint) {
+    // end represents the limit of how far down the heap to shift
+    let mut root = start;
+    
+    // while the root has at least one child
+    while (root*2 + 1) <= end { 
+        // root*2+1 points to the left child
+        let mut child:uint = root*2 + 1 as uint;
+        
+        // if the chile has a sibling and the child's value is less that its sibling's...
+        if child + 1 <= end && a[child] < a[child + 1] {
+            // .. then point to the right child instead
+            child = child + 1;
+        }
+        
+        // out of max-heap order
+        if a[root] < a[child] {
+            a.swap(root, child);
+            // repeat to continue shifting down the child now
+            root = child;
+        } else {
+            return;
+        }
+    }
+}
+ 
+#[cfg(not(test))]
+pub fn main() {
+    let mut arr = [1u,5,2,7,3,9,4,6,8];
+    heap_sort(arr);
+    println!("After sort: {}", arr.as_slice());
+    
+    let mut arr = [1u,2,3,4,5,6,7,8,9];
+    heap_sort(arr);
+    println!("After sort: {}", arr.as_slice());
+    
+    let mut arr = [9u,8,7,6,5,4,3,2,1];
+    heap_sort(arr);
+    println!("After sort: {}", arr.as_slice());
+}
+
+#[cfg(test)]
+mod test {
+    use super::heap_sort;
+    
+    #[test]
+    fn sorted() {
+        let mut arr = [1u, 2, 3, 4, 6, 8];
+        heap_sort(arr);
+        assert_eq!(arr.as_slice(), [1u, 2, 3, 4, 6, 8].as_slice());
+    }
+
+    #[test]
+    fn reverse() {
+        let mut arr = [8i, 6, 4, 3, 2, 1];
+        heap_sort(arr);
+        assert_eq!(arr.as_slice(), [1i, 2, 3, 4, 6, 8].as_slice());
+    }
+
+    #[test]
+    fn random() {
+        let mut arr = [12u, 54, 2, 93, 13, 43, 15, 299, 234];
+        heap_sort(arr);
+        assert_eq!(arr.as_slice(), [2u, 12, 13, 15, 43, 54, 93, 234, 299].as_slice());
+    }
+
+    #[test]
+    fn one() {
+        let mut arr = [9u];
+        heap_sort(arr);
+        assert_eq!(arr.as_slice(), [9u].as_slice());
+    }
+
+    #[test]
+    fn empty() {
+        let mut arr: [int, ..0] = [];
+        let empty: [int, ..0] = [];
+        heap_sort(arr);
+        assert_eq!(arr.as_slice(), empty.as_slice());
+    }
+}
