@@ -36,5 +36,5 @@ fn agm (x: f32, y: f32) -> (f32) {
 
 #[test]
 fn test_agm_12_6() {
-    assert! ( agm(12,6) == 8.740746 );
+    assert! ( agm(12f32,6f32) == 8.740746f32 );
 }
