@@ -2,11 +2,11 @@
 // Accepts two command line arguments
 // cargo run --name agm arg1 arg2
 
-use std::{num, os};
+use std::num;
 
 #[cfg(not(test))]
 fn main () {
-    let args = os::args();
+    let args = std::os::args();
     let args = args.as_slice();
 
     let x = from_str::<f32>(args[1].as_slice()).unwrap() ;
@@ -23,12 +23,15 @@ fn agm (x: f32, y: f32) -> f32 {
     let mut a1: f32;
     let mut g1: f32;
 
-    loop {
-        a1 = (a + g) / 2f32;
-        g1 = (a * g).sqrt();
-        a = a1;
-        g = g1;
-        if num::abs( a - g) < e {  return a; }
+    if a * g < 0f32 { panic!("The arithmetric-geometric mean is undefined for numbers less than zero!"); }
+    else {
+        loop {
+            a1 = (a + g) / 2f32;
+            g1 = (a * g).sqrt();
+            a = a1;
+            g = g1;
+            if num::abs( a - g) < e {  return a; }
+        }
     }
 
 }
