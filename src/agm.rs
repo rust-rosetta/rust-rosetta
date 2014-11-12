@@ -33,3 +33,8 @@ fn agm (x: f32, y: f32) -> (f32) {
         }
 
 }
+
+#[test]
+fn_test_agm_12_6() {
+    assert! ( agm(12,6) == 8.740746 );
+}
