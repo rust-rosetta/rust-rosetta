@@ -37,6 +37,9 @@ authors = [
 [dependencies.num]
 git = "https://github.com/rust-lang/num"
 
+[dependencies.time]
+git = "https://github.com/rust-lang/time"
+
 [lib]
 # used by compile_time_calculation.rs
 # http://rosettacode.org/wiki/Compile-time_calculation
