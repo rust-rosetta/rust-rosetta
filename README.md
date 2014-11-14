@@ -31,7 +31,7 @@ The top of your code should look like this:
 ```
 If you'd like, you're welcome to add your contact details, name, or other information as well.
 
-Then add the entry in *lexiographical* ordering into [`Cargo.toml`](./Cargo.toml) like this:
+Then add the entry in *lexicographical* ordering into [`Cargo.toml`](./Cargo.toml) like this:
 
 ```toml
 [[bin]]
