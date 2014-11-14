@@ -32,6 +32,7 @@ authors = [
     "Gavin Baker, https://github.com/gavinb",
     "Rupert Lane, https://github.com/rupertl",
     "Joshua Skootsky, https://github.com/JoshuaSkootsky",
+    "James Hurst, https://github.com/jamesrhurst",
 ]
 
 [dependencies.num]
@@ -295,6 +296,11 @@ path = "src/create_file.rs"
 # http://rosettacode.org/wiki/Dijkstra's_algorithm
 name = "dijkstras_algorithm"
 path = "src/dijkstras_algorithm.rs"
+
+[[bin]]
+# http://rosettacode.org/wiki/DNS_query
+name = "dns_query"
+path = "src/dns_query.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Dot_product
