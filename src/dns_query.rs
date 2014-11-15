@@ -14,6 +14,7 @@ fn get_ips(host: &str) -> Vec<IpAddr> {
     ips
 }
 
+#[cfg(not(test))]
 fn main() {
     for ip in get_ips("www.kame.net").iter() {
         println!("{}", ip);
