@@ -603,6 +603,11 @@ name = "modular_exponentiation"
 path = "src/modular_exponentiation.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/Modular_inverse
+name = "modular_inverse"
+path = "src/modular_inverse.rs"
+
+[[bin]]
 # http://rosettacode.org/wiki/Mutual_recursion
 name = "mutual_recursion"
 path = "src/mutual_recursion.rs"
