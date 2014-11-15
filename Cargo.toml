@@ -244,6 +244,11 @@ name = "checkpoint_synchronization"
 path = "src/checkpoint_synchronization.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/Chinese_remainder_theorem
+name = "chinese_remainder"
+path = "src/chinese_remainder.rs"
+
+[[bin]]
 # http://rosettacode.org/wiki/Closest-pair_problem
 name = "closest-pair"
 path = "src/closest-pair.rs"
