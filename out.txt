@@ -1,0 +1,186 @@
+Merge pull request #288 from rupertl/fix-build
+Merge pull request #287 from rupertl/pangram
+Merge pull request #286 from rupertl/fix_build
+Merge pull request #285 from rupertl/system_time
+Merge pull request #284 from Hoverbear/closures
+Add Closures/Value capture
+Merge pull request #283 from gavinb/gavinb-benford
+Merge pull request #282 from rupertl/word_wrap
+Merge pull request #280 from pfalabella/compile-time
+Merge pull request #274 from gavinb/gavinb-hough_transform
+Merge pull request #278 from superlogical/master
+Merge pull request #272 from TimDumol/kd-tree
+Merge pull request #254 from TimDumol/linear-congruential-generator
+Merge pull request #255 from TimDumol/read-file-specific-line
+Merge pull request #251 from pythonesque/faster_tests
+Merge pull request #242 from pythonesque/arena_storage_pool
+Merge pull request #240 from Hoverbear/delete
+Remove Makefile and build.sh
+Merge pull request #245 from pythonesque/atomic_updates
+Check that source files are covered by Cargo.toml
+Merge pull request #233 from pythonesque/sexp
+Merge pull request #232 from pythonesque/accumulator_factory
+Merge pull request #231 from pythonesque/active_object
+Merge pull request #229 from pythonesque/fix_build
+Remove trailing whitespace
+Fix filesize
+Fix create_file
+Fixed check_file
+Merge pull request #225 from jschaf/add-url
+Merge pull request #224 from prakhar1989/24-game
+Merge pull request #222 from pfalabella/population-count
+Merge pull request #220 from pfalabella/fix-build
+Merge pull request #218 from Thiez/thiez-luhn_test
+Merge pull request #217 from pfalabella/patch-1
+Merge pull request #215 from pfalabella/isaac-cipher
+Merge pull request #211 from wenderen/align_columns
+Fix function_composition
+Fix concurrent_computing
+Merge pull request #210 from gsingh93/master
+Merge branch 'hanoi'
+Merge Towers of Hanoi
+Merge pull request #203 from SuprDewd/taxicab_numbers
+Merge pull request #209 from pfalabella/fixed-size-vec
+Merge pull request #205 from TimDumol/fix-lwz-typo
+Merge pull request #204 from utkarshkukreti/implement-strip-comments-from-a-string
+Fix 24_game
+Fix knapsack
+Merge pull request #202 from pfalabella/roots-unity
+Merge pull request #201 from SuprDewd/modular_exponentiation
+Merge pull request #186 from pfalabella/fix-24-game
+Merge pull request #180 from pfalabella/func-comp
+Merge pull request #176 from utkarshkukreti/remove-unnecessary-lifetime-annotations
+Merge pull request #178 from Hoverbear/input_loop.rs
+Merge pull request #175 from pfalabella/impl-seq-non-squares
+Merge pull request #174 from pfalabella/fix-build
+Replace deprecated functions by new ones
+Merge pull request #172 from pfalabella/aks-test
+Merge pull request #171 from pfalabella/look-and-say
+Merge pull request #169 from pfalabella/to-str-remove
+Renamed a+b.rs to a_plus_b.rs
+Merge pull request #168 from pfalabella/abc-problem
+Merge pull request #166 from pfalabella/24-game-impl
+Merge pull request #164 from utkarshkukreti/implement-equilibrium-index
+Remove trailing whitespace
+Fix zig-zag_matrix
+Fix json
+Fix huffman_coding
+Fix arithmetic_rational
+Fix 24_game
+Merge pull request #163 from utkarshkukreti/fix-for-rust-master-2014-07-01
+Merge pull request #162 from pfalabella/fix-integer-inf
+Merge pull request #161 from pfalabella/integer-inf
+Merge pull request #160 from pfalabella/integer-inference
+Merge pull request #158 from pfalabella/rational-impl
+Merge pull request #157 from pfalabella/24game-impl
+Merge pull request #156 from pfalabella/24game-impl
+Merge pull request #155 from yuanchenyang/synchronous_concurrency
+Merge pull request #153 from pfalabella/bytes-deprecated
+Rename 100doors_unoptimized.rs to 100_doors_unoptimized.rs
+Fix build
+Remove trailing whitespace
+Add range expansion
+Merge pull request #151 from pfalabella/fibonacci_impl
+Merge pull request #150 from utkarshkukreti/fix-for-rust-master
+Merge pull request #148 from pfalabella/fixbuild-tilde
+Merge pull request #147 from pfalabella/zigzagmatrix-impl
+Merge pull request #149 from utkarshkukreti/refactor-sieve-eratosthenes
+Merge pull request #146 from pfalabella/zigzagmatrix-impl
+Merge pull request #145 from pfalabella/build-warnings
+Add Short Circuit Evaluation
+Add JSON
+Merge pull request #137 from utkarshkukreti/refactor-binary-digits
+Merge pull request #136 from utkarshkukreti/refactor-arithmetic-mean
+Merge pull request #135 from utkarshkukreti/refactor-arithmetic-integers
+Merge pull request #134 from utkarshkukreti/make-100-doors-functional
+Merge pull request #133 from pfalabella/sha-header
+Fix trailing whitespace in IBAN
+Added iban
+Update four_bit_adder.rs
+Merge pull request #127 from jschaf/fix-camelcase
+Merge pull request #129 from Ryman/linting_snake
+Merge pull request #128 from jschaf/fix-ord
+Merge branch 'jschaf-not-tested-comment'
+Fix merge conflicts
+Fix build errors
+Merge pull request #126 from jschaf/fix-imports
+Merge pull request #125 from jschaf/tweak-build
+Merge pull request #123 from JakeMick/knapsack
+Merge pull request #119 from yuanchenyang/huffman-coding
+Merge pull request #118 from ebfe/fix-markov
+Merge pull request #120 from ebfe/to_owned_deprecation
+Merge pull request #115 from pfalabella/100doors_test
+Merge pull request #113 from pfalabella/hamming_numbers_impl
+Merge pull request #112 from webmobster/9_billion_impl
+Merge pull request #111 from pfalabella/100doors_unopt_fix1
+Fix build
+Merge pull request #109 from pfalabella/100doors-unopt-impl
+Fix build
+Fix build
+Fixed alphabetic order in readme
+Merge pull request #94 from Einh06/Einh06-fix-find-max
+Fix Complex
+Fix build
+Merge pull request #93 from Einh06/function-def
+Fix webserver
+Fix build errors
+Added parallel calculations
+Merge pull request #83 from ebfe/fix-hailstone
+Added repeat a string
+Merge branch 'jschaf-unused'
+Solve merge conflicts
+Added tests for letter frequency
+Added tests to prime decomposition
+Merge pull request #59 from jschaf/delete-trailing-whitespace
+Merge pull request #60 from jschaf/dcode
+Merge pull request #56 from jschaf/fix-dead-code
+Merge pull request #54 from jschaf/fix-concurrent
+Merge pull request #55 from jschaf/fix-happy
+Fixed outdated link to source file
+Merge pull request #53 from reem/nqueens-update
+Improved webserver
+Added test to stack.rs
+Added tests to sieve eratosthenes
+Fixed error handling in read by line
+Added tests to rot13
+Added error handling to read file by lines
+Improved quick sort and added a test
+Added tests for palindrome and primality by trial division
+Fixed typo in markov algorithm
+Fixed markov algorithm and added test
+Removed garbage files
+Added some comments
+Added tests to hailstone
+Refactored guess numbers
+Added test to gray code
+Commented and refactored fibonacci word
+Adapted and commented Fasta
+Added black box to benches in factorial
+Added tests and benchmarks to factorial
+Commented shannon entropy
+Commented create a file
+Commented count in octal
+Commented concurrent computing
+Fixed and commented callback to array
+Added tests to balanced brackets
+Added tests for mean angle
+Added test to anagram.rs and refactored a bit
+Refactored anagrams.rs
+Removed non existent implementation from the list
+Removed duplicated arithmetic mean
+Commented happy_numbers
+Added `resources` directory
+Improved arithmetic_mean and added tests
+Improved arithmetic integers
+Improved almost_prime.rs and added tests
+Fixed sieve of eratosthenes
+Fixed prime decomposition
+Fixed markov algorithm
+Fixed LZW compression
+Added implementation of Stack
+Added 'implements [link]' to all files
+Added Set
+Simplified swap.rs
+Added link to rosettacode.org in mutual_recursion.rs
+Added link to rosettacode.org in rot13.rs
+Fixed check_file.rs
