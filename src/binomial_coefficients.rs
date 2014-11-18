@@ -3,7 +3,7 @@
 extern crate num;
 extern crate core;
 use num::bigint::BigUint;
-use core::num::One;
+use num::traits::One;
 
 fn binomial(n: uint, mut k: uint) -> BigUint {
     // Since binomial(n, k) = binomial(n, n - k), we might as well use
@@ -29,7 +29,7 @@ fn main() {
 
 #[test]
 fn test_binomial() {
-    use std::from_str::FromStr;
+    use std::str::FromStr;
 
     assert_eq!(binomial(20, 0), binomial(20, 20));
     assert_eq!(binomial(20, 15), binomial(19, 14) + binomial(19, 15));

@@ -5,7 +5,8 @@
 extern crate num;
 
 use hamming_numbers::{Hamming, HammingNumber};
-use std::num::{One, pow};
+use num::pow;
+use num::traits::One;
 use num::bigint::{BigUint, ToBigUint};
 
 mod hamming_numbers;

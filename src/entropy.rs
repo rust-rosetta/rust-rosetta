@@ -1,5 +1,6 @@
 // Implements http://rosettacode.org/wiki/Entropy
 
+use std::num::Float;
 use std::collections::HashMap;
 use std::collections::hash_map::{Occupied, Vacant};
 

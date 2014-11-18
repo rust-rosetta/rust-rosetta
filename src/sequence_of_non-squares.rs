@@ -1,5 +1,6 @@
 // http://rosettacode.org/wiki/Sequence_of_non-squares
 use std::iter::range_inclusive;
+use std::num::Float;
 
 // the formula that should produce no perfect squares
 fn non_sq(n: u64) -> u64 { (n + ( 0.5 + (n as f64).sqrt()) as u64) }

@@ -1,7 +1,7 @@
 // http://rosettacode.org/wiki/Modular_exponentiation
 extern crate core;
 extern crate num;
-use core::num::One;
+use num::traits::One;
 use num::bigint::BigUint;
 use num::integer::Integer;
 
@@ -23,8 +23,8 @@ fn mod_exp<T: Integer>(mut a: T, mut b: T, m: T) -> T {
 
 #[cfg(not(test))]
 fn main() {
-    use core::num::pow;
-    use std::from_str::FromStr;
+    use num::pow;
+    use std::str::FromStr;
 
     let a_str = "2988348162058574136915891421498819466320163312926952423791023078876139";
     let b_str = "2351399303373464486466122544523690094744975233415544072992656881240319";

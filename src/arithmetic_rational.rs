@@ -1,6 +1,10 @@
 // http://rosettacode.org/wiki/Arithmetic/Rational
-use std::num;
+
+extern crate num;
+
+use std::num::{Float, SignedInt};
 use std::fmt;
+use num::traits::{Zero, One};
 
 #[cfg(not(test))]
 fn main() {
@@ -32,13 +36,13 @@ struct Frac {
 
 fn gcd(m: i64, n:i64) -> i64 {
     let mut t: i64;
-    let (mut m, mut n)=(num::abs(m), num::abs(n));
+    let (mut m, mut n)=(SignedInt::abs(m), SignedInt::abs(n));
     while n>0 { t = n; n = m % n; m = t; }
     m
 }
 
 fn lcm(m: i64, n:i64) -> i64 {
-    num::abs(m) / gcd(m, n) * num::abs(n)
+    SignedInt::abs(m) / gcd(m, n) * SignedInt::abs(n)
 }
 
 

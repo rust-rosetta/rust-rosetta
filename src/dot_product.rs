@@ -1,9 +1,10 @@
 // Implements http://rosettacode.org/wiki/Dot_product
 
-use std::ops::{Add, Mul};
-use std::num::Zero;
+extern crate num;
 
-fn dotp<T:Add<T, T> + Mul<T, T> + Zero + Copy>(this: &[T], other: &[T]) -> T {
+use num::traits::Zero; 
+
+fn dotp<T: Zero + Mul<T, T> + Copy>(this: &[T], other: &[T]) -> T {
   assert!(this.len() == other.len(), "The dimensions must be equal");
 
   let zero : T = Zero::zero();

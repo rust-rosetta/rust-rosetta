@@ -1,6 +1,6 @@
 // Implements http://rosettacode.org/wiki/Averages/Mean_angle
 
-use std::num::Float;
+use std::num::{Float, FloatMath};
 
 fn mean_angle(angles: &[f64]) -> f64 {
     let (sum_cos, sum_sin) = angles.iter()

@@ -9,6 +9,7 @@
 
 extern crate num;
 
+use std::num::Float;
 use std::collections::TreeSet;
 use std::cmp::{PartialOrd, Ordering};
 use num::complex::Complex;
@@ -120,6 +121,7 @@ pub fn main() {
 mod test {
     use super::closest_pair;
     use num::complex::Complex;
+    use std::num::Float;
 
     #[test]
     fn random_floats() {

@@ -1,7 +1,9 @@
 // Implements http://rosettacode.org/wiki/100_doors
+
+use std::num::Float;
 use std::iter::{Map, RangeInclusive, range_inclusive};
 
-type DoorIter<'a> = Map<'a, f32, DoorState, RangeInclusive<f32>>;
+type DoorIter<'a> = Map<'a, i32, DoorState, RangeInclusive<i32>>;
 
 #[deriving(Show, PartialEq)]
 enum DoorState {
@@ -12,9 +14,9 @@ enum DoorState {
 // This is an example of returning an iterator, this allows the caller to
 // choose if they want to allocate or just process as a stream.
 fn calculate_doors<'a>() -> DoorIter<'a> {
-    range_inclusive(1.0f32, 100.0).map(|f| {
-        let x = f.sqrt();
-        if x == x.round() {Open} else {Closed}
+    range_inclusive(1, 100).map(|f| {
+        let x = (f as f64).sqrt();
+        if x == x.round() {DoorState::Open} else {DoorState::Closed}
     })
 }
 
@@ -33,6 +35,6 @@ fn solution() {
     // test that the doors with index corresponding to
     // a perfect square are now open
     for i in range_inclusive(1u,10u) {
-        assert_eq!(doors[i*i - 1], Open);
+        assert_eq!(doors[i*i - 1], DoorState::Open);
     }
 }

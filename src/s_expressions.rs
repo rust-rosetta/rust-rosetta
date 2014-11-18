@@ -19,6 +19,7 @@
 // float types (supporting more types is possible but would complicate the code significantly).
 //
 #![feature(slicing_syntax)]
+#![feature(globs)]
 
 extern crate arena;
 extern crate test;
@@ -26,8 +27,11 @@ extern crate test;
 use arena::TypedArena;
 
 use std::io;
-use std::num;
+use std::num::{mod, Float};
 use std::string;
+use self::SExp::*;
+use self::Error::*;
+use self::Token::*;
 
 #[deriving(PartialEq,Show)]
 // The actual SExp structure.  Supports f64s, lists, and string literals.  Note that it takes

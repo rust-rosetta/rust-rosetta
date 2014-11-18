@@ -49,7 +49,7 @@ pub fn check_values(sample:&mut [uint], input:&str) -> bool {
 
     let mut numbers_used = lex.filter_map(|a| {
         match a {
-            Int(i) => Some(i),
+            Token::Int(i) => Some(i),
             _ => None
         }
     }).collect::<Vec<uint>>();
@@ -75,7 +75,7 @@ impl Token {
    // are tokens associated to a binary operation?
    fn is_binary(&self) -> bool {
         match *self {
-            Plus | Minus | Slash | Star => true,
+            Token::Plus | Token::Minus | Token::Slash | Token::Star => true,
             _ => false
         }
     }
@@ -88,12 +88,12 @@ impl Tokenable for char {
     #[inline]
     fn as_token(&self) -> Option<Token> {
         let tok = match *self {
-            '(' => LParen,
-            ')' => RParen,
-            '+' => Plus,
-            '-' => Minus,
-            '/' => Slash,
-            '*' => Star,
+            '(' => Token::LParen,
+            ')' => Token::RParen,
+            '+' => Token::Plus,
+            '-' => Token::Minus,
+            '/' => Token::Slash,
+            '*' => Token::Star,
             _ => return None
         };
 
@@ -149,7 +149,7 @@ impl <'a> Iterator<Token> for Lexer<'a> {
                     }
                 }
 
-                (Some(Int(val)), offset)
+                (Some(Token::Int(val)), offset)
             },
             // found non-digit, try transforming it to the corresponding token
             Some((o, ch)) => (ch.as_token(), o + 1),
@@ -178,10 +178,10 @@ pub enum Operator {
 impl Operator {
      fn precedence(&self) -> uint  {
         match *self {
-            Sentinel => 0u,
-            Add | Sub => 1u,
-            Neg => 2u,
-            Mul | Div => 3u
+            Operator::Sentinel => 0u,
+            Operator::Add | Operator::Sub => 1u,
+            Operator::Neg => 2u,
+            Operator::Mul | Operator::Div => 3u
         }
     }
 }
@@ -222,7 +222,7 @@ impl <'a> Parser<'a> {
     }
 
     pub fn parse(&mut self) -> Result<f32, String> {
-        self.operators.push(Sentinel);
+        self.operators.push(Operator::Sentinel);
         try!(self.e());
         return match self.operands.last() {
             Some(r) => Ok(*r),
@@ -237,10 +237,10 @@ impl <'a> Parser<'a> {
             match self.lexer.peekable().peek() {
                 Some(&x) if x.is_binary() => {
                     let op = match x {
-                        Plus => Add,
-                        Minus => Sub,
-                        Star => Mul,
-                        Slash => Div,
+                        Token::Plus => Operator::Add,
+                        Token::Minus => Operator::Sub,
+                        Token::Star => Operator::Mul,
+                        Token::Slash => Operator::Div,
                         // there are no other binary operators
                         _ => unreachable!()
                     };
@@ -257,7 +257,7 @@ impl <'a> Parser<'a> {
 
         loop {
             match self.operators.last() {
-                Some(&op) if op != Sentinel => self.pop_operator(),
+                Some(&op) if op != Operator::Sentinel => self.pop_operator(),
                 _ => return Ok(())
             }
         }
@@ -265,15 +265,15 @@ impl <'a> Parser<'a> {
 
     fn p(&mut self) -> Result<(), String> {
         match self.lexer.next() {
-            Some(Int(n)) => self.operands.push(n as f32),
-            Some(LParen) => {
-                self.operators.push(Sentinel);
+            Some(Token::Int(n)) => self.operands.push(n as f32),
+            Some(Token::LParen) => {
+                self.operators.push(Operator::Sentinel);
                 try!(self.e());
-                try!(self.lexer.expect(&[RParen]));
+                try!(self.lexer.expect(&[Token::RParen]));
                 self.operators.pop();
             },
-            Some(Minus) => {
-                self.push_operator(Neg);
+            Some(Token::Minus) => {
+                self.push_operator(Operator::Neg);
                 try!(self.p());
             },
             Some(e) => return Err(format!("unexpected token {}", e)),
@@ -284,11 +284,11 @@ impl <'a> Parser<'a> {
 
     fn pop_operator(&mut self) {
         match self.operators.pop() {
-            Some(Add) => self.binary_op(|t1, t2| t1 + t2),
-            Some(Sub) => self.binary_op(|t1, t2| t1 - t2),
-            Some(Mul) => self.binary_op(|t1, t2| t1 * t2),
-            Some(Div) => self.binary_op(|t1, t2| t1 / t2),
-            Some(Neg) => self.unary_op(|t1| -t1),
+            Some(Operator::Add) => self.binary_op(|t1, t2| t1 + t2),
+            Some(Operator::Sub) => self.binary_op(|t1, t2| t1 - t2),
+            Some(Operator::Mul) => self.binary_op(|t1, t2| t1 * t2),
+            Some(Operator::Div) => self.binary_op(|t1, t2| t1 / t2),
+            Some(Operator::Neg) => self.unary_op(|t1| -t1),
             _ => unreachable!()
         }
     }
@@ -321,8 +321,10 @@ impl <'a> Parser<'a> {
 
 #[cfg(test)]
 mod test {
-    use super::{Token, Lexer, Parser, Add, Sub, Mul, Div};
-    use super::{check_values, LParen, RParen, Plus, Slash, Star, Int};
+    use super::{Token, Lexer, Parser};
+    use super::Operator::{Add, Sub, Mul, Div};
+    use super::{check_values};
+    use super::Token::{LParen, RParen, Plus, Slash, Star, Int};
 
     #[test]
     fn test_precedence() {

@@ -1,6 +1,7 @@
 // Implements http://rosettacode.org/wiki/Sieve_of_Eratosthenes
 
 use std::iter::{range_inclusive, range_step};
+use std::num::Float;
 
 fn int_sqrt(n: uint) -> uint {
     (n as f64).sqrt() as uint

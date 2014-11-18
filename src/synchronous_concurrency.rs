@@ -20,11 +20,11 @@ fn printer(i_snd: Sender<int>, msg_rcv: Receiver<Message>) {
     let mut count = 0;
     loop {
         match msg_rcv.recv() {
-            Line(line) => {
+            Message::Line(line) => {
                 print!("{}", line);
                 count += 1;
             }
-            End => {break;}
+            Message::End => {break;}
         }
     }
     i_snd.send(count);
@@ -33,9 +33,9 @@ fn printer(i_snd: Sender<int>, msg_rcv: Receiver<Message>) {
 fn reader(msg_snd: Sender<Message>, i_rcv: Receiver<int>) {
     let mut file = BufferedReader::new(File::open(&Path::new(FILENAME)));
     for line in file.lines() {
-        msg_snd.send(Line(line.unwrap()));
+        msg_snd.send(Message::Line(line.unwrap()));
     }
-    msg_snd.send(End);
+    msg_snd.send(Message::End);
     println!("Total Lines: {}", i_rcv.recv());
 }
 

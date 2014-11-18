@@ -1,5 +1,6 @@
 // http://rosettacode.org/wiki/Pernicious_numbers
 use std::iter::{count, Filter, Counter};
+use std::num::Int;
 use aks_test_for_primes::is_prime;
 mod aks_test_for_primes;
 
