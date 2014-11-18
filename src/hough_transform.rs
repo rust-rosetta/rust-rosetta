@@ -5,6 +5,7 @@
 
 #![allow(dead_code)]
 
+use std::num::{Float, FloatMath};
 use std::io::{BufferedReader, BufferedWriter, File};
 
 // Simple 8-bit grayscale image

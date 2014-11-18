@@ -4,6 +4,7 @@
 //
 
 use std::io::{File, BufferedReader};
+use std::num::Float;
 
 // Calculate the expected frequency of a digit according to Benford's Law
 fn benford_freq(d: u64) -> f32 {

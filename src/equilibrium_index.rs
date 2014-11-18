@@ -1,11 +1,10 @@
 // http://rosettacode.org/wiki/Equilibrium_index
 use std::iter::AdditiveIterator;
-use std::num::Zero;
-use std::ops::Add;
+use std::num::Int;
 
-fn equilibrium_indices<T: Add<T, T> + Sub<T, T> + Eq + Zero + Copy>(v: &[T]) -> Vec<uint> {
+fn equilibrium_indices(v: &[int]) -> Vec<uint> {
     let mut right = v.iter().map(|&x| x).sum();
-    let mut left: T = Zero::zero();
+    let mut left: int = Int::zero();
 
     v.iter().enumerate().fold(vec![], |mut out, (i, &el)| {
         // NOTE: -= and += doesn't work on left/right and el for some reason.

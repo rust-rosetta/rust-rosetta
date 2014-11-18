@@ -1,8 +1,10 @@
 // http://rosettacode.org/wiki/Roots_of_a_function
 
+use std::num::Float;
+
 // Note: We cannot use `range_step` here because Floats don't implement
 // the `CheckedAdd` trait.
-fn find_roots<T: Copy + PartialOrd + Signed>(f: |T| -> T, start: T, stop: T,
+fn find_roots<T: Copy + PartialOrd + Float>(f: |T| -> T, start: T, stop: T,
                                              step: T, epsilon: T) -> Vec<T> {
     let mut ret = vec![];
     let mut current = start;

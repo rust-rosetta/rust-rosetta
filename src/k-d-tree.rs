@@ -2,6 +2,7 @@
 
 extern crate time;
 
+use std::num::Float;
 use std::rand::Rng;
 use std::cmp::Ordering;
 #[cfg(not(test))]

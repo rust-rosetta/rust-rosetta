@@ -1,5 +1,7 @@
 // Implements http://rosettacode.org/wiki/Factors_of_an_integer
 
+use std::num::Float;
+
 #[cfg(not(test))]
 fn main() {
     let target = 78i;

@@ -1,7 +1,7 @@
-use std::num::zero;
+use std::num::Int;
 
-fn horner<T:Num>(cs:&[T], x:T) -> T {
-    cs.iter().rev().fold(zero::<T>(), |acc, c| (acc*x) + (*c))
+fn horner<T:Int>(cs:&[T], x:T) -> T {
+    cs.iter().rev().fold(Int::zero(), |acc: T, c| (acc*x) + (*c))
 }
 
 #[cfg(not(test))] 

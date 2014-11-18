@@ -11,12 +11,12 @@ use std::collections::BinaryHeap;
 // (containing two children)
 struct HNode {
     weight: uint,
-    item: HTreeOrHLeaf,
+    item: HItem,
 }
 
-enum HTreeOrHLeaf {
-    HTree(HTreeData),
-    HLeaf(char),
+enum HItem {
+    Tree(HTreeData),
+    Leaf(char),
 }
 
 struct HTreeData {
@@ -69,7 +69,7 @@ fn huffman_tree(input: &str) -> HNode {
     for (ch, freq) in freq.iter() {
         let new_node = HNode{
             weight: *freq,
-            item: HLeaf(*ch),
+            item: HItem::Leaf(*ch),
         };
         queue.push(new_node);
     }
@@ -83,7 +83,7 @@ fn huffman_tree(input: &str) -> HNode {
         let item2 = queue.pop().unwrap();
         let new_node = HNode {
             weight: item1.weight + item2.weight,
-            item: HTree(HTreeData{
+            item: HItem::Tree(HTreeData{
                 left: box item1,
                 right: box item2,
             }),
@@ -99,13 +99,13 @@ fn build_encoding_table(tree: &HNode,
                       table: &mut HashMap<char,String>,
                       start_str: &str) {
     match tree.item {
-        HTree(ref data) => {
+        HItem::Tree(ref data) => {
             build_encoding_table(&*data.left, table,
                                format!("{}0", start_str).as_slice());
             build_encoding_table(&*data.right, table,
                                format!("{}1", start_str).as_slice());
         },
-        HLeaf(ch)   => {table.insert(ch, start_str.to_string());}
+        HItem::Leaf(ch)   => {table.insert(ch, start_str.to_string());}
     };
 }
 
@@ -123,31 +123,31 @@ fn test_tree_construction() {
     let tree = huffman_tree(to_encode);
     assert!(tree.weight == 7);
     let children = match tree.item {
-        HTree(data) => data,
-        HLeaf(_)    => panic!("Tree Missing Children!"),
+        HItem::Tree(data) => data,
+        HItem::Leaf(_)    => panic!("Tree Missing Children!"),
     };
     let left  = &children.left;
     let right = &children.right;
     assert!(right.weight == 4);
     assert!(left.weight == 3);
     let right_char = match right.item {
-        HTree(_)  => panic!("Node is not Leaf Node!"),
-        HLeaf(ch) => ch,
+        HItem::Tree(_)  => panic!("Node is not Leaf Node!"),
+        HItem::Leaf(ch) => ch,
     };
     assert!(right_char == '4');
     let children = match left.item {
-        HTree(ref data) => data,
-        HLeaf(_)    => panic!("Tree Missing Children!"),
+        HItem::Tree(ref data) => data,
+        HItem::Leaf(_)    => panic!("Tree Missing Children!"),
     };
     let left  = &children.left;
     let right = &children.right;
     let left_char = match left.item {
-        HTree(_)  => panic!("Node is not Leaf Node!"),
-        HLeaf(ch) => ch,
+        HItem::Tree(_)  => panic!("Node is not Leaf Node!"),
+        HItem::Leaf(ch) => ch,
     };
     let right_char = match right.item {
-        HTree(_)  => panic!("Node is not Leaf Node!"),
-        HLeaf(ch) => ch,
+        HItem::Tree(_)  => panic!("Node is not Leaf Node!"),
+        HItem::Leaf(ch) => ch,
     };
     match (left.weight, right.weight) {
         (1, 2) => {

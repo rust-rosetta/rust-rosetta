@@ -2,6 +2,7 @@
 
 use entropy::shannon_entropy;
 use std::iter::range_inclusive;
+use std::num::Float;
 mod entropy;
 
 // Returns "amount" fibonacci words as a vector of tuples

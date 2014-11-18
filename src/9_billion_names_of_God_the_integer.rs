@@ -5,7 +5,7 @@ extern crate num;
 use num::bigint::BigUint;
 use std::cmp::min;
 use std::iter::range_inclusive;
-use std::num::{Zero, One};
+use num::traits::{Zero, One};
 
 pub struct Solver {
     // The `cache` is a private implementation detail,

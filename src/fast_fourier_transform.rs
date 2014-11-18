@@ -2,6 +2,7 @@
 
 extern crate num;
 
+use std::num::Float;
 use num::complex::Complex;
 
 fn fft(arr: &[Complex<f32>]) -> Vec<Complex<f32>> {

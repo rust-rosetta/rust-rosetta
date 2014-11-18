@@ -3,7 +3,7 @@
 extern crate num;
 
 use num::bigint::BigUint;
-use std::num::One;
+use num::traits::One;
 
 fn main() {
     let one: BigUint = One::one();

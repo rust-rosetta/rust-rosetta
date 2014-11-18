@@ -1,9 +1,9 @@
 // Implements http://rosettacode.org/wiki/Active_object
 extern crate time;
 
+use std::num::{Float, FloatMath};
 use std::f64::consts::PI;
 use std::io::timer::Timer;
-use std::num::{Zero, zero};
 use std::sync::{Arc, Mutex};
 use std::time::duration::Duration;
 
@@ -28,8 +28,8 @@ pub struct Integrator<S, T> {
 // function being integrated) must yield T (the type of the integrated value) when multiplied by
 // f64.  We could possibly replace f64 with a generic as well, but it would make things a bit more
 // complex.
-impl<S: Mul<f64, T> + Zero,
-     T: Clone + Send + Zero> Integrator<S, T> {
+impl<S: Mul<f64, T> + Float,
+     T: Clone + Send + Float> Integrator<S, T> {
     pub fn new(frequency: Duration) -> Integrator<S, T> {
         // We create a pipe allowing functions to be sent from tx (the sending end) to input (the
         // receiving end).  In order to change the function we are integrating from the task in
@@ -40,7 +40,7 @@ impl<S: Mul<f64, T> + Zero,
         // that memory will not be freed as long as there is at least one reference to it.
         // It is similar to C++'s shared_ptr, but it is guaranteed to be safe and is never
         // incremented unless explicitly cloned (by default, it is moved).
-        let s = Arc::new(Mutex::new(zero::<T>()));
+        let s: Arc<Mutex<T>> = Arc::new(Mutex::new(Float::zero()));
         let integrator = Integrator {
             input: tx,
             // Here is the aforementioned clone.  We have to do it before s enters the closure,
@@ -64,8 +64,8 @@ impl<S: Mul<f64, T> + Zero,
             let periodic = timer.periodic(frequency);
             let frequency_ms = frequency.num_milliseconds();
             let mut t = 0;
-            let mut k = |_| zero();
-            let mut k_0: S = zero();
+            let mut k = |_| Float::zero();
+            let mut k_0: S = Float::zero();
             loop {
                 // Here's the selection we talked about above.  Note that we are careful to call
                 // the *non*-failing function, recv_opt(), here.  The reason we do this is because

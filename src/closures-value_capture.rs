@@ -3,6 +3,7 @@
 #![feature(overloaded_calls, unboxed_closures)]
 
 use std::iter::count;
+use std::num::Float;
 
 fn main() {
     // An infinite iterator that generates closures
