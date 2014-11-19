@@ -857,6 +857,12 @@ path = "src/towers_of_hanoi.rs"
 test = false
 
 [[bin]]
+# http://rosettacode.org/wiki/Walk_a_directory/Recursively 
+name = "walk_recursive"
+path = "src/walk_recursive.rs"
+test = false
+
+[[bin]]
 # http://rosettacode.org/wiki/Hello_world/Web_server
 name = "webserver"
 path = "src/webserver.rs"
