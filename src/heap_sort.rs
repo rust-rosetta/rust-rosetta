@@ -72,15 +72,15 @@ fn sift_down<T: Ord>(a: &mut [T], start: uint, end: uint) {
 #[cfg(not(test))]
 pub fn main() {
     let mut arr = [1u,5,2,7,3,9,4,6,8];
-    heap_sort(arr);
+    heap_sort(&mut arr);
     println!("After sort: {}", arr.as_slice());
     
     let mut arr = [1u,2,3,4,5,6,7,8,9];
-    heap_sort(arr);
+    heap_sort(&mut arr);
     println!("After sort: {}", arr.as_slice());
     
     let mut arr = [9u,8,7,6,5,4,3,2,1];
-    heap_sort(arr);
+    heap_sort(&mut arr);
     println!("After sort: {}", arr.as_slice());
 }
 
@@ -91,36 +91,36 @@ mod test {
     #[test]
     fn sorted() {
         let mut arr = [1u, 2, 3, 4, 6, 8];
-        heap_sort(arr);
-        assert_eq!(arr.as_slice(), [1u, 2, 3, 4, 6, 8].as_slice());
+        heap_sort(&mut arr);
+        assert_eq!(arr, [1u, 2, 3, 4, 6, 8]);
     }
 
     #[test]
     fn reverse() {
         let mut arr = [8i, 6, 4, 3, 2, 1];
-        heap_sort(arr);
-        assert_eq!(arr.as_slice(), [1i, 2, 3, 4, 6, 8].as_slice());
+        heap_sort(&mut arr);
+        assert_eq!(arr, [1i, 2, 3, 4, 6, 8]);
     }
 
     #[test]
     fn random() {
         let mut arr = [12u, 54, 2, 93, 13, 43, 15, 299, 234];
-        heap_sort(arr);
-        assert_eq!(arr.as_slice(), [2u, 12, 13, 15, 43, 54, 93, 234, 299].as_slice());
+        heap_sort(&mut arr);
+        assert_eq!(arr, [2u, 12, 13, 15, 43, 54, 93, 234, 299]);
     }
 
     #[test]
     fn one() {
         let mut arr = [9u];
-        heap_sort(arr);
-        assert_eq!(arr.as_slice(), [9u].as_slice());
+        heap_sort(&mut arr);
+        assert_eq!(arr, [9u]);
     }
 
     #[test]
     fn empty() {
         let mut arr: [int, ..0] = [];
         let empty: [int, ..0] = [];
-        heap_sort(arr);
+        heap_sort(&mut arr);
         assert_eq!(arr.as_slice(), empty.as_slice());
     }
 }

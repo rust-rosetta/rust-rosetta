@@ -48,14 +48,14 @@ fn main() {
     let mut numbers = [4i, 65, 2, -31, 0, 99, 2, 83, 782, 1];
     println!("Before: {}", numbers.as_slice());
 
-    quick_sort(numbers);
+    quick_sort(&mut numbers);
     println!("After: {}", numbers.as_slice());
 
     // Sort strings
     let mut strings = ["beach", "hotel", "airplane", "car", "house", "art"];
     println!("Before: {}", strings.as_slice());
 
-    quick_sort(strings);
+    quick_sort(&mut strings);
     println!("After: {}", strings.as_slice());
 }
 
@@ -70,7 +70,7 @@ fn check_sort<T: Ord>(v: &[T]) {
 
 #[test]
 fn test_rosetta_vector() {
-    let mut numbers = [4i, 65, 2, -31, 0, 99, 2, 83, 782, 1];
+    let numbers = &mut [4i, 65, 2, -31, 0, 99, 2, 83, 782, 1];
     quick_sort(numbers);
     check_sort(numbers);
 }
@@ -84,28 +84,28 @@ fn test_empty_vector() {
 
 #[test]
 fn test_one_element_vector() {
-    let mut numbers = [0i];
+    let numbers = &mut [0i];
     quick_sort(numbers);
     check_sort(numbers);
 }
 
 #[test]
 fn test_repeat_vector() {
-    let mut numbers = [1i, 1, 1, 1, 1];
+    let numbers = &mut [1i, 1, 1, 1, 1];
     quick_sort(numbers);
     check_sort(numbers);
 }
 
 #[test]
 fn test_worst_case_vector() {
-    let mut numbers = [20i, 10, 0, -1, -5];
+    let numbers = &mut [20i, 10, 0, -1, -5];
     quick_sort(numbers);
     check_sort(numbers);
 }
 
 #[test]
 fn test_already_sorted_vector() {
-    let mut numbers = [-1i, 0, 3, 6, 99];
+    let numbers = &mut [-1i, 0, 3, 6, 99];
     quick_sort(numbers);
     check_sort(numbers);
 }

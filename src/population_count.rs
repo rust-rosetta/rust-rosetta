@@ -31,7 +31,7 @@ fn evil<'a>() -> Filter<'a, uint, Counter<uint>> {
 }
 
 fn pow_3<'a>() -> Map<'a, uint, uint, Counter<uint>> {
-    count(0u, 1).map(|i| num::pow(3u32, i).count_ones())
+    count(0u, 1).map(|i| 3u32.pow(i).count_ones())
 }
 
 #[cfg(test)]

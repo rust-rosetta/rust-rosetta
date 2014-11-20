@@ -21,7 +21,7 @@ fn bubble_sort<T: PartialOrd>(v: &mut [T]) {
 #[cfg(not(test))]
 fn main() {
     let mut numbers = [4i, 65, 2, -31, 0, 99, 2, 83, 782, 1];
-    bubble_sort(numbers);
+    bubble_sort(&mut numbers);
 }
 
 #[cfg(test)]
@@ -36,7 +36,7 @@ mod test {
 
     #[test]
     fn rosetta_vector() {
-        let mut numbers = [4i, 65, 2, -31, 0, 99, 2, 83, 782, 1];
+        let numbers = &mut [4i, 65, 2, -31, 0, 99, 2, 83, 782, 1];
         check_sort(numbers);
     }
 
@@ -48,25 +48,25 @@ mod test {
 
     #[test]
     fn one_element_vector() {
-        let mut numbers = [0i];
+        let numbers = &mut [0i];
         check_sort(numbers);
     }
 
     #[test]
     fn repeat_vector() {
-        let mut numbers = [1i, 1, 1, 1, 1];
+        let numbers = &mut [1i, 1, 1, 1, 1];
         check_sort(numbers);
     }
 
     #[test]
     fn worst_case_vector() {
-        let mut numbers = [20i, 10, 0, -1, -5];
+        let numbers = &mut [20i, 10, 0, -1, -5];
         check_sort(numbers);
     }
 
     #[test]
     fn already_sorted_vector() {
-        let mut numbers = [-1i, 0, 3, 6, 99];
+        let numbers = &mut [-1i, 0, 3, 6, 99];
         check_sort(numbers);
     }
 }
