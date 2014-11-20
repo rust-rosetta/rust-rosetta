@@ -17,7 +17,7 @@ fn main() {
     let input = [3.0, 1.0, 4.0, 1.0, 5.0, 9.0];
 
     // This should be 3.833333
-    let mean = mean(input).unwrap();
+    let mean = mean(&input).unwrap();
     println!("{}", mean);
 }
 
