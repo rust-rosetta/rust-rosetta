@@ -1,6 +1,6 @@
 // http://rosettacode.org/wiki/Taxicab_numbers
 use std::collections::BinaryHeap;
-use std::num::pow;
+use std::num::Int;
 
 /// A type to represent a pair-sum of cubes.
 /// value = a^3 + b^3
@@ -13,7 +13,7 @@ struct SumCubes {
 
 impl SumCubes {
     fn new(a: u64, b: u64) -> SumCubes {
-        SumCubes{ value: pow(a, 3) + pow(b, 3), a: a, b: b }
+        SumCubes{ value: a.pow(3) + b.pow(3), a: a, b: b }
     }
 }
 

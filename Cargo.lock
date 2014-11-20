@@ -3,7 +3,7 @@ name = "rust-rosetta"
 version = "0.0.1"
 dependencies = [
  "num 0.0.3 (git+https://github.com/rust-lang/num)",
- "time 0.0.2 (git+https://github.com/rust-lang/time)",
+ "time 0.0.3 (git+https://github.com/rust-lang/time)",
 ]
 
 [[package]]
@@ -14,12 +14,12 @@ source = "git+https://github.com/alexcrichton/gcc-rs#f25b3ba9c40303781189cc137fb
 [[package]]
 name = "num"
 version = "0.0.3"
-source = "git+https://github.com/rust-lang/num#c7757ce7d9c13635613a2cc4c9ae4a6232b68492"
+source = "git+https://github.com/rust-lang/num#39acd8f2fbe41e3e4e883cdc049bc07f902e51c8"
 
 [[package]]
 name = "time"
-version = "0.0.2"
-source = "git+https://github.com/rust-lang/time#b58210c93a44d7b83a1a9b68b462f5a7fa1942f3"
+version = "0.0.3"
+source = "git+https://github.com/rust-lang/time#9595d0bc529419965125753a1dc61ebaeb08d5b1"
 dependencies = [
  "gcc 0.0.1 (git+https://github.com/alexcrichton/gcc-rs)",
 ]

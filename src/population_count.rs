@@ -1,6 +1,6 @@
 // http://rosettacode.org/wiki/Population_count
 use std::iter::{count, Filter, Counter, Map};
-use std::num::{mod, Int};
+use std::num::Int;
 
 #[cfg(not(test))]
 fn main() {
