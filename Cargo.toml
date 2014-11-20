@@ -529,6 +529,11 @@ name = "letter_frequency"
 path = "src/letter_frequency.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/Levenshtein_distance/Alignment
+name = "levenshtein_distance_alignment"
+path = "src/levenshtein_distance_alignment.rs"
+
+[[bin]]
 name = "lib"
 path = "src/lib.rs"
 
