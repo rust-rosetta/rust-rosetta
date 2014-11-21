@@ -1,10 +1,14 @@
 // Implements http://rosettacode.org/wiki/Averages/Mean_angle
 
-use std::num::{Float, FloatMath};
+#[cfg(test)]
+use std::num::Float;
+
+use std::num::FloatMath;
+use std::f64::consts::PI;
 
 fn mean_angle(angles: &[f64]) -> f64 {
     let (sum_cos, sum_sin) = angles.iter()
-                                   .map(|&x| x * Float::pi() / 180.)
+                                   .map(|&x| x * PI / 180.)
                                    // We map into a tuple of sin and cos so we
                                    // only need to iterate the slice once.
                                    .map(|x| (x.cos(), x.sin()))
@@ -14,7 +18,7 @@ fn mean_angle(angles: &[f64]) -> f64 {
     let mean_cos = sum_cos / angles.len() as f64;
     let mean_sin = sum_sin / angles.len() as f64;
 
-    mean_sin.atan2(mean_cos) * 180. / Float::pi()
+    mean_sin.atan2(mean_cos) * 180. / PI
 }
 
 #[cfg(not(test))]
