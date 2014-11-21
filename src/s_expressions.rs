@@ -90,6 +90,8 @@ impl<'a> Tokens<'a> {
         if let Some((ch, s)) = string.slice_shift_char() {
             self.first = Some(ch);
             self.rest = s;
+        } else {
+            self.first = None;
         };
     }
 
