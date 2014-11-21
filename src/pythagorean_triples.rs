@@ -1,6 +1,6 @@
 // http://rosettacode.org/wiki/Pythagorean_triples
 use std::collections::DList;
-use std::num::pow;
+use std::num::Int;
 
 /// Count the number of Pythagorean triples whose sum are below the specified limit (inclusive).
 /// Does a BFS over the tree of primitive Pythagorean triples (see [0]), and uses the fact that
@@ -46,14 +46,14 @@ fn count_pythagorean_triples(below: u64) -> (u64, u64) {
 #[cfg(not(test))]
 fn main() {
     for n in range(1, 9) {
-        let (tot, prim) = count_pythagorean_triples(pow(10, n));
-        println!("Up to 10^{}: {:>10u} triples {:>10u} primitives",
+        let (tot, prim) = count_pythagorean_triples(10u64.pow(n));
+        println!("Up to 10^{}: {:>10} triples {:>10} primitives",
                  n, tot, prim);
     }
 }
 
 #[test]
 fn test_count_pythagorean_triples() {
-    assert_eq!(count_pythagorean_triples(pow(10, 6)), (808950, 70229));
+    assert_eq!(count_pythagorean_triples(10u64.pow(6)), (808950, 70229));
 }
 

@@ -1,4 +1,4 @@
-#![feature(overloaded_calls, macro_rules)]
+#![feature(unboxed_closures, macro_rules)]
 pub struct G<T, U> {
     n: T,
 }

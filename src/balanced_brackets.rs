@@ -42,7 +42,7 @@ fn main() {
     for i in range (0u, 10) {
         let brackets = generate_brackets(i);
 
-        println!("{:s}    {:b}", brackets, brackets.is_balanced())
+        println!("{}    {}", brackets, brackets.is_balanced())
     }
 }
 

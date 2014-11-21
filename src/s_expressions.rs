@@ -18,8 +18,7 @@
 // decoding technique doesn't allocate extra space for strings.  Does support numbers, but only
 // float types (supporting more types is possible but would complicate the code significantly).
 //
-#![feature(slicing_syntax)]
-#![feature(globs)]
+#![feature(slicing_syntax, globs, if_let)]
 
 extern crate arena;
 extern crate test;
@@ -76,8 +75,10 @@ struct Tokens<'a> {
 impl<'a> Tokens<'a> {
     // Initialize a token stream for a given string.
     fn new(string: &str) -> Tokens {
-        let (ch, s) = string.slice_shift_char();
-        Tokens { string: string, first: ch, rest: s }
+        match string.slice_shift_char() {
+            Some((ch, s)) =>  Tokens { string: string, first: Some(ch), rest: s },
+            None => Tokens { string: string, first: None, rest: string }
+        }
     }
 
     // Utility function to update information in the iterator.  It might not be performant to keep
@@ -86,9 +87,12 @@ impl<'a> Tokens<'a> {
     // With some unsafe code we could probably get rid of one of them (and maybe first, too).
     fn update(&mut self, string: &'a str) {
         self.string = string;
-        let (ch, s) = string.slice_shift_char();
-        self.first = ch;
-        self.rest = s;
+        if let Some((ch, s)) = string.slice_shift_char() {
+            self.first = Some(ch);
+            self.rest = s;
+        } else {
+            self.first = None;
+        };
     }
 
     // This is where the lexing happens.  Note that it does not handle string escaping.
@@ -291,9 +295,9 @@ impl<'a> SExp<'a> {
     }
 }
 
-const SEXP_STRUCT: SExp<'static> = List([
-    List([Str("data"), Str("quoted data"), F64(123.), F64(4.5)]),
-    List([Str("data"), List([Str("!@#"), List([F64(4.5)]), Str("(more"), Str("data)")])]),
+const SEXP_STRUCT: SExp<'static> = List(&[
+    List(&[Str("data"), Str("quoted data"), F64(123.), F64(4.5)]),
+    List(&[Str("data"), List(&[Str("!@#"), List(&[F64(4.5)]), Str("(more"), Str("data)")])]),
 ]);
 
 fn try_encode() -> Result<String, Error> {

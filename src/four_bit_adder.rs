@@ -44,7 +44,7 @@ impl Nibble {
 }
 
 impl fmt::Show for Nibble {
-  fn fmt(&self, f: &mut fmt::Formatter) -> Result<(), fmt::FormatError> {
+  fn fmt(&self, f: &mut fmt::Formatter) -> Result<(), fmt::Error> {
     write!(f, "{}", self.iter().map(|&b| if b { '1' } else { '0' }).collect::<String>())
   }
 }

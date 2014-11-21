@@ -28,6 +28,7 @@ fn ipv4() {
 }
 
 #[test]
+#[ignore(cfg(target_os = "win32"))]
 fn ipv6() {
     let ip: IpAddr = from_str("2001:200:dff:fff1:216:3eff:feb1:44d7").unwrap();
     assert!(get_ips("www.kame.net").contains(&ip));

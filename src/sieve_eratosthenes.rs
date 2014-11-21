@@ -34,5 +34,5 @@ fn main() {
 #[test]
 fn test_basic() {
     let primes = simple_sieve(30);
-    assert!(primes.as_slice() == [2, 3, 5, 7, 11, 13, 17, 19, 23, 29]);
+    assert!(primes.as_slice() == &[2, 3, 5, 7, 11, 13, 17, 19, 23, 29]);
 }

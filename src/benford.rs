@@ -80,6 +80,6 @@ fn main() {
         let found_pc = found_distrib[digit] * 100.0;
         let delta_pc = expected_pc - found_pc;
 
-        println!("{}        {:>4.1f}%      {:>4.1f}%    {:>5.2f}%", digit, expected_pc, found_pc, delta_pc);
+        println!("{}        {:>4.1}%      {:>4.1}%    {:>5.2}%", digit, expected_pc, found_pc, delta_pc);
     }
 }

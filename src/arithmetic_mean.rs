@@ -24,11 +24,11 @@ fn main() {
 #[test]
 fn simple_test() {
     let nums = [1.0, 2.0, 3.0, 4.0, 5.0];
-    assert_eq!(mean(nums), Some(3.0));
+    assert_eq!(mean(&nums), Some(3.0));
 }
 
 #[test]
 fn mean_empty_list() {
     let no_nums = [];
-    assert_eq!(mean(no_nums), None);
+    assert_eq!(mean(&no_nums), None);
 }

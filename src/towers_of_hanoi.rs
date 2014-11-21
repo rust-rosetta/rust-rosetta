@@ -3,7 +3,7 @@
 fn play(n: int, from: int, to: int, via: int) {
     if n > 0 {
         play(n - 1, from, via, to);
-        println!("Move disk from pole {:d} to pole {:d}", from, to);
+        println!("Move disk from pole {} to pole {}", from, to);
         play(n - 1, via, to, from);
     }
 }

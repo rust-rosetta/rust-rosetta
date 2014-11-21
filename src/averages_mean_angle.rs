@@ -19,9 +19,9 @@ fn mean_angle(angles: &[f64]) -> f64 {
 
 #[cfg(not(test))]
 fn main() {
-    let set1 = [350., 10.];
-    let set2 = [90., 180., 270., 360.];
-    let set3 = [10., 20., 30.];
+    let set1 = &[350., 10.];
+    let set2 = &[90., 180., 270., 360.];
+    let set3 = &[10., 20., 30.];
 
     println!("Mean angle of first set is {} degrees", mean_angle(set1));
     println!("Mean angle of second set is {} degrees", mean_angle(set2));
@@ -35,7 +35,7 @@ fn basic_tests() {
     let set3 = [10., 20., 30.];
 
     // We need to round the numbers
-    assert_eq!(mean_angle(set1).round(), 0.);
-    assert_eq!(mean_angle(set2).round(), -90.);
-    assert_eq!(mean_angle(set3).round(), 20.);
+    assert_eq!(mean_angle(&set1).round(), 0.);
+    assert_eq!(mean_angle(&set2).round(), -90.);
+    assert_eq!(mean_angle(&set3).round(), 20.);
 }

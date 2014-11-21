@@ -181,7 +181,7 @@ impl Writer for Digest {
         let ln=buf_m.len();
         if ln > 0 {
             assert!(self.x.len() >= ln);
-            copy_memory(self.x, buf_m);
+            copy_memory(&mut self.x, buf_m);
             self.nx = ln;
         }
         Ok(())

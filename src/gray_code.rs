@@ -16,7 +16,7 @@ fn gray_decode(integer: uint) -> uint {
 #[cfg(not(test))]
 fn main() {
     for i in range(0u,32u) {
-        println!("{:2} {:0>5t} {:0>5t} {:2}", i, i, gray_encode(i),
+        println!("{:2} {:0>5} {:0>5} {:2}", i, i, gray_encode(i),
             gray_decode(i));
     }
 }

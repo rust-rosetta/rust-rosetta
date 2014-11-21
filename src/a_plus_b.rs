@@ -13,5 +13,5 @@ fn main() {
             _ => panic!("Please enter 2 integers")
     };
 
-    println!("{:i}", sum);
+    println!("{}", sum);
 }
