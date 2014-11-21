@@ -7,7 +7,7 @@ trait BinaryString {
 
 impl BinaryString for uint {
     fn to_binary_string(&self) -> String {
-        format!("{:t}", *self)
+        self.to_string()
     }
 }
 

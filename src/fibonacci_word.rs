@@ -2,7 +2,6 @@
 
 use entropy::shannon_entropy;
 use std::iter::range_inclusive;
-use std::num::Float;
 mod entropy;
 
 // Returns "amount" fibonacci words as a vector of tuples
@@ -37,12 +36,14 @@ fn main() {
 
     println!("{:>2}:{:>10} {}", "N", "length", "entropy");
     for &(length, entropy) in words.iter() {
-        println!("{:>2i}:{:>10u} {:.15f}", i, length, entropy);
+        println!("{:>2}:{:>10} {:.15}", i, length, entropy);
         i += 1;
     }
 }
 #[test]
 fn test_fibonacii_words() {
+    use std::num::Float;
+
     let expected = vec![
         (1u, 0.000000000000000f64),
         (1, 0.000000000000000),

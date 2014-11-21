@@ -81,9 +81,9 @@ fn main() {
     let numbers = TaxicabNumbers::new();
     for (at, ways) in numbers.take(2006).enumerate()
                              .filter(|&(at, _)| at + 1 <= 25 || at + 1 >= 2000) {
-        print!("{:>4u}:{:>10u}", at + 1, ways[0].value);
+        print!("{:>4}:{:>10}", at + 1, ways[0].value);
         for &SumCubes{ a, b, .. } in ways.iter() {
-            print!(" = {:>4u}^3 + {:>4u}^3", a, b);
+            print!(" = {:>4}^3 + {:>4}^3", a, b);
         }
         print!("\n");
     }
