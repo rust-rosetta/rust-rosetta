@@ -41,7 +41,7 @@ pub fn decode(value: &str) -> Result<String, String> {
     let mut start = 0;
 
     for (i, c) in value.char_indices() {
-        if c.is_digit() { continue }
+        if UnicodeChar::is_numeric(c) { continue }
         if i==start { return Err(format!("expected digit, found {}", c)) }
 
         let ret_s = value.slice(start, i);

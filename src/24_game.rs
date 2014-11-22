@@ -10,7 +10,6 @@
 // module enforces visibility restrictions so the test module can only access
 // publically exported code, the same as any user of the code.
 #![feature(globs)]
-use std::char;
 
 #[cfg(not(test))]
 fn main() {
@@ -136,12 +135,12 @@ impl <'a> Iterator<Token> for Lexer<'a> {
 
         let (tok, cur_offset) = match remaining.next() {
             // Found a digit. if there are others, transform them to `uint`
-            Some((mut offset, ch)) if ch.is_digit() => {
-                let mut val = char::to_digit(ch, 10).unwrap();
+            Some((mut offset, ch)) if UnicodeChar::is_numeric(ch) => {
+                let mut val = Char::to_digit(ch, 10).unwrap();
 
                 for (idx, ch) in remaining {
-                    if ch.is_digit() {
-                        let digit = char::to_digit(ch, 10).unwrap();
+                    if UnicodeChar::is_numeric(ch) {
+                        let digit = Char::to_digit(ch, 10).unwrap();
                         val = val * 10 + digit;
                     } else {
                         offset = idx;
