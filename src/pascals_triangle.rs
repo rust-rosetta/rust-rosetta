@@ -4,7 +4,7 @@ fn pascaltriangle(rows: uint) {
     for row in range(0, rows) {
         let mut value = 1;
 
-        for _space in range(0, (rows - row)) {
+        for _ in range(0, (rows - row)) {
             print!(" ");
         }
 
