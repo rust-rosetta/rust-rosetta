@@ -22,3 +22,7 @@ fn base_16() {
     assert_eq!(sum(0xf0e, 16), 29);
 }
 
+#[cfg(not(test))]
+fn main() {
+    println!("{}", sum(1234, 10));
+}
