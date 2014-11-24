@@ -27,7 +27,6 @@ use arena::TypedArena;
 
 use std::io;
 use std::num::{mod, Float};
-use std::string;
 use self::SExp::*;
 use self::Error::*;
 use self::Token::*;
@@ -291,7 +290,7 @@ impl<'a> SExp<'a> {
         // Because encode() only ever writes valid UTF-8, we can safely skip the secondary check we
         // normally have to do when converting from Vec<u8> to String.  If we didn't know that the
         // buffer was already UTF-8, we'd want to call container_as_str() here.
-        unsafe { Ok(string::raw::from_utf8(m.unwrap())) }
+        unsafe { Ok(String::from_utf8_unchecked(m.unwrap())) }
     }
 }
 

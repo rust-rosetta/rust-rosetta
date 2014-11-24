@@ -458,6 +458,7 @@ path = "src/horners_rule.rs"
 # http://rosettacode.org/wiki/Host_introspection
 name = "host_introspection"
 path = "src/host_introspection.rs"
+test = false
 
 [[bin]]
 # http://rosettacode.org/wiki/Hough_transform
