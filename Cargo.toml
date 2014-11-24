@@ -657,7 +657,6 @@ path = "src/parallel_calculations.rs"
 # http://rosettacode.org/wiki/Pascal%27s_triangle
 name = "pascals_triangle"
 path = "src/pascals_triangle.rs"
-test = false
 
 [[bin]]
 # http://rosettacode.org/wiki/Perfect_numbers
