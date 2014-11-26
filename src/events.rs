@@ -20,7 +20,7 @@ use std::sync::Mutex;
 fn handle_event(duration: Duration) -> Duration {
     // Create a Mutex.  By default a Mutex is created with a single condition variable (condvar_id
     // 0) but it can be created with an arbitrary number using Mutex::new_with_condvars();
-    let mutex = Arc::new(Mutex::new(0u));
+    let mutex = Arc::new(Mutex::new(()));
     let mutex_ = mutex.clone();
     let mut timer = Timer::new().unwrap();
     let start = time::precise_time_ns();

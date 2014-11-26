@@ -62,7 +62,7 @@ mod buckets {
     struct Bucket {
         data: AtomicUint,       // The actual data.  It is atomic because it is read (not written)
                                 // outside the Mutex, unless a consistent snapshot is required.
-        mutex: Mutex<uint>,     // The mutex used to synchronize writes and snapshot reads of the bucket.
+        mutex: Mutex<()>,       // The mutex used to synchronize writes and snapshot reads of the bucket.
                                 // As the D solution says, using a per-bucket Mutex dramatically improves
                                 // scalability compared to the alternatives.
     }
@@ -83,7 +83,7 @@ mod buckets {
             let mut buckets_: [Bucket, .. N_BUCKETS] = unsafe { ::std::mem::uninitialized() };
             let mut transfers: [AtomicUint, .. N_WORKERS] = unsafe { ::std::mem::uninitialized() };
             for (dest, &src) in buckets_.iter_mut().zip(buckets.iter()){
-                let bucket = Bucket { data: AtomicUint::new(src), mutex: Mutex::new(0) };
+                let bucket = Bucket { data: AtomicUint::new(src), mutex: Mutex::new(()) };
                 // If we don't use an unsafe write(), the uninitialized mutex in the bucket will be
                 // dropped.
                 unsafe { ::std::ptr::write(dest as *mut _, bucket) }
