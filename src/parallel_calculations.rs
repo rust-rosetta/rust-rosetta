@@ -4,7 +4,6 @@
 
 #[cfg(test)]
 extern crate test;
-extern crate sync;
 
 use std::sync::Future;
 use prime_decomposition::factor;

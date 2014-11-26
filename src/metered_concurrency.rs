@@ -3,8 +3,6 @@
 // directly.
 #![feature(unsafe_destructor)]
 
-extern crate sync;
-
 use std::io::timer;
 use std::sync::Arc;
 use std::sync::atomic::AtomicUint;

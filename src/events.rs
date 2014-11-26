@@ -8,20 +8,19 @@
 // are only received if there is actually a task waiting on the signal--see the below program for
 // an example of how this may be achieved in practice.
 
-extern crate sync;
 extern crate time;
 
 use std::io::timer::Timer;
 use std::sync::Arc;
 use std::time::duration::Duration;
-use sync::raw::Mutex;
+use std::sync::Mutex;
 
 // Given a duration to wait before sending an event from one process to another, returns the
 // elapsed time before the event was actually sent.
 fn handle_event(duration: Duration) -> Duration {
     // Create a Mutex.  By default a Mutex is created with a single condition variable (condvar_id
     // 0) but it can be created with an arbitrary number using Mutex::new_with_condvars();
-    let mutex = Arc::new(Mutex::new());
+    let mutex = Arc::new(Mutex::new(()));
     let mutex_ = mutex.clone();
     let mut timer = Timer::new().unwrap();
     let start = time::precise_time_ns();

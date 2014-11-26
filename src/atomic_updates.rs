@@ -10,8 +10,6 @@
 // and this type still appears to have quite a bit of overhead.
 #![feature(tuple_indexing, slicing_syntax)]
 
-extern crate sync;
-
 use std::io::timer::Timer;
 use std::iter::AdditiveIterator;
 use std::rand::{Rng, weak_rng};
@@ -27,7 +25,7 @@ use std::time::duration::Duration;
 mod buckets {
     use std::sync::atomic::AtomicUint;
     use std::sync::atomic;
-    use sync::mutex::Mutex;
+    use std::sync::Mutex;
 
     // We hardcode the number of buckets mostly for convenience.  Now that Rust has dynamically
     // sized types, this is possibly no longer a problem.
@@ -62,11 +60,11 @@ mod buckets {
     pub const N_WORKERS: uint = 2;
 
     struct Bucket {
-        data: AtomicUint, // The actual data.  It is atomic because it is read (not written)
-                          // outside the Mutex, unless a consistent snapshot is required.
-        mutex: Mutex,     // The mutex used to synchronize writes and snapshot reads of the bucket.
-                          // As the D solution says, using a per-bucket Mutex dramatically improves
-                          // scalability compared to the alternatives.
+        data: AtomicUint,       // The actual data.  It is atomic because it is read (not written)
+                                // outside the Mutex, unless a consistent snapshot is required.
+        mutex: Mutex<()>,       // The mutex used to synchronize writes and snapshot reads of the bucket.
+                                // As the D solution says, using a per-bucket Mutex dramatically improves
+                                // scalability compared to the alternatives.
     }
 
     pub struct Buckets {
@@ -85,7 +83,7 @@ mod buckets {
             let mut buckets_: [Bucket, .. N_BUCKETS] = unsafe { ::std::mem::uninitialized() };
             let mut transfers: [AtomicUint, .. N_WORKERS] = unsafe { ::std::mem::uninitialized() };
             for (dest, &src) in buckets_.iter_mut().zip(buckets.iter()){
-                let bucket = Bucket { data: AtomicUint::new(src), mutex: Mutex::new() };
+                let bucket = Bucket { data: AtomicUint::new(src), mutex: Mutex::new(()) };
                 // If we don't use an unsafe write(), the uninitialized mutex in the bucket will be
                 // dropped.
                 unsafe { ::std::ptr::write(dest as *mut _, bucket) }
