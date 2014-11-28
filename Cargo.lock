@@ -2,25 +2,25 @@
 name = "rust-rosetta"
 version = "0.0.1"
 dependencies = [
- "num 0.0.3 (git+https://github.com/rust-lang/num)",
- "time 0.0.3 (git+https://github.com/rust-lang/time)",
+ "num 0.0.5 (git+https://github.com/rust-lang/num)",
+ "time 0.1.0 (git+https://github.com/rust-lang/time)",
 ]
 
 [[package]]
 name = "gcc"
-version = "0.0.1"
-source = "git+https://github.com/alexcrichton/gcc-rs#f25b3ba9c40303781189cc137fb98fffe5b56de7"
+version = "0.1.0"
+source = "git+https://github.com/alexcrichton/gcc-rs#96c9e44ce3dfccc47c16fcfd743a33b3b4205daf"
 
 [[package]]
 name = "num"
-version = "0.0.3"
-source = "git+https://github.com/rust-lang/num#39acd8f2fbe41e3e4e883cdc049bc07f902e51c8"
+version = "0.0.5"
+source = "git+https://github.com/rust-lang/num#16787045e5f9764626a3d5cfbee4655e06efaccf"
 
 [[package]]
 name = "time"
-version = "0.0.3"
-source = "git+https://github.com/rust-lang/time#9595d0bc529419965125753a1dc61ebaeb08d5b1"
+version = "0.1.0"
+source = "git+https://github.com/rust-lang/time#afab521f3b91658a3ba2d3e877b7e01699733bef"
 dependencies = [
- "gcc 0.0.1 (git+https://github.com/alexcrichton/gcc-rs)",
+ "gcc 0.1.0 (git+https://github.com/alexcrichton/gcc-rs)",
 ]
 
