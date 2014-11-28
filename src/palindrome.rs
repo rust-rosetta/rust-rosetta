@@ -9,7 +9,7 @@ fn palindrome(string: &str) -> bool {
     let reverse = string.chars().rev().take(string.len() / 2);
 
     // We group the two parts of the string in tuples
-    let mut both_directions = forward.zip(reverse);
+    let both_directions = forward.zip(reverse);
 
     // The word is a palindrome if each tuple contains two times
     // the same character

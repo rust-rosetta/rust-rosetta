@@ -20,7 +20,7 @@ fn digits(n: u64) -> std::iter::Unfold<'static, u64, u64> {
 
 fn luhn_test(n: u64) -> bool {
     let odd_even = [LuhnState::Odd, LuhnState::Even];
-    let mut numbers = digits(n).zip(odd_even.iter().cycle().map(|&s|s));
+    let numbers = digits(n).zip(odd_even.iter().cycle().map(|&s|s));
     let sum = numbers.fold(0u64, |s,n| {
         s + match n {
             (n, LuhnState::Odd) => n,
