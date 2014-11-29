@@ -156,8 +156,12 @@ impl <'a> Iterator<Token> for Lexer<'a> {
         };
 
         // update the offset for the next iteration
-        self.offset += cur_offset;
-        tok
+        if cur_offset == 0 {
+            None
+        } else {
+            self.offset += cur_offset;
+            tok
+        }
     }
 }
 
