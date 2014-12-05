@@ -8,7 +8,7 @@ fn main() {
                             .map(from_str::<int>)
                             .collect::<Vec<Option<int>>>();
 
-    let sum = match &*words {
+    let sum = match words.as_slice() {
         [Some(x), Some(y)] => x + y,
             _ => panic!("Please enter 2 integers")
     };
