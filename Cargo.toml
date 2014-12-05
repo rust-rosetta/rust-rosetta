@@ -878,7 +878,7 @@ path = "src/towers_of_hanoi.rs"
 test = false
 
 [[bin]]
-# http://rosettacode.org/wiki/Walk_a_directory/Recursively 
+# http://rosettacode.org/wiki/Walk_a_directory/Recursively
 name = "walk_recursive"
 path = "src/walk_recursive.rs"
 test = false
@@ -903,3 +903,8 @@ path = "src/write_ppm.rs"
 # http://rosettacode.org/wiki/Zig-zag_matrix
 name = "zig-zag_matrix"
 path = "src/zig-zag_matrix.rs"
+
+[[bin]]
+# http://rosettacode.org/wiki/Greatest_element_of_a_list
+name = "greatest_element_of_a_list"
+path = "src/greatest_element_of_a_list.rs"

@@ -1,4 +1,5 @@
 *.exe
+*.racertmp
 build/
 build-tests/
 target/
