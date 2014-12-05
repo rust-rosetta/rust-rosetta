@@ -1,7 +1,7 @@
 // http://rosettacode.org/wiki/Harshad_or_Niven_series
 use std::uint;
 fn main() {
-    let digit_sum = |i: uint| i.to_string().as_slice().chars()
+    let digit_sum = |i: uint| i.to_string().chars()
         .fold(0u, |d, c| d + c.to_digit(10).unwrap());
     let mut harshads = range(1u, uint::MAX).filter(|&n| n % digit_sum(n) == 0);
 

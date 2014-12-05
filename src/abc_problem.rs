@@ -29,7 +29,7 @@ fn main() {
 fn can_be_built_input_first(input: &str) -> bool {
     let mut used = HashSet::new();
 
-    for chr in input.as_slice().chars() {
+    for chr in input.chars() {
         for (ind, block) in BLOCKS.iter().enumerate() {
             if !used.contains(&ind) && block.contains_char(chr) {
                 used.insert(ind);

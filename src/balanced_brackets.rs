@@ -24,7 +24,7 @@ impl<'a> Balanced for &'a str {
     }
 }
 
-// For convenience this delegates to it's slice form
+// For convenience this delegates to its slice form
 impl Balanced for String {
     fn is_balanced(&self) -> bool { self.as_slice().is_balanced() }
 }

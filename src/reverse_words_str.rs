@@ -37,7 +37,7 @@ fn test_rev_words() {
 
     for &(input, expected) in tests.iter() {
         let output = rev_words(input);
-        assert!(expected.equiv(&output));
+        assert_eq!(expected, output);
     }
 }
 
@@ -60,6 +60,6 @@ fn test_rev_words_on_lines() {
 
     for &(input, expected) in tests.iter() {
         let output = rev_words_on_lines(input);
-        assert!(expected.equiv(&output));
+        assert_eq!(expected, output);
     }
 }

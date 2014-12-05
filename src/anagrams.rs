@@ -17,7 +17,7 @@ fn anagrams<T: Iterator<String>>(mut lines: T) -> HashMap<String, HashSet<String
 
     // Make groups of words according to the letters they contain
     for line in lines {
-        let s = line.as_slice().trim();
+        let s = line.trim();
         let set = match groups.entry(sorted_characters(s)) {
             Vacant(entry) => entry.set(HashSet::new()), // Insert new set if not found
             Occupied(entry) => entry.into_mut(),

@@ -30,6 +30,6 @@ fn gen_bottle_line() {
     let ln = bottles_line(42, false);
     let ln2 = bottles_line(42, true);
 
-    assert_eq!(ln.as_slice(), "42 bottles of beer\n");
-    assert_eq!(ln2.as_slice(), "42 bottles of beer on the wall!\n");
+    assert_eq!(ln, "42 bottles of beer\n");
+    assert_eq!(ln2, "42 bottles of beer on the wall!\n");
 }

@@ -44,7 +44,7 @@ impl<S: Mul<f64, T> + Float,
         let integrator = Integrator {
             input: tx,
             // Here is the aforementioned clone.  We have to do it before s enters the closure,
-            // because once that happens it is moved into the proc() (and later, the new task) and
+            // because once that happens it is moved into the closure (and later, the new task) and
             // becomes inaccessible to the outside world.
             output: s.clone(),
         };

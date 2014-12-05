@@ -2,10 +2,10 @@
 
 #[cfg(not(test))]
 fn main() {
-    println!("{}", "ha".repeat(5).as_slice());
+    println!("{}", "ha".repeat(5));
 }
 
 #[test]
 fn check_repeat() {
-    assert!("ha".repeat(5).as_slice() == "hahahahaha");
+    assert_eq!("ha".repeat(5), "hahahahaha");
 }

@@ -30,13 +30,13 @@ fn load_pgm(filename: &str) -> ImageGray8 {
     let height_in = file.read_line().unwrap();
     let maxval_in = file.read_line().unwrap();
 
-    assert!(magic_in.as_slice() == "P5\n");
-    assert!(maxval_in.as_slice() == "255\n");
+    assert_eq!(magic_in, "P5\n");
+    assert_eq!(maxval_in, "255\n");
 
     // Parse header
 
-    let width: uint = from_str(width_in.as_slice().trim()).unwrap();
-    let height: uint = from_str(height_in.as_slice().trim()).unwrap();
+    let width: uint = from_str(width_in.trim()).unwrap();
+    let height: uint = from_str(height_in.trim()).unwrap();
 
     println!("Reading pgm file {}: {} x {}", filename, width, height);
 

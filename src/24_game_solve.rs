@@ -63,9 +63,9 @@ fn test_rationals_macro() {
     [Ratio::from_integer(1),
     Ratio::from_integer(2),
     Ratio::from_integer(3),
-    Ratio::from_integer(4)].as_slice(),
+    Ratio::from_integer(4)],
     // with the rationals! macro
-    (rationals![1i, 2, 3, 4]).as_slice());
+    (rationals![1i, 2, 3, 4]));
 }
 
 #[test]

@@ -60,8 +60,8 @@ mod test {
 
         let file = File::open(&Path::new(fname.as_slice()));
         let mut reader = BufferedReader::new(file);
-        assert_eq!(reader.read_line().unwrap().as_slice(), "P6\n");
-        assert_eq!(reader.read_line().unwrap().as_slice(), "2 1 255\n");
+        assert_eq!(reader.read_line().unwrap(), "P6\n");
+        assert_eq!(reader.read_line().unwrap(), "2 1 255\n");
         assert_eq!(reader.read_byte().unwrap(), 1);
         assert_eq!(reader.read_byte().unwrap(), 2);
         assert_eq!(reader.read_byte().unwrap(), 3);

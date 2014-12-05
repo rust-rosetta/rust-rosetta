@@ -9,7 +9,7 @@ use std::io::BufferedReader;
 fn format_fasta<T: Buffer>(reader: &mut T) -> String {
     reader.lines().map(|l| l.unwrap()).fold(String::new(), |mut out, line| {
         // We need to trim new lines
-        let ln = line.as_slice().trim();
+        let ln = line.trim();
 
         // Lines that begin with '>' require special treatment
         match ln.slice_to(1) {
@@ -43,6 +43,6 @@ fn main() {
 #[test]
 fn test_format_fasta() {
     let s = read_file();
-    assert_eq!(s.as_slice(), "Rosetta_Example_1: THERECANBENOSPACE
+    assert_eq!(s, "Rosetta_Example_1: THERECANBENOSPACE
 Rosetta_Example_2: THERECANBESEVERALLINESBUTTHEYALLMUSTBECONCATENATED");
 }

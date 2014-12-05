@@ -25,7 +25,7 @@ fn main() {
         println!("{}", sample);
 
         let line = input.read_line().unwrap();
-        match line.as_slice().trim() {
+        match line.trim() {
             "q" => break,
             input => {
                 if check_values(sample.as_mut_slice(), input) {
@@ -55,7 +55,7 @@ pub fn check_values(sample:&mut [uint], input:&str) -> bool {
 
     numbers_used.sort();
     sample.sort();
-    numbers_used.as_slice() == sample
+    numbers_used == sample
 }
 
 // the tokens that our parser is going to recognize
