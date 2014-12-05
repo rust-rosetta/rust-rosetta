@@ -91,7 +91,7 @@ mod test {
     fn test_row() {
         let mut solver = Solver::new();
         let t = |n: uint, expected: &str| {
-            assert_eq!(solver.row_string(n).as_slice(), expected);
+            assert_eq!(solver.row_string(n), expected);
         };
 
         t(1, "1");

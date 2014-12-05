@@ -17,13 +17,13 @@ fn main() {
     loop {
         print!("Your numbers: {}, {}, {}, {}\n", choices[0], choices[1], choices[2], choices[3]);
         let expr = reader.read_line().ok().expect("Failed to read line!");
-        match check_input(expr.as_slice(), &choices) {
+        match check_input(&*expr, &choices) {
             Ok(()) => { println!("Good job!"); break; },
             Err(e) => println!("{}", e)
         }
         print!("Try again? (y/n): ");
         let choice = reader.read_line().ok().expect("Failed to read line!");
-        if choice.as_slice().trim() != "y" { break; }
+        if choice.trim() != "y" { break; }
     }
 }
 

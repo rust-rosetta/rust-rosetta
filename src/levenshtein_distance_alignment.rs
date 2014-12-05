@@ -7,9 +7,9 @@ enum Operation { Insert, Delete, Match, }
 // Returns the value of a 2D vector given a pair of indexes.
 // Returns the default value if indices are out of bounds.
 fn get_val(mat: &Vec<Vec<uint>>, r: uint, c: uint, default: uint) -> uint {
-    match mat.as_slice().get(r) {
+    match mat.get(r) {
         Some(col) => {
-            match col.as_slice().get(c) { Some(v) => *v, None => default, }
+            match col.get(c) { Some(v) => *v, None => default, }
         }
         None => default,
     }

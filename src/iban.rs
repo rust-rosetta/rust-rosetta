@@ -53,7 +53,7 @@ fn parse_digits(chars: Vec<char>) -> Option<BigInt> {
     // We convert the characters to Ascii to be able to transform the vector in a String directly
     for &c in chars.iter() {
         match c.to_digit(36) {
-            Some(d) => vec.extend(d.to_string().as_slice().chars().map(|c| c.to_ascii())),
+            Some(d) => vec.extend(d.to_string().chars().map(|c| c.to_ascii())),
             None    => return None
         };
     }

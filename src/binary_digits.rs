@@ -26,6 +26,6 @@ fn test_digits() {
                     "1100", "1101", "1110", "1111"];
 
     for (n, expected) in range_inclusive(0, 16u).zip(expected.iter()) {
-        assert_eq!(n.to_binary_string().as_slice(), *expected);
+        assert_eq!(n.to_binary_string(), *expected);
     }
 }

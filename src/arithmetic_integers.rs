@@ -3,7 +3,7 @@ use std::io::stdin;
 
 fn main() {
     let input = stdin().read_line().unwrap();
-    let words = input.as_slice().words().take(2)
+    let words = input.words().take(2)
                                         .map(from_str)
                                         .collect::<Vec<Option<int>>>();
 
