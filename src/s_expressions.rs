@@ -18,7 +18,7 @@
 // decoding technique doesn't allocate extra space for strings.  Does support numbers, but only
 // float types (supporting more types is possible but would complicate the code significantly).
 //
-#![feature(slicing_syntax, globs, if_let)]
+#![feature(slicing_syntax, globs)]
 
 extern crate arena;
 extern crate test;
