@@ -1,5 +1,5 @@
 // Implements http://rosettacode.org/wiki/Echo_server
-#![feature(if_let, slicing_syntax)]
+#![feature(slicing_syntax)]
 
 use std::io::{Acceptor, BufferedReader, IoError, IoResult, Listener, TimedOut};
 use std::io::net::tcp::{TcpListener, TcpStream};
