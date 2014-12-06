@@ -2,6 +2,7 @@
 //
 // Contributed by Gavin Baker <gavinb@antonym.org>
 //
+#![feature(slicing_syntax)]
 
 use std::io::{File, BufferedReader};
 use std::num::Float;
@@ -62,7 +63,7 @@ fn main() {
 
     let fibs: Vec<u64> = file.lines().map(|x| {
         let s = x.unwrap();
-        let n = from_str(s.as_slice().slice(0, 1));
+        let n = from_str(s[0..1]);
         n.unwrap()
     }).collect();
 

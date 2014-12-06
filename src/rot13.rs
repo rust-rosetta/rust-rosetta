@@ -25,7 +25,7 @@ fn main () {
 
 #[test]
 fn test_basic() {
-    assert_eq!(rot13("abc").as_slice(), "nop");
+    assert_eq!(rot13("abc"), "nop");
 }
 
 #[test]

@@ -57,6 +57,6 @@ pub fn decode(value: &str) -> Result<String, String> {
 
 #[test]
 fn test_encode_decode() {
-    assert_eq!(decode(encode(INPUT).as_slice()).unwrap(), INPUT.to_string());
+    assert_eq!(decode(encode(INPUT).as_slice()).unwrap(), INPUT);
     assert_eq!(decode("a"), Err("expected digit, found a".to_string()));
 }

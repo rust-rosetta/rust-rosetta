@@ -150,9 +150,9 @@ fn test_dijkstras() {
     graph.add_edge("y", "z", 10); //Disconnected from the rest
 
     assert_eq!(graph.dijkstra("a", "d"), vec!["a", "b", "c", "d"]);
-    assert_eq!(graph.dijkstra("a", "y"), vec![]);
-    assert_eq!(graph.dijkstra("e", "y"), vec![]);
-    assert_eq!(graph.dijkstra("a", "e"), vec![]);
+    assert!(graph.dijkstra("a", "y").is_empty());
+    assert!(graph.dijkstra("e", "y").is_empty());
+    assert!(graph.dijkstra("a", "e").is_empty());
 }
 
 #[cfg(not(test))]

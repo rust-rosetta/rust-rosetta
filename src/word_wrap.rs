@@ -90,34 +90,34 @@ fn test_empty_string() {
 
 #[test]
 fn test_single_word_shorter_than_line() {
-    assert_eq!(WordWrap::new("Hello", 80).next().unwrap().as_slice(), "Hello");
+    assert_eq!(WordWrap::new("Hello", 80).next().unwrap(), "Hello");
 }
 
 #[test]
 fn test_two_words_shorter_than_line() {
-    assert_eq!(WordWrap::new("Hello world", 80).next().unwrap().as_slice(),
+    assert_eq!(WordWrap::new("Hello world", 80).next().unwrap(),
                "Hello world");
 }
 
 #[test]
 fn test_wrap_second_word() {
     let mut w = WordWrap::new("Hello world", 10);
-    assert_eq!(w.next().unwrap().as_slice(), "Hello");
-    assert_eq!(w.next().unwrap().as_slice(), "world");
+    assert_eq!(w.next().unwrap(), "Hello");
+    assert_eq!(w.next().unwrap(), "world");
 }
 
 #[test]
 fn test_wrap_punctuation() {
     let mut w = WordWrap::new("Hello, world", 6);
-    assert_eq!(w.next().unwrap().as_slice(), "Hello,");
-    assert_eq!(w.next().unwrap().as_slice(), "world");
+    assert_eq!(w.next().unwrap(), "Hello,");
+    assert_eq!(w.next().unwrap(), "world");
 }
 
 #[test]
 fn test_squash_multiple_spaces() {
     let mut w = WordWrap::new(" Hello  to the    world    ", 10);
-    assert_eq!(w.next().unwrap().as_slice(), "Hello to");
-    assert_eq!(w.next().unwrap().as_slice(), "the world");
+    assert_eq!(w.next().unwrap(), "Hello to");
+    assert_eq!(w.next().unwrap(), "the world");
     assert_eq!(w.next(), None);
 }
 
@@ -125,9 +125,9 @@ fn test_squash_multiple_spaces() {
 fn test_unicode() {
     let mut w =
         WordWrap::new("Nous étions à l'Étude, quand le Proviseur entra", 11);
-    assert_eq!(w.next().unwrap().as_slice(), "Nous étions");
-    assert_eq!(w.next().unwrap().as_slice(), "à l'Étude,");
-    assert_eq!(w.next().unwrap().as_slice(), "quand le");
-    assert_eq!(w.next().unwrap().as_slice(), "Proviseur");
-    assert_eq!(w.next().unwrap().as_slice(), "entra");
+    assert_eq!(w.next().unwrap(), "Nous étions");
+    assert_eq!(w.next().unwrap(), "à l'Étude,");
+    assert_eq!(w.next().unwrap(), "quand le");
+    assert_eq!(w.next().unwrap(), "Proviseur");
+    assert_eq!(w.next().unwrap(), "entra");
 }

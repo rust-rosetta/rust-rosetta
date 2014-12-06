@@ -23,7 +23,7 @@ fn main() {
         }
         print!("Try again? (y/n): ");
         let choice = reader.read_line().ok().expect("Failed to read line!");
-        if choice.as_slice().trim() != "y" { break; }
+        if choice.trim() != "y" { break; }
     }
 }
 

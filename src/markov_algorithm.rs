@@ -74,7 +74,7 @@ impl MarkovAlgorithm {
             // find the first rule that is applicable
             // (pattern string is in state)
             let possible_rule = self.rules.iter().find(|rule|{
-                state.as_slice().find_str(rule.pattern.as_slice()).is_some()
+                state.find_str(rule.pattern.as_slice()).is_some()
             });
 
             match possible_rule {
@@ -86,12 +86,12 @@ impl MarkovAlgorithm {
 
                     // unwrap is safe here as the code for finding a rule
                     // already established that the pattern is present
-                    let pos = state.as_slice().find_str(rule.pattern.as_slice()).unwrap();
+                    let pos = state.find_str(rule.pattern.as_slice()).unwrap();
                     let width = rule.pattern.len();
 
                     // string parts
-                    let left = state.as_slice().slice_to(pos).to_string();
-                    let right = state.as_slice().slice_from(pos + width).to_string();
+                    let left = state.slice_to(pos).to_string();
+                    let right = state.slice_from(pos + width).to_string();
 
                     // construct new string
                     state = format!("{}{}{}", left, rule.replacement, right);
@@ -236,7 +236,7 @@ fn test_samples() {
     for sample in get_samples().iter() {
         match MarkovAlgorithm::from_str(sample.ruleset) {
             Ok(algorithm) => assert_eq!(sample.expected_result,
-                                        algorithm.apply(sample.input).as_slice()),
+                                        algorithm.apply(sample.input)),
             Err(message) => panic!("{}", message)
         }
     }

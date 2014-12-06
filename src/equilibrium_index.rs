@@ -22,7 +22,7 @@ fn equilibrium_indices(v: &[int]) -> Vec<uint> {
 fn main() {
     let v = [-7i, 1, 5, 2, -4, 3, 0];
     let indices = equilibrium_indices(&v);
-    println!("Equilibrium indices for {} are: {}", v.as_slice(), indices);
+    println!("Equilibrium indices for {} are: {}", v, indices);
 }
 
 #[test]

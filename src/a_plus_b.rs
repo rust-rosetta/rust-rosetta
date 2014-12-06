@@ -4,7 +4,7 @@ use std::io::stdio;
 
 fn main() {
     let input = stdio::stdin().read_line().unwrap();
-    let words = input.as_slice().words().take(2)
+    let words = input.words().take(2)
                             .map(from_str::<int>)
                             .collect::<Vec<Option<int>>>();
 
