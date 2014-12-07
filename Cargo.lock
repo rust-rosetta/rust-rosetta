@@ -9,7 +9,7 @@ dependencies = [
 [[package]]
 name = "gcc"
 version = "0.1.0"
-source = "git+https://github.com/alexcrichton/gcc-rs#96c9e44ce3dfccc47c16fcfd743a33b3b4205daf"
+source = "git+https://github.com/alexcrichton/gcc-rs#3caf7309ef72644cd56a9d3a6f515ae553683176"
 
 [[package]]
 name = "num"
@@ -19,7 +19,7 @@ source = "git+https://github.com/rust-lang/num#16787045e5f9764626a3d5cfbee4655e0
 [[package]]
 name = "time"
 version = "0.1.0"
-source = "git+https://github.com/rust-lang/time#afab521f3b91658a3ba2d3e877b7e01699733bef"
+source = "git+https://github.com/rust-lang/time#b8e219aa9fca15ed1377a7d62aff1eb4378f3ba4"
 dependencies = [
  "gcc 0.1.0 (git+https://github.com/alexcrichton/gcc-rs)",
 ]
