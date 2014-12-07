@@ -9,7 +9,7 @@ dependencies = [
 [[package]]
 name = "gcc"
 version = "0.1.0"
-source = "git+https://github.com/alexcrichton/gcc-rs#b3fedefcc7226a2d13b48a9bc9450ebe85589a0c"
+source = "git+https://github.com/alexcrichton/gcc-rs#3caf7309ef72644cd56a9d3a6f515ae553683176"
 
 [[package]]
 name = "num"
