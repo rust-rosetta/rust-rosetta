@@ -36,8 +36,6 @@ impl fmt::Show for ParseError {
 /// difficult)
 fn parse_guess_string(guess: &str) -> 
     Result<Vec<uint>, ParseError> {
-    use std::char::Char;
-
     let mut ret = Vec::with_capacity(NUMBER_OF_DIGITS);
 
     for (i, c) in guess.char_indices() {
@@ -64,7 +62,7 @@ fn calculate_score(given_digits: &[uint], guessed_digits: &[uint]) ->
     let mut bulls = 0;
     let mut cows = 0;
     for i in range(0, NUMBER_OF_DIGITS) {
-        let pos: Option<uint> = guessed_digits.iter()
+        let pos = guessed_digits.iter()
             .position(|&a| a == given_digits[i]);
 
         match pos {
@@ -84,11 +82,10 @@ fn main() {
         println!("I have chosen my {} digits. Please guess what they are" ,
                  NUMBER_OF_DIGITS);
         loop {
-            let guess_string = reader.read_line().unwrap().as_slice()
-                .trim().into_string();
-            let digits_maybe = parse_guess_string(&*guess_string);
+            let guess_string = reader.read_line().unwrap();
+            let digits_maybe = parse_guess_string(&*guess_string.trim());
             match digits_maybe {
-                Err(msg) => { println!("{}" , msg); continue ; }
+                Err(msg) => { println!("{}" , msg); }
                 Ok(guess_digits) => {
                     match calculate_score(&*given_digits, &*guess_digits) {
                         (NUMBER_OF_DIGITS, _) => {

@@ -205,11 +205,6 @@ name = "binary_search"
 path = "src/binary_search.rs"
 
 [[bin]]
-# http://rosettacode.org/wiki/Bulls_and_cows
-name = "bulls_and_cows"
-path = "src/bulls_and_cows.rs"
-
-[[bin]]
 # http://rosettacode.org/wiki/Evaluate_binomial_coefficients
 name = "binomial_coefficients"
 path = "src/binomial_coefficients.rs"
@@ -224,6 +219,11 @@ test = false
 # http://rosettacode.org/wiki/Sorting_algorithms/Bubble_sort
 name = "bubble_sort"
 path = "src/bubble_sort.rs"
+
+[[bin]]
+# http://rosettacode.org/wiki/Bulls_and_cows
+name = "bulls_and_cows"
+path = "src/bulls_and_cows.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Call_a_foreign-language_function
