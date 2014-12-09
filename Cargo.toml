@@ -205,6 +205,11 @@ name = "binary_search"
 path = "src/binary_search.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/Bulls_and_cows
+name = "bulls_and_cows"
+path = "src/bulls_and_cows.rs"
+
+[[bin]]
 # http://rosettacode.org/wiki/Evaluate_binomial_coefficients
 name = "binomial_coefficients"
 path = "src/binomial_coefficients.rs"
