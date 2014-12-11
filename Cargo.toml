@@ -33,6 +33,7 @@ authors = [
     "Rupert Lane, https://github.com/rupertl",
     "Joshua Skootsky, https://github.com/JoshuaSkootsky",
     "James Hurst, https://github.com/jamesrhurst",
+    "Yukang Chen, https://github.com/chenyukang"
 ]
 
 [dependencies.num]
@@ -525,6 +526,11 @@ name = "k-d-tree"
 path = "src/k-d-tree.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/Kahan_summation
+name = "kahansum"
+path = "src/kahansum.rs"
+
+[[bin]]
 # http://rosettacode.org/wiki/Knapsack_problem/0-1
 name = "knapsack_0-1"
 path = "src/knapsack_0-1.rs"
@@ -883,7 +889,7 @@ path = "src/towers_of_hanoi.rs"
 test = false
 
 [[bin]]
-# http://rosettacode.org/wiki/Walk_a_directory/Recursively 
+# http://rosettacode.org/wiki/Walk_a_directory/Recursively
 name = "walk_recursive"
 path = "src/walk_recursive.rs"
 test = false
