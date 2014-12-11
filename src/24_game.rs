@@ -137,8 +137,10 @@ impl <'a> Iterator<Token> for Lexer<'a> {
             // Found a digit. if there are others, transform them to `uint`
             Some((mut offset, ch)) if UnicodeChar::is_numeric(ch) => {
                 let mut val = Char::to_digit(ch, 10).unwrap();
+                let mut more = false;
 
                 for (idx, ch) in remaining {
+                    more = true;
                     if UnicodeChar::is_numeric(ch) {
                         let digit = Char::to_digit(ch, 10).unwrap();
                         val = val * 10 + digit;
@@ -147,7 +149,9 @@ impl <'a> Iterator<Token> for Lexer<'a> {
                         break;
                     }
                 }
-
+                if !more {
+                    offset = 1;
+                }
                 (Some(Token::Int(val)), offset)
             },
             // found non-digit, try transforming it to the corresponding token
@@ -393,5 +397,7 @@ mod test {
     fn try_check_values() {
         let m = &mut [1, 2, 3, 4];
         assert!(check_values(m, "1+3 -(4/2)"));
+        // #314
+        assert!(check_values(m, "1+2+3+4"));
     }
 }
