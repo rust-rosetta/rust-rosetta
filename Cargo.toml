@@ -325,6 +325,12 @@ name = "entropy"
 path = "src/entropy.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/Enumerations
+name = "enumerations"
+path = "src/enumerations.rs"
+test = false
+
+[[bin]]
 # http://rosettacode.org/wiki/Equilibrium_index
 name = "equilibrium_index"
 path = "src/equilibrium_index.rs"
