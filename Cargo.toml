@@ -260,6 +260,12 @@ name = "comma_quibbling"
 path = "src/comma_quibbling.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/Command-line_arguments
+name = "command line arguments"
+path = "src/command_line_args.rs"
+test = false
+
+[[bin]]
 # http://rosettacode.org/wiki/Compile-time_calculation
 name = "compile_time_calculation"
 path = "src/compile_time_calculation.rs"
