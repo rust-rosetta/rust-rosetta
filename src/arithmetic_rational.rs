@@ -28,7 +28,7 @@ fn perfect_numbers(max: i64) -> Vec<i64> {
     }
     ret
 }
-
+#[deriving(Copy)]
 struct Frac {
     num: i64,
     den: i64

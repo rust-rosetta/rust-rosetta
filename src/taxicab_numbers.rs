@@ -4,7 +4,7 @@ use std::num::Int;
 
 /// A type to represent a pair-sum of cubes.
 /// value = a^3 + b^3
-#[deriving(PartialEq, Eq)]
+#[deriving(Copy, PartialEq, Eq)]
 struct SumCubes {
     a: u64,
     b: u64,

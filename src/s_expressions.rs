@@ -31,7 +31,7 @@ use self::SExp::*;
 use self::Error::*;
 use self::Token::*;
 
-#[deriving(PartialEq,Show)]
+#[deriving(PartialEq,Show,Copy)]
 // The actual SExp structure.  Supports f64s, lists, and string literals.  Note that it takes
 // everything by reference, rather than owning it--this is mostly done just so we can allocate
 // SExps statically (since we don't have to call Vec).  It does complicate the code a bit,
@@ -54,7 +54,7 @@ enum Error {
 }
 
 // Tokens returned from the token stream.
-#[deriving(PartialEq)]
+#[deriving(PartialEq, Copy)]
 enum Token<'a> {
     ListStart, // Left parenthesis
     ListEnd, // Right parenthesis
@@ -65,6 +65,7 @@ enum Token<'a> {
 // An iterator over a string that yields a stream of Tokens.
 // Implementation note: it probably seems weird to store first, rest, AND string, since they should
 // all be derivable from string.  But see below.
+#[deriving(Copy)]
 struct Tokens<'a> {
     string: &'a str, // The part of the string that still needs to be parsed
     first: Option<char>, // The first character to parse
@@ -266,14 +267,14 @@ impl<'a> SExp<'a> {
                     Some(mut l) => {
                         // We allocate a slot for the current list in our parse context (needed for
                         // safety) before pushing it onto its parent list.
-                        l.push(List(arena.alloc(list).as_slice()));
+                        l.push(List(&**arena.alloc(list)));
                         // Now reset the current list to the parent list
                         list = l;
                     },
                     // There was nothing on the stack, so we're at the end of the topmost list.
                     // The check to make sure there are no more tokens is required for correctness.
                     None => return match try!(tokens.next()) {
-                        EOF => Ok(List(arena.alloc(list).as_slice())),
+                        EOF => Ok(List(&**arena.alloc(list))),
                         _ => Err(ExpectedEOF),
                     }
                 },
