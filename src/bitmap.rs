@@ -2,7 +2,7 @@
 use std::default::Default;
 use std::io::{File, BufferedWriter, IoResult};
 
-#[deriving(Clone, Default, PartialEq, Show)]
+#[deriving(Copy, Clone, Default, PartialEq, Show)]
 pub struct Color {
     pub red: u8,
     pub green: u8,
