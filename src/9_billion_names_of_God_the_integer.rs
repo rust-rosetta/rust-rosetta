@@ -2,10 +2,9 @@
 
 extern crate num;
 
-use num::bigint::BigUint;
 use std::cmp::min;
 use std::iter::range_inclusive;
-use num::traits::{Zero, One};
+use num::{BigUint, Zero, One};
 
 pub struct Solver {
     // The `cache` is a private implementation detail,
@@ -24,7 +23,7 @@ impl Solver {
     pub fn row_string(&mut self, idx: uint) -> String {
         let r = self.cumulative(idx);
 
-        range(0, idx).map(|i| r[i+1] - r[i])
+        range(0, idx).map(|i| &r[i+1] - &r[i])
                      .map(|n| n.to_string())
                      .collect::<Vec<String>>()
                      .connect(", ")
@@ -44,7 +43,7 @@ impl Solver {
                 let w = {
                     let y = &r[x-1];
                     let z = &self.cache[l-x][min(x, l-x)];
-                    *y + *z
+                    y + z
                 };
                 r.push(w)
             }

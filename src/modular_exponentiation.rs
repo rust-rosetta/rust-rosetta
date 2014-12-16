@@ -1,20 +1,18 @@
 // http://rosettacode.org/wiki/Modular_exponentiation
-extern crate core;
 extern crate num;
-use num::traits::One;
-use num::bigint::BigUint;
+use num::{BigUint, One};
 use num::integer::Integer;
 
-fn mod_exp<T: Integer>(mut a: T, mut b: T, m: T) -> T {
+fn mod_exp<T: Integer + Clone>(mut a: T, mut b: T, m: T) -> T {
     let one: T = One::one();
-    let two = one + one;
+    let two = one.clone() + one.clone();
 
     let mut res = one;
     while !b.is_zero() {
         if b.is_odd() {
-            res = (res * a) % m;
+            res = (res * a.clone()) % m.clone();
         }
-        a = (a * a) % m;
+        a = (a.clone() * a.clone()) % m.clone();
         b = b.div_floor(&two);
     }
 

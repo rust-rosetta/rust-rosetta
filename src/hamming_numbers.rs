@@ -21,6 +21,7 @@ fn main() {
         }
     }
 }
+
 //representing a Hamming number as a BigUint
 impl HammingNumber for BigUint {
     // returns the multipliers 2, 3 and 5 in the representation for the HammingNumber
@@ -34,7 +35,7 @@ impl HammingNumber for BigUint {
 /// representation of a Hamming number
 /// allows to abstract on how the hamming number is stored
 /// i.e. as BigUint directly or just as the powers of 2, 3 and 5 used to build it
-pub trait HammingNumber : Eq + Ord + ToBigUint + Mul<Self, Self> + One {
+pub trait HammingNumber : Eq + Ord + ToBigUint + Mul<Self, Self> + One + Clone {
     fn multipliers() -> (Self, Self, Self);
 }
 
@@ -67,11 +68,11 @@ impl<T: HammingNumber> Hamming<T> {
     }
 
     /// Pushes the next multiple of `n` (x2, x3, x5) to the queues
-    pub fn enqueue(&mut self, n: &T) {
-        let (two, three, five) = HammingNumber::multipliers();
-        self.q2.push_back(*n * two);
-        self.q3.push_back(*n * three);
-        self.q5.push_back(*n * five);
+    pub fn enqueue(&mut self, n: T) {
+        let (two, three, five) : (T, T, T) = HammingNumber::multipliers();
+        self.q2.push_back(two * n.clone());
+        self.q3.push_back(three * n.clone());
+        self.q5.push_back(five * n.clone());
     }
 }
 
@@ -98,7 +99,7 @@ impl<T: HammingNumber> Iterator<T> for Hamming<T> {
 
         match h2.or(h3).or(h5) {
             Some(n) => {
-                self.enqueue(&n);
+                self.enqueue(n.clone());
                 Some(n)
             }
             None => unreachable!()
@@ -118,9 +119,9 @@ fn create() {
 #[test]
 fn try_enqueue() {
     let mut h = Hamming::<BigUint>::new(5);
-    let (two, three, five) = HammingNumber::multipliers();
-    h.enqueue(&one::<BigUint>());
-    h.enqueue(&(one::<BigUint>() * two));
+    let (two, three, five): (BigUint, BigUint, BigUint) = HammingNumber::multipliers();
+    h.enqueue(one::<BigUint>());
+    h.enqueue((one::<BigUint>() * two.clone()));
 
     assert!(h.q2.pop_front().unwrap() == one::<BigUint>());
     assert!(h.q3.pop_front().unwrap() == one::<BigUint>());
