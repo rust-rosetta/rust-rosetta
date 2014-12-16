@@ -29,7 +29,7 @@ fn echo_server(host: &'static str, port: u16, timeout: Option<Duration>) -> IoRe
                 let name = try!(stream.peer_name());
                 println!("New connection: {}", name);
                 // Launch a new thread to deal with the connection.
-                spawn(proc() {
+                spawn(move || {
                     if let Err(e) = echo_session(stream.clone()) {
                         println!("I/O error: {} -- {}", name, e);
                     }

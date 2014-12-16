@@ -43,6 +43,6 @@ fn main() {
     let (msg_snd, msg_rcv) = channel();
     let (i_snd, i_rcv) = channel();
 
-    spawn(proc() printer(i_snd, msg_rcv));
-    spawn(proc() reader(msg_snd, i_rcv));
+    spawn(move || printer(i_snd, msg_rcv));
+    spawn(move || reader(msg_snd, i_rcv));
 }

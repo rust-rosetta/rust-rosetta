@@ -5,6 +5,7 @@ mod aks_test_for_primes;
 
 #[cfg(not(test))]
 fn main() {
+    use std::iter::count;
     for i in count(0u64, 1).filter(is_pernicious).take(25) {
         print!("{} ", i);
     }

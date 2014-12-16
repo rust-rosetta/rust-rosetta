@@ -7,6 +7,7 @@ fn pow_3_ones(i: uint) -> uint { 3u32.pow(i).count_ones() }
 
 #[cfg(not(test))]
 fn main() {
+    use std::iter::count;
     fn print_30<T: Iterator<uint>>(it: T) {
         for i in it.take(30) {
             print!("{} ", i);
