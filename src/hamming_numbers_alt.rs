@@ -46,7 +46,7 @@ pub struct HammingTriple {
 }
 
 impl Mul<HammingTriple, HammingTriple> for HammingTriple {
-    fn mul(&self, other: &HammingTriple) -> HammingTriple {
+    fn mul(self, other: HammingTriple) -> HammingTriple {
         HammingTriple{ pow_2: self.pow_2 + other.pow_2,
             pow_3: self.pow_3 + other.pow_3,
             pow_5: self.pow_5 + other.pow_5,

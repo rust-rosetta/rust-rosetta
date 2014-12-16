@@ -2,8 +2,7 @@
 
 extern crate num;
 extern crate core;
-use num::bigint::BigUint;
-use num::traits::One;
+use num::{BigUint, One};
 
 fn binomial(n: uint, mut k: uint) -> BigUint {
     // Since binomial(n, k) = binomial(n, n - k), we might as well use
@@ -14,9 +13,11 @@ fn binomial(n: uint, mut k: uint) -> BigUint {
 
     // Compute the coefficient
     let mut res: BigUint = One::one();
-    for i in range(1, k + 1) {
-        res = res * FromPrimitive::from_uint(n - k + i).unwrap();
-        res = res / FromPrimitive::from_uint(i).unwrap();
+    for i in range(1u, k + 1) {
+        let m: BigUint = FromPrimitive::from_uint(n - k + i).unwrap();
+        res = res * m;
+        let d: BigUint = FromPrimitive::from_uint(i).unwrap();
+        res = res / d;
     }
 
     res

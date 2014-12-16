@@ -123,7 +123,7 @@ impl Neg<Frac> for Frac {
 }
 
 impl Add<Frac, Frac> for Frac {
-    fn add(&self, other: &Frac) -> Frac {
+    fn add(self, other: Frac) -> Frac {
         let (a, b)=(self.reduce(), other.reduce());
         let m = lcm(a.den, b.den);
 
@@ -134,19 +134,19 @@ impl Add<Frac, Frac> for Frac {
 }
 
 impl Sub<Frac, Frac> for Frac {
-    fn sub(&self, other: &Frac) -> Frac {
-        *self + (- *other)
+    fn sub(self, other: Frac) -> Frac {
+        self + (- other)
     }
 }
 
 impl Mul<Frac, Frac> for Frac {
-    fn mul(&self, other: &Frac) -> Frac {
+    fn mul(self, other: Frac) -> Frac {
         Frac::new_reduced(self.num * other.num, self.den * other.den)
     }
 }
 
 impl Div<Frac, Frac> for Frac {
-    fn div(&self, other: &Frac) -> Frac {
+    fn div(self, other: Frac) -> Frac {
         Frac::new_reduced(self.num * other.den, self.den * other.num)
     }
 }

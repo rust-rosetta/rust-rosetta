@@ -2,8 +2,7 @@
 
 extern crate num;
 
-use num::bigint::BigUint;
-use num::traits::One;
+use num::{BigUint, One};
 
 fn main() {
     let one: BigUint = One::one();
@@ -11,6 +10,6 @@ fn main() {
 
     loop {
         println!("{}", i);
-        i = i + one;
+        i = &i + &one;
     }
 }
