@@ -33,7 +33,7 @@ pub fn checkpoint() {
         let arc = arc.clone();
         let tx = tx.clone();
         // Spawn a new worker
-        spawn(proc() {
+        spawn( move || {
             let (ref barrier, ref events) = *arc;
             // Assign an event to this task
             let ref event = events[i];

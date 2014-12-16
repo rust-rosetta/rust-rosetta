@@ -35,10 +35,10 @@ pub fn handle_server(ip: &'static str, port: u16) -> IoResult<TcpAcceptor> {
     println!("Listening for connections on port {}", port);
 
     let acceptor_ = acceptor.clone();
-    spawn(proc() {
+    spawn(move || {
         for stream in acceptor.incoming() {
             match stream {
-                Ok(s) => spawn(proc() {
+                Ok(s) => spawn(move || {
                     match handle_client(s) {
                         Ok(_) => println!("Response sent!"),
                         Err(e) => println!("Failed sending response: {}!", e),

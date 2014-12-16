@@ -27,7 +27,7 @@ fn handle_event(duration: Duration) -> Duration {
     let &(ref mutex, ref cond) = &*pair;
     let guard = mutex.lock();
     // Start our secondary task (which will signal our waiting main task)
-    spawn(proc() {
+    spawn(move || {
 		let &(ref mutex_, ref cond_) = &*pair_;
         // Lock the mutex
         let mut guard  = mutex_.lock();

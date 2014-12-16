@@ -255,10 +255,10 @@ fn perform_atomic_updates(duration: Duration, original_total: uint, num_ticks: i
     // Cloning the arc bumps the reference count.
     let arc_ = arc.clone();
     // Start off the equalize task
-    spawn(proc() { equalize(&arc_.0, &arc_.1, ID_EQUALIZE) });
+    spawn(move || { equalize(&arc_.0, &arc_.1, ID_EQUALIZE) });
     let arc_ = arc.clone();
     // Start off the randomize task
-    spawn(proc() { randomize(&arc_.0, &arc_.1, ID_RANDOMIZE) });
+    spawn(move || { randomize(&arc_.0, &arc_.1, ID_RANDOMIZE) });
     let (ref bl, ref running) = *arc;
     // Run the display task in the current thread, so failure propagates to the user.
     display(bl, running, original_total, duration, num_ticks);

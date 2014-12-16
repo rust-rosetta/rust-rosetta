@@ -25,7 +25,7 @@ fn largest_min_factor_chan(numbers: &[uint]) -> uint {
     // Send all the minimal factors
     for &x in numbers.iter() {
         let child_sender = sender.clone();
-        spawn(proc() { child_sender.send(min_factor(x)) });
+        spawn(move || { child_sender.send(min_factor(x)) });
     }
 
     // Receive them and keep the largest one
@@ -40,7 +40,7 @@ fn largest_min_factor_fut(numbers: &[uint]) -> uint {
     // We will save the future values of the minimal factor in the results vec
     let mut results = Vec::from_fn(numbers.len(), |i| {
         let number = numbers[i];
-        Future::spawn(proc() { min_factor(number) })
+        Future::spawn(move || { min_factor(number) })
     });
 
     // Get the largest minimal factor of all results
