@@ -120,7 +120,7 @@ fn semi_parallel_n_queens(n: i32) -> uint {
         valid_spots = valid_spots ^ spot;
         receivers.push(rx);
 
-        spawn(proc() {
+        spawn( move || {
             tx.send(n_queens_helper(all_ones,
                                     (left_diags | spot) << 1,
                                     (columns | spot),

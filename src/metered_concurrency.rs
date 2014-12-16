@@ -71,7 +71,7 @@ fn metered(duration: Duration) {
     for i in range(0, NUM_WORKERS) {
         let sem = sem.clone();
         let tx = tx.clone();
-        spawn(proc() {
+        spawn(move || {
             // Acquire the resource
             let guard = sem.acquire();
             let count = sem.count();

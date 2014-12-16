@@ -48,7 +48,7 @@ impl<S: Mul<f64, T> + Float,
             // becomes inaccessible to the outside world.
             output: s.clone(),
         };
-        spawn(proc() {
+        spawn(move || {
             // There is a reasonable argument for failure on failure to initialize the Timer, but
             // it's essentially certain that if we return from the spawn this early main will
             // detect that something is amiss.
