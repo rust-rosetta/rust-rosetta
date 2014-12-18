@@ -272,7 +272,7 @@ path = "src/comma_quibbling.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Command-line_arguments
-name = "command line arguments"
+name = "command_line_arguments"
 path = "src/command_line_args.rs"
 test = false
 
