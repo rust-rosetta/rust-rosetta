@@ -2,7 +2,7 @@
 use std::fmt;
 const NUMBER_OF_DIGITS: uint = 4;
 
-/// generates a random NUMBER_OF_DIGITS 
+/// generates a random NUMBER_OF_DIGITS
 fn generate_digits() -> Vec<uint> {
     use std::rand;
 
@@ -34,14 +34,14 @@ impl fmt::Show for ParseError {
 /// general case, NUMBER_OF_DIGITS would not be a constant, but a runtime
 /// configuration (which would make using a stack-allocated array more
 /// difficult)
-fn parse_guess_string(guess: &str) -> 
+fn parse_guess_string(guess: &str) ->
     Result<Vec<uint>, ParseError> {
     let mut ret = Vec::with_capacity(NUMBER_OF_DIGITS);
 
     for (i, c) in guess.char_indices() {
         // check that our guess contains the right number of digits
-        if i >= NUMBER_OF_DIGITS { 
-            return Err(ParseError::ExpectedNumberOfDigits(NUMBER_OF_DIGITS)) 
+        if i >= NUMBER_OF_DIGITS {
+            return Err(ParseError::ExpectedNumberOfDigits(NUMBER_OF_DIGITS))
         }
         match Char::to_digit(c, 10) {
             Some(d) if d > 0 => {
@@ -56,7 +56,7 @@ fn parse_guess_string(guess: &str) ->
     return Ok(ret);
 }
 
-/// returns a tuple with the count of Bulls and Cows in the guess 
+/// returns a tuple with the count of Bulls and Cows in the guess
 fn calculate_score(given_digits: &[uint], guessed_digits: &[uint]) ->
     (uint, uint) {
     let mut bulls = 0;
@@ -110,10 +110,10 @@ mod test {
         // test we generate NUMBER_OF_DIGITS unique
         // digits between 1 and 9
         let mut digits = super::generate_digits();
-        assert!(digits.iter().all(|&d| d > 0u))
+        assert!(digits.iter().all(|&d| d > 0u));
         digits.sort();
         digits.dedup();
-        assert_eq!(digits.len(), super::NUMBER_OF_DIGITS) 
+        assert_eq!(digits.len(), super::NUMBER_OF_DIGITS)
     }
 
     #[test]
@@ -122,13 +122,13 @@ mod test {
             Ok(p) => assert_eq!(p, vec![1, 2, 3, 4]),
             _ => panic!("Failed parsing a valid string")
         }
-        
+
         match super::parse_guess_string("0123") {
             Ok(_) => panic!("parsed a string containing a 0"),
             Err(err) => if let ParseError::NotValidDigit = err { ()
                 } else { panic!("Expected a NotValidDigit error") }
         }
-        
+
         match super::parse_guess_string("1213") {
             Ok(_) => panic!("parsed a string containing a repeated digit"),
             Err(err) => if let ParseError::NoDuplicates = err { ()
@@ -142,7 +142,7 @@ mod test {
             }
         }
     }
-    
+
     #[test]
     fn calculate_score() {
         assert_eq!(super::calculate_score(&[1,2,3,4], &[1,2,3,4]),

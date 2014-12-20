@@ -48,7 +48,11 @@ mod test {
         let regex = regex!("path = \"(.*)\"");
         reader.lines().filter_map(|l| {
             let l = l.unwrap();
-            regex.captures(l[]).map(|c| Path::new(c.at(1)).filename_str().unwrap().to_string())
+            regex.captures(l[]).map(|c| c.at(1).map(|s| Path::new(s))
+                                               .unwrap()
+                                               .filename_str()
+                                               .unwrap()
+                                               .to_string())
         }).collect()
     }
 

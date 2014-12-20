@@ -19,12 +19,12 @@ fn main() {
     for i in range(0u, 20).map(f) {
         print!("{} ", i);
     }
-    println!("")
+    println!("");
 
     for i in range(0u, 20).map(m) {
         print!("{} ", i);
     }
-    println!("")
+    println!("");
 }
 
 #[test]
