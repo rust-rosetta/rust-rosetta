@@ -19,9 +19,9 @@ macro_rules! digits(
                 },
             }
         })
-    
+
     )
-)
+);
 
 fn luhn_test(n: u64) -> bool {
     let odd_even = [LuhnState::Odd, LuhnState::Even];

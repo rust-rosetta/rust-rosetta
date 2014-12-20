@@ -12,7 +12,8 @@ use num::traits::Zero;
 // [Ratio::<int>::from_integer(1), Ratio::<int>::from_integer(2), ...]
 macro_rules! rationals(
     ($($e:expr),+) => ([$(Ratio::<int>::from_integer($e)),+])
-)
+);
+
 #[cfg(not(test))]
 fn main() {
     let mut r = rationals![1i, 3, 7, 9];
