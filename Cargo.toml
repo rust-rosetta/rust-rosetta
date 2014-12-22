@@ -48,6 +48,14 @@ regex = "*"
 [dependencies.collect]
 git = "https://github.com/Gankro/collect-rs"
 
+# Custom profiles to work around https://github.com/rust-lang/rust/issues/20127
+[profile.dev]
+debug = false
+
+# The testing profile, used for `cargo test`
+[profile.test]
+debug = false
+
 [lib]
 # used by compile_time_calculation.rs
 # http://rosettacode.org/wiki/Compile-time_calculation
