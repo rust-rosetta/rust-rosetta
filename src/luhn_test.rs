@@ -46,8 +46,8 @@ fn main() {
 
 #[test]
 fn test_inputs() {
-    assert!(luhn_test ( 49927398716 ));
-    assert!(! luhn_test ( 49927398717 ));
-    assert!(! luhn_test ( 1234567812345678 ));
-    assert!(luhn_test ( 1234567812345670 ));
+    assert!(luhn_test(49927398716));
+    assert!(!luhn_test(49927398717));
+    assert!(!luhn_test(1234567812345678));
+    assert!(luhn_test(1234567812345670));
 }
