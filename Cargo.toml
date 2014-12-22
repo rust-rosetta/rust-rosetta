@@ -42,6 +42,12 @@ git = "https://github.com/rust-lang/num"
 [dependencies.time]
 git = "https://github.com/rust-lang/time"
 
+[dependencies.regex]
+regex = "*"
+
+[dependencies.collect]
+git = "https://github.com/Gankro/collect-rs"
+
 [lib]
 # used by compile_time_calculation.rs
 # http://rosettacode.org/wiki/Compile-time_calculation

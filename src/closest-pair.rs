@@ -8,9 +8,10 @@
 // use of unsafe.
 
 extern crate num;
+extern crate collect;
 
 use std::num::Float;
-use std::collections::TreeSet;
+use collect::TreeSet;
 use std::cmp::{PartialOrd, Ordering};
 use num::complex::Complex;
 

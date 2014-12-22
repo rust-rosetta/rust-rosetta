@@ -6,6 +6,7 @@ use std::f64::consts::PI;
 use std::io::timer::Timer;
 use std::sync::{Arc, Mutex};
 use std::time::duration::Duration;
+use std::thread::Thread;
 
 // Rust supports both shared-memory and actor models of concurrency, and the Integrator utilizes
 // both.  We use a Sender (actor model) to send the Integrator new functions, while we use a Mutex
@@ -48,7 +49,7 @@ impl<S: Mul<f64, T> + Float,
             // becomes inaccessible to the outside world.
             output: s.clone(),
         };
-        spawn(move || {
+        Thread::spawn(move || -> () {
             // There is a reasonable argument for failure on failure to initialize the Timer, but
             // it's essentially certain that if we return from the spawn this early main will
             // detect that something is amiss.
@@ -105,7 +106,7 @@ impl<S: Mul<f64, T> + Float,
                     }
                 }
             }
-        });
+        }).detach();
         integrator
     }
 

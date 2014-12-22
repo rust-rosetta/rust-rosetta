@@ -4,6 +4,7 @@
 use std::io::{Acceptor, BufferedReader, IoError, IoResult, Listener, TimedOut};
 use std::io::net::tcp::{TcpListener, TcpStream};
 use std::time::Duration;
+use std::thread::Thread;
 
 // The actual echo server
 fn echo_server(host: &'static str, port: u16, timeout: Option<Duration>) -> IoResult<()> {
@@ -29,13 +30,13 @@ fn echo_server(host: &'static str, port: u16, timeout: Option<Duration>) -> IoRe
                 let name = try!(stream.peer_name());
                 println!("New connection: {}", name);
                 // Launch a new thread to deal with the connection.
-                spawn(move || {
+                Thread::spawn(move || -> () {
                     if let Err(e) = echo_session(stream.clone()) {
                         println!("I/O error: {} -- {}", name, e);
                     }
                     println!("Closing connection: {}", name);;
                     drop(stream);
-                })
+                }).detach();
             }
         }
     }

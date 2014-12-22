@@ -2,6 +2,8 @@
 
 use std::io::net::tcp::{TcpAcceptor, TcpListener, TcpStream};
 use std::io::{Acceptor, Listener, IoResult};
+use std::thread::Thread;
+
 #[cfg(not(test))] use std::os;
 
 fn handle_client(mut stream: TcpStream) -> IoResult<()> {
@@ -34,22 +36,22 @@ pub fn handle_server(ip: &str, port: u16) -> IoResult<TcpAcceptor> {
     println!("Listening for connections on port {}", port);
 
     let handle = acceptor.clone();
-    spawn(move || {
+    Thread::spawn(move || -> () {
         for stream in acceptor.incoming() {
             match stream {
-                Ok(s) => spawn(move || {
+                Ok(s) => Thread::spawn(move || {
                     match handle_client(s) {
                         Ok(_) => println!("Response sent!"),
                         Err(e) => println!("Failed sending response: {}!", e),
                     }
-                }),
+                }).detach(),
                 Err(e) => {
                     println!("No longer accepting new requests: {}", e);
                     break
                 }
             }
         }
-    });
+    }).detach();
 
     handle
 }

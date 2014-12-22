@@ -18,6 +18,7 @@ use std::sync::Arc;
 use std::sync::atomic::AtomicBool;
 use std::sync::atomic;
 use std::time::duration::Duration;
+use std::thread::Thread;
 
 // The reason I used a module here is simply to keep it clearer who can access what.  Rust
 // protects against data races just fine, but it's not as good at protecting against deadlocks or
@@ -255,10 +256,10 @@ fn perform_atomic_updates(duration: Duration, original_total: uint, num_ticks: i
     // Cloning the arc bumps the reference count.
     let arc_ = arc.clone();
     // Start off the equalize task
-    spawn(move || { equalize(&arc_.0, &arc_.1, ID_EQUALIZE) });
+    Thread::spawn(move || { equalize(&arc_.0, &arc_.1, ID_EQUALIZE) }).detach();
     let arc_ = arc.clone();
     // Start off the randomize task
-    spawn(move || { randomize(&arc_.0, &arc_.1, ID_RANDOMIZE) });
+    Thread::spawn(move || { randomize(&arc_.0, &arc_.1, ID_RANDOMIZE) }).detach();
     let (ref bl, ref running) = *arc;
     // Run the display task in the current thread, so failure propagates to the user.
     display(bl, running, original_total, duration, num_ticks);

@@ -20,12 +20,14 @@ fn min_factor(x: uint) -> uint {
 // The function is implemented using a channel
 #[cfg(test)]
 fn largest_min_factor_chan(numbers: &[uint]) -> uint {
+    use std::thread::Thread;
+
     let (sender, receiver) = channel();
 
     // Send all the minimal factors
     for &x in numbers.iter() {
         let child_sender = sender.clone();
-        spawn(move || { child_sender.send(min_factor(x)) });
+        Thread::spawn(move || { child_sender.send(min_factor(x)) }).detach();
     }
 
     // Receive them and keep the largest one

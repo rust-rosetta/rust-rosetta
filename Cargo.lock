@@ -2,25 +2,54 @@
 name = "rust-rosetta"
 version = "0.0.1"
 dependencies = [
+ "collect 0.0.6 (git+https://github.com/Gankro/collect-rs)",
  "num 0.1.0 (git+https://github.com/rust-lang/num)",
+ "regex 0.1.3 (registry+https://github.com/rust-lang/crates.io-index)",
  "time 0.1.3 (git+https://github.com/rust-lang/time)",
+]
+
+[[package]]
+name = "collect"
+version = "0.0.6"
+source = "git+https://github.com/Gankro/collect-rs#d999b1fb60833331355a2d93a7ef268ca8ff7009"
+dependencies = [
+ "traverse 0.0.2 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
 [[package]]
 name = "gcc"
 version = "0.1.2"
-source = "git+https://github.com/alexcrichton/gcc-rs#f7b47d923a78155f88d13c7030e61445d46b3245"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+
+[[package]]
+name = "log"
+version = "0.1.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+dependencies = [
+ "regex 0.1.3 (registry+https://github.com/rust-lang/crates.io-index)",
+]
 
 [[package]]
 name = "num"
 version = "0.1.0"
-source = "git+https://github.com/rust-lang/num#146410c9186aa8fe338d2fbbbedc668f259b22d8"
+source = "git+https://github.com/rust-lang/num#62f37e35def89b18dc42bba5e66fdcb7f853e5fb"
+
+[[package]]
+name = "regex"
+version = "0.1.3"
+source = "registry+https://github.com/rust-lang/crates.io-index"
 
 [[package]]
 name = "time"
 version = "0.1.3"
-source = "git+https://github.com/rust-lang/time#914a48401168169ccd1a822c2d32d87965306141"
+source = "git+https://github.com/rust-lang/time#fd4b53a7db653dd26c83820f871ce21ed2d20269"
 dependencies = [
- "gcc 0.1.2 (git+https://github.com/alexcrichton/gcc-rs)",
+ "gcc 0.1.2 (registry+https://github.com/rust-lang/crates.io-index)",
+ "log 0.1.2 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
+
+[[package]]
+name = "traverse"
+version = "0.0.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
 

@@ -8,6 +8,7 @@ use std::sync::Arc;
 use std::sync::atomic::AtomicUint;
 use std::sync::atomic;
 use std::time::duration::Duration;
+use std::thread::Thread;
 
 pub struct CountingSemaphore {
     count: AtomicUint, // Remaining resource count
@@ -71,7 +72,7 @@ fn metered(duration: Duration) {
     for i in range(0, NUM_WORKERS) {
         let sem = sem.clone();
         let tx = tx.clone();
-        spawn(move || {
+        Thread::spawn(move || -> () {
             // Acquire the resource
             let guard = sem.acquire();
             let count = sem.count();
@@ -88,7 +89,7 @@ fn metered(duration: Duration) {
             println!("Worker {} after release: count = {}", i, count);
             // Notify the main task of completion
             tx.send(());
-        })
+        }).detach();
     }
     drop(tx);
     // Wait for all the subtasks to finish

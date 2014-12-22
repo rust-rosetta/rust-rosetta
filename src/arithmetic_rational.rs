@@ -117,7 +117,7 @@ impl Ord for Frac {
 }
 
 impl Neg<Frac> for Frac {
-    fn neg(&self) -> Frac {
+    fn neg(self) -> Frac {
         Frac{num:-self.num, den:self.den}
     }
 }

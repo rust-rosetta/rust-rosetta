@@ -8,6 +8,7 @@
 use std::io::File;
 use std::io::BufferedReader;
 use std::comm::{channel, Sender, Receiver};
+use std::thread::Thread;
 
 const FILENAME: &'static str = "resources/input.txt";
 
@@ -43,6 +44,6 @@ fn main() {
     let (msg_snd, msg_rcv) = channel();
     let (i_snd, i_rcv) = channel();
 
-    spawn(move || printer(i_snd, msg_rcv));
-    spawn(move || reader(msg_snd, i_rcv));
+    Thread::spawn(move || printer(i_snd, msg_rcv)).detach();
+    Thread::spawn(move || reader(msg_snd, i_rcv)).detach();
 }
