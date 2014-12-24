@@ -10,6 +10,7 @@
 use std::sync::atomic::AtomicBool;
 use std::sync::atomic;
 use std::sync::{Arc, Barrier};
+use std::thread::Thread;
 
 pub fn checkpoint() {
     const NUM_TASKS: uint = 10;
@@ -33,7 +34,7 @@ pub fn checkpoint() {
         let arc = arc.clone();
         let tx = tx.clone();
         // Spawn a new worker
-        spawn( move || {
+        Thread::spawn( move || -> () {
             let (ref barrier, ref events) = *arc;
             // Assign an event to this task
             let ref event = events[i];
@@ -58,7 +59,7 @@ pub fn checkpoint() {
             }
             // Finish processing events.
             tx.send(());
-        })
+        }).detach();
     }
     drop(tx);
     // The main thread will not exit until all tasks have exited.

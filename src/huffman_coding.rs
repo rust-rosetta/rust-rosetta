@@ -3,7 +3,7 @@
 
 extern crate core;
 use std::collections::HashMap;
-use std::collections::hash_map::{Occupied, Vacant};
+use std::collections::hash_map::Entry::{Occupied, Vacant};
 use std::collections::BinaryHeap;
 
 // Each HNode has a weight, representing the sum of the frequencies for all its

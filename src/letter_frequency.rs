@@ -5,7 +5,7 @@ use std::io::fs::File;
 #[cfg(not(test))]
 use std::io::BufferedReader;
 use std::collections::HashMap;
-use std::collections::hash_map::{Occupied, Vacant};
+use std::collections::hash_map::Entry::{Occupied, Vacant};
 
 fn count_chars<T: Iterator<char>>(mut chars: T) -> HashMap<char, uint> {
     let mut map: HashMap<char, uint> = HashMap::new();

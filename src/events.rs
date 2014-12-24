@@ -13,6 +13,7 @@ extern crate time;
 use std::io::timer::Timer;
 use std::time::duration::Duration;
 use std::sync::{Arc, Mutex, Condvar};
+use std::thread::Thread;
 
 // Given a duration to wait before sending an event from one process to another, returns the
 // elapsed time before the event was actually sent.
@@ -27,7 +28,7 @@ fn handle_event(duration: Duration) -> Duration {
     let &(ref mutex, ref cond) = &*pair;
     let guard = mutex.lock();
     // Start our secondary task (which will signal our waiting main task)
-    spawn(move || {
+    Thread::spawn(move || -> () {
 		let &(ref mutex_, ref cond_) = &*pair_;
         // Lock the mutex
         let mut guard  = mutex_.lock();
@@ -44,7 +45,7 @@ fn handle_event(duration: Duration) -> Duration {
         // get past the mutex at the top of the task until the wait() statement below is reached.
         cond_.notify_one();
         // Although we signaled the waiting mutex, it will not awaken until this guard is dropped.
-    });
+    }).detach();
     // Wait for the event state to be set to signaled (equivalent to guard.cond.wait_on(0)).
 	while !*guard {
 		cond.wait(&guard);
