@@ -33,7 +33,8 @@ authors = [
     "Rupert Lane, https://github.com/rupertl",
     "Joshua Skootsky, https://github.com/JoshuaSkootsky",
     "James Hurst, https://github.com/jamesrhurst",
-    "Yukang Chen, https://github.com/chenyukang"
+    "Yukang Chen, https://github.com/chenyukang",
+    "Rootul Patel, https://github.com/rootulp"
 ]
 
 [dependencies.collect]
@@ -634,6 +635,11 @@ path = "src/markov_algorithm.rs"
 # http://rosettacode.org/wiki/MD5/Implementation
 name = "md5-implementation"
 path = "src/md5-implementation.rs"
+
+[[bin]]
+# http://rosettacode.org/wiki/Menu
+name = "menu"
+path = "src/menu.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Sorting_algorithms/Merge_sort
