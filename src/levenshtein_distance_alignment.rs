@@ -88,9 +88,9 @@ fn main() {
 #[test]
 fn test_lev_distance() {
     let test_results =
-        vec!(( "sunday" , "saturday" , (3, "s--unday".into_string(), "sunurday".into_string()))  , 
-            ( "sitting" , "kitten" , (3, "sitting".into_string(), "kitten-".into_string())) , 
-            ("test" , "test" , (0, "test".into_string(), "test".into_string()) ));
+        vec!(( "sunday" , "saturday" , (3, "s--unday".to_string(), "sunurday".to_string()))  , 
+            ( "sitting" , "kitten" , (3, "sitting".to_string(), "kitten-".to_string())) , 
+            ("test" , "test" , (0, "test".to_string(), "test".to_string()) ));
     for (word1, word2, dist) in test_results.into_iter() {
         assert_eq!(levenshtein_distance ( word1 , word2 ) , dist);
     }

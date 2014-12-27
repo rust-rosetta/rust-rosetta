@@ -1,11 +1,13 @@
 // http://rosettacode.org/wiki/Repeat_a_string
 
+use std::iter::repeat;
+
 #[cfg(not(test))]
 fn main() {
-    println!("{}", "ha".repeat(5));
+    println!("{}", repeat("ha").take(5).collect());
 }
 
 #[test]
 fn check_repeat() {
-    assert_eq!("ha".repeat(5), "hahahahaha");
+    assert_eq!(repeat("ha").take(5).collect::<String>(), "hahahahaha");
 }

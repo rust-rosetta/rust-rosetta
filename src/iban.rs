@@ -58,7 +58,7 @@ fn parse_digits(chars: Vec<char>) -> Option<BigInt> {
         };
     }
 
-    from_str(vec.into_string().as_slice())
+    vec.into_string().parse::<BigInt>()
 }
 
 fn country_length(country_code: &str) -> Option<uint> {

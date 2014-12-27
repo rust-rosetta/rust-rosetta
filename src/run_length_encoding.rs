@@ -45,7 +45,7 @@ pub fn decode(value: &str) -> Result<String, String> {
         if i==start { return Err(format!("expected digit, found {}", c)) }
 
         let ret_s = value.slice(start, i);
-        let ret : uint = from_str(ret_s).unwrap();
+        let ret = ret_s.parse::<uint>().unwrap();
 
         let repeated = String::from_char(ret, c);
         start = i + 1;

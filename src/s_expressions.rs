@@ -202,7 +202,7 @@ impl<'a> SExp<'a> {
         match *self {
             F64(f) => match f.classify() {
                 // We don't want to identify NaN, Infinity, etc. as floats.
-                num::FPNormal | num::FPZero => from_io_result(write!(writer, "{}", f)),
+                num::FpCategory::Normal | num::FpCategory::Zero => from_io_result(write!(writer, "{}", f)),
                 _ => Err(NoReprForFloat)
             },
             List(ref l) => {

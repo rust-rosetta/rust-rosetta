@@ -2,13 +2,13 @@
 // set: http://rosettacode.org/wiki/Power_set
 
 use std::vec::Vec;
-use std::slice::Items;
+use std::slice::Iter;
 
 // If set == {}
 //   return {{}}
 // else if set == {a} U rest
 //   return power_set(rest) U ({a} U each set in power_set(rest))
-fn power_set<'a, T: Clone + 'a>(items: &mut Items<'a,T>) -> Vec<Vec<T>> {
+fn power_set<'a, T: Clone + 'a>(items: &mut Iter<'a,T>) -> Vec<Vec<T>> {
     let mut power = Vec::new();
     match items.next() {
         None       => power.push(Vec::new()),

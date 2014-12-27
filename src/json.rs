@@ -1,10 +1,10 @@
 // Implements http://rosettacode.org/wiki/JSON
 
-extern crate serialize;
+extern crate "rustc-serialize" as rustc_serialize;
 
-use serialize::json;
+use rustc_serialize::json;
 
-#[deriving(Show, Encodable, Decodable, PartialEq, Eq)]
+#[deriving(Show, RustcEncodable, RustcDecodable, PartialEq, Eq)]
 pub struct Contact {
     name: String,
     city: String

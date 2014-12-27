@@ -23,13 +23,13 @@ fn main() {
 
 #[test]
 fn ipv4() {
-    let ip: IpAddr = from_str("203.178.141.194").unwrap();
+    let ip = "203.178.141.194".parse::<IpAddr>().unwrap();
     assert!(get_ips("www.kame.net").contains(&ip));
 }
 
 #[test]
 #[ignore(cfg(target_os = "win32"))]
 fn ipv6() {
-    let ip: IpAddr = from_str("2001:200:dff:fff1:216:3eff:feb1:44d7").unwrap();
+    let ip = "2001:200:dff:fff1:216:3eff:feb1:44d7".parse::<IpAddr>().unwrap();
     assert!(get_ips("www.kame.net").contains(&ip));
 }

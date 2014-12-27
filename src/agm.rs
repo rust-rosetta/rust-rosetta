@@ -9,8 +9,8 @@ fn main () {
     let args = std::os::args();
     let args = args.as_slice();
 
-    let x = from_str::<f32>(args[1].as_slice()).unwrap() ;
-    let y = from_str::<f32>(args[2].as_slice()).unwrap() ;
+    let x = args[1].parse::<f32>().unwrap();
+    let y = args[2].parse::<f32>().unwrap();
 
     let result = agm(x,y);
     println!("The arithmetic-geometric mean is {}", result);

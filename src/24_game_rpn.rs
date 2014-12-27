@@ -37,8 +37,7 @@ fn check_input(expr: &str, choices: &Vec<uint>) -> Result<(), String> {
                 (_, _) => return Err("Not a valid RPN expression!".to_string())
             }
         } else {
-            let v: Option<uint> = from_str(token);
-            match v {
+            match token.parse::<uint>() {
                 Some(n) => {
                     // check if the number is valid
                     if !choices.contains(&n) {

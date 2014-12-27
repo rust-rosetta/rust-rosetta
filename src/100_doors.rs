@@ -15,7 +15,7 @@ fn calculate_doors() -> DoorIter {
         if x == x.round() { DoorState::Open } else { DoorState::Closed }
     }
 
-    range_inclusive(1u32, 100).map(door_status)
+    range_inclusive(1u32, 100).map(door_status as fn(u32) -> DoorState)
 }
 
 #[cfg(not(test))]

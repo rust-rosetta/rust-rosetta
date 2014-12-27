@@ -141,7 +141,7 @@ fn hamming_iter_1million() {
     let mut hamming = Hamming::<HammingTriple>::new(128);
     // one-million-th hamming number has index 999_999 because indexes are zero-based
     assert_eq!(hamming.nth(999_999).unwrap().to_biguint(),
-        from_str(
-        "519312780448388736089589843750000000000000000000000000000000000000000000000000000000")
+        "519312780448388736089589843750000000000000000000000000000000000000000000000000000000"
+        .parse::<BigUint>()
         );
 }
