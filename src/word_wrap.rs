@@ -30,12 +30,12 @@ impl<'a> Iterator<String> for WordWrap<'a> {
         let mut this_line = String::new();
         swap(&mut self.next_line, &mut this_line);
 
-        let mut space_left = self.line_length - this_line.as_slice().char_len();
+        let mut space_left = self.line_length - this_line.as_slice().chars().count();
         const SPACE_WIDTH: uint = 1;
 
         // Loop, adding words until we run out of words or hit the line length
         for word in self.words {
-            let word_length = word.char_len();
+            let word_length = word.chars().count();
 
             // If not the first word for this line
             if space_left != self.line_length {

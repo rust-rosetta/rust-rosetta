@@ -72,12 +72,13 @@ fn main() {
 #[cfg(test)]
 mod test {
     use super::Solver;
+    use num::BigUint;
 
     #[test]
     fn test_cumulative() {
         let mut solver = Solver::new();
         let t = |n: uint, expected: &str| {
-            assert_eq!(solver.row_sum(n), &from_str(expected).unwrap())
+            assert_eq!(solver.row_sum(n), &expected.parse::<BigUint>().unwrap());
         };
 
         t(23, "1255");

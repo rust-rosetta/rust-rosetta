@@ -12,8 +12,7 @@ fn find_max(lst: &[f32]) -> Option<f32> {
 
 fn with_bits(val: f32, digits: uint) -> f32 {
     let num = std::f32::to_str_digits(val, digits);
-    let res: f32 = from_str(num.as_slice()).unwrap();
-    res
+    num.parse::<f32>().unwrap()
 }
 
 fn kahan_sum(lst: &[f32]) -> Option<f32> {

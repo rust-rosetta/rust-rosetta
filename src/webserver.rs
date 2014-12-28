@@ -62,7 +62,7 @@ fn main() {
 
     let host = "127.0.0.1";
     let port = if args.len() == 2 {
-        from_str(&*args[1]).expect(&*format!("Usage: {} <port>", args[0]))
+        &*args[1].expect(&*format!("Usage: {} <port>", args[0])).parse::<u16>()
     } else {
         80
     };

@@ -11,7 +11,7 @@ fn main() {
         _ => {}
     }
     let filename = args()[1].clone();
-    let line_number: uint = from_str(args()[2].as_slice()).expect("You must enter an integer as the line number");
+    let line_number = args()[2].as_slice().expect("You must enter an integer as the line number").parse::<uint>();
 
     let file = File::open(&Path::new(filename.as_slice()));
     let mut reader = BufferedReader::new(file);

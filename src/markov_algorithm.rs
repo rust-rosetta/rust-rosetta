@@ -24,7 +24,7 @@ impl MarkovAlgorithm {
         let mut rules: Vec<MarkovRule> = vec!();
         for line in s.lines()
             .map(|l| l.trim()) // Ignore whitespace before and after
-            .filter(|l| l.char_len() > 0 && l.char_at(0) != '#') { // Ignore comments
+            .filter(|l| l.chars().count() > 0 && l.char_at(0) != '#') { // Ignore comments
 
             // check for -> (must be preceded by whitespace)
             // invalid ruleset if absent
@@ -44,7 +44,7 @@ impl MarkovAlgorithm {
                     let line_end = line.slice_from(arrow + 3).trim_left();
 
                     // check for . (stop)
-                    let stop = (line_end.char_len() > 0) && (line_end.char_at(0) == '.');
+                    let stop = (line_end.chars().count() > 0) && (line_end.char_at(0) == '.');
 
                     // extract replacement
                     let replacement = if stop {line_end.slice_from(1)} else {line_end};

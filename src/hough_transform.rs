@@ -35,8 +35,8 @@ fn load_pgm(filename: &str) -> ImageGray8 {
 
     // Parse header
 
-    let width: uint = from_str(width_in.trim()).unwrap();
-    let height: uint = from_str(height_in.trim()).unwrap();
+    let width = width_in.trim().parse::<uint>().unwrap();
+    let height: uint = height_in.trim().parse::<uint>().unwrap();
 
     println!("Reading pgm file {}: {} x {}", filename, width, height);
 

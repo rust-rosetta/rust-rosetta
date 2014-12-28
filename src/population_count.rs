@@ -24,17 +24,17 @@ fn even_ones(i: &uint) -> bool { i.count_ones() % 2 == 0 }
 
 fn odious() -> EvilOdiousIter  {
     fn odds(n: &uint) -> bool { !even_ones(n) }
-    count(0u, 1).filter(odds)
+    count(0u, 1).filter(odds as fn(&uint) -> bool)
 }
 
 fn evil() -> EvilOdiousIter {
-    count(0u, 1).filter(even_ones)
+    count(0u, 1).filter(even_ones as fn(&uint) -> bool)
 }
 
 fn pow_3() -> Map<uint, uint, Counter<uint>, fn(uint) -> uint> {
     fn pw(n: uint) -> uint { 3u32.pow(n).count_ones() }
 
-    count(0u, 1).map(pw)
+    count(0u, 1).map(pw as fn(uint) -> uint)
 }
 
 #[cfg(test)]

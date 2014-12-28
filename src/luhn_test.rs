@@ -17,7 +17,7 @@ fn digits(n: u64) -> Digits {
            }
        }
     }
-    Unfold::new(n, state)
+    Unfold::new(n, state as fn(&mut u64) -> Option<u64>)
 }
 
 fn luhn_test(n: u64) -> bool {

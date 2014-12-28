@@ -63,8 +63,7 @@ fn main() {
 
     let fibs: Vec<u64> = file.lines().map(|x| {
         let s = x.unwrap();
-        let n = from_str(s[0..1]);
-        n.unwrap()
+        s[0..1].parse::<u64>().unwrap()
     }).collect();
 
     // Calculate freuencies of first digits in test data
