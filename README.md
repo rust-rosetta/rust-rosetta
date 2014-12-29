@@ -17,7 +17,7 @@ All tasks that have been completed are listed (along with a link to the problem)
 Looking to help out? Great, thanks! We have a few guidelines:
 
 * The code you contribute *is* public domain.
-* Your code should build cleanly latest nightly provided by [`rustup.sh`](http://www.hoverbear.org/2014/07/16/ruststrap/)
+* Your code should build cleanly latest nightly provided by [`rustup.sh`](http://doc.rust-lang.org/guide.html#installing-rust)
 * Keep your code as simple as possible, please avoid Dead Code warnings.
 * Don't be afraid of comments, the code is going to be written once, read hundreds of times, and maintained until past the 1.0 release of Rust.
 * Include a link to the Rosetta Code Problem at the top of the code sample.
