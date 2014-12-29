@@ -1,6 +1,7 @@
 // http://rosettacode.org/wiki/The_ISAAC_Cipher
 // includes the XOR version of the encryption scheme
 #![feature(macro_rules)]
+extern crate ascii;
 use std::iter::range_step;
 
 const MSG :&'static str = "a Top Secret secret";
@@ -8,6 +9,8 @@ const KEY: &'static str = "this is my secret key";
 
 #[cfg(not(test))]
 fn main () {
+	use ascii::AsciiCast;
+
     let mut isaac = Isaac::new();
     isaac.seed(KEY, true);
     let encr = isaac.vernam(MSG.as_bytes());

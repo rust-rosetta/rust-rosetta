@@ -28,13 +28,13 @@ fn expand_range(range: &str) -> Vec<int> {
 fn expand_item(item: &str) -> Vec<int> {
     // Handle the case of a single number
     for cap in regex!(r"^(-?\d+)$").captures_iter(item) {
-        return vec![cap.at(0).and_then(from_str).unwrap()]
+        return vec![cap.at(0).and_then(|s| s.parse()).unwrap()]
     }
 
     // Handle the case of a range
     for cap in regex!(r"^(-?\d+)-(-?\d+)$").captures_iter(item) {
-        let left: int = cap.at(1).and_then(from_str).unwrap();
-        let right = cap.at(2).and_then(from_str).unwrap();
+        let left: int = cap.at(1).and_then(|s| s.parse()).unwrap();
+        let right = cap.at(2).and_then(|s| s.parse()).unwrap();
 
         // Generate and collect a range between them
         return range_inclusive(left, right).collect()

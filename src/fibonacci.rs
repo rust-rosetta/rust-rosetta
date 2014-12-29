@@ -1,9 +1,9 @@
 // Implements http://rosettacode.org/wiki/Fibonacci_sequence
 #[cfg(not(test))]
 fn main() {
-    let fns = vec![(fib_recursive, "recursive"),
-                   (fib_tail_recursive, "tail recursive"),
-                   (fib_iterative, "iterative")];
+    let fns = vec![(fib_recursive as fn(u64) -> u64, "recursive"),
+                   (fib_tail_recursive as fn(u64) -> u64, "tail recursive"),
+                   (fib_iterative as fn(u64) -> u64, "iterative")];
 
     for (f, desc) in fns.into_iter() {
         let r = range(0u64, 10).map(|i| f(i)).collect::<Vec<u64>>();

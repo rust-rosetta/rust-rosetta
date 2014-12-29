@@ -5,7 +5,7 @@ use std::io::stdio;
 fn main() {
     let input = stdio::stdin().read_line().unwrap();
     let words = input.words().take(2)
-                            .map(from_str::<int>)
+                            .map(|i| i.parse::<int>())
                             .collect::<Vec<Option<int>>>();
 
     let sum = match words.as_slice() {
