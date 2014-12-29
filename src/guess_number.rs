@@ -9,7 +9,7 @@ fn main() {
     let mut input = stdin();
     loop {
         let line = input.read_line().unwrap();
-        match from_str::<int>(line.trim()) {
+        match line.trim().parse::<int>() {
             Some(guess) if guess == mystery_number => break,
             Some(_) => println!("Wrong! Try again!"),
             None => println!("Please enter an integer")

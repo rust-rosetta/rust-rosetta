@@ -26,9 +26,9 @@ fn factorial_loop(n: uint) -> uint {
 
 #[cfg(not(test))]
 fn main () {
-    let fs = vec![("Recursive", factorial_recursive),
-                  ("Iterative", factorial_iterative),
-                  ("Looooooop", factorial_loop)];
+    let fs = vec![("Recursive", factorial_recursive as fn(uint) -> uint),
+                  ("Iterative", factorial_iterative as fn(uint) -> uint),
+                  ("Looooooop", factorial_loop as fn(uint) -> uint)];
     for (name, f) in fs.into_iter() {
         println!("---------\n{}", name);
         for i in range(1u, 10) {

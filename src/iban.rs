@@ -1,8 +1,10 @@
 // Implements http://rosettacode.org/wiki/IBAN
 
 extern crate num;
+extern crate ascii;
 
 use num::bigint::{BigInt, ToBigInt};
+use ascii::OwnedAsciiCast;
 
 #[cfg(not(test))]
 fn main() {
@@ -36,7 +38,7 @@ fn is_valid(iban: &str) -> bool {
     }
 
     // Expand letters to digits
-    let iban_int = parse_digits(iban_chars);
+    let iban_int = parse_digits(&*iban_chars);
 
     // Check if the remainder is one
     match iban_int {
@@ -46,14 +48,14 @@ fn is_valid(iban: &str) -> bool {
 }
 
 // Returns a BigInt made from the digits and letters of the IBAN
-fn parse_digits(chars: Vec<char>) -> Option<BigInt> {
+fn parse_digits(chars: &[char]) -> Option<BigInt> {
     let mut vec = Vec::with_capacity(chars.len() + 10);
 
     // Copy the digits to the vector and expand the letters to digits
     // We convert the characters to Ascii to be able to transform the vector in a String directly
     for &c in chars.iter() {
         match c.to_digit(36) {
-            Some(d) => vec.extend(d.to_string().chars().map(|c| c.to_ascii())),
+            Some(d) => vec.push_all(&*(d.to_string().into_ascii().unwrap())), // .chars().map(|c| c.to_ascii())),
             None    => return None
         };
     }
