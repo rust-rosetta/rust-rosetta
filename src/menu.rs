@@ -20,7 +20,7 @@ fn next_input() -> Option<uint> {
 
     let line = io::stdin().read_line().unwrap();
     let input: Option<uint> = line.trim().parse();
-    return input;
+    input
 }
 
 fn select<'a>(menu: &'a [&str], prompt: &str) -> &'a str {
@@ -42,7 +42,7 @@ fn select<'a>(menu: &'a [&str], prompt: &str) -> &'a str {
             None      => continue
         };
 
-        if let 0...3 = num {
+        if num < menu.len() {
             return menu[num];
         }
     }
@@ -52,19 +52,13 @@ fn select<'a>(menu: &'a [&str], prompt: &str) -> &'a str {
 fn main() {
 
     let prompt = "Choose one.";
-    let items = ["fee fie", "huff and puff", "mirror mirror", "tick tock"];
-    let menu = items.slice(0,4);
-
+    let menu = &["fee fie", "huff and puff", "mirror mirror", "tick tock"];
     println!("{}", select(menu, prompt));
 }
-
 
 #[test]
 fn test_empty_menu() {
     let prompt = "Choose one.";
-    let items = ["fee fie", "huff and puff", "mirror mirror", "tick tock"];
-    let menu = items.slice(0,0);
+    let menu = &[];
     assert_eq!(select(menu, prompt), "");
 }
-
-// Need to add more tests but having trouble simulating std input
