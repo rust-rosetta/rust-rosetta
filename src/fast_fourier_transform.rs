@@ -4,6 +4,7 @@ extern crate num;
 
 use std::f32::consts::PI;
 use num::complex::Complex;
+use std::iter::repeat;
 
 fn fft(arr: &[Complex<f32>]) -> Vec<Complex<f32>> {
     if arr.len() <= 1 {
@@ -24,7 +25,7 @@ fn fft(arr: &[Complex<f32>]) -> Vec<Complex<f32>> {
     let even_fft = fft(even.as_slice());
     let odd_fft = fft(odd.as_slice());
 
-    let mut out = Vec::from_elem(arr.len(), Complex::new(0f32, 0f32));
+    let mut out: Vec<Complex<f32>> = repeat(Complex::new(0f32, 0f32)).take(arr.len()).collect();
     for i in range(0u, arr.len()/2) {
         let twiddle: Complex<f32> = Complex::from_polar(&1f32, &(-2f32*PI*(i as f32)/(arr.len() as f32)));
         out[i] = even_fft[i] + twiddle*odd_fft[i];

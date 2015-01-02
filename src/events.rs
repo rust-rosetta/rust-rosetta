@@ -26,12 +26,12 @@ fn handle_event(duration: Duration) -> Duration {
     let start = time::precise_time_ns();
     // Lock the mutex
     let &(ref mutex, ref cond) = &*pair;
-    let guard = mutex.lock();
+    let mut guard = mutex.lock().unwrap();
     // Start our secondary task (which will signal our waiting main task)
     Thread::spawn(move || -> () {
 		let &(ref mutex_, ref cond_) = &*pair_;
         // Lock the mutex
-        let mut guard  = mutex_.lock();
+        let mut guard  = mutex_.lock().unwrap();
         *guard = true;
         
         // Sleep for `duration`.
@@ -48,7 +48,7 @@ fn handle_event(duration: Duration) -> Duration {
     }).detach();
     // Wait for the event state to be set to signaled (equivalent to guard.cond.wait_on(0)).
 	while !*guard {
-		cond.wait(&guard);
+		guard = cond.wait(guard).unwrap();
 	}
 	// Should be done signaling (i.e. we've waited for `duration`).
     let end = time::precise_time_ns();

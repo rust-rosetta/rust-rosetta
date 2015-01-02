@@ -3,14 +3,16 @@
 
 #[cfg(not(test))]
 fn main() {
-    use std::rand::{task_rng, Rng};
+    use std::rand::{thread_rng, Rng};
     use std::io;
 
-    let mut rng = task_rng();
+    let mut rng = thread_rng();
     let mut reader = io::stdin();
 
     // generating 4 numbers
-    let choices = Vec::from_fn(5, |_| rng.gen_range(1u, 10));
+    let choices: Vec<uint> = range(0u, 4).map(
+		|_| rng.gen_range(1u, 10)
+    ).collect();
     println!("Make 24 with the following numbers");
 
     // start the game loop

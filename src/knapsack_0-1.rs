@@ -1,6 +1,7 @@
 // http://rosettacode.org/wiki/Knapsack_problem/0-1
 
 use std::cmp::max;
+use std::iter::repeat;
 
 // This struct is used to store our items that we want in our knap-sack.
 //
@@ -78,8 +79,9 @@ fn knap_01_dp<'a>(xs: &[Want<'a>], max_weight: uint) -> Vec<Want<'a>> {
     // In a similar vein, the top-down solution would be to memoize the
     // function then compute the results on demand.
 
-    let zero_vec = Vec::from_elem(max_weight + 1, 0 as uint);
-    let mut best_value = Vec::from_elem(xs_len + 1, zero_vec);
+    let zero_vec: Vec<uint> = repeat(0u).take(max_weight + 1).collect();
+    let mut best_value: Vec<Vec<uint>> = repeat(zero_vec)
+		.take(xs_len + 1).collect();
 
     // loop over the items
     for i in range(0, xs_len) {

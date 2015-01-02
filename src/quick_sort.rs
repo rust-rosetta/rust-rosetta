@@ -2,7 +2,7 @@
 
 // Used by the tests
 #[cfg(test)]
-use std::rand::{task_rng, Rng};
+use std::rand::{thread_rng, Rng};
 
 // We use in place quick sort
 // For details see http://en.wikipedia.org/wiki/Quicksort#In-place_version
@@ -112,7 +112,7 @@ fn test_already_sorted_vector() {
 
 #[test]
 fn test_random_numbers() {
-    let mut rng = task_rng();
+    let mut rng = thread_rng();
     let mut numbers : Vec<int> = rng.gen_iter::<int>().take(500).collect();
     quick_sort(numbers.as_mut_slice());
     check_sort(numbers.as_mut_slice());

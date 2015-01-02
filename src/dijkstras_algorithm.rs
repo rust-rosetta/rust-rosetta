@@ -3,6 +3,7 @@
 use std::collections::{HashMap, BinaryHeap, DList};
 use std::collections::hash_map::Entry::{Occupied, Vacant};
 use std::uint;
+use std::iter::repeat;
 
 type Node = uint;
 type Cost = uint;
@@ -80,7 +81,7 @@ impl<'a> Graph<'a> {
     /// if there's no path, or if the source or target is not in the graph.
     fn dijkstra(&self, source: &str, target: &str) -> Vec<&str> {
         let num_vert = self.vertices.len();
-        let mut dist:Vec<uint> = Vec::from_elem(num_vert, uint::MAX); //Close enough to infinity
+        let mut dist:Vec<uint> = repeat(uint::MAX).take(num_vert).collect(); //Close enough to infinity
         let mut prev:HashMap<Node, Node> = HashMap::new();
         let mut queue:BinaryHeap<DistPair> = BinaryHeap::new();
 
