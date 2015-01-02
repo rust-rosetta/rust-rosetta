@@ -170,10 +170,13 @@ pub fn main() {
 
     // randomly generated 3D
     let n_random = 1000u;
-    let make_random_point = || Point {
-        coords: Vec::from_fn(3, |_| (std::rand::task_rng().gen::<f32>()-0.5f32)*1000f32)
+    let make_random_point = |&:| Point {
+        coords: range(0u, 3).map(
+				|_| (std::rand::thread_rng().gen::<f32>()-0.5f32)*1000f32
+			).collect()
     };
-    let mut random_points: Vec<Point> = Vec::from_fn(n_random, |_| make_random_point());
+    let mut random_points: Vec<Point> = range(0, n_random)
+		.map(|_| make_random_point()).collect();
 
     let start_cons_time = get_time();
     let random_tree = KDTreeNode::new(random_points.as_mut_slice(), 0);
@@ -192,7 +195,9 @@ pub fn main() {
     
     // benchmark search time
     let n_searches = 1000u;
-    let random_targets = Vec::from_fn(n_searches, |_| make_random_point());
+    let random_targets: Vec<Point> = range(0, n_searches).map(
+		|_| make_random_point()
+    ).collect();
 
     let start_search_time = get_time();
     let mut total_n_visited = 0u;
@@ -209,7 +214,7 @@ pub fn main() {
 }
 
 fn quickselect_by<T: Clone>(arr: &mut [T], position: uint, cmp: |a: &T, b: &T| -> Ordering) -> T {
-    let mut pivot_index = std::rand::task_rng().gen_range(0, arr.len());
+    let mut pivot_index = std::rand::thread_rng().gen_range(0, arr.len());
     // Need to wrap in another closure or we get ownership complaints.
     // Tried using an unboxed closure to get around this but couldn't get it to work.
     pivot_index = partition_by(arr, pivot_index, |a: &T, b: &T| cmp(a, b));

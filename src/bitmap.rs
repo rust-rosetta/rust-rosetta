@@ -20,7 +20,8 @@ impl Image {
         Image {
             width: width,
             height: height,
-            data: Vec::from_elem(width*height, Default::default())
+            data: ::std::iter::repeat(Default::default())
+				.take(width*height).collect(),
         }
     }
 

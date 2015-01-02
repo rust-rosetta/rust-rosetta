@@ -1,11 +1,11 @@
 // http://rosettacode.org/wiki/Sierpinski_triangle
 
-use std::iter::range_step;
+use std::iter::{repeat, range_step};
 
 fn main() {
     let order = 4u;
     let height = 1u << order;
-    let mut state = Vec::from_elem(height + 1, true);
+    let mut state: Vec<bool> = repeat(true).take(height + 1).collect();
 
     // Compute the triangle line-by-line by viewing it as Pascal's triangle (mod 2)
     for i in range(0u, height) {

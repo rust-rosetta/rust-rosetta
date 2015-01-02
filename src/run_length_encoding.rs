@@ -1,4 +1,6 @@
 // http://rosettacode.org/wiki/Run-length_encoding
+use std::iter::repeat;
+
 const INPUT: &'static str = "WWWWWWWWWWWWBWWWWWWWWWWWWBBBWWWWWWWWWWWWWWWWWWWWWWWWBWWWWWWWWWWWWWW";
 
 // Needed so look-and-say_sequence compiles cleanly, because it
@@ -47,7 +49,7 @@ pub fn decode(value: &str) -> Result<String, String> {
         let ret_s = value.slice(start, i);
         let ret = ret_s.parse::<uint>().unwrap();
 
-        let repeated = String::from_char(ret, c);
+        let repeated: String = repeat(c).take(ret).collect();
         start = i + 1;
 
         result.push_str(repeated.as_slice());

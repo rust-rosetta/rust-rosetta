@@ -1,6 +1,7 @@
 // http://rosettacode.org/wiki/Levenshtein_distance/Alignment
 use std::uint;
 use std::collections::DList;
+use std::iter::repeat;
 
 enum Operation { Insert, Delete, Match, }
 
@@ -22,7 +23,9 @@ fn levenshtein_distance(s1: &str, s2: &str) -> (uint, String, String) {
     let l1 = s1.len() + 1;
     let l2 = s2.len() + 1;
 
-    let mut mat: Vec<Vec<uint>> = Vec::from_elem(l1, { Vec::from_elem(l2, 0u) });
+    let mut mat: Vec<Vec<uint>> = repeat( 
+		repeat(0u).take(l2).collect()
+		).take(l1).collect();
     for row in range(0u, l1) { mat[row][0] = row; }
     for col in range(0u, l2) { mat[0][col] = col; }
     for row in range(1u, l1) {

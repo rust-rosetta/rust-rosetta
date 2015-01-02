@@ -51,7 +51,7 @@ mod test {
         let mut image = Image::new(2,1);
         image[(0, 0)] = Color { red: 1, green: 2, blue: 3 };
         image[(1, 0)] = Color { red: 4, green: 5, blue: 6 };
-        let fname = format!("{}/test-{}.ppm", os::tmpdir().as_str().unwrap(), rand::task_rng().gen::<int>());
+        let fname = format!("{}/test-{}.ppm", os::tmpdir().as_str().unwrap(), rand::thread_rng().gen::<int>());
         // Can't use try! macro because we want to panic, not return.
         match image.write_ppm(fname.as_slice()) {
             Ok(_) => {},

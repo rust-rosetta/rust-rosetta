@@ -40,10 +40,11 @@ fn largest_min_factor_chan(numbers: &[uint]) -> uint {
 // The function is implemented using the Future struct
 fn largest_min_factor_fut(numbers: &[uint]) -> uint {
     // We will save the future values of the minimal factor in the results vec
-    let mut results = Vec::from_fn(numbers.len(), |i| {
-        let number = numbers[i];
-        Future::spawn(move || { min_factor(number) })
-    });
+    let mut results: Vec<Future<uint>> = range(0, numbers.len()).map(
+		|i| {
+			let number = numbers[i];
+			Future::spawn(move || { min_factor(number) })
+		}).collect();
 
     // Get the largest minimal factor of all results
     results.iter_mut().map(|r| r.get()).max().unwrap()

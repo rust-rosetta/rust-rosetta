@@ -4,7 +4,7 @@ extern crate num;
 extern crate ascii;
 
 use num::bigint::{BigInt, ToBigInt};
-use ascii::OwnedAsciiCast;
+use ascii::{OwnedAsciiCast, IntoBytes};
 
 #[cfg(not(test))]
 fn main() {
@@ -33,7 +33,7 @@ fn is_valid(iban: &str) -> bool {
 
     // Rearrange (first four characters go to the back)
     for _ in range(0u, 4) {
-        let front = iban_chars.remove(0).unwrap();
+        let front = iban_chars.remove(0);
         iban_chars.push(front);
     }
 
@@ -55,12 +55,15 @@ fn parse_digits(chars: &[char]) -> Option<BigInt> {
     // We convert the characters to Ascii to be able to transform the vector in a String directly
     for &c in chars.iter() {
         match c.to_digit(36) {
-            Some(d) => vec.push_all(&*(d.to_string().into_ascii().unwrap())), // .chars().map(|c| c.to_ascii())),
+            Some(d) => vec.push_all(&*(d.to_string().into_ascii().unwrap())),
             None    => return None
         };
     }
 
-    vec.into_string().parse::<BigInt>()
+	// into_string() for Ascii has been deprecated. For now we're using
+	// directly unsafe code to transform the Vec<Ascii> to a String
+	let as_str = unsafe { String::from_utf8_unchecked(vec.into_bytes()) };
+    as_str.parse::<BigInt>()
 }
 
 fn country_length(country_code: &str) -> Option<uint> {

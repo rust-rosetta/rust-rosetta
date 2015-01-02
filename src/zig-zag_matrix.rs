@@ -2,6 +2,7 @@
 // with the sorting indexes algorithm
 // explained in the discussion page
 // http://rosettacode.org/wiki/Talk:Zig-zag_matrix
+use std::iter::repeat;
 
 #[deriving(Show, PartialEq, Eq)]
 struct SortIndex {
@@ -47,7 +48,8 @@ fn zigzag(n:uint) -> Vec<Vec<uint>> {
     let mut l:Vec<SortIndex> = range(0u, n*n).map(|i| SortIndex::new(i%n,i/n)).collect();
     l.sort();
 
-    let mut result : Vec<Vec<uint>> = Vec::from_elem(n, Vec::from_elem(n,0u));
+	let init_vec = repeat(0u).take(n).collect(); // a vec of 0s 
+    let mut result : Vec<Vec<uint>> = repeat(init_vec).take(n).collect();
     for (i,&SortIndex{x,y}) in l.iter().enumerate() {
         result[y][x] = i
     }

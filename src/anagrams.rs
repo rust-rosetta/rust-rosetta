@@ -7,7 +7,7 @@ use std::collections::hash_map::Entry::{Occupied, Vacant};
 fn sorted_characters(string: &str) -> String {
     let mut chars = string.chars().collect::<Vec<char>>();
     chars.sort();
-    String::from_chars(chars.as_slice())
+    chars.iter().map(|c| *c).collect()
 }
 
 /// Returns groups of anagrams where each group consists of a set

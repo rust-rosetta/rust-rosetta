@@ -15,7 +15,7 @@
 fn main() {
     use std::{rand, io};
 
-    let mut rng = rand::task_rng();
+    let mut rng = rand::thread_rng();
     let mut input = io::stdin();
 
     loop {

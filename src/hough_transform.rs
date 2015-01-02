@@ -7,6 +7,7 @@
 
 use std::num::{Float, FloatMath};
 use std::io::{BufferedReader, BufferedWriter, File};
+use std::iter::repeat;
 
 // Simple 8-bit grayscale image
 
@@ -45,7 +46,7 @@ fn load_pgm(filename: &str) -> ImageGray8 {
     let mut img = ImageGray8 {
         width: width,
         height: height,
-        data: Vec::from_elem(width*height, 0),
+        data: repeat(0u8).take(width*height).collect(),
     };
 
     // Read image data
@@ -93,7 +94,7 @@ fn hough(image: &ImageGray8, out_width: uint, out_height: uint) -> ImageGray8 {
     let mut accum = ImageGray8 {
         width: out_width,
         height: out_height,
-        data: Vec::from_elem(out_width*out_height, 255),
+        data: repeat(255).take(out_width*out_height).collect(),
     };
 
     // Transform extents

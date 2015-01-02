@@ -6,7 +6,7 @@ const NUMBER_OF_DIGITS: uint = 4;
 fn generate_digits() -> Vec<uint> {
     use std::rand;
 
-    let mut rng = rand::task_rng();
+    let mut rng = rand::thread_rng();
     rand::sample(&mut rng, range(1u, 10), 4)
 }
 

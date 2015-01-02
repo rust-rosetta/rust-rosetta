@@ -94,7 +94,7 @@ impl<S: Mul<f64, T> + Float,
                             // so it's impossible to access the data incorrectly.  There are some
                             // additional subtleties around the actual implementation, but that's
                             // the basic idea.
-                            let mut s = s.lock();
+                            let mut s = s.lock().unwrap();
                             *s = *s + (k_1 + k_0) * (frequency_ms as f64 / 2.);
                             k_0 = k_1;
                         }
@@ -122,7 +122,7 @@ impl<S: Mul<f64, T> + Float,
         // retain access to the interior of the Mutex unless we have possession of its lock.  There
         // are ways and circumstances in which one can avoid this (e.g. by using atomic types) but
         // clone() is a perfectly reasonable solution as well, and a lot easier to reason about :)
-        self.output.lock().clone()
+        self.output.lock().unwrap().clone()
     }
 }
 
