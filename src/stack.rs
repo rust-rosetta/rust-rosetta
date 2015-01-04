@@ -1,6 +1,6 @@
 // Implements http://rosettacode.org/wiki/Stack
 
-#[deriving(Show)]
+#[derive(Show)]
 struct Stack<T> {
     // We use a vector because of simplicity
     vec: Vec<T>

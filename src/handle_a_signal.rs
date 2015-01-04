@@ -12,7 +12,7 @@ fn main()
     use libc::funcs::posix01::signal;
     use std::io::timer::Timer;
     use std::mem;
-    use std::sync::atomic::{AtomicBool, INIT_ATOMIC_BOOL};
+    use std::sync::atomic::{AtomicBool, ATOMIC_BOOL_INIT};
     use std::sync::atomic;
     use std::time::duration::Duration;
 
@@ -20,7 +20,7 @@ fn main()
     let duration = Duration::seconds(1) / 2;
     let mut timer = Timer::new().unwrap();
     // "SIGINT received" global variable.
-    static mut GOT_SIGINT: AtomicBool = INIT_ATOMIC_BOOL;
+    static mut GOT_SIGINT: AtomicBool = ATOMIC_BOOL_INIT;
     unsafe {
         // Initially, "SIGINT received" is false.
         GOT_SIGINT.store(false, atomic::Release);

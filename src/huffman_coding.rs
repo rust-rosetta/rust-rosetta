@@ -5,6 +5,8 @@ extern crate core;
 use std::collections::HashMap;
 use std::collections::hash_map::Entry::{Occupied, Vacant};
 use std::collections::BinaryHeap;
+use std::cmp::Ordering;
+use std::cmp::Ordering::{Less, Equal, Greater};
 
 // Each HNode has a weight, representing the sum of the frequencies for all its
 // children. It is either a leaf (containing a character), or a HTree

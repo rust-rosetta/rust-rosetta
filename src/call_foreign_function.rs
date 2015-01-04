@@ -3,7 +3,7 @@
 extern crate libc;
 
 use libc::c_char;
-use std::c_str::CString;
+use std::c_str::{CString, ToCStr};
 
 extern "C" {
     // C functions are declared in an `extern "C"` block.

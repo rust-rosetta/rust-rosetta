@@ -9,7 +9,7 @@ fn main() {
     // states for the 100 doors
     // uses a vector of booleans,
     // where state==false means the door is closed
-    let mut doors = [false, ..100];
+    let mut doors = [false; 100];
     solve(&mut doors);
 
     for (idx, door) in doors.iter().enumerate() {
@@ -21,7 +21,7 @@ fn main() {
 // unoptimized solution for the 100 Doors problem,
 // performs all 100 passes and mutates the vector with
 // the states in place
-fn solve(doors: &mut [bool, ..100])  {
+fn solve(doors: &mut [bool])  {
     for pass in range_inclusive(1u, 100u) {
         for door in range_step_inclusive(pass, 100u, pass) {
             // flip the state of the door
@@ -32,7 +32,7 @@ fn solve(doors: &mut [bool, ..100])  {
 
 #[test]
 fn solution() {
-    let mut doors = [false, ..100];
+    let mut doors = [false;100];
     solve(&mut doors);
 
     // test that the doors with index corresponding to

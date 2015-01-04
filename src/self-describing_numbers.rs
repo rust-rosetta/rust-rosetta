@@ -17,7 +17,7 @@ fn is_self_describing(mut n: u64) -> bool {
 
     // Go through each digit of the number, count how many times each digit occurs, and then
     // subtract how often each digit is supposed to occur according to the number
-    let mut cnt = [0i, ..10];
+    let mut cnt = [0i; 10];
     for i in range(0u, len) {
         cnt[(n % 10) as uint] += 1;
         cnt[len - i - 1] -= (n % 10) as int;

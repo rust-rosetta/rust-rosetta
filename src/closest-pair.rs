@@ -18,7 +18,7 @@ use num::complex::Complex;
 type Point = Complex<f32>;
 
 // Wrapper around Point (i.e. Complex<f32>) so that we can use a TreeSet
-#[deriving(PartialEq)]
+#[derive(PartialEq)]
 struct YSortedPoint {
     point: Point
 }

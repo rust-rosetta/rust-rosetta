@@ -51,7 +51,7 @@ fn main() {
 
     // Calculate expected frequencies of all digits according to Benford's Law
 
-    let mut expected_distrib = [0f32,..10];
+    let mut expected_distrib = [0f32; 10];
     for digit in range(1, 10) {
         expected_distrib[digit] = benford_freq(digit as u64);
     }

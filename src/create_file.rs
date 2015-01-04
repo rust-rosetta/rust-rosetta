@@ -2,7 +2,7 @@
 
 extern crate libc;
 
-use std::io::{mod, File, fs};
+use std::io::{self, File, fs};
 
 #[cfg(not(test))]
 fn main () {

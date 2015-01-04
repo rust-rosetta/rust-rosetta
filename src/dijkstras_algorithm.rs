@@ -4,6 +4,7 @@ use std::collections::{HashMap, BinaryHeap, DList};
 use std::collections::hash_map::Entry::{Occupied, Vacant};
 use std::uint;
 use std::iter::repeat;
+use std::cmp::Ordering;
 
 type Node = uint;
 type Cost = uint;
@@ -11,7 +12,7 @@ type Edge = (Node, Node);
 
 
 /// The DistPair struct is for the Priority Queue.
-#[deriving(Eq, PartialEq, PartialOrd)]
+#[derive(Eq, PartialEq, PartialOrd)]
 struct DistPair(Node, Cost);
 impl Ord for DistPair {
     fn cmp(&self, other:&DistPair) -> Ordering {

@@ -5,6 +5,8 @@ extern crate num;
 use std::num::{Float, SignedInt};
 use std::fmt;
 use num::traits::{Zero, One};
+use std::cmp::Ordering;
+use std::ops::{Add, Mul, Neg, Sub, Div};
 
 #[cfg(not(test))]
 fn main() {
@@ -28,7 +30,7 @@ fn perfect_numbers(max: i64) -> Vec<i64> {
     }
     ret
 }
-#[deriving(Copy)]
+#[derive(Copy)]
 struct Frac {
     num: i64,
     den: i64

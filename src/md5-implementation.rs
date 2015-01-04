@@ -22,7 +22,7 @@ fn main() {
 }
 
 // Constants are the integer part of the sines of integers (in radians) * 2^32.
-const K:[u32,..64] = [
+const K:[u32; 64] = [
 0xd76aa478, 0xe8c7b756, 0x242070db, 0xc1bdceee ,
 0xf57c0faf, 0x4787c62a, 0xa8304613, 0xfd469501 ,
 0x698098d8, 0x8b44f7af, 0xffff5bb1, 0x895cd7be ,
@@ -41,13 +41,13 @@ const K:[u32,..64] = [
 0xf7537e82, 0xbd3af235, 0x2ad7d2bb, 0xeb86d391 ];
 
 // R specifies the per-round shift amounts
-const R:[u32,..64] = [7, 12, 17, 22, 7, 12, 17, 22, 7, 12, 17, 22, 7, 12, 17, 22,
+const R:[u32; 64] = [7, 12, 17, 22, 7, 12, 17, 22, 7, 12, 17, 22, 7, 12, 17, 22,
                       5,  9, 14, 20, 5,  9, 14, 20, 5,  9, 14, 20, 5,  9, 14, 20,
                       4, 11, 16, 23, 4, 11, 16, 23, 4, 11, 16, 23, 4, 11, 16, 23,
                       6, 10, 15, 21, 6, 10, 15, 21, 6, 10, 15, 21, 6, 10, 15, 21];
 
-// "newtype" for [u8,..16] to specify it's a MD5 hash
-struct MD5([u8,..16]);
+// "newtype" for [u8; 16] to specify it's a MD5 hash
+struct MD5([u8; 16]);
 impl Show for MD5 {
     fn fmt(&self, f: &mut Formatter) -> Result {
         let MD5(md5)=*self;
@@ -64,9 +64,9 @@ fn left_rotate(x: u32, c: u32) -> u32 {
     (x << c as uint) | (x >> (32 - c) as uint)
 }
 
-fn to_bytes(val: u64) -> [u8,..8]
+fn to_bytes(val: u64) -> [u8; 8]
 {
-    let mut tmp:[u8,..8] = [0u8,..8];
+    let mut tmp:[u8; 8] = [0u8; 8];
     for i in range (0u, 8) {
         tmp[i] = (val >> (8*i)) as u8;
     }
@@ -78,7 +78,7 @@ fn md5(initial_msg: &[u8]) -> MD5
     let initial_len=initial_msg.len() as u64;
 
     // These vars will contain the hash
-    let mut h:[u32,..4]=[0x67452301u32, 0xefcdab89, 0x98badcfe, 0x10325476];
+    let mut h:[u32; 4]=[0x67452301u32, 0xefcdab89, 0x98badcfe, 0x10325476];
 
      //Pre-processing:
     //append "1" bit to message
@@ -101,7 +101,7 @@ fn md5(initial_msg: &[u8]) -> MD5
 
     assert_eq!(msg.len() % 64, 0);
 
-    let mut w:[u32,..16] = [0u32,..16];
+    let mut w:[u32; 16] = [0u32; 16];
     // Process the message in successive 512-bit chunks:
     //for each 512-bit chunk of message:
     for offset in range_step(0u64, new_len, (512/8)) {
@@ -112,7 +112,7 @@ fn md5(initial_msg: &[u8]) -> MD5
                     (msg[j]   as u32)      |
                     (msg[j+1] as u32) <<8  |
                     (msg[j+2] as u32) <<16 |
-                     msg[j+3] as u32  <<24;
+                    (msg[j+3] as u32) <<24;
         }
 
         // Initialize hash value for this chunk:
@@ -147,7 +147,7 @@ fn md5(initial_msg: &[u8]) -> MD5
     drop(msg); // cleanup, msg is freed
 
     //var char digest[16] := h0 append h1 append h2 append h3 //(Output is in little-endian)
-    let mut digest = [0u8,..16];
+    let mut digest = [0u8; 16];
     for (i, s) in h.iter().enumerate() {
         digest[i*4] = (*s ) as u8;
         digest[i*4+1] = (*s >> 8) as u8;
@@ -161,7 +161,7 @@ fn md5(initial_msg: &[u8]) -> MD5
 fn helper_fns() {
     assert_eq!(64, left_rotate(8, 3));
 
-    let exp:[u8,..8] = [64u8, 226, 1, 0, 0, 0, 0, 0];
+    let exp:[u8; 8] = [64u8, 226, 1, 0, 0, 0, 0, 0];
     assert!(to_bytes(123456) == exp);
 }
 

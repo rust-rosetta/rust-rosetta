@@ -1,8 +1,9 @@
 // Implements http://rosettacode.org/wiki/Basic_bitmap_storage
 use std::default::Default;
 use std::io::{File, BufferedWriter, IoResult};
+use std::ops::{Index, IndexMut};
 
-#[deriving(Copy, Clone, Default, PartialEq, Show)]
+#[derive(Copy, Clone, Default, PartialEq, Show)]
 pub struct Color {
     pub red: u8,
     pub green: u8,

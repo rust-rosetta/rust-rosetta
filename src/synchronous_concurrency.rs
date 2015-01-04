@@ -7,7 +7,7 @@
 
 use std::io::File;
 use std::io::BufferedReader;
-use std::comm::{channel, Sender, Receiver};
+use std::sync::mpsc::{channel, Sender, Receiver};
 use std::thread::Thread;
 
 const FILENAME: &'static str = "resources/input.txt";
@@ -20,7 +20,7 @@ enum Message {
 fn printer(i_snd: Sender<int>, msg_rcv: Receiver<Message>) {
     let mut count = 0;
     loop {
-        match msg_rcv.recv() {
+        match msg_rcv.recv().unwrap() {
             Message::Line(line) => {
                 print!("{}", line);
                 count += 1;
@@ -28,15 +28,15 @@ fn printer(i_snd: Sender<int>, msg_rcv: Receiver<Message>) {
             Message::End => {break;}
         }
     }
-    i_snd.send(count);
+    i_snd.send(count).unwrap();
 }
 
 fn reader(msg_snd: Sender<Message>, i_rcv: Receiver<int>) {
     let mut file = BufferedReader::new(File::open(&Path::new(FILENAME)));
     for line in file.lines() {
-        msg_snd.send(Message::Line(line.unwrap()));
+        msg_snd.send(Message::Line(line.unwrap())).unwrap();
     }
-    msg_snd.send(Message::End);
+    msg_snd.send(Message::End).unwrap();
     println!("Total Lines: {}", i_rcv.recv());
 }
 

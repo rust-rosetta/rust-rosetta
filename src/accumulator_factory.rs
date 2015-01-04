@@ -1,4 +1,7 @@
 #![feature(unboxed_closures, macro_rules)]
+
+use std::ops::Add;
+
 pub struct G<T, U> {
     n: T,
 }

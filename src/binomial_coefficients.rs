@@ -3,6 +3,7 @@
 extern crate num;
 extern crate core;
 use num::{BigUint, One};
+use std::num::FromPrimitive;
 
 fn binomial(n: uint, mut k: uint) -> BigUint {
     // Since binomial(n, k) = binomial(n, n - k), we might as well use

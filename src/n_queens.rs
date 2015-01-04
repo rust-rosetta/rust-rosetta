@@ -5,6 +5,7 @@ extern crate test;
 use std::vec::Vec;
 use std::iter::AdditiveIterator;
 use std::thread::Thread;
+use std::sync::mpsc::channel;
 
 #[cfg(test)]
 use test::Bencher;
@@ -125,11 +126,11 @@ fn semi_parallel_n_queens(n: i32) -> uint {
             tx.send(n_queens_helper(all_ones,
                                     (left_diags | spot) << 1,
                                     (columns | spot),
-                                    (right_diags | spot) >> 1));
+                                    (right_diags | spot) >> 1)).unwrap();
         }).detach();
     }
 
-    receivers.iter().map(|r| r.recv()).sum() + ((columns == all_ones) as uint)
+    receivers.iter().map(|r| r.recv().unwrap()).sum() + ((columns == all_ones) as uint)
 }
 
 // Tests

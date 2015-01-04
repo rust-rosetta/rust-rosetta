@@ -52,7 +52,7 @@ fn main() {
     let mut bsd = BSDLinearCongruentialGenerator::new(0);
     let mut ms = MSLinearCongruentialGenerator::new(0);
     let names = ["BSD", "Microsoft"];
-    let mut lcgs: [&mut LinearCongruentialGenerator, ..2] = [&mut bsd, &mut ms];
+    let mut lcgs: [&mut LinearCongruentialGenerator; 2] = [&mut bsd, &mut ms];
     for (name, lcg) in names.iter().zip(lcgs.iter_mut()) {
         println!("{}", name);
         for _ in range(0i, 10) {

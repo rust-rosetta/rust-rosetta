@@ -1,10 +1,8 @@
 // Implements http://rosettacode.org/wiki/IBAN
 
 extern crate num;
-extern crate ascii;
 
 use num::bigint::{BigInt, ToBigInt};
-use ascii::{OwnedAsciiCast, IntoBytes};
 
 #[cfg(not(test))]
 fn main() {
@@ -49,21 +47,19 @@ fn is_valid(iban: &str) -> bool {
 
 // Returns a BigInt made from the digits and letters of the IBAN
 fn parse_digits(chars: &[char]) -> Option<BigInt> {
-    let mut vec = Vec::with_capacity(chars.len() + 10);
+	let mut vec: Vec<u8> = Vec::with_capacity(chars.len() + 10);	
 
     // Copy the digits to the vector and expand the letters to digits
-    // We convert the characters to Ascii to be able to transform the vector in a String directly
-    for &c in chars.iter() {
-        match c.to_digit(36) {
-            Some(d) => vec.push_all(&*(d.to_string().into_ascii().unwrap())),
-            None    => return None
-        };
-    }
-
-	// into_string() for Ascii has been deprecated. For now we're using
-	// directly unsafe code to transform the Vec<Ascii> to a String
-	let as_str = unsafe { String::from_utf8_unchecked(vec.into_bytes()) };
-    as_str.parse::<BigInt>()
+	for &c in chars.iter() {
+		match c.to_digit(36) {
+			Some(d)	=> vec.extend(d.to_string().bytes()),
+			None    => return None
+		}		
+	}
+	let as_str = String::from_utf8(vec).unwrap(); // since it was built
+		 // from digits we know the vec is all made of valid utf8, so we
+		 // can just unwrap()
+	as_str.parse::<BigInt>()
 }
 
 fn country_length(country_code: &str) -> Option<uint> {

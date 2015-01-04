@@ -21,6 +21,7 @@ fn min_factor(x: uint) -> uint {
 #[cfg(test)]
 fn largest_min_factor_chan(numbers: &[uint]) -> uint {
     use std::thread::Thread;
+    use std::sync::mpsc::channel;
 
     let (sender, receiver) = channel();
 
@@ -32,7 +33,7 @@ fn largest_min_factor_chan(numbers: &[uint]) -> uint {
 
     // Receive them and keep the largest one
     numbers.iter().fold(0u, |max, _| {
-        std::cmp::max(receiver.recv(), max)
+        std::cmp::max(receiver.recv().unwrap(), max)
     })
 }
 

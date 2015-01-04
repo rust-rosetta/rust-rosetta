@@ -1,7 +1,6 @@
 // http://rosettacode.org/wiki/The_ISAAC_Cipher
 // includes the XOR version of the encryption scheme
 #![feature(macro_rules)]
-extern crate ascii;
 use std::iter::range_step;
 
 const MSG :&'static str = "a Top Secret secret";
@@ -9,8 +8,6 @@ const KEY: &'static str = "this is my secret key";
 
 #[cfg(not(test))]
 fn main () {
-	use ascii::AsciiCast;
-
     let mut isaac = Isaac::new();
     isaac.seed(KEY, true);
     let encr = isaac.vernam(MSG.as_bytes());
@@ -27,9 +24,7 @@ fn main () {
     let decr = isaac.vernam(encr.as_slice());
 
     print!("\nXOR dcr: ");
-    for a in decr.iter() {
-        print!("{}", a.to_ascii());
-    }
+    println!("{}", String::from_utf8(decr).unwrap())
 }
 
 macro_rules! mix_v(
@@ -45,22 +40,22 @@ macro_rules! mix_v(
 );
 
 struct Isaac {
-    mm: [u32,.. 256],
+    mm: [u32; 256],
     aa: u32,
     bb: u32,
     cc: u32,
-    rand_rsl: [u32,..256],
+    rand_rsl: [u32; 256],
     rand_cnt: u32
 }
 
 impl Isaac {
     fn new() -> Isaac {
         Isaac {
-            mm: [0u32, ..256],
+            mm: [0u32; 256],
             aa: 0,
             bb: 0,
             cc: 0,
-            rand_rsl: [0u32, ..256],
+            rand_rsl: [0u32; 256],
             rand_cnt: 0
         }
     }
@@ -72,10 +67,10 @@ impl Isaac {
         for i in range(0u, 256) {
             let x = self.mm[i];
             match i%4 {
-                0 => self.aa ^= (self.aa as uint << 13) as u32,
-                1 => self.aa ^= (self.aa as uint >>  6) as u32,
-                2 => self.aa ^= (self.aa as uint <<  2) as u32,
-                3 => self.aa ^= (self.aa as uint >> 16) as u32,
+                0 => self.aa ^= self.aa << 13,
+                1 => self.aa ^= self.aa >>  6,
+                2 => self.aa ^= self.aa <<  2,
+                3 => self.aa ^= self.aa >> 16,
                 _ => unreachable!()
             }
 
@@ -90,7 +85,7 @@ impl Isaac {
 
     fn rand_init(&mut self, flag: bool)
     {
-        let mut a_v = [0x9e3779b9u32, ..8];
+        let mut a_v = [0x9e3779b9u32; 8];
 
         for _ in range(0u, 4) {
             // scramble it
@@ -158,7 +153,7 @@ impl Isaac {
 #[cfg(test)]
 mod test {
     use super::{Isaac, MSG, KEY};
-    const ENCRIPTED: [u8,..19] = [0x1C, 0x06, 0x36, 0x19, 0x0B, 0x12,
+    const ENCRIPTED: [u8; 19] = [0x1C, 0x06, 0x36, 0x19, 0x0B, 0x12,
         0x60, 0x23, 0x3B, 0x35, 0x12, 0x5F, 0x1E, 0x1D, 0x0E, 0x2F,
         0x4C, 0x54, 0x22];
 

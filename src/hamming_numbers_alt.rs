@@ -8,6 +8,9 @@ use hamming_numbers::{Hamming, HammingNumber};
 use num::pow;
 use num::traits::One;
 use num::bigint::{BigUint, ToBigUint};
+use std::ops::Mul;
+use std::cmp::Ordering;
+use std::cmp::Ordering::{Less, Equal, Greater};
 
 mod hamming_numbers;
 
@@ -37,7 +40,7 @@ pub const LN_5: f64 = 1.60943791243410037460075933322618763952560135426851772191
 // result as a BigUint only when we need it.
 // we also store the logarithm for quicker comparisons, using this property
 // of logarithms: ln(2^i * 3^j * 5^k) = i*ln2 + j*ln3 + k*ln5
-#[deriving(Show, Copy)]
+#[derive(Show, Copy)]
 pub struct HammingTriple {
     pow_2: uint,
     pow_3: uint,

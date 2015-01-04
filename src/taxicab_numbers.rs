@@ -1,10 +1,11 @@
 // http://rosettacode.org/wiki/Taxicab_numbers
 use std::collections::BinaryHeap;
 use std::num::Int;
+use std::cmp::Ordering;
 
 /// A type to represent a pair-sum of cubes.
 /// value = a^3 + b^3
-#[deriving(Copy, PartialEq, Eq)]
+#[derive(Copy, PartialEq, Eq)]
 struct SumCubes {
     a: u64,
     b: u64,
