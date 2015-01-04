@@ -7,7 +7,6 @@ extern crate test;
 
 use std::sync::Future;
 use prime_decomposition::factor;
-use std::sync::mpsc::channel;
 
 mod prime_decomposition;
 
@@ -22,6 +21,7 @@ fn min_factor(x: uint) -> uint {
 #[cfg(test)]
 fn largest_min_factor_chan(numbers: &[uint]) -> uint {
     use std::thread::Thread;
+    use std::sync::mpsc::channel;
 
     let (sender, receiver) = channel();
 

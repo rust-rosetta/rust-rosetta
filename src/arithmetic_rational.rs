@@ -6,7 +6,6 @@ use std::num::{Float, SignedInt};
 use std::fmt;
 use num::traits::{Zero, One};
 use std::cmp::Ordering;
-#[cfg(not(test))] use std::cmp::Ordering::{Less, Equal, Greater};
 use std::ops::{Add, Mul, Neg, Sub, Div};
 
 #[cfg(not(test))]

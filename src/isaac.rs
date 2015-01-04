@@ -1,7 +1,6 @@
 // http://rosettacode.org/wiki/The_ISAAC_Cipher
 // includes the XOR version of the encryption scheme
 #![feature(macro_rules)]
-extern crate ascii;
 use std::iter::range_step;
 
 const MSG :&'static str = "a Top Secret secret";
@@ -9,8 +8,6 @@ const KEY: &'static str = "this is my secret key";
 
 #[cfg(not(test))]
 fn main () {
-	use ascii::AsciiCast;
-
     let mut isaac = Isaac::new();
     isaac.seed(KEY, true);
     let encr = isaac.vernam(MSG.as_bytes());
@@ -27,9 +24,7 @@ fn main () {
     let decr = isaac.vernam(encr.as_slice());
 
     print!("\nXOR dcr: ");
-    for a in decr.iter() {
-        print!("{}", a.to_ascii());
-    }
+    println!("{}", String::from_utf8(decr).unwrap())
 }
 
 macro_rules! mix_v(

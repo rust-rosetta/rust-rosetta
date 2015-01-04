@@ -37,9 +37,6 @@ authors = [
     "Rootul Patel, https://github.com/rootulp"
 ]
 
-[dependencies.ascii]
-ascii = "*"
-
 [dependencies.collect]
 collect = "*"
 

@@ -11,9 +11,7 @@
 // publically exported code, the same as any user of the code.
 #![feature(globs)]
 
-use std::cmp::Ordering;
-#[cfg(not(test))] use std::cmp::Ordering::{Less, Equal};
-use std::cmp::Ordering::Greater;
+use std::cmp::Ordering::{self, Greater};
 
 #[cfg(not(test))]
 fn main() {
