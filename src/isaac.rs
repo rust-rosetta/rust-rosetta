@@ -72,10 +72,10 @@ impl Isaac {
         for i in range(0u, 256) {
             let x = self.mm[i];
             match i%4 {
-                0 => self.aa ^= (self.aa as uint << 13) as u32,
-                1 => self.aa ^= (self.aa as uint >>  6) as u32,
-                2 => self.aa ^= (self.aa as uint <<  2) as u32,
-                3 => self.aa ^= (self.aa as uint >> 16) as u32,
+                0 => self.aa ^= self.aa << 13,
+                1 => self.aa ^= self.aa >>  6,
+                2 => self.aa ^= self.aa <<  2,
+                3 => self.aa ^= self.aa >> 16,
                 _ => unreachable!()
             }
 

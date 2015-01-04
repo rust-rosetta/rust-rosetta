@@ -112,7 +112,7 @@ fn md5(initial_msg: &[u8]) -> MD5
                     (msg[j]   as u32)      |
                     (msg[j+1] as u32) <<8  |
                     (msg[j+2] as u32) <<16 |
-                     msg[j+3] as u32  <<24;
+                    (msg[j+3] as u32) <<24;
         }
 
         // Initialize hash value for this chunk:
