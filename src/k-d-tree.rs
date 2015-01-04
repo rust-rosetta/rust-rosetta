@@ -1,4 +1,5 @@
 // Implements http://rosettacode.org/wiki/K-d_tree
+#![feature(associated_types, default_type_params)]
 
 extern crate time;
 
@@ -15,7 +16,9 @@ struct Point {
     pub coords: Vec<f32>
 }
 
-impl<'a, 'b> Sub<&'b Point, Point> for &'a Point {
+impl<'a, 'b> Sub<&'b Point> for &'a Point {
+    type Output = Point;
+
     fn sub(self, rhs: &Point) -> Point {
         assert_eq!(self.coords.len(), rhs.coords.len());
         Point {coords: self.coords.iter().zip(rhs.coords.iter()).map(|(x, &y)| *x - y).collect()}

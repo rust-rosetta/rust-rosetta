@@ -1,4 +1,5 @@
 // Implements http://rosettacode.org/wiki/Letter_frequency
+#![feature(associated_types, default_type_params)]
 
 #[cfg(not(test))]
 use std::io::fs::File;
@@ -7,7 +8,9 @@ use std::io::BufferedReader;
 use std::collections::HashMap;
 use std::collections::hash_map::Entry::{Occupied, Vacant};
 
-fn count_chars<T: Iterator<char>>(mut chars: T) -> HashMap<char, uint> {
+fn count_chars<T>(mut chars: T) -> HashMap<char, uint>
+    where T : Iterator<Item=char>
+{
     let mut map: HashMap<char, uint> = HashMap::new();
     for letter in chars {
         match map.entry(letter) {

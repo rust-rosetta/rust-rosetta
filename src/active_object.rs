@@ -1,4 +1,5 @@
 // Implements http://rosettacode.org/wiki/Active_object
+#![feature(associated_types, default_type_params)]
 extern crate time;
 
 use std::num::{Float, FloatMath};
@@ -31,7 +32,7 @@ pub struct Integrator<S, T> {
 // function being integrated) must yield T (the type of the integrated value) when multiplied by
 // f64.  We could possibly replace f64 with a generic as well, but it would make things a bit more
 // complex.
-impl<S: Mul<f64, T> + Float,
+impl<S: Mul<f64, Output=T> + Float,
      T: Clone + Send + Float> Integrator<S, T> {
     pub fn new(frequency: Duration) -> Integrator<S, T> {
         // We create a pipe allowing functions to be sent from tx (the sending end) to input (the

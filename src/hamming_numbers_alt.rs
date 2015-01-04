@@ -2,6 +2,7 @@
 // alternate version: uses a more efficient representation of Hamming numbers:
 // instead of storing them as BigUint directly, it stores the three exponents
 // i, j and k for 2^i * 3^j * 5 ^k and the logarithm of the number for comparisons
+#![feature(associated_types, default_type_params)]
 extern crate num;
 
 use hamming_numbers::{Hamming, HammingNumber};
@@ -48,7 +49,8 @@ pub struct HammingTriple {
     ln: f64
 }
 
-impl Mul<HammingTriple, HammingTriple> for HammingTriple {
+impl Mul for HammingTriple {
+    type Output = HammingTriple;
     fn mul(self, other: HammingTriple) -> HammingTriple {
         HammingTriple{ pow_2: self.pow_2 + other.pow_2,
             pow_3: self.pow_3 + other.pow_3,

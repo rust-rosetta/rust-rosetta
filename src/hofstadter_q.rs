@@ -1,4 +1,5 @@
 // Implements an iterable version of http://rosettacode.org/wiki/Hofstadter_Q_sequence
+#![feature(associated_types)]
 
 // Define a struct which stores the state for the iterator.
 struct HofstadterQ {
@@ -14,7 +15,8 @@ impl HofstadterQ {
 }
 
 // Implement the hofstadter q iteration sequence.
-impl Iterator<uint> for HofstadterQ {
+impl Iterator for HofstadterQ {
+    type Item = uint;
     // This gets called to fetch the next item of the iterator.
     fn next(&mut self) -> Option<uint> {
         // Cache the current value.

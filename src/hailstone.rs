@@ -1,4 +1,5 @@
 // Implements http://rosettacode.org/wiki/Hailstone_sequence
+#![feature(associated_types)]
 
 // Define a struct which stores the state for the iterator.
 struct Hailstone {
@@ -14,7 +15,8 @@ impl Hailstone {
 }
 
 // Implement the hailstone iteration sequence.
-impl Iterator<uint> for Hailstone {
+impl Iterator for Hailstone {
+    type Item = uint;
     // This gets called to fetch the next item of the iterator.
     fn next(&mut self) -> Option<uint> {
         // We need to cache the current value.
