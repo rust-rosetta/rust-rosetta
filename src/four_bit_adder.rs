@@ -1,4 +1,7 @@
 // Implements http://rosettacode.org/wiki/Four_bit_adder
+#![feature(associated_types)]
+use std::ops::Deref;
+
 use std::{fmt, num};
 
 // primitive gates
@@ -24,10 +27,10 @@ fn full_adder(a: bool, b: bool, carry: bool) -> (bool, bool) {
   (s1, or(c0, c1))
 }
 
-#[deriving(Copy)]
-struct Nibble([bool,.. 4]);
+#[derive(Copy)]
+struct Nibble([bool; 4]);
 impl Nibble {
-  fn new(arr: [u8,.. 4]) -> Nibble {
+  fn new(arr: [u8; 4]) -> Nibble {
     Nibble([arr[0] != 0, arr[1] != 0, arr[2] != 0, arr[3] != 0])
   }
 
@@ -51,8 +54,10 @@ impl fmt::Show for Nibble {
 }
 
 // We implement Deref so we can index the Nibble easily
-impl<'a> Deref<[bool,.. 4]> for Nibble {
-  fn deref(&self) -> &[bool,.. 4] {
+impl<'a> Deref for Nibble {
+  type Target= [bool; 4];
+
+  fn deref(&self) -> &[bool; 4] {
     let Nibble(ref inner) = *self;
     inner
   }

@@ -2,6 +2,7 @@
 extern crate num;
 use num::{BigUint, One};
 use num::integer::Integer;
+use std::num::FromPrimitive;
 
 fn mod_exp<T: Integer + Clone>(mut a: T, mut b: T, m: T) -> T {
     let one: T = One::one();

@@ -115,7 +115,7 @@ struct RCSample<'a> {
 
 // Sample markow algorithms from rosetta code
 // The extra whitespaces are trimmed when MarkovAlgorithm::from_str is called
-fn get_samples<'a>() -> [RCSample<'a>, ..5] {
+fn get_samples<'a>() -> [RCSample<'a>; 5] {
     [
         RCSample {
             ruleset:

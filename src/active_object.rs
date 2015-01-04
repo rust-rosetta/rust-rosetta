@@ -7,6 +7,8 @@ use std::io::timer::Timer;
 use std::sync::{Arc, Mutex};
 use std::time::duration::Duration;
 use std::thread::Thread;
+use std::sync::mpsc::{channel, Sender, SendError};
+use std::ops::Mul;
 
 // Rust supports both shared-memory and actor models of concurrency, and the Integrator utilizes
 // both.  We use a Sender (actor model) to send the Integrator new functions, while we use a Mutex
@@ -69,14 +71,14 @@ impl<S: Mul<f64, T> + Float,
             let mut k_0: S = Float::zero();
             loop {
                 // Here's the selection we talked about above.  Note that we are careful to call
-                // the *non*-failing function, recv_opt(), here.  The reason we do this is because
-                // recv_opt() will return Err when the sending end of a channel is dropped.  While
+                // the *non*-failing function, recv(), here.  The reason we do this is because
+                // recv() will return Err when the sending end of a channel is dropped.  While
                 // this is unlikely to happen for the timer (so again, you could argue for failure
                 // there), it's normal behavior for the sending end of input to be dropped, since
                 // it just happens when the Integrator falls out of scope.  So we handle it cleanly
                 // and break out of the loop, rather than failing.
                 select! {
-                    res = periodic.recv_opt() => match res {
+                    res = periodic.recv() => match res {
                         Ok(_) => {
                             t += frequency_ms;
                             let k_1: S = k(t);
@@ -100,7 +102,7 @@ impl<S: Mul<f64, T> + Float,
                         }
                         Err(_) => break,
                     },
-                    res = input.recv_opt() => match res {
+                    res = input.recv() => match res {
                         Ok(k_new) => k = k_new,
                         Err(_) => break,
                     }
@@ -110,10 +112,10 @@ impl<S: Mul<f64, T> + Float,
         integrator
     }
 
-    pub fn input(&self, k: |i64|: Send -> S) -> Result<(), |i64|: Send -> S> {
+    pub fn input(&self, k: |i64|: Send -> S) -> Result<(), SendError<|i64|:Send -> S>> {
         // The meat of the work is done in the other thread, so to set the input we just send along
         // the Sender we set earlier...
-        self.input.send_opt(k)
+        self.input.send(k)
     }
 
     pub fn output(&self) -> T {

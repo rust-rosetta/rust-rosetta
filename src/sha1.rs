@@ -10,7 +10,7 @@ const SIZE: uint = 20;
 
 // The blocksize of SHA1 in bytes.
 const CHUNK:uint = 64;
-const INIT:[u32,..5] = [0x67452301,0xEFCDAB89, 0x98BADCFE, 0x10325476, 0xC3D2E1F0];
+const INIT:[u32; 5] = [0x67452301,0xEFCDAB89, 0x98BADCFE, 0x10325476, 0xC3D2E1F0];
 
 #[cfg(not(test))]
 fn main() {
@@ -25,8 +25,8 @@ fn main() {
 
 // digest represents the partial evaluation of a checksum.
 struct Digest {
-    h:      [u32, ..5],
-    x:      [u8, ..CHUNK],
+    h:      [u32; 5],
+    x:      [u8; CHUNK],
     nx:     uint,
     len:    u64
 }
@@ -35,16 +35,16 @@ impl Digest {
     fn new() -> Digest {
         Digest {
             h:  INIT,
-            x:  [0u8, ..CHUNK],
+            x:  [0u8; CHUNK],
             nx: 0u,
             len:0u64
         }
     }
 
-    fn sha1(&mut self) -> [u8,..SIZE] {
+    fn sha1(&mut self) -> [u8; SIZE] {
         let mut len = self.len;
         // Padding.  Add a 1 bit and 0 bits until 56 bytes mod 64.
-        let mut tmp : [u8,..64] = [0u8,..64];
+        let mut tmp : [u8; 64] = [0u8; 64];
         tmp[0] = 0x80u8;
 
         let m:uint=(len%64u64) as uint;
@@ -63,7 +63,7 @@ impl Digest {
 
         assert!(self.nx == 0);
 
-        let mut digest : [u8,..SIZE]=[0u8,..SIZE];
+        let mut digest : [u8; SIZE]=[0u8; SIZE];
         for (i, s) in self.h.iter().enumerate() {
             digest[i*4] = (*s >> 24) as u8;
             digest[i*4+1] = (*s >> 16) as u8;
@@ -73,15 +73,15 @@ impl Digest {
         digest
     }
 
-    fn process_block(&self, data:&[u8]) ->  [u32, ..5]{
-        let k:[u32,..4] = [0x5A827999, 0x6ED9EBA1, 0x8F1BBCDC, 0xCA62C1D6];
+    fn process_block(&self, data:&[u8]) ->  [u32; 5]{
+        let k:[u32; 4] = [0x5A827999, 0x6ED9EBA1, 0x8F1BBCDC, 0xCA62C1D6];
 
         #[inline]
         fn part(a: u32, b: u32) -> (u32, u32) {
             (a<<5 | a>>(32-5), b<<30 | b>>(32-30))
         }
 
-        let mut w :[u32, ..16] = [0u32, ..16];
+        let mut w :[u32; 16] = [0u32; 16];
 
         let (mut h0, mut h1, mut h2, mut h3, mut h4) =
             (self.h[0], self.h[1], self.h[2], self.h[3], self.h[4]);

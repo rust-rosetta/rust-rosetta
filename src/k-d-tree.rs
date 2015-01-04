@@ -7,8 +7,10 @@ use std::rand::Rng;
 use std::cmp::Ordering;
 #[cfg(not(test))]
 use time::get_time;
+use std::ops::Sub;
+use std::cmp::Ordering::Less;
 
-#[deriving(Clone, PartialEq, Show)]
+#[derive(Clone, PartialEq, Show)]
 struct Point {
     pub coords: Vec<f32>
 }

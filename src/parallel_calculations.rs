@@ -7,6 +7,7 @@ extern crate test;
 
 use std::sync::Future;
 use prime_decomposition::factor;
+use std::sync::mpsc::channel;
 
 mod prime_decomposition;
 
@@ -32,7 +33,7 @@ fn largest_min_factor_chan(numbers: &[uint]) -> uint {
 
     // Receive them and keep the largest one
     numbers.iter().fold(0u, |max, _| {
-        std::cmp::max(receiver.recv(), max)
+        std::cmp::max(receiver.recv().unwrap(), max)
     })
 }
 

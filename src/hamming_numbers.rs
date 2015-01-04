@@ -5,6 +5,7 @@ use num::traits::One;
 use num::one;
 use std::cmp::min;
 use std::collections::RingBuf;
+use std::ops::Mul;
 
 // needed because hamming_numbers_alt uses this as a library
 #[allow(dead_code)]

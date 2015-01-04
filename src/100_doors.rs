@@ -4,7 +4,7 @@ use std::iter::{Map, RangeInclusive, range_inclusive};
 
 type DoorIter = Map<u32, DoorState, RangeInclusive<u32>, fn(u32) -> DoorState>;
 
-#[deriving(Show, PartialEq)]
+#[derive(Show, PartialEq)]
 enum DoorState { Open, Closed, }
 
 // This is an example of returning an iterator, this allows the caller to

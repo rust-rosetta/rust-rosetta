@@ -11,13 +11,15 @@ use std::sync::atomic::AtomicBool;
 use std::sync::atomic;
 use std::sync::{Arc, Barrier};
 use std::thread::Thread;
+use std::sync::mpsc::channel;
+
 
 pub fn checkpoint() {
     const NUM_TASKS: uint = 10;
     const NUM_ITERATIONS: u8 = 10;
 
     let barrier = Barrier::new(NUM_TASKS);
-    let mut events: [AtomicBool, ..NUM_TASKS];
+    let mut events: [AtomicBool; NUM_TASKS];
     unsafe {
         // Unsafe because it's hard to initialize arrays whose type is not Clone.
         events = ::std::mem::uninitialized();
@@ -58,13 +60,13 @@ pub fn checkpoint() {
                 barrier.wait();
             }
             // Finish processing events.
-            tx.send(());
+            tx.send(()).unwrap();
         }).detach();
     }
     drop(tx);
     // The main thread will not exit until all tasks have exited.
     for _ in range(0, NUM_TASKS) {
-        rx.recv();
+        rx.recv().unwrap();
     }
 }
 

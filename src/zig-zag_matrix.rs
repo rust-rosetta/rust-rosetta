@@ -3,8 +3,10 @@
 // explained in the discussion page
 // http://rosettacode.org/wiki/Talk:Zig-zag_matrix
 use std::iter::repeat;
+use std::cmp::Ordering;
+use std::cmp::Ordering::{Less, Equal, Greater};
 
-#[deriving(Show, PartialEq, Eq)]
+#[derive(Show, PartialEq, Eq)]
 struct SortIndex {
     x:  uint,
     y:  uint

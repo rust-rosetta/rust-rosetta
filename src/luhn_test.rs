@@ -1,7 +1,7 @@
 // Implements http://rosettacode.org/wiki/Luhn_test_of_credit_card_numbers
 use std::iter::Unfold;
 
-#[deriving(Copy)]
+#[derive(Copy)]
 enum LuhnState { Even, Odd, }
 
 type Digits = Unfold<u64, u64, fn(&mut u64) -> Option<u64>>;

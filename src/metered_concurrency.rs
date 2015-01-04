@@ -9,6 +9,7 @@ use std::sync::atomic::AtomicUint;
 use std::sync::atomic;
 use std::time::duration::Duration;
 use std::thread::Thread;
+use std::sync::mpsc::channel;
 
 pub struct CountingSemaphore {
     count: AtomicUint, // Remaining resource count
@@ -88,13 +89,13 @@ fn metered(duration: Duration) {
             assert!(count <= MAX_COUNT);
             println!("Worker {} after release: count = {}", i, count);
             // Notify the main task of completion
-            tx.send(());
+            tx.send(()).unwrap();
         }).detach();
     }
     drop(tx);
     // Wait for all the subtasks to finish
     for _ in range(0, NUM_WORKERS) {
-        rx.recv();
+        rx.recv().unwrap();
     }
 }
 

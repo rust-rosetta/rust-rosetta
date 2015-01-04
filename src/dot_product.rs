@@ -3,6 +3,7 @@
 extern crate num;
 
 use num::traits::Zero; 
+use std::ops::Mul;
 
 fn dotp<T: Zero + Mul<T, T> + Copy>(this: &[T], other: &[T]) -> T {
   assert!(this.len() == other.len(), "The dimensions must be equal");

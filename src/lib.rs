@@ -14,7 +14,7 @@ fn main() { }
 mod test {
     use std::collections::HashSet;
     use std::io::BufferedReader;
-    use std::io::fs::{mod, File};
+    use std::io::fs::{self, File};
 
     // A test to check if all source files are covered by `Cargo.toml`
     #[test]

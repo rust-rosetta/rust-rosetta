@@ -118,7 +118,7 @@ mod test {
 
     #[test]
     fn empty() {
-        let mut arr: [int, ..0] = [];
+        let mut arr: [int; 0] = [];
         heap_sort(&mut arr);
         assert!(arr.is_empty());
     }

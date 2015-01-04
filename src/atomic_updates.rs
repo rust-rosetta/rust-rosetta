@@ -69,20 +69,20 @@ mod buckets {
     }
 
     pub struct Buckets {
-        buckets: [Bucket, .. N_BUCKETS ], // Buckets containing values to be transferred.
-        transfers: [AtomicUint, .. N_WORKERS ], // Statistics about total transfers this go-around.
+        buckets: [Bucket; N_BUCKETS ], // Buckets containing values to be transferred.
+        transfers: [AtomicUint; N_WORKERS ], // Statistics about total transfers this go-around.
     }
 
     impl Buckets {
         // Create a new Buckets instance.
-        pub fn new(buckets: [uint, .. N_BUCKETS]) -> Buckets {
+        pub fn new(buckets: [uint; N_BUCKETS]) -> Buckets {
             // The unsafe initialization here is required because Bucket is not Clone (it can't be,
             // since neither AtomicUint nor Mutex are) and we would otherwise have to literally
             // write out N_BUCKETS different values, which would be painful.  As a result, we have
             // to be careful not to allow any failure here, or we'll segfault (by Drop-ing empty
             // buckets).
-            let mut buckets_: [Bucket, .. N_BUCKETS] = unsafe { ::std::mem::uninitialized() };
-            let mut transfers: [AtomicUint, .. N_WORKERS] = unsafe { ::std::mem::uninitialized() };
+            let mut buckets_: [Bucket; N_BUCKETS] = unsafe { ::std::mem::uninitialized() };
+            let mut transfers: [AtomicUint; N_WORKERS] = unsafe { ::std::mem::uninitialized() };
             for (dest, &src) in buckets_.iter_mut().zip(buckets.iter()){
                 let bucket = Bucket { data: AtomicUint::new(src), mutex: Mutex::new(()) };
                 // If we don't use an unsafe write(), the uninitialized mutex in the bucket will be
@@ -140,11 +140,11 @@ mod buckets {
 
         // Acquire a consistent snapshot of the state of the bucket list.  This should maintain the
         // invariant that total buckets are conserved.  Also returns the list of transfer counts.
-        pub fn snapshot(&self) -> ([uint, .. N_BUCKETS], [uint, .. N_WORKERS ]) {
+        pub fn snapshot(&self) -> ([uint; N_BUCKETS], [uint; N_WORKERS ]) {
             // Since this method is called relatively rarely, we aren't too concerned about
             // performance here.
-            let mut buckets = [0, .. N_BUCKETS];
-            let mut transfers = [0, .. N_WORKERS];
+            let mut buckets = [0; N_BUCKETS];
+            let mut transfers = [0; N_WORKERS];
             // We collect all the locks in order, being careful not to drop any until we're done
             // (so as to preserve consistency of the snapshot).
             let locks = buckets.iter_mut().zip(self.buckets.iter()).map( |(dest, src)| {
@@ -168,7 +168,7 @@ mod buckets {
 
 // Convenience method to create a distribution of buckets summing to initial_sum.
 fn make_buckets(initial_sum: uint) -> buckets::Buckets {
-    let mut buckets = [0, .. buckets::N_BUCKETS];
+    let mut buckets = [0; buckets::N_BUCKETS];
     let mut dist = initial_sum;
     for (i, b) in buckets.as_mut_slice().iter_mut().enumerate() {
         let v = dist / (buckets::N_BUCKETS - i);

@@ -26,12 +26,12 @@ extern crate test;
 use arena::TypedArena;
 
 use std::io;
-use std::num::{mod, Float};
+use std::num::{self, Float};
 use self::SExp::*;
 use self::Error::*;
 use self::Token::*;
 
-#[deriving(PartialEq,Show,Copy)]
+#[derive(PartialEq,Show,Copy)]
 // The actual SExp structure.  Supports f64s, lists, and string literals.  Note that it takes
 // everything by reference, rather than owning it--this is mostly done just so we can allocate
 // SExps statically (since we don't have to call Vec).  It does complicate the code a bit,
@@ -43,7 +43,7 @@ enum SExp<'a> {
 }
 
 // Errors that can be thrown by the parser.
-#[deriving(PartialEq,Show)]
+#[derive(PartialEq,Show)]
 enum Error {
     NoReprForFloat, // If the float is NaN, Infinity, etc.
     UnterminatedStringLiteral, // Missing an end double quote during string parsing
@@ -54,7 +54,7 @@ enum Error {
 }
 
 // Tokens returned from the token stream.
-#[deriving(PartialEq, Copy)]
+#[derive(PartialEq, Copy)]
 enum Token<'a> {
     ListStart, // Left parenthesis
     ListEnd, // Right parenthesis
@@ -65,7 +65,7 @@ enum Token<'a> {
 // An iterator over a string that yields a stream of Tokens.
 // Implementation note: it probably seems weird to store first, rest, AND string, since they should
 // all be derivable from string.  But see below.
-#[deriving(Copy)]
+#[derive(Copy)]
 struct Tokens<'a> {
     string: &'a str, // The part of the string that still needs to be parsed
     first: Option<char>, // The first character to parse
