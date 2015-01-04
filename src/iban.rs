@@ -47,19 +47,19 @@ fn is_valid(iban: &str) -> bool {
 
 // Returns a BigInt made from the digits and letters of the IBAN
 fn parse_digits(chars: &[char]) -> Option<BigInt> {
-	let mut vec: Vec<u8> = Vec::with_capacity(chars.len() + 10);	
+    let mut vec: Vec<u8> = Vec::with_capacity(chars.len() + 10);
 
     // Copy the digits to the vector and expand the letters to digits
-	for &c in chars.iter() {
-		match c.to_digit(36) {
-			Some(d)	=> vec.extend(d.to_string().bytes()),
-			None    => return None
-		}		
-	}
-	let as_str = String::from_utf8(vec).unwrap(); // since it was built
-		 // from digits we know the vec is all made of valid utf8, so we
-		 // can just unwrap()
-	as_str.parse::<BigInt>()
+    for &c in chars.iter() {
+        match c.to_digit(36) {
+            Some(d)	=> vec.extend(d.to_string().bytes()),
+            None    => return None
+        }
+    }
+    let as_str = String::from_utf8(vec).unwrap(); // since it was built
+        // from digits we know the vec is all made of valid utf8, so we
+        // can just unwrap()
+    as_str.parse::<BigInt>()
 }
 
 fn country_length(country_code: &str) -> Option<uint> {

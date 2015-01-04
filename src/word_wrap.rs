@@ -4,6 +4,7 @@
 // http://en.wikipedia.org/wiki/Word_wrap#Minimum_length
 
 // Implemented as a lazy String iterator, returning a wrapped line each time
+#![feature(associated_types)]
 
 use std::str::Words;
 use std::mem::swap;
@@ -24,7 +25,9 @@ impl<'a> WordWrap<'a> {
     }
 }
 
-impl<'a> Iterator<String> for WordWrap<'a> {
+impl<'a> Iterator for WordWrap<'a> {
+    type Item = String;
+
     fn next(&mut self) -> Option<String> {
         // Move anything left over from last run to this_line
         let mut this_line = String::new();

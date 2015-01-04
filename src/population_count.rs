@@ -1,10 +1,11 @@
 // http://rosettacode.org/wiki/Population_count
+#![feature(associated_types, default_type_params)]
 use std::iter::{count, Filter, Counter, Map};
 use std::num::Int;
 
 #[cfg(not(test))]
 fn main() {
-    fn print_30<T: Iterator<uint>>(it: T) {
+    fn print_30<T: Iterator<Item=uint>>(it: T) {
         for i in it.take(30) { print!("{} " , i); }
     }
 

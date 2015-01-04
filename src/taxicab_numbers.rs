@@ -1,4 +1,6 @@
 // http://rosettacode.org/wiki/Taxicab_numbers
+#![feature(associated_types)]
+
 use std::collections::BinaryHeap;
 use std::num::Int;
 use std::cmp::Ordering;
@@ -46,7 +48,9 @@ impl TaxicabNumbers {
     }
 }
 
-impl Iterator<Vec<SumCubes>> for TaxicabNumbers {
+impl Iterator for TaxicabNumbers {
+    type Item = Vec<SumCubes>;
+
     fn next(&mut self) -> Option<Vec<SumCubes>> {
         let mut ways = Vec::new();      // All the ways we can express the current
                                         // value as a sum of cubes

@@ -1,4 +1,7 @@
 // Implements http://rosettacode.org/wiki/Basic_bitmap_storage
+#![feature(associated_types)]
+#![allow(unused_attributes)]
+
 use std::default::Default;
 use std::io::{File, BufferedWriter, IoResult};
 use std::ops::{Index, IndexMut};
@@ -46,13 +49,17 @@ impl Image {
     }
 }
 
-impl Index<(uint, uint), Color> for Image {
+impl Index<(uint, uint)> for Image {
+    type Output=Color;
+
     fn index<'a>(&'a self, &(x, y): &(uint, uint)) -> &'a Color {
         &self.data[x + y*self.width]
     }
 }
 
-impl IndexMut<(uint, uint), Color> for Image {
+impl IndexMut<(uint, uint)> for Image {
+    type Output=Color;
+
     fn index_mut<'a>(&'a mut self, &(x, y): &(uint, uint)) -> &'a mut Color {
         & mut self.data[x + y*self.width]
     }

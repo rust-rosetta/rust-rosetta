@@ -9,8 +9,7 @@
 // We use a glob import in our test module. Seperating tests into a seperate
 // module enforces visibility restrictions so the test module can only access
 // publically exported code, the same as any user of the code.
-#![feature(globs)]
-
+#![feature(globs, associated_types)]
 use std::cmp::Ordering::{self, Greater};
 
 #[cfg(not(test))]
@@ -127,7 +126,9 @@ impl <'a> Lexer<'a> {
     }
 }
 
-impl <'a> Iterator<Token> for Lexer<'a> {
+impl <'a> Iterator for Lexer<'a> {
+    type Item = Token;
+
     fn next(&mut self) -> Option<Token> {
         // slice the original string starting from the current offset
         let mut remaining = self.input.slice_from(self.offset)

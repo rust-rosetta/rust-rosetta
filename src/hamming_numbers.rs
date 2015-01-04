@@ -1,4 +1,9 @@
 // http://rosettacode.org/wiki/Hamming_numbers
+#![feature(associated_types, default_type_params)]
+#![allow(unused_attributes)] // needed for the feature gates above
+ // (when hamming_numbers is used as a mod in hamming_numbers it's no longer
+ // the root of the crate and rustc complains about unused attributes)
+
 extern crate num;
 use num::bigint::{BigUint, ToBigUint};
 use num::traits::One;
@@ -36,7 +41,7 @@ impl HammingNumber for BigUint {
 /// representation of a Hamming number
 /// allows to abstract on how the hamming number is stored
 /// i.e. as BigUint directly or just as the powers of 2, 3 and 5 used to build it
-pub trait HammingNumber : Eq + Ord + ToBigUint + Mul<Self, Self> + One + Clone {
+pub trait HammingNumber : Eq + Ord + ToBigUint + Mul<Output=Self> + One + Clone {
     fn multipliers() -> (Self, Self, Self);
 }
 
@@ -78,7 +83,8 @@ impl<T: HammingNumber> Hamming<T> {
 }
 
 // Implements the `Iterator` trait, so we can generate Hamming numbers lazily
-impl<T: HammingNumber> Iterator<T> for Hamming<T> {
+impl<T: HammingNumber> Iterator for Hamming<T> {
+    type Item = T;
     // The core of the work is done in the `next` method.
     // We check which of the 3 queues has the lowest candidate and extract it
     // as the next Hamming number.

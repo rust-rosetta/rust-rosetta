@@ -1,4 +1,6 @@
 //http://rosettacode.org/wiki/Function_definition
+#![feature(associated_types, default_type_params)]
+
 use std::ops::Mul;
 
 // Function taking 2 ints, multply them and return the value
@@ -11,7 +13,7 @@ fn multiply(x: int, y: int) -> int
 }
 
 //generic version of multiply
-fn multiply_gen<T: Mul<T, T>>(x: T, y: T) -> T
+fn multiply_gen<T: Mul<Output=T>>(x: T, y: T) -> T
 {
   x * y
 }
