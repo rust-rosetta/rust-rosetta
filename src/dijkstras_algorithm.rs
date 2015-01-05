@@ -63,10 +63,10 @@ impl<'a> Graph<'a> {
         let from_idx = self.get_or_insert_vertex(from);
         let to_idx = self.get_or_insert_vertex(to);
 
-        match self.costs.entry((from_idx, to_idx)) {
+        match self.costs.entry(&(from_idx, to_idx)) {
             Vacant(entry)   => {
                 self.adj_list[from_idx].push(to_idx);
-                entry.set(cost);
+                entry.insert(cost);
             },
             Occupied(entry) => {
                 *entry.into_mut() = cost;
@@ -110,8 +110,8 @@ impl<'a> Graph<'a> {
                         };
                         let alt = dist_u + cost_uv;
                         if alt < dist[v] {
-                            match prev.entry(v) {
-                                Vacant(entry) => {entry.set(u);},
+                            match prev.entry(&v) {
+                                Vacant(entry) => {entry.insert(u);},
                                 Occupied(entry) => {
                                     *entry.into_mut() = u;
                                 }

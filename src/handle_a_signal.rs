@@ -12,8 +12,7 @@ fn main()
     use libc::funcs::posix01::signal;
     use std::io::timer::Timer;
     use std::mem;
-    use std::sync::atomic::{AtomicBool, ATOMIC_BOOL_INIT};
-    use std::sync::atomic;
+    use std::sync::atomic::{AtomicBool, Ordering, ATOMIC_BOOL_INIT};
     use std::time::duration::Duration;
 
     // The time between ticks of our counter.
@@ -23,12 +22,12 @@ fn main()
     static mut GOT_SIGINT: AtomicBool = ATOMIC_BOOL_INIT;
     unsafe {
         // Initially, "SIGINT received" is false.
-        GOT_SIGINT.store(false, atomic::Release);
+        GOT_SIGINT.store(false, Ordering::Release);
         // Interrupt handler that handles the SIGINT signal
         unsafe fn handle_sigint() {
             // It is dangerous to perform any system calls in interrupts, so just set the atomic
             // "SIGINT received" global to true when it arrives.
-            GOT_SIGINT.store(true, atomic::Release);
+            GOT_SIGINT.store(true, Ordering::Release);
         }
         // Make handle_sigint the signal handler for SIGINT.
         signal::signal(SIGINT, mem::transmute(handle_sigint));
@@ -41,7 +40,7 @@ fn main()
     // Every `duration`...
     for _ in periodic.iter() {
         // Break if SIGINT was handled
-        if unsafe { GOT_SIGINT.load(atomic::Acquire) } { break }
+        if unsafe { GOT_SIGINT.load(Ordering::Acquire) } { break }
         // Otherwise, increment and display the integer and continue the loop.
         i += 1;
         println!("{}", i);

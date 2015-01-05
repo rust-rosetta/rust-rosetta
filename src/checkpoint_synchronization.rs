@@ -7,8 +7,7 @@
 // can be used to allow threads to do asynchronous work and guarantee properties
 // at checkpoints.
 
-use std::sync::atomic::AtomicBool;
-use std::sync::atomic;
+use std::sync::atomic::{AtomicBool, Ordering};
 use std::sync::{Arc, Barrier};
 use std::thread::Thread;
 use std::sync::mpsc::channel;
@@ -43,19 +42,19 @@ pub fn checkpoint() {
             // Start processing events
             for _ in range(0, NUM_ITERATIONS) {
                 // Between checkpoints 4 and 1, turn this task's event on.
-                event.store(true, atomic::Release);
+                event.store(true, Ordering::Release);
                 // Checkpoint 1
                 barrier.wait();
                 // Between checkpoints 1 and 2, all events are on.
-                assert!(events.iter().all( |e| e.load(atomic::Acquire) ));
+                assert!(events.iter().all( |e| e.load(Ordering::Acquire) ));
                 // Checkpoint 2
                 barrier.wait();
                 // Between checkpoints 2 and 3, turn this task's event off.
-                event.store(false, atomic::Release);
+                event.store(false, Ordering::Release);
                 // Checkpoint 3
                 barrier.wait();
                 // Between checkpoints 3 and 4, all events are off.
-                assert!(events.iter().all( |e| !e.load(atomic::Acquire) ));
+                assert!(events.iter().all( |e| !e.load(Ordering::Acquire) ));
                 // Checkpoint 4
                 barrier.wait();
             }
