@@ -1,10 +1,9 @@
 // Dummy main library
 // It also contains a test module, which checks if all source files are covered by `Cargo.toml`
 
-#![feature(phase, slicing_syntax)]
+#![feature(slicing_syntax)]
 
 extern crate regex;
-#[phase(plugin)] extern crate regex_macros;
 
 #[allow(dead_code)]
 #[cfg(not(test))]
@@ -43,9 +42,11 @@ mod test {
 
     // Returns the paths of the source files referenced in Cargo.toml
     fn get_toml_paths() -> HashSet<String> {
+        use regex::Regex;
+
         let c_toml = File::open(&Path::new("./Cargo.toml")).unwrap();
         let mut reader = BufferedReader::new(c_toml);
-        let regex = regex!("path = \"(.*)\"");
+        let regex = Regex::new("path = \"(.*)\"").unwrap();
         reader.lines().filter_map(|l| {
             let l = l.unwrap();
             regex.captures(l[]).map(|c| c.at(1).map(|s| Path::new(s))
