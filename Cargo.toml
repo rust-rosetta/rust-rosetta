@@ -46,6 +46,9 @@ num = "*"
 [dependencies.regex]
 regex = "*"
 
+[dependencies.regex_macros]
+regex_macros = "*"
+
 [dependencies.time]
 time = "*"
 
