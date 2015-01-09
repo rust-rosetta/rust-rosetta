@@ -185,6 +185,6 @@ fn known_hashes() {
 
     for &(i,o) in in_out.iter() {
         let m=md5(i);
-        assert_eq!(format!("{}", m), o.to_string());
+        assert_eq!(format!("{:?}", m), o.to_string());
     }
 }

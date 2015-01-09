@@ -50,7 +50,7 @@ mod test {
         let regex = regex!("path = \"(.*)\"");
         reader.lines().filter_map(|l| {
             let l = l.unwrap();
-            regex.captures(l[]).map(|c| c.at(1).map(|s| Path::new(s))
+            regex.captures(&l[]).map(|c| c.at(1).map(|s| Path::new(s))
                                                .unwrap()
                                                .filename_str()
                                                .unwrap()

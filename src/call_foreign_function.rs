@@ -10,11 +10,23 @@ extern "C" {
     fn strcmp(a: *const c_char, b: *const c_char) -> isize;
 }
 
+#[cfg(not(test))]
+fn main() {
+    let a = CString::from_slice(b"a");
+    let b = CString::from_slice(b"b");
+
+    println!("{}", unsafe {
+        strcmp(a.as_ptr(), b.as_ptr())
+    });
+}
+
 #[cfg(test)]
 #[test]
 fn test_strcmp() {
     let a = CString::from_slice(b"a");
     let b = CString::from_slice(b"b");
 
-    assert_eq!(strcmp(a.as_ptr(), b.as_ptr()), -1);
+    assert_eq!(unsafe {
+        strcmp(a.as_ptr(), b.as_ptr())
+    }, -1);
 }
