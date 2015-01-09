@@ -15,7 +15,7 @@ fn main() {
     let test_sentences = ["The quick brown fox jumps over the lazy dog.",
                           "The quick brown frog jumps over the lazy dog."];
     for &sentence in test_sentences.iter() {
-        println!("\"{}\" {} a pangram", sentence,
+        println!("\"{:?}\" {:?} a pangram", sentence,
                  if is_pangram(sentence) { "is" } else { "is not" });
     }
 }

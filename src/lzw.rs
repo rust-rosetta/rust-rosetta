@@ -69,15 +69,15 @@ fn decompress(compressed: &Vec<int>) -> String {
 fn main() {
     // Show original
     let original = "TOBEORNOTTOBEORTOBEORNOT";
-    println!("Original: {}", original);
+    println!("Original: {:?}", original);
 
     // Show compressed
     let compressed = compress(original);
-    println!("Compressed: {}", compressed);
+    println!("Compressed: {:?}", compressed);
 
     // Show decompressed
     let decompressed = decompress(&compressed);
-    println!("Decompressed: {}", decompressed);
+    println!("Decompressed: {:?}", decompressed);
 }
 
 #[test]

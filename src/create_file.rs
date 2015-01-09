@@ -18,7 +18,7 @@ fn main () {
     // Now we are handling a possible error by using pattern matching
     match writeln!(&mut new_file as &mut Writer, "Nothing here...") {
         Ok(()) => (),
-        Err(e) => println!("Failed to write to file: {}", e),
+        Err(e) => println!("Failed to write to file: {:?}", e),
     }
 
     // Create a directory. Here we handle a possible error by using
@@ -26,7 +26,7 @@ fn main () {
     // file permissions
     let result = fs::mkdir(&Path::new("build/docs"), io::USER_RWX);
     if result.is_err() {
-        println!("Failed to create a directory: {}", result.err().unwrap());
+        println!("Failed to create a directory: {:?}", result.err().unwrap());
     }
 }
 
@@ -47,7 +47,7 @@ fn test_create_file() {
     }
     match File::create(&file_path) {
         Ok(_) => assert!(true),
-        Err(e) => panic!("failed to create_file at {}, error: {}",
+        Err(e) => panic!("failed to create_file at {:?}, error: {:?}",
                         file_path.display(),
                         e.desc)
     }

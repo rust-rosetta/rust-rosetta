@@ -13,10 +13,10 @@ use test::Bencher;
 #[cfg(not(test))]
 fn main() {
     for num in range(0i32, 16) {
-        println!("Sequential: {}: {}", num, n_queens(num));
+        println!("Sequential: {:?}: {:?}", num, n_queens(num));
     }
     for num in range(0i32, 16) {
-        println!("Parallel: {}: {}", num, semi_parallel_n_queens(num));
+        println!("Parallel: {:?}: {:?}", num, semi_parallel_n_queens(num));
     }
 }
 
@@ -30,9 +30,9 @@ fn main() {
 
 // Solves n-queens using a depth-first, backtracking solution.
 // Returns the number of solutions for a given n.
-fn n_queens(n: i32) -> uint {
+fn n_queens(n: i32) -> usize {
     // Pass off to our helper function.
-    return n_queens_helper((1 << n as uint) -1, 0, 0, 0);
+    return n_queens_helper((1 << n as usize) -1, 0, 0, 0);
 }
 
 // The meat of the algorithm is in here, a recursive helper function
@@ -54,7 +54,7 @@ fn n_queens(n: i32) -> uint {
 //
 // This implementation is optimized for speed and memory by using
 // integers and bit shifting instead of arrays for storing the conflicts.
-fn n_queens_helper(all_ones: i32, left_diags: i32, columns: i32, right_diags: i32) -> uint {
+fn n_queens_helper(all_ones: i32, left_diags: i32, columns: i32, right_diags: i32) -> usize {
     // all_ones is a special value that simply has all 1s in the first n positions
     // and 0s elsewhere. We can use it to clear out areas that we don't care about.
 
@@ -102,7 +102,7 @@ fn n_queens_helper(all_ones: i32, left_diags: i32, columns: i32, right_diags: i3
 
     // If columns is all blocked (i.e. if it is all ones) then we
     // have arrived at a solution because we have placed n queens.
-    solutions + ((columns == all_ones) as uint)
+    solutions + ((columns == all_ones) as usize)
 }
 
 // This is the same as the regular nQueens except it creates
@@ -110,8 +110,8 @@ fn n_queens_helper(all_ones: i32, left_diags: i32, columns: i32, right_diags: i3
 //
 // This is much slower for smaller numbers (under 16~17) but outperforms
 // the sequential algorithm after that.
-fn semi_parallel_n_queens(n: i32) -> uint {
-    let all_ones = (1 << n as uint) - 1;
+fn semi_parallel_n_queens(n: i32) -> usize {
+    let all_ones = (1 << n as usize) - 1;
     let (columns, left_diags, right_diags) = (0, 0, 0);
 
     let mut receivers = Vec::new();
@@ -127,10 +127,10 @@ fn semi_parallel_n_queens(n: i32) -> uint {
                                     (left_diags | spot) << 1,
                                     (columns | spot),
                                     (right_diags | spot) >> 1)).unwrap();
-        }).detach();
+        });
     }
 
-    receivers.iter().map(|r| r.recv().unwrap()).sum() + ((columns == all_ones) as uint)
+    receivers.iter().map(|r| r.recv().unwrap()).sum() + ((columns == all_ones) as usize)
 }
 
 // Tests
@@ -139,7 +139,7 @@ fn semi_parallel_n_queens(n: i32) -> uint {
 fn test_n_queens() {
     let real = vec!(1, 1, 0, 0, 2, 10, 4, 40, 92u);
     for num in range(0, 9i32) {
-        assert_eq!(n_queens(num), real[num as uint]);
+        assert_eq!(n_queens(num), real[num as usize]);
     }
 }
 
@@ -147,7 +147,7 @@ fn test_n_queens() {
 fn test_parallel_n_queens() {
     let real = vec!(1, 1, 0, 0, 2, 10, 4, 40, 92u);
     for num in range(0, 9i32) {
-        assert_eq!(semi_parallel_n_queens(num), real[num as uint]);
+        assert_eq!(semi_parallel_n_queens(num), real[num as usize]);
     }
 }
 

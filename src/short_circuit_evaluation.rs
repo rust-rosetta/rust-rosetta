@@ -15,8 +15,8 @@ fn main() {
 
     for &i in booleans.iter() {
         for &j in booleans.iter() {
-            println!("{} and {} is {}", i, j, a(i) && b(j));
-            println!("{} or {} is {}", i, j, a(i) || b(j));
+            println!("{:?} and {:?} is {:?}", i, j, a(i) && b(j));
+            println!("{:?} or {:?} is {:?}", i, j, a(i) || b(j));
         }
     }
 }

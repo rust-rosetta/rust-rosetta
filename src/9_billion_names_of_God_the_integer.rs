@@ -20,7 +20,7 @@ impl Solver {
     }
 
     // Returns a string representing a line
-    pub fn row_string(&mut self, idx: uint) -> String {
+    pub fn row_string(&mut self, idx: usize) -> String {
         let r = self.cumulative(idx);
 
         range(0, idx).map(|i| &r[i+1] - &r[i])
@@ -30,12 +30,12 @@ impl Solver {
     }
 
     // Convenience method to access the last column in a culmulated calculation
-    pub fn row_sum(&mut self, idx: uint) -> &BigUint {
+    pub fn row_sum(&mut self, idx: usize) -> &BigUint {
         // This can never fail as we always add zero or one, so it's never empty.
         self.cumulative(idx).last().unwrap()
     }
 
-    fn cumulative(&mut self, idx: uint) -> &[BigUint] {
+    fn cumulative(&mut self, idx: usize) -> &[BigUint] {
         for l in range_inclusive(self.cache.len(), idx) {
             let mut r : Vec<BigUint> = vec![Zero::zero()];
 
@@ -59,13 +59,13 @@ fn main() {
     let mut solver = Solver::new();
 
     println!("rows");
-    for n in range(1u, 11) {
-        println!("{}: {}", n, solver.row_string(n));
+    for n in range(1us, 11) {
+        println!("{:?}: {:?}", n, solver.row_string(n));
     }
 
     println!("sums");
-    for &y in [23u, 123, 1234, 12345].iter() {
-        println!("{}: {}", y, solver.row_sum(y));
+    for &y in [23us, 123, 1234, 12345].iter() {
+        println!("{:?}: {:?}", y, solver.row_sum(y));
     }
 }
 
@@ -77,7 +77,7 @@ mod test {
     #[test]
     fn test_cumulative() {
         let mut solver = Solver::new();
-        let mut t = |&mut: n: uint, expected: &str| {
+        let mut t = |&mut: n: usize, expected: &str| {
             assert_eq!(solver.row_sum(n), &expected.parse::<BigUint>().unwrap());
         };
 
@@ -90,7 +90,7 @@ mod test {
     #[test]
     fn test_row() {
         let mut solver = Solver::new();
-        let mut t = |&mut: n: uint, expected: &str| {
+        let mut t = |&mut: n: usize, expected: &str| {
             assert_eq!(solver.row_string(n), expected);
         };
 

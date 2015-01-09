@@ -4,8 +4,8 @@
 use std::vec::Vec;
 use std::slice::Iter;
 
-// If set == {}
-//   return {{}}
+// If set == {:?}
+//   return {{:?}}
 // else if set == {a} U rest
 //   return power_set(rest) U ({a} U each set in power_set(rest))
 fn power_set<'a, T: Clone + 'a>(items: &mut Iter<'a,T>) -> Vec<Vec<T>> {
@@ -46,6 +46,6 @@ fn main() {
     set.push(3);
     set.push(4);
     let power = power_set(&mut set.iter());
-    println!("Set      : {}", set);
-    println!("Power Set: {}", power);
+    println!("Set      : {:?}", set);
+    println!("Power Set: {:?}", power);
 }

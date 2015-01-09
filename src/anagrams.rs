@@ -19,7 +19,7 @@ fn anagrams<T: Iterator<Item=String>>(mut lines: T) -> HashMap<String, HashSet<S
     for line in lines {
         let s = line.trim();
         let sorted = sorted_characters(s);
-        let set = match groups.entry(&sorted) {
+        let set = match groups.entry(sorted) {
             Vacant(entry) => entry.insert(HashSet::new()), // Insert new set if not found
             Occupied(entry) => entry.into_mut(),
         };
@@ -56,7 +56,7 @@ fn main () {
     // Print the words in the largest groups of anagrams
     for (_, group) in largest_groups.iter() {
         for word in group.iter() {
-            print!("{} ", word)
+            print!("{:?} ", word)
         }
         println!("")
     }

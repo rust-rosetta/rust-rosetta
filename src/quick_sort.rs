@@ -24,7 +24,7 @@ fn quick_sort<T: Ord>(v: &mut[T]) {
 // Reorders the slice with values lower than the pivot at the left side,
 // and values bigger than it at the right side.
 // Also returns the store index.
-fn partition<T: Ord>(v: &mut [T]) -> uint {
+fn partition<T: Ord>(v: &mut [T]) -> usize {
     let len = v.len();
     let pivot_index = len / 2;
 
@@ -46,17 +46,17 @@ fn partition<T: Ord>(v: &mut [T]) -> uint {
 fn main() {
     // Sort numbers
     let mut numbers = [4i, 65, 2, -31, 0, 99, 2, 83, 782, 1];
-    println!("Before: {}", numbers);
+    println!("Before: {:?}", numbers);
 
     quick_sort(&mut numbers);
-    println!("After: {}", numbers);
+    println!("After: {:?}", numbers);
 
     // Sort strings
     let mut strings = ["beach", "hotel", "airplane", "car", "house", "art"];
-    println!("Before: {}", strings);
+    println!("Before: {:?}", strings);
 
     quick_sort(&mut strings);
-    println!("After: {}", strings);
+    println!("After: {:?}", strings);
 }
 
 #[cfg(test)]

@@ -10,6 +10,6 @@ fn main() {
             false => "does not exist"
         };
 
-        println!("{} {}.", path.display(), msg);
+        println!("{:?} {:?}.", path.display(), msg);
     }
 }

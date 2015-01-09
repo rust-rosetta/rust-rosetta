@@ -23,9 +23,9 @@ fn main() {
     let set2 = &[90., 180., 270., 360.];
     let set3 = &[10., 20., 30.];
 
-    println!("Mean angle of first set is {} degrees", mean_angle(set1));
-    println!("Mean angle of second set is {} degrees", mean_angle(set2));
-    println!("Mean angle of third set is {} degrees", mean_angle(set3));
+    println!("Mean angle of first set is {:?} degrees", mean_angle(set1));
+    println!("Mean angle of second set is {:?} degrees", mean_angle(set2));
+    println!("Mean angle of third set is {:?} degrees", mean_angle(set3));
 }
 
 #[test]

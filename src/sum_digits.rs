@@ -1,6 +1,6 @@
 // Implements http://rosettacode.org/wiki/Sum_digits_of_an_integer
 
-fn sum(n: uint, base: uint) -> uint {
+fn sum(n: usize, base: usize) -> usize {
     let mut total = 0;
     let mut n = n;
     while n != 0 {

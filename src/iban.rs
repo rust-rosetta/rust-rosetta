@@ -30,7 +30,7 @@ fn is_valid(iban: &str) -> bool {
     };
 
     // Rearrange (first four characters go to the back)
-    for _ in range(0u, 4) {
+    for _ in range(0us, 4) {
         let front = iban_chars.remove(0);
         iban_chars.push(front);
     }
@@ -62,7 +62,7 @@ fn parse_digits(chars: &[char]) -> Option<BigInt> {
     as_str.parse::<BigInt>()
 }
 
-fn country_length(country_code: &str) -> Option<uint> {
+fn country_length(country_code: &str) -> Option<usize> {
     let countries = [
         ("AL", 28),
         ("AD", 24),

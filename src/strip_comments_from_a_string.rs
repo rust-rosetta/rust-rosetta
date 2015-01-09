@@ -24,6 +24,6 @@ fn main() {
                   "  apples, pears "];
 
     for &input in inputs.iter() {
-        println!("Input: {}\nStripped: {}", input, strip_comments(input))
+        println!("Input: {:?}\nStripped: {:?}", input, strip_comments(input))
     }
 }

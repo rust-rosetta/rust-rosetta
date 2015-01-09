@@ -5,7 +5,7 @@ use std::num::Float;
 #[cfg(not(test))]
 fn main() {
     let target = 78i;
-    println!("Factors of integer {}:", target);
+    println!("Factors of integer {:?}:", target);
     let factors = factor_int(target);
     
     for f in factors.iter() {

@@ -12,8 +12,8 @@ use std::iter::repeat;
 struct Want<'a> {
     #[allow(dead_code)]
     name: &'a str,
-    weight: uint,
-    value: uint
+    weight: usize,
+    value: usize
 }
 
 // Global, immutable allocation of our items. This is so we can reference
@@ -46,16 +46,16 @@ const ITEMS: &'static [Want<'static>] = &[
 // This is a bottom-up dynamic programming solution to the 0-1 knap-sack problem.
 //      maximize value
 //      subject to weights <= max_weight
-fn knap_01_dp<'a>(xs: &[Want<'a>], max_weight: uint) -> Vec<Want<'a>> {
+fn knap_01_dp<'a>(xs: &[Want<'a>], max_weight: usize) -> Vec<Want<'a>> {
 
     // Save this value, so we don't have to make repeated calls.
     let xs_len = xs.len();
 
     // Imagine we wrote a recursive function(item, max_weight) that returns a
-    // uint corresponding to the maximum cumulative value by considering a
+    // usize corresponding to the maximum cumulative value by considering a
     // subset of items such that the combined weight <= max_weight.
     //
-    // fn best_value(item: uint, max_weight: uint) -> uint{
+    // fn best_value(item: usize, max_weight: usize) -> usize{
     //     if item == 0 {
     //         return 0;
     //     }
@@ -79,8 +79,8 @@ fn knap_01_dp<'a>(xs: &[Want<'a>], max_weight: uint) -> Vec<Want<'a>> {
     // In a similar vein, the top-down solution would be to memoize the
     // function then compute the results on demand.
 
-    let zero_vec: Vec<uint> = repeat(0u).take(max_weight + 1).collect();
-    let mut best_value: Vec<Vec<uint>> = repeat(zero_vec)
+    let zero_vec: Vec<usize> = repeat(0us).take(max_weight + 1).collect();
+    let mut best_value: Vec<Vec<usize>> = repeat(zero_vec)
 		.take(xs_len + 1).collect();
 
     // loop over the items
@@ -132,16 +132,16 @@ fn main () {
     // Print the items. We have to reverse the order because we solved the
     // problem backward.
     for i in xs.iter().rev() {
-        println!("Item: {}, Weight: {}, Value: {}", i.name, i.weight, i.value);
+        println!("Item: {:?}, Weight: {:?}, Value: {:?}", i.name, i.weight, i.value);
     }
 
     // Print the sum of weights.
     let weights = xs.iter().fold(0, |a, &b| a + b.weight);
-    println!("Total Weight: {}", weights);
+    println!("Total Weight: {:?}", weights);
 
     // Print the sum of the values.
     let values = xs.iter().fold(0, |a, &b| a + b.value);
-    println!("Total Value: {}", values);
+    println!("Total Value: {:?}", values);
 
 }
 

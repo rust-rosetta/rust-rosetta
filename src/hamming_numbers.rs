@@ -16,8 +16,8 @@ fn main() {
 
     for (idx, h) in hamming.enumerate().take(1_000_000) {
         match idx + 1 {
-            1...20 => print!("{} ", h.to_biguint().unwrap()),
-            i @ 1691 | i @ 1000000 => println!("\n{}th number: {}", i, h.to_biguint().unwrap()),
+            1...20 => print!("{:?} ", h.to_biguint().unwrap()),
+            i @ 1691 | i @ 1000000 => println!("\n{:?}th number: {:?}", i, h.to_biguint().unwrap()),
             _ =>  continue
         }
     }
@@ -54,7 +54,7 @@ pub struct Hamming<T> {
 impl<T: HammingNumber> Hamming<T> {
     /// Static constructor method
     /// `n` initializes the capacity of the queues
-    pub fn new(n: uint) -> Hamming<T> {
+    pub fn new(n: usize) -> Hamming<T> {
         let mut h = Hamming {
             q2: RingBuf::with_capacity(n),
             q3: RingBuf::with_capacity(n),

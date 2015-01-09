@@ -51,7 +51,7 @@ fn main()
     // Compute the difference
     let diff = Duration::nanoseconds((end - start) as i64);
     // Print the difference and exit
-    println!("Program has run for {} seconds", diff);
+    println!("Program has run for {:?} seconds", diff);
 }
 
 #[cfg(not(unix))]

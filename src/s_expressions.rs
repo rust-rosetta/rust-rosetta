@@ -224,7 +224,7 @@ impl<'a> SExp<'a> {
                 }
                 from_io_result(writer.write_char(')'))
             },
-            Str(s) => from_io_result(write!(writer, "\"{}\"", s)),
+            Str(s) => from_io_result(write!(writer, "\"{:?}\"", s)),
         }
     }
 

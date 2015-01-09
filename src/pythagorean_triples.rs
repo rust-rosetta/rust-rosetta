@@ -47,7 +47,7 @@ fn count_pythagorean_triples(below: u64) -> (u64, u64) {
 fn main() {
     for n in range(1, 9) {
         let (tot, prim) = count_pythagorean_triples(10u64.pow(n));
-        println!("Up to 10^{}: {:>10} triples {:>10} primitives",
+        println!("Up to 10^{:?}: {:>10} triples {:>10} primitives",
                  n, tot, prim);
     }
 }

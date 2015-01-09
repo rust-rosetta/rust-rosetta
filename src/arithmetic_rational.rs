@@ -10,7 +10,7 @@ use std::ops::{Add, Mul, Neg, Sub, Div};
 #[cfg(not(test))]
 fn main() {
     for p in perfect_numbers(1 << 19).iter() {
-        println!("{} is perfect", p);
+        println!("{:?} is perfect", p);
     }
 }
 
@@ -91,7 +91,7 @@ impl fmt::Show for Frac {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         match (self.num, self.den) {
             (_,1) | (0,0) => write!(f, "{:?}", self.num),
-            (_,_) => write!(f, "{}/{}", self.num, self.den)
+            (_,_) => write!(f, "{:?}/{:?}", self.num, self.den)
         }
     }
 }

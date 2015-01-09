@@ -7,7 +7,7 @@ fn print_both(menu: &[&str], prompt: &str) {
 
     // Iterate through array and print index, period, and menu item
     for (i, item) in menu.iter().enumerate() {
-        println!("{}. {}", i, item);
+        println!("{:?}. {:?}", i, item);
     }
 
     // Print the prompt
@@ -16,10 +16,10 @@ fn print_both(menu: &[&str], prompt: &str) {
 
 
 // Grab the next line of input
-fn next_input() -> Option<uint> {
+fn next_input() -> Option<usize> {
 
     let line = io::stdin().read_line().unwrap();
-    let input: Option<uint> = line.trim().parse();
+    let input: Option<usize> = line.trim().parse();
     input
 }
 

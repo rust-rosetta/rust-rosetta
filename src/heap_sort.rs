@@ -26,7 +26,7 @@ fn heap_sort<T: Ord>(a: &mut [T]) {
     }
 }
  
-fn heapify<T: Ord>(a: &mut [T], count: uint) {
+fn heapify<T: Ord>(a: &mut [T], count: usize) {
     if count < 2 {
         return;
     }
@@ -37,20 +37,20 @@ fn heapify<T: Ord>(a: &mut [T], count: uint) {
     while start >= 0 {        
         // sift down the node at index 'start' to the proper place
         // such that all nodes below the 'start' index are in heap order
-        sift_down(a, start as uint, count - 1);
+        sift_down(a, start as usize, count - 1);
         start -= 1;
     }
 }
  
  
-fn sift_down<T: Ord>(a: &mut [T], start: uint, end: uint) {
+fn sift_down<T: Ord>(a: &mut [T], start: usize, end: usize) {
     // end represents the limit of how far down the heap to shift
     let mut root = start;
     
     // while the root has at least one child
     while (root*2 + 1) <= end { 
         // root*2+1 points to the left child
-        let mut child:uint = root*2 + 1 as uint;
+        let mut child:usize = root*2 + 1 as usize;
         
         // if the chile has a sibling and the child's value is less that its sibling's...
         if child + 1 <= end && a[child] < a[child + 1] {
@@ -73,15 +73,15 @@ fn sift_down<T: Ord>(a: &mut [T], start: uint, end: uint) {
 pub fn main() {
     let mut arr = [1u,5,2,7,3,9,4,6,8];
     heap_sort(&mut arr);
-    println!("After sort: {}", arr);
+    println!("After sort: {:?}", arr);
     
     let mut arr = [1u,2,3,4,5,6,7,8,9];
     heap_sort(&mut arr);
-    println!("After sort: {}", arr);
+    println!("After sort: {:?}", arr);
     
     let mut arr = [9u,8,7,6,5,4,3,2,1];
     heap_sort(&mut arr);
-    println!("After sort: {}", arr);
+    println!("After sort: {:?}", arr);
 }
 
 #[cfg(test)]

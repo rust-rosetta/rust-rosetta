@@ -19,8 +19,8 @@ fn rot13 (string: &str) -> String {
 fn main () {
     let string = "Do you love apples?";
 
-    println!("Original: {}", string);
-    println!("Encoded: {}", rot13(string));
+    println!("Original: {:?}", string);
+    println!("Encoded: {:?}", rot13(string));
 }
 
 #[test]

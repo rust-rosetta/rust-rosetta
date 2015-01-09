@@ -13,7 +13,7 @@ fn main () {
     let y = args[2].parse::<f32>().unwrap();
 
     let result = agm(x,y);
-    println!("The arithmetic-geometric mean is {}", result);
+    println!("The arithmetic-geometric mean is {:?}", result);
 }
 
 fn abs<T: Float>(n: T) -> T {

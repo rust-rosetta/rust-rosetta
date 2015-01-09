@@ -9,12 +9,12 @@ use std::mem::swap;
 
 pub struct WordWrap<'a> {
     words: Words<'a>,
-    line_length: uint,
+    line_length: usize,
     next_line: String
 }
 
 impl<'a> WordWrap<'a> {
-    fn new(text: &'a str, line_length: uint) -> WordWrap {
+    fn new(text: &'a str, line_length: usize) -> WordWrap {
         WordWrap {
             words : text.words(),
             line_length : line_length,
@@ -32,7 +32,7 @@ impl<'a> Iterator for WordWrap<'a> {
         swap(&mut self.next_line, &mut this_line);
 
         let mut space_left = self.line_length - this_line.as_slice().chars().count();
-        const SPACE_WIDTH: uint = 1;
+        const SPACE_WIDTH: usize = 1;
 
         // Loop, adding words until we run out of words or hit the line length
         for word in self.words {
@@ -75,7 +75,7 @@ fn main () {
          ball was her favorite plaything.";
 
     for &length in [72u, 80u].iter() {
-        println!("Text wrapped at {}", length);
+        println!("Text wrapped at {:?}", length);
         for line in WordWrap::new(text, length) {
             println!("{:?}", line);
         }

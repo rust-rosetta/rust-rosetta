@@ -12,7 +12,7 @@ use std::cmp::Ordering::{Less, Equal, Greater};
 // children. It is either a leaf (containing a character), or a HTree
 // (containing two children)
 struct HNode {
-    weight: uint,
+    weight: usize,
     item: HItem,
 }
 
@@ -59,8 +59,8 @@ fn huffman_tree(input: &str) -> HNode {
     //    of character to frequency.
     let mut freq = HashMap::new();
     for ch in input.chars() {
-        match freq.entry(&ch) {
-            Vacant(entry) => { entry.insert(1u); },
+        match freq.entry(ch) {
+            Vacant(entry) => { entry.insert(1us); },
             Occupied(mut entry) => { *entry.get_mut() += 1; },
         };
     }
@@ -86,8 +86,8 @@ fn huffman_tree(input: &str) -> HNode {
         let new_node = HNode {
             weight: item1.weight + item2.weight,
             item: HItem::Tree(HTreeData{
-                left: box item1,
-                right: box item2,
+                left: Box::new(item1),
+                right: Box::new(item2),
             }),
         };
         queue.push(new_node);
@@ -103,9 +103,9 @@ fn build_encoding_table(tree: &HNode,
     match tree.item {
         HItem::Tree(ref data) => {
             build_encoding_table(&*data.left, table,
-                               format!("{}0", start_str).as_slice());
+                               format!("{:?}0", start_str).as_slice());
             build_encoding_table(&*data.right, table,
-                               format!("{}1", start_str).as_slice());
+                               format!("{:?}1", start_str).as_slice());
         },
         HItem::Leaf(ch)   => {table.insert(ch, start_str.to_string());}
     };
@@ -193,6 +193,6 @@ fn main() {
     build_encoding_table(&tree, &mut table, "");
 
     for (ch, encoding) in table.iter() {
-        println!("{}: {}", *ch, encoding);
+        println!("{:?}: {:?}", *ch, encoding);
     }
 }

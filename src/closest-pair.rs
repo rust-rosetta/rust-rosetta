@@ -114,8 +114,8 @@ pub fn main() {
         Complex::new(0.839186, 0.728260)
     ];
     let (p1, p2) = closest_pair(test_data.as_mut_slice()).unwrap();
-    println!("Closest pair: {} and {}", p1, p2);
-    println!("Distance: {}", (p1 - p2).norm_sqr().sqrt());
+    println!("Closest pair: {:?} and {:?}", p1, p2);
+    println!("Distance: {:?}", (p1 - p2).norm_sqr().sqrt());
 }
 
 #[cfg(test)]

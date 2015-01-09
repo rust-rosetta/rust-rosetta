@@ -57,8 +57,8 @@ regex_macros = "*"
 git = "https://github.com/rust-lang/time"
 
 [lib]
-## used by compile_time_calculation.rs
-## http://rosettacode.org/wiki/Compile-time_calculation
+# used by compile_time_calculation.rs
+# http://rosettacode.org/wiki/Compile-time_calculation
 name = "factorial_plugin"
 crate-type = ["dylib"]
 path = "src/factorial_plugin.rs"

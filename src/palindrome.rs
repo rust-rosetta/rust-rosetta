@@ -21,7 +21,7 @@ fn palindrome(string: &str) -> bool {
 fn main() {
     let test_strings = ["nope", "eevee", "lalala", "rust", "lalalal"];
     for &string in test_strings.iter() {
-        println!("{}: {}", string, palindrome(string));
+        println!("{:?}: {:?}", string, palindrome(string));
     }
 }
 

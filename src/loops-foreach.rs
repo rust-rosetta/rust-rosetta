@@ -23,6 +23,6 @@ fn main() {
     hashmap.insert("b", 2);
     hashmap.insert("c", 3);
     for (c, i) in hashmap.iter() {
-        println!("{}: '{}'", c, i)
+        println!("{:?}: '{:?}'", c, i)
     }
 }

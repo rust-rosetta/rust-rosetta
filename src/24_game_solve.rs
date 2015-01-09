@@ -10,18 +10,18 @@ use num::traits::Zero;
 // rational![1, 2, ...] instead of
 // [Ratio::<i32>::from_integer(1), Ratio::<i32>::from_integer(2), ...]
 macro_rules! rationals(
-    ($($e:expr),+) => ([$(Ratio::<i32>::from_integer($e)),+])
+    ($($e:expr),+) => ([$(Ratio::<isize>::from_integer($e)),+])
 );
 
 #[cfg(not(test))]
 fn main() {
-    let mut r = rationals![1i32, 3, 7, 9];
+    let mut r = rationals![1is, 3, 7, 9];
     let sol = solve(r.as_mut_slice(), 24).unwrap_or("no solution found".to_string());
     println!("{:?}", sol);
 }
 // for a vector of rationals r, find the combination of arithmentic
 // operations that yield target_val as a result (if such combination exists)
-fn solve(r: &mut[Rational], target_val: i32) -> Option<String> {
+fn solve(r: &mut[Rational], target_val: isize) -> Option<String> {
     //need to sort because next_permutation()
     // returns permutations in lexicographic order
     r.sort();
@@ -48,7 +48,7 @@ fn compute_all_operations(l: &[Rational]) -> Vec<(Rational, String)> {
                 let mut sub=vec![(x * y, "*"),(x + y, "+"), (x - y, "-")];
                 if y != Zero::zero() {sub.push( (x/y, "/")); }
                 for &(z, ref op) in sub.iter() {
-                    let aux = (z, (format!("({} {} {})", x, op, exp )));
+                    let aux = (z, (format!("({:?} {:?} {:?})", x, op, exp )));
                     rt.push(aux);
                 }
             }

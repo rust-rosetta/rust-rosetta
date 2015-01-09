@@ -13,14 +13,14 @@ use syntax::parse;
 use syntax::parse::token;
 use syntax::ast::TokenTree;
 use syntax::ext::base::{ExtCtxt, MacResult, DummyResult, MacExpr};
-use syntax::ext::build::AstBuilder;  // trait for expr_uint
+use syntax::ext::build::AstBuilder;  // trait for expr_usize
 use rustc::plugin::Registry;
 
 use std::iter::range_inclusive;
 
 fn exp_factorial(cx: &mut ExtCtxt, sp: Span, tts: &[TokenTree])
         -> Box<MacResult + 'static> {
-    // extract the argument and ensure there is only one and it's a uint
+    // extract the argument and ensure there is only one and it's a usize
     let mut parser = parse::new_parser_from_tts(cx.parse_sess(), cx.cfg(), tts.to_vec());
 
     // Try to parse a literal (doesn't need to be a number)
@@ -42,7 +42,7 @@ fn exp_factorial(cx: &mut ExtCtxt, sp: Span, tts: &[TokenTree])
     };
     
     // calculating the factorial
-    let result = range_inclusive(1u, n as uint).fold(1, |accum, elem| accum * elem);    
+    let result = range_inclusive(1us, n as usize).fold(1, |accum, elem| accum * elem);    
 
     MacExpr::new(cx.expr_uint(sp, result))
 }

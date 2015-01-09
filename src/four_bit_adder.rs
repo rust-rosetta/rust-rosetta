@@ -80,7 +80,7 @@ fn main() {
   let b = 6;
   let nib_b = Nibble::from_u8(b);
   let (result, carry) = four_bit_adder(nib_a, nib_b, false);
-  println!("{} + {} = {} | {} + {} = {} | overflow: {}",
+  println!("{:?} + {:?} = {:?} | {:?} + {:?} = {:?} | overflow: {:?}",
             a, b, result.to_u8(carry), nib_a, nib_b, result, carry)
 }
 

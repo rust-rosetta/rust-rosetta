@@ -10,7 +10,7 @@ use std::thread::Thread;
 fn echo_server(host: &'static str, port: u16, timeout: Option<Duration>) -> IoResult<()> {
     // Create a new TCP listener at host:port.
     let mut listener = try!(TcpListener::bind((host, port)));
-    println!("Starting echo server on {}", listener.socket_name());
+    println!("Starting echo server on {:?}", listener.socket_name());
 
     let mut acceptor = try!(listener.listen());
     println!("Echo server started");
@@ -22,21 +22,21 @@ fn echo_server(host: &'static str, port: u16, timeout: Option<Duration>) -> IoRe
     for stream in acceptor.incoming() {
         match stream {
             Err(e @ IoError { kind: TimedOut, .. } ) => {
-                println!("No longer accepting new requests: {}", e);
+                println!("No longer accepting new requests: {:?}", e);
                 break
             }
-            Err(e) => println!("Connection failed: {}", e),
+            Err(e) => println!("Connection failed: {:?}", e),
             Ok(mut stream) => {
                 let name = try!(stream.peer_name());
-                println!("New connection: {}", name);
+                println!("New connection: {:?}", name);
                 // Launch a new thread to deal with the connection.
                 Thread::spawn(move || -> () {
                     if let Err(e) = echo_session(stream.clone()) {
-                        println!("I/O error: {} -- {}", name, e);
+                        println!("I/O error: {:?} -- {:?}", name, e);
                     }
-                    println!("Closing connection: {}", name);;
+                    println!("Closing connection: {:?}", name);;
                     drop(stream);
-                }).detach();
+                });
             }
         }
     }
@@ -51,9 +51,9 @@ fn echo_session(mut stream: TcpStream) -> IoResult<()> {
     let mut reader = BufferedReader::new(stream);
     for line in reader.lines() {
         let l = try!(line);
-        print!("Received line from {}: {}", name, l);
+        print!("Received line from {:?}: {:?}", name, l);
         try!(writer.write_str(l[]));
-        print!("Wrote line to {}: {}", name, l);
+        print!("Wrote line to {:?}: {:?}", name, l);
     }
     Ok(())
 }

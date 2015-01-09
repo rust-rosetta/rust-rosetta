@@ -2,8 +2,8 @@
 fn quibble(seq: &[&str]) -> String {
     match seq {
         [] => "{:?}".to_string(),
-        [word] => format!("{{{}}}", word ),
-        _ => format!("{{{} and {}}}", seq.init().connect(", "), seq.last().unwrap())
+        [word] => format!("{{{:?}}}", word ),
+        _ => format!("{{{:?} and {:?}}}", seq.init().connect(", "), seq.last().unwrap())
     }
 }
 
