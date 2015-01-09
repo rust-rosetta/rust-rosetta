@@ -11,7 +11,7 @@
 #[cfg(not(test))] 
 fn main() {
     // we can invoke factorial_10! as a regular macro
-    println!("{}", factorial!(10u));
+    println!("{:?}", factorial!(10u));
 }
 
 #[test]

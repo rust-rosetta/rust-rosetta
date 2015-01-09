@@ -27,7 +27,7 @@ mod test {
             println!("Error, the following source files are not covered by Cargo.toml:");
 
             for source in not_covered.iter() {
-                println!("{}", source);
+                println!("{:?}", source);
             }
 
             panic!("Please add the previous source files to Cargo.toml");

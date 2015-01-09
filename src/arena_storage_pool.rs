@@ -19,7 +19,7 @@ fn main() {
     // TypedArena returns a mutable reference
     let v2 = arena.alloc(3);
     *v2 += 38;
-    println!("{}", *v1 + *v2);
+    println!("{:?}", *v1 + *v2);
 
     // The arena's destructor is called as it goes out of scope, at which point it deallocates
     // everything stored within it at once.

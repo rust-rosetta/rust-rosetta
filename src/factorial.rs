@@ -32,7 +32,7 @@ fn main () {
     for (name, f) in fs.into_iter() {
         println!("---------\n{}", name);
         for i in range(1u, 10) {
-            println!("{}", f(i))
+            println!("{:?}", f(i))
         }
     }
 }

@@ -4,10 +4,10 @@ use std::string::String;
 #[cfg(not(test))]
 fn main() {
     for num_bottles in std::iter::range_inclusive(1u, 99).rev() {
-        println!("{}", bottles_line(num_bottles, true));
-        println!("{}", bottles_line(num_bottles, false));
+        println!("{:?}", bottles_line(num_bottles, true));
+        println!("{:?}", bottles_line(num_bottles, false));
         println!("Take one down, pass it around...");
-        println!("{}", bottles_line(num_bottles - 1, true));
+        println!("{:?}", bottles_line(num_bottles - 1, true));
         println!("-----------------------------------");
     }
 }

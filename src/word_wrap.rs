@@ -77,7 +77,7 @@ fn main () {
     for &length in [72u, 80u].iter() {
         println!("Text wrapped at {}", length);
         for line in WordWrap::new(text, length) {
-            println!("{}", line);
+            println!("{:?}", line);
         }
         println!("");
     }

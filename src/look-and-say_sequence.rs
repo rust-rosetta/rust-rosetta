@@ -8,7 +8,7 @@ mod run_length_encoding;
 fn main() {
     let mut s = look_and_say("1");
     for _ in range(0u,20) {
-        println!("{}", s);
+        println!("{:?}", s);
         s = look_and_say(s.as_slice());
     }
 }

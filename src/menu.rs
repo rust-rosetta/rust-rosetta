@@ -11,7 +11,7 @@ fn print_both(menu: &[&str], prompt: &str) {
     }
 
     // Print the prompt
-    println!("{}", prompt);
+    println!("{:?}", prompt);
 }
 
 
@@ -53,7 +53,7 @@ fn main() {
 
     let prompt = "Choose one.";
     let menu = &["fee fie", "huff and puff", "mirror mirror", "tick tock"];
-    println!("{}", select(menu, prompt));
+    println!("{:?}", select(menu, prompt));
 }
 
 #[test]

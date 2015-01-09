@@ -23,7 +23,7 @@ fn main() {
         let mut sample = rand::sample(&mut rng, range(1u, 10), 4);
 
         println!("make 24 by combining the following 4 numbers with + - * / or (q)uit");
-        println!("{}", sample);
+        println!("{:?}", sample);
 
         let line = input.read_line().unwrap();
         match line.trim() {
@@ -33,7 +33,7 @@ fn main() {
                     match Parser::new(input).parse() {
                         Ok(i) if i == 24. => println!("you made it!"),
                         Ok(i) => println!("you entered {}, try again!", i),
-                        Err(s)  => println!("{}", s)
+                        Err(s)  => println!("{:?}", s)
                     };
                 } else {
                     println!("unrecognized input, try again")

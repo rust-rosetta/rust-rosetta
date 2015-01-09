@@ -49,7 +49,7 @@ fn main() {
     ];
 
     let test_fft = fft(test.as_slice());
-    println!("{}", test_fft);
+    println!("{:?}", test_fft);
 }
 
 #[cfg(test)]
@@ -81,8 +81,8 @@ mod test {
         ];
 
         let test_fft = fft(test.as_slice());
-        println!("{}", target.to_vec());
-        println!("{}", test_fft);
+        println!("{:?}", target.to_vec());
+        println!("{:?}", test_fft);
         for (test_item, target_item) in test_fft.iter().zip(target.iter()) {
             assert!((*test_item - *target_item).norm_sqr() < 1e-6);
         }

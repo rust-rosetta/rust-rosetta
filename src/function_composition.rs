@@ -10,7 +10,7 @@ fn main() {
     // their omposition
     let comp = compose(f, g);
 
-    println!("{}", (*comp)(consts::PI));
+    println!("{:?}", (*comp)(consts::PI));
 }
 
 fn compose<'a, F, G, A, B, C>(f: F, g: G) -> Box<Fn(A) -> C + 'a>

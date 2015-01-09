@@ -24,5 +24,5 @@ fn base_16() {
 
 #[cfg(not(test))]
 fn main() {
-    println!("{}", sum(1234, 10));
+    println!("{:?}", sum(1234, 10));
 }

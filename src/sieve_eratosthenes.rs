@@ -28,7 +28,7 @@ fn simple_sieve(limit: uint) -> Vec<uint> {
 
 #[cfg(not(test))]
 fn main() {
-    println!("{}", simple_sieve(100))
+    println!("{:?}", simple_sieve(100))
 }
 
 #[test]

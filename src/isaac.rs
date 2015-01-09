@@ -23,7 +23,7 @@ fn main () {
     let decr = isaac.vernam(encr.as_slice());
 
     print!("\nXOR dcr: ");
-    println!("{}", String::from_utf8(decr).unwrap())
+    println!("{:?}", String::from_utf8(decr).unwrap())
 }
 
 macro_rules! mix_v(

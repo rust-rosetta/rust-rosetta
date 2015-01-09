@@ -9,7 +9,7 @@ fn main() {
     let factors = factor_int(target);
     
     for f in factors.iter() {
-        println!("{}", f);
+        println!("{:?}", f);
     }
 }
 

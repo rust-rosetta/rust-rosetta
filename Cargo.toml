@@ -42,7 +42,8 @@ authors = [
 git="https://github.com/Gankro/collect-rs"
 
 [dependencies.num]
-num = "*"
+# num = "*"
+git = "https://github.com/rust-lang/num"
 
 [dependencies.regex]
 # regex = "*"
@@ -52,7 +53,8 @@ git = "https://github.com/rust-lang/regex"
 regex_macros = "*"
 
 [dependencies.time]
-time = "*"
+#time = "*"
+git = "https://github.com/rust-lang/time"
 
 [lib]
 ## used by compile_time_calculation.rs

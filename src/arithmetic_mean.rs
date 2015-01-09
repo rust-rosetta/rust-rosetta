@@ -18,7 +18,7 @@ fn main() {
 
     // This should be 3.833333
     let mean = mean(&input).unwrap();
-    println!("{}", mean);
+    println!("{:?}", mean);
 }
 
 #[test]

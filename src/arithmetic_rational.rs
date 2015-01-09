@@ -90,7 +90,7 @@ impl Frac {
 impl fmt::Show for Frac {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         match (self.num, self.den) {
-            (_,1) | (0,0) => write!(f, "{}", self.num),
+            (_,1) | (0,0) => write!(f, "{:?}", self.num),
             (_,_) => write!(f, "{}/{}", self.num, self.den)
         }
     }

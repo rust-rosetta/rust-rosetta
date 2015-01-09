@@ -20,8 +20,8 @@ fn main() {
         None => panic!("No such line (file is too short)"),
         Some(result) => match result {
             // Handle any errors that may arise
-            Ok(ln) => print!("{}", ln),
-            Err(error) => print!("{}", error.desc)
+            Ok(ln) => print!("{:?}", ln),
+            Err(error) => print!("{:?}", error.desc)
         }
     }
 }

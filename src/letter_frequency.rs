@@ -24,7 +24,7 @@ fn main() {
     let file = File::open(&Path::new("resources/unixdict.txt"));
     let mut reader = BufferedReader::new(file);
 
-    println!("{}", count_chars(reader.chars().map(|c| c.unwrap())));
+    println!("{:?}", count_chars(reader.chars().map(|c| c.unwrap())));
 }
 
 #[test]

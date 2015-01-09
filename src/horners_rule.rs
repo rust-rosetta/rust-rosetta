@@ -6,7 +6,7 @@ fn horner<T:Int>(cs:&[T], x:T) -> T {
 
 #[cfg(not(test))] 
 fn main() {
-    println!("{}", horner(&[-19i, 7, -4, 6], 3i)); // 128
+    println!("{:?}", horner(&[-19i, 7, -4, 6], 3i)); // 128
 }
 
 #[cfg(test)]

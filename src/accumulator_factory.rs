@@ -16,7 +16,7 @@ macro_rules! add_impl(
     )*)
 );
 
-add_impl!(usize u8 u16 u32 u64 isize i8 i16 i32 i64 f32 f64);
+add_impl!(isize usize u8 u16 u32 u64 i8 i16 i32 i64 f32 f64);
 
 pub fn accum<T: Add<T, Output=U>, U>(n: T) -> G<T, U> {
     G { n: n }
@@ -24,7 +24,7 @@ pub fn accum<T: Add<T, Output=U>, U>(n: T) -> G<T, U> {
 
 #[cfg(not(test))]
 pub fn main() {
-    println!("{}", accumulate());
+    println!("{:?}", accumulate());
 }
 
 #[test]

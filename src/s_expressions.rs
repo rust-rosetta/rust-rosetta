@@ -202,7 +202,7 @@ impl<'a> SExp<'a> {
         match *self {
             F64(f) => match f.classify() {
                 // We don't want to identify NaN, Infinity, etc. as floats.
-                num::FpCategory::Normal | num::FpCategory::Zero => from_io_result(write!(writer, "{}", f)),
+                num::FpCategory::Normal | num::FpCategory::Zero => from_io_result(write!(writer, "{:?}", f)),
                 _ => Err(NoReprForFloat)
             },
             List(ref l) => {
@@ -313,9 +313,9 @@ fn try_decode<'a>(ctx: &'a mut ParseContext<'a>) -> Result<SExp<'a>, Error> {
 
 #[cfg(not(test))]
 fn main() {
-    println!("{}", try_encode());
+    println!("{:?}", try_encode());
     let ref mut ctx = ParseContext::new(SEXP_STRING_IN);
-    println!("{}", try_decode(ctx));
+    println!("{:?}", try_decode(ctx));
 }
 
 #[bench]

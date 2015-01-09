@@ -226,7 +226,7 @@ fn main() {
                 println!("Output: {}", algorithm.apply(sample.input));
                 println!("Expected result: {}", sample.expected_result);
             }
-            Err(message) => println!("{}", message)
+            Err(message) => println!("{:?}", message)
         }
     }
 }
@@ -237,7 +237,7 @@ fn test_samples() {
         match MarkovAlgorithm::from_str(sample.ruleset) {
             Ok(algorithm) => assert_eq!(sample.expected_result,
                                         algorithm.apply(sample.input)),
-            Err(message) => panic!("{}", message)
+            Err(message) => panic!("{:?}", message)
         }
     }
 }

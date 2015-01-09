@@ -26,7 +26,7 @@ fn binomial(n: uint, mut k: uint) -> BigUint {
 
 #[cfg(not(test))]
 fn main() {
-    println!("{}", binomial(5, 3));
+    println!("{:?}", binomial(5, 3));
 }
 
 #[test]

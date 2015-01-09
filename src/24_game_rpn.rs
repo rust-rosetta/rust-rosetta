@@ -21,7 +21,7 @@ fn main() {
         let expr = reader.read_line().ok().expect("Failed to read line!");
         match check_input(expr.as_slice(), &choices) {
             Ok(()) => { println!("Good job!"); break; },
-            Err(e) => println!("{}", e)
+            Err(e) => println!("{:?}", e)
         }
         print!("Try again? (y/n): ");
         let choice = reader.read_line().ok().expect("Failed to read line!");

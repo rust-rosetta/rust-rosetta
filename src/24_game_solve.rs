@@ -17,7 +17,7 @@ macro_rules! rationals(
 fn main() {
     let mut r = rationals![1i32, 3, 7, 9];
     let sol = solve(r.as_mut_slice(), 24).unwrap_or("no solution found".to_string());
-    println!("{}", sol);
+    println!("{:?}", sol);
 }
 // for a vector of rationals r, find the combination of arithmentic
 // operations that yield target_val as a result (if such combination exists)
@@ -41,7 +41,7 @@ fn solve(r: &mut[Rational], target_val: i32) -> Option<String> {
 fn compute_all_operations(l: &[Rational]) -> Vec<(Rational, String)> {
     match l {
         []         => vec![],
-        [x]  => vec![(x, (format!("{}", x)))],
+        [x]  => vec![(x, (format!("{:?}", x)))],
         [x,rest..] => {
             let mut rt=Vec::new();
             for &(y, ref exp) in compute_all_operations(rest).iter() {
@@ -65,12 +65,12 @@ fn test_rationals_macro() {
     Ratio::from_integer(3),
     Ratio::from_integer(4)],
     // with the rationals! macro
-    (rationals![1i, 2, 3, 4]));
+    (rationals![1i32, 2, 3, 4]));
 }
 
 #[test]
 fn test_solve() {
-    let mut r = rationals![1i, 3, 7, 9];
+    let mut r = rationals![1i32, 3, 7, 9];
     assert_eq!(
         solve(r.as_mut_slice(), 24),
         Some("(9 / (3 / (1 + 7)))".to_string()));

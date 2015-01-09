@@ -44,7 +44,7 @@ fn main()
         if unsafe { GOT_SIGINT.load(atomic::Acquire) } { break }
         // Otherwise, increment and display the integer and continue the loop.
         i += 1;
-        println!("{}", i);
+        println!("{:?}", i);
     }
     // Get the end time.
     let end = time::precise_time_ns();

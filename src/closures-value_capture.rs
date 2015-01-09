@@ -8,7 +8,7 @@ fn main() {
 
     // Take the first 9 closures from the iterator and call them
     for c in closures.take(9) {
-        println!("{}", c())
+        println!("{:?}", c())
     }
 }
 

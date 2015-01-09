@@ -29,5 +29,5 @@ fn main() {
     unsafe { libc::free(dup_c_str as *mut _) };
 
     // Now you can easily print the result
-    println!("{}", dup_rust_string);
+    println!("{:?}", dup_rust_string);
 }

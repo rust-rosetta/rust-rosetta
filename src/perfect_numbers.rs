@@ -8,7 +8,7 @@ fn perfect_number(n: uint) -> bool {
 #[cfg(not(test))]
 fn main() {
   for n in range(2, 10_000u).filter(|&n| perfect_number(n)) {
-    println!("{}", n);
+    println!("{:?}", n);
   }
 }
 

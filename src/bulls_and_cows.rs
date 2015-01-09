@@ -87,7 +87,7 @@ fn main() {
             let guess_string = reader.read_line().unwrap();
             let digits_maybe = parse_guess_string(&*guess_string.trim());
             match digits_maybe {
-                Err(msg) => { println!("{}" , msg); }
+                Err(msg) => { println!("{:?}" , msg); }
                 Ok(guess_digits) => {
                     match calculate_score(&*given_digits, &*guess_digits) {
                         (NUMBER_OF_DIGITS, _) => {

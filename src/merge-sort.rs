@@ -41,7 +41,7 @@ fn merge<E: PartialOrd + Clone>(left: &[E], right: &[E]) -> Vec<E> {
 pub fn main() {
     let arr = [1i, 9, 3, 2, 1003, 23, -123, 7];
     let sorted = merge_sort(&arr);
-    println!("{}", sorted);
+    println!("{:?}", sorted);
 }
 
 #[cfg(test)]

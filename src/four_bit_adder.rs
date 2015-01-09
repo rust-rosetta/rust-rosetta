@@ -38,7 +38,7 @@ impl Nibble {
   }
 
   fn to_u8(&self, carry: bool) -> u8 {
-    match num::from_str_radix::<u8>(format!("{}", self).as_slice(), 2) {
+    match num::from_str_radix::<u8>(format!("{:?}", self).as_slice(), 2) {
       Some(n) if carry => n + 16,
       Some(n) => n,
       None => unreachable!()
@@ -48,7 +48,7 @@ impl Nibble {
 
 impl fmt::Show for Nibble {
   fn fmt(&self, f: &mut fmt::Formatter) -> Result<(), fmt::Error> {
-    write!(f, "{}", self.iter().map(|&b| if b { '1' } else { '0' }).collect::<String>())
+    write!(f, "{:?}", self.iter().map(|&b| if b { '1' } else { '0' }).collect::<String>())
   }
 }
 

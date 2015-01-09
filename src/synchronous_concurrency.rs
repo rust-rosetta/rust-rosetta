@@ -22,7 +22,7 @@ fn printer(i_snd: Sender<int>, msg_rcv: Receiver<Message>) {
     loop {
         match msg_rcv.recv().unwrap() {
             Message::Line(line) => {
-                print!("{}", line);
+                print!("{:?}", line);
                 count += 1;
             }
             Message::End => {break;}

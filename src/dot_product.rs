@@ -17,7 +17,7 @@ fn dotp<T: Zero + Mul<Output=T> + Copy>(this: &[T], other: &[T]) -> T {
 fn main() {
     let a = &[1.0f32, 3.0, -5.0];
     let b = &[4.0f32, -2.0, -1.0];
-    println!("{}", dotp(a, b));
+    println!("{:?}", dotp(a, b));
 }
 
 #[test]

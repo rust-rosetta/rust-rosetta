@@ -14,7 +14,7 @@ impl BinaryString for uint {
 #[cfg(not(test))]
 fn main() {
     for s in range_inclusive(0, 16u) {
-        println!("{}", s.to_binary_string());
+        println!("{:?}", s.to_binary_string());
     }
 }
 

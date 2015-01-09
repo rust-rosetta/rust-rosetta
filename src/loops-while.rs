@@ -4,7 +4,7 @@
 fn main() {
     let mut i = 1024u;
     while i > 0 {
-        println!("{}", i);
+        println!("{:?}", i);
         i /= 2;
     }
 }

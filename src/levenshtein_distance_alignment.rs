@@ -83,8 +83,8 @@ fn main() {
     let (lev_dist, aligned1, aligned2) = levenshtein_distance(s1, s2); 
     println!("Words are: {}, {}" , s1 , s2);
     println!("Levenshtein Distance: {}" , lev_dist);
-    println!("{}" , aligned1);
-    println!("{}" , aligned2);
+    println!("{:?}" , aligned1);
+    println!("{:?}" , aligned2);
 
 }
 

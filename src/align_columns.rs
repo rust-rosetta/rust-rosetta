@@ -61,7 +61,7 @@ fn print_aligned_columns(chunks: &Vec<Vec<String>>, max_lengths: &Vec<uint>) {
             for _ in range(0u, spaces>>1) {
                 print!(" ");
             }
-            print!("{}", string);
+            print!("{:?}", string);
             for _ in range(0u, spaces - (spaces>>1)) {
                 print!(" ");
             }

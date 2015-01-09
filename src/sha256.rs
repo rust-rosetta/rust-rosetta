@@ -8,7 +8,7 @@ use rustc::util::sha2::{Sha256, Digest};
 
 #[cfg(not(test))]
 fn main() {
-    println!("{}", sha_256("Rosetta code"));
+    println!("{:?}", sha_256("Rosetta code"));
 }
 
 fn sha_256(input: &str) -> String {

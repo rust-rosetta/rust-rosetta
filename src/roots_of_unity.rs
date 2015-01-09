@@ -8,7 +8,7 @@ fn main() {
     let degree = 3u;
 
     for root in roots_of_unity(degree).iter() {
-        println!("{}", root);
+        println!("{:?}", root);
     }
 }
 

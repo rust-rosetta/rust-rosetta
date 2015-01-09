@@ -60,7 +60,7 @@ fn zigzag(n:uint) -> Vec<Vec<uint>> {
 
 #[cfg(not(test))]
 fn main() {
-    println!("{}", zigzag(5));
+    println!("{:?}", zigzag(5));
 }
 
 #[test]

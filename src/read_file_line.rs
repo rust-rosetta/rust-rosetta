@@ -16,8 +16,8 @@ fn main() {
     for line in reader.lines() {
         // Handle any errors that may arise
         match line {
-            Ok(ln) => print!("{}", ln),
-            Err(error) => print!("{}", error.desc)
+            Ok(ln) => print!("{:?}", ln),
+            Err(error) => print!("{:?}", error.desc)
         }
     }
     println!("");

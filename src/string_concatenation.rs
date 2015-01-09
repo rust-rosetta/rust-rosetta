@@ -13,7 +13,7 @@ fn main() {
     // This is done because Vecs are growable but slices aren't.
     let hello = "hello".to_string();
     let hello_world = add_world(hello);
-    println!("{}", hello_world);
+    println!("{:?}", hello_world);
 }
 
 #[test]

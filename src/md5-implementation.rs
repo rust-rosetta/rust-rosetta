@@ -17,7 +17,7 @@ fn main() {
     b"12345678901234567890123456789012345678901234567890123456789012345678901234567890"];
 
     for &input in inputs.iter() {
-        println!("{}", md5(input));
+        println!("{:?}", md5(input));
     }
 }
 
@@ -185,6 +185,6 @@ fn known_hashes() {
 
     for &(i,o) in in_out.iter() {
         let m=md5(i);
-        assert_eq!(format!("{}", m), o.to_string());
+        assert_eq!(format!("{:?}", m), o.to_string());
     }
 }

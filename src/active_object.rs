@@ -146,7 +146,7 @@ fn integrate() -> f64 {
 
 #[cfg(not(test))]
 fn main() {
-    println!("{}", integrate());
+    println!("{:?}", integrate());
 }
 
 #[test]

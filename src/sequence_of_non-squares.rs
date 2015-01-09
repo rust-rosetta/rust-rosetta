@@ -9,7 +9,7 @@ fn non_sq(n: u64) -> u64 { (n + ( 0.5 + (n as f64).sqrt()) as u64) }
 fn main() {
     // print the first 22 non squares
     for n in range_inclusive(1, 22).map(non_sq) {
-        println!("{}", n);
+        println!("{:?}", n);
     }
 }
 

@@ -26,7 +26,7 @@ fn main() {
     let target = std::os::args().pop().unwrap();
     println!("Making the request... This might take a minute.");
     match get_index(target.as_slice(), PORT) {
-        Ok(out) => println!("{}", out),
+        Ok(out) => println!("{:?}", out),
         Err(e) => println!("Error: {}", e)
     }
 }
