@@ -1,10 +1,10 @@
 // Dummy main library
 // It also contains a test module, which checks if all source files are covered by `Cargo.toml`
 
-#![feature(phase, slicing_syntax)]
-
+#![feature(plugin, slicing_syntax)]
+#[plugin] 
+extern crate regex_macros;
 extern crate regex;
-#[phase(plugin)] extern crate regex_macros;
 
 #[allow(dead_code)]
 #[cfg(not(test))]

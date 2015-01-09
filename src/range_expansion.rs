@@ -1,9 +1,8 @@
 // Implements http://rosettacode.org/wiki/Range_expansion
-
-#![feature(phase)]
-
+#![feature(plugin)]
+#[plugin] 
+extern crate regex_macros;
 extern crate regex;
-#[phase(plugin)] extern crate regex_macros;
 
 use std::iter::range_inclusive;
 

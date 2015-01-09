@@ -20,7 +20,7 @@ fn bubble_sort<T: PartialOrd>(v: &mut [T]) {
 
 #[cfg(not(test))]
 fn main() {
-    let mut numbers = [4i, 65, 2, -31, 0, 99, 2, 83, 782, 1];
+    let mut numbers = [4i32, 65, 2, -31, 0, 99, 2, 83, 782, 1];
     bubble_sort(&mut numbers);
 }
 
@@ -36,13 +36,13 @@ mod test {
 
     #[test]
     fn rosetta_vector() {
-        let numbers = &mut [4i, 65, 2, -31, 0, 99, 2, 83, 782, 1];
+        let numbers = &mut [4i32, 65, 2, -31, 0, 99, 2, 83, 782, 1];
         check_sort(numbers);
     }
 
     #[test]
     fn empty_vector() {
-        let mut numbers: Vec<int> = Vec::new();
+        let mut numbers: Vec<i32> = Vec::new();
         check_sort(numbers.as_mut_slice());
     }
 

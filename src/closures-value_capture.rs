@@ -1,7 +1,4 @@
 // http://rosettacode.org/wiki/Closures/Value_capture
-
-#![feature(unboxed_closures)]
-
 use std::iter::count;
 use std::num::Float;
 

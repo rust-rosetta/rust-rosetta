@@ -1,6 +1,4 @@
 // Implements http://rosettacode.org/wiki/K-d_tree
-#![feature(associated_types, default_type_params)]
-
 extern crate time;
 
 use std::num::Float;
@@ -57,7 +55,7 @@ impl KDTreeNode {
     
         // Split around the median
         let pivot = quickselect_by(points, points_len/2,
-            |a, b| a.coords[dim].partial_cmp(&b.coords[dim]).unwrap());
+            &|&: a, b| a.coords[dim].partial_cmp(&b.coords[dim]).unwrap());
 
         let left = Some(box KDTreeNode::new(points.slice_mut(0u, points_len/2),
                 (dim + 1) % pivot.coords.len()));
@@ -218,27 +216,28 @@ pub fn main() {
              ((end_search_time.nsec - start_search_time.nsec) as f32)/1000000f32);
 }
 
-fn quickselect_by<T: Clone>(arr: &mut [T], position: uint, cmp: |a: &T, b: &T| -> Ordering) -> T {
+fn quickselect_by<T>(arr: &mut [T], position: uint, cmp: &Fn(&T, &T) -> Ordering) -> T 
+    where T: Clone
+{
     let mut pivot_index = std::rand::thread_rng().gen_range(0, arr.len());
-    // Need to wrap in another closure or we get ownership complaints.
-    // Tried using an unboxed closure to get around this but couldn't get it to work.
-    pivot_index = partition_by(arr, pivot_index, |a: &T, b: &T| cmp(a, b));
+    pivot_index = partition_by(arr, pivot_index, cmp);
     let array_len = arr.len();
     if position == pivot_index {
         arr[position].clone()
     } else if position < pivot_index {
-        quickselect_by(arr.slice_mut(0u, pivot_index), position, |a: &T, b: &T| cmp(a, b))
+        quickselect_by(arr.slice_mut(0u, pivot_index), position, cmp)
     } else {
-        quickselect_by(arr.slice_mut(pivot_index+1, array_len), position - pivot_index - 1, |a: &T, b: &T| cmp(a, b))
+        quickselect_by(arr.slice_mut(pivot_index+1, array_len), position - pivot_index - 1, cmp)
     }
 }
 
-fn partition_by<T>(arr: &mut [T], pivot_index: uint, cmp: |a: &T, b: &T| -> Ordering) -> uint {
+fn partition_by<T>(arr: &mut [T], pivot_index: uint, cmp: &Fn(&T, &T) -> Ordering) -> uint 
+{
     let array_len = arr.len();
     arr.swap(pivot_index, array_len-1);
     let mut store_index = 0u;
     for i in range(0u, array_len-1) {
-        if cmp(&arr[i], &arr[array_len-1]) == Less {
+        if (*cmp)(&arr[i], &arr[array_len-1]) == Less {
             arr.swap(i, store_index);
             store_index += 1;
         }

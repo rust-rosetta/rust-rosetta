@@ -1,9 +1,4 @@
 // http://rosettacode.org/wiki/Hamming_numbers
-#![feature(associated_types, default_type_params)]
-#![allow(unused_attributes)] // needed for the feature gates above
- // (when hamming_numbers is used as a mod in hamming_numbers it's no longer
- // the root of the crate and rustc complains about unused attributes)
-
 extern crate num;
 use num::bigint::{BigUint, ToBigUint};
 use num::traits::One;

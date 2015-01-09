@@ -22,7 +22,7 @@ fn handle_event(duration: Duration) -> Duration {
     // 0) but it can be created with an arbitrary number using Mutex::new_with_condvars();
     let pair = Arc::new((Mutex::new(false), Condvar::new()));
     let pair_ = pair.clone();
-    let mut timer = Timer::new().unwrap();
+
     let start = time::precise_time_ns();
     // Lock the mutex
     let &(ref mutex, ref cond) = &*pair;
@@ -35,6 +35,7 @@ fn handle_event(duration: Duration) -> Duration {
         *guard = true;
         
         // Sleep for `duration`.
+        let mut timer = Timer::new().unwrap();
         timer.sleep(duration);
         // Signal the waiting mutex (equivalent to guard.cond.signal_on(0)).
         // One can also signal to all tasks on the waiting mutex with broadcast (broadcast_on(0)).

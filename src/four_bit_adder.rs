@@ -1,5 +1,4 @@
 // Implements http://rosettacode.org/wiki/Four_bit_adder
-#![feature(associated_types)]
 use std::ops::Deref;
 
 use std::{fmt, num};

@@ -45,7 +45,7 @@ mod tests {
     use super::{factorial_recursive, factorial_iterative, factorial_loop};
 
     // Tests
-    fn t(f: |uint| -> uint) {
+    fn t(f: fn(uint) -> uint) {
         assert_eq!(f(0), 1);
         assert_eq!(f(1), 1);
         assert_eq!(f(2), 2);
@@ -61,17 +61,17 @@ mod tests {
 
     #[test]
     fn test_fac_recursive() {
-        t(factorial_recursive)
+        t(factorial_recursive as fn(uint) -> uint)
     }
 
     #[test]
     fn test_fac_iterative() {
-        t(factorial_iterative)
+        t(factorial_iterative as fn(uint) -> uint)
     }
 
     #[test]
     fn test_fac_loop() {
-        t(factorial_loop)
+        t(factorial_loop as fn(uint) -> uint)
     }
 
     // Benchmarks

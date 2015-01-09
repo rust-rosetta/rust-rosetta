@@ -1,9 +1,5 @@
 // Implements http://rosettacode.org/wiki/Averages/Mean_angle
-
-#[cfg(test)]
 use std::num::Float;
-
-use std::num::FloatMath;
 use std::f64::consts::PI;
 
 fn mean_angle(angles: &[f64]) -> f64 {
@@ -13,7 +9,7 @@ fn mean_angle(angles: &[f64]) -> f64 {
                                    // only need to iterate the slice once.
                                    .map(|x| (x.cos(), x.sin()))
                                    .fold((0., 0.),
-                                        |(sc, ss), (c, s)| (sc + c, ss + s));
+                                        |(sc, ss): (f64, f64), (c, s): (f64, f64)| (sc + c, ss + s));
 
     let mean_cos = sum_cos / angles.len() as f64;
     let mean_sin = sum_sin / angles.len() as f64;

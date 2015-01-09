@@ -1,12 +1,12 @@
 // Implements http://rosettacode.org/wiki/Kahan_summation
 
-use std::num::FloatMath;
+use std::num::Float;
 use std::f32;
 
 fn find_max(lst: &[f32]) -> Option<f32> {
     if lst.is_empty() { return None }
     let max = lst.iter().fold(f32::NEG_INFINITY,
-                              |a, &b| FloatMath::max(a, b));
+                              |a, &b| Float::max(a, b));
     Some(max)
 }
 

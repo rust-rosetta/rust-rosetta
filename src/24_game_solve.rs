@@ -2,27 +2,26 @@
 
 // modeled after the scala solution
 // http://rosettacode.org/wiki/24_game/Solve#Scala
-#![feature(macro_rules)]
 extern crate num;
 use num::rational::{Ratio, Rational};
 use num::traits::Zero;
 // convenience macro to create a fixed-sized vector
 // of rationals by writing:
 // rational![1, 2, ...] instead of
-// [Ratio::<int>::from_integer(1), Ratio::<int>::from_integer(2), ...]
+// [Ratio::<i32>::from_integer(1), Ratio::<i32>::from_integer(2), ...]
 macro_rules! rationals(
-    ($($e:expr),+) => ([$(Ratio::<int>::from_integer($e)),+])
+    ($($e:expr),+) => ([$(Ratio::<i32>::from_integer($e)),+])
 );
 
 #[cfg(not(test))]
 fn main() {
-    let mut r = rationals![1i, 3, 7, 9];
+    let mut r = rationals![1i32, 3, 7, 9];
     let sol = solve(r.as_mut_slice(), 24).unwrap_or("no solution found".to_string());
     println!("{}", sol);
 }
 // for a vector of rationals r, find the combination of arithmentic
 // operations that yield target_val as a result (if such combination exists)
-fn solve(r: &mut[Rational], target_val: int) -> Option<String> {
+fn solve(r: &mut[Rational], target_val: i32) -> Option<String> {
     //need to sort because next_permutation()
     // returns permutations in lexicographic order
     r.sort();

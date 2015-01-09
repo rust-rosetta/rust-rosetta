@@ -1,6 +1,4 @@
 // Implements http://rosettacode.org/wiki/Hailstone_sequence
-#![feature(associated_types)]
-
 // Define a struct which stores the state for the iterator.
 struct Hailstone {
     next: uint, // Accessible only to the current module.

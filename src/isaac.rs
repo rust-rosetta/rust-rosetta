@@ -1,6 +1,5 @@
 // http://rosettacode.org/wiki/The_ISAAC_Cipher
 // includes the XOR version of the encryption scheme
-#![feature(macro_rules)]
 use std::iter::range_step;
 
 const MSG :&'static str = "a Top Secret secret";

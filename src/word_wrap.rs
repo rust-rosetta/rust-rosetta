@@ -4,8 +4,6 @@
 // http://en.wikipedia.org/wiki/Word_wrap#Minimum_length
 
 // Implemented as a lazy String iterator, returning a wrapped line each time
-#![feature(associated_types)]
-
 use std::str::Words;
 use std::mem::swap;
 

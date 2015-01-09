@@ -5,10 +5,10 @@ fn main() {}
 
 #[test]
 fn create_array() {
-    let empty_vec: Vec<int> = vec![];
+    let empty_vec: Vec<i32> = vec![];
     assert!(empty_vec.len() == 0);
 
-    let prepopulated_vec = vec![1i, 2, 3];
+    let prepopulated_vec = vec![1i32, 2, 3];
     assert!(prepopulated_vec.len() == 3);
 
     // Three string slices.

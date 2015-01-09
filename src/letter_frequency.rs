@@ -1,6 +1,4 @@
 // Implements http://rosettacode.org/wiki/Letter_frequency
-#![feature(associated_types, default_type_params)]
-
 #[cfg(not(test))]
 use std::io::fs::File;
 #[cfg(not(test))]

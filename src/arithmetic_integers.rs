@@ -5,7 +5,7 @@ fn main() {
     let input = stdin().read_line().unwrap();
     let words = input.words().take(2)
                                         .map(|s| s.parse())
-                                        .collect::<Vec<Option<int>>>();
+                                        .collect::<Vec<Option<i32>>>();
 
     let (a, b) = match words.as_slice() {
             [Some(x), Some(y)] => (x, y),

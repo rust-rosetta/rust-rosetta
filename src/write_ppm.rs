@@ -1,6 +1,4 @@
 // Implements http://rosettacode.org/wiki/Write_ppm_file
-#![feature(associated_types)]
-
 use std::io::{File, BufferedWriter, IoResult};
 use bitmap::Image;
 #[cfg(not(test))]

@@ -1,6 +1,4 @@
 // Implements http://rosettacode.org/wiki/Dot_product
-#![feature(associated_types, default_type_params)]
-
 extern crate num;
 
 use num::traits::Zero; 
