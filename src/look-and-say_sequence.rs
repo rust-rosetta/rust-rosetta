@@ -1,5 +1,6 @@
 // http://rosettacode.org/wiki/Look-and-say_sequence
 use run_length_encoding::encode;
+use std::char::CharExt;
 
 mod run_length_encoding;
 
@@ -13,7 +14,7 @@ fn main() {
 }
 
 fn look_and_say(value: &str) -> String {
-    if value.chars().any(|c| !UnicodeChar::is_numeric(c)) { panic!("this task requires all digits"); }
+    if value.chars().any(|c| !CharExt::is_numeric(c)) { panic!("this task requires all digits"); }
     encode(value)
 }
 

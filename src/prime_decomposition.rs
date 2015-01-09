@@ -37,10 +37,10 @@ pub fn factor(mut nb: uint) -> Vec<uint> {
 #[allow(dead_code)]
 #[cfg(not(test))]
 fn main() {
-    println!("Factors of 5: {}", factor(5));
-    println!("Factors of 15: {}", factor(15));
-    println!("Factors of 16: {}", factor(16));
-    println!("Factors of 10287: {}", factor(10287));
+    println!("Factors of 5: {:?}", factor(5));
+    println!("Factors of 15: {:?}", factor(15));
+    println!("Factors of 16: {:?}", factor(16));
+    println!("Factors of 10287: {:?}", factor(10287));
 }
 
 #[test]

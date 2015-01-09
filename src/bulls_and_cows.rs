@@ -1,5 +1,7 @@
 // http://rosettacode.org/wiki/Bulls_and_cows
 use std::fmt;
+use std::char::CharExt;
+
 const NUMBER_OF_DIGITS: uint = 4;
 
 /// generates a random NUMBER_OF_DIGITS
@@ -43,7 +45,7 @@ fn parse_guess_string(guess: &str) ->
         if i >= NUMBER_OF_DIGITS {
             return Err(ParseError::ExpectedNumberOfDigits(NUMBER_OF_DIGITS))
         }
-        match Char::to_digit(c, 10) {
+        match CharExt::to_digit(c, 10) {
             Some(d) if d > 0 => {
                     // the guess should not contain duplicate digits
                     if ret.contains(&d) { return Err(ParseError::NoDuplicates) }
@@ -85,7 +87,7 @@ fn main() {
             let guess_string = reader.read_line().unwrap();
             let digits_maybe = parse_guess_string(&*guess_string.trim());
             match digits_maybe {
-                Err(msg) => { println!("{}" , msg); }
+                Err(msg) => { println!("{:?}" , msg); }
                 Ok(guess_digits) => {
                     match calculate_score(&*given_digits, &*guess_digits) {
                         (NUMBER_OF_DIGITS, _) => {

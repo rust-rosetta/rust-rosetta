@@ -63,7 +63,7 @@ impl<'a> Graph<'a> {
         let from_idx = self.get_or_insert_vertex(from);
         let to_idx = self.get_or_insert_vertex(to);
 
-        match self.costs.entry(&(from_idx, to_idx)) {
+        match self.costs.entry((from_idx, to_idx)) {
             Vacant(entry)   => {
                 self.adj_list[from_idx].push(to_idx);
                 entry.insert(cost);
@@ -110,7 +110,7 @@ impl<'a> Graph<'a> {
                         };
                         let alt = dist_u + cost_uv;
                         if alt < dist[v] {
-                            match prev.entry(&v) {
+                            match prev.entry(v) {
                                 Vacant(entry) => {entry.insert(u);},
                                 Occupied(entry) => {
                                     *entry.into_mut() = u;
@@ -171,6 +171,6 @@ fn main(){
     graph.add_edge("e", "f", 9);
     
     let path = graph.dijkstra("a", "e");
-    println!("Path is: {}", path);
+    println!("Path is: {:?}", path);
 }
 

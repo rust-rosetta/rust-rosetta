@@ -45,7 +45,7 @@ fn handle_event(duration: Duration) -> Duration {
         // get past the mutex at the top of the task until the wait() statement below is reached.
         cond_.notify_one();
         // Although we signaled the waiting mutex, it will not awaken until this guard is dropped.
-    }).detach();
+    });
     // Wait for the event state to be set to signaled (equivalent to guard.cond.wait_on(0)).
 	while !*guard {
 		guard = cond.wait(guard).unwrap();

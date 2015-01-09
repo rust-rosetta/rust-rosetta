@@ -27,7 +27,7 @@ fn get_kprimes(k: uint, amount: uint) -> Vec<uint> {
 #[cfg(not(test))]
 fn main() {
     for k in range_inclusive(1u, 5) {
-        println!("k = {}: {}", k, get_kprimes(k, 10));
+        println!("k = {}: {:?}", k, get_kprimes(k, 10));
     }
 }
 

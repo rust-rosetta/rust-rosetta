@@ -13,7 +13,7 @@ fn count_chars<T>(mut chars: T) -> HashMap<char, uint>
 {
     let mut map: HashMap<char, uint> = HashMap::new();
     for letter in chars {
-        match map.entry(&letter) {
+        match map.entry(letter) {
             Vacant(entry) => { entry.insert(1u); },
             Occupied(mut entry) => { *entry.get_mut() += 1; }
         };
@@ -26,7 +26,7 @@ fn main() {
     let file = File::open(&Path::new("resources/unixdict.txt"));
     let mut reader = BufferedReader::new(file);
 
-    println!("{}", count_chars(reader.chars().map(|c| c.unwrap())));
+    println!("{:?}", count_chars(reader.chars().map(|c| c.unwrap())));
 }
 
 #[test]

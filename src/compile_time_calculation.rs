@@ -2,11 +2,11 @@
 
 // syntax extension are not yet stable, so we need to opt-in
 // explicitly to the phase feature gate
-#![feature(phase)]
+#![feature(plugin)]
  
 // we use this attribute to mark factorial_plugin as
 // a syntax extension. The plugin's code is in src/factorial_plugin.rs
-#[phase(plugin)] extern crate factorial_plugin;
+#[plugin] extern crate factorial_plugin;
 
 #[cfg(not(test))] 
 fn main() {

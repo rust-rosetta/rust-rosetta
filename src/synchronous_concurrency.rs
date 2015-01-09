@@ -37,13 +37,13 @@ fn reader(msg_snd: Sender<Message>, i_rcv: Receiver<int>) {
         msg_snd.send(Message::Line(line.unwrap())).unwrap();
     }
     msg_snd.send(Message::End).unwrap();
-    println!("Total Lines: {}", i_rcv.recv());
+    println!("Total Lines: {:?}", i_rcv.recv());
 }
 
 fn main() {
     let (msg_snd, msg_rcv) = channel();
     let (i_snd, i_rcv) = channel();
 
-    Thread::spawn(move || printer(i_snd, msg_rcv)).detach();
-    Thread::spawn(move || reader(msg_snd, i_rcv)).detach();
+    Thread::spawn(move || printer(i_snd, msg_rcv));
+    Thread::spawn(move || reader(msg_snd, i_rcv));
 }

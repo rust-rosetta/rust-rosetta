@@ -89,7 +89,7 @@ fn metered(duration: Duration) {
             println!("Worker {} after release: count = {}", i, count);
             // Notify the main task of completion
             tx.send(()).unwrap();
-        }).detach();
+        });
     }
     drop(tx);
     // Wait for all the subtasks to finish

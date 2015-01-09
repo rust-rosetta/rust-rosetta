@@ -313,9 +313,9 @@ fn try_decode<'a>(ctx: &'a mut ParseContext<'a>) -> Result<SExp<'a>, Error> {
 
 #[cfg(not(test))]
 fn main() {
-    println!("{}", try_encode());
+    println!("{:?}", try_encode());
     let ref mut ctx = ParseContext::new(SEXP_STRING_IN);
-    println!("{}", try_decode(ctx));
+    println!("{:?}", try_decode(ctx));
 }
 
 #[bench]

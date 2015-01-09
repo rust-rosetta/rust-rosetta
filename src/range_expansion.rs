@@ -1,16 +1,18 @@
 // Implements http://rosettacode.org/wiki/Range_expansion
 
-#![feature(phase)]
+#![feature(plugin)]
 
+#[macro_use]
+#[plugin]
+extern crate regex_macros;
 extern crate regex;
-#[phase(plugin)] extern crate regex_macros;
 
 use std::iter::range_inclusive;
 
 #[cfg(not(test))]
 fn main() {
     let range = "-6,-3-1,3-5,7-11,14,15,17-20";
-    println!("Expanded range: {}", expand_range(range));
+    println!("Expanded range: {:?}", expand_range(range));
 }
 
 // Expand a string containing numbers and ranges, into a vector of numbers

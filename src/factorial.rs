@@ -45,7 +45,7 @@ mod tests {
     use super::{factorial_recursive, factorial_iterative, factorial_loop};
 
     // Tests
-    fn t(f: |uint| -> uint) {
+    fn t<F>(f: F) where F: Fn(uint) -> uint {
         assert_eq!(f(0), 1);
         assert_eq!(f(1), 1);
         assert_eq!(f(2), 2);

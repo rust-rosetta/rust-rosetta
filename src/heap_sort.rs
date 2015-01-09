@@ -73,15 +73,15 @@ fn sift_down<T: Ord>(a: &mut [T], start: uint, end: uint) {
 pub fn main() {
     let mut arr = [1u,5,2,7,3,9,4,6,8];
     heap_sort(&mut arr);
-    println!("After sort: {}", arr);
+    println!("After sort: {:?}", arr);
     
     let mut arr = [1u,2,3,4,5,6,7,8,9];
     heap_sort(&mut arr);
-    println!("After sort: {}", arr);
+    println!("After sort: {:?}", arr);
     
     let mut arr = [9u,8,7,6,5,4,3,2,1];
     heap_sort(&mut arr);
-    println!("After sort: {}", arr);
+    println!("After sort: {:?}", arr);
 }
 
 #[cfg(test)]

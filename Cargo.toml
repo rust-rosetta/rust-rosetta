@@ -37,20 +37,13 @@ authors = [
     "Rootul Patel, https://github.com/rootulp"
 ]
 
-[dependencies.collect]
+[dependencies]
 collect = "*"
-
-[dependencies.num]
 num = "*"
-
-[dependencies.regex]
 regex = "*"
-
-[dependencies.regex_macros]
 regex_macros = "*"
-
-[dependencies.time]
 time = "*"
+rustc-serialize = "*"
 
 [lib]
 # used by compile_time_calculation.rs

@@ -2,7 +2,7 @@
 
 #[cfg(not(test))]
 fn main() {
-    println!("{}", mul_inv(42, 2017));
+    println!("{:?}", mul_inv(42, 2017));
 }
 
 fn mul_inv(a: int, b: int) -> Option<int> {

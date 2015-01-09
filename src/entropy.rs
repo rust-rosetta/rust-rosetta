@@ -9,7 +9,7 @@ pub fn shannon_entropy(s: &str) -> f64 {
 
     // Count occurrences of each char
     for c in s.chars() {
-        match map.entry(&c) {
+        match map.entry(c) {
             Vacant(entry) => { entry.insert(1u); },
             Occupied(mut entry) => { *entry.get_mut() += 1; },
         };

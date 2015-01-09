@@ -127,7 +127,7 @@ fn semi_parallel_n_queens(n: i32) -> uint {
                                     (left_diags | spot) << 1,
                                     (columns | spot),
                                     (right_diags | spot) >> 1)).unwrap();
-        }).detach();
+        });
     }
 
     receivers.iter().map(|r| r.recv().unwrap()).sum() + ((columns == all_ones) as uint)

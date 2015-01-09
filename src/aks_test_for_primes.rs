@@ -21,7 +21,7 @@ pub fn is_prime(p: uint) -> bool {
 #[cfg(not(test))]
 fn main() {
     for p in range(0u, 8) {
-        println!("{}: {}", p, coefficients(p));
+        println!("{}: {:?}", p, coefficients(p));
     }
 
     for p in range(1u, 51).filter(|&x| is_prime(x)) {
