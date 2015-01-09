@@ -233,7 +233,6 @@ path = "src/bulls_and_cows.rs"
 # http://rosettacode.org/wiki/Call_a_foreign-language_function
 name = "call_foreign_function"
 path = "src/call_foreign_function.rs"
-test = false
 
 [[bin]]
 # http://rosettacode.org/wiki/Apply_a_callback_to_an_array
