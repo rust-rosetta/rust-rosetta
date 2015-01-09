@@ -3,7 +3,7 @@
 #[allow(unused_imports)]
 use std::iter::{count, range_inclusive};
 
-fn is_kprime(mut n: uint, k: uint) -> bool {
+fn is_kprime(mut n: usize, k: usize) -> bool {
     let mut p = 2;
     let mut f = 0;
 
@@ -15,18 +15,18 @@ fn is_kprime(mut n: uint, k: uint) -> bool {
         p += 1;
     }
 
-    f + (n > 1) as uint == k
+    f + (n > 1) as usize == k
 }
 
-fn get_kprimes(k: uint, amount: uint) -> Vec<uint> {
-    count(2u, 1).filter(|&x| is_kprime(x, k))
+fn get_kprimes(k: usize, amount: usize) -> Vec<usize> {
+    count(2us, 1).filter(|&x| is_kprime(x, k))
                 .take(amount)
                 .collect()
 }
 
 #[cfg(not(test))]
 fn main() {
-    for k in range_inclusive(1u, 5) {
+    for k in range_inclusive(1us, 5) {
         println!("k = {}: {:?}", k, get_kprimes(k, 10));
     }
 }

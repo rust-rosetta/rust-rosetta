@@ -10,8 +10,8 @@ fn main() {
     let mut reader = io::stdin();
 
     // generating 4 numbers
-    let choices: Vec<uint> = range(0u, 4).map(
-		|_| rng.gen_range(1u, 10)
+    let choices: Vec<usize> = range(0us, 4).map(
+		|_| rng.gen_range(1us, 10)
     ).collect();
     println!("Make 24 with the following numbers");
 
@@ -29,8 +29,8 @@ fn main() {
     }
 }
 
-fn check_input(expr: &str, choices: &Vec<uint>) -> Result<(), String> {
-    let mut stack: Vec<uint> = Vec::new();
+fn check_input(expr: &str, choices: &Vec<usize>) -> Result<(), String> {
+    let mut stack: Vec<usize> = Vec::new();
     for token in expr.words() {
         if is_operator(token) {
             let (a, b) = (stack.pop(), stack.pop());
@@ -39,7 +39,7 @@ fn check_input(expr: &str, choices: &Vec<uint>) -> Result<(), String> {
                 (_, _) => return Err("Not a valid RPN expression!".to_string())
             }
         } else {
-            match token.parse::<uint>() {
+            match token.parse::<usize>() {
                 Some(n) => {
                     // check if the number is valid
                     if !choices.contains(&n) {
@@ -65,7 +65,7 @@ fn check_input(expr: &str, choices: &Vec<uint>) -> Result<(), String> {
     }
 }
 
-fn evaluate(a: uint, b: uint, op: &str) -> uint {
+fn evaluate(a: usize, b: usize, op: &str) -> usize {
     match op {
         "+" => a + b,
         "-" => a - b,
@@ -81,7 +81,7 @@ fn is_operator(op: &str) -> bool {
 
 #[test]
 fn test_check_input() {
-    let v1: Vec<uint> = vec![4, 3, 6, 2];
+    let v1: Vec<usize> = vec![4, 3, 6, 2];
 
     // correct result
     assert_eq!(check_input("4 3 * 6 2 * +", &v1), Ok(()));

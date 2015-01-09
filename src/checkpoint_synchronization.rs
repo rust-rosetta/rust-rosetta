@@ -14,7 +14,7 @@ use std::sync::mpsc::channel;
 
 
 pub fn checkpoint() {
-    const NUM_TASKS: uint = 10;
+    const NUM_TASKS: usize = 10;
     const NUM_ITERATIONS: u8 = 10;
 
     let barrier = Barrier::new(NUM_TASKS);

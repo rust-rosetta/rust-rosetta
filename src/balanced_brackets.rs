@@ -31,7 +31,7 @@ impl Balanced for String {
 
 /// Generates random brackets
 #[cfg(not(test))]
-fn generate_brackets(num: uint) -> String {
+fn generate_brackets(num: usize) -> String {
     use std::rand::random;
 
     range(0, num).map(|_| if random() { '[' } else { ']' }).collect()
@@ -39,7 +39,7 @@ fn generate_brackets(num: uint) -> String {
 
 #[cfg(not(test))]
 fn main() {
-    for i in range (0u, 10) {
+    for i in range (0us, 10) {
         let brackets = generate_brackets(i);
 
         println!("{}    {}", brackets, brackets.is_balanced())

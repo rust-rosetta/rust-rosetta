@@ -14,7 +14,7 @@ fn fft(arr: &[Complex<f32>]) -> Vec<Complex<f32>> {
     let mut even = Vec::with_capacity(arr.len()/2);
     let mut odd = Vec::with_capacity(arr.len()/2);
 
-    for i in range(0u, arr.len()) {
+    for i in range(0us, arr.len()) {
         if i % 2 == 0 {
             even.push(arr[i].clone());
         } else {
@@ -26,7 +26,7 @@ fn fft(arr: &[Complex<f32>]) -> Vec<Complex<f32>> {
     let odd_fft = fft(odd.as_slice());
 
     let mut out: Vec<Complex<f32>> = repeat(Complex::new(0f32, 0f32)).take(arr.len()).collect();
-    for i in range(0u, arr.len()/2) {
+    for i in range(0us, arr.len()/2) {
         let twiddle: Complex<f32> = Complex::from_polar(&1f32, &(-2f32*PI*(i as f32)/(arr.len() as f32)));
         out[i] = even_fft[i] + twiddle*odd_fft[i];
         out[i + arr.len()/2] = even_fft[i] - twiddle*odd_fft[i];

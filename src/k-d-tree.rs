@@ -1,6 +1,4 @@
 // Implements http://rosettacode.org/wiki/K-d_tree
-#![feature(associated_types, default_type_params, box_syntax)]
-
 extern crate time;
 
 use std::num::Float;
@@ -33,7 +31,7 @@ impl Point {
 
 struct KDTreeNode {
     point: Point,
-    dim: uint,
+    dim: usize,
     // Construction could become faster if we use an arena allocator,
     // but this is easier to use.
     left: Option<Box<KDTreeNode>>,
@@ -44,7 +42,7 @@ impl KDTreeNode {
     // Create a new KDTreeNode around the `dim`th dimension.
     // Alternatively, we could dynamically determine the dimension to
     // split on by using the longest dimension.
-    pub fn new(points: &mut [Point], dim: uint) -> KDTreeNode {
+    pub fn new(points: &mut [Point], dim: usize) -> KDTreeNode {
         let points_len = points.len();
         if points_len == 1 {
             return KDTreeNode {
@@ -57,13 +55,13 @@ impl KDTreeNode {
     
         // Split around the median
         let pivot = quickselect_by(points, points_len/2,
-            box |a, b| a.coords[dim].partial_cmp(&b.coords[dim]).unwrap());
+            &|&: a, b| a.coords[dim].partial_cmp(&b.coords[dim]).unwrap());
 
-        let left = Some(box KDTreeNode::new(points.slice_mut(0u, points_len/2),
-                (dim + 1) % pivot.coords.len()));
+        let left = Some(Box::new(KDTreeNode::new(points.slice_mut(0us, points_len/2),
+                (dim + 1) % pivot.coords.len())));
         let right = if points.len() >= 3 {
-            Some(box KDTreeNode::new(points.slice_mut(points_len/2+1, points_len),
-                (dim + 1) % pivot.coords.len()))
+            Some(Box::new(KDTreeNode::new(points.slice_mut(points_len/2+1, points_len),
+                (dim + 1) % pivot.coords.len())))
         } else {
             None
         };
@@ -76,12 +74,12 @@ impl KDTreeNode {
         }
     }
 
-    pub fn find_nearest_neighbor<'a>(&'a self, point: &Point) -> (&'a Point, uint) {
+    pub fn find_nearest_neighbor<'a>(&'a self, point: &Point) -> (&'a Point, usize) {
         self.find_nearest_neighbor_helper(point, &self.point, (point - &self.point).norm_sq(), 1)
     }
 
     fn find_nearest_neighbor_helper<'a>(&'a self, point: &Point, best: &'a Point,
-                                        best_dist_sq: f32, n_visited: uint) -> (&'a Point, uint) {
+                                        best_dist_sq: f32, n_visited: usize) -> (&'a Point, usize) {
         let mut my_best = best;
         let mut my_best_dist_sq = best_dist_sq;
         let mut my_n_visited = n_visited;
@@ -174,9 +172,9 @@ pub fn main() {
     println!("Nodes visited: {}", n_visited);
 
     // randomly generated 3D
-    let n_random = 1000u;
+    let n_random = 1000us;
     let make_random_point = |&:| Point {
-        coords: range(0u, 3).map(
+        coords: range(0us, 3).map(
 				|_| (std::rand::thread_rng().gen::<f32>()-0.5f32)*1000f32
 			).collect()
     };
@@ -199,13 +197,13 @@ pub fn main() {
     println!("Nodes visited: {}", n_visited);
     
     // benchmark search time
-    let n_searches = 1000u;
+    let n_searches = 1000us;
     let random_targets: Vec<Point> = range(0, n_searches).map(
 		|_| make_random_point()
     ).collect();
 
     let start_search_time = get_time();
-    let mut total_n_visited = 0u;
+    let mut total_n_visited = 0us;
     for target in random_targets.iter() {
         let (_, n_visited) = random_tree.find_nearest_neighbor(target);
         total_n_visited += n_visited;
@@ -218,28 +216,30 @@ pub fn main() {
              ((end_search_time.nsec - start_search_time.nsec) as f32)/1000000f32);
 }
 
-fn quickselect_by<T: Clone>(arr: &mut [T], position: uint, cmp: Box<Fn(&T, &T) -> Ordering>) -> T {
+fn quickselect_by<T>(arr: &mut [T], position: usize, cmp: &Fn(&T, &T) -> Ordering) -> T 
+    where T: Clone
+{
     let mut pivot_index = std::rand::thread_rng().gen_range(0, arr.len());
     // Need to wrap in another closure or we get ownership complaints.
     // Tried using an unboxed closure to get around this but couldn't get it to work.
-    pivot_index = partition_by(arr, pivot_index, |a: &T, b: &T| cmp(a, b));
+    pivot_index = partition_by(arr, pivot_index, &|&: a: &T, b: &T| cmp(a, b));
     let array_len = arr.len();
     if position == pivot_index {
         arr[position].clone()
     } else if position < pivot_index {
-        quickselect_by(arr.slice_mut(0u, pivot_index), position, box |a: &T, b: &T| cmp(a, b))
+        quickselect_by(arr.slice_mut(0us, pivot_index), position, cmp)
     } else {
-        quickselect_by(arr.slice_mut(pivot_index+1, array_len), position - pivot_index - 1, box |a: &T, b: &T| cmp(a, b))
+        quickselect_by(arr.slice_mut(pivot_index+1, array_len), position - pivot_index - 1, cmp)
     }
 }
 
-fn partition_by<T, F>(arr: &mut [T], pivot_index: uint, cmp: F) 
-    -> uint where F: Fn(&T, &T) -> Ordering {
+fn partition_by<T>(arr: &mut [T], pivot_index: usize, cmp: &Fn(&T, &T) -> Ordering) -> usize 
+{
     let array_len = arr.len();
     arr.swap(pivot_index, array_len-1);
-    let mut store_index = 0u;
-    for i in range(0u, array_len-1) {
-        if cmp(&arr[i], &arr[array_len-1]) == Less {
+    let mut store_index = 0us;
+    for i in range(0us, array_len-1) {
+        if (*cmp)(&arr[i], &arr[array_len-1]) == Less {
             arr.swap(i, store_index);
             store_index += 1;
         }

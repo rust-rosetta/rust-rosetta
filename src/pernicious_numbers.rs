@@ -8,8 +8,7 @@ mod aks_test_for_primes;
 fn main() {
     for i in pernicious().take(25) { print!("{} " , i); }
     println!("");
-    for i in range(888_888_877u64, 888_888_888).filter(is_pernicious)
-        {
+    for i in range(888_888_877u64, 888_888_888).filter(is_pernicious) {
         print!("{} " , i);
     }
 }

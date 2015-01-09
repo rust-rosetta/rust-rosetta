@@ -61,7 +61,7 @@ fn handle_event(duration: Duration) -> Duration {
 #[cfg(not(test))]
 pub fn main() {
     let duration = Duration::seconds(1); // Process event after one second.
-    println!("{} elapsed before event triggered", handle_event(duration));
+    println!("{:?} elapsed before event triggered", handle_event(duration));
 }
 
 

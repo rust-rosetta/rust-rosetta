@@ -16,7 +16,7 @@ impl PPMWritable for Image {
         let file = File::create(&Path::new(filename));
         let mut writer = BufferedWriter::new(file);
         try!(writer.write_line("P6"));
-        try!(write!(&mut writer, "{} {} {}\n", self.width, self.height, 255u));
+        try!(write!(&mut writer, "{} {} {}\n", self.width, self.height, 255us));
         for color in self.data.iter() {
             for channel in [color.red, color.green, color.blue].iter() {
                 try!(writer.write_u8(*channel));
@@ -32,8 +32,8 @@ pub fn main() {
     // of which is blue
     let mut image = Image::new(64, 64);
     image.fill(Color { red: 255, green: 0, blue: 0 });
-    for y in range(0u, 64) {
-        for x in range(32u, 64) {
+    for y in range(0us, 64) {
+        for x in range(32us, 64) {
             image[(x, y)] = Color { red: 0, green: 0, blue: 255 };
         }
     }

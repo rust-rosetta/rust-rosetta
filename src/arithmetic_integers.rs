@@ -12,9 +12,9 @@ fn main() {
             _ => panic!("Please enter 2 integers")
     };
 
-    println!("a + b = {}", a + b);
-    println!("a - b = {}", a - b);
-    println!("a * b = {}", a * b);
-    println!("a / b = {}", a / b);
-    println!("a % b = {}", a % b);
+    println!("a + b = {:?}", a + b);
+    println!("a - b = {:?}", a - b);
+    println!("a * b = {:?}", a * b);
+    println!("a / b = {:?}", a / b);
+    println!("a % b = {:?}", a % b);
 }

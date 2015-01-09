@@ -2,7 +2,7 @@
 use std::iter::AdditiveIterator;
 use std::num::Int;
 
-fn equilibrium_indices(v: &[int]) -> Vec<uint> {
+fn equilibrium_indices(v: &[int]) -> Vec<usize> {
     let mut right = v.iter().map(|&x| x).sum();
     let mut left: int = Int::zero();
 

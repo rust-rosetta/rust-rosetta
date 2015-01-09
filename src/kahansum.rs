@@ -10,7 +10,7 @@ fn find_max(lst: &[f32]) -> Option<f32> {
     Some(max)
 }
 
-fn with_bits(val: f32, digits: uint) -> f32 {
+fn with_bits(val: f32, digits: usize) -> f32 {
     let num = std::f32::to_str_digits(val, digits);
     num.parse::<f32>().unwrap()
 }

@@ -11,7 +11,7 @@ use prime_decomposition::factor;
 mod prime_decomposition;
 
 // Returns the minimal prime factor of a number
-fn min_factor(x: uint) -> uint {
+fn min_factor(x: usize) -> usize {
     // factor returns a sorted vector, so we just take the first element
     factor(x)[0]
 }
@@ -19,7 +19,7 @@ fn min_factor(x: uint) -> uint {
 // Returns the largest minimal factor of the numbers in a slice
 // The function is implemented using a channel
 #[cfg(test)]
-fn largest_min_factor_chan(numbers: &[uint]) -> uint {
+fn largest_min_factor_chan(numbers: &[usize]) -> usize {
     use std::thread::Thread;
     use std::sync::mpsc::channel;
 
@@ -39,9 +39,9 @@ fn largest_min_factor_chan(numbers: &[uint]) -> uint {
 
 // Returns the largest minimal factor of the numbers in a slice
 // The function is implemented using the Future struct
-fn largest_min_factor_fut(numbers: &[uint]) -> uint {
+fn largest_min_factor_fut(numbers: &[usize]) -> usize {
     // We will save the future values of the minimal factor in the results vec
-    let mut results: Vec<Future<uint>> = range(0, numbers.len()).map(
+    let mut results: Vec<Future<usize>> = range(0, numbers.len()).map(
 		|i| {
 			let number = numbers[i];
 			Future::spawn(move || { min_factor(number) })

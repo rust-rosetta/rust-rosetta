@@ -16,12 +16,12 @@ fn benford_freq(d: u64) -> f32 {
 }
 
 // Returns the leading digit of any number
-fn first_digit_of(n: u64) -> uint {
+fn first_digit_of(n: u64) -> usize {
     let mut d = n;
     while d > 9 {
         d = d / 10;
     }
-    d as uint
+    d as usize
 }
 
 // Count frequency table using the first digit of each number in a vector

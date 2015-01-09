@@ -12,8 +12,8 @@ use std::iter::repeat;
 // Simple 8-bit grayscale image
 
 struct ImageGray8 {
-    width: uint,
-    height: uint,
+    width: usize,
+    height: usize,
     data: Vec<u8>,
 }
 
@@ -36,8 +36,8 @@ fn load_pgm(filename: &str) -> ImageGray8 {
 
     // Parse header
 
-    let width = width_in.trim().parse::<uint>().unwrap();
-    let height: uint = height_in.trim().parse::<uint>().unwrap();
+    let width = width_in.trim().parse::<usize>().unwrap();
+    let height: usize = height_in.trim().parse::<usize>().unwrap();
 
     println!("Reading pgm file {}: {} x {}", filename, width, height);
 
@@ -83,14 +83,14 @@ fn save_pgm(img: &ImageGray8, filename: &str) {
     }
 }
 
-fn hough(image: &ImageGray8, out_width: uint, out_height: uint) -> ImageGray8 {
+fn hough(image: &ImageGray8, out_width: usize, out_height: usize) -> ImageGray8 {
 
     let in_width = image.width;
     let in_height = image.height;
 
     // Allocate accumulation buffer
 
-    let out_height = ((out_height/2) * 2) as uint;
+    let out_height = ((out_height/2) * 2) as usize;
     let mut accum = ImageGray8 {
         width: out_width,
         height: out_height,
@@ -119,7 +119,7 @@ fn hough(image: &ImageGray8, out_width: uint, out_height: uint) -> ImageGray8 {
                 let th = dth * (jtx as f64);
                 let r = (x as f64)*(th.cos()) + (y as f64)*(th.sin());
 
-                let iry = out_height/2 - (r/(dr as f64)+0.5).floor() as uint;
+                let iry = out_height/2 - (r/(dr as f64)+0.5).floor() as usize;
                 let out_idx = jtx + iry * out_width;
                 let col = accum.data[out_idx];
                 if col > 0 {

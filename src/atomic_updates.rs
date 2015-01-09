@@ -51,12 +51,12 @@ mod buckets {
     // fully baked, this seems like the sanest solution.
     //
     // (Another way to solve this would be associated constants, something Rust does not have yet).
-    pub const N_BUCKETS: uint = 20;
+    pub const N_BUCKETS: usize = 20;
 
     // We don't really have to hardcode the workers.  This is left over from the Go implementation.
     // All the counting statistics could be moved outside of buckets and probably should, since
     // they have no influence on the correctness of the algorithm.
-    pub const N_WORKERS: uint = 2;
+    pub const N_WORKERS: usize = 2;
 
     struct Bucket {
         data: AtomicUint,       // The actual data.  It is atomic because it is read (not written)
@@ -73,7 +73,7 @@ mod buckets {
 
     impl Buckets {
         // Create a new Buckets instance.
-        pub fn new(buckets: [uint; N_BUCKETS]) -> Buckets {
+        pub fn new(buckets: [usize; N_BUCKETS]) -> Buckets {
             // The unsafe initialization here is required because Bucket is not Clone (it can't be,
             // since neither AtomicUint nor Mutex are) and we would otherwise have to literally
             // write out N_BUCKETS different values, which would be painful.  As a result, we have
@@ -94,7 +94,7 @@ mod buckets {
         }
 
         // Get the value of the bucket at index i, or None if out of bounds.
-        pub fn get(&self, i: uint) -> Option<uint> {
+        pub fn get(&self, i: usize) -> Option<usize> {
             // This is used as an estimate, and is used without the mutex lock, so there's no
             // compelling reason to demand consistency here.
             self.buckets.get(i).map( |b| b.data.load(Ordering::Relaxed) )
@@ -103,7 +103,7 @@ mod buckets {
         // Transfer at most `amount` from the bucket at index `from` to that at index `to`, and
         // increment the transfer count for worker `worker` (like I said, that last part can likely
         // be done elsewhere).
-        pub fn transfer(&self, from: uint, to: uint, amount: uint, worker: uint) {
+        pub fn transfer(&self, from: usize, to: usize, amount: usize, worker: usize) {
             // The from == to check is important so we don't deadlock, since Rust mutexes are
             // nonreentrant.
             if from == to || N_BUCKETS <= from || N_BUCKETS <= to || N_WORKERS <= worker { return }
@@ -138,7 +138,7 @@ mod buckets {
 
         // Acquire a consistent snapshot of the state of the bucket list.  This should maintain the
         // invariant that total buckets are conserved.  Also returns the list of transfer counts.
-        pub fn snapshot(&self) -> ([uint; N_BUCKETS], [uint; N_WORKERS ]) {
+        pub fn snapshot(&self) -> ([usize; N_BUCKETS], [usize; N_WORKERS ]) {
             // Since this method is called relatively rarely, we aren't too concerned about
             // performance here.
             let mut buckets = [0; N_BUCKETS];
@@ -165,7 +165,7 @@ mod buckets {
 }
 
 // Convenience method to create a distribution of buckets summing to initial_sum.
-fn make_buckets(initial_sum: uint) -> buckets::Buckets {
+fn make_buckets(initial_sum: usize) -> buckets::Buckets {
     let mut buckets = [0; buckets::N_BUCKETS];
     let mut dist = initial_sum;
     for (i, b) in buckets.as_mut_slice().iter_mut().enumerate() {
@@ -177,7 +177,7 @@ fn make_buckets(initial_sum: uint) -> buckets::Buckets {
 }
 
 // The equalize task--it chooses two random buckets and tries to make their values the same.
-fn equalize(bl: &buckets::Buckets, running: &AtomicBool, worker: uint) {
+fn equalize(bl: &buckets::Buckets, running: &AtomicBool, worker: usize) {
     // We preallocate the Range for improved performance.
     let between = Range::new(0, buckets::N_BUCKETS);
     // We use the weak random number generator for improved performance.
@@ -198,7 +198,7 @@ fn equalize(bl: &buckets::Buckets, running: &AtomicBool, worker: uint) {
 }
 
 // The randomize task--it chooses two random buckets and randomly redistributes their values.
-fn randomize(bl: &buckets::Buckets, running: &AtomicBool, worker: uint) {
+fn randomize(bl: &buckets::Buckets, running: &AtomicBool, worker: usize) {
     // We preallocate the Range for improved performance.
     let between = Range::new(0, buckets::N_BUCKETS);
     // We use the weak random number generator for improved performance.
@@ -215,7 +215,7 @@ fn randomize(bl: &buckets::Buckets, running: &AtomicBool, worker: uint) {
 // The display task--for a total time of `duration`, it displays information about the update
 // process and checks to make sure that the invariant (that the total remains constant) is
 // preserved.  It prints an update `nticks` times, evenly spaced.
-fn display(bl: &buckets::Buckets, running: &AtomicBool, original_total: uint, duration: Duration, nticks: i32) {
+fn display(bl: &buckets::Buckets, running: &AtomicBool, original_total: usize, duration: Duration, nticks: i32) {
     println!("transfers, N. transfers, buckets, buckets sum:");
 
     let mut timer = Timer::new().unwrap();
@@ -239,11 +239,11 @@ fn display(bl: &buckets::Buckets, running: &AtomicBool, original_total: uint, du
 }
 
 // Putting together all three tasks.
-fn perform_atomic_updates(duration: Duration, original_total: uint, num_ticks: i32)
+fn perform_atomic_updates(duration: Duration, original_total: usize, num_ticks: i32)
 {
     // Worker IDs for the two updater tasks.
-    const ID_EQUALIZE: uint = 0;
-    const ID_RANDOMIZE: uint = 1;
+    const ID_EQUALIZE: usize = 0;
+    const ID_RANDOMIZE: usize = 1;
 
     // `running` is an atomic boolean that we use to signal when to stop to the updater tasks.
     let running = AtomicBool::new(true);
@@ -263,7 +263,7 @@ fn perform_atomic_updates(duration: Duration, original_total: uint, num_ticks: i
     display(bl, running, original_total, duration, num_ticks);
 }
 
-const ORIGINAL_TOTAL: uint = 1000;
+const ORIGINAL_TOTAL: usize = 1000;
 const NUM_TICKS: i32 = 10;
 
 #[cfg(not(test))]

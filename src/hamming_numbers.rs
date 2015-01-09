@@ -59,7 +59,7 @@ pub struct Hamming<T> {
 impl<T: HammingNumber> Hamming<T> {
     /// Static constructor method
     /// `n` initializes the capacity of the queues
-    pub fn new(n: uint) -> Hamming<T> {
+    pub fn new(n: usize) -> Hamming<T> {
         let mut h = Hamming {
             q2: RingBuf::with_capacity(n),
             q3: RingBuf::with_capacity(n),
