@@ -22,7 +22,7 @@ pub struct CountingSemaphoreGuard<'a> {
 impl CountingSemaphore {
     // Create a semaphore with `max` available resources and a linearly increasing backoff of
     // `backoff` (used during spinlock contention).
-    pub fn new(max: uint, backoff: Duration) -> CountingSemaphore {
+    pub fn new(max: usize, backoff: Duration) -> CountingSemaphore {
         CountingSemaphore { count: AtomicUint::new(max), backoff: backoff }
     }
 
@@ -48,7 +48,7 @@ impl CountingSemaphore {
     }
 
     // Return remaining resource count
-    pub fn count(&self) -> uint {
+    pub fn count(&self) -> usize {
         self.count.load(Ordering::SeqCst)
     }
 }
@@ -62,14 +62,14 @@ impl<'a> Drop for CountingSemaphoreGuard<'a> {
 }
 
 fn metered(duration: Duration) {
-    static MAX_COUNT: uint = 4; // Total available resources
+    static MAX_COUNT: usize = 4; // Total available resources
     static NUM_WORKERS: u8 = 10; // Number of workers contending for the resources
     let backoff = Duration::milliseconds(1); // Linear backoff time
     // Create a shared reference to the semaphore
     let sem = Arc::new(CountingSemaphore::new(MAX_COUNT, backoff));
     // Create a channel for notifying the main task that the workers are done
     let (tx, rx) = channel();
-    for i in range(0, NUM_WORKERS) {
+    for i in (0..NUM_WORKERS) {
         let sem = sem.clone();
         let tx = tx.clone();
         Thread::spawn(move || -> () {
@@ -93,7 +93,7 @@ fn metered(duration: Duration) {
     }
     drop(tx);
     // Wait for all the subtasks to finish
-    for _ in range(0, NUM_WORKERS) {
+    for _ in (0..NUM_WORKERS) {
         rx.recv().unwrap();
     }
 }

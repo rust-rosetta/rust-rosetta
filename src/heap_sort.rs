@@ -26,31 +26,31 @@ fn heap_sort<T: Ord>(a: &mut [T]) {
     }
 }
  
-fn heapify<T: Ord>(a: &mut [T], count: uint) {
+fn heapify<T: Ord>(a: &mut [T], count: usize) {
     if count < 2 {
         return;
     }
 
     // start is assigned the index in 'a' of the last parent node
-    let mut start:int = count as int - 2 / 2; // binary heap
+    let mut start:i32 = count as i32 - 2 / 2; // binary heap
     
     while start >= 0 {        
         // sift down the node at index 'start' to the proper place
         // such that all nodes below the 'start' index are in heap order
-        sift_down(a, start as uint, count - 1);
+        sift_down(a, start as usize, count - 1);
         start -= 1;
     }
 }
  
  
-fn sift_down<T: Ord>(a: &mut [T], start: uint, end: uint) {
+fn sift_down<T: Ord>(a: &mut [T], start: usize, end: usize) {
     // end represents the limit of how far down the heap to shift
     let mut root = start;
     
     // while the root has at least one child
     while (root*2 + 1) <= end { 
         // root*2+1 points to the left child
-        let mut child:uint = root*2 + 1 as uint;
+        let mut child:usize = root*2 + 1 as usize;
         
         // if the chile has a sibling and the child's value is less that its sibling's...
         if child + 1 <= end && a[child] < a[child + 1] {
@@ -71,15 +71,15 @@ fn sift_down<T: Ord>(a: &mut [T], start: uint, end: uint) {
  
 #[cfg(not(test))]
 pub fn main() {
-    let mut arr = [1u,5,2,7,3,9,4,6,8];
+    let mut arr = [1i32,5,2,7,3,9,4,6,8];
     heap_sort(&mut arr);
     println!("After sort: {:?}", arr);
     
-    let mut arr = [1u,2,3,4,5,6,7,8,9];
+    let mut arr = [1i32,2,3,4,5,6,7,8,9];
     heap_sort(&mut arr);
     println!("After sort: {:?}", arr);
     
-    let mut arr = [9u,8,7,6,5,4,3,2,1];
+    let mut arr = [9i32,8,7,6,5,4,3,2,1];
     heap_sort(&mut arr);
     println!("After sort: {:?}", arr);
 }
@@ -90,35 +90,35 @@ mod test {
     
     #[test]
     fn sorted() {
-        let mut arr = [1u, 2, 3, 4, 6, 8];
+        let mut arr = [1i32, 2, 3, 4, 6, 8];
         heap_sort(&mut arr);
-        assert_eq!(arr, [1u, 2, 3, 4, 6, 8]);
+        assert_eq!(arr, [1i32, 2, 3, 4, 6, 8]);
     }
 
     #[test]
     fn reverse() {
-        let mut arr = [8i, 6, 4, 3, 2, 1];
+        let mut arr = [8i32, 6, 4, 3, 2, 1];
         heap_sort(&mut arr);
-        assert_eq!(arr, [1i, 2, 3, 4, 6, 8]);
+        assert_eq!(arr, [1i32, 2, 3, 4, 6, 8]);
     }
 
     #[test]
     fn random() {
-        let mut arr = [12u, 54, 2, 93, 13, 43, 15, 299, 234];
+        let mut arr = [12i32, 54, 2, 93, 13, 43, 15, 299, 234];
         heap_sort(&mut arr);
-        assert_eq!(arr, [2u, 12, 13, 15, 43, 54, 93, 234, 299]);
+        assert_eq!(arr, [2i32, 12, 13, 15, 43, 54, 93, 234, 299]);
     }
 
     #[test]
     fn one() {
-        let mut arr = [9u];
+        let mut arr = [9i32];
         heap_sort(&mut arr);
-        assert_eq!(arr, [9u]);
+        assert_eq!(arr, [9i32]);
     }
 
     #[test]
     fn empty() {
-        let mut arr: [int; 0] = [];
+        let mut arr: [i32; 0] = [];
         heap_sort(&mut arr);
         assert!(arr.is_empty());
     }

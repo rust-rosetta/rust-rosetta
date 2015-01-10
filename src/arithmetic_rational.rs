@@ -18,11 +18,11 @@ fn main() {
 
 fn perfect_numbers(max: i64) -> Vec<i64> {
     let mut ret=Vec::new();
-    for candidate in range(2, max) {
+    for candidate in (2..max) {
         let mut sum=Frac::secure_new(1, candidate).unwrap();
         let max2=((candidate as f64).sqrt().floor()) as i64;
 
-        for factor in std::iter::range_inclusive(2, max2) {
+        for factor in (2..max2+1) {
             if candidate % factor == 0 {
                 sum = sum + Frac::new(1, factor) + Frac::new(factor, candidate);
             }

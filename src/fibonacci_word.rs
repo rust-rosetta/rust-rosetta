@@ -1,13 +1,12 @@
 // Implements http://rosettacode.org/wiki/Fibonacci_word
 
 use entropy::shannon_entropy;
-use std::iter::range_inclusive;
 mod entropy;
 
 // Returns "amount" fibonacci words as a vector of tuples
 // The first value of the tuple is the length of the word
 // and the second one its entropy
-fn fib_words(amount: uint) -> Vec<(uint, f64)> {
+fn fib_words(amount: usize) -> Vec<(usize, f64)> {
     let mut data = Vec::with_capacity(amount);
     let mut previous = String::from_str("1");
     let mut next = String::from_str("0");
@@ -18,7 +17,7 @@ fn fib_words(amount: uint) -> Vec<(uint, f64)> {
     data.push((next.len(), shannon_entropy(next.as_slice())));
 
     // The rest of the words
-    for _ in range_inclusive(3, amount) {
+    for _ in (3..amount + 1) {
         let temp = next.clone();
         next.push_str(previous.as_slice());
         previous = temp;
@@ -45,7 +44,7 @@ fn test_fibonacii_words() {
     use std::num::Float;
 
     let expected = vec![
-        (1u, 0.000000000000000f64),
+        (1us, 0.000000000000000f64),
         (1, 0.000000000000000),
         (2, 1.000000000000000),
         (3, 0.918295834054490),

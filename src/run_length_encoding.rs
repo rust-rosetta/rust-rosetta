@@ -20,7 +20,7 @@ pub fn encode(value: &str) -> String {
     let mut ret = String::new();
     let mut chars = value.chars();
 
-    let (mut count, mut cur) = (1u, chars.next());
+    let (mut count, mut cur) = (1us, chars.next());
     if cur.is_none() { return ret }
 
     for chr in chars {
@@ -28,7 +28,7 @@ pub fn encode(value: &str) -> String {
         else {
                 ret.push_str(count.to_string().as_slice());
                 ret.push(cur.unwrap());
-                count=1u;
+                count=1us;
                 cur=Some(chr);
         }
     }
@@ -44,11 +44,11 @@ pub fn decode(value: &str) -> Result<String, String> {
     let mut start = 0;
 
     for (i, c) in value.char_indices() {
-        if CharExt::is_numeric(c) { continue }
+        if c.is_numeric() { continue }
         if i==start { return Err(format!("expected digit, found {}", c)) }
 
         let ret_s = value.slice(start, i);
-        let ret = ret_s.parse::<uint>().unwrap();
+        let ret = ret_s.parse::<usize>().unwrap();
 
         let repeated: String = repeat(c).take(ret).collect();
         start = i + 1;

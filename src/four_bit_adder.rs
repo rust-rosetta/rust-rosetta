@@ -39,6 +39,7 @@ impl Nibble {
   }
 
   fn to_u8(&self, carry: bool) -> u8 {
+    let &Nibble(a) = self; 
     match num::from_str_radix::<u8>(format!("{:?}", self).as_slice(), 2) {
       Some(n) if carry => n + 16,
       Some(n) => n,
@@ -129,7 +130,7 @@ fn test_full_add() {
 
 #[test]
 fn test_four_bit_adder() {
-  for (a, b) in range(0, std::u8::MAX).map(|n| (n >> 4, n & 15)) {
+  for (a, b) in (0..std::u8::MAX).map(|n| (n >> 4, n & 15)) {
     let nib_a = Nibble::from_u8(a);
     let nib_b = Nibble::from_u8(b);
 

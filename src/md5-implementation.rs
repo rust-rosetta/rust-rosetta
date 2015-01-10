@@ -61,13 +61,13 @@ impl Show for MD5 {
 // leftrotate function definition
 #[inline]
 fn left_rotate(x: u32, c: u32) -> u32 {
-    (x << c as uint) | (x >> (32 - c) as uint)
+    (x << c as usize) | (x >> (32 - c) as usize)
 }
 
 fn to_bytes(val: u64) -> [u8; 8]
 {
     let mut tmp:[u8; 8] = [0u8; 8];
-    for i in range (0u, 8) {
+    for i in (0us..8) {
         tmp[i] = (val >> (8*i)) as u8;
     }
     tmp
@@ -92,7 +92,7 @@ fn md5(initial_msg: &[u8]) -> MD5
     let mut msg = initial_msg.to_vec();
     msg.push(0x80u8); // append the "1" bit; most significant bit is "first"
 
-    for _ in range (initial_len + 1, new_len) {
+    for _ in (initial_len + 1..new_len) {
         msg.push(0); // append "0" bits
     }
 
@@ -106,9 +106,9 @@ fn md5(initial_msg: &[u8]) -> MD5
     //for each 512-bit chunk of message:
     for offset in range_step(0u64, new_len, (512/8)) {
         // break chunk into sixteen 32-bit words w[j], 0 ≤ j ≤ 15
-        for i in range(0u32, 16) {
-            let j = i as uint * 4 + offset as uint;
-            w[i as uint] =
+        for i in (0u32..16) {
+            let j = i as usize * 4 + offset as usize;
+            w[i as usize] =
                     (msg[j]   as u32)      |
                     (msg[j+1] as u32) <<8  |
                     (msg[j+2] as u32) <<16 |
@@ -119,7 +119,7 @@ fn md5(initial_msg: &[u8]) -> MD5
         let (mut a, mut b, mut c, mut d) = (h[0], h[1], h[2], h[3]);
 
         // Main loop:
-        for ind in range(0u, 64) {
+        for ind in (0us..64) {
             let (f,g) = match ind {
                 i @ 0...15  => ( (b & c) | ((!b) & d), //f
                                 i ),                   //g

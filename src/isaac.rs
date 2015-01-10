@@ -64,7 +64,7 @@ impl Isaac {
         self.cc += 1;
         self.bb += self.cc;
 
-        for i in range(0u, 256) {
+        for i in (0us..256) {
             let x = self.mm[i];
             match i%4 {
                 0 => self.aa ^= self.aa << 13,
@@ -74,9 +74,9 @@ impl Isaac {
                 _ => unreachable!()
             }
 
-            self.aa = self.mm[((i + 128) % 256) as uint] + self.aa;
-            let y = self.mm[((x >> 2) % 256) as uint] + self.aa + self.bb;
-            self.bb = self.mm[((y >> 10) % 256) as uint] + x;
+            self.aa = self.mm[((i + 128) % 256) as usize] + self.aa;
+            let y = self.mm[((x >> 2) % 256) as usize] + self.aa + self.bb;
+            self.bb = self.mm[((y >> 10) % 256) as usize] + x;
             self.rand_rsl[i] = self.bb;
         }
 
@@ -87,7 +87,7 @@ impl Isaac {
     {
         let mut a_v = [0x9e3779b9u32; 8];
 
-        for _ in range(0u, 4) {
+        for _ in (0us..4) {
             // scramble it
             mix_v!(a_v);
         }
@@ -96,18 +96,18 @@ impl Isaac {
         // fill in mm[] with messy stuff
             if flag {
                 // use all the information in the seed
-                for j in range(0u, 8) { a_v[j] += self.rand_rsl[i+j]; }
+                for j in (0us..8) { a_v[j] += self.rand_rsl[i+j]; }
             }
             mix_v!(a_v);
-            for j in range(0u, 8) { self.mm[i+j] = a_v[j]; }
+            for j in (0us..8) { self.mm[i+j] = a_v[j]; }
         }
 
         if flag {
             // do a second pass to make all of the seed affect all of mm
             for i in range_step(0, 256, 8) {
-                for j in range(0u, 8) { a_v[j] += self.mm[i+j]; }
+                for j in (0us..8) { a_v[j] += self.mm[i+j]; }
                 mix_v!(a_v);
-                for j in range(0u, 8) { self.mm[i+j] = a_v[j]; }
+                for j in (0us..8) { self.mm[i+j] = a_v[j]; }
             }
         }
 
@@ -117,7 +117,7 @@ impl Isaac {
 
     // Get a random 32-bit value
     fn i_random(&mut self) -> u32 {
-        let r = self.rand_rsl[self.rand_cnt as uint];
+        let r = self.rand_rsl[self.rand_cnt as usize];
         self.rand_cnt += 1;
         if self.rand_cnt >255 {
             self.isaac();
@@ -128,10 +128,10 @@ impl Isaac {
 
     // Seed ISAAC with a string
     fn seed(&mut self, seed: &str, flag: bool) {
-        for i in range (0u, 256) { self.mm[i] = 0; }
-        for i in range (0u, 256) { self.rand_rsl[i] = 0; }
+        for i in (0us..256) { self.mm[i] = 0; }
+        for i in (0us..256) { self.rand_rsl[i] = 0; }
 
-        for i in range(0u, seed.len()) {
+        for i in (0us..seed.len()) {
             self.rand_rsl[i] = seed.as_bytes()[i] as u32;
         }
         // initialize ISAAC with seed

@@ -16,7 +16,7 @@ macro_rules! add_impl(
     )*)
 );
 
-add_impl!(uint u8 u16 u32 u64 int i8 i16 i32 i64 f32 f64);
+add_impl!(usize u8 u16 u32 u64 isize i8 i16 i32 i64 f32 f64);
 
 pub fn accum<T: Add<T, Output=U>, U>(n: T) -> G<T, U> {
     G { n: n }

@@ -157,7 +157,7 @@ fn solution() {
     // FIXME(pythonesque): When unboxed closures are fixed, fix integrate() to take two arguments.
     let object = Integrator::new(Duration::milliseconds(10));
     let mut timer = Timer::new().unwrap();
-    object.input(Box::new(|&: t: i64| {    
+    object.input(Box::new(|&: t: i64| {
         let f = 1. / (Duration::seconds(2) / 10).num_milliseconds() as f64;
         (2. * PI * f * t as f64).sin()
     })).ok().expect("Failed to set input");

@@ -8,7 +8,7 @@ fn merge_sort<E: PartialOrd + Clone>(arr: &[E]) -> Vec<E> {
         return arr.to_vec();
     }
     let midpoint = arr.len()/2;
-    let left = merge_sort(arr.slice(0u, midpoint));
+    let left = merge_sort(arr.slice(0us, midpoint));
     let right = merge_sort(arr.slice(midpoint, arr.len()));
     merge(left.as_slice(), right.as_slice())
 }
@@ -39,7 +39,7 @@ fn merge<E: PartialOrd + Clone>(left: &[E], right: &[E]) -> Vec<E> {
 
 #[cfg(not(test))]
 pub fn main() {
-    let arr = [1i, 9, 3, 2, 1003, 23, -123, 7];
+    let arr = [1i32, 9, 3, 2, 1003, 23, -123, 7];
     let sorted = merge_sort(&arr);
     println!("{:?}", sorted);
 }
@@ -50,19 +50,19 @@ mod test {
 
     #[test]
     fn sorted() {
-        let arr = [1u, 2, 3, 4, 6, 8];
+        let arr = [1i32, 2, 3, 4, 6, 8];
         assert_eq!(merge_sort(&arr), arr.to_vec());
     }
 
     #[test]
     fn reverse() {
-        let arr = [8i, 6, 4, 3, 2, 1];
-        assert_eq!(merge_sort(&arr), vec![1i, 2, 3, 4, 6, 8]);
+        let arr = [8i32, 6, 4, 3, 2, 1];
+        assert_eq!(merge_sort(&arr), vec![1i32, 2, 3, 4, 6, 8]);
     }
 
     #[test]
     fn random() {
-        let arr = [12u, 54, 2, 93, 13, 43, 15, 299, 234];
-        assert_eq!(merge_sort(&arr), vec![2u, 12, 13, 15, 43, 54, 93, 234, 299]);
+        let arr = [12i32, 54, 2, 93, 13, 43, 15, 299, 234];
+        assert_eq!(merge_sort(&arr), vec![2i32, 12, 13, 15, 43, 54, 93, 234, 299]);
     }
 }

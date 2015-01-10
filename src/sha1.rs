@@ -6,10 +6,10 @@ use std::io::IoResult;
 use std::slice::bytes::copy_memory;
 
 // The size of a SHA1 checksum in bytes.
-const SIZE: uint = 20;
+const SIZE: usize = 20;
 
 // The blocksize of SHA1 in bytes.
-const CHUNK:uint = 64;
+const CHUNK:usize = 64;
 const INIT:[u32; 5] = [0x67452301,0xEFCDAB89, 0x98BADCFE, 0x10325476, 0xC3D2E1F0];
 
 #[cfg(not(test))]
@@ -27,7 +27,7 @@ fn main() {
 struct Digest {
     h:      [u32; 5],
     x:      [u8; CHUNK],
-    nx:     uint,
+    nx:     usize,
     len:    u64
 }
 
@@ -36,7 +36,7 @@ impl Digest {
         Digest {
             h:  INIT,
             x:  [0u8; CHUNK],
-            nx: 0u,
+            nx: 0us,
             len:0u64
         }
     }
@@ -47,17 +47,17 @@ impl Digest {
         let mut tmp : [u8; 64] = [0u8; 64];
         tmp[0] = 0x80u8;
 
-        let m:uint=(len%64u64) as uint;
+        let m:usize=(len%64u64) as usize;
         if m < 56 {
-            self.write(tmp.slice(0u, 56-m)).unwrap();
+            self.write(tmp.slice(0us, 56-m)).unwrap();
         } else {
-            self.write(tmp.slice(0u, 64+56-m)).unwrap();
+            self.write(tmp.slice(0us, 64+56-m)).unwrap();
         }
 
         // Length in bits (=lengh in bytes*8=shift 3 bits to the right).
         len = len << 3;
-        for i in range (0u, 8) {
-            tmp[i] = (len >> (56u - 8*i)) as u8;
+        for i in (0us..8) {
+            tmp[i] = (len >> (56us - 8*i)) as u8;
         }
         self.write(tmp.slice(0,8)).unwrap();
 
@@ -89,7 +89,7 @@ impl Digest {
         let mut p = data;
 
         while p.len() >= CHUNK {
-            for i in range(0u, 16) {
+            for i in (0us..16) {
                 let j = i * 4;
                 w[i] =  (p[j]   as u32)<<24 |
                         (p[j+1] as u32)<<16 |
@@ -99,13 +99,13 @@ impl Digest {
 
             let (mut a, mut b, mut c, mut d, mut e) = (h0, h1, h2, h3, h4);
 
-            for i in range(0u, 16) {
+            for i in (0us..16) {
                 let f = b & c | (!b) & d;
                 let (a5, b30) = part(a, b);
                 let t = a5 + f + e + w[i&0xf] + k[0];
                  b=a; a=t; e=d; d=c; c=b30;
             }
-            for i in range(16u, 20) {
+            for i in (16us..20) {
                 let tmp = w[(i-3)&0xf] ^ w[(i-8)&0xf] ^ w[(i-14)&0xf] ^ w[(i)&0xf];
                 w[i&0xf] = tmp<<1 | tmp>>(32-1);
                 let f = b & c | (!b) & d;
@@ -113,7 +113,7 @@ impl Digest {
                 let t = a5 + f + e + w[i&0xf] + k[0];
                 b=a; a=t; e=d; d=c; c=b30;
             }
-            for i in range(20u, 40) {
+            for i in (20us..40) {
                 let tmp = w[(i-3)&0xf] ^ w[(i-8)&0xf] ^ w[(i-14)&0xf] ^ w[(i)&0xf];
                 w[i&0xf] = tmp<<1 | tmp>>(32-1);
                 let f = b ^ c ^ d;
@@ -121,7 +121,7 @@ impl Digest {
                 let t = a5 + f + e + w[i&0xf] + k[1];
                 b=a; a=t; e=d; d=c; c=b30;
             }
-            for i in range(40u, 60) {
+            for i in (40us..60) {
                 let tmp = w[(i-3)&0xf] ^ w[(i-8)&0xf] ^ w[(i-14)&0xf] ^ w[(i)&0xf];
                 w[i&0xf] = tmp<<1 | tmp>>(32-1);
                 let f = ((b | c) & d) | (b & c);
@@ -129,7 +129,7 @@ impl Digest {
                 let t = a5 + f + e + w[i&0xf] + k[2];
                 b=a; a=t; e=d; d=c; c=b30;
             }
-            for i in range(60u, 80) {
+            for i in (60us..80) {
                 let tmp = w[(i-3)&0xf] ^ w[(i-8)&0xf] ^ w[(i-14)&0xf] ^ w[(i)&0xf];
                 w[i&0xf] = tmp<<1 | tmp>>(32-1);
                 let f = b ^ c ^ d;
@@ -161,7 +161,7 @@ impl Writer for Digest {
             if n > CHUNK - self.nx {
                 n = CHUNK - self.nx;
             }
-            for i in range(0,n) {
+            for i in (0..n) {
                 self.x[self.nx + i] = *buf_m.get(i).unwrap();
             }
             self.nx += n;

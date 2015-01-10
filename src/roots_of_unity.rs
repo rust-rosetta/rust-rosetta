@@ -5,15 +5,15 @@ use std::f32::consts;
 
 #[cfg(not(test))]
 fn main() {
-    let degree = 3u;
+    let degree = 3us;
 
     for root in roots_of_unity(degree).iter() {
         println!("{}", root);
     }
 }
 
-fn roots_of_unity(degree: uint) -> Vec<Complex32> {
-    range(0, degree).map(|el|
+fn roots_of_unity(degree: usize) -> Vec<Complex32> {
+    (0..degree).map(|el|
         Complex::<f32>::from_polar(&1f32, &(2f32 * consts::PI * (el as f32) / (degree as f32))))
         .collect::<Vec<Complex32>>()
 }
@@ -25,7 +25,7 @@ fn test_result() {
         Complex::new(-0.5, -0.866025)
     ];
 
-    for (root, &exp) in roots_of_unity(3u).iter().zip(expected.iter()) {
+    for (root, &exp) in roots_of_unity(3us).iter().zip(expected.iter()) {
         assert!((*root - exp).norm() < 1e-6);
     }
 }

@@ -1,6 +1,6 @@
 // Implements http://rosettacode.org/wiki/Ackermann_function
 
-fn ack(m: int, n: int) -> int {
+fn ack(m: isize, n: isize) -> isize {
     if m == 0 {
         n + 1
     } else if n == 0 {
