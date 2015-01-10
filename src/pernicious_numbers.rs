@@ -6,11 +6,11 @@ mod aks_test_for_primes;
 
 #[cfg(not(test))]
 fn main() {
-    for i in pernicious().take(25) { print!("{} " , i); }
+    for i in pernicious().take(25) { print!("{:?} " , i); }
     println!("");
     for i in range(888_888_877u64, 888_888_888).filter(is_pernicious)
         {
-        print!("{} " , i);
+        print!("{:?} " , i);
     }
 }
 

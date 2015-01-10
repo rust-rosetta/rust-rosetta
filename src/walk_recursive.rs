@@ -1,7 +1,7 @@
 // Implements http://rosettacode.org/wiki/Walk_a_directory/Recursively
 
-#![feature(phase)]
-#[phase(plugin)]
+#![feature(plugin)]
+#[plugin] 
 extern crate regex_macros;
 extern crate regex;
 
@@ -18,7 +18,7 @@ fn walk(path: &Path, regex: &Regex) {
         match subpath.filename_str() {
             Some(filename) => {
                 if regex.is_match(filename) {
-                    println!("{}", subpath.display());
+                    println!("{:?}", subpath.display());
                 }
             },
             None => {}

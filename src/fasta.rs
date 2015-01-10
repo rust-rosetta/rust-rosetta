@@ -37,7 +37,7 @@ fn read_file() -> String {
 #[cfg(not(test))]
 fn main() {
     let s = read_file();
-    println!("{}", s);
+    println!("{:?}", s);
 }
 
 #[test]

@@ -5,7 +5,7 @@ extern crate core;
 use num::{BigUint, One};
 use std::num::FromPrimitive;
 
-fn binomial(n: uint, mut k: uint) -> BigUint {
+fn binomial(n: usize, mut k: usize) -> BigUint {
     // Since binomial(n, k) = binomial(n, n - k), we might as well use
     // the smaller k to optimize
     if n - k < k {
@@ -14,7 +14,7 @@ fn binomial(n: uint, mut k: uint) -> BigUint {
 
     // Compute the coefficient
     let mut res: BigUint = One::one();
-    for i in range(1u, k + 1) {
+    for i in range(1us, k + 1) {
         let m: BigUint = FromPrimitive::from_uint(n - k + i).unwrap();
         res = res * m;
         let d: BigUint = FromPrimitive::from_uint(i).unwrap();
@@ -26,7 +26,7 @@ fn binomial(n: uint, mut k: uint) -> BigUint {
 
 #[cfg(not(test))]
 fn main() {
-    println!("{}", binomial(5, 3));
+    println!("{:?}", binomial(5, 3));
 }
 
 #[test]

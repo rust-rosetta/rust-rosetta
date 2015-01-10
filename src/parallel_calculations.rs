@@ -11,7 +11,7 @@ use prime_decomposition::factor;
 mod prime_decomposition;
 
 // Returns the minimal prime factor of a number
-fn min_factor(x: uint) -> uint {
+fn min_factor(x: usize) -> usize {
     // factor returns a sorted vector, so we just take the first element
     factor(x)[0]
 }
@@ -19,7 +19,7 @@ fn min_factor(x: uint) -> uint {
 // Returns the largest minimal factor of the numbers in a slice
 // The function is implemented using a channel
 #[cfg(test)]
-fn largest_min_factor_chan(numbers: &[uint]) -> uint {
+fn largest_min_factor_chan(numbers: &[usize]) -> usize {
     use std::thread::Thread;
     use std::sync::mpsc::channel;
 
@@ -28,20 +28,20 @@ fn largest_min_factor_chan(numbers: &[uint]) -> uint {
     // Send all the minimal factors
     for &x in numbers.iter() {
         let child_sender = sender.clone();
-        Thread::spawn(move || { child_sender.send(min_factor(x)) }).detach();
+        Thread::spawn(move || { child_sender.send(min_factor(x)).unwrap() });
     }
 
     // Receive them and keep the largest one
-    numbers.iter().fold(0u, |max, _| {
+    numbers.iter().fold(0us, |max, _| {
         std::cmp::max(receiver.recv().unwrap(), max)
     })
 }
 
 // Returns the largest minimal factor of the numbers in a slice
 // The function is implemented using the Future struct
-fn largest_min_factor_fut(numbers: &[uint]) -> uint {
+fn largest_min_factor_fut(numbers: &[usize]) -> usize {
     // We will save the future values of the minimal factor in the results vec
-    let mut results: Vec<Future<uint>> = range(0, numbers.len()).map(
+    let mut results: Vec<Future<usize>> = range(0, numbers.len()).map(
 		|i| {
 			let number = numbers[i];
 			Future::spawn(move || { min_factor(number) })
@@ -62,7 +62,7 @@ fn main() {
                    1099726];
 
     let max = largest_min_factor_fut(numbers);
-    println!("The largest minimal factor is {}", max);
+    println!("The largest minimal factor is {:?}", max);
 }
 
 // We dont have benchmarks because the Bencher doesn't work good with tasks

@@ -6,7 +6,7 @@ use std::io::net::ip::IpAddr;
 fn get_ips(host: &str) -> Vec<IpAddr> {
     let mut ips = match get_host_addresses(host) {
         Ok(ips) => ips,
-        Err(err) => panic!("{}", err)
+        Err(err) => panic!("{:?}", err)
     };
 
     ips.dedup();
@@ -17,7 +17,7 @@ fn get_ips(host: &str) -> Vec<IpAddr> {
 #[cfg(not(test))]
 fn main() {
     for ip in get_ips("www.kame.net").iter() {
-        println!("{}", ip);
+        println!("{:?}", ip);
     }
 }
 

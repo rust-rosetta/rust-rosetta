@@ -1,16 +1,16 @@
 // Implements http://rosettacode.org/wiki/Kahan_summation
 
-use std::num::FloatMath;
+use std::num::Float;
 use std::f32;
 
 fn find_max(lst: &[f32]) -> Option<f32> {
     if lst.is_empty() { return None }
     let max = lst.iter().fold(f32::NEG_INFINITY,
-                              |a, &b| FloatMath::max(a, b));
+                              |a, &b| Float::max(a, b));
     Some(max)
 }
 
-fn with_bits(val: f32, digits: uint) -> f32 {
+fn with_bits(val: f32, digits: usize) -> f32 {
     let num = std::f32::to_str_digits(val, digits);
     num.parse::<f32>().unwrap()
 }
@@ -53,7 +53,7 @@ fn main() {
     let sums = all_sums(&v);
     let res = kahan_sum(v.as_slice()).unwrap();
     let max = find_max(sums.as_slice()).unwrap();
-    println!("max: {} res: {}", max, res);
+    println!("max: {:?} res: {:?}", max, res);
 }
 
 #[test]

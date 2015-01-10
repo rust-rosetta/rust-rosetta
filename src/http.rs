@@ -14,7 +14,7 @@ fn get_index(target: &str, port: u16) -> IoResult<String> {
     // after sending its response. This allows us to use `read_to_string()` which
     // reads until EOF. Alternatively, we could use HTTP/1.0. In the future, this
     // will be handled by a HTTP library.
-    try!(write!(&mut socket, "GET / HTTP/1.1\nHost: {}\nConnection: close\n\n", target));
+    try!(write!(&mut socket, "GET / HTTP/1.1\nHost: {:?}\nConnection: close\n\n", target));
     // Read any response.
     socket.read_to_string()
 }
@@ -26,12 +26,13 @@ fn main() {
     let target = std::os::args().pop().unwrap();
     println!("Making the request... This might take a minute.");
     match get_index(target.as_slice(), PORT) {
-        Ok(out) => println!("{}", out),
-        Err(e) => println!("Error: {}", e)
+        Ok(out) => println!("{:?}", out),
+        Err(e) => println!("Error: {:?}", e)
     }
 }
 
 #[test]
+#[ignore] // FIXME: http/webrequest should eventually be moved to hyper
 fn test_request() {
     const HOST: &'static str = "127.0.0.1";
     const PORT: u16 = 12321;

@@ -6,14 +6,14 @@ fn main() {
     // Iterate through the characters of a string
     let s = "hello, world!";
     for i in s.chars() {
-        print!("{}", i);
+        print!("{:?}", i);
     }
     println!("");
 
     // Iterate through the elements of a slice
     let array = [1u, 2, 3, 4, 5];
     for i in array.iter() {
-        print!("{}", i);
+        print!("{:?}", i);
     }
     println!("");
 
@@ -23,6 +23,6 @@ fn main() {
     hashmap.insert("b", 2);
     hashmap.insert("c", 3);
     for (c, i) in hashmap.iter() {
-        println!("{}: '{}'", c, i)
+        println!("{:?}: '{:?}'", c, i)
     }
 }

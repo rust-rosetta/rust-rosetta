@@ -8,11 +8,11 @@ use rustc::util::sha2::{Sha256, Digest};
 
 #[cfg(not(test))]
 fn main() {
-    println!("{}", sha_256("Rosetta code"));
+    println!("{:?}", sha_256("Rosetta code"));
 }
 
 fn sha_256(input: &str) -> String {
-    let mut sh = box Sha256::new();
+    let mut sh = Box::new(Sha256::new());
     sh.input_str(input);
     sh.result_str()
 }

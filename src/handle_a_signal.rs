@@ -44,14 +44,14 @@ fn main()
         if unsafe { GOT_SIGINT.load(atomic::Acquire) } { break }
         // Otherwise, increment and display the integer and continue the loop.
         i += 1;
-        println!("{}", i);
+        println!("{:?}", i);
     }
     // Get the end time.
     let end = time::precise_time_ns();
     // Compute the difference
     let diff = Duration::nanoseconds((end - start) as i64);
     // Print the difference and exit
-    println!("Program has run for {} seconds", diff);
+    println!("Program has run for {:?} seconds", diff);
 }
 
 #[cfg(not(unix))]

@@ -21,7 +21,7 @@ fire. favor who those with hold I
 
 Frost Robert -----------------------";
 
-    println!("{}", rev_words_on_lines(text));
+    println!("{:?}", rev_words_on_lines(text));
 }
 
 #[test]

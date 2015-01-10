@@ -1,6 +1,4 @@
 // Implements http://rosettacode.org/wiki/Dot_product
-#![feature(associated_types, default_type_params)]
-
 extern crate num;
 
 use num::traits::Zero; 
@@ -19,11 +17,11 @@ fn dotp<T: Zero + Mul<Output=T> + Copy>(this: &[T], other: &[T]) -> T {
 fn main() {
     let a = &[1.0f32, 3.0, -5.0];
     let b = &[4.0f32, -2.0, -1.0];
-    println!("{}", dotp(a, b));
+    println!("{:?}", dotp(a, b));
 }
 
 #[test]
 fn test_dotp() {
-  let result = dotp(&[1i, 3, -5], &[4i, -2, -1]);
+  let result = dotp(&[1i32, 3, -5], &[4i32, -2, -1]);
   assert_eq!(result, 3);
 }

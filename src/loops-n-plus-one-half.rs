@@ -3,8 +3,8 @@
 use std::iter;
 
 fn main() {
-    for i in iter::range_inclusive(1u,10) {
-        print!("{}", i);
+    for i in iter::range_inclusive(1us,10) {
+        print!("{:?}", i);
         if i == 10 {
             break;
         }

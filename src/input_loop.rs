@@ -3,6 +3,6 @@ use std::io;
 
 fn main() {
     for line in io::stdin().lock().lines() {
-        print!("{}", line.unwrap());
+        print!("{:?}", line.unwrap());
     }
 }

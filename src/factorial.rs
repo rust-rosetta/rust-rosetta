@@ -3,7 +3,7 @@
 use std::iter::range_inclusive;
 
 // Calculate the factorial using recursion
-fn factorial_recursive (n: uint) -> uint {
+fn factorial_recursive (n: usize) -> usize {
     match n {
         0 => 1,
         _ => n * factorial_recursive(n-1)
@@ -11,12 +11,12 @@ fn factorial_recursive (n: uint) -> uint {
 }
 
 // Calculate the factorial using a fold
-fn factorial_iterative(n: uint) -> uint {
+fn factorial_iterative(n: usize) -> usize {
     range_inclusive(1, n).fold(1, |p, t| p * t)
 }
 
 // Calculate the factorial using a for loop
-fn factorial_loop(n: uint) -> uint {
+fn factorial_loop(n: usize) -> usize {
     let mut fac = 1;
     for x in range_inclusive(1, n) {
         fac *= x;
@@ -26,13 +26,13 @@ fn factorial_loop(n: uint) -> uint {
 
 #[cfg(not(test))]
 fn main () {
-    let fs = vec![("Recursive", factorial_recursive as fn(uint) -> uint),
-                  ("Iterative", factorial_iterative as fn(uint) -> uint),
-                  ("Looooooop", factorial_loop as fn(uint) -> uint)];
+    let fs = vec![("Recursive", factorial_recursive as fn(usize) -> usize),
+                  ("Iterative", factorial_iterative as fn(usize) -> usize),
+                  ("Looooooop", factorial_loop as fn(usize) -> usize)];
     for (name, f) in fs.into_iter() {
-        println!("---------\n{}", name);
-        for i in range(1u, 10) {
-            println!("{}", f(i))
+        println!("---------\n{:?}", name);
+        for i in (1us..10) {
+            println!("{:?}", f(i))
         }
     }
 }
@@ -45,7 +45,7 @@ mod tests {
     use super::{factorial_recursive, factorial_iterative, factorial_loop};
 
     // Tests
-    fn t(f: |uint| -> uint) {
+    fn t(f: fn(usize) -> usize) {
         assert_eq!(f(0), 1);
         assert_eq!(f(1), 1);
         assert_eq!(f(2), 2);
@@ -61,17 +61,17 @@ mod tests {
 
     #[test]
     fn test_fac_recursive() {
-        t(factorial_recursive)
+        t(factorial_recursive as fn(usize) -> usize)
     }
 
     #[test]
     fn test_fac_iterative() {
-        t(factorial_iterative)
+        t(factorial_iterative as fn(usize) -> usize)
     }
 
     #[test]
     fn test_fac_loop() {
-        t(factorial_loop)
+        t(factorial_loop as fn(usize) -> usize)
     }
 
     // Benchmarks

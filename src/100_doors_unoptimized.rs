@@ -1,7 +1,6 @@
 // Implements http://rosettacode.org/wiki/100_doors
 // this is the unoptimized version that performs all 100
 // passes, as per the original description of the problem
-use std::iter::range_inclusive;
 use std::iter::range_step_inclusive;
 
 #[cfg(not(test))]
@@ -13,7 +12,7 @@ fn main() {
     solve(&mut doors);
 
     for (idx, door) in doors.iter().enumerate() {
-        println!("door {} open: {}", idx+1, door);
+        println!("door {:?} open: {:?}", idx+1, door);
     }
 
 }
@@ -22,8 +21,8 @@ fn main() {
 // performs all 100 passes and mutates the vector with
 // the states in place
 fn solve(doors: &mut [bool])  {
-    for pass in range_inclusive(1u, 100u) {
-        for door in range_step_inclusive(pass, 100u, pass) {
+    for pass in 1us..101 {
+        for door in range_step_inclusive(pass, 100us, pass) {
             // flip the state of the door
             doors[door-1] = !doors[door-1]
         }
@@ -37,7 +36,7 @@ fn solution() {
 
     // test that the doors with index corresponding to
     // a perfect square are now open
-    for i in range_inclusive(1u,10u) {
+    for i in 1us..11 {
         assert!(doors[i*i - 1]);
     }
 }

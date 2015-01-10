@@ -3,10 +3,10 @@
 #[cfg(not(test))]
 fn main() {
     let l = [(2, 3), (3, 5), (2, 7)];
-    println!("{}", chinese_remainder(&l));
+    println!("{:?}", chinese_remainder(&l));
 }
 
-fn chinese_remainder(l: &[(int, int)]) -> Option<int> {
+fn chinese_remainder(l: &[(i32, i32)]) -> Option<i32> {
     let mut product = 1;
     for &(_, n) in l.iter() {
         product *= n;
@@ -28,7 +28,7 @@ fn chinese_remainder(l: &[(int, int)]) -> Option<int> {
     Some(sum % product)
 }
 
-fn mul_inv(a: int, b: int) -> Option<int> {
+fn mul_inv(a: i32, b: i32) -> Option<i32> {
     let (gcd, mut x, _) = egcd(a, b);
     if gcd != 1 { // No multiplicative inverse exists
         return None;
@@ -39,7 +39,7 @@ fn mul_inv(a: int, b: int) -> Option<int> {
     Some(x % b)
 }
 
-fn egcd(a: int, b: int) -> (int, int, int) {
+fn egcd(a: i32, b: i32) -> (i32, i32, i32) {
     if a == 0 {
         return (b, 0, 1);
     }

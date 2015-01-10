@@ -11,7 +11,7 @@ fn main() {
         _ => {}
     }
     let filename = args()[1].clone();
-    let line_number = args()[2].parse::<uint>().expect("You must enter an integer as the line number");
+    let line_number = args()[2].parse::<usize>().expect("You must enter an integer as the line number");
 
     let file = File::open(&Path::new(filename.as_slice()));
     let mut reader = BufferedReader::new(file);
@@ -20,8 +20,8 @@ fn main() {
         None => panic!("No such line (file is too short)"),
         Some(result) => match result {
             // Handle any errors that may arise
-            Ok(ln) => print!("{}", ln),
-            Err(error) => print!("{}", error.desc)
+            Ok(ln) => print!("{:?}", ln),
+            Err(error) => print!("{:?}", error.desc)
         }
     }
 }

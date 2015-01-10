@@ -4,7 +4,7 @@ use std::iter::repeat;
 
 #[cfg(not(test))]
 fn main() {
-    println!("{}", repeat("ha").take(5).collect::<String>());
+    println!("{:?}", repeat("ha").take(5).collect::<String>());
 }
 
 #[test]

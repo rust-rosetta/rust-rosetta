@@ -3,12 +3,12 @@
 use std::iter::{repeat, range_inclusive, range_step};
 use std::num::Float;
 
-fn int_sqrt(n: uint) -> uint {
-    (n as f64).sqrt() as uint
+fn int_sqrt(n: usize) -> usize {
+    (n as f64).sqrt() as usize
 }
 
 // Return the prime numbers up to limit
-fn simple_sieve(limit: uint) -> Vec<uint> {
+fn simple_sieve(limit: usize) -> Vec<usize> {
     if limit < 2 {
         return vec!();
     }
@@ -28,7 +28,7 @@ fn simple_sieve(limit: uint) -> Vec<uint> {
 
 #[cfg(not(test))]
 fn main() {
-    println!("{}", simple_sieve(100))
+    println!("{:?}", simple_sieve(100))
 }
 
 #[test]

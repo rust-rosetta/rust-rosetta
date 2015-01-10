@@ -1,17 +1,19 @@
 // http://rosettacode.org/wiki/Bulls_and_cows
 use std::fmt;
-const NUMBER_OF_DIGITS: uint = 4;
+use std::char::CharExt;
+
+const NUMBER_OF_DIGITS: usize = 4;
 
 /// generates a random NUMBER_OF_DIGITS
-fn generate_digits() -> Vec<uint> {
+fn generate_digits() -> Vec<usize> {
     use std::rand;
 
     let mut rng = rand::thread_rng();
-    rand::sample(&mut rng, range(1u, 10), 4)
+    rand::sample(&mut rng, (1us..10), 4)
 }
 
 /// types of errors we can have when parsing a malformed guess
-enum ParseError { NotValidDigit, ExpectedNumberOfDigits(uint), NoDuplicates, }
+enum ParseError { NotValidDigit, ExpectedNumberOfDigits(usize), NoDuplicates, }
 
 /// printable description for each ParseError
 impl fmt::Show for ParseError {
@@ -19,7 +21,7 @@ impl fmt::Show for ParseError {
         match *self {
             ParseError::NotValidDigit => "only digits from 1 to 9, please".fmt(f),
             ParseError::ExpectedNumberOfDigits(exp) =>
-                write!(f , "you need to guess with {} digits" , exp),
+                write!(f , "you need to guess with {:?} digits" , exp),
             ParseError::NoDuplicates => "no duplicates, please".fmt(f),
         }
     }
@@ -28,14 +30,14 @@ impl fmt::Show for ParseError {
 /// a well-formed guess string should be like
 /// "1543", with NUMBER_OF_DIGITS digits, no repetitions,
 /// no separators or other characters. Parse the guess string as a
-/// Vec<uint> or return a ParseError.
-/// This could trivially return a [uint, ..NUMBER_OF_DIGITS] instead of
-/// a Vec<uint> and avoid dynamic allocations. However, in the more
+/// Vec<usize> or return a ParseError.
+/// This could trivially return a [usize, ..NUMBER_OF_DIGITS] instead of
+/// a Vec<usize> and avoid dynamic allocations. However, in the more
 /// general case, NUMBER_OF_DIGITS would not be a constant, but a runtime
 /// configuration (which would make using a stack-allocated array more
 /// difficult)
 fn parse_guess_string(guess: &str) ->
-    Result<Vec<uint>, ParseError> {
+    Result<Vec<usize>, ParseError> {
     let mut ret = Vec::with_capacity(NUMBER_OF_DIGITS);
 
     for (i, c) in guess.char_indices() {
@@ -43,7 +45,7 @@ fn parse_guess_string(guess: &str) ->
         if i >= NUMBER_OF_DIGITS {
             return Err(ParseError::ExpectedNumberOfDigits(NUMBER_OF_DIGITS))
         }
-        match Char::to_digit(c, 10) {
+        match c.to_digit(10) {
             Some(d) if d > 0 => {
                     // the guess should not contain duplicate digits
                     if ret.contains(&d) { return Err(ParseError::NoDuplicates) }
@@ -57,8 +59,8 @@ fn parse_guess_string(guess: &str) ->
 }
 
 /// returns a tuple with the count of Bulls and Cows in the guess
-fn calculate_score(given_digits: &[uint], guessed_digits: &[uint]) ->
-    (uint, uint) {
+fn calculate_score(given_digits: &[usize], guessed_digits: &[usize]) ->
+    (usize, usize) {
     let mut bulls = 0;
     let mut cows = 0;
     for i in range(0, NUMBER_OF_DIGITS) {
@@ -79,13 +81,13 @@ fn main() {
     let mut reader = std::io::stdin();
     loop {
         let given_digits = generate_digits();
-        println!("I have chosen my {} digits. Please guess what they are" ,
+        println!("I have chosen my {:?} digits. Please guess what they are" ,
                  NUMBER_OF_DIGITS);
         loop {
             let guess_string = reader.read_line().unwrap();
             let digits_maybe = parse_guess_string(&*guess_string.trim());
             match digits_maybe {
-                Err(msg) => { println!("{}" , msg); }
+                Err(msg) => { println!("{:?}" , msg); }
                 Ok(guess_digits) => {
                     match calculate_score(&*given_digits, &*guess_digits) {
                         (NUMBER_OF_DIGITS, _) => {
@@ -93,7 +95,7 @@ fn main() {
                             break ;
                         }
                         (bulls, cows) =>
-                        println!("bulls: {}, cows: {}" , bulls , cows),
+                        println!("bulls: {:?}, cows: {:?}" , bulls , cows),
                     }
                 }
             }
@@ -110,7 +112,7 @@ mod test {
         // test we generate NUMBER_OF_DIGITS unique
         // digits between 1 and 9
         let mut digits = super::generate_digits();
-        assert!(digits.iter().all(|&d| d > 0u));
+        assert!(digits.iter().all(|&d| d > 0us));
         digits.sort();
         digits.dedup();
         assert_eq!(digits.len(), super::NUMBER_OF_DIGITS)

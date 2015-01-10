@@ -10,17 +10,17 @@ fn match_string(container: &str, target: &str) -> (bool, bool, bool) {
 
 #[cfg(not(test))]
 fn print_info(container: &str, target: &str) {
-  println!(r#"Matching "{}" in the string "{}""#, target, container);
+  println!(r#"Matching "{:?}" in the string "{:?}""#, target, container);
   let (starts, contains, ends) = match_string(container,target);
 
   if starts {
-    println!(r#""{}" starts with "{}""#, container, target);
+    println!(r#""{:?}" starts with "{:?}""#, container, target);
   }
   if contains {
-    println!(r#""{}" contains "{}""#, container, target);
+    println!(r#""{:?}" contains "{:?}""#, container, target);
   }
   if ends {
-    println!(r#""{}" ends with "{}""#, container, target);
+    println!(r#""{:?}" ends with "{:?}""#, container, target);
   }
 }
 

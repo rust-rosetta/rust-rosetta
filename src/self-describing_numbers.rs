@@ -4,7 +4,7 @@ fn is_self_describing(mut n: u64) -> bool {
 
     // Compute the length of the number (the number of digits)
     let mut tmp = n;
-    let mut len = 0u;
+    let mut len = 0us;
     while tmp > 0 {
         len += 1;
         tmp /= 10;
@@ -17,10 +17,10 @@ fn is_self_describing(mut n: u64) -> bool {
 
     // Go through each digit of the number, count how many times each digit occurs, and then
     // subtract how often each digit is supposed to occur according to the number
-    let mut cnt = [0i; 10];
-    for i in range(0u, len) {
-        cnt[(n % 10) as uint] += 1;
-        cnt[len - i - 1] -= (n % 10) as int;
+    let mut cnt = [0i32; 10];
+    for i in (0us..len) {
+        cnt[(n % 10) as usize] += 1;
+        cnt[len - i - 1] -= (n % 10) as i32;
         n /= 10;
     }
 
@@ -33,7 +33,7 @@ fn main() {
     // Print out all self-describing numbers below 10^8
     for i in range(0, 100_000_000) {
         if is_self_describing(i) {
-            println!("{} is self-describing", i);
+            println!("{:?} is self-describing", i);
         }
     }
 }

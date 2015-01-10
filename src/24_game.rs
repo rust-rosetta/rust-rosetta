@@ -9,8 +9,8 @@
 // We use a glob import in our test module. Seperating tests into a seperate
 // module enforces visibility restrictions so the test module can only access
 // publically exported code, the same as any user of the code.
-#![feature(globs, associated_types)]
 use std::cmp::Ordering::{self, Greater};
+use std::char::CharExt;
 
 #[cfg(not(test))]
 fn main() {
@@ -20,10 +20,10 @@ fn main() {
     let mut input = io::stdin();
 
     loop {
-        let mut sample = rand::sample(&mut rng, range(1u, 10), 4);
+        let mut sample = rand::sample(&mut rng, (1us..10), 4);
 
         println!("make 24 by combining the following 4 numbers with + - * / or (q)uit");
-        println!("{}", sample);
+        println!("{:?}", sample);
 
         let line = input.read_line().unwrap();
         match line.trim() {
@@ -32,8 +32,8 @@ fn main() {
                 if check_values(sample.as_mut_slice(), input) {
                     match Parser::new(input).parse() {
                         Ok(i) if i == 24. => println!("you made it!"),
-                        Ok(i) => println!("you entered {}, try again!", i),
-                        Err(s)  => println!("{}", s)
+                        Ok(i) => println!("you entered {:?}, try again!", i),
+                        Err(s)  => println!("{:?}", s)
                     };
                 } else {
                     println!("unrecognized input, try again")
@@ -44,7 +44,7 @@ fn main() {
 }
 
 // Returns true if the entered expression uses the values contained in sample
-pub fn check_values(sample:&mut [uint], input:&str) -> bool {
+pub fn check_values(sample:&mut [usize], input:&str) -> bool {
     let lex = Lexer::new(input);
 
     let mut numbers_used = lex.filter_map(|a| {
@@ -52,7 +52,7 @@ pub fn check_values(sample:&mut [uint], input:&str) -> bool {
             Token::Int(i) => Some(i),
             _ => None
         }
-    }).collect::<Vec<uint>>();
+    }).collect::<Vec<usize>>();
 
     numbers_used.sort();
     sample.sort();
@@ -68,7 +68,7 @@ pub enum Token {
     Minus,
     Slash,
     Star,
-    Int(uint)
+    Int(usize)
 }
 
 impl Token {
@@ -107,19 +107,19 @@ impl Tokenable for char {
 #[derive(Copy)]
 pub struct Lexer<'a> {
     input: &'a str,
-    offset: uint
+    offset: usize
 }
 
 impl <'a> Lexer<'a> {
     pub fn new(input: &str) -> Lexer {
-        Lexer { input: input, offset: 0u }
+        Lexer { input: input, offset: 0us }
     }
 
     fn expect(&mut self, expected:&[Token]) -> Result<Token, String> {
         let n = self.offset;
         match self.next() {
             Some(a) if expected.contains(&a)  => Ok(a),
-            other  => Err(format!("Parsing error: {} was unexpected at offset {}",
+            other  => Err(format!("Parsing error: {:?} was unexpected at offset {:?}",
                                   other,
                                   n))
         }
@@ -138,15 +138,15 @@ impl <'a> Iterator for Lexer<'a> {
                                       .skip_while(|&(_, ch)| ch.is_whitespace());
 
         let (tok, cur_offset) = match remaining.next() {
-            // Found a digit. if there are others, transform them to `uint`
-            Some((mut offset, ch)) if UnicodeChar::is_numeric(ch) => {
-                let mut val = Char::to_digit(ch, 10).unwrap();
+            // Found a digit. if there are others, transform them to `usize`
+            Some((mut offset, ch)) if ch.is_numeric() => {
+                let mut val = ch.to_digit(10).unwrap();
                 let mut more = false;
 
                 for (idx, ch) in remaining {
                     more = true;
-                    if UnicodeChar::is_numeric(ch) {
-                        let digit = Char::to_digit(ch, 10).unwrap();
+                    if ch.is_numeric() {
+                        let digit = ch.to_digit(10).unwrap();
                         val = val * 10 + digit;
                     } else {
                         offset = idx;
@@ -160,7 +160,7 @@ impl <'a> Iterator for Lexer<'a> {
             },
             // found non-digit, try transforming it to the corresponding token
             Some((o, ch)) => (ch.as_token(), o + 1),
-            _   => (None, 0u)
+            _   => (None, 0us)
         };
 
         // update the offset for the next iteration
@@ -183,12 +183,12 @@ pub enum Operator {
 }
 
 impl Operator {
-     fn precedence(&self) -> uint  {
+     fn precedence(&self) -> usize  {
         match *self {
-            Operator::Sentinel => 0u,
-            Operator::Add | Operator::Sub => 1u,
-            Operator::Neg => 2u,
-            Operator::Mul | Operator::Div => 3u
+            Operator::Sentinel => 0,
+            Operator::Add | Operator::Sub => 1,
+            Operator::Neg => 2,
+            Operator::Mul | Operator::Div => 3
         }
     }
 }
@@ -283,7 +283,7 @@ impl <'a> Parser<'a> {
                 self.push_operator(Operator::Neg);
                 try!(self.p());
             },
-            Some(e) => return Err(format!("unexpected token {}", e)),
+            Some(e) => return Err(format!("unexpected token {:?}", e)),
             _ => return Err("unexpected end of command".to_string())
         }
         Ok(())
@@ -309,7 +309,9 @@ impl <'a> Parser<'a> {
     }
 
     #[inline]
-    fn binary_op(&mut self, op: |f32, f32| -> f32) {
+    fn binary_op <F>(&mut self, op: F) 
+        where F: Fn(f32, f32) -> f32
+    {
         match (self.operands.pop(), self.operands.pop()) {
             (Some(t1), Some(t2)) => self.operands.push(op(t2, t1)),
             _ => unreachable!()
@@ -317,7 +319,9 @@ impl <'a> Parser<'a> {
     }
 
     #[inline]
-    fn unary_op(&mut self, op: |f32| -> f32) {
+    fn unary_op<F>(&mut self, op: F) 
+          where F: Fn(f32) -> f32
+    {
         match self.operands.pop() {
             Some(t1) => self.operands.push(op(t1)),
             _ => unreachable!()
@@ -349,7 +353,7 @@ mod test {
     #[test]
     fn lexer_iter() {
         // test read token and character's offset in the iterator
-        let t = |lex: &mut Lexer, exp_tok: Token, exp_pos: uint| {
+        let t = |&: lex: &mut Lexer, exp_tok: Token, exp_pos: usize| {
             assert_eq!(lex.next(), Some(exp_tok));
             assert_eq!(lex.offset, exp_pos);
         };

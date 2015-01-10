@@ -6,8 +6,8 @@ fn main() {
                    (fib_iterative as fn(u64) -> u64, "iterative")];
 
     for (f, desc) in fns.into_iter() {
-        let r = range(0u64, 10).map(|i| f(i)).collect::<Vec<u64>>();
-        println!("{} implementation:\n{}\n", desc, r);
+        let r = (0u64..10).map(|i| f(i)).collect::<Vec<u64>>();
+        println!("{:?} implementation:\n{:?}\n", desc, r);
     }
 }
 
@@ -36,7 +36,7 @@ fn fib_tail_recursive(n: u64) -> u64 {
 fn fib_iterative(n: u64) -> u64 {
     let (mut cur, mut next) = (0u64, 1u64);
 
-    for _ in range(0u64, n) {
+    for _ in (0u64..n) {
         let tmp = cur + next;
         cur = next;
         next = tmp;
@@ -53,14 +53,16 @@ mod test {
     // return the expected values.
     fn tester(f: fn(u64) -> u64) {
         let exp = [0u64, 1, 1, 2, 3, 5, 8, 13, 21, 34];
-        for (i, expected) in range(0u64, 10).zip(exp.iter()) {
+        for (i, expected) in (0u64..10).zip(exp.iter()) {
             assert_eq!(f(i), *expected);
         }
     }
 
     #[test]
     fn fib_values() {
-        let fns = vec![fib_recursive as fn(u64) -> u64, fib_tail_recursive, fib_iterative];
+        let fns = vec![fib_recursive as fn(u64) -> u64, 
+            fib_tail_recursive as fn(u64) -> u64, 
+            fib_iterative as fn(u64) -> u64];
         for &f in fns.iter() {
             tester(f);
         }

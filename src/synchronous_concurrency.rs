@@ -17,12 +17,12 @@ enum Message {
     End
 }
 
-fn printer(i_snd: Sender<int>, msg_rcv: Receiver<Message>) {
+fn printer(i_snd: Sender<i32>, msg_rcv: Receiver<Message>) {
     let mut count = 0;
     loop {
         match msg_rcv.recv().unwrap() {
             Message::Line(line) => {
-                print!("{}", line);
+                print!("{:?}", line);
                 count += 1;
             }
             Message::End => {break;}
@@ -31,19 +31,19 @@ fn printer(i_snd: Sender<int>, msg_rcv: Receiver<Message>) {
     i_snd.send(count).unwrap();
 }
 
-fn reader(msg_snd: Sender<Message>, i_rcv: Receiver<int>) {
+fn reader(msg_snd: Sender<Message>, i_rcv: Receiver<i32>) {
     let mut file = BufferedReader::new(File::open(&Path::new(FILENAME)));
     for line in file.lines() {
         msg_snd.send(Message::Line(line.unwrap())).unwrap();
     }
     msg_snd.send(Message::End).unwrap();
-    println!("Total Lines: {}", i_rcv.recv());
+    println!("Total Lines: {:?}", i_rcv.recv());
 }
 
 fn main() {
     let (msg_snd, msg_rcv) = channel();
     let (i_snd, i_rcv) = channel();
 
-    Thread::spawn(move || printer(i_snd, msg_rcv)).detach();
-    Thread::spawn(move || reader(msg_snd, i_rcv)).detach();
+    Thread::spawn(move || printer(i_snd, msg_rcv));
+    Thread::spawn(move || reader(msg_snd, i_rcv));
 }

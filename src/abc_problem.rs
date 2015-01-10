@@ -13,12 +13,12 @@ const  BLOCKS: &'static [&'static str] = &["BO", "XK", "DQ", "CP", "NA",
 fn main() {
     println!("******\nmethod 1\n******");
     for word in WORDS.iter() {
-        println!("can {} be built? {}", word, can_be_built_input_first(*word))
+        println!("can {:?} be built? {:?}", word, can_be_built_input_first(*word))
     }
 
     println!("\n******\nmethod 2\n******");
     for word in WORDS.iter() {
-        println!("can {} be built? {}", word, can_be_built_blocks_first(*word))
+        println!("can {:?} be built? {:?}", word, can_be_built_blocks_first(*word))
     }
 }
 

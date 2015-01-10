@@ -1,9 +1,9 @@
 // http://rosettacode.org/wiki/Towers_of_Hanoi
 
-fn play(n: int, from: int, to: int, via: int) {
+fn play(n: i32, from: i32, to: i32, via: i32) {
     if n > 0 {
         play(n - 1, from, via, to);
-        println!("Move disk from pole {} to pole {}", from, to);
+        println!("Move disk from pole {:?} to pole {:?}", from, to);
         play(n - 1, via, to, from);
     }
 }

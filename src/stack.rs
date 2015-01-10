@@ -37,14 +37,14 @@ fn main() {
     let mut stack = Stack::new();
 
     // Fill the stack
-    stack.push(5i);
+    stack.push(5i32);
     stack.push(8);
     stack.push(9);
 
     // Show the element at the top
-    println!("{}", stack.peek().unwrap());
+    println!("{:?}", stack.peek().unwrap());
     // Show the element we popped
-    println!("{}", stack.pop().unwrap());
+    println!("{:?}", stack.pop().unwrap());
     if stack.empty() {
         println!("The stack is empty.")
     } else {
@@ -60,7 +60,7 @@ fn test_basic() {
     assert!(stack.empty());
 
     // Fill the stack
-    stack.push(5i);
+    stack.push(5i32);
     stack.push(8);
     stack.push(9);
 

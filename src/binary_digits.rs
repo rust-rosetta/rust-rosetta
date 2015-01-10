@@ -5,7 +5,7 @@ trait BinaryString {
     fn to_binary_string(&self) -> String;
 }
 
-impl BinaryString for uint {
+impl BinaryString for usize {
     fn to_binary_string(&self) -> String {
         format!("{:b}", *self)
     }
@@ -13,8 +13,8 @@ impl BinaryString for uint {
 
 #[cfg(not(test))]
 fn main() {
-    for s in range_inclusive(0, 16u) {
-        println!("{}", s.to_binary_string());
+    for s in range_inclusive(0, 16us) {
+        println!("{:?}", s.to_binary_string());
     }
 }
 
@@ -25,7 +25,7 @@ fn test_digits() {
                     "1000", "1001", "1010", "1011",
                     "1100", "1101", "1110", "1111"];
 
-    for (n, expected) in range_inclusive(0, 16u).zip(expected.iter()) {
+    for (n, expected) in range_inclusive(0, 16us).zip(expected.iter()) {
         assert_eq!(n.to_binary_string(), *expected);
     }
 }

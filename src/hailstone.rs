@@ -1,24 +1,22 @@
 // Implements http://rosettacode.org/wiki/Hailstone_sequence
-#![feature(associated_types)]
-
 // Define a struct which stores the state for the iterator.
 struct Hailstone {
-    next: uint, // Accessible only to the current module.
-    pub start: uint  // Publically accessible.
+    next: usize, // Accessible only to the current module.
+    pub start: usize  // Publically accessible.
 }
 
 impl Hailstone {
   // Define a constructor for the struct.
-    fn new(n: uint) -> Hailstone {
+    fn new(n: usize) -> Hailstone {
         Hailstone { next: n, start: n }
     }
 }
 
 // Implement the hailstone iteration sequence.
 impl Iterator for Hailstone {
-    type Item = uint;
+    type Item = usize;
     // This gets called to fetch the next item of the iterator.
-    fn next(&mut self) -> Option<uint> {
+    fn next(&mut self) -> Option<usize> {
         // We need to cache the current value.
         let current = self.next;
         // And then calculate the 'next'
@@ -41,8 +39,8 @@ impl Iterator for Hailstone {
 }
 
 /// Returns the start number and length of the longest hailstone sequence up to `limit`
-fn biggest_hailstone(limit: uint) -> (uint, uint) {
-    range(0u, limit).map(|n| (n, Hailstone::new(n).count()))
+fn biggest_hailstone(limit: usize) -> (usize, usize) {
+    (0us..limit).map(|n| (n, Hailstone::new(n).count()))
                     .max_by(|&(_, count)| count)
                     .unwrap()
 }
@@ -50,9 +48,9 @@ fn biggest_hailstone(limit: uint) -> (uint, uint) {
 #[cfg(not(test))]
 fn main() {
     // Find the hailstone for 27.
-    let two_seven = Hailstone::new(27).collect::<Vec<uint>>();
+    let two_seven = Hailstone::new(27).collect::<Vec<usize>>();
     let ts_len = two_seven.len();
-    println!("Testing: {}, Length: {}, Values: {}...{}",
+    println!("Testing: {:?}, Length: {:?}, Values: {:?}...{:?}",
             two_seven[0],
             ts_len,
             two_seven.slice(0, 4),
@@ -60,12 +58,12 @@ fn main() {
 
     // Find the longest.
     let (biggest, length) = biggest_hailstone(100000);
-    println!("Largest: {}, Size: {}", biggest, length);
+    println!("Largest: {:?}, Size: {:?}", biggest, length);
 }
 
 #[test]
 fn test_27() {
-    let seq = Hailstone::new(27).collect::<Vec<uint>>();
+    let seq = Hailstone::new(27).collect::<Vec<usize>>();
 
     assert_eq!(seq.slice(0, 4), [27, 82, 41, 124]);
     assert_eq!(seq.slice(seq.len() - 4, seq.len()), [8, 4, 2, 1]);

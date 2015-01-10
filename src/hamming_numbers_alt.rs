@@ -2,7 +2,6 @@
 // alternate version: uses a more efficient representation of Hamming numbers:
 // instead of storing them as BigUint directly, it stores the three exponents
 // i, j and k for 2^i * 3^j * 5 ^k and the logarithm of the number for comparisons
-#![feature(associated_types, default_type_params)]
 extern crate num;
 
 use hamming_numbers::{Hamming, HammingNumber};
@@ -22,8 +21,8 @@ fn main() {
 
     for (idx, h) in hamming.enumerate().take(1_000_000) {
         match idx + 1 {
-            1...20 => print!("{} ", h.to_biguint().unwrap()),
-            i @ 1691 | i @ 1_000_000 => println!("\n{}th number: {}", i, h.to_biguint().unwrap()),
+            1...20 => print!("{:?} ", h.to_biguint().unwrap()),
+            i @ 1691 | i @ 1_000_000 => println!("\n{:?}th number: {:?}", i, h.to_biguint().unwrap()),
             _ =>  continue
         }
     }
@@ -43,9 +42,9 @@ pub const LN_5: f64 = 1.60943791243410037460075933322618763952560135426851772191
 // of logarithms: ln(2^i * 3^j * 5^k) = i*ln2 + j*ln3 + k*ln5
 #[derive(Show, Copy)]
 pub struct HammingTriple {
-    pow_2: uint,
-    pow_3: uint,
-    pow_5: uint,
+    pow_2: usize,
+    pow_3: usize,
+    pow_5: usize,
     ln: f64
 }
 
@@ -78,14 +77,14 @@ impl HammingNumber for HammingTriple {
 impl ToBigUint for HammingTriple {
    // calculate the value as a BigUint
     fn to_biguint(&self) -> Option<BigUint> {
-        Some(pow(2u.to_biguint().unwrap(), self.pow_2) *
-        pow(3u.to_biguint().unwrap(), self.pow_3) *
-        pow(5u.to_biguint().unwrap(), self.pow_5))
+        Some(pow(2u8.to_biguint().unwrap(), self.pow_2) *
+        pow(3u8.to_biguint().unwrap(), self.pow_3) *
+        pow(5u8.to_biguint().unwrap(), self.pow_5))
     }
 }
 
 impl HammingTriple {
-    fn new(pow_2: uint, pow_3: uint, pow_5: uint) -> HammingTriple {
+    fn new(pow_2: usize, pow_3: usize, pow_5: usize) -> HammingTriple {
         HammingTriple {
             pow_2: pow_2,
             pow_3: pow_3,
@@ -138,7 +137,7 @@ impl Ord for HammingTriple {
 #[test]
 fn hamming_iter() {
     let mut hamming = Hamming::<HammingTriple>::new(20);
-    assert!(hamming.nth(19).unwrap().to_biguint() == 36u.to_biguint());
+    assert!(hamming.nth(19).unwrap().to_biguint() == 36u8.to_biguint());
 }
 
 #[test]

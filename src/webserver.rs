@@ -39,19 +39,19 @@ pub fn handle_server(ip: &str, port: u16) -> IoResult<TcpAcceptor> {
     Thread::spawn(move || -> () {
         for stream in acceptor.incoming() {
             match stream {
-                Ok(s) => Thread::spawn(move || {
+                Ok(s) => { Thread::spawn(move || {
                     match handle_client(s) {
                         Ok(_) => println!("Response sent!"),
                         Err(e) => println!("Failed sending response: {}!", e),
                     }
-                }).detach(),
+                }); },
                 Err(e) => {
                     println!("No longer accepting new requests: {}", e);
                     break
                 }
             }
         }
-    }).detach();
+    });
 
     handle
 }

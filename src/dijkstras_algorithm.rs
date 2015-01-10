@@ -2,12 +2,12 @@
 
 use std::collections::{HashMap, BinaryHeap, DList};
 use std::collections::hash_map::Entry::{Occupied, Vacant};
-use std::uint;
+use std::usize;
 use std::iter::repeat;
 use std::cmp::Ordering;
 
-type Node = uint;
-type Cost = uint;
+type Node = usize;
+type Cost = usize;
 type Edge = (Node, Node);
 
 
@@ -59,11 +59,11 @@ impl<'a> Graph<'a> {
     }
     
     /// Adds the given edge to the graph.
-    fn add_edge(&mut self, from: &'a str, to: &'a str, cost: uint) {
+    fn add_edge(&mut self, from: &'a str, to: &'a str, cost: usize) {
         let from_idx = self.get_or_insert_vertex(from);
         let to_idx = self.get_or_insert_vertex(to);
 
-        match self.costs.entry(&(from_idx, to_idx)) {
+        match self.costs.entry((from_idx, to_idx)) {
             Vacant(entry)   => {
                 self.adj_list[from_idx].push(to_idx);
                 entry.insert(cost);
@@ -80,9 +80,9 @@ impl<'a> Graph<'a> {
     ///
     /// Returns vector of vertices representing the path, or an empty vector
     /// if there's no path, or if the source or target is not in the graph.
-    fn dijkstra(&self, source: &str, target: &str) -> Vec<&str> {
+    fn dijkstra(&'a self, source: &str, target: &str) -> Vec<&str> {
         let num_vert = self.vertices.len();
-        let mut dist:Vec<uint> = repeat(uint::MAX).take(num_vert).collect(); //Close enough to infinity
+        let mut dist:Vec<usize> = repeat(usize::MAX).take(num_vert).collect(); //Close enough to infinity
         let mut prev:HashMap<Node, Node> = HashMap::new();
         let mut queue:BinaryHeap<DistPair> = BinaryHeap::new();
 
@@ -96,7 +96,7 @@ impl<'a> Graph<'a> {
             None      => return Vec::new() // Target not in graph, return empty path.
         };
 
-        dist[source_idx] = 0u;
+        dist[source_idx] = 0us;
         queue.push(DistPair(source_idx, dist[source_idx]));
 
         loop{
@@ -106,11 +106,11 @@ impl<'a> Graph<'a> {
                     for &v in self.adj_list[u].iter() {
                         let cost_uv = match self.costs.get(&(u, v)) {
                             Some(&x) => x,
-                            None     => uint::MAX,
+                            None     => usize::MAX,
                         };
                         let alt = dist_u + cost_uv;
                         if alt < dist[v] {
-                            match prev.entry(&v) {
+                            match prev.entry(v) {
                                 Vacant(entry) => {entry.insert(u);},
                                 Occupied(entry) => {
                                     *entry.into_mut() = u;
@@ -171,6 +171,6 @@ fn main(){
     graph.add_edge("e", "f", 9);
     
     let path = graph.dijkstra("a", "e");
-    println!("Path is: {}", path);
+    println!("Path is: {:?}", path);
 }
 

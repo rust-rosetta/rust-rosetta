@@ -1,6 +1,4 @@
 // http://rosettacode.org/wiki/Arithmetic/Rational
-#![feature(associated_types)]
-
 extern crate num;
 
 use std::num::{Float, SignedInt};
@@ -12,13 +10,13 @@ use std::ops::{Add, Mul, Neg, Sub, Div};
 #[cfg(not(test))]
 fn main() {
     for p in perfect_numbers(1 << 19).iter() {
-        println!("{} is perfect", p);
+        println!("{:?} is perfect", p);
     }
 }
 
 fn perfect_numbers(max: i64) -> Vec<i64> {
     let mut ret=Vec::new();
-    for candidate in range(2, max) {
+    for candidate in (2..max) {
         let mut sum=Frac::secure_new(1, candidate).unwrap();
         let max2=((candidate as f64).sqrt().floor()) as i64;
 
@@ -92,8 +90,8 @@ impl Frac {
 impl fmt::Show for Frac {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         match (self.num, self.den) {
-            (_,1) | (0,0) => write!(f, "{}", self.num),
-            (_,_) => write!(f, "{}/{}", self.num, self.den)
+            (_,1) | (0,0) => write!(f, "{:?}", self.num),
+            (_,_) => write!(f, "{:?}/{:?}", self.num, self.den)
         }
     }
 }

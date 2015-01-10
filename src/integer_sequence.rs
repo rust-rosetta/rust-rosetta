@@ -9,7 +9,7 @@ fn main() {
     let mut i: BigUint = One::one();
 
     loop {
-        println!("{}", i);
+        println!("{:?}", i);
         i = &i + &one;
     }
 }

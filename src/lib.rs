@@ -1,10 +1,10 @@
 // Dummy main library
 // It also contains a test module, which checks if all source files are covered by `Cargo.toml`
 
-#![feature(phase, slicing_syntax)]
-
+#![feature(plugin)]
+#[plugin] 
+extern crate regex_macros;
 extern crate regex;
-#[phase(plugin)] extern crate regex_macros;
 
 #[allow(dead_code)]
 #[cfg(not(test))]
@@ -27,7 +27,7 @@ mod test {
             println!("Error, the following source files are not covered by Cargo.toml:");
 
             for source in not_covered.iter() {
-                println!("{}", source);
+                println!("{:?}", source);
             }
 
             panic!("Please add the previous source files to Cargo.toml");
@@ -48,7 +48,7 @@ mod test {
         let regex = regex!("path = \"(.*)\"");
         reader.lines().filter_map(|l| {
             let l = l.unwrap();
-            regex.captures(l[]).map(|c| c.at(1).map(|s| Path::new(s))
+            regex.captures(&*l).map(|c| c.at(1).map(|s| Path::new(s))
                                                .unwrap()
                                                .filename_str()
                                                .unwrap()

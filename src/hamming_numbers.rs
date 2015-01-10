@@ -1,9 +1,4 @@
 // http://rosettacode.org/wiki/Hamming_numbers
-#![feature(associated_types, default_type_params)]
-#![allow(unused_attributes)] // needed for the feature gates above
- // (when hamming_numbers is used as a mod in hamming_numbers it's no longer
- // the root of the crate and rustc complains about unused attributes)
-
 extern crate num;
 use num::bigint::{BigUint, ToBigUint};
 use num::traits::One;
@@ -21,8 +16,8 @@ fn main() {
 
     for (idx, h) in hamming.enumerate().take(1_000_000) {
         match idx + 1 {
-            1...20 => print!("{} ", h.to_biguint().unwrap()),
-            i @ 1691 | i @ 1000000 => println!("\n{}th number: {}", i, h.to_biguint().unwrap()),
+            1...20 => print!("{:?} ", h),
+            i @ 1691 | i @ 1000000 => println!("\n{:?}th number: {:?}", i, h),
             _ =>  continue
         }
     }
@@ -32,9 +27,9 @@ fn main() {
 impl HammingNumber for BigUint {
     // returns the multipliers 2, 3 and 5 in the representation for the HammingNumber
     fn multipliers() -> (BigUint, BigUint, BigUint) {
-        (2u.to_biguint().unwrap(),
-        3u.to_biguint().unwrap(),
-        5u.to_biguint().unwrap())
+        (2u8.to_biguint().unwrap(),
+        3u8.to_biguint().unwrap(),
+        5u8.to_biguint().unwrap())
     }
 }
 
@@ -59,7 +54,7 @@ pub struct Hamming<T> {
 impl<T: HammingNumber> Hamming<T> {
     /// Static constructor method
     /// `n` initializes the capacity of the queues
-    pub fn new(n: uint) -> Hamming<T> {
+    pub fn new(n: usize) -> Hamming<T> {
         let mut h = Hamming {
             q2: RingBuf::with_capacity(n),
             q3: RingBuf::with_capacity(n),
@@ -118,7 +113,7 @@ impl<T: HammingNumber> Iterator for Hamming<T> {
 fn create() {
     let mut h = Hamming::<BigUint>::new(5);
     h.q2.push_back(one::<BigUint>());
-    h.q2.push_back(one::<BigUint>() * 3u.to_biguint().unwrap());
+    h.q2.push_back(one::<BigUint>() * 3.to_biguint().unwrap());
 
     assert_eq!(h.q2.pop_front().unwrap(), one::<BigUint>());
 }
@@ -141,7 +136,7 @@ fn try_enqueue() {
 #[test]
 fn hamming_iter() {
     let mut hamming = Hamming::<BigUint>::new(20);
-    assert!(hamming.nth(19).unwrap().to_biguint() == 36u.to_biguint());
+    assert!(hamming.nth(19).unwrap().to_biguint() == 36.to_biguint());
 }
 
 #[ignore] // Please run this if you modify the file.  It is too slow to run normally.
