@@ -31,7 +31,7 @@ pub fn checkpoint() {
     let arc = Arc::new((barrier, events));
     // Channel for communicating when tasks are done
     let (tx, rx) = channel();
-    for i in range(0, NUM_TASKS) {
+    for i in (0..NUM_TASKS) {
         let arc = arc.clone();
         let tx = tx.clone();
         // Spawn a new worker
@@ -40,7 +40,7 @@ pub fn checkpoint() {
             // Assign an event to this task
             let ref event = events[i];
             // Start processing events
-            for _ in range(0, NUM_ITERATIONS) {
+            for _ in (0..NUM_ITERATIONS) {
                 // Between checkpoints 4 and 1, turn this task's event on.
                 event.store(true, Ordering::Release);
                 // Checkpoint 1
@@ -64,7 +64,7 @@ pub fn checkpoint() {
     }
     drop(tx);
     // The main thread will not exit until all tasks have exited.
-    for _ in range(0, NUM_TASKS) {
+    for _ in (0..NUM_TASKS) {
         rx.recv().unwrap();
     }
 }

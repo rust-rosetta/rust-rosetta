@@ -18,13 +18,13 @@ fn align_columns(text: &str) -> (Vec<Vec<String>>, Vec<usize>) {
     let mut max_lengths: Vec<usize> = Vec::new();
     let mut chunks: Vec<Vec<String>> = Vec::new();
 
-    for i in range(0us, lines.len()) {
+    for i in (0us..lines.len()) {
         let ref input = lines[i];
         let split_input: Vec<String> = input.as_slice().split('$').map(|s| s.to_string()).collect();
         chunks.push(split_input.clone());
         let v: Vec<usize> = split_input.iter().map(|chunk| chunk.len() ).collect();
 
-        for i in range(0us, v.len()) {
+        for i in (0us..v.len()) {
             if i < max_lengths.len() {
                 max_lengths[i] = std::cmp::max(max_lengths[i], v[i]);
             } else {
@@ -38,31 +38,31 @@ fn align_columns(text: &str) -> (Vec<Vec<String>>, Vec<usize>) {
 
 fn print_aligned_columns(chunks: &Vec<Vec<String>>, max_lengths: &Vec<usize>) {
     // left aligned
-    for i in range(0us, chunks.len()) {
-        for j in range(0us, chunks[i].len()) {
+    for i in (0us..chunks.len()) {
+        for j in (0us..chunks[i].len()) {
             print!("{0:<1$}", chunks[i][j], 1 + max_lengths[j]);
         }
         println!("");
     }
     println!("");
     // right aligned
-    for i in range(0us, chunks.len()) {
-        for j in range(0us, chunks[i].len()) {
+    for i in (0us..chunks.len()) {
+        for j in (0us..chunks[i].len()) {
             print!("{0:>1$}", chunks[i][j], 1 + max_lengths[j]);
         }
         println!("");
     }
     println!("");
     // center aligned
-    for i in range(0us, chunks.len()) {
-        for j in range(0us, chunks[i].len()) {
+    for i in (0us..chunks.len()) {
+        for j in (0us..chunks[i].len()) {
             let ref string: String = chunks[i][j];
             let spaces: usize = 1 + max_lengths[j] - string.len();
-            for _ in range(0us, spaces>>1) {
+            for _ in (0us..spaces>>1) {
                 print!(" ");
             }
             print!("{}", string);
-            for _ in range(0us, spaces - (spaces>>1)) {
+            for _ in (0us..spaces - (spaces>>1)) {
                 print!(" ");
             }
         }
@@ -76,7 +76,7 @@ fn test_result() {
     for chunkset in chunks.iter() {
         // the number of words in a chunkset is <= the number of values in max_lengths
         assert!(chunkset.len() <= max_lengths.len());
-        for j in range(0us, chunkset.len()) {
+        for j in (0us..chunkset.len()) {
             // a word in a chunkset cannot be longer than max_lengths
             assert!(chunkset[j].len() <= max_lengths[j]);
         }

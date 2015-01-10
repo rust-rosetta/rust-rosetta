@@ -14,7 +14,7 @@ fn binomial(n: usize, mut k: usize) -> BigUint {
 
     // Compute the coefficient
     let mut res: BigUint = One::one();
-    for i in range(1us, k + 1) {
+    for i in (1us..k + 1) {
         let m: BigUint = FromPrimitive::from_uint(n - k + i).unwrap();
         res = res * m;
         let d: BigUint = FromPrimitive::from_uint(i).unwrap();

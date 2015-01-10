@@ -46,7 +46,7 @@ fn main() {
     println!("H(1) = 1");
     println!("H(2) = 1");
     // Print the rest of the sequence.
-    for i in range(3u, 1+upto) {
+    for i in (3u..1+upto) {
         println!("H({}) = {}", i, it.next().unwrap());
     }
 }
@@ -75,7 +75,7 @@ fn test_thousandth() {
     let mut it = hof.take(upto - 2);
     let expected: usize = 502;
     // Test that the upto-th term is as expected.
-    for _ in (3u..upto) {
+    for _ in (3us..upto) {
         it.next();
     }
     assert_eq!(expected, it.next().unwrap());

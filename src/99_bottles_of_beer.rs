@@ -3,7 +3,7 @@ use std::string::String;
 
 #[cfg(not(test))]
 fn main() {
-    for num_bottles in std::iter::range_inclusive(1us, 99).rev() {
+    for num_bottles in (1us..100).rev() {
         println!("{}", bottles_line(num_bottles, true));
         println!("{}", bottles_line(num_bottles, false));
         println!("Take one down, pass it around...");

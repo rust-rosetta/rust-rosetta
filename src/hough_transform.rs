@@ -105,8 +105,8 @@ fn hough(image: &ImageGray8, out_width: usize, out_height: usize) -> ImageGray8 
 
     // Process input image in raster order
 
-    for y in range(0, in_height) {
-        for x in range(0, in_width) {
+    for y in (0..in_height) {
+        for x in (0..in_width) {
             let in_idx = y*in_width+x;
             let col = image.data[in_idx];
             if col == 255 {
@@ -115,7 +115,7 @@ fn hough(image: &ImageGray8, out_width: usize, out_height: usize) -> ImageGray8 
 
             // Project into rho,theta space
 
-            for jtx in range(0, out_width) {
+            for jtx in (0..out_width) {
                 let th = dth * (jtx as f64);
                 let r = (x as f64)*(th.cos()) + (y as f64)*(th.sin());
 

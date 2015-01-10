@@ -56,7 +56,7 @@ impl Digest {
 
         // Length in bits (=lengh in bytes*8=shift 3 bits to the right).
         len = len << 3;
-        for i in range (0us, 8) {
+        for i in (0us..8) {
             tmp[i] = (len >> (56us - 8*i)) as u8;
         }
         self.write(tmp.slice(0,8)).unwrap();

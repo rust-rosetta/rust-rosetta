@@ -50,7 +50,7 @@ mod test {
 
     #[test]
     fn sorted() {
-        let arr = [1u, 2, 3, 4, 6, 8];
+        let arr = [1i32, 2, 3, 4, 6, 8];
         assert_eq!(merge_sort(&arr), arr.to_vec());
     }
 
@@ -62,7 +62,7 @@ mod test {
 
     #[test]
     fn random() {
-        let arr = [12u, 54, 2, 93, 13, 43, 15, 299, 234];
-        assert_eq!(merge_sort(&arr), vec![2u, 12, 13, 15, 43, 54, 93, 234, 299]);
+        let arr = [12i32, 54, 2, 93, 13, 43, 15, 299, 234];
+        assert_eq!(merge_sort(&arr), vec![2i32, 12, 13, 15, 43, 54, 93, 234, 299]);
     }
 }

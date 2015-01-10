@@ -10,8 +10,8 @@
 fn main() {
     use std::f32::consts;
 
-    fn f(x: uint) -> String { x.to_string() }
-    fn g(x: f32) -> uint { x as uint }
+    fn f(x: usize) -> String { x.to_string() }
+    fn g(x: f32) -> usize { x as usize }
     
     let comp = Composed::new(f, g);
     
@@ -36,8 +36,8 @@ impl<A, B, C, F1, F2> Fn<(C,), B> for Composed<A, B, C, F1, F2>
 
 #[test]
 fn test_compose() {
-    fn inc(x: uint) -> uint { x + 1 }
-    fn mul(x: uint) -> uint { x * 3 }
+    fn inc(x: usize) -> usize { x + 1 }
+    fn mul(x: usize) -> usize { x * 3 }
 
     let comp = Composed::new(inc, mul);
     assert_eq!(comp(3), 10);

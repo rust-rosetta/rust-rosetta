@@ -40,7 +40,7 @@ fn is_valid(iban: &str) -> bool {
 
     // Check if the remainder is one
     match iban_int {
-        Some(x) => x % 97u.to_bigint().unwrap() == 1u.to_bigint().unwrap(),
+        Some(x) => x % 97us.to_bigint().unwrap() == 1us.to_bigint().unwrap(),
         None    => false
     }
 }

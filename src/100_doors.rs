@@ -30,7 +30,7 @@ fn solution() {
 
     // test that the doors with index corresponding to
     // a perfect square are now open
-    for i in range_inclusive(1u,10u) {
+    for i in 1us..11 {
         assert_eq!(doors[i*i - 1], DoorState::Open);
     }
 }

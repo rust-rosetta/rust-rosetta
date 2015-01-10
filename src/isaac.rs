@@ -128,10 +128,10 @@ impl Isaac {
 
     // Seed ISAAC with a string
     fn seed(&mut self, seed: &str, flag: bool) {
-        for i in range (0us, 256) { self.mm[i] = 0; }
-        for i in range (0us, 256) { self.rand_rsl[i] = 0; }
+        for i in (0us..256) { self.mm[i] = 0; }
+        for i in (0us..256) { self.rand_rsl[i] = 0; }
 
-        for i in range(0us, seed.len()) {
+        for i in (0us..seed.len()) {
             self.rand_rsl[i] = seed.as_bytes()[i] as u32;
         }
         // initialize ISAAC with seed

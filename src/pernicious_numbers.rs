@@ -8,7 +8,7 @@ mod aks_test_for_primes;
 fn main() {
     for i in pernicious().take(25) { print!("{} " , i); }
     println!("");
-    for i in range(888_888_877u64, 888_888_888).filter(is_pernicious) {
+    for i in (888_888_877u64..888_888_888).filter(is_pernicious) {
         print!("{} " , i);
     }
 }
@@ -35,7 +35,7 @@ mod test {
     #[test]
     fn is_pernicious_range() {
         let exp = &[888888877u64, 888888878, 888888880, 888888883, 888888885, 888888886];
-        for (act, &exp) in range(888_888_877u64, 888_888_888).filter(is_pernicious)
+        for (act, &exp) in (888_888_877u64..888_888_888).filter(is_pernicious)
             .zip(exp.iter()) {
              assert_eq!(act, exp);
         }

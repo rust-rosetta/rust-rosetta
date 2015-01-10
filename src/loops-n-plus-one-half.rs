@@ -3,7 +3,7 @@
 use std::iter;
 
 fn main() {
-    for i in iter::range_inclusive(1us,10) {
+    for i in (1us..11) {
         print!("{}", i);
         if i == 10 {
             break;

@@ -9,11 +9,11 @@ fn main() {
 
     // Compute the triangle line-by-line by viewing it as Pascal's triangle (mod 2)
     for i in (0us..height) {
-        for _ in range(0us, height - i - 1) {
+        for _ in (0us..height - i - 1) {
             print!(" ");
         }
 
-        for j in range(0us, i + 1) {
+        for j in (0us..i + 1) {
             print!(" {}", if state[j] { "*" } else { " " });
         }
 

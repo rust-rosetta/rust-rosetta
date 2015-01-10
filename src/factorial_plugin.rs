@@ -16,8 +16,6 @@ use syntax::ext::base::{ExtCtxt, MacResult, DummyResult, MacExpr};
 use syntax::ext::build::AstBuilder;  // trait for expr_usize
 use rustc::plugin::Registry;
 
-use std::iter::range_inclusive;
-
 fn exp_factorial(cx: &mut ExtCtxt, sp: Span, tts: &[TokenTree])
         -> Box<MacResult + 'static> {
     // extract the argument and ensure there is only one and it's a usize
@@ -42,7 +40,7 @@ fn exp_factorial(cx: &mut ExtCtxt, sp: Span, tts: &[TokenTree])
     };
     
     // calculating the factorial
-    let result = range_inclusive(1us, n as usize).fold(1, |accum, elem| accum * elem);    
+    let result = (1us..(n as usize)+1).fold(1, |accum, elem| accum * elem);    
 
     MacExpr::new(cx.expr_uint(sp, result))
 }

@@ -43,7 +43,7 @@ mod test {
     use super::{odious, evil, pow_3};
     #[test]
     fn test_odious() {
-        let exp = vec![1u, 2, 4, 7, 8, 11, 13, 14, 16, 19, 21, 22,
+        let exp = vec![1us, 2, 4, 7, 8, 11, 13, 14, 16, 19, 21, 22,
                         25, 26, 28, 31, 32, 35, 37, 38, 41, 42, 44,
                         47, 49, 50, 52, 55, 56, 59];
         let act = odious().take(30).collect::<Vec<usize>>();
@@ -61,7 +61,7 @@ mod test {
 
     #[test]
     fn test_pow_3() {
-        let exp = vec![1u, 2, 2, 4, 3, 6, 6, 5, 6, 8, 9, 13, 10,
+        let exp = vec![1us, 2, 2, 4, 3, 6, 6, 5, 6, 8, 9, 13, 10,
                         11, 14, 15, 11, 14, 14, 17, 17, 19, 16, 19,
                         14, 14, 18, 21, 18, 15];
         let act = pow_3().take(30).collect::<Vec<usize>>();

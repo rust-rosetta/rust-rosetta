@@ -1,7 +1,7 @@
 // Implements http://rosettacode.org/wiki/Almost_prime
 
 #[allow(unused_imports)]
-use std::iter::{count, range_inclusive};
+use std::iter::count;
 
 fn is_kprime(mut n: usize, k: usize) -> bool {
     let mut p = 2;
@@ -26,7 +26,7 @@ fn get_kprimes(k: usize, amount: usize) -> Vec<usize> {
 
 #[cfg(not(test))]
 fn main() {
-    for k in range_inclusive(1us, 5) {
+    for k in (1us..6) {
         println!("k = {}: {:?}", k, get_kprimes(k, 10));
     }
 }

@@ -67,7 +67,7 @@ fn left_rotate(x: u32, c: u32) -> u32 {
 fn to_bytes(val: u64) -> [u8; 8]
 {
     let mut tmp:[u8; 8] = [0u8; 8];
-    for i in range (0us, 8) {
+    for i in (0us..8) {
         tmp[i] = (val >> (8*i)) as u8;
     }
     tmp
@@ -92,7 +92,7 @@ fn md5(initial_msg: &[u8]) -> MD5
     let mut msg = initial_msg.to_vec();
     msg.push(0x80u8); // append the "1" bit; most significant bit is "first"
 
-    for _ in range (initial_len + 1, new_len) {
+    for _ in (initial_len + 1..new_len) {
         msg.push(0); // append "0" bits
     }
 

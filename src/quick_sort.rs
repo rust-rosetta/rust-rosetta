@@ -31,7 +31,7 @@ fn partition<T: Ord>(v: &mut [T]) -> usize {
     v.swap(pivot_index, len - 1);
 
     let mut store_index = 0;
-    for i in range(0, len - 1) {
+    for i in (0..len - 1) {
         if v[i] <= v[len - 1] {
             v.swap(i, store_index);
             store_index += 1;
@@ -62,7 +62,7 @@ fn main() {
 #[cfg(test)]
 fn check_sort<T: Ord>(v: &[T]) {
     if v.len() > 1 {
-        for i in range(0, v.len()-1) {
+        for i in (0..v.len()-1) {
             assert!(v[i] <= v[i+1]);
         }
     }

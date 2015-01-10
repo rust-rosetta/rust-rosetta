@@ -41,7 +41,7 @@ fn largest_min_factor_chan(numbers: &[usize]) -> usize {
 // The function is implemented using the Future struct
 fn largest_min_factor_fut(numbers: &[usize]) -> usize {
     // We will save the future values of the minimal factor in the results vec
-    let mut results: Vec<Future<usize>> = range(0, numbers.len()).map(
+    let mut results: Vec<Future<usize>> = (0..numbers.len()).map(
 		|i| {
 			let number = numbers[i];
 			Future::spawn(move || { min_factor(number) })
@@ -54,7 +54,7 @@ fn largest_min_factor_fut(numbers: &[usize]) -> usize {
 #[cfg(not(test))]
 fn main() {
     // Numbers to be factorized
-    let numbers = &[1122725u,
+    let numbers = &[1122725us,
                    1125827,
                    1122725,
                    1152800,
@@ -74,7 +74,7 @@ fn test_basic() {
 
 #[test]
 fn test_equivalence() {
-    let numbers = &[1122725u,
+    let numbers = &[1122725us,
                    1125827,
                    1122725,
                    1152800,

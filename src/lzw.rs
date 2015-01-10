@@ -8,7 +8,7 @@ fn compress(original_str: &str) -> Vec<i32> {
    let mut dict_size = 256;
    let mut dictionary = HashMap::new();
 
-   for i in range(0i32, dict_size) {
+   for i in (0i32..dict_size) {
       dictionary.insert(vec!(i as u8), i);
    }
 
@@ -41,7 +41,7 @@ fn decompress(compressed: &Vec<i32>) -> String {
    let mut dict_size = 256;
    let mut dictionary = HashMap::new();
 
-   for i in range(0i32, dict_size) {
+   for i in (0i32..dict_size) {
       dictionary.insert(i, vec!(i as u8));
    }
 
@@ -82,7 +82,7 @@ fn main() {
 
 #[test]
 fn test_coherence() {
-    for s in (50000i..50100).map(|n| n.to_string()) {
+    for s in (50000i32..50100).map(|n| n.to_string()) {
         assert_eq!(decompress(&compress(s.as_slice())), s);
     }
 }

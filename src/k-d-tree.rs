@@ -178,7 +178,7 @@ pub fn main() {
 				|_| (std::rand::thread_rng().gen::<f32>()-0.5f32)*1000f32
 			).collect()
     };
-    let mut random_points: Vec<Point> = range(0, n_random)
+    let mut random_points: Vec<Point> = (0..n_random)
 		.map(|_| make_random_point()).collect();
 
     let start_cons_time = get_time();
@@ -198,7 +198,7 @@ pub fn main() {
     
     // benchmark search time
     let n_searches = 1000us;
-    let random_targets: Vec<Point> = range(0, n_searches).map(
+    let random_targets: Vec<Point> = (0..n_searches).map(
 		|_| make_random_point()
     ).collect();
 
@@ -238,7 +238,7 @@ fn partition_by<T>(arr: &mut [T], pivot_index: usize, cmp: &Fn(&T, &T) -> Orderi
     let array_len = arr.len();
     arr.swap(pivot_index, array_len-1);
     let mut store_index = 0us;
-    for i in range(0us, array_len-1) {
+    for i in (0us..array_len-1) {
         if (*cmp)(&arr[i], &arr[array_len-1]) == Less {
             arr.swap(i, store_index);
             store_index += 1;

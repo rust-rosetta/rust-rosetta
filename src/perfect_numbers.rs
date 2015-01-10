@@ -1,20 +1,20 @@
 // Implements http://rosettacode.org/wiki/Perfect_numbers
-use std::iter::{range_inclusive, AdditiveIterator};
+use std::iter::{AdditiveIterator};
 
 fn perfect_number(n: usize) -> bool {
-  range_inclusive(1, n / 2).filter(|&i| n % i == 0).sum() == n
+  (1..(n / 2)+1).filter(|&i| n % i == 0).sum() == n
 }
 
 #[cfg(not(test))]
 fn main() {
-  for n in range(2, 10_000us).filter(|&n| perfect_number(n)) {
+  for n in (2..10_000us).filter(|&n| perfect_number(n)) {
     println!("{}", n);
   }
 }
 
 #[test]
 fn test_first_four() {
-  let nums = range(2, 10_000us).filter(|&n| perfect_number(n))
+  let nums = (2..10_000us).filter(|&n| perfect_number(n))
                               .collect::<Vec<usize>>();
   assert_eq!(nums, [6, 28, 496, 8128]);
 }

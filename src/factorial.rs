@@ -1,7 +1,5 @@
 // Implements http://rosettacode.org/wiki/Factorial
 
-use std::iter::range_inclusive;
-
 // Calculate the factorial using recursion
 fn factorial_recursive (n: usize) -> usize {
     match n {
@@ -12,13 +10,13 @@ fn factorial_recursive (n: usize) -> usize {
 
 // Calculate the factorial using a fold
 fn factorial_iterative(n: usize) -> usize {
-    range_inclusive(1, n).fold(1, |p, t| p * t)
+    (1..n+1).fold(1, |p, t| p * t)
 }
 
 // Calculate the factorial using a for loop
 fn factorial_loop(n: usize) -> usize {
     let mut fac = 1;
-    for x in range_inclusive(1, n) {
+    for x in (1..n+1) {
         fac *= x;
     }
     fac

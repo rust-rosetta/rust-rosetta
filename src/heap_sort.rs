@@ -71,15 +71,15 @@ fn sift_down<T: Ord>(a: &mut [T], start: usize, end: usize) {
  
 #[cfg(not(test))]
 pub fn main() {
-    let mut arr = [1u,5,2,7,3,9,4,6,8];
+    let mut arr = [1i32,5,2,7,3,9,4,6,8];
     heap_sort(&mut arr);
     println!("After sort: {:?}", arr);
     
-    let mut arr = [1u,2,3,4,5,6,7,8,9];
+    let mut arr = [1i32,2,3,4,5,6,7,8,9];
     heap_sort(&mut arr);
     println!("After sort: {:?}", arr);
     
-    let mut arr = [9u,8,7,6,5,4,3,2,1];
+    let mut arr = [9i32,8,7,6,5,4,3,2,1];
     heap_sort(&mut arr);
     println!("After sort: {:?}", arr);
 }
@@ -90,9 +90,9 @@ mod test {
     
     #[test]
     fn sorted() {
-        let mut arr = [1u, 2, 3, 4, 6, 8];
+        let mut arr = [1i32, 2, 3, 4, 6, 8];
         heap_sort(&mut arr);
-        assert_eq!(arr, [1u, 2, 3, 4, 6, 8]);
+        assert_eq!(arr, [1i32, 2, 3, 4, 6, 8]);
     }
 
     #[test]
@@ -104,16 +104,16 @@ mod test {
 
     #[test]
     fn random() {
-        let mut arr = [12u, 54, 2, 93, 13, 43, 15, 299, 234];
+        let mut arr = [12i32, 54, 2, 93, 13, 43, 15, 299, 234];
         heap_sort(&mut arr);
-        assert_eq!(arr, [2u, 12, 13, 15, 43, 54, 93, 234, 299]);
+        assert_eq!(arr, [2i32, 12, 13, 15, 43, 54, 93, 234, 299]);
     }
 
     #[test]
     fn one() {
-        let mut arr = [9u];
+        let mut arr = [9i32];
         heap_sort(&mut arr);
-        assert_eq!(arr, [9u]);
+        assert_eq!(arr, [9i32]);
     }
 
     #[test]
