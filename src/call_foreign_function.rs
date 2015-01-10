@@ -7,7 +7,7 @@ use std::ffi::CString;
 
 extern "C" {
     // C functions are declared in an `extern "C"` block.
-    fn strcmp(a: *const c_char, b: *const c_char) -> isize;
+    fn strcmp(a: *const c_char, b: *const c_char) -> i32;
 }
 
 #[cfg(not(test))]
