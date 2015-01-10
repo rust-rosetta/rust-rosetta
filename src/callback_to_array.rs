@@ -10,9 +10,9 @@ fn main () {
              .map(callback)
              // To get a result, we 'consume' the iterator by
              // collecting it into a `Vec`.
-             .collect::<Vec<int>>());
+             .collect::<Vec<i32>>());
 }
 
-fn callback(val: &int) -> int {
+fn callback(val: &i32) -> i32 {
     *val + 1
 }

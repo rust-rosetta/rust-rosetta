@@ -32,7 +32,7 @@ fn heapify<T: Ord>(a: &mut [T], count: usize) {
     }
 
     // start is assigned the index in 'a' of the last parent node
-    let mut start:int = count as int - 2 / 2; // binary heap
+    let mut start:i32 = count as i32 - 2 / 2; // binary heap
     
     while start >= 0 {        
         // sift down the node at index 'start' to the proper place
@@ -97,9 +97,9 @@ mod test {
 
     #[test]
     fn reverse() {
-        let mut arr = [8i, 6, 4, 3, 2, 1];
+        let mut arr = [8i32, 6, 4, 3, 2, 1];
         heap_sort(&mut arr);
-        assert_eq!(arr, [1i, 2, 3, 4, 6, 8]);
+        assert_eq!(arr, [1i32, 2, 3, 4, 6, 8]);
     }
 
     #[test]
@@ -118,7 +118,7 @@ mod test {
 
     #[test]
     fn empty() {
-        let mut arr: [int; 0] = [];
+        let mut arr: [i32; 0] = [];
         heap_sort(&mut arr);
         assert!(arr.is_empty());
     }

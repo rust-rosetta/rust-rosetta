@@ -30,7 +30,7 @@ fn is_valid(iban: &str) -> bool {
     };
 
     // Rearrange (first four characters go to the back)
-    for _ in range(0us, 4) {
+    for _ in (0us..4) {
         let front = iban_chars.remove(0);
         iban_chars.push(front);
     }

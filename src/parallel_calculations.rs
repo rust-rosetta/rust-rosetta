@@ -32,7 +32,7 @@ fn largest_min_factor_chan(numbers: &[usize]) -> usize {
     }
 
     // Receive them and keep the largest one
-    numbers.iter().fold(0u, |max, _| {
+    numbers.iter().fold(0us, |max, _| {
         std::cmp::max(receiver.recv().unwrap(), max)
     })
 }

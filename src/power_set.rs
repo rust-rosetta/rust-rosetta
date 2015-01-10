@@ -25,11 +25,11 @@ fn power_set<'a, T: Clone + 'a>(items: &mut Iter<'a,T>) -> Vec<Vec<T>> {
 
 #[test]
 fn test() {
-    let set = Vec::<int>::new();
+    let set = Vec::<i32>::new();
     let power = power_set(&mut set.iter());
     assert!(power == vec!(vec!()));
 
-    let mut set = Vec::<int>::new();
+    let mut set = Vec::<i32>::new();
     set.push(1);
     set.push(2);
     set.push(3);
@@ -40,7 +40,7 @@ fn test() {
 
 #[cfg(not(test))]
 fn main() {
-    let mut set = Vec::<int>::new();
+    let mut set = Vec::<i32>::new();
     set.push(1);
     set.push(2);
     set.push(3);

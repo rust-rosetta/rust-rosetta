@@ -30,7 +30,7 @@ fn test_basic() {
 
 #[test]
 fn test_coherence() {
-    assert!(range(50000i, 50050).map(|x| format!("{}", x)).all(|s| {
+    assert!((50000i..50050).map(|x| format!("{}", x)).all(|s| {
         let encoded = rot13(s.as_slice());
         let decoded = rot13(encoded.as_slice());
         decoded == s

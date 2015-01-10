@@ -24,6 +24,6 @@ fn main() {
 
 #[test]
 fn test_dotp() {
-  let result = dotp(&[1i, 3, -5], &[4i, -2, -1]);
+  let result = dotp(&[1i32, 3, -5], &[4i32, -2, -1]);
   assert_eq!(result, 3);
 }

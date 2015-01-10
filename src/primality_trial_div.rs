@@ -3,12 +3,12 @@
 use std::num::Float;
 use std::iter::range_step;
 
-fn is_prime(number: int) -> bool {
+fn is_prime(number: i32) -> bool {
     if number % 2 == 0 && number != 2 {
         return false;
     }
 
-    let limit = (number as f32).sqrt() as int + 1;
+    let limit = (number as f32).sqrt() as i32 + 1;
 
     // We test if the number is divisible by any odd number up to the limit
     range_step(3, limit, 2).all(|x| number % x != 0)

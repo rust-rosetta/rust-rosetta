@@ -39,6 +39,7 @@ impl Nibble {
   }
 
   fn to_u8(&self, carry: bool) -> u8 {
+    let &Nibble(a) = self; 
     match num::from_str_radix::<u8>(format!("{:?}", self).as_slice(), 2) {
       Some(n) if carry => n + 16,
       Some(n) => n,

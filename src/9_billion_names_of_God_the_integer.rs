@@ -23,7 +23,7 @@ impl Solver {
     pub fn row_string(&mut self, idx: usize) -> String {
         let r = self.cumulative(idx);
 
-        range(0, idx).map(|i| &r[i+1] - &r[i])
+        (0..idx).map(|i| &r[i+1] - &r[i])
                      .map(|n| n.to_string())
                      .collect::<Vec<String>>()
                      .connect(", ")
@@ -59,7 +59,7 @@ fn main() {
     let mut solver = Solver::new();
 
     println!("rows");
-    for n in range(1us, 11) {
+    for n in (1us..11) {
         println!("{}: {}", n, solver.row_string(n));
     }
 

@@ -48,25 +48,25 @@ mod test {
 
     #[test]
     fn one_element_vector() {
-        let numbers = &mut [0i];
+        let numbers = &mut [0i32];
         check_sort(numbers);
     }
 
     #[test]
     fn repeat_vector() {
-        let numbers = &mut [1i, 1, 1, 1, 1];
+        let numbers = &mut [1i32, 1, 1, 1, 1];
         check_sort(numbers);
     }
 
     #[test]
     fn worst_case_vector() {
-        let numbers = &mut [20i, 10, 0, -1, -5];
+        let numbers = &mut [20i32, 10, 0, -1, -5];
         check_sort(numbers);
     }
 
     #[test]
     fn already_sorted_vector() {
-        let numbers = &mut [-1i, 0, 3, 6, 99];
+        let numbers = &mut [-1i32, 0, 3, 6, 99];
         check_sort(numbers);
     }
 }

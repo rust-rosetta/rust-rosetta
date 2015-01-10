@@ -70,14 +70,14 @@ impl IndexMut<(usize, usize)> for Image {
 pub fn main() {
     let mut image = Image::new(10, 10);
 
-    for y in range(0us, 10) {
-        for x in range(5us, 10) {
+    for y in (0us..10) {
+        for x in (5us..10) {
             image[(x,y)] = Color { red: 255, green: 255, blue: 255 };
         }
     }
 
-    for y in range(0us, 10) {
-        for x in range(0us, 10) {
+    for y in (0us..10) {
+        for x in (0us..10) {
             if image[(x,y)].red + image[(x,y)].green + image[(x,y)].blue == 0 {
                 print!("#");
             } else {
@@ -105,8 +105,8 @@ mod test {
     #[test]
     fn getting() {
         let image = Image::new(3, 4);
-        for x in range(0us, 3) {
-            for y in range(0us, 4) {
+        for x in (0us..3) {
+            for y in (0us..4) {
                 assert_eq!(image[(x, y)], Default::default());
             }
         }
@@ -124,8 +124,8 @@ mod test {
         let mut image = Image::new(4, 3);
         let fill = Color { red: 3, green: 2, blue: 5};
         image.fill(fill);
-        for x in range(0us, 4) {
-            for y in range(0us, 3) {
+        for x in (0us..4) {
+            for y in (0us..3) {
                 assert_eq!(image[(x, y)], fill);
             }
         }

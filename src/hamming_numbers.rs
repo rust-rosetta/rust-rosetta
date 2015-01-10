@@ -32,9 +32,9 @@ fn main() {
 impl HammingNumber for BigUint {
     // returns the multipliers 2, 3 and 5 in the representation for the HammingNumber
     fn multipliers() -> (BigUint, BigUint, BigUint) {
-        (2u.to_biguint().unwrap(),
-        3u.to_biguint().unwrap(),
-        5u.to_biguint().unwrap())
+        (2u8.to_biguint().unwrap(),
+        3u8.to_biguint().unwrap(),
+        5u8.to_biguint().unwrap())
     }
 }
 
@@ -118,7 +118,7 @@ impl<T: HammingNumber> Iterator for Hamming<T> {
 fn create() {
     let mut h = Hamming::<BigUint>::new(5);
     h.q2.push_back(one::<BigUint>());
-    h.q2.push_back(one::<BigUint>() * 3u.to_biguint().unwrap());
+    h.q2.push_back(one::<BigUint>() * 3.to_biguint().unwrap());
 
     assert_eq!(h.q2.pop_front().unwrap(), one::<BigUint>());
 }
@@ -141,7 +141,7 @@ fn try_enqueue() {
 #[test]
 fn hamming_iter() {
     let mut hamming = Hamming::<BigUint>::new(20);
-    assert!(hamming.nth(19).unwrap().to_biguint() == 36u.to_biguint());
+    assert!(hamming.nth(19).unwrap().to_biguint() == 36.to_biguint());
 }
 
 #[ignore] // Please run this if you modify the file.  It is too slow to run normally.

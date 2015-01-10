@@ -16,12 +16,12 @@ fn m(n: usize) -> usize {
 
 #[cfg(not(test))]
 fn main() {
-    for i in range(0us, 20).map(f) {
+    for i in (0us..20).map(f) {
         print!("{} ", i);
     }
     println!("");
 
-    for i in range(0us, 20).map(m) {
+    for i in (0us..20).map(m) {
         print!("{} ", i);
     }
     println!("");

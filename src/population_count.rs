@@ -25,17 +25,17 @@ fn even_ones(i: &usize) -> bool { i.count_ones() % 2 == 0 }
 
 fn odious() -> EvilOdiousIter  {
     fn odds(n: &usize) -> bool { !even_ones(n) }
-    count(0u, 1).filter(odds as fn(&usize) -> bool)
+    count(0us, 1).filter(odds as fn(&usize) -> bool)
 }
 
 fn evil() -> EvilOdiousIter {
-    count(0u, 1).filter(even_ones as fn(&usize) -> bool)
+    count(0us, 1).filter(even_ones as fn(&usize) -> bool)
 }
 
 fn pow_3() -> Map<usize, usize, Counter<usize>, fn(usize) -> usize> {
     fn pw(n: usize) -> usize { 3u32.pow(n).count_ones() }
 
-    count(0u, 1).map(pw as fn(usize) -> usize)
+    count(0us, 1).map(pw as fn(usize) -> usize)
 }
 
 #[cfg(test)]
@@ -52,7 +52,7 @@ mod test {
 
     #[test]
     fn test_evil() {
-        let exp = vec![0u, 3, 5, 6, 9, 10, 12, 15, 17, 18, 20, 23,
+        let exp = vec![0us, 3, 5, 6, 9, 10, 12, 15, 17, 18, 20, 23,
                         24, 27, 29, 30, 33, 34, 36, 39, 40, 43, 45, 46,
                         48, 51, 53, 54, 57, 58];
         let act = evil().take(30).collect::<Vec<usize>>();

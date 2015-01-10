@@ -33,7 +33,7 @@ impl<'a> Iterator for WordWrap<'a> {
         let mut this_line = String::new();
         swap(&mut self.next_line, &mut this_line);
 
-        let mut space_left = self.line_length - this_line.as_slice().chars().count();
+        let mut space_left = self.line_length - this_line.chars().count();
         const SPACE_WIDTH: usize = 1;
 
         // Loop, adding words until we run out of words or hit the line length

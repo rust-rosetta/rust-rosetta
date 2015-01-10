@@ -4,7 +4,7 @@ use std::num::Float;
 
 #[cfg(not(test))]
 fn main() {
-    let target = 78i;
+    let target = 78i32;
     println!("Factors of integer {}:", target);
     let factors = factor_int(target);
     
@@ -16,12 +16,12 @@ fn main() {
 // Compute the factors of an integer
 // This method uses a simple check on each value between 1 and sqrt(x) to find
 // pairs of factors
-fn factor_int(x: int) -> Vec<int> {
-    let mut factors: Vec<int> = Vec::new();
+fn factor_int(x: i32) -> Vec<i32> {
+    let mut factors: Vec<i32> = Vec::new();
     
-    let bound: int = (x as f64).sqrt().floor() as int;
+    let bound: i32 = (x as f64).sqrt().floor() as i32;
     
-    for i in range(1i, bound) {
+    for i in (1i32..bound) {
         if x % i == 0 {
             factors.push(i);
             factors.push(x/i);
@@ -33,6 +33,6 @@ fn factor_int(x: int) -> Vec<int> {
 
 #[test]
 fn test() {
-    let result = factor_int(78i);
-    assert_eq!(result, vec![1i, 78, 2, 39, 3, 26, 6, 13]);
+    let result = factor_int(78i32);
+    assert_eq!(result, vec![1i32, 78, 2, 39, 3, 26, 6, 13]);
 }

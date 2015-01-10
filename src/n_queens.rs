@@ -12,10 +12,10 @@ use test::Bencher;
 
 #[cfg(not(test))]
 fn main() {
-    for num in range(0i32, 16) {
+    for num in 0i32..16 {
         println!("Sequential: {}: {}", num, n_queens(num));
     }
-    for num in range(0i32, 16) {
+    for num in 0i32..16 {
         println!("Parallel: {}: {}", num, semi_parallel_n_queens(num));
     }
 }
@@ -138,7 +138,7 @@ fn semi_parallel_n_queens(n: i32) -> usize {
 #[test]
 fn test_n_queens() {
     let real = vec!(1, 1, 0, 0, 2, 10, 4, 40, 92u);
-    for num in range(0, 9i32) {
+    for num in (0..9i32) {
         assert_eq!(n_queens(num), real[num as usize]);
     }
 }
@@ -146,7 +146,7 @@ fn test_n_queens() {
 #[test]
 fn test_parallel_n_queens() {
     let real = vec!(1, 1, 0, 0, 2, 10, 4, 40, 92u);
-    for num in range(0, 9i32) {
+    for num in (0..9i32) {
         assert_eq!(semi_parallel_n_queens(num), real[num as usize]);
     }
 }
