@@ -31,7 +31,7 @@ fn main () {
                   ("Looooooop", factorial_loop as fn(usize) -> usize)];
     for (name, f) in fs.into_iter() {
         println!("---------\n{:?}", name);
-        for i in range(1us, 10) {
+        for i in (1us..10) {
             println!("{:?}", f(i))
         }
     }

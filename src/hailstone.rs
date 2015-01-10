@@ -40,7 +40,7 @@ impl Iterator for Hailstone {
 
 /// Returns the start number and length of the longest hailstone sequence up to `limit`
 fn biggest_hailstone(limit: usize) -> (usize, usize) {
-    range(0us, limit).map(|n| (n, Hailstone::new(n).count()))
+    (0us..limit).map(|n| (n, Hailstone::new(n).count()))
                     .max_by(|&(_, count)| count)
                     .unwrap()
 }

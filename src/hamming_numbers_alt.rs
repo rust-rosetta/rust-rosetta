@@ -77,9 +77,9 @@ impl HammingNumber for HammingTriple {
 impl ToBigUint for HammingTriple {
    // calculate the value as a BigUint
     fn to_biguint(&self) -> Option<BigUint> {
-        Some(pow(2u.to_biguint().unwrap(), self.pow_2) *
-        pow(3u.to_biguint().unwrap(), self.pow_3) *
-        pow(5u.to_biguint().unwrap(), self.pow_5))
+        Some(pow(2u8.to_biguint().unwrap(), self.pow_2) *
+        pow(3u8.to_biguint().unwrap(), self.pow_3) *
+        pow(5u8.to_biguint().unwrap(), self.pow_5))
     }
 }
 
@@ -137,7 +137,7 @@ impl Ord for HammingTriple {
 #[test]
 fn hamming_iter() {
     let mut hamming = Hamming::<HammingTriple>::new(20);
-    assert!(hamming.nth(19).unwrap().to_biguint() == 36u.to_biguint());
+    assert!(hamming.nth(19).unwrap().to_biguint() == 36u8.to_biguint());
 }
 
 #[test]

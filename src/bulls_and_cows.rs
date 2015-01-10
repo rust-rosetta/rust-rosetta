@@ -9,7 +9,7 @@ fn generate_digits() -> Vec<usize> {
     use std::rand;
 
     let mut rng = rand::thread_rng();
-    rand::sample(&mut rng, range(1us, 10), 4)
+    rand::sample(&mut rng, (1us..10), 4)
 }
 
 /// types of errors we can have when parsing a malformed guess

@@ -33,7 +33,7 @@ impl MarkovAlgorithm {
             match arrow_pos {
                 None => {
                     // Ruleset is invalid
-                    return Err(format!("Invalid rule \"{:?}\"", line));
+                    return Err(format!("Invalid rule \"{}\"", line));
                 }
                 Some(arrow) => {
                     // extract pattern (trim trailing whitespace)
@@ -94,7 +94,7 @@ impl MarkovAlgorithm {
                     let right = state.slice_from(pos + width).to_string();
 
                     // construct new string
-                    state = format!("{:?}{:?}{:?}", left, rule.replacement, right);
+                    state = format!("{}{}{}", left, rule.replacement, right);
 
                     // stop if required
                     if rule.stop { break; }
@@ -222,11 +222,11 @@ fn main() {
     for (index, sample) in get_samples().iter().enumerate() {
         match MarkovAlgorithm::from_str(sample.ruleset) {
             Ok(algorithm) => {
-                println!("Sample {:?}", (index + 1));
-                println!("Output: {:?}", algorithm.apply(sample.input));
-                println!("Expected result: {:?}", sample.expected_result);
+                println!("Sample {}", (index + 1));
+                println!("Output: {}", algorithm.apply(sample.input));
+                println!("Expected result: {}", sample.expected_result);
             }
-            Err(message) => println!("{:?}", message)
+            Err(message) => println!("{}", message)
         }
     }
 }
@@ -237,7 +237,7 @@ fn test_samples() {
         match MarkovAlgorithm::from_str(sample.ruleset) {
             Ok(algorithm) => assert_eq!(sample.expected_result,
                                         algorithm.apply(sample.input)),
-            Err(message) => panic!("{:?}", message)
+            Err(message) => panic!("{}", message)
         }
     }
 }

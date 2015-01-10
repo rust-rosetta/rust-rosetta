@@ -106,7 +106,7 @@ fn md5(initial_msg: &[u8]) -> MD5
     //for each 512-bit chunk of message:
     for offset in range_step(0u64, new_len, (512/8)) {
         // break chunk into sixteen 32-bit words w[j], 0 ≤ j ≤ 15
-        for i in range(0u32, 16) {
+        for i in (0u32..16) {
             let j = i as usize * 4 + offset as usize;
             w[i as usize] =
                     (msg[j]   as u32)      |
@@ -119,7 +119,7 @@ fn md5(initial_msg: &[u8]) -> MD5
         let (mut a, mut b, mut c, mut d) = (h[0], h[1], h[2], h[3]);
 
         // Main loop:
-        for ind in range(0us, 64) {
+        for ind in (0us..64) {
             let (f,g) = match ind {
                 i @ 0...15  => ( (b & c) | ((!b) & d), //f
                                 i ),                   //g

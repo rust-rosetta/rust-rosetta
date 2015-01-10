@@ -10,7 +10,7 @@ fn main() {
     let mut reader = io::stdin();
 
     // generating 4 numbers
-    let choices: Vec<usize> = range(0us, 4).map(
+    let choices: Vec<usize> = (0us..4).map(
 		|_| rng.gen_range(1us, 10)
     ).collect();
     println!("Make 24 with the following numbers");
@@ -19,7 +19,7 @@ fn main() {
     loop {
         print!("Your numbers: {:?}, {:?}, {:?}, {:?}\n", choices[0], choices[1], choices[2], choices[3]);
         let expr = reader.read_line().ok().expect("Failed to read line!");
-        match check_input(expr.as_slice(), &choices) {
+        match check_input(expr.as_slice(), &choices[]) {
             Ok(()) => { println!("Good job!"); break; },
             Err(e) => println!("{:?}", e)
         }
@@ -29,7 +29,7 @@ fn main() {
     }
 }
 
-fn check_input(expr: &str, choices: &Vec<usize>) -> Result<(), String> {
+fn check_input(expr: &str, choices: &[usize]) -> Result<(), String> {
     let mut stack: Vec<usize> = Vec::new();
     for token in expr.words() {
         if is_operator(token) {
@@ -43,11 +43,11 @@ fn check_input(expr: &str, choices: &Vec<usize>) -> Result<(), String> {
                 Some(n) => {
                     // check if the number is valid
                     if !choices.contains(&n) {
-                        return Err(format!("Cannot use {:?}", n));
+                        return Err(format!("Cannot use {}", n));
                     }
                     stack.push(n)
                 },
-                None => return Err(format!("Invalid input: {:?}", token))
+                None => return Err(format!("Invalid input: {}", token))
             }
         }
     }
@@ -59,7 +59,7 @@ fn check_input(expr: &str, choices: &Vec<usize>) -> Result<(), String> {
     match ans {
         Some(x) => {
             if x == 24 { return Ok(()); }
-            return Err(format!("Wrong answer. Result: {:?}", x));
+            return Err(format!("Wrong answer. Result: {}", x));
         }
         None => return Err("Error encountered!".to_string()),
     }
@@ -81,7 +81,7 @@ fn is_operator(op: &str) -> bool {
 
 #[test]
 fn test_check_input() {
-    let v1: Vec<usize> = vec![4, 3, 6, 2];
+    let v1 = [4us, 3, 6, 2];
 
     // correct result
     assert_eq!(check_input("4 3 * 6 2 * +", &v1), Ok(()));

@@ -63,7 +63,7 @@ impl Isaac {
         self.cc += 1;
         self.bb += self.cc;
 
-        for i in range(0us, 256) {
+        for i in (0us..256) {
             let x = self.mm[i];
             match i%4 {
                 0 => self.aa ^= self.aa << 13,
@@ -86,7 +86,7 @@ impl Isaac {
     {
         let mut a_v = [0x9e3779b9u32; 8];
 
-        for _ in range(0us, 4) {
+        for _ in (0us..4) {
             // scramble it
             mix_v!(a_v);
         }
@@ -95,18 +95,18 @@ impl Isaac {
         // fill in mm[] with messy stuff
             if flag {
                 // use all the information in the seed
-                for j in range(0us, 8) { a_v[j] += self.rand_rsl[i+j]; }
+                for j in (0us..8) { a_v[j] += self.rand_rsl[i+j]; }
             }
             mix_v!(a_v);
-            for j in range(0us, 8) { self.mm[i+j] = a_v[j]; }
+            for j in (0us..8) { self.mm[i+j] = a_v[j]; }
         }
 
         if flag {
             // do a second pass to make all of the seed affect all of mm
             for i in range_step(0, 256, 8) {
-                for j in range(0us, 8) { a_v[j] += self.mm[i+j]; }
+                for j in (0us..8) { a_v[j] += self.mm[i+j]; }
                 mix_v!(a_v);
-                for j in range(0us, 8) { self.mm[i+j] = a_v[j]; }
+                for j in (0us..8) { self.mm[i+j] = a_v[j]; }
             }
         }
 

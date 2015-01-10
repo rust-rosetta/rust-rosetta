@@ -89,7 +89,7 @@ impl Digest {
         let mut p = data;
 
         while p.len() >= CHUNK {
-            for i in range(0us, 16) {
+            for i in (0us..16) {
                 let j = i * 4;
                 w[i] =  (p[j]   as u32)<<24 |
                         (p[j+1] as u32)<<16 |
@@ -99,13 +99,13 @@ impl Digest {
 
             let (mut a, mut b, mut c, mut d, mut e) = (h0, h1, h2, h3, h4);
 
-            for i in range(0us, 16) {
+            for i in (0us..16) {
                 let f = b & c | (!b) & d;
                 let (a5, b30) = part(a, b);
                 let t = a5 + f + e + w[i&0xf] + k[0];
                  b=a; a=t; e=d; d=c; c=b30;
             }
-            for i in range(16us, 20) {
+            for i in (16us..20) {
                 let tmp = w[(i-3)&0xf] ^ w[(i-8)&0xf] ^ w[(i-14)&0xf] ^ w[(i)&0xf];
                 w[i&0xf] = tmp<<1 | tmp>>(32-1);
                 let f = b & c | (!b) & d;
@@ -113,7 +113,7 @@ impl Digest {
                 let t = a5 + f + e + w[i&0xf] + k[0];
                 b=a; a=t; e=d; d=c; c=b30;
             }
-            for i in range(20us, 40) {
+            for i in (20us..40) {
                 let tmp = w[(i-3)&0xf] ^ w[(i-8)&0xf] ^ w[(i-14)&0xf] ^ w[(i)&0xf];
                 w[i&0xf] = tmp<<1 | tmp>>(32-1);
                 let f = b ^ c ^ d;
@@ -121,7 +121,7 @@ impl Digest {
                 let t = a5 + f + e + w[i&0xf] + k[1];
                 b=a; a=t; e=d; d=c; c=b30;
             }
-            for i in range(40us, 60) {
+            for i in (40us..60) {
                 let tmp = w[(i-3)&0xf] ^ w[(i-8)&0xf] ^ w[(i-14)&0xf] ^ w[(i)&0xf];
                 w[i&0xf] = tmp<<1 | tmp>>(32-1);
                 let f = ((b | c) & d) | (b & c);
@@ -129,7 +129,7 @@ impl Digest {
                 let t = a5 + f + e + w[i&0xf] + k[2];
                 b=a; a=t; e=d; d=c; c=b30;
             }
-            for i in range(60us, 80) {
+            for i in (60us..80) {
                 let tmp = w[(i-3)&0xf] ^ w[(i-8)&0xf] ^ w[(i-14)&0xf] ^ w[(i)&0xf];
                 w[i&0xf] = tmp<<1 | tmp>>(32-1);
                 let f = b ^ c ^ d;
@@ -161,7 +161,7 @@ impl Writer for Digest {
             if n > CHUNK - self.nx {
                 n = CHUNK - self.nx;
             }
-            for i in range(0,n) {
+            for i in (0..n) {
                 self.x[self.nx + i] = *buf_m.get(i).unwrap();
             }
             self.nx += n;

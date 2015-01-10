@@ -28,11 +28,11 @@ fn largest_min_factor_chan(numbers: &[usize]) -> usize {
     // Send all the minimal factors
     for &x in numbers.iter() {
         let child_sender = sender.clone();
-        Thread::spawn(move || { child_sender.send(min_factor(x)) });
+        Thread::spawn(move || { child_sender.send(min_factor(x)).unwrap() });
     }
 
     // Receive them and keep the largest one
-    numbers.iter().fold(0u, |max, _| {
+    numbers.iter().fold(0us, |max, _| {
         std::cmp::max(receiver.recv().unwrap(), max)
     })
 }

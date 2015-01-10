@@ -174,7 +174,7 @@ pub fn main() {
     // randomly generated 3D
     let n_random = 1000us;
     let make_random_point = |&:| Point {
-        coords: range(0us, 3).map(
+        coords: (0us..3).map(
 				|_| (std::rand::thread_rng().gen::<f32>()-0.5f32)*1000f32
 			).collect()
     };

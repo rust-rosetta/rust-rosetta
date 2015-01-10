@@ -34,7 +34,7 @@ impl Balanced for String {
 fn generate_brackets(num: usize) -> String {
     use std::rand::random;
 
-    range(0, num).map(|_| if random() { '[' } else { ']' }).collect()
+    (0..num).map(|_| if random() { '[' } else { ']' }).collect()
 }
 
 #[cfg(not(test))]

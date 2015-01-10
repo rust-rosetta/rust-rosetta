@@ -33,7 +33,7 @@ charset=UTF-8
 pub fn handle_server(ip: &str, port: u16) -> IoResult<TcpAcceptor> {
     let listener = try!(TcpListener::bind((ip, port)));
     let mut acceptor = listener.listen();
-    println!("Listening for connections on port {:?}", port);
+    println!("Listening for connections on port {}", port);
 
     let handle = acceptor.clone();
     Thread::spawn(move || -> () {
@@ -42,11 +42,11 @@ pub fn handle_server(ip: &str, port: u16) -> IoResult<TcpAcceptor> {
                 Ok(s) => { Thread::spawn(move || {
                     match handle_client(s) {
                         Ok(_) => println!("Response sent!"),
-                        Err(e) => println!("Failed sending response: {:?}!", e),
+                        Err(e) => println!("Failed sending response: {}!", e),
                     }
                 }); },
                 Err(e) => {
-                    println!("No longer accepting new requests: {:?}", e);
+                    println!("No longer accepting new requests: {}", e);
                     break
                 }
             }
@@ -62,7 +62,7 @@ fn main() {
 
     let host = "127.0.0.1";
     let port = if args.len() == 2 {
-        args[1].parse::<u16>().expect(&*format!("Usage: {:?} <port>", args[0]))
+        args[1].parse::<u16>().expect(&*format!("Usage: {} <port>", args[0]))
     } else {
         80
     };

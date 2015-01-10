@@ -17,7 +17,7 @@ enum Message {
     End
 }
 
-fn printer(i_snd: Sender<int>, msg_rcv: Receiver<Message>) {
+fn printer(i_snd: Sender<i32>, msg_rcv: Receiver<Message>) {
     let mut count = 0;
     loop {
         match msg_rcv.recv().unwrap() {
@@ -31,7 +31,7 @@ fn printer(i_snd: Sender<int>, msg_rcv: Receiver<Message>) {
     i_snd.send(count).unwrap();
 }
 
-fn reader(msg_snd: Sender<Message>, i_rcv: Receiver<int>) {
+fn reader(msg_snd: Sender<Message>, i_rcv: Receiver<i32>) {
     let mut file = BufferedReader::new(File::open(&Path::new(FILENAME)));
     for line in file.lines() {
         msg_snd.send(Message::Line(line.unwrap())).unwrap();

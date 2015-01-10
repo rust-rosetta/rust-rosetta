@@ -134,7 +134,7 @@ impl<S: Mul<f64, Output=T> + Float,
 fn integrate() -> f64 {
     let object = Integrator::new(Duration::milliseconds(10));
     let mut timer = Timer::new().unwrap();
-    object.input(Box::new(|&: t| {
+    object.input(Box::new(|&: t: i64| {
         let f = 1. / Duration::seconds(2).num_milliseconds() as f64;
         (2. * PI * f * t as f64).sin()
     })).ok().expect("Failed to set input");

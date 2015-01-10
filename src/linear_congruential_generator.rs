@@ -55,7 +55,7 @@ fn main() {
     let mut lcgs: [&mut LinearCongruentialGenerator; 2] = [&mut bsd, &mut ms];
     for (name, lcg) in names.iter().zip(lcgs.iter_mut()) {
         println!("{:?}", name);
-        for _ in range(0i, 10) {
+        for _ in (0i..10) {
             let next: u32 = lcg.next();
             println!("{:?}", next);
         }

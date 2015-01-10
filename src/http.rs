@@ -32,6 +32,7 @@ fn main() {
 }
 
 #[test]
+#[ignore] // FIXME: http/webrequest should eventually be moved to hyper
 fn test_request() {
     const HOST: &'static str = "127.0.0.1";
     const PORT: u16 = 12321;

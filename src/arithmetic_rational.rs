@@ -16,7 +16,7 @@ fn main() {
 
 fn perfect_numbers(max: i64) -> Vec<i64> {
     let mut ret=Vec::new();
-    for candidate in range(2, max) {
+    for candidate in (2..max) {
         let mut sum=Frac::secure_new(1, candidate).unwrap();
         let max2=((candidate as f64).sqrt().floor()) as i64;
 

@@ -58,7 +58,7 @@ fn test_first_ten() {
     // Test that the first ten values are as expected
     // The first two values are hardcoded, so no need to test those.
     let hofstadter_q_expected = vec![2,3,3,4,5,5,6,6];
-    for i in range(0us, 8) {
+    for i in (0us..8) {
         assert_eq!(hofstadter_q_expected[i], it.next().unwrap());
     }
 }
@@ -73,7 +73,7 @@ fn test_thousandth() {
     let mut it = hof.take(upto - 2);
     let expected: usize = 502;
     // Test that the upto-th term is as expected.
-    for _ in range(3u, upto) {
+    for _ in (3u..upto) {
         it.next();
     }
     assert_eq!(expected, it.next().unwrap());

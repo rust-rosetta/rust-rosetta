@@ -18,8 +18,6 @@
 // decoding technique doesn't allocate extra space for strings.  Does support numbers, but only
 // float types (supporting more types is possible but would complicate the code significantly).
 //
-#![feature(slicing_syntax)]
-
 extern crate arena;
 extern crate test;
 
@@ -202,7 +200,7 @@ impl<'a> SExp<'a> {
         match *self {
             F64(f) => match f.classify() {
                 // We don't want to identify NaN, Infinity, etc. as floats.
-                num::FpCategory::Normal | num::FpCategory::Zero => from_io_result(write!(writer, "{:?}", f)),
+                num::FpCategory::Normal | num::FpCategory::Zero => from_io_result(write!(writer, "{}", f)),
                 _ => Err(NoReprForFloat)
             },
             List(ref l) => {
@@ -224,7 +222,7 @@ impl<'a> SExp<'a> {
                 }
                 from_io_result(writer.write_char(')'))
             },
-            Str(s) => from_io_result(write!(writer, "\"{:?}\"", s)),
+            Str(s) => from_io_result(write!(writer, "\"{}\"", s)),
         }
     }
 
@@ -339,7 +337,7 @@ fn bench_encode(b: &mut test::Bencher)
 fn test_sexp_encode() {
     const SEXP_STRING: &'static str =
 r#"(("data" "quoted data" 123 4.5) ("data" ("!@#" (4.5) "(more" "data)")))"#;
-    assert_eq!(Ok(SEXP_STRING), try_encode().as_ref().map( |s| s[]));
+    assert_eq!(Ok(SEXP_STRING.to_string()), try_encode());
 }
 
 #[test]

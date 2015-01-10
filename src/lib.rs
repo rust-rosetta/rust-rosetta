@@ -1,7 +1,7 @@
 // Dummy main library
 // It also contains a test module, which checks if all source files are covered by `Cargo.toml`
 
-#![feature(plugin, slicing_syntax)]
+#![feature(plugin)]
 #[plugin] 
 extern crate regex_macros;
 extern crate regex;
@@ -48,7 +48,7 @@ mod test {
         let regex = regex!("path = \"(.*)\"");
         reader.lines().filter_map(|l| {
             let l = l.unwrap();
-            regex.captures(l[]).map(|c| c.at(1).map(|s| Path::new(s))
+            regex.captures(&*l).map(|c| c.at(1).map(|s| Path::new(s))
                                                .unwrap()
                                                .filename_str()
                                                .unwrap()

@@ -1,6 +1,4 @@
 // Implements http://rosettacode.org/wiki/Echo_server
-#![feature(slicing_syntax)]
-
 use std::io::{Acceptor, BufferedReader, IoError, IoResult, Listener, TimedOut};
 use std::io::net::tcp::{TcpListener, TcpStream};
 use std::time::Duration;
@@ -52,7 +50,7 @@ fn echo_session(mut stream: TcpStream) -> IoResult<()> {
     for line in reader.lines() {
         let l = try!(line);
         print!("Received line from {:?}: {:?}", name, l);
-        try!(writer.write_str(l[]));
+        try!(writer.write_str(&l[]));
         print!("Wrote line to {:?}: {:?}", name, l);
     }
     Ok(())

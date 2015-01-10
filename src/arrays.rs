@@ -20,7 +20,7 @@ fn create_array() {
 fn add_to_array() {
     // Mutatable adding.
     let mut a_vec = vec![];
-    a_vec.push(1i);
+    a_vec.push(1i32);
     assert_eq!(a_vec[0], 1);
 
     // Immutable adding.
@@ -32,8 +32,8 @@ fn add_to_array() {
 #[test]
 fn retrieving_from_array() {
     // Indexing.
-    let a_vec = vec![1i, 2, 3];
-    assert!(a_vec[0] == 1i);
+    let a_vec = vec![1i32, 2, 3];
+    assert!(a_vec[0] == 1i32);
 
     // A full copy of the vector, but mutable.
     let mut mut_vec = a_vec.clone();

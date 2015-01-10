@@ -45,7 +45,7 @@ fn partition<T: Ord>(v: &mut [T]) -> usize {
 #[cfg(not(test))]
 fn main() {
     // Sort numbers
-    let mut numbers = [4i, 65, 2, -31, 0, 99, 2, 83, 782, 1];
+    let mut numbers = [4i32, 65, 2, -31, 0, 99, 2, 83, 782, 1];
     println!("Before: {:?}", numbers);
 
     quick_sort(&mut numbers);
@@ -70,42 +70,42 @@ fn check_sort<T: Ord>(v: &[T]) {
 
 #[test]
 fn test_rosetta_vector() {
-    let numbers = &mut [4i, 65, 2, -31, 0, 99, 2, 83, 782, 1];
+    let numbers = &mut [4i32, 65, 2, -31, 0, 99, 2, 83, 782, 1];
     quick_sort(numbers);
     check_sort(numbers);
 }
 
 #[test]
 fn test_empty_vector() {
-    let mut numbers: Vec<int> = Vec::new();
+    let mut numbers: Vec<i32> = Vec::new();
     quick_sort(numbers.as_mut_slice());
     check_sort(numbers.as_mut_slice());
 }
 
 #[test]
 fn test_one_element_vector() {
-    let numbers = &mut [0i];
+    let numbers = &mut [0i32];
     quick_sort(numbers);
     check_sort(numbers);
 }
 
 #[test]
 fn test_repeat_vector() {
-    let numbers = &mut [1i, 1, 1, 1, 1];
+    let numbers = &mut [1i32, 1, 1, 1, 1];
     quick_sort(numbers);
     check_sort(numbers);
 }
 
 #[test]
 fn test_worst_case_vector() {
-    let numbers = &mut [20i, 10, 0, -1, -5];
+    let numbers = &mut [20i32, 10, 0, -1, -5];
     quick_sort(numbers);
     check_sort(numbers);
 }
 
 #[test]
 fn test_already_sorted_vector() {
-    let numbers = &mut [-1i, 0, 3, 6, 99];
+    let numbers = &mut [-1i32, 0, 3, 6, 99];
     quick_sort(numbers);
     check_sort(numbers);
 }
@@ -113,7 +113,7 @@ fn test_already_sorted_vector() {
 #[test]
 fn test_random_numbers() {
     let mut rng = thread_rng();
-    let mut numbers : Vec<int> = rng.gen_iter::<int>().take(500).collect();
+    let mut numbers : Vec<i32> = rng.gen_iter::<i32>().take(500).collect();
     quick_sort(numbers.as_mut_slice());
     check_sort(numbers.as_mut_slice());
 }

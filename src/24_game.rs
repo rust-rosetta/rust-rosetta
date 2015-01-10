@@ -20,7 +20,7 @@ fn main() {
     let mut input = io::stdin();
 
     loop {
-        let mut sample = rand::sample(&mut rng, range(1us, 10), 4);
+        let mut sample = rand::sample(&mut rng, (1us..10), 4);
 
         println!("make 24 by combining the following 4 numbers with + - * / or (q)uit");
         println!("{:?}", sample);
@@ -185,10 +185,10 @@ pub enum Operator {
 impl Operator {
      fn precedence(&self) -> usize  {
         match *self {
-            Operator::Sentinel => 0us,
-            Operator::Add | Operator::Sub => 1us,
-            Operator::Neg => 2u,
-            Operator::Mul | Operator::Div => 3us
+            Operator::Sentinel => 0,
+            Operator::Add | Operator::Sub => 1,
+            Operator::Neg => 2,
+            Operator::Mul | Operator::Div => 3
         }
     }
 }

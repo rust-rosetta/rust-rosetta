@@ -3,12 +3,12 @@
 use std::collections::hash_map::HashMap;
 
 // Compress using LZW
-fn compress(original_str: &str) -> Vec<int> {
+fn compress(original_str: &str) -> Vec<i32> {
    let original = original_str.as_bytes();
    let mut dict_size = 256;
    let mut dictionary = HashMap::new();
 
-   for i in range(0i, dict_size) {
+   for i in range(0i32, dict_size) {
       dictionary.insert(vec!(i as u8), i);
    }
 
@@ -37,11 +37,11 @@ fn compress(original_str: &str) -> Vec<int> {
 }
 
 // Decompress using LZW
-fn decompress(compressed: &Vec<int>) -> String {
+fn decompress(compressed: &Vec<i32>) -> String {
    let mut dict_size = 256;
    let mut dictionary = HashMap::new();
 
-   for i in range(0i, dict_size) {
+   for i in range(0i32, dict_size) {
       dictionary.insert(i, vec!(i as u8));
    }
 
@@ -82,7 +82,7 @@ fn main() {
 
 #[test]
 fn test_coherence() {
-    for s in range(50000i, 50100).map(|n| n.to_string()) {
+    for s in (50000i..50100).map(|n| n.to_string()) {
         assert_eq!(decompress(&compress(s.as_slice())), s);
     }
 }
@@ -90,6 +90,6 @@ fn test_coherence() {
 #[test]
 fn test_example() {
     let original = "TOBEORNOTTOBEORTOBEORNOT";
-    assert_eq!(compress(original), [84i, 79, 66, 69, 79, 82, 78, 79, 84,
+    assert_eq!(compress(original), [84i32, 79, 66, 69, 79, 82, 78, 79, 84,
                                                 256, 258, 260, 265, 259, 261, 263]);
 }

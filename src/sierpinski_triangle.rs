@@ -8,7 +8,7 @@ fn main() {
     let mut state: Vec<bool> = repeat(true).take(height + 1).collect();
 
     // Compute the triangle line-by-line by viewing it as Pascal's triangle (mod 2)
-    for i in range(0us, height) {
+    for i in (0us..height) {
         for _ in range(0us, height - i - 1) {
             print!(" ");
         }
@@ -18,7 +18,7 @@ fn main() {
         }
 
         // Compute the next line
-        for j in range_step(i as int, 0, -1) {
+        for j in range_step(i as i32, 0, -1) {
             state[j as usize] ^= state[(j - 1) as usize];
         }
 

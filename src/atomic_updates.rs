@@ -8,8 +8,6 @@
 // we're using here was the fourth type I tried but the first to produce acceptable performance
 // (previously I tried, in order, std::sync::RwLock, std::sync::Mutex, and std::sync::Semaphore)
 // and this type still appears to have quite a bit of overhead.
-#![feature(slicing_syntax)]
-
 use std::io::timer::Timer;
 use std::iter::AdditiveIterator;
 use std::rand::{Rng, weak_rng};
@@ -220,7 +218,7 @@ fn display(bl: &buckets::Buckets, running: &AtomicBool, original_total: usize, d
 
     let mut timer = Timer::new().unwrap();
     let duration = duration / nticks;
-    for _ in range(0, nticks) {
+    for _ in (0..nticks) {
         // Get a consistent snapshot
         let (s, tc) = bl.snapshot();
         // Sum up the buckets
@@ -228,7 +226,7 @@ fn display(bl: &buckets::Buckets, running: &AtomicBool, original_total: usize, d
         // Sum up the transfers.
         let n_transfers = tc.iter().map( |&i| i ).sum();
         // Print the relevant information.
-        println!("{:?}, {:?}, {:?}, {:?}", tc[], n_transfers, s[], sum);
+        println!("{:?}, {:?}, {:?}, {:?}", tc, n_transfers, s, sum);
         // Check the invariant, failing if necessary.
         assert_eq!(sum, original_total);
         // Sleep before printing again.

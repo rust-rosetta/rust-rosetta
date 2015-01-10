@@ -10,10 +10,10 @@ const INPUT: &'static str = "WWWWWWWWWWWWBWWWWWWWWWWWWBBBWWWWWWWWWWWWWWWWWWWWWWW
 #[cfg(not(test))]
 fn main() {
     let enc = encode(INPUT);
-    println!("encoded {:?}", enc);
+    println!("encoded {}", enc);
 
     let dec = decode(enc.as_slice());
-    println!("decoded {:?}", dec.unwrap());
+    println!("decoded {}", dec.unwrap());
 }
 
 pub fn encode(value: &str) -> String {
@@ -45,7 +45,7 @@ pub fn decode(value: &str) -> Result<String, String> {
 
     for (i, c) in value.char_indices() {
         if c.is_numeric() { continue }
-        if i==start { return Err(format!("expected digit, found {:?}", c)) }
+        if i==start { return Err(format!("expected digit, found {}", c)) }
 
         let ret_s = value.slice(start, i);
         let ret = ret_s.parse::<usize>().unwrap();
