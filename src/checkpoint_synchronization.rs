@@ -60,7 +60,7 @@ pub fn checkpoint() {
             }
             // Finish processing events.
             tx.send(()).unwrap();
-        }).detach();
+        });
     }
     drop(tx);
     // The main thread will not exit until all tasks have exited.

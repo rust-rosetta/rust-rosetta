@@ -313,9 +313,9 @@ fn try_decode<'a>(ctx: &'a mut ParseContext<'a>) -> Result<SExp<'a>, Error> {
 
 #[cfg(not(test))]
 fn main() {
-    println!("{}", try_encode());
+    println!("{:?}", try_encode());
     let ref mut ctx = ParseContext::new(SEXP_STRING_IN);
-    println!("{}", try_decode(ctx));
+    println!("{:?}", try_decode(ctx));
 }
 
 #[bench]
@@ -339,7 +339,7 @@ fn bench_encode(b: &mut test::Bencher)
 fn test_sexp_encode() {
     const SEXP_STRING: &'static str =
 r#"(("data" "quoted data" 123 4.5) ("data" ("!@#" (4.5) "(more" "data)")))"#;
-    assert_eq!(Ok(SEXP_STRING), try_encode().as_ref().map( |s| s[]));
+    assert_eq!(Ok(SEXP_STRING), try_encode().as_ref().map( |s| &s[]));
 }
 
 #[test]

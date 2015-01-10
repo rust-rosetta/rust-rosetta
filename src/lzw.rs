@@ -73,7 +73,7 @@ fn main() {
 
     // Show compressed
     let compressed = compress(original);
-    println!("Compressed: {}", compressed);
+    println!("Compressed: {:?}", compressed);
 
     // Show decompressed
     let decompressed = decompress(&compressed);

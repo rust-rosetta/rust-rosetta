@@ -24,7 +24,7 @@ fn main() {
     // Decode json to contact
     let json_str = "{\"name\":\"Alan\", \"city\":\"Tokyo\"}";
     let contact: Contact = json::decode(json_str).unwrap();
-    println!("Decoded: {}", contact);
+    println!("Decoded: {:?}", contact);
 }
 
 #[test]

@@ -5,7 +5,7 @@
 
 #![allow(dead_code)]
 
-use std::num::{Float, FloatMath};
+use std::num::Float;
 use std::io::{BufferedReader, BufferedWriter, File};
 use std::iter::repeat;
 

@@ -6,7 +6,7 @@ fn main() {
 
     // Merge sort in place, allocates ~2*n memory
     a.sort();
-    println!("{}", a);
+    println!("{:?}", a);
 }
 
 #[test]

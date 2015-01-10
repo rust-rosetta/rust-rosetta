@@ -77,7 +77,7 @@ mod test {
     #[test]
     fn test_cumulative() {
         let mut solver = Solver::new();
-        let t = |n: uint, expected: &str| {
+        let mut t = |&mut: n: uint, expected: &str| {
             assert_eq!(solver.row_sum(n), &expected.parse::<BigUint>().unwrap());
         };
 
@@ -90,7 +90,7 @@ mod test {
     #[test]
     fn test_row() {
         let mut solver = Solver::new();
-        let t = |n: uint, expected: &str| {
+        let mut t = |&mut: n: uint, expected: &str| {
             assert_eq!(solver.row_string(n), expected);
         };
 

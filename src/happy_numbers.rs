@@ -41,7 +41,7 @@ fn main() {
         .filter(|x| is_happy(*x))
         .take(8)
         .collect();
-    println!("{}", v)
+    println!("{:?}", v)
 }
 
 #[test]

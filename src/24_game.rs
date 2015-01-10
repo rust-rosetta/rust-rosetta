@@ -11,6 +11,7 @@
 // publically exported code, the same as any user of the code.
 #![feature(globs, associated_types)]
 use std::cmp::Ordering::{self, Greater};
+use std::char::CharExt;
 
 #[cfg(not(test))]
 fn main() {
@@ -23,7 +24,7 @@ fn main() {
         let mut sample = rand::sample(&mut rng, range(1u, 10), 4);
 
         println!("make 24 by combining the following 4 numbers with + - * / or (q)uit");
-        println!("{}", sample);
+        println!("{:?}", sample);
 
         let line = input.read_line().unwrap();
         match line.trim() {
@@ -119,7 +120,7 @@ impl <'a> Lexer<'a> {
         let n = self.offset;
         match self.next() {
             Some(a) if expected.contains(&a)  => Ok(a),
-            other  => Err(format!("Parsing error: {} was unexpected at offset {}",
+            other  => Err(format!("Parsing error: {:?} was unexpected at offset {}",
                                   other,
                                   n))
         }
@@ -139,14 +140,14 @@ impl <'a> Iterator for Lexer<'a> {
 
         let (tok, cur_offset) = match remaining.next() {
             // Found a digit. if there are others, transform them to `uint`
-            Some((mut offset, ch)) if UnicodeChar::is_numeric(ch) => {
-                let mut val = Char::to_digit(ch, 10).unwrap();
+            Some((mut offset, ch)) if CharExt::is_numeric(ch) => {
+                let mut val = CharExt::to_digit(ch, 10).unwrap();
                 let mut more = false;
 
                 for (idx, ch) in remaining {
                     more = true;
-                    if UnicodeChar::is_numeric(ch) {
-                        let digit = Char::to_digit(ch, 10).unwrap();
+                    if CharExt::is_numeric(ch) {
+                        let digit = CharExt::to_digit(ch, 10).unwrap();
                         val = val * 10 + digit;
                     } else {
                         offset = idx;
@@ -283,7 +284,7 @@ impl <'a> Parser<'a> {
                 self.push_operator(Operator::Neg);
                 try!(self.p());
             },
-            Some(e) => return Err(format!("unexpected token {}", e)),
+            Some(e) => return Err(format!("unexpected token {:?}", e)),
             _ => return Err("unexpected end of command".to_string())
         }
         Ok(())
@@ -309,7 +310,7 @@ impl <'a> Parser<'a> {
     }
 
     #[inline]
-    fn binary_op(&mut self, op: |f32, f32| -> f32) {
+    fn binary_op<F>(&mut self, op: F) where F: Fn(f32, f32) -> f32 {
         match (self.operands.pop(), self.operands.pop()) {
             (Some(t1), Some(t2)) => self.operands.push(op(t2, t1)),
             _ => unreachable!()
@@ -317,7 +318,7 @@ impl <'a> Parser<'a> {
     }
 
     #[inline]
-    fn unary_op(&mut self, op: |f32| -> f32) {
+    fn unary_op<F>(&mut self, op: F) where F: Fn(f32) -> f32 {
         match self.operands.pop() {
             Some(t1) => self.operands.push(op(t1)),
             _ => unreachable!()
@@ -349,7 +350,7 @@ mod test {
     #[test]
     fn lexer_iter() {
         // test read token and character's offset in the iterator
-        let t = |lex: &mut Lexer, exp_tok: Token, exp_pos: uint| {
+        let t = |&: lex: &mut Lexer, exp_tok: Token, exp_pos: uint| {
             assert_eq!(lex.next(), Some(exp_tok));
             assert_eq!(lex.offset, exp_pos);
         };

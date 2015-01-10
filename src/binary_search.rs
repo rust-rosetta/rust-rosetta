@@ -1,8 +1,8 @@
 // http://rosettacode.org/wiki/Binary_search
 #[cfg(not(test))]
 fn main() {
-    println!("{}", binary_search(&[1u,2,3,4,5,6], 4));
-    println!("{}", binary_search_rec(&[1u,2,3,4,5,6], 4));
+    println!("{:?}", binary_search(&[1u,2,3,4,5,6], 4));
+    println!("{:?}", binary_search_rec(&[1u,2,3,4,5,6], 4));
 }
 
 // iterative version

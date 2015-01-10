@@ -12,5 +12,5 @@ fn main() {
 
 fn find_max<T: Show + Ord>(count: &str, list: &[T]) {
     let max = list.iter().max_by(|&x| x).unwrap();
-    println!("Max of the {} list: {}", count, max);
+    println!("Max of the {} list: {:?}", count, max);
 }

@@ -7,7 +7,7 @@ fn main() {
 
     for (f, desc) in fns.into_iter() {
         let r = range(0u64, 10).map(|i| f(i)).collect::<Vec<u64>>();
-        println!("{} implementation:\n{}\n", desc, r);
+        println!("{} implementation:\n{:?}\n", desc, r);
     }
 }
 
@@ -60,7 +60,9 @@ mod test {
 
     #[test]
     fn fib_values() {
-        let fns = vec![fib_recursive as fn(u64) -> u64, fib_tail_recursive, fib_iterative];
+        let fns = vec![fib_recursive as fn(u64) -> u64, 
+            fib_tail_recursive as fn(u64) -> u64,
+            fib_iterative as fn(u64) -> u64];
         for &f in fns.iter() {
             tester(f);
         }

@@ -21,7 +21,7 @@ fn calculate_doors() -> DoorIter {
 #[cfg(not(test))]
 fn main() {
     let doors = calculate_doors();
-    for (i, x) in doors.enumerate() { println!("Door {} is {}" , i + 1 , x); }
+    for (i, x) in doors.enumerate() { println!("Door {} is {:?}" , i + 1 , x); }
 }
 
 #[test]

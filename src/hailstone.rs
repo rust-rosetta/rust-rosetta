@@ -52,7 +52,7 @@ fn main() {
     // Find the hailstone for 27.
     let two_seven = Hailstone::new(27).collect::<Vec<uint>>();
     let ts_len = two_seven.len();
-    println!("Testing: {}, Length: {}, Values: {}...{}",
+    println!("Testing: {}, Length: {}, Values: {:?}...{:?}",
             two_seven[0],
             ts_len,
             two_seven.slice(0, 4),

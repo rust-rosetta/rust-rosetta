@@ -1,6 +1,8 @@
 // Implement data structures for a Huffman encoding tree:
 //   http://rosettacode.org/wiki/Huffman_coding
 
+#![feature(box_syntax)]
+
 extern crate core;
 use std::collections::HashMap;
 use std::collections::hash_map::Entry::{Occupied, Vacant};
@@ -59,7 +61,7 @@ fn huffman_tree(input: &str) -> HNode {
     //    of character to frequency.
     let mut freq = HashMap::new();
     for ch in input.chars() {
-        match freq.entry(&ch) {
+        match freq.entry(ch) {
             Vacant(entry) => { entry.insert(1u); },
             Occupied(mut entry) => { *entry.get_mut() += 1; },
         };

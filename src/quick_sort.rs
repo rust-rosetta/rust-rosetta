@@ -46,17 +46,17 @@ fn partition<T: Ord>(v: &mut [T]) -> uint {
 fn main() {
     // Sort numbers
     let mut numbers = [4i, 65, 2, -31, 0, 99, 2, 83, 782, 1];
-    println!("Before: {}", numbers);
+    println!("Before: {:?}", numbers);
 
     quick_sort(&mut numbers);
-    println!("After: {}", numbers);
+    println!("After: {:?}", numbers);
 
     // Sort strings
     let mut strings = ["beach", "hotel", "airplane", "car", "house", "art"];
-    println!("Before: {}", strings);
+    println!("Before: {:?}", strings);
 
     quick_sort(&mut strings);
-    println!("After: {}", strings);
+    println!("After: {:?}", strings);
 }
 
 #[cfg(test)]

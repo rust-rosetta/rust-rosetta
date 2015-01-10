@@ -46,6 +46,6 @@ fn main() {
     set.push(3);
     set.push(4);
     let power = power_set(&mut set.iter());
-    println!("Set      : {}", set);
-    println!("Power Set: {}", power);
+    println!("Set      : {:?}", set);
+    println!("Power Set: {:?}", power);
 }

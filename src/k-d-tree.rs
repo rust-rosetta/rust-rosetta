@@ -1,5 +1,5 @@
 // Implements http://rosettacode.org/wiki/K-d_tree
-#![feature(associated_types, default_type_params)]
+#![feature(associated_types, default_type_params, box_syntax)]
 
 extern crate time;
 
@@ -57,7 +57,7 @@ impl KDTreeNode {
     
         // Split around the median
         let pivot = quickselect_by(points, points_len/2,
-            |a, b| a.coords[dim].partial_cmp(&b.coords[dim]).unwrap());
+            box |a, b| a.coords[dim].partial_cmp(&b.coords[dim]).unwrap());
 
         let left = Some(box KDTreeNode::new(points.slice_mut(0u, points_len/2),
                 (dim + 1) % pivot.coords.len()));
@@ -169,7 +169,7 @@ pub fn main() {
     let (point, n_visited) = wp_tree.find_nearest_neighbor(&wp_target);
     println!("Wikipedia example data:");
     println!("Point: [9, 2]");
-    println!("Nearest neighbor: {}", point);
+    println!("Nearest neighbor: {:?}", point);
     println!("Distance: {}", (point - &wp_target).norm_sq().sqrt());
     println!("Nodes visited: {}", n_visited);
 
@@ -193,8 +193,8 @@ pub fn main() {
     let random_target = make_random_point();
 
     let (point, n_visited) = random_tree.find_nearest_neighbor(&random_target);
-    println!("Point: {}", random_target);
-    println!("Nearest neighbor: {}", point);
+    println!("Point: {:?}", random_target);
+    println!("Nearest neighbor: {:?}", point);
     println!("Distance: {}", (point - &random_target).norm_sq().sqrt());
     println!("Nodes visited: {}", n_visited);
     
@@ -218,7 +218,7 @@ pub fn main() {
              ((end_search_time.nsec - start_search_time.nsec) as f32)/1000000f32);
 }
 
-fn quickselect_by<T: Clone>(arr: &mut [T], position: uint, cmp: |a: &T, b: &T| -> Ordering) -> T {
+fn quickselect_by<T: Clone>(arr: &mut [T], position: uint, cmp: Box<Fn(&T, &T) -> Ordering>) -> T {
     let mut pivot_index = std::rand::thread_rng().gen_range(0, arr.len());
     // Need to wrap in another closure or we get ownership complaints.
     // Tried using an unboxed closure to get around this but couldn't get it to work.
@@ -227,13 +227,14 @@ fn quickselect_by<T: Clone>(arr: &mut [T], position: uint, cmp: |a: &T, b: &T| -
     if position == pivot_index {
         arr[position].clone()
     } else if position < pivot_index {
-        quickselect_by(arr.slice_mut(0u, pivot_index), position, |a: &T, b: &T| cmp(a, b))
+        quickselect_by(arr.slice_mut(0u, pivot_index), position, box |a: &T, b: &T| cmp(a, b))
     } else {
-        quickselect_by(arr.slice_mut(pivot_index+1, array_len), position - pivot_index - 1, |a: &T, b: &T| cmp(a, b))
+        quickselect_by(arr.slice_mut(pivot_index+1, array_len), position - pivot_index - 1, box |a: &T, b: &T| cmp(a, b))
     }
 }
 
-fn partition_by<T>(arr: &mut [T], pivot_index: uint, cmp: |a: &T, b: &T| -> Ordering) -> uint {
+fn partition_by<T, F>(arr: &mut [T], pivot_index: uint, cmp: F) 
+    -> uint where F: Fn(&T, &T) -> Ordering {
     let array_len = arr.len();
     arr.swap(pivot_index, array_len-1);
     let mut store_index = 0u;

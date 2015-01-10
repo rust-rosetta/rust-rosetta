@@ -228,7 +228,7 @@ fn display(bl: &buckets::Buckets, running: &AtomicBool, original_total: uint, du
         // Sum up the transfers.
         let n_transfers = tc.iter().map( |&i| i ).sum();
         // Print the relevant information.
-        println!("{}, {}, {}, {}", tc[], n_transfers, s[], sum);
+        println!("{:?}, {}, {:?}, {}", &tc[], n_transfers, &s[], sum);
         // Check the invariant, failing if necessary.
         assert_eq!(sum, original_total);
         // Sleep before printing again.
@@ -254,10 +254,10 @@ fn perform_atomic_updates(duration: Duration, original_total: uint, num_ticks: i
     // Cloning the arc bumps the reference count.
     let arc_ = arc.clone();
     // Start off the equalize task
-    Thread::spawn(move || { equalize(&arc_.0, &arc_.1, ID_EQUALIZE) }).detach();
+    Thread::spawn(move || { equalize(&arc_.0, &arc_.1, ID_EQUALIZE) });
     let arc_ = arc.clone();
     // Start off the randomize task
-    Thread::spawn(move || { randomize(&arc_.0, &arc_.1, ID_RANDOMIZE) }).detach();
+    Thread::spawn(move || { randomize(&arc_.0, &arc_.1, ID_RANDOMIZE) });
     let (ref bl, ref running) = *arc;
     // Run the display task in the current thread, so failure propagates to the user.
     display(bl, running, original_total, duration, num_ticks);

@@ -28,7 +28,7 @@ fn largest_min_factor_chan(numbers: &[uint]) -> uint {
     // Send all the minimal factors
     for &x in numbers.iter() {
         let child_sender = sender.clone();
-        Thread::spawn(move || { child_sender.send(min_factor(x)) }).detach();
+        Thread::spawn(move || { child_sender.send(min_factor(x)).unwrap() });
     }
 
     // Receive them and keep the largest one

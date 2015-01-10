@@ -1,8 +1,7 @@
 // Implements http://rosettacode.org/wiki/Active_object
-#![feature(associated_types, default_type_params)]
 extern crate time;
 
-use std::num::{Float, FloatMath};
+use std::num::Float;
 use std::f64::consts::PI;
 use std::io::timer::Timer;
 use std::sync::{Arc, Mutex};
@@ -20,8 +19,8 @@ use std::ops::Mul;
 // might look like a good situation for a RwLock--after all, there's no reason for a read in the
 // main task to block writes.  Unfortunately, unless you have significantly more reads than
 // writes (which is certainly not the case here), a Mutex will usually outperform a RwLock.
-pub struct Integrator<S, T> {
-    input: Sender<|i64|: Send -> S>,
+pub struct Integrator<S: 'static, T> {
+    input: Sender<Box<Fn(i64) -> S + Send>>,
     output: Arc<Mutex<T>>,
 }
 
@@ -68,7 +67,7 @@ impl<S: Mul<f64, Output=T> + Float,
             let periodic = timer.periodic(frequency);
             let frequency_ms = frequency.num_milliseconds();
             let mut t = 0;
-            let mut k = |_| Float::zero();
+            let mut k: Box<Fn(i64) -> S + Send> = Box::new(|&: _| Float::zero());
             let mut k_0: S = Float::zero();
             loop {
                 // Here's the selection we talked about above.  Note that we are careful to call
@@ -109,11 +108,11 @@ impl<S: Mul<f64, Output=T> + Float,
                     }
                 }
             }
-        }).detach();
+        });
         integrator
     }
 
-    pub fn input(&self, k: |i64|: Send -> S) -> Result<(), SendError<|i64|:Send -> S>> {
+    pub fn input(&self, k: Box<Fn(i64) -> S + Send>) -> Result<(), SendError< Box<Fn(i64) -> S + Send>>> {
         // The meat of the work is done in the other thread, so to set the input we just send along
         // the Sender we set earlier...
         self.input.send(k)
@@ -135,12 +134,12 @@ impl<S: Mul<f64, Output=T> + Float,
 fn integrate() -> f64 {
     let object = Integrator::new(Duration::milliseconds(10));
     let mut timer = Timer::new().unwrap();
-    object.input(|t| {
+    object.input(Box::new(|&: t: i64| {
         let f = 1. / Duration::seconds(2).num_milliseconds() as f64;
         (2. * PI * f * t as f64).sin()
-    }).ok().expect("Failed to set input");
+    })).ok().expect("Failed to set input");
     timer.sleep(Duration::seconds(2));
-    object.input(|_| 0.).ok().expect("Failed to set input");
+    object.input(Box::new(|&:_| 0.)).ok().expect("Failed to set input");
     timer.sleep(Duration::seconds(1) / 2);
     object.output()
 }
@@ -158,12 +157,12 @@ fn solution() {
     // FIXME(pythonesque): When unboxed closures are fixed, fix integrate() to take two arguments.
     let object = Integrator::new(Duration::milliseconds(10));
     let mut timer = Timer::new().unwrap();
-    object.input(|t| {
+    object.input(Box::new(|&: t: i64| {    
         let f = 1. / (Duration::seconds(2) / 10).num_milliseconds() as f64;
         (2. * PI * f * t as f64).sin()
-    }).ok().expect("Failed to set input");
+    })).ok().expect("Failed to set input");
     timer.sleep(Duration::seconds(2) / 10);
-    object.input(|_| 0.).ok().expect("Failed to set input");
+    object.input(Box::new(|&: _| 0.)).ok().expect("Failed to set input");
     timer.sleep(Duration::seconds(1) / 10);
     assert_eq!(object.output() as i64, 0)
 }
