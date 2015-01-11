@@ -8,7 +8,7 @@ fn main() {
     let f = |&: x: u32| x.to_string();
     let g = |&: x: f32| x as u32;
 
-    // their omposition
+    // their composition
     let comp = compose(f, g);
 
     println!("{:?}", (*comp)(consts::PI));
