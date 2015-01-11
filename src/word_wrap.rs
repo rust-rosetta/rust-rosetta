@@ -1,11 +1,9 @@
 // http://rosettacode.org/wiki/Word_wrap
-
+#![allow(unstable)]
 // Using the minimum length greedy algorithm
 // http://en.wikipedia.org/wiki/Word_wrap#Minimum_length
 
 // Implemented as a lazy String iterator, returning a wrapped line each time
-#![feature(associated_types)]
-
 use std::str::Words;
 use std::mem::swap;
 
@@ -76,14 +74,13 @@ fn main () {
          took a golden ball, and threw it up on high and caught it, and this \
          ball was her favorite plaything.";
 
-    for &length in [72u, 80u].iter() {
+    for length in 72..81 {
         println!("Text wrapped at {}", length);
         for line in WordWrap::new(text, length) {
             println!("{}", line);
         }
         println!("");
     }
-
 }
 
 #[test]
