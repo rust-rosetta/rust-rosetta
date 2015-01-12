@@ -1,5 +1,5 @@
 // Implements http://rosettacode.org/wiki/Stack
-
+#![allow(unstable)]
 #[derive(Show)]
 struct Stack<T> {
     // We use a vector because of simplicity

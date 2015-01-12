@@ -1,5 +1,5 @@
 // Implements http://rosettacode.org/wiki/String_matching
-
+#![allow(unstable)]
 fn match_string(container: &str, target: &str) -> (bool, bool, bool) {
   let starts = container.starts_with(target);
   let ends = container.ends_with(target);
