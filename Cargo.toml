@@ -34,7 +34,8 @@ authors = [
     "Joshua Skootsky, https://github.com/JoshuaSkootsky",
     "James Hurst, https://github.com/jamesrhurst",
     "Yukang Chen, https://github.com/chenyukang",
-    "Rootul Patel, https://github.com/rootulp"
+    "Rootul Patel, https://github.com/rootulp",
+    "Frank McSherry, http://github.com/frankmcsherry",
 ]
 
 [dependencies]
@@ -383,6 +384,11 @@ path = "src/fast_fourier_transform.rs"
 # http://rosettacode.org/wiki/Fibonacci_sequence
 name = "fibonacci"
 path = "src/fibonacci.rs"
+
+[[bin]]
+# http://rosettacode.org/wiki/Fibonacci_n-step_number_sequences
+name = "fibonacci_n-step_number_sequences"
+path = "src/fibonacci_n-step_number_sequences.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Fibonacci_word
