@@ -1,4 +1,6 @@
 // http://rosettacode.org/wiki/HTTP
+#![allow(unstable)]
+
 use std::io::net::tcp::TcpStream;
 use std::io::IoResult;
 
@@ -25,7 +27,7 @@ fn main() {
 
     let target = std::os::args().pop().unwrap();
     println!("Making the request... This might take a minute.");
-    match get_index(target.as_slice(), PORT) {
+    match get_index(&target[], PORT) {
         Ok(out) => println!("{}", out),
         Err(e) => println!("Error: {}", e)
     }

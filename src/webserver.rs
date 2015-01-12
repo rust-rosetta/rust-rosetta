@@ -1,4 +1,5 @@
 // Implements http://rosettacode.org/wiki/Hello_world/Web_server
+#![allow(unstable)]
 
 use std::io::net::tcp::{TcpAcceptor, TcpListener, TcpStream};
 use std::io::{Acceptor, Listener, IoResult};

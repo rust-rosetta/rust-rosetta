@@ -1,10 +1,7 @@
 // Implements http://rosettacode.org/wiki/Write_ppm_file
-#![feature(associated_types)]
-
+#![allow(unstable)]
 use std::io::{File, BufferedWriter, IoResult};
 use bitmap::Image;
-#[cfg(not(test))]
-use bitmap::Color;
 mod bitmap;
 
 trait PPMWritable {
@@ -28,6 +25,8 @@ impl PPMWritable for Image {
 
 #[cfg(not(test))]
 pub fn main() {
+    use bitmap::Color;
+
     // write a PPM image, the left side of which is red, and the right side
     // of which is blue
     let mut image = Image::new(64, 64);

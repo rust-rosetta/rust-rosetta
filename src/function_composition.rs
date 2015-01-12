@@ -1,37 +1,23 @@
 // http://rosettacode.org/wiki/Function_composition
-
-// TODO: decide what to do for 1.0
-// the manual implementation of Fn traits for a struct
-// as done here for Composed is not going to be un-feature-gated
-// for 1.0 (so it's going to work only with the Rust nightlies)
-#![feature(unboxed_closures)]
-
+#![allow(unstable)]
 #[cfg(not(test))]
 fn main() {
     use std::f32::consts;
 
-    fn f(x: usize) -> String { x.to_string() }
-    fn g(x: f32) -> usize { x as usize }
-    
-    let comp = Composed::new(f, g);
-    
-    println!("{}", comp(consts::PI));
+    // the two functions we will compose:
+    let f = |&: x: u32| x.to_string();
+    let g = |&: x: f32| x as u32;
+
+    // their composition
+    let comp = compose(f, g);
+
+    println!("{:?}", (*comp)(consts::PI));
 }
 
-struct Composed<A, B, C, F1, F2> 
-    where F1: Fn(A) -> B, F2: Fn(C) -> A {
-    f: F1,
-    g: F2
-}
-
-impl <A, B, C, F1, F2> Composed<A, B, C, F1, F2> 
-    where F1: Fn(A) -> B, F2: Fn(C) -> A {
-    fn new(f: F1, g: F2) -> Composed<A, B, C, F1, F2> { Composed{f: f, g: g} }
-}
-
-impl<A, B, C, F1, F2> Fn<(C,), B> for Composed<A, B, C, F1, F2> 
-    where F1: Fn(A) -> B, F2: Fn(C) -> A {
-    extern "rust-call" fn call(&self, (x,): (C,)) -> B { self.f.call((self.g.call((x,)),)) }
+fn compose<'a, F, G, A, B, C>(f: F, g: G) -> Box<Fn(A) -> C + 'a>
+    where G: Fn(A) -> B + 'a, F: Fn(B) -> C + 'a
+{
+    Box::new( move |&: a: A| f(g(a)) )
 }
 
 #[test]
@@ -39,6 +25,6 @@ fn test_compose() {
     fn inc(x: usize) -> usize { x + 1 }
     fn mul(x: usize) -> usize { x * 3 }
 
-    let comp = Composed::new(inc, mul);
-    assert_eq!(comp(3), 10);
+    let comp = compose(inc, mul);
+    assert_eq!((*comp)(3), 10);
 }

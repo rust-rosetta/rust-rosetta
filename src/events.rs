@@ -7,7 +7,7 @@
 // condvar represents an event on which a task may wait.  The one subtlety is that condvar signals
 // are only received if there is actually a task waiting on the signal--see the below program for
 // an example of how this may be achieved in practice.
-
+#![allow(unstable)]
 extern crate time;
 
 use std::io::timer::Timer;
@@ -22,17 +22,20 @@ fn handle_event(duration: Duration) -> Duration {
     // 0) but it can be created with an arbitrary number using Mutex::new_with_condvars();
     let pair = Arc::new((Mutex::new(false), Condvar::new()));
     let pair_ = pair.clone();
-    let mut timer = Timer::new().unwrap();
     let start = time::precise_time_ns();
     // Lock the mutex
     let &(ref mutex, ref cond) = &*pair;
     let mut guard = mutex.lock().unwrap();
     // Start our secondary task (which will signal our waiting main task)
-    Thread::spawn(move || -> () {
+    Thread::spawn(move || {
 		let &(ref mutex_, ref cond_) = &*pair_;
         // Lock the mutex
         let mut guard  = mutex_.lock().unwrap();
         *guard = true;
+
+        // moving the timer creation inside the closure
+        // to work around https://github.com/rust-lang/rust/issues/20943
+        let mut timer = Timer::new().unwrap();
         
         // Sleep for `duration`.
         timer.sleep(duration);
