@@ -2,6 +2,8 @@
 // with the sorting indexes algorithm
 // explained in the discussion page
 // http://rosettacode.org/wiki/Talk:Zig-zag_matrix
+#![allow(unstable)]
+
 use std::iter::repeat;
 use std::cmp::Ordering;
 use std::cmp::Ordering::{Less, Equal, Greater};

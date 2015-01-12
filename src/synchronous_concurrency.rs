@@ -4,6 +4,7 @@
 // unit, which then prints lines, keeping track of lines printed. At the end of
 // the file, the reader unit requests number of lines printed from the printer
 // unit, and then prints them.
+#![allow(unstable)]
 
 use std::io::File;
 use std::io::BufferedReader;
