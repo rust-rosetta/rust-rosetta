@@ -1,6 +1,7 @@
 //Implements http://rosettacode.org/wiki/Sorting_algorithms/Quicksort
 
 // Used by the tests
+#![allow(unstable)]
 #[cfg(test)]
 use std::rand::{thread_rng, Rng};
 
@@ -15,10 +16,10 @@ fn quick_sort<T: Ord>(v: &mut[T]) {
     let pivot_index = partition(v);
 
     // Sort the left side
-    quick_sort(v.slice_mut(0, pivot_index));
+    quick_sort(&mut v[0..pivot_index]);
 
     // Sort the right side
-    quick_sort(v.slice_mut(pivot_index + 1, len));
+    quick_sort(& mut v[pivot_index + 1..len]);
 }
 
 // Reorders the slice with values lower than the pivot at the left side,

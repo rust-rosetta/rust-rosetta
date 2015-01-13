@@ -1,5 +1,5 @@
 // http://rosettacode.org/wiki/Population_count
-#![feature(associated_types, default_type_params)]
+#![allow(unstable)]
 use std::iter::{count, Filter, Counter, Map};
 use std::num::Int;
 

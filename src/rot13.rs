@@ -29,10 +29,11 @@ fn test_basic() {
 }
 
 #[test]
+#[allow(unstable)]
 fn test_coherence() {
     assert!((50000i32..50050).map(|x| format!("{}", x)).all(|s| {
-        let encoded = rot13(s.as_slice());
-        let decoded = rot13(encoded.as_slice());
+        let encoded = rot13(&s[]);
+        let decoded = rot13(&encoded[]);
         decoded == s
     }));
 }

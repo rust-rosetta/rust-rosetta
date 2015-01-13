@@ -1,5 +1,5 @@
 // Implements http://rosettacode.org/wiki/Read_a_file_line_by_line
-
+#![allow(unstable)]
 use std::io::fs::File;
 use std::io::BufferedReader;
 use std::os::args;
@@ -10,7 +10,7 @@ fn main() {
         _ => args()[1].clone()
     };
 
-    let file = File::open(&Path::new(filename.as_slice()));
+    let file = File::open(&Path::new(&filename[]));
     let mut reader = BufferedReader::new(file);
 
     for line in reader.lines() {

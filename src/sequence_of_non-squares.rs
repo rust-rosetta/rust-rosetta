@@ -1,4 +1,5 @@
 // http://rosettacode.org/wiki/Sequence_of_non-squares
+#![allow(unstable)]
 use std::num::Float;
 
 // the formula that should produce no perfect squares

@@ -1,4 +1,5 @@
 // http://rosettacode.org/wiki/Pythagorean_triples
+#![allow(unstable)]
 use std::collections::DList;
 use std::num::Int;
 
