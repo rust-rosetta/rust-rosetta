@@ -1,4 +1,5 @@
 // http://rosettacode.org/wiki/Pernicious_numbers
+#![allow(unstable)]
 use std::iter::{count, Filter, Counter};
 use std::num::Int;
 use aks_test_for_primes::is_prime;

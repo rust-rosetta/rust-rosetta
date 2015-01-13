@@ -1,5 +1,5 @@
 // Implements http://rosettacode.org/wiki/Rename_a_file
-
+#![allow(unstable)]
 use std::io::fs;
 
 fn main() {

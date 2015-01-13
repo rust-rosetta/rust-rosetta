@@ -1,5 +1,5 @@
 // Implements http://rosettacode.org/wiki/Read_a_specific_line_from_a_file
-
+#![allow(unstable)]
 use std::io::fs::File;
 use std::io::BufferedReader;
 use std::os::args;
@@ -13,7 +13,7 @@ fn main() {
     let filename = args()[1].clone();
     let line_number = args()[2].parse::<usize>().expect("You must enter an integer as the line number");
 
-    let file = File::open(&Path::new(filename.as_slice()));
+    let file = File::open(&Path::new(&filename[]));
     let mut reader = BufferedReader::new(file);
 
     match reader.lines().skip(line_number-1).next() {

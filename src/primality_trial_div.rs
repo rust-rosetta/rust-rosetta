@@ -1,5 +1,5 @@
 //Implements http://rosettacode.org/wiki/Primality_by_Trial_Division
-
+#![allow(unstable)]
 use std::num::Float;
 use std::iter::range_step;
 

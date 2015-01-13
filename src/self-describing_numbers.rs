@@ -1,5 +1,5 @@
 // http://rosettacode.org/wiki/Self-describing_numbers
-
+#![allow(unstable)]
 fn is_self_describing(mut n: u64) -> bool {
 
     // Compute the length of the number (the number of digits)

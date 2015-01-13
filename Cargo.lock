@@ -2,7 +2,7 @@
 name = "rust-rosetta"
 version = "0.0.1"
 dependencies = [
- "collect 0.0.14 (registry+https://github.com/rust-lang/crates.io-index)",
+ "collect 0.0.15 (registry+https://github.com/rust-lang/crates.io-index)",
  "num 0.1.8 (registry+https://github.com/rust-lang/crates.io-index)",
  "regex 0.1.10 (registry+https://github.com/rust-lang/crates.io-index)",
  "regex_macros 0.1.5 (registry+https://github.com/rust-lang/crates.io-index)",
@@ -12,7 +12,7 @@ dependencies = [
 
 [[package]]
 name = "collect"
-version = "0.0.14"
+version = "0.0.15"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 dependencies = [
  "traverse 0.0.6 (registry+https://github.com/rust-lang/crates.io-index)",
