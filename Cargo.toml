@@ -36,6 +36,7 @@ authors = [
     "Yukang Chen, https://github.com/chenyukang",
     "Rootul Patel, https://github.com/rootulp",
     "Frank McSherry, http://github.com/frankmcsherry",
+    "Bartosz Marcinkowski, https://github.com/bm371613",
 ]
 
 [dependencies]
@@ -300,6 +301,11 @@ test = false
 name = "count_in_octal"
 path = "src/count_in_octal.rs"
 test = false
+
+[[bin]]
+# http://rosettacode.org/wiki/Sorting_algorithms/Counting_sort
+name = "counting_sort"
+path = "src/counting_sort.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/CRC-32
