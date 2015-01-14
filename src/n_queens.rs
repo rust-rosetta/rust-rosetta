@@ -1,5 +1,5 @@
 // Implements http://rosettacode.org/wiki/N-queens_problem
-
+#![allow(unstable)]
 extern crate test;
 
 use std::vec::Vec;

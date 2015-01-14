@@ -1,8 +1,8 @@
 // http://rosettacode.org/wiki/Modular_exponentiation
 extern crate num;
 use num::{BigUint, One};
+use num::bigint::ToBigUint;
 use num::integer::Integer;
-use std::num::FromPrimitive;
 
 fn mod_exp<T: Integer + Clone>(mut a: T, mut b: T, m: T) -> T {
     let one: T = One::one();
@@ -23,13 +23,12 @@ fn mod_exp<T: Integer + Clone>(mut a: T, mut b: T, m: T) -> T {
 #[cfg(not(test))]
 fn main() {
     use num::pow;
-    use std::str::FromStr;
 
     let a_str = "2988348162058574136915891421498819466320163312926952423791023078876139";
     let b_str = "2351399303373464486466122544523690094744975233415544072992656881240319";
-    let a: BigUint = FromStr::from_str(a_str).unwrap();
-    let b: BigUint = FromStr::from_str(b_str).unwrap();
-    let m: BigUint = pow(FromPrimitive::from_int(10).unwrap(), 40);
+    let a: BigUint = BigUint::parse_bytes(a_str.as_bytes(), 10).unwrap();
+    let b: BigUint = BigUint::parse_bytes(b_str.as_bytes(), 10).unwrap();
+    let m: BigUint = pow(10.to_biguint().unwrap(), 40);
     println!("{}", mod_exp(a, b, m));
 }
 

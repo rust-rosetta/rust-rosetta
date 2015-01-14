@@ -1,8 +1,10 @@
 // Implements http://rosettacode.org/wiki/100_doors
+#![allow(unstable)]
 use std::num::Float;
-use std::iter::{Map, RangeInclusive, range_inclusive};
+use std::iter::Map;
+use std::ops::Range;
 
-type DoorIter = Map<u32, DoorState, RangeInclusive<u32>, fn(u32) -> DoorState>;
+type DoorIter = Map<u32, DoorState, Range<u32>, fn(u32) -> DoorState>;
 
 #[derive(Show, PartialEq)]
 enum DoorState { Open, Closed, }
@@ -15,7 +17,7 @@ fn calculate_doors() -> DoorIter {
         if x == x.round() { DoorState::Open } else { DoorState::Closed }
     }
 
-    range_inclusive(1u32, 100).map(door_status as fn(u32) -> DoorState)
+    (1u32..101).map(door_status as fn(u32) -> DoorState)
 }
 
 #[cfg(not(test))]
