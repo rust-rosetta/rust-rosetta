@@ -1,6 +1,6 @@
 #![crate_type="dylib"]
 #![feature(plugin_registrar)]
-
+#![allow(unstable)]
 // basic syntax extension to calculate the factorial of 10
 // at compile time for the compile-time calculation
 // task (the task itself is in compile_time_calculation.rs)

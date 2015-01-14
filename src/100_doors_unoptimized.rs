@@ -1,6 +1,7 @@
 // Implements http://rosettacode.org/wiki/100_doors
 // this is the unoptimized version that performs all 100
 // passes, as per the original description of the problem
+#![allow(unstable)]
 use std::iter::range_step_inclusive;
 
 #[cfg(not(test))]

@@ -9,7 +9,7 @@
 // We use a glob import in our test module. Seperating tests into a seperate
 // module enforces visibility restrictions so the test module can only access
 // publically exported code, the same as any user of the code.
-#![feature(globs, associated_types)]
+#![allow(unstable)]
 use std::cmp::Ordering::{self, Greater};
 use std::char::CharExt;
 
@@ -30,7 +30,7 @@ fn main() {
         match line.trim() {
             "q" => break,
             input => {
-                if check_values(sample.as_mut_slice(), input) {
+                if check_values(&mut sample[], input) {
                     match Parser::new(input).parse() {
                         Ok(i) if i == 24. => println!("you made it!"),
                         Ok(i) => println!("you entered {}, try again!", i),
@@ -132,7 +132,7 @@ impl <'a> Iterator for Lexer<'a> {
 
     fn next(&mut self) -> Option<Token> {
         // slice the original string starting from the current offset
-        let mut remaining = self.input.slice_from(self.offset)
+        let mut remaining = self.input[self.offset..]
                                       // keep track of the original indice
                                       .char_indices()
                                       // advance to the next non-whitespace char
