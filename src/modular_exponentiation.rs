@@ -44,12 +44,12 @@ fn test_mod_exp() {
     ];
 
     for &(a, b, m, expected) in tests.iter() {
-        let a = FromPrimitive::from_int(a).unwrap();
-        let b = FromPrimitive::from_int(b).unwrap();
-        let m = FromPrimitive::from_int(m).unwrap();
+        let a = a.to_biguint().unwrap();
+        let b = b.to_biguint().unwrap();
+        let m = m.to_biguint().unwrap();
         let ans: BigUint = mod_exp(a, b, m);
 
-        assert_eq!(ans, FromPrimitive::from_int(expected).unwrap());
+        assert_eq!(ans, expected.to_biguint().unwrap());
     }
 }
 
