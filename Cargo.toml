@@ -706,6 +706,11 @@ name = "perfect_numbers"
 path = "src/perfect_numbers.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/Permutations_with_repetitions
+name = "permutations_with_repetitions"
+path = "src/permutations_with_repetitions.rs"
+
+[[bin]]
 # http://rosettacode.org/wiki/Pernicious_numbers
 name = "pernicious_numbers"
 path = "src/pernicious_numbers.rs"
