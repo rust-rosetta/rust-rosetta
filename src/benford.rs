@@ -2,8 +2,7 @@
 //
 // Contributed by Gavin Baker <gavinb@antonym.org>
 //
-#![feature(slicing_syntax)]
-
+#![allow(unstable)]
 use std::io::{File, BufferedReader};
 use std::num::Float;
 use std::iter::repeat;

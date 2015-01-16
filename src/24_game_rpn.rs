@@ -1,5 +1,6 @@
 // Implements http://rosettacode.org/wiki/24_game
 // Uses RPN expression
+#![allow(unstable)]
 
 #[cfg(not(test))]
 fn main() {
@@ -19,7 +20,7 @@ fn main() {
     loop {
         print!("Your numbers: {}, {}, {}, {}\n", choices[0], choices[1], choices[2], choices[3]);
         let expr = reader.read_line().ok().expect("Failed to read line!");
-        match check_input(expr.as_slice(), &choices[]) {
+        match check_input(&expr[], &choices[]) {
             Ok(()) => { println!("Good job!"); break; },
             Err(e) => println!("{}", e)
         }

@@ -1,6 +1,7 @@
 // http://rosettacode.org/wiki/Arithmetric-geometric_mean
 // Accepts two command line arguments
 // cargo run --name agm arg1 arg2
+#![allow(unstable)]
 
 use std::num::Float;
 

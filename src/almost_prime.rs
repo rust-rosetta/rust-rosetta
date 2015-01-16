@@ -1,7 +1,5 @@
 // Implements http://rosettacode.org/wiki/Almost_prime
-
-#[allow(unused_imports)]
-use std::iter::count;
+#![allow(unstable)]
 
 fn is_kprime(mut n: usize, k: usize) -> bool {
     let mut p = 2;
@@ -19,7 +17,7 @@ fn is_kprime(mut n: usize, k: usize) -> bool {
 }
 
 fn get_kprimes(k: usize, amount: usize) -> Vec<usize> {
-    count(2us, 1).filter(|&x| is_kprime(x, k))
+    std::iter::count(2us, 1).filter(|&x| is_kprime(x, k))
                 .take(amount)
                 .collect()
 }

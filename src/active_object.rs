@@ -1,4 +1,5 @@
 // Implements http://rosettacode.org/wiki/Active_object
+#![allow(unstable)]
 extern crate time;
 
 use std::num::Float;

@@ -2,7 +2,7 @@
 
 // modeled after the scala solution
 // http://rosettacode.org/wiki/24_game/Solve#Scala
-#![feature(macro_rules)]
+#![allow(unstable)]
 extern crate num;
 use num::rational::{Ratio, Rational};
 use num::traits::Zero;
@@ -17,7 +17,7 @@ macro_rules! rationals(
 #[cfg(not(test))]
 fn main() {
     let mut r = rationals![1is, 3, 7, 9];
-    let sol = solve(r.as_mut_slice(), 24).unwrap_or("no solution found".to_string());
+    let sol = solve(&mut r[], 24).unwrap_or("no solution found".to_string());
     println!("{}", sol);
 }
 // for a vector of rationals r, find the combination of arithmentic
@@ -74,6 +74,6 @@ fn test_rationals_macro() {
 fn test_solve() {
     let mut r = rationals![1is, 3, 7, 9];
     assert_eq!(
-        solve(r.as_mut_slice(), 24),
+        solve(&mut r[], 24),
         Some("(9 / (3 / (1 + 7)))".to_string()));
 }

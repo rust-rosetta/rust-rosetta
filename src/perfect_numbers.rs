@@ -1,4 +1,5 @@
 // Implements http://rosettacode.org/wiki/Perfect_numbers
+#![allow(unstable)]
 use std::iter::{AdditiveIterator};
 
 fn perfect_number(n: usize) -> bool {

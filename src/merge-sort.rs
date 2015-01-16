@@ -1,5 +1,5 @@
 // Implements http://rosettacode.org/wiki/Sorting_algorithms/Merge_sort
-
+#![allow(unstable)]
 // This is an idiomatic-but-slow implementation. A more efficient implementation
 // would use `unsafe` to avoid allocating so many temporary vectors.
 
@@ -8,9 +8,9 @@ fn merge_sort<E: PartialOrd + Clone>(arr: &[E]) -> Vec<E> {
         return arr.to_vec();
     }
     let midpoint = arr.len()/2;
-    let left = merge_sort(arr.slice(0us, midpoint));
-    let right = merge_sort(arr.slice(midpoint, arr.len()));
-    merge(left.as_slice(), right.as_slice())
+    let left = merge_sort(&arr[0us..midpoint]);
+    let right = merge_sort(&arr[midpoint..]);
+    merge(&left[], &right[])
 }
 
 fn merge<E: PartialOrd + Clone>(left: &[E], right: &[E]) -> Vec<E> {

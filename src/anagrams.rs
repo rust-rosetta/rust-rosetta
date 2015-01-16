@@ -1,5 +1,5 @@
 // Implements http://rosettacode.org/wiki/Anagrams
-#![feature(associated_types, default_type_params)]
+#![allow(unstable)]
 #[cfg(not(test))]
 use std::io::{File, BufferedReader};
 use std::collections::{HashMap, HashSet};

@@ -6,7 +6,7 @@ dependencies = [
  "num 0.1.8 (registry+https://github.com/rust-lang/crates.io-index)",
  "regex 0.1.10 (registry+https://github.com/rust-lang/crates.io-index)",
  "regex_macros 0.1.5 (registry+https://github.com/rust-lang/crates.io-index)",
- "rustc-serialize 0.2.7 (registry+https://github.com/rust-lang/crates.io-index)",
+ "rustc-serialize 0.2.8 (registry+https://github.com/rust-lang/crates.io-index)",
  "time 0.1.12 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
@@ -28,7 +28,7 @@ name = "num"
 version = "0.1.8"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 dependencies = [
- "rustc-serialize 0.2.7 (registry+https://github.com/rust-lang/crates.io-index)",
+ "rustc-serialize 0.2.8 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
 [[package]]
@@ -46,7 +46,7 @@ dependencies = [
 
 [[package]]
 name = "rustc-serialize"
-version = "0.2.7"
+version = "0.2.8"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 
 [[package]]

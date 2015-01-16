@@ -1,6 +1,5 @@
 // http://rosettacode.org/wiki/Arithmetic/Rational
-#![feature(associated_types)]
-
+#![allow(unstable)]
 extern crate num;
 
 use std::num::{Float, SignedInt};
