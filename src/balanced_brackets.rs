@@ -1,11 +1,10 @@
 // Implements http://rosettacode.org/wiki/Balanced_brackets
-
 trait Balanced {
     /// Returns true if the brackets are balanced
     fn is_balanced(&self) -> bool;
 }
 
-impl<'a> Balanced for &'a str {
+impl<'a> Balanced for str {
     fn is_balanced(&self) -> bool {
         let mut count = 0is;
 
@@ -24,13 +23,9 @@ impl<'a> Balanced for &'a str {
     }
 }
 
-// For convenience this delegates to its slice form
-impl Balanced for String {
-    fn is_balanced(&self) -> bool { self.as_slice().is_balanced() }
-}
-
 /// Generates random brackets
 #[cfg(not(test))]
+#[allow(unstable)]
 fn generate_brackets(num: usize) -> String {
     use std::rand::random;
 

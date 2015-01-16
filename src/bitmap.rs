@@ -1,7 +1,5 @@
 // Implements http://rosettacode.org/wiki/Basic_bitmap_storage
-#![feature(associated_types)]
-#![allow(unused_attributes)]
-
+#![allow(unstable)]
 use std::default::Default;
 use std::io::{File, BufferedWriter, IoResult};
 use std::ops::{Index, IndexMut};

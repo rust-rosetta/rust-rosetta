@@ -1,5 +1,5 @@
 // Implements http://rosettacode.org/wiki/Menu
-
+#![allow(unstable)]
 use std::io;
 
 // Print the menu followed by the prompt

@@ -3,6 +3,8 @@
  * Ported from C - Simple MD5 implementation
 * on Wikipedia https://en.wikipedia.org/wiki/MD5
 */
+#![allow(unstable)]
+
 use std::iter::range_step;
 use std::fmt::{Show, Formatter, Result};
 
@@ -97,7 +99,7 @@ fn md5(initial_msg: &[u8]) -> MD5
     }
 
     // append the len in bits at the end of the buffer.
-    msg.push_all(to_bytes(initial_len << 3).as_slice());
+    msg.push_all(&to_bytes(initial_len << 3));
 
     assert_eq!(msg.len() % 64, 0);
 

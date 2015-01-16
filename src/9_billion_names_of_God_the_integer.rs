@@ -1,4 +1,5 @@
 //Implements http://rosettacode.org/wiki/9_billion_names_of_God_the_integer
+#![allow(unstable)]
 
 extern crate num;
 
@@ -49,7 +50,7 @@ impl Solver {
             self.cache.push(r);
         }
 
-        self.cache[idx].as_slice()
+        &self.cache[idx][]
     }
 }
 

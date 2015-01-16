@@ -1,5 +1,5 @@
 // Implements http://rosettacode.org/wiki/Align_columns
-
+#![allow(unstable)]
 const TEST_STR: &'static str =
     "Given$a$text$file$of$many$lines,$where$fields$within$a$line$\nare$delineated\
     $by$a$single$'dollar'$character,$write$a$program\nthat$aligns$each$column$of\
@@ -20,7 +20,7 @@ fn align_columns(text: &str) -> (Vec<Vec<String>>, Vec<usize>) {
 
     for i in (0us..lines.len()) {
         let ref input = lines[i];
-        let split_input: Vec<String> = input.as_slice().split('$').map(|s| s.to_string()).collect();
+        let split_input: Vec<String> = input[].split('$').map(|s| s.to_string()).collect();
         chunks.push(split_input.clone());
         let v: Vec<usize> = split_input.iter().map(|chunk| chunk.len() ).collect();
 

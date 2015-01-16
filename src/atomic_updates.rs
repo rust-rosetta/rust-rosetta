@@ -8,6 +8,7 @@
 // we're using here was the fourth type I tried but the first to produce acceptable performance
 // (previously I tried, in order, std::sync::RwLock, std::sync::Mutex, and std::sync::Semaphore)
 // and this type still appears to have quite a bit of overhead.
+#![allow(unstable)]
 use std::io::timer::Timer;
 use std::iter::AdditiveIterator;
 use std::rand::{Rng, weak_rng};
