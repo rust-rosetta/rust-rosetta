@@ -2,8 +2,7 @@
 //
 // Contributed by Gavin Baker <gavinb@antonym.org>
 // Adapted from the Go version
-
-#![allow(dead_code)]
+#![allow(unstable)]
 
 use std::num::Float;
 use std::io::{BufferedReader, BufferedWriter, File};
@@ -25,7 +24,6 @@ fn load_pgm(filename: &str) -> ImageGray8 {
     let mut file = BufferedReader::new(File::open(&path));
 
     // Read header
-
     let magic_in = file.read_line().unwrap();
     let width_in = file.read_line().unwrap();
     let height_in = file.read_line().unwrap();
@@ -51,7 +49,7 @@ fn load_pgm(filename: &str) -> ImageGray8 {
 
     // Read image data
 
-    match file.read_at_least(img.data.len(), img.data.as_mut_slice()) {
+    match file.read_at_least(img.data.len(), &mut (img.data)[]) {
         Ok(bytes_read) => println!("Read {} bytes", bytes_read),
         Err(e) => println!("error reading: {}", e)
     }
@@ -68,7 +66,7 @@ fn save_pgm(img: &ImageGray8, filename: &str) {
 
     // Write header
 
-    match file.write_line(format!("P5\n{}\n{}\n255", img.width, img.height).as_slice()) {
+    match file.write_line(&* format!("P5\n{}\n{}\n255", img.width, img.height)) {
         Err(e) => println!("Failed to write header: {}", e),
         _ => {},
     }
@@ -77,7 +75,7 @@ fn save_pgm(img: &ImageGray8, filename: &str) {
 
     // Write binary image data
 
-    match file.write(img.data.as_slice()) {
+    match file.write(&(img.data[])) {
         Err(e) => println!("Failed to image data: {}", e),
         _ => {},
     }

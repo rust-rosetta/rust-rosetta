@@ -1,4 +1,5 @@
 // Implements http://rosettacode.org/wiki/Input_loop
+#![allow(unstable)]
 use std::io;
 
 fn main() {

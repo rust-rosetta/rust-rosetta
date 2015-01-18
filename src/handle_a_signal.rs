@@ -1,6 +1,7 @@
 // Implements http://rosettacode.org/wiki/Handle_a_signal
 //
 // Note that this solution only works on Unix.
+#![allow(unstable)]
 
 extern crate libc;
 extern crate time;

@@ -1,5 +1,5 @@
 // Solution for http://rosettacode.org/wiki/Execute_a_Markov_algorithm
-
+#![allow(unstable)]
 // Individual markov rule
 struct MarkovRule {
     pattern: String,
@@ -21,7 +21,7 @@ struct MarkovAlgorithm {
 impl MarkovAlgorithm {
     // Parse an algorithm description to build a markov algorithm
     pub fn from_str(s: &str) -> Result<MarkovAlgorithm, String> {
-        let mut rules: Vec<MarkovRule> = vec!();
+        let mut rules: Vec<MarkovRule> = vec![];
         for line in s.lines()
             .map(|l| l.trim()) // Ignore whitespace before and after
             .filter(|l| l.chars().count() > 0 && l.char_at(0) != '#') { // Ignore comments
@@ -37,17 +37,17 @@ impl MarkovAlgorithm {
                 }
                 Some(arrow) => {
                     // extract pattern (trim trailing whitespace)
-                    let pattern = line.slice_to(arrow).trim_right();
+                    let pattern = line[..arrow].trim_right();
 
                     // get the string after the arrow
                     // this adds 3 to skip the arrow itself
-                    let line_end = line.slice_from(arrow + 3).trim_left();
+                    let line_end = line[arrow + 3..].trim_left();
 
                     // check for . (stop)
                     let stop = (line_end.chars().count() > 0) && (line_end.char_at(0) == '.');
 
                     // extract replacement
-                    let replacement = if stop {line_end.slice_from(1)} else {line_end};
+                    let replacement = if stop {&line_end[1..]} else {line_end};
 
                     // add to rules
                     let new_rule = MarkovRule::new(pattern.to_string(),
@@ -74,7 +74,7 @@ impl MarkovAlgorithm {
             // find the first rule that is applicable
             // (pattern string is in state)
             let possible_rule = self.rules.iter().find(|rule|{
-                state.find_str(rule.pattern.as_slice()).is_some()
+                state.find_str(&(rule.pattern[])).is_some()
             });
 
             match possible_rule {
@@ -86,12 +86,12 @@ impl MarkovAlgorithm {
 
                     // unwrap is safe here as the code for finding a rule
                     // already established that the pattern is present
-                    let pos = state.find_str(rule.pattern.as_slice()).unwrap();
+                    let pos = state.find_str(&(rule.pattern[])).unwrap();
                     let width = rule.pattern.len();
 
                     // string parts
-                    let left = state.slice_to(pos).to_string();
-                    let right = state.slice_from(pos + width).to_string();
+                    let left = state[..pos].to_string();
+                    let right = state[pos + width..].to_string();
 
                     // construct new string
                     state = format!("{}{}{}", left, rule.replacement, right);

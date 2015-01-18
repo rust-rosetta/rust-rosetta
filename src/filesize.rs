@@ -1,5 +1,5 @@
 // Implements http://rosettacode.org/wiki/File_size
-
+#![allow(unstable)]
 use std::io::fs::PathExtensions;
 
 fn main() {

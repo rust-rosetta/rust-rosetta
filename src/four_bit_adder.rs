@@ -1,7 +1,6 @@
 // Implements http://rosettacode.org/wiki/Four_bit_adder
-#![feature(associated_types)]
+#![allow(unstable)]
 use std::ops::Deref;
-
 use std::{fmt, num};
 
 // primitive gates
@@ -39,8 +38,7 @@ impl Nibble {
   }
 
   fn to_u8(&self, carry: bool) -> u8 {
-    let &Nibble(a) = self; 
-    match num::from_str_radix::<u8>(format!("{:?}", self).as_slice(), 2) {
+    match num::from_str_radix::<u8>(&(format!("{:?}", self))[], 2) {
       Some(n) if carry => n + 16,
       Some(n) => n,
       None => unreachable!()

@@ -1,6 +1,6 @@
 // http://rosettacode.org/wiki/Greatest_element_of_a_list
 
-use std::fmt::Show;
+use std::fmt::String;
 
 fn main() {
     find_max("first", &[1i32, 2, 3, 4, 5, 6, 7, 8, 9]);
@@ -10,7 +10,7 @@ fn main() {
     find_max("fourth", &["Bonjour", "Hola", "Hello", "Hallo", "Buongiorno"]);
 }
 
-fn find_max<T: Show + Ord>(count: &str, list: &[T]) {
-    let max = list.iter().max_by(|&x| x).unwrap();
-    println!("Max of the {} list: {:?}", count, max);
+fn find_max<T: String + Ord>(count: &str, list: &[T]) {
+    let max = list.iter().max().unwrap();
+    println!("Max of the {} list: {}", count, max);
 }

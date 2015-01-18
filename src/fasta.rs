@@ -1,7 +1,6 @@
 // http://rosettacode.org/wiki/FASTA_format
-// Fasta reader in Rust 0.11-pre
 // Ported and adapted from rosettacode D example
-
+#![allow(unstable)]
 use std::io::fs::File;
 use std::io::BufferedReader;
 
@@ -12,14 +11,14 @@ fn format_fasta<T: Buffer>(reader: &mut T) -> String {
         let ln = line.trim();
 
         // Lines that begin with '>' require special treatment
-        match ln.slice_to(1) {
+        match &ln[..1] {
             ">" => {
                 if out.len() > 0 {
                     out.push('\n');
                 }
 
                 // Push skipping the '>'
-                out.push_str(ln.slice_from(1));
+                out.push_str(&ln[1..]);
                 out.push_str(": ");
             }
             // Other lines are just pushed

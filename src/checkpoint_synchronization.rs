@@ -6,7 +6,7 @@
 // waiting at the barrier, at which point all of them will stop waiting.  This
 // can be used to allow threads to do asynchronous work and guarantee properties
 // at checkpoints.
-
+#![allow(unstable)]
 use std::sync::atomic::{AtomicBool, Ordering};
 use std::sync::{Arc, Barrier};
 use std::thread::Thread;

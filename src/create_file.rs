@@ -1,7 +1,5 @@
 // Implements http://rosettacode.org/wiki/Create_a_file
-
-extern crate libc;
-
+#![allow(unstable)]
 use std::io::{self, File, fs};
 
 #[cfg(not(test))]

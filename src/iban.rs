@@ -1,5 +1,5 @@
 // Implements http://rosettacode.org/wiki/IBAN
-
+#![allow(unstable)]
 extern crate num;
 
 use num::bigint::{BigInt, ToBigInt};
