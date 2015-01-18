@@ -1,6 +1,4 @@
 // Implements http://rosettacode.org/wiki/Hailstone_sequence
-#![feature(associated_types)]
-
 // Define a struct which stores the state for the iterator.
 struct Hailstone {
     next: usize, // Accessible only to the current module.
@@ -40,6 +38,7 @@ impl Iterator for Hailstone {
     }
 }
 
+#[allow(unstable)]
 /// Returns the start number and length of the longest hailstone sequence up to `limit`
 fn biggest_hailstone(limit: usize) -> (usize, usize) {
     (0us..limit).map(|n| (n, Hailstone::new(n).count()))
@@ -55,8 +54,8 @@ fn main() {
     println!("Testing: {}, Length: {}, Values: {:?}...{:?}",
             two_seven[0],
             ts_len,
-            two_seven.slice(0, 4),
-            two_seven.slice(ts_len - 4, ts_len));
+            &two_seven[0..4],
+            &two_seven[ts_len - 4..]);
 
     // Find the longest.
     let (biggest, length) = biggest_hailstone(100000);
@@ -67,8 +66,8 @@ fn main() {
 fn test_27() {
     let seq = Hailstone::new(27).collect::<Vec<usize>>();
 
-    assert_eq!(seq.slice(0, 4), [27, 82, 41, 124]);
-    assert_eq!(seq.slice(seq.len() - 4, seq.len()), [8, 4, 2, 1]);
+    assert_eq!(&seq[0..4], [27, 82, 41, 124]);
+    assert_eq!(&seq[seq.len() - 4..], [8, 4, 2, 1]);
 }
 
 #[test]

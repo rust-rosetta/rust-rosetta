@@ -495,6 +495,7 @@ test = false
 # http://rosettacode.org/wiki/Hough_transform
 name = "hough_transform"
 path = "src/hough_transform.rs"
+test = false
 
 [[bin]]
 # http://rosettacode.org/wiki/HTTP

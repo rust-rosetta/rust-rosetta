@@ -1,4 +1,5 @@
 // http://rosettacode.org/wiki/Comma_quibbling
+#![allow(unstable)]
 fn quibble(seq: &[&str]) -> String {
     match seq {
         [] => "{}".to_string(),
@@ -17,8 +18,8 @@ fn main() {
 
 #[test]
 fn output() {
-    assert_eq!(quibble(&[]), "{}".to_string());
-    assert_eq!(quibble(&["ABC"]), "{ABC}".to_string());
-    assert_eq!(quibble(&["ABC", "DEF"]), "{ABC and DEF}".to_string());
-    assert_eq!(quibble(&["ABC", "DEF", "G", "H"]), "{ABC, DEF, G and H}".to_string());
+    assert_eq!(quibble(&[]), "{}");
+    assert_eq!(quibble(&["ABC"]), "{ABC}");
+    assert_eq!(quibble(&["ABC", "DEF"]), "{ABC and DEF}");
+    assert_eq!(quibble(&["ABC", "DEF", "G", "H"]), "{ABC, DEF, G and H}");
 }

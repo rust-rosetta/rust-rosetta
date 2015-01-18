@@ -5,7 +5,6 @@
 #![allow(unstable)]
 use std::io::{File, BufferedReader};
 use std::num::Float;
-use std::iter::repeat;
 
 // Calculate the expected frequency of a digit according to Benford's Law
 fn benford_freq(d: u64) -> f32 {
@@ -24,11 +23,11 @@ fn first_digit_of(n: u64) -> usize {
 }
 
 // Count frequency table using the first digit of each number in a vector
-fn benford_distrib(numbers: &Vec<u64>) -> Vec<f32> {
+fn benford_distrib(numbers: &[u64]) -> Vec<f32> {
 
     // Counts
 
-    let mut counts: Vec<u64> = repeat(0).take(10).collect();
+    let mut counts = [0u64; 10];
 
     for num in numbers.iter() {
         let first = first_digit_of(*num);
@@ -37,9 +36,9 @@ fn benford_distrib(numbers: &Vec<u64>) -> Vec<f32> {
 
     // Frequencies
 
-    let mut freq: Vec<f32> = repeat(0f32).take(10).collect();
+    let mut freq = vec![0f32; 10];
 
-    for digit in (1..10) {
+    for digit in 1..10 {
         freq[digit] = counts[digit] as f32 / numbers.len() as f32;
     }
 
@@ -68,7 +67,7 @@ fn main() {
 
     // Calculate freuencies of first digits in test data
 
-    let found_distrib = benford_distrib(&fibs);
+    let found_distrib = benford_distrib(&fibs[]);
 
     // Print the stats to compare actual vs expected
 

@@ -1,4 +1,5 @@
 // Implements http://rosettacode.org/wiki/DNS_query 
+#![allow(unstable)]
 
 use std::io::net::addrinfo::get_host_addresses;
 use std::io::net::ip::IpAddr;

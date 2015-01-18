@@ -1,4 +1,5 @@
 // http://rosettacode.org/wiki/Levenshtein_distance/Alignment
+#![allow(unstable)]
 use std::usize;
 use std::collections::DList;
 use std::iter::repeat;
@@ -91,10 +92,11 @@ fn main() {
 #[test]
 fn test_lev_distance() {
     let test_results =
-        vec!(( "sunday" , "saturday" , (3, "s--unday".to_string(), "sunurday".to_string()))  , 
-            ( "sitting" , "kitten" , (3, "sitting".to_string(), "kitten-".to_string())) , 
-            ("test" , "test" , (0, "test".to_string(), "test".to_string()) ));
+        vec![( "sunday" , "saturday" , (3, "s--unday", "sunurday"))  , 
+            ( "sitting" , "kitten" , (3, "sitting", "kitten-")) , 
+            ("test" , "test" , (0, "test", "test") )];
     for (word1, word2, dist) in test_results.into_iter() {
-        assert_eq!(levenshtein_distance ( word1 , word2 ) , dist);
+        let (d, s1, s2) = levenshtein_distance ( word1 , word2 ); 
+        assert_eq!( (d, &s1[], &s2[]) , dist);
     }
 }

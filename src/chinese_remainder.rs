@@ -7,10 +7,7 @@ fn main() {
 }
 
 fn chinese_remainder(l: &[(i32, i32)]) -> Option<i32> {
-    let mut product = 1;
-    for &(_, n) in l.iter() {
-        product *= n;
-    }
+    let product = l.iter().fold(1, |prod, &(_, n)| prod * n);
 
     let mut sum = 0;
     for &(a, n) in l.iter() {

@@ -1,5 +1,5 @@
 // Implements http://rosettacode.org/wiki/Count_in_octal
-
+#![allow(unstable)]
 use std::u8;
 use std::iter::range_inclusive;
 

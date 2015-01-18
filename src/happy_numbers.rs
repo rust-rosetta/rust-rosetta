@@ -1,4 +1,5 @@
 // Implements http://rosettacode.org/wiki/Happy_numbers
+#![allow(unstable)]
 extern crate collect;
 
 use collect::TreeSet;

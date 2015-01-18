@@ -1,5 +1,5 @@
 // Implements http://rosettacode.org/wiki/Kahan_summation
-
+#![allow(unstable)]
 use std::num::Float;
 use std::f32;
 
@@ -51,8 +51,8 @@ fn all_sums(vec: &[f32]) -> Vec<f32> {
 fn main() {
     let v = [10000.0f32, 3.14159, 2.71828];
     let sums = all_sums(&v);
-    let res = kahan_sum(v.as_slice()).unwrap();
-    let max = find_max(sums.as_slice()).unwrap();
+    let res = kahan_sum(&v).unwrap();
+    let max = find_max(&sums[]).unwrap();
     println!("max: {} res: {}", max, res);
 }
 
@@ -60,8 +60,8 @@ fn main() {
 fn test_kahansum() {
     let v = [10000.0f32, 3.14159, 2.71828];
     let sums = all_sums(&v);
-    let res = kahan_sum(v.as_slice()).unwrap();
-    let max = find_max(sums.as_slice()).unwrap();
+    let res = kahan_sum(&v).unwrap();
+    let max = find_max(&sums[]).unwrap();
     assert!(max < res);
 }
 

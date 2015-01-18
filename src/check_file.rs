@@ -1,5 +1,5 @@
 // Implements http://rosettacode.org/wiki/Check_that_file_exists
-
+#![allow(unstable)]
 use std::io::fs::PathExtensions;
 
 fn main() {

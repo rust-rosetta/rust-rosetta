@@ -1,4 +1,5 @@
 // Implements http://rosettacode.org/wiki/Guess_the_number
+#![allow(unstable)]
 use std::rand::{thread_rng, Rng};
 use std::io::stdio::stdin;
 

@@ -1,4 +1,5 @@
 // Implements http://rosettacode.org/wiki/K-d_tree
+#![allow(unstable)]
 extern crate time;
 
 use std::num::Float;
@@ -57,10 +58,10 @@ impl KDTreeNode {
         let pivot = quickselect_by(points, points_len/2,
             &|&: a, b| a.coords[dim].partial_cmp(&b.coords[dim]).unwrap());
 
-        let left = Some(Box::new(KDTreeNode::new(points.slice_mut(0us, points_len/2),
+        let left = Some(Box::new(KDTreeNode::new(&mut points[0us..points_len/2],
                 (dim + 1) % pivot.coords.len())));
         let right = if points.len() >= 3 {
-            Some(Box::new(KDTreeNode::new(points.slice_mut(points_len/2+1, points_len),
+            Some(Box::new(KDTreeNode::new(& mut points[points_len/2+1..points_len],
                 (dim + 1) % pivot.coords.len())))
         } else {
             None
@@ -227,9 +228,9 @@ fn quickselect_by<T>(arr: &mut [T], position: usize, cmp: &Fn(&T, &T) -> Orderin
     if position == pivot_index {
         arr[position].clone()
     } else if position < pivot_index {
-        quickselect_by(arr.slice_mut(0us, pivot_index), position, cmp)
+        quickselect_by(&mut arr[0us..pivot_index], position, cmp)
     } else {
-        quickselect_by(arr.slice_mut(pivot_index+1, array_len), position - pivot_index - 1, cmp)
+        quickselect_by(&mut arr[pivot_index+1..array_len], position - pivot_index - 1, cmp)
     }
 }
 

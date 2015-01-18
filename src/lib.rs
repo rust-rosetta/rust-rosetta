@@ -1,6 +1,6 @@
 // Dummy main library
 // It also contains a test module, which checks if all source files are covered by `Cargo.toml`
-
+#![allow(unstable)]
 #![feature(plugin)]
 
 extern crate regex;

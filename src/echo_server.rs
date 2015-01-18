@@ -1,4 +1,5 @@
 // Implements http://rosettacode.org/wiki/Echo_server
+#![allow(unstable)]
 use std::io::{Acceptor, BufferedReader, IoError, IoResult, Listener, TimedOut};
 use std::io::net::tcp::{TcpListener, TcpStream};
 use std::time::Duration;

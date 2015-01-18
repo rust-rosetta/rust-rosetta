@@ -1,4 +1,6 @@
 // Implements http://rosettacode.org/wiki/Letter_frequency
+#![allow(unstable)]
+
 #[cfg(not(test))]
 use std::io::fs::File;
 #[cfg(not(test))]

@@ -1,10 +1,10 @@
 // Implements http://rosettacode.org/wiki/Dijkstra's_algorithm
-
+#![allow(unstable)]
 use std::collections::{HashMap, BinaryHeap, DList};
 use std::collections::hash_map::Entry::{Occupied, Vacant};
-use std::usize;
 use std::iter::repeat;
 use std::cmp::Ordering;
+use std::usize;
 
 type Node = usize;
 type Cost = usize;
@@ -173,4 +173,3 @@ fn main(){
     let path = graph.dijkstra("a", "e");
     println!("Path is: {:?}", path);
 }
-

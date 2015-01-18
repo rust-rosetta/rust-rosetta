@@ -1,5 +1,4 @@
 // Implements an iterable version of http://rosettacode.org/wiki/Hofstadter_Q_sequence
-#![feature(associated_types)]
 
 // Define a struct which stores the state for the iterator.
 struct HofstadterQ {
@@ -46,7 +45,7 @@ fn main() {
     println!("H(1) = 1");
     println!("H(2) = 1");
     // Print the rest of the sequence.
-    for i in (3u..1+upto) {
+    for i in (3..1+upto) {
         println!("H({}) = {}", i, it.next().unwrap());
     }
 }

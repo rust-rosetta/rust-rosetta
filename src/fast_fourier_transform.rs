@@ -1,5 +1,5 @@
 // Implements http://rosettacode.org/wiki/Fast_Fourier_transform
-
+#![allow(unstable)]
 extern crate num;
 
 use std::f32::consts::PI;
@@ -22,8 +22,8 @@ fn fft(arr: &[Complex<f32>]) -> Vec<Complex<f32>> {
         }
     }
 
-    let even_fft = fft(even.as_slice());
-    let odd_fft = fft(odd.as_slice());
+    let even_fft = fft(&even[]);
+    let odd_fft = fft(&odd[]);
 
     let mut out: Vec<Complex<f32>> = repeat(Complex::new(0f32, 0f32)).take(arr.len()).collect();
     for i in (0us..arr.len()/2) {
@@ -48,7 +48,7 @@ fn main() {
         Complex::new(0f32, 0f32)
     ];
 
-    let test_fft = fft(test.as_slice());
+    let test_fft = fft(&test[]);
     println!("{:?}", test_fft);
 }
 
@@ -80,7 +80,7 @@ mod test {
             Complex::new(1f32, 2.414f32)
         ];
 
-        let test_fft = fft(test.as_slice());
+        let test_fft = fft(&test[]);
         println!("{:?}", target.to_vec());
         println!("{:?}", test_fft);
         for (test_item, target_item) in test_fft.iter().zip(target.iter()) {
