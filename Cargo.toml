@@ -542,6 +542,11 @@ name = "isaac"
 path = "src/isaac.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/Josephus_problem
+name = "josephus_problem"
+path = "src/josephus_problem.rs"
+
+[[bin]]
 # http://rosettacode.org/wiki/JSON
 name = "json"
 path = "src/json.rs"
