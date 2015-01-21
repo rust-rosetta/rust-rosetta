@@ -13,7 +13,7 @@ fn main()
     use libc::funcs::posix01::signal;
     use std::io::timer::Timer;
     use std::mem;
-    use std::sync::atomic::{self, AtomicBool, ATOMIC_BOOL_INIT, Ordering};
+    use std::sync::atomic::{AtomicBool, ATOMIC_BOOL_INIT, Ordering};
     use std::time::duration::Duration;
 
     // The time between ticks of our counter.
