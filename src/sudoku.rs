@@ -16,7 +16,7 @@ type BITS = u16;
 const MASK_ALL: BITS = 0x1ff;
 const INVALID_CELL: usize = !0;
 
-#[derive(Copy, Eq, PartialEq)]
+#[derive(Copy, Eq, PartialEq, Show)]
 struct Sudoku {
     map: [[BITS; BOARD_WIDTH]; BOARD_HEIGHT]
 }
@@ -220,4 +220,25 @@ fn main() {
     for answer in solve_sudoku(puzzle).iter() {
         println!("{}", answer);
     }
+}
+
+#[cfg(test)]
+const SOLUTION: &'static str = "
+    859612437
+    723854169
+    164379528
+    986147352
+    375268914
+    241593786
+    432981675
+    617425893
+    598736241
+";
+
+#[test]
+fn solution() {
+    let puzzle = INPUT.parse::<Sudoku>().unwrap();
+    let answer = SOLUTION.parse::<Sudoku>().unwrap();
+    let solution = solve_sudoku(puzzle);
+    assert_eq!(solution, [answer]);
 }
