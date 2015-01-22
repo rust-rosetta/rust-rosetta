@@ -37,6 +37,7 @@ authors = [
     "Rootul Patel, https://github.com/rootulp",
     "Frank McSherry, http://github.com/frankmcsherry",
     "Bartosz Marcinkowski, https://github.com/bm371613",
+    "Makoto Nakashima, https://github.com/gifnksm"
 ]
 
 [dependencies]
@@ -894,6 +895,11 @@ path = "src/string_matching.rs"
 # http://rosettacode.org/wiki/Strip_comments_from_a_string
 name = "strip_comments_from_a_string"
 path = "src/strip_comments_from_a_string.rs"
+
+[[bin]]
+# http://rosettacode.org/wiki/Sudoku
+name = "sudoku"
+path = "src/sudoku.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Sum_digits_of_an_integer
