@@ -212,6 +212,7 @@ const INPUT: &'static str = "
     000036040
 ";
 
+#[cfg(not(test))]
 fn main() {
     let puzzle = INPUT.parse::<Sudoku>().unwrap();
 
