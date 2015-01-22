@@ -37,6 +37,7 @@ authors = [
     "Rootul Patel, https://github.com/rootulp",
     "Frank McSherry, http://github.com/frankmcsherry",
     "Bartosz Marcinkowski, https://github.com/bm371613",
+    "Yale Cason, https://github.com/ghotiphud",
 ]
 
 [dependencies]
@@ -740,6 +741,11 @@ path = "src/primality_trial_div.rs"
 # http://rosettacode.org/wiki/Prime_decomposition
 name = "prime_decomposition"
 path = "src/prime_decomposition.rs"
+
+[[bin]]
+# http://rosettacode.org/wiki/Proper_divisors
+name = "proper_divisors"
+path = "src/proper_divisors.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Pythagorean_triples
