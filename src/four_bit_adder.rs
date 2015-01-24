@@ -38,7 +38,7 @@ impl Nibble {
   }
 
   fn to_u8(&self, carry: bool) -> u8 {
-    match num::from_str_radix::<u8>(&(format!("{:?}", self))[], 2) {
+    match num::from_str_radix::<u8>(&(format!("{}", self))[], 2) {
       Some(n) if carry => n + 16,
       Some(n) => n,
       None => unreachable!()
@@ -46,7 +46,7 @@ impl Nibble {
   }
 }
 
-impl fmt::Show for Nibble {
+impl fmt::Display for Nibble {
   fn fmt(&self, f: &mut fmt::Formatter) -> Result<(), fmt::Error> {
     write!(f, "{}", self.iter().map(|&b| if b { '1' } else { '0' }).collect::<String>())
   }
@@ -80,7 +80,7 @@ fn main() {
   let b = 6;
   let nib_b = Nibble::from_u8(b);
   let (result, carry) = four_bit_adder(nib_a, nib_b, false);
-  println!("{} + {} = {} | {:?} + {:?} = {:?} | overflow: {}",
+  println!("{} + {} = {} | {} + {} = {} | overflow: {}",
             a, b, result.to_u8(carry), nib_a, nib_b, result, carry)
 }
 

@@ -8,7 +8,7 @@ use std::iter::repeat;
 use std::cmp::Ordering;
 use std::cmp::Ordering::{Less, Equal, Greater};
 
-#[derive(Show, PartialEq, Eq)]
+#[derive(Debug, PartialEq, Eq)]
 struct SortIndex {
     x:  usize,
     y:  usize

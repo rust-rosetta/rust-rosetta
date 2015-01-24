@@ -49,9 +49,9 @@ impl Digest {
 
         let m:usize=(len%64u64) as usize;
         if m < 56 {
-            self.write(tmp.slice(0us, 56-m)).unwrap();
+            self.write(&tmp[0us..56-m]).unwrap();
         } else {
-            self.write(tmp.slice(0us, 64+56-m)).unwrap();
+            self.write(&tmp[0us..64+56-m]).unwrap();
         }
 
         // Length in bits (=lengh in bytes*8=shift 3 bits to the right).
@@ -59,7 +59,7 @@ impl Digest {
         for i in (0us..8) {
             tmp[i] = (len >> (56us - 8*i)) as u8;
         }
-        self.write(tmp.slice(0,8)).unwrap();
+        self.write(&tmp[0..8]).unwrap();
 
         assert!(self.nx == 0);
 
@@ -143,7 +143,7 @@ impl Digest {
             h3 += d;
             h4 += e;
 
-            p = p.slice_from(CHUNK);
+            p = &p[CHUNK..];
         }
         [h0, h1, h2, h3, h4]
     }
@@ -166,17 +166,17 @@ impl Writer for Digest {
             }
             self.nx += n;
             if self.nx == CHUNK {
-                let x = self.x.as_slice();
+                let x = &(self.x[]);
                 self.h=self.process_block(x);
                 self.nx = 0;
             }
-            buf_m = buf_m.slice_from(n);
+            buf_m = &buf_m[n..];
         }
         if buf_m.len() >= CHUNK {
             let n = buf_m.len() &!(CHUNK - 1);
-            let x = self.x.slice_from(n);
+            let x = &(self.x[n..]);
             self.h=self.process_block(x);
-            buf_m = buf_m.slice_from(n);
+            buf_m = &buf_m[n..];
         }
         let ln=buf_m.len();
         if ln > 0 {

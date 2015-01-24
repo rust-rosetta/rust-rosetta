@@ -6,7 +6,7 @@
 #![allow(unstable)]
 
 use std::iter::range_step;
-use std::fmt::{Show, Formatter, Result};
+use std::fmt::{Debug, Formatter, Result};
 
 #[cfg(not(test))]
 fn main() {
@@ -50,7 +50,7 @@ const R:[u32; 64] = [7, 12, 17, 22, 7, 12, 17, 22, 7, 12, 17, 22, 7, 12, 17, 22,
 
 // "newtype" for [u8; 16] to specify it's a MD5 hash
 struct MD5([u8; 16]);
-impl Show for MD5 {
+impl Debug for MD5 {
     fn fmt(&self, f: &mut Formatter) -> Result {
         let MD5(md5)=*self;
         for b in md5.iter() {

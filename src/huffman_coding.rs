@@ -177,9 +177,9 @@ fn test_table_construction() {
     let tree = huffman_tree(to_encode);
     let mut table = HashMap::<char,String>::new();
     build_encoding_table(&tree, &mut table, "");
-    let one  = table['1'].as_slice();
-    let two  = table['2'].as_slice();
-    let four = table['4'].as_slice();
+    let one  = &*table['1'];
+    let two  = &*table['2'];
+    let four = &*table['4'];
     assert!(four == "1");
     assert!((one == "01" && two == "00") ||
             (one == "00" && two == "01"));

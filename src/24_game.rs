@@ -61,7 +61,7 @@ pub fn check_values(sample:&mut [usize], input:&str) -> bool {
 }
 
 // the tokens that our parser is going to recognize
-#[derive(PartialEq,Eq,Show, Copy)]
+#[derive(PartialEq,Eq,Debug, Copy)]
 pub enum Token {
     LParen,
     RParen,

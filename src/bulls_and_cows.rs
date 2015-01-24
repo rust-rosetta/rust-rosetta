@@ -1,6 +1,6 @@
 // http://rosettacode.org/wiki/Bulls_and_cows
 #![allow(unstable)]
-use std::fmt;
+use std::fmt::{self, Display};
 use std::char::CharExt;
 
 const NUMBER_OF_DIGITS: usize = 4;
@@ -17,13 +17,13 @@ fn generate_digits() -> Vec<usize> {
 enum ParseError { NotValidDigit, ExpectedNumberOfDigits(usize), NoDuplicates, }
 
 /// printable description for each ParseError
-impl fmt::Show for ParseError {
+impl fmt::Display for ParseError {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         match *self {
-            ParseError::NotValidDigit => "only digits from 1 to 9, please".fmt(f),
+            ParseError::NotValidDigit => Display::fmt("only digits from 1 to 9, please", f),
             ParseError::ExpectedNumberOfDigits(exp) =>
                 write!(f , "you need to guess with {} digits" , exp),
-            ParseError::NoDuplicates => "no duplicates, please".fmt(f),
+            ParseError::NoDuplicates => Display::fmt("no duplicates, please",f),
         }
     }
 }
@@ -88,7 +88,7 @@ fn main() {
             let guess_string = reader.read_line().unwrap();
             let digits_maybe = parse_guess_string(&*guess_string.trim());
             match digits_maybe {
-                Err(msg) => { println!("{:?}" , msg); }
+                Err(msg) => { println!("{}" , msg); }
                 Ok(guess_digits) => {
                     match calculate_score(&*given_digits, &*guess_digits) {
                         (NUMBER_OF_DIGITS, _) => {

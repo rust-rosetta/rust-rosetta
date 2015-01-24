@@ -30,7 +30,7 @@ use self::SExp::*;
 use self::Error::*;
 use self::Token::*;
 
-#[derive(PartialEq,Show,Copy)]
+#[derive(PartialEq,Debug,Copy)]
 // The actual SExp structure.  Supports f64s, lists, and string literals.  Note that it takes
 // everything by reference, rather than owning it--this is mostly done just so we can allocate
 // SExps statically (since we don't have to call Vec).  It does complicate the code a bit,
@@ -42,7 +42,7 @@ enum SExp<'a> {
 }
 
 // Errors that can be thrown by the parser.
-#[derive(PartialEq,Show)]
+#[derive(PartialEq,Debug)]
 enum Error {
     NoReprForFloat, // If the float is NaN, Infinity, etc.
     UnterminatedStringLiteral, // Missing an end double quote during string parsing

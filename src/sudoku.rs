@@ -16,7 +16,7 @@ type BITS = u16;
 const MASK_ALL: BITS = 0x1ff;
 const INVALID_CELL: usize = !0;
 
-#[derive(Copy, Eq, PartialEq, Show)]
+#[derive(Copy, Eq, PartialEq, Debug)]
 struct Sudoku {
     map: [[BITS; BOARD_WIDTH]; BOARD_HEIGHT]
 }
@@ -59,7 +59,7 @@ impl FromStr for Sudoku {
     }
 }
 
-impl fmt::String for Sudoku {
+impl fmt::Display for Sudoku {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         let hbar = "+---+---+---+";
 

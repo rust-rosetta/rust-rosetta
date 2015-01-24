@@ -24,7 +24,7 @@ fn is_valid(iban: &str) -> bool {
     }
 
     // Check length of the IBAN
-    match country_length(iban.slice_to(2)) {
+    match country_length(&iban[..2]) {
         Some(l) if l == iban_chars.len() => { }
         _                                => return false
     };

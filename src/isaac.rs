@@ -174,7 +174,7 @@ mod test {
 
         let mut isaac = Isaac::new();
         isaac.seed(KEY, true);
-        let decr = isaac.vernam(ENCRIPTED.as_slice());
+        let decr = isaac.vernam(&ENCRIPTED[]);
 
         for (&a, b) in decr.iter().zip(expected.bytes()) {
             assert_eq!(a, b);
