@@ -6,7 +6,7 @@ use std::ops::Range;
 
 type DoorIter = Map<u32, DoorState, Range<u32>, fn(u32) -> DoorState>;
 
-#[derive(Show, PartialEq)]
+#[derive(Debug, PartialEq)]
 enum DoorState { Open, Closed, }
 
 // This is an example of returning an iterator, this allows the caller to

@@ -42,7 +42,7 @@ fn exp_factorial(cx: &mut ExtCtxt, sp: Span, tts: &[TokenTree])
     // calculating the factorial
     let result = (1us..(n as usize)+1).fold(1, |accum, elem| accum * elem);    
 
-    MacExpr::new(cx.expr_uint(sp, result))
+    MacExpr::new(cx.expr_usize(sp, result))
 }
 
 // here's where we register the macro with the name of factorial_10

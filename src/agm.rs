@@ -8,7 +8,7 @@ use std::num::Float;
 #[cfg(not(test))]
 fn main () {
     let args = std::os::args();
-    let args = args.as_slice();
+    let args = &args[];
 
     let x = args[1].parse::<f32>().unwrap();
     let y = args[2].parse::<f32>().unwrap();

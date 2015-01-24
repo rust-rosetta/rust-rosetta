@@ -41,8 +41,8 @@ mod test {
 
     #[test]
     fn empty_vector() {
-        let mut numbers: Vec<i32> = Vec::new();
-        check_sort(numbers.as_mut_slice());
+        let mut numbers: &mut [i32] = &mut [];
+        check_sort(numbers);
     }
 
     #[test]

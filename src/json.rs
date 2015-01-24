@@ -4,7 +4,7 @@
 extern crate "rustc-serialize" as rustc_serialize;
 use rustc_serialize::json;
 
-#[derive(Show, RustcEncodable, RustcDecodable, PartialEq, Eq)]
+#[derive(Debug, RustcEncodable, RustcDecodable, PartialEq, Eq)]
 pub struct Contact {
     name: String,
     city: String
@@ -15,7 +15,7 @@ fn main() {
     // Encode contact to json
     let c = Contact { name: "John".to_string(), city: "Paris".to_string() };
     let json = json::encode(&c);
-    println!("Encoded: {}", json.as_slice());
+    println!("Encoded: {:?}", &*(json.unwrap()));
 
     // Decode json to contact
     let json_str = "{\"name\":\"Alan\", \"city\":\"Tokyo\"}";
@@ -26,7 +26,7 @@ fn main() {
 #[test]
 fn test_coherence() {
     let c = Contact { name: "John".to_string(), city: "Paris".to_string() };
-    assert!(json::decode::<Contact>(json::encode(&c).as_slice()).unwrap() == c);
+    assert!(json::decode::<Contact>(&*(json::encode(&c)).unwrap()) == Ok(c));
 }
 
 #[test]
