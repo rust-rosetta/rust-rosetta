@@ -39,6 +39,7 @@ authors = [
     "Bartosz Marcinkowski, https://github.com/bm371613",
     "Yale Cason, https://github.com/ghotiphud",
     "Makoto Nakashima, https://github.com/gifnksm",
+    "Marvin Löbel, https://github.com/Kimundi",
 ]
 
 [dependencies]
@@ -636,6 +637,11 @@ path = "src/luhn_test.rs"
 # http://rosettacode.org/wiki/LZW_compression
 name = "lzw"
 path = "src/lzw.rs"
+
+[[bin]]
+# http://rosettacode.org/wiki/Man_or_boy_test
+name = "man_or_boy"
+path = "src/man_or_boy.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Execute_a_Markov_algorithm
