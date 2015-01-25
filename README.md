@@ -9,6 +9,8 @@ A repository for completing [this issue on mozilla/rust](https://github.com/mozi
 
 [List of Tasks Remaining](http://rosettacode.org/wiki/Reports:Tasks_not_implemented_in_Rust)
 
+> Important: Not all `rust-rosetta` tasks exist in their current form on Rosetta Code. Please double check before you start.
+
 ## Tasks Complete ##
 
 All tasks that have been completed are listed (along with a link to the problem) in [`Cargo.toml`](./Cargo.toml)
