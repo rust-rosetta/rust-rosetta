@@ -1,7 +1,10 @@
 // Implements http://rosettacode.org/wiki/Handle_a_signal
 //
 // Note that this solution only works on Unix.
+#![allow(unused_features)]
 #![feature(libc)]
+#![feature(std_misc)]
+#![feature(io)]
 
 extern crate libc;
 extern crate time;
