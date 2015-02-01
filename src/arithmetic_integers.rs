@@ -1,6 +1,9 @@
 // Implements http://rosettacode.org/wiki/Arithmetic/Integer
-#![allow(unstable)]
-use std::io::stdin;
+#![feature(io)]
+#![feature(collections)]
+
+
+use std::old_io::stdin;
 
 fn main() {
     let input = stdin().read_line().unwrap();

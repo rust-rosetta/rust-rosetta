@@ -1,5 +1,5 @@
 // Solution for http://rosettacode.org/wiki/Execute_a_Markov_algorithm
-#![allow(unstable)]
+#![feature(collections)]
 // Individual markov rule
 struct MarkovRule {
     pattern: String,

@@ -1,5 +1,6 @@
 // Implements http://rosettacode.org/wiki/Arena_storage_pool
-#![allow(unstable)]
+#![feature(rustc_private)]
+
 extern crate arena;
 
 use arena::TypedArena;

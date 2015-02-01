@@ -29,7 +29,7 @@ fn test_basic() {
 }
 
 #[test]
-#[allow(unstable)]
+
 fn test_coherence() {
     assert!((50000i32..50050).map(|x| format!("{}", x)).all(|s| {
         let encoded = rot13(&s[]);

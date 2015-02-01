@@ -43,7 +43,6 @@ authors = [
 ]
 
 [dependencies]
-collect = "*"
 num = "*"
 regex = "*"
 regex_macros = "*"

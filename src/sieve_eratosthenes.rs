@@ -1,5 +1,6 @@
 // Implements http://rosettacode.org/wiki/Sieve_of_Eratosthenes
-#![allow(unstable)]
+#![feature(core)]
+
 use std::iter::{repeat, range_step};
 use std::num::Float;
 

@@ -1,6 +1,11 @@
 // Implements http://rosettacode.org/wiki/Write_ppm_file
-#![allow(unstable)]
-use std::io::{File, BufferedWriter, IoResult};
+#![allow(unused_features)]
+#![allow(unused_attributes)]
+#![feature(io)]
+#![feature(path)]
+#![feature(core)]
+
+use std::old_io::{File, BufferedWriter, IoResult};
 use bitmap::Image;
 mod bitmap;
 
@@ -42,7 +47,7 @@ pub fn main() {
 #[cfg(test)]
 mod test {
     use bitmap::{Color, Image};
-    use std::io::{File, BufferedReader};
+    use std::old_io::{File, BufferedReader};
     use std::rand;
     use std::rand::Rng;
     use std::os;

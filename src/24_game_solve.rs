@@ -2,7 +2,9 @@
 
 // modeled after the scala solution
 // http://rosettacode.org/wiki/24_game/Solve#Scala
-#![allow(unstable)]
+#![feature(collections)]
+
+
 extern crate num;
 use num::rational::{Ratio, Rational};
 use num::traits::Zero;

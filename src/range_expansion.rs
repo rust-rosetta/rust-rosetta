@@ -1,5 +1,6 @@
 // Implements http://rosettacode.org/wiki/Range_expansion
-#![allow(unstable)]
+#![feature(collections)]
+
 #![feature(plugin)]
 
 #[macro_use]

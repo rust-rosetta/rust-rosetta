@@ -1,8 +1,12 @@
 // http://rosettacode.org/wiki/HTTP
-#![allow(unstable)]
+#![allow(unused_features)]
+#![allow(unused_attributes)]
+#![feature(io)]
+#![feature(os)]
+#![feature(std_misc)]
 
-use std::io::net::tcp::TcpStream;
-use std::io::IoResult;
+use std::old_io::net::tcp::TcpStream;
+use std::old_io::IoResult;
 
 #[cfg(test)]
 mod webserver;

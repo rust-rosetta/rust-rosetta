@@ -1,5 +1,6 @@
 // Implements http://rosettacode.org/wiki/Dijkstra's_algorithm
-#![allow(unstable)]
+#![feature(std_misc)]
+
 use std::collections::{HashMap, BinaryHeap, DList};
 use std::collections::hash_map::Entry::{Occupied, Vacant};
 use std::iter::repeat;

@@ -1,5 +1,7 @@
 // http://rosettacode.org/wiki/Levenshtein_distance/Alignment
-#![allow(unstable)]
+#![feature(collections)]
+#![feature(core)]
+
 use std::usize;
 use std::collections::DList;
 use std::iter::repeat;

@@ -1,6 +1,7 @@
 // http://rosettacode.org/wiki/Sudoku
-
-#![allow(unstable)]
+#![feature(collections)]
+#![feature(unicode)]
+#![feature(core)]
 
 use std::{fmt, iter};
 use std::str::FromStr;
@@ -96,7 +97,7 @@ fn solve_sudoku(mut puzzle: Sudoku) -> Vec<Sudoku> {
         let bkup = puzzle;
 
         // If the number at cell (x, y) is uniquely determined, that number must
-        // not be appeared at the cells in the same row/column/group.
+        // not have appeared at the cells in the same row/column/group.
         for y in (0 .. BOARD_HEIGHT) {
             for x in (0 .. BOARD_WIDTH) {
                 if puzzle.map[y][x].count_ones() != 1 { continue }
@@ -135,7 +136,7 @@ fn solve_sudoku(mut puzzle: Sudoku) -> Vec<Sudoku> {
                 puzzle.map[y][next.unwrap()] = bit;
             }
 
-            // Check each columns
+            // Check each column
             for x in (0 .. BOARD_WIDTH) {
                 let next = {
                     let mut it = (0 .. BOARD_HEIGHT)
@@ -147,7 +148,7 @@ fn solve_sudoku(mut puzzle: Sudoku) -> Vec<Sudoku> {
                 puzzle.map[next.unwrap()][x] = bit;
             }
 
-            // Check each groups
+            // Check each group
             for y0 in iter::range_step(0, BOARD_HEIGHT, GROUP_WIDTH) {
                 for x0 in iter::range_step(0, BOARD_WIDTH, GROUP_HEIGHT) {
                     let next = {
@@ -165,7 +166,7 @@ fn solve_sudoku(mut puzzle: Sudoku) -> Vec<Sudoku> {
             }
         }
 
-        // Loop until no cells can be filled.
+        // Loop until no cell can be filled.
         if puzzle == bkup { break }
     }
 

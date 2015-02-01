@@ -1,14 +1,19 @@
 // Implements http://rosettacode.org/wiki/24_game
 // Uses RPN expression
-#![allow(unstable)]
+#![allow(unused_features)] // feature(rand) is used only in main
+
+#![feature(collections)]
+#![feature(rand)]
+#![feature(io)]
+
 
 #[cfg(not(test))]
 fn main() {
     use std::rand::{thread_rng, Rng};
-    use std::io;
+    use std::old_io;
 
     let mut rng = thread_rng();
-    let mut reader = io::stdin();
+    let mut reader = old_io::stdin();
 
     // generating 4 numbers
     let choices: Vec<usize> = (0us..4).map(

@@ -1,8 +1,10 @@
 // http://rosettacode.org/wiki/FASTA_format
 // Ported and adapted from rosettacode D example
-#![allow(unstable)]
-use std::io::fs::File;
-use std::io::BufferedReader;
+#![feature(io)]
+#![feature(path)]
+
+use std::old_io::fs::File;
+use std::old_io::BufferedReader;
 
 // We use a type parameter bound `<T: Buffer>` to accept all kinds of buffers
 fn format_fasta<T: Buffer>(reader: &mut T) -> String {

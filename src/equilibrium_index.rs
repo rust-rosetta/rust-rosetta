@@ -1,5 +1,6 @@
 // http://rosettacode.org/wiki/Equilibrium_index
-#![allow(unstable)]
+#![feature(core)]
+
 use std::iter::AdditiveIterator;
 use std::num::Int;
 

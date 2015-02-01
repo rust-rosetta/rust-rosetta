@@ -1,7 +1,9 @@
 //Implements http://rosettacode.org/wiki/Sorting_algorithms/Quicksort
 
 // Used by the tests
-#![allow(unstable)]
+#![allow(unused_features)]
+#![feature(rand)]
+
 #[cfg(test)]
 use std::rand::{thread_rng, Rng};
 

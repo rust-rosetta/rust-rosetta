@@ -1,10 +1,13 @@
 // Implements http://rosettacode.org/wiki/Letter_frequency
-#![allow(unstable)]
+#![allow(unused_features)] 
+#![feature(std_misc)]
+#![feature(io)]
+#![feature(path)]
 
 #[cfg(not(test))]
-use std::io::fs::File;
+use std::old_io::fs::File;
 #[cfg(not(test))]
-use std::io::BufferedReader;
+use std::old_io::BufferedReader;
 use std::collections::HashMap;
 use std::collections::hash_map::Entry::{Occupied, Vacant};
 

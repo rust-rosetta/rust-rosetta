@@ -1,5 +1,6 @@
 //Implements http://rosettacode.org/wiki/9_billion_names_of_God_the_integer
-#![allow(unstable)]
+#![feature(collections)]
+
 
 extern crate num;
 

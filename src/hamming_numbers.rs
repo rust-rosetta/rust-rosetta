@@ -1,4 +1,7 @@
 // http://rosettacode.org/wiki/Hamming_numbers
+#![allow(unused_features)]
+#![feature(collections)]
+
 extern crate num;
 use num::bigint::{BigUint, ToBigUint};
 use num::traits::One;
@@ -141,7 +144,7 @@ fn hamming_iter() {
 
 #[ignore] // Please run this if you modify the file.  It is too slow to run normally.
 #[test]
-#[allow(unstable)]
+
 fn hamming_iter_1million() {
     let mut hamming = Hamming::<BigUint>::new(128);
     // one-million-th hamming number has index 999_999 because indexes are zero-based

@@ -1,5 +1,4 @@
 // http://rosettacode.org/wiki/Strip_comments_from_a_string
-#![allow(unstable)]
 
 fn strip_comments(str: &str) -> &str {
     let markers = ['#', ';'];

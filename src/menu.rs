@@ -1,6 +1,7 @@
 // Implements http://rosettacode.org/wiki/Menu
-#![allow(unstable)]
-use std::io;
+#![feature(collections)]
+#![feature(io)]
+use std::old_io;
 
 // Print the menu followed by the prompt
 fn print_both(menu: &[&str], prompt: &str) {
@@ -18,7 +19,7 @@ fn print_both(menu: &[&str], prompt: &str) {
 // Grab the next line of input
 fn next_input() -> Option<usize> {
 
-    let line = io::stdin().read_line().unwrap();
+    let line = old_io::stdin().read_line().unwrap();
     let input: Option<usize> = line.trim().parse();
     input
 }

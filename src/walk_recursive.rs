@@ -1,5 +1,6 @@
 // Implements http://rosettacode.org/wiki/Walk_a_directory/Recursively
-#![allow(unstable)]
+#![feature(path)]
+#![feature(io)]
 
 #![feature(plugin)]
 #[plugin]
@@ -7,7 +8,7 @@ extern crate regex_macros;
 extern crate regex;
 
 use regex::Regex;
-use std::io::fs::readdir;
+use std::old_io::fs::readdir;
 
 fn walk(path: &Path, regex: &Regex) {
     let result = match readdir(path) {

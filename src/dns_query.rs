@@ -1,8 +1,10 @@
 // Implements http://rosettacode.org/wiki/DNS_query 
-#![allow(unstable)]
+#![allow(unused_features)]
+#![feature(io)]
+#![feature(collections)]
 
-use std::io::net::addrinfo::get_host_addresses;
-use std::io::net::ip::IpAddr;
+use std::old_io::net::addrinfo::get_host_addresses;
+use std::old_io::net::ip::IpAddr;
 
 fn get_ips(host: &str) -> Vec<IpAddr> {
     let mut ips = match get_host_addresses(host) {

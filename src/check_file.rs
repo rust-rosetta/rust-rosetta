@@ -1,6 +1,8 @@
 // Implements http://rosettacode.org/wiki/Check_that_file_exists
-#![allow(unstable)]
-use std::io::fs::PathExtensions;
+#![feature(io)]
+#![feature(path)]
+
+use std::old_io::fs::PathExtensions;
 
 fn main() {
     let paths = ["input.txt", "docs"];

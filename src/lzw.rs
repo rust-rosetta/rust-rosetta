@@ -1,5 +1,6 @@
 // Implements http://rosettacode.org/wiki/LZW_compression
-#![allow(unstable)]
+#![allow(unused_features)]
+#![feature(collections)]
 use std::collections::hash_map::HashMap;
 
 // Compress using LZW

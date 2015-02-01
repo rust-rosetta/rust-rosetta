@@ -1,6 +1,9 @@
 // Implements http://rosettacode.org/wiki/A%2BB
-#![allow(unstable)]
-use std::io::stdio;
+#![feature(io)]
+#![feature(collections)]
+
+
+use std::old_io::stdio;
 
 fn main() {
     let input = stdio::stdin().read_line().unwrap();

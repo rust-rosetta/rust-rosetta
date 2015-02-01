@@ -1,5 +1,7 @@
 // http://rosettacode.org/wiki/Harshad_or_Niven_series
-#![allow(unstable)]
+#![feature(collections)]
+#![feature(unicode)]
+
 use std::usize;
 fn main() {
     let digit_sum = |&: i: usize| i.to_string().chars()

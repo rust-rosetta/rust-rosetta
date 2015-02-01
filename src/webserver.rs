@@ -1,8 +1,11 @@
 // Implements http://rosettacode.org/wiki/Hello_world/Web_server
-#![allow(unstable)]
+#![feature(io)]
+#![feature(std_misc)]
+#![feature(collections)]
+#![feature(os)]
 
-use std::io::net::tcp::{TcpAcceptor, TcpListener, TcpStream};
-use std::io::{Acceptor, Listener, IoResult};
+use std::old_io::net::tcp::{TcpAcceptor, TcpListener, TcpStream};
+use std::old_io::{Acceptor, Listener, IoResult};
 use std::thread::Thread;
 
 #[cfg(not(test))] use std::os;
@@ -27,7 +30,7 @@ charset=UTF-8
     </body>
 </html>";
 
-    try!(stream.write(response));
+    try!(stream.write_all(response));
     stream.close_write()
 }
 

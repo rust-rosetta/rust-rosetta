@@ -1,5 +1,6 @@
 // http://rosettacode.org/wiki/Taxicab_numbers
-#![allow(unstable)]
+#![feature(core)]
+
 use std::collections::BinaryHeap;
 use std::num::Int;
 use std::cmp::Ordering;

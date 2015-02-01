@@ -1,7 +1,10 @@
 // Implements http://rosettacode.org/wiki/Guess_the_number
-#![allow(unstable)]
+#![feature(rand)]
+#![feature(io)]
+#![feature(collections)]
+
 use std::rand::{thread_rng, Rng};
-use std::io::stdio::stdin;
+use std::old_io::stdio::stdin;
 
 fn main() {
     let mystery_number = thread_rng().gen_range(0u8, 10) + 1;

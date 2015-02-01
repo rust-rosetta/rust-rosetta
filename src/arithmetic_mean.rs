@@ -1,5 +1,6 @@
 // Implements http://rosettacode.org/wiki/Averages/Arithmetic_mean
-#![allow(unstable)]
+#![feature(core)]
+
 use std::iter::AdditiveIterator;
 
 // The mean is not defined for an empty list, so we must return an Option

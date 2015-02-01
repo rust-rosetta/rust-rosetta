@@ -1,5 +1,5 @@
 // http://rosettacode.org/wiki/Sierpinski_triangle
-#![allow(unstable)]
+#![feature(core)]
 use std::iter::{repeat, range_step};
 
 fn main() {

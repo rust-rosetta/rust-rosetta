@@ -1,4 +1,6 @@
 // http://rosettacode.org/wiki/Evaluate_binomial_coefficients
+#![allow(unused_features)]
+#![feature(core)]
 
 extern crate num;
 use num::One;
@@ -29,7 +31,7 @@ fn main() {
 }
 
 #[test]
-#[allow(unstable)]
+
 fn test_binomial() {
     use std::num::FromStrRadix;
 

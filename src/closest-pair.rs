@@ -6,15 +6,13 @@
 // of the divide-and-conquer algorithm, since it's (arguably)
 // easier to implement, and an efficient implementation does not require
 // use of unsafe.
-#![allow(unstable)]
+#![feature(std_misc)]
 extern crate num;
-extern crate collect;
 
 use std::num::Float;
-use collect::TreeSet;
 use std::cmp::{PartialOrd, Ordering};
 use num::complex::Complex;
-
+use std::collections::BTreeSet;
 type Point = Complex<f32>;
 
 // Wrapper around Point (i.e. Complex<f32>) so that we can use a TreeSet
@@ -49,7 +47,7 @@ fn closest_pair(points: &mut [Point]) -> Option<(Point, Point)> {
     let mut closest_distance = closest_distance_sqr.sqrt();
     
     // the strip that we inspect for closest pairs as we sweep right
-    let mut strip: TreeSet<YSortedPoint> = TreeSet::new();
+    let mut strip: BTreeSet<YSortedPoint> = BTreeSet::new();
     strip.insert(YSortedPoint { point: points[0].clone() });
     strip.insert(YSortedPoint { point: points[1].clone() });
 
@@ -71,9 +69,10 @@ fn closest_pair(points: &mut [Point]) -> Option<(Point, Point)> {
 
         // Compare to points in bounding box
         {
-            let mut strip_iter = strip.upper_bound(&YSortedPoint {
+            let low_bound = YSortedPoint {
                 point: Point { re: std::num::Float::infinity(), im: point.im - closest_distance }
-            });
+            };
+            let mut strip_iter = strip.iter().skip_while(|&p| p < &low_bound);
             loop {
                 let point2 = match strip_iter.next() {
                     None => break,

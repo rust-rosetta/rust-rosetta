@@ -1,7 +1,13 @@
 // Implements http://rosettacode.org/wiki/Anagrams
-#![allow(unstable)]
+#![allow(unused_features)] // feature(io) is used only in main
+
+#![feature(std_misc)]
+#![feature(collections)]
+#![feature(path)]
+#![feature(io)]
+
 #[cfg(not(test))]
-use std::io::{File, BufferedReader};
+use std::old_io::{File, BufferedReader};
 use std::collections::{HashMap, HashSet};
 use std::collections::hash_map::Entry::{Occupied, Vacant};
 

@@ -1,5 +1,5 @@
 // http://rosettacode.org/wiki/Run-length_encoding
-#![allow(unstable)]
+#![feature(collections)]
 use std::iter::repeat;
 use std::char::CharExt;
 

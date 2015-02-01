@@ -1,7 +1,10 @@
 // Implements http://rosettacode.org/wiki/Handle_a_signal
 //
 // Note that this solution only works on Unix.
-#![allow(unstable)]
+#![allow(unused_features)]
+#![feature(libc)]
+#![feature(std_misc)]
+#![feature(io)]
 
 extern crate libc;
 extern crate time;
@@ -11,7 +14,7 @@ fn main()
 {
     use libc::consts::os::posix88::SIGINT;
     use libc::funcs::posix01::signal;
-    use std::io::timer::Timer;
+    use std::old_io::timer::Timer;
     use std::mem;
     use std::sync::atomic::{AtomicBool, ATOMIC_BOOL_INIT, Ordering};
     use std::time::duration::Duration;

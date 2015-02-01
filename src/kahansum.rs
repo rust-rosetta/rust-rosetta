@@ -1,5 +1,7 @@
 // Implements http://rosettacode.org/wiki/Kahan_summation
-#![allow(unstable)]
+#![feature(std_misc)]
+#![feature(collections)]
+
 use std::num::Float;
 use std::f32;
 

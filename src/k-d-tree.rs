@@ -1,5 +1,7 @@
 // Implements http://rosettacode.org/wiki/K-d_tree
-#![allow(unstable)]
+#![feature(core)]
+#![feature(rand)]
+
 extern crate time;
 
 use std::num::Float;

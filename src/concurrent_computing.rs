@@ -1,6 +1,9 @@
 // Implements http://rosettacode.org/wiki/Concurrent_computing
-#![allow(unstable)]
-use std::io::timer::sleep;
+#![feature(rand)]
+#![feature(std_misc)]
+#![feature(io)]
+
+use std::old_io::timer::sleep;
 use std::rand::random;
 use std::time::duration::Duration;
 use std::thread::Thread;
