@@ -1,5 +1,8 @@
 // Implements http://rosettacode.org/wiki/N-queens_problem
-#![allow(unstable)]
+#![feature(core)]
+#![feature(std_misc)]
+#![feature(test)]
+
 extern crate test;
 
 use std::vec::Vec;

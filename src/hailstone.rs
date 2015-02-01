@@ -1,5 +1,7 @@
 // Implements http://rosettacode.org/wiki/Hailstone_sequence
 // Define a struct which stores the state for the iterator.
+#![feature(core)]
+
 struct Hailstone {
     next: usize, // Accessible only to the current module.
     pub start: usize  // Publically accessible.
@@ -38,7 +40,7 @@ impl Iterator for Hailstone {
     }
 }
 
-#[allow(unstable)]
+
 /// Returns the start number and length of the longest hailstone sequence up to `limit`
 fn biggest_hailstone(limit: usize) -> (usize, usize) {
     (0us..limit).map(|n| (n, Hailstone::new(n).count()))

@@ -1,7 +1,8 @@
 // http://rosettacode.org/wiki/Horner%27s_rule_for_polynomial_evaluation
+#![feature(core)]
 use std::num::Int;
 
-#[allow(unstable)]
+
 fn horner<T:Int>(cs:&[T], x:T) -> T {
     cs.iter().rev().fold(Int::zero(), |acc: T, c| (acc*x) + (*c))
 }

@@ -1,5 +1,5 @@
 // Implements http://rosettacode.org/wiki/Fast_Fourier_transform
-#![allow(unstable)]
+#![feature(core)]
 extern crate num;
 
 use std::f32::consts::PI;

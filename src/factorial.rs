@@ -1,5 +1,7 @@
 // Implements http://rosettacode.org/wiki/Factorial
-#![allow(unstable)]
+#![allow(unused_features)]
+#![feature(test)]
+
 // Calculate the factorial using recursion
 fn factorial_recursive (n: usize) -> usize {
     match n {

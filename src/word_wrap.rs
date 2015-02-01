@@ -1,5 +1,5 @@
 // http://rosettacode.org/wiki/Word_wrap
-#![allow(unstable)]
+
 // Using the minimum length greedy algorithm
 // http://en.wikipedia.org/wiki/Word_wrap#Minimum_length
 

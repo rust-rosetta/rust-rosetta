@@ -1,5 +1,6 @@
 // Implements http://rosettacode.org/wiki/JSON
-#![allow(unstable)]
+#![feature(core)]
+#![feature(collections)]
 
 extern crate "rustc-serialize" as rustc_serialize;
 use rustc_serialize::json;

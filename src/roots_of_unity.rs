@@ -1,4 +1,6 @@
 // http://rosettacode.org/wiki/Roots_of_unity
+#![feature(core)]
+
 extern crate num;
 use num::complex::{Complex, Complex32};
 use std::f32::consts;
@@ -12,7 +14,7 @@ fn main() {
     }
 }
 
-#[allow(unstable)]
+
 fn roots_of_unity(degree: usize) -> Vec<Complex32> {
     (0..degree).map(|el|
         Complex::<f32>::from_polar(&1f32, &(2f32 * consts::PI * (el as f32) / (degree as f32))))

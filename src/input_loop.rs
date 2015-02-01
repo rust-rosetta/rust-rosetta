@@ -1,9 +1,10 @@
 // Implements http://rosettacode.org/wiki/Input_loop
-#![allow(unstable)]
-use std::io;
+#![feature(io)]
+
+use std::old_io;
 
 fn main() {
-    for line in io::stdin().lock().lines() {
+    for line in old_io::stdin().lock().lines() {
         print!("{}", line.unwrap());
     }
 }

@@ -11,11 +11,12 @@ fn a(k: i32,
      x5: &Fn() -> i32) -> i32 {
     let k = Cell::new(k);
 
-    let b: Cell<Option<&Fn() -> i32>> = Cell::new(None);
-    let tmp = |&:| {
-        k.set(k.get() - 1);
-        a(k.get(), &*b.get().unwrap(), x1, x2, x3, x4)
-    };
+    let (b, tmp) : (Cell<Option<&Fn() -> i32>>, _ );
+    b = Cell::new(None);
+    tmp = |&:| {
+            k.set(k.get() - 1);
+            a(k.get(), &*b.get().unwrap(), x1, x2, x3, x4)
+        };
     b.set(Some(&tmp));
 
     if k.get() <= 0 { x4() + x5() } else { b.get().unwrap()() }

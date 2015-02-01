@@ -1,10 +1,12 @@
 // Implements http://rosettacode.org/wiki/Metered_concurrency
 // Rust has a perfectly good Semaphore type already.  It lacks count(), though, so we can't use it
 // directly.
-#![allow(unstable)]
+#![feature(core)]
 #![feature(unsafe_destructor)]
+#![feature(io)]
+#![feature(std_misc)]
 
-use std::io::timer;
+use std::old_io::timer;
 use std::sync::Arc;
 use std::sync::atomic::{AtomicUint, Ordering};
 use std::time::duration::Duration;

@@ -1,8 +1,7 @@
 // Implements http://rosettacode.org/wiki/Happy_numbers
-#![allow(unstable)]
-extern crate collect;
+#![allow(unused_features)]
+#![feature(core)]
 
-use collect::TreeSet;
 #[cfg(not(test))]
 use std::iter::count;
 
@@ -20,7 +19,7 @@ fn digits(mut n: usize) -> Vec<usize> {
 }
 
 fn is_happy(mut x: usize) -> bool {
-    let mut past = TreeSet::new();
+    let mut past = Vec::new();
     while x != 1 {
         // Take the sum of the squares of the digits of x
         x = digits(x).iter().fold(0, |a, &b| a + b * b);
@@ -30,7 +29,8 @@ fn is_happy(mut x: usize) -> bool {
             return false
         }
 
-        past.insert(x);
+        //past.insert(x);
+        past.push(x);
     }
     true
 }

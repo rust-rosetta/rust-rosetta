@@ -1,5 +1,6 @@
 // Implements http://rosettacode.org/wiki/Check_output_device_is_a_terminal
-#![allow(unstable)]
+#![feature(libc)]
+
 extern crate libc;
 
 fn main() {

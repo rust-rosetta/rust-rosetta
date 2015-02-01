@@ -1,5 +1,5 @@
 // Implements http://rosettacode.org/wiki/Averages/Mean_angle
-#![allow(unstable)]
+#![feature(core)]
 
 use std::num::Float;
 use std::f64::consts::PI;

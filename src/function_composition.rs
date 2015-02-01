@@ -1,5 +1,7 @@
 // http://rosettacode.org/wiki/Function_composition
-#![allow(unstable)]
+#![allow(unused_features)]
+#![feature(collections)]
+
 #[cfg(not(test))]
 fn main() {
     use std::f32::consts;

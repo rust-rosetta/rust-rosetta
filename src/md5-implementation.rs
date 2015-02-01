@@ -3,7 +3,8 @@
  * Ported from C - Simple MD5 implementation
 * on Wikipedia https://en.wikipedia.org/wiki/MD5
 */
-#![allow(unstable)]
+#![feature(core)]
+#![feature(collections)]
 
 use std::iter::range_step;
 use std::fmt::{Debug, Formatter, Result};
@@ -130,7 +131,7 @@ fn md5(initial_msg: &[u8]) -> MD5
                 i @ 32...47 => ( b ^ c ^ d,
                                 (3*i + 5) % 16 ),
                 i           => ( c ^ (b | (!d)),
-                                (7*i) % 16 )
+                            (7*i) % 16 )
             };
 
             let temp = d;

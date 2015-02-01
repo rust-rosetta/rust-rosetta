@@ -1,7 +1,10 @@
 // Dummy main library
 // It also contains a test module, which checks if all source files are covered by `Cargo.toml`
-#![allow(unstable)]
+#![allow(unused_features)]
+#![feature(path)]
+#![feature(io)]
 #![feature(plugin)]
+#![feature(collections)]
 
 extern crate regex;
 #[macro_use] 
@@ -15,8 +18,8 @@ fn main() { }
 #[cfg(test)]
 mod test {
     use std::collections::HashSet;
-    use std::io::BufferedReader;
-    use std::io::fs::{self, File};
+    use std::old_io::BufferedReader;
+    use std::old_io::fs::{self, File};
 
     // A test to check if all source files are covered by `Cargo.toml`
     #[test]

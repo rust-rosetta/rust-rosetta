@@ -1,6 +1,8 @@
 // Implements http://rosettacode.org/wiki/Create_a_file
-#![allow(unstable)]
-use std::io::{self, File, fs};
+#![feature(path)]
+#![feature(io)]
+
+use std::old_io::{self, File, fs};
 
 #[cfg(not(test))]
 fn main () {
@@ -22,7 +24,7 @@ fn main () {
     // Create a directory. Here we handle a possible error by using
     // the functions provided by result.  The second argument sets the
     // file permissions
-    let result = fs::mkdir(&Path::new("build/docs"), io::USER_RWX);
+    let result = fs::mkdir(&Path::new("build/docs"), old_io::USER_RWX);
     if result.is_err() {
         println!("Failed to create a directory: {}", result.err().unwrap());
     }
@@ -30,11 +32,11 @@ fn main () {
 
 #[test]
 fn test_create_file() {
-    use std::io::fs::PathExtensions;
+    use std::old_io::fs::PathExtensions;
 
     let build_dir = Path::new("build-tests");
     if !(build_dir.exists() && build_dir.is_dir()) {
-        let r = fs::mkdir(&build_dir, io::USER_RWX);
+        let r = fs::mkdir(&build_dir, old_io::USER_RWX);
         assert!(r.is_ok());
     }
 

@@ -2,7 +2,7 @@
 // with the sorting indexes algorithm
 // explained in the discussion page
 // http://rosettacode.org/wiki/Talk:Zig-zag_matrix
-#![allow(unstable)]
+#![feature(core)]
 
 use std::iter::repeat;
 use std::cmp::Ordering;

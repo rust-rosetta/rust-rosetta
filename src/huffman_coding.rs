@@ -1,7 +1,8 @@
 // Implement data structures for a Huffman encoding tree:
 //   http://rosettacode.org/wiki/Huffman_coding
-#![allow(unstable)]
-extern crate core;
+#![feature(std_misc)]
+#![feature(collections)]
+
 use std::collections::HashMap;
 use std::collections::hash_map::Entry::{Occupied, Vacant};
 use std::collections::BinaryHeap;

@@ -2,10 +2,14 @@
 //
 // Contributed by Gavin Baker <gavinb@antonym.org>
 // Adapted from the Go version
-#![allow(unstable)]
+#![feature(path)]
+#![feature(io)]
+#![feature(collections)]
+#![feature(std_misc)]
+#![feature(core)]
 
 use std::num::Float;
-use std::io::{BufferedReader, BufferedWriter, File};
+use std::old_io::{BufferedReader, BufferedWriter, File};
 use std::iter::repeat;
 
 // Simple 8-bit grayscale image
@@ -75,7 +79,7 @@ fn save_pgm(img: &ImageGray8, filename: &str) {
 
     // Write binary image data
 
-    match file.write(&(img.data[])) {
+    match file.write_all(&(img.data[])) {
         Err(e) => println!("Failed to image data: {}", e),
         _ => {},
     }

@@ -1,10 +1,12 @@
 // Implements http://rosettacode.org/wiki/Active_object
-#![allow(unstable)]
+#![feature(std_misc)]
+#![feature(io)]
+#![feature(core)]
 extern crate time;
 
 use std::num::Float;
 use std::f64::consts::PI;
-use std::io::timer::Timer;
+use std::old_io::timer::Timer;
 use std::sync::{Arc, Mutex};
 use std::time::duration::Duration;
 use std::thread::Thread;

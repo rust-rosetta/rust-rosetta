@@ -1,5 +1,5 @@
 // Implements http://rosettacode.org/wiki/Almost_prime
-#![allow(unstable)]
+#![feature(core)]
 
 fn is_kprime(mut n: usize, k: usize) -> bool {
     let mut p = 2;

@@ -1,5 +1,11 @@
 // http://rosettacode.org/wiki/Bulls_and_cows
-#![allow(unstable)]
+#![allow(unused_features)] // feature(io) is not used in test
+
+#![feature(rand)]
+#![feature(core)]
+#![feature(unicode)]
+#![feature(io)]
+ 
 use std::fmt::{self, Display};
 use std::char::CharExt;
 
@@ -79,7 +85,7 @@ fn calculate_score(given_digits: &[usize], guessed_digits: &[usize]) ->
 
 #[cfg(not(test))]
 fn main() {
-    let mut reader = std::io::stdin();
+    let mut reader = std::old_io::stdin();
     loop {
         let given_digits = generate_digits();
         println!("I have chosen my {} digits. Please guess what they are" ,

@@ -2,30 +2,21 @@
 name = "rust-rosetta"
 version = "0.0.1"
 dependencies = [
- "collect 0.0.16 (registry+https://github.com/rust-lang/crates.io-index)",
  "num 0.1.10 (registry+https://github.com/rust-lang/crates.io-index)",
- "regex 0.1.10 (registry+https://github.com/rust-lang/crates.io-index)",
- "regex_macros 0.1.5 (registry+https://github.com/rust-lang/crates.io-index)",
- "rustc-serialize 0.2.9 (registry+https://github.com/rust-lang/crates.io-index)",
- "time 0.1.14 (registry+https://github.com/rust-lang/crates.io-index)",
-]
-
-[[package]]
-name = "collect"
-version = "0.0.16"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-dependencies = [
- "traverse 0.0.6 (registry+https://github.com/rust-lang/crates.io-index)",
+ "regex 0.1.12 (registry+https://github.com/rust-lang/crates.io-index)",
+ "regex_macros 0.1.6 (registry+https://github.com/rust-lang/crates.io-index)",
+ "rustc-serialize 0.2.10 (registry+https://github.com/rust-lang/crates.io-index)",
+ "time 0.1.15 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
 [[package]]
 name = "gcc"
-version = "0.1.6"
+version = "0.1.7"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 
 [[package]]
 name = "libc"
-version = "0.1.0"
+version = "0.1.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 
 [[package]]
@@ -33,38 +24,33 @@ name = "num"
 version = "0.1.10"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 dependencies = [
- "rustc-serialize 0.2.9 (registry+https://github.com/rust-lang/crates.io-index)",
+ "rustc-serialize 0.2.10 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
 [[package]]
 name = "regex"
-version = "0.1.10"
+version = "0.1.12"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 
 [[package]]
 name = "regex_macros"
-version = "0.1.5"
+version = "0.1.6"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 dependencies = [
- "regex 0.1.10 (registry+https://github.com/rust-lang/crates.io-index)",
+ "regex 0.1.12 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
 [[package]]
 name = "rustc-serialize"
-version = "0.2.9"
+version = "0.2.10"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 
 [[package]]
 name = "time"
-version = "0.1.14"
+version = "0.1.15"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 dependencies = [
- "gcc 0.1.6 (registry+https://github.com/rust-lang/crates.io-index)",
- "libc 0.1.0 (registry+https://github.com/rust-lang/crates.io-index)",
+ "gcc 0.1.7 (registry+https://github.com/rust-lang/crates.io-index)",
+ "libc 0.1.1 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
-
-[[package]]
-name = "traverse"
-version = "0.0.6"
-source = "registry+https://github.com/rust-lang/crates.io-index"
 

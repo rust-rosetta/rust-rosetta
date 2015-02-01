@@ -7,10 +7,11 @@
 // condvar represents an event on which a task may wait.  The one subtlety is that condvar signals
 // are only received if there is actually a task waiting on the signal--see the below program for
 // an example of how this may be achieved in practice.
-#![allow(unstable)]
+#![feature(io)]
+#![feature(std_misc)]
 extern crate time;
 
-use std::io::timer::Timer;
+use std::old_io::timer::Timer;
 use std::time::duration::Duration;
 use std::sync::{Arc, Mutex, Condvar};
 use std::thread::Thread;

@@ -1,5 +1,6 @@
 // http://rosettacode.org/wiki/Closures/Value_capture
-#![allow(unstable)]
+#![feature(core)]
+
 use std::iter::{count, Counter, Map};
 use std::num::Float;
 

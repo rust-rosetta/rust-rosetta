@@ -1,5 +1,8 @@
 // http://rosettacode.org/wiki/Look-and-say_sequence
-#![allow(unstable)]
+#![allow(unused_features)]
+#![allow(unused_attributes)]
+#![feature(collections)]
+#![feature(core)]
 use run_length_encoding::encode;
 use std::char::CharExt;
 

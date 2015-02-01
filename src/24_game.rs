@@ -9,16 +9,24 @@
 // We use a glob import in our test module. Seperating tests into a seperate
 // module enforces visibility restrictions so the test module can only access
 // publically exported code, the same as any user of the code.
-#![allow(unstable)]
+
+#![allow(unused_features)] // feature(rand) is used only in main
+
+#![feature(core)]
+#![feature(unicode)]
+#![feature(collections)]
+#![feature(io)]
+#![feature(rand)]
+
 use std::cmp::Ordering::{self, Greater};
 use std::char::CharExt;
 
 #[cfg(not(test))]
 fn main() {
-    use std::{rand, io};
+    use std::{rand, old_io};
 
     let mut rng = rand::thread_rng();
-    let mut input = io::stdin();
+    let mut input = old_io::stdin();
 
     loop {
         let mut sample = rand::sample(&mut rng, (1us..10), 4);

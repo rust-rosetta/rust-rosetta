@@ -1,7 +1,10 @@
 // Implements http://rosettacode.org/wiki/Read_a_file_line_by_line
-#![allow(unstable)]
-use std::io::fs::File;
-use std::io::BufferedReader;
+#![feature(io)]
+#![feature(path)]
+#![feature(os)]
+
+use std::old_io::fs::File;
+use std::old_io::BufferedReader;
 use std::os::args;
 
 fn main() {

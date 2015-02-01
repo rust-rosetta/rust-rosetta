@@ -2,8 +2,12 @@
 //
 // Contributed by Gavin Baker <gavinb@antonym.org>
 //
-#![allow(unstable)]
-use std::io::{File, BufferedReader};
+#![feature(path)]
+#![feature(io)]
+#![feature(collections)]
+
+
+use std::old_io::{File, BufferedReader};
 use std::num::Float;
 
 // Calculate the expected frequency of a digit according to Benford's Law

@@ -1,5 +1,5 @@
 // http://rosettacode.org/wiki/Comma_quibbling
-#![allow(unstable)]
+#![feature(collections)]
 fn quibble(seq: &[&str]) -> String {
     match seq {
         [] => "{}".to_string(),

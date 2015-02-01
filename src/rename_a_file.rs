@@ -1,6 +1,8 @@
 // Implements http://rosettacode.org/wiki/Rename_a_file
-#![allow(unstable)]
-use std::io::fs;
+#![feature(io)]
+#![feature(path)]
+
+use std::old_io::fs;
 
 fn main() {
     fs::rename(&Path::new("input.txt"), &Path::new("output.txt")).unwrap();

@@ -1,7 +1,12 @@
 // Implements http://rosettacode.org/wiki/Read_a_specific_line_from_a_file
-#![allow(unstable)]
-use std::io::fs::File;
-use std::io::BufferedReader;
+#![feature(io)]
+#![feature(path)]
+
+#![feature(os)]
+#![feature(collections)]
+
+use std::old_io::fs::File;
+use std::old_io::BufferedReader;
 use std::os::args;
 
 fn main() {

@@ -1,5 +1,5 @@
 // http://rosettacode.org/wiki/ABC_Problem
-#![allow(unstable)]
+ #![feature(collections)]
 use std::collections::HashSet;
 
 const  WORDS: &'static [&'static str] = &["A", "BARK", "BOOK", "TREAT",
