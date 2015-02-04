@@ -7,6 +7,7 @@
 // can be used to allow threads to do asynchronous work and guarantee properties
 // at checkpoints.
 #![feature(std_misc)]
+#![feature(core)]
 
 use std::sync::atomic::{AtomicBool, Ordering};
 use std::sync::{Arc, Barrier};

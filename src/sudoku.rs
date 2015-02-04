@@ -1,5 +1,4 @@
 // http://rosettacode.org/wiki/Sudoku
-#![feature(collections)]
 #![feature(unicode)]
 #![feature(core)]
 
@@ -42,7 +41,9 @@ impl Sudoku {
 }
 
 impl FromStr for Sudoku {
-    fn from_str(s: &str) -> Option<Sudoku> {
+    type Err = ();
+
+    fn from_str(s: &str) -> Result<Sudoku, ()> {
         let mut sudoku = Sudoku::new();
 
         for (y, line) in s.lines().filter(|l| !l.is_empty()).enumerate() {
@@ -51,12 +52,12 @@ impl FromStr for Sudoku {
                 if let Some(d) = c.to_digit(10) {
                     if d != 0 { sudoku.set(x, y, d); }
                 } else {
-                    return None
+                    return Err(())
                 }
             }
         }
 
-        Some(sudoku)
+        Ok(sudoku)
     }
 }
 
@@ -109,7 +110,7 @@ fn solve_sudoku(mut puzzle: Sudoku) -> Vec<Sudoku> {
                 let col = (0 .. BOARD_HEIGHT).map(|y| (x, y));
                 let grp = idx_in_grp.iter().map(|&(dx, dy)| (x0 + dx, y0 + dy));
 
-                let mut it = row.chain(col).chain(grp)
+                let it = row.chain(col).chain(grp)
                     .filter(|&pos: &(usize, usize)| pos != (x, y));
 
                 let mask = !puzzle.map[y][x] & MASK_ALL;

@@ -1,14 +1,12 @@
 // Implements http://rosettacode.org/wiki/Arithmetic/Integer
 #![feature(io)]
-#![feature(collections)]
-
 
 use std::old_io::stdin;
 
 fn main() {
     let input = stdin().read_line().unwrap();
     let words = input.words().take(2)
-                                        .map(|s| s.parse())
+                                        .map(|s| s.parse().ok())
                                         .collect::<Vec<Option<i32>>>();
 
     let (a, b) = match &words[] {

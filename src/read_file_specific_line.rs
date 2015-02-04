@@ -1,9 +1,7 @@
 // Implements http://rosettacode.org/wiki/Read_a_specific_line_from_a_file
 #![feature(io)]
 #![feature(path)]
-
 #![feature(os)]
-#![feature(collections)]
 
 use std::old_io::fs::File;
 use std::old_io::BufferedReader;
@@ -16,7 +14,7 @@ fn main() {
         _ => {}
     }
     let filename = args()[1].clone();
-    let line_number = args()[2].parse::<usize>().expect("You must enter an integer as the line number");
+    let line_number = args()[2].parse::<usize>().ok().expect("You must enter an integer as the line number");
 
     let file = File::open(&Path::new(&filename[]));
     let mut reader = BufferedReader::new(file);
@@ -26,7 +24,7 @@ fn main() {
         Some(result) => match result {
             // Handle any errors that may arise
             Ok(ln) => print!("{}", ln),
-            Err(error) => print!("{}", error.desc)
+            Err(error) => print!("{}", error)
         }
     }
 }

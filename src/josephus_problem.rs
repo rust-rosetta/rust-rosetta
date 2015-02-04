@@ -1,5 +1,5 @@
 // Implements http://rosettacode.org/wiki/Josephus_problem
-
+#![feature(core)]
 
 // implementation based on observation:
 // `josephus(n, k) == if n < 2 { 0 } else { (josephus(n - 1, k) + k) % n }`

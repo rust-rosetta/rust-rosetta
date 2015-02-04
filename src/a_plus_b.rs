@@ -1,14 +1,11 @@
 // Implements http://rosettacode.org/wiki/A%2BB
 #![feature(io)]
-#![feature(collections)]
-
-
 use std::old_io::stdio;
 
 fn main() {
     let input = stdio::stdin().read_line().unwrap();
     let words = input.words().take(2)
-                            .map(|i| i.parse::<i32>())
+                            .map(|i| i.parse::<i32>().ok())
                             .collect::<Vec<Option<i32>>>();
 
     let sum = match &words[] {

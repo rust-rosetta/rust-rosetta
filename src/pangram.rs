@@ -1,5 +1,7 @@
 // Implements http://rosettacode.org/wiki/Pangram_checker
+#![allow(unused_features)]
 #![feature(unicode)]
+#![feature(core)]
 
 use std::collections::HashSet;
 

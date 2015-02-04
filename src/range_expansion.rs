@@ -1,7 +1,6 @@
 // Implements http://rosettacode.org/wiki/Range_expansion
-#![feature(collections)]
-
 #![feature(plugin)]
+#![feature(core)]
 
 #[macro_use]
 #[plugin]
@@ -29,13 +28,13 @@ fn expand_range(range: &str) -> Vec<isize> {
 fn expand_item(item: &str) -> Vec<isize> {
     // Handle the case of a single number
     for cap in regex!(r"^(-?\d+)$").captures_iter(item) {
-        return vec![cap.at(0).and_then(|s| s.parse()).unwrap()]
+        return vec![cap.at(0).and_then(|s| s.parse().ok()).unwrap()]
     }
 
     // Handle the case of a range
     for cap in regex!(r"^(-?\d+)-(-?\d+)$").captures_iter(item) {
-        let left: isize = cap.at(1).and_then(|s| s.parse()).unwrap();
-        let right: isize = cap.at(2).and_then(|s| s.parse()).unwrap();
+        let left: isize = cap.at(1).and_then(|s| s.parse().ok()).unwrap();
+        let right: isize = cap.at(2).and_then(|s| s.parse().ok()).unwrap();
 
         // Generate and collect a range between them
         return (left..right+1).collect()

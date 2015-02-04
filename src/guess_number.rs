@@ -1,7 +1,6 @@
 // Implements http://rosettacode.org/wiki/Guess_the_number
 #![feature(rand)]
 #![feature(io)]
-#![feature(collections)]
 
 use std::rand::{thread_rng, Rng};
 use std::old_io::stdio::stdin;
@@ -14,9 +13,9 @@ fn main() {
     loop {
         let line = input.read_line().unwrap();
         match line.trim().parse::<u8>() {
-            Some(guess) if guess == mystery_number => break,
-            Some(_) => println!("Wrong! Try again!"),
-            None => println!("Please enter an integer")
+            Ok(guess) if guess == mystery_number => break,
+            Ok(_) => println!("Wrong! Try again!"),
+            Err(_) => println!("Please enter an integer")
         }
     }
 

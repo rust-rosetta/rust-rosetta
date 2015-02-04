@@ -1,6 +1,4 @@
 // Implements http://rosettacode.org/wiki/Stack
-#![feature(core)]
-
 #[derive(Debug)]
 struct Stack<T> {
     // We use a vector because of simplicity

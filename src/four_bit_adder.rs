@@ -39,9 +39,9 @@ impl Nibble {
 
   fn to_u8(&self, carry: bool) -> u8 {
     match num::from_str_radix::<u8>(&(format!("{}", self))[], 2) {
-      Some(n) if carry => n + 16,
-      Some(n) => n,
-      None => unreachable!()
+      Ok(n) if carry => n + 16,
+      Ok(n) => n,
+      Err(_) => unreachable!()
     }
   }
 }

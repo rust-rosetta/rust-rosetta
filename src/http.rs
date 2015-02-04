@@ -2,6 +2,7 @@
 #![allow(unused_features)]
 #![allow(unused_attributes)]
 #![feature(io)]
+#![feature(core)]
 #![feature(os)]
 #![feature(std_misc)]
 

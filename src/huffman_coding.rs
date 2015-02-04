@@ -1,7 +1,7 @@
 // Implement data structures for a Huffman encoding tree:
 //   http://rosettacode.org/wiki/Huffman_coding
 #![feature(std_misc)]
-#![feature(collections)]
+#![feature(core)]
 
 use std::collections::HashMap;
 use std::collections::hash_map::Entry::{Occupied, Vacant};

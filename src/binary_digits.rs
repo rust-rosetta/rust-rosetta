@@ -1,4 +1,5 @@
 // Implements http://rosettacode.org/wiki/Binary_digits
+#![feature(core)]
 trait BinaryString {
     fn to_binary_string(&self) -> String;
 }

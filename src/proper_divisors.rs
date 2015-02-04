@@ -1,5 +1,6 @@
 // Implements http://rosettacode.org/wiki/Proper_divisors
-
+#![allow(unused_features)]
+#![feature(core)]
 fn proper_divisors(n:i32) -> Vec<i32>{
 	(1..(n / 2)+1).filter(|&i| n % i == 0).collect()
 }

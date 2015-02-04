@@ -3,7 +3,7 @@
 // Used by the tests
 #![allow(unused_features)]
 #![feature(rand)]
-
+#![feature(core)]
 #[cfg(test)]
 use std::rand::{thread_rng, Rng};
 

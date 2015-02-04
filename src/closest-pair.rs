@@ -1,5 +1,5 @@
 // Implements http://rosettacode.org/wiki/Closest-pair_problem
-
+#![feature(core)]
 // We interpret complex numbers as points in the Cartesian plane, here.
 // We also use the sweepline/plane sweep closest pairs algorithm
 // (http://www.cs.mcgill.ca/~cs251/ClosestPair/ClosestPairPS.html) instead

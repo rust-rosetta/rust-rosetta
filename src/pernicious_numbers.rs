@@ -1,4 +1,5 @@
 // http://rosettacode.org/wiki/Pernicious_numbers
+#![allow(unused_attributes)]
 #![feature(core)]
 
 use std::iter::{count, Filter, Counter};

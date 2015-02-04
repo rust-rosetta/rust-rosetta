@@ -1,6 +1,6 @@
 // Implements http://rosettacode.org/wiki/IBAN
 #![feature(unicode)]
-#![feature(collections)]
+#![feature(core)]
 
 extern crate num;
 
@@ -61,7 +61,7 @@ fn parse_digits(chars: &[char]) -> Option<BigInt> {
     let as_str = String::from_utf8(vec).unwrap(); // since it was built
         // from digits we know the vec is all made of valid utf8, so we
         // can just unwrap()
-    as_str.parse::<BigInt>()
+    as_str.parse::<BigInt>().ok()
 }
 
 fn country_length(country_code: &str) -> Option<usize> {

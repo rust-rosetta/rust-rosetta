@@ -4,8 +4,7 @@
 //
 #![feature(path)]
 #![feature(io)]
-#![feature(collections)]
-
+#![feature(core)]
 
 use std::old_io::{File, BufferedReader};
 use std::num::Float;

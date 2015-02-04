@@ -3,9 +3,9 @@
 #![allow(unused_features)]
 #![feature(path)]
 #![feature(io)]
+#![feature(core)]
 #![feature(plugin)]
 #![feature(collections)]
-
 extern crate regex;
 #[macro_use] 
 #[plugin]

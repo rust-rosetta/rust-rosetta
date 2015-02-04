@@ -1,5 +1,6 @@
 // http://rosettacode.org/wiki/Leap_year
-
+#![allow(unused_features)]
+#![feature(core)]
 fn is_leap_year(year: i32) -> bool {
     year % 4 == 0 && (year % 100 != 0 || year % 400 == 0)
 }

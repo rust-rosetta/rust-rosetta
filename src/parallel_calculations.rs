@@ -4,6 +4,7 @@
 #![allow(unused_features)]
 #![feature(std_misc)]
 #![feature(test)]
+#![feature(core)]
 
 #[cfg(test)]
 extern crate test;

@@ -2,6 +2,7 @@
 #![allow(unused_features)]
 #![feature(io)]
 #![feature(collections)]
+#![feature(core)]
 
 use std::old_io::net::addrinfo::get_host_addresses;
 use std::old_io::net::ip::IpAddr;

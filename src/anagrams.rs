@@ -1,8 +1,7 @@
 // Implements http://rosettacode.org/wiki/Anagrams
 #![allow(unused_features)] // feature(io) is used only in main
-
+#![feature(core)]
 #![feature(std_misc)]
-#![feature(collections)]
 #![feature(path)]
 #![feature(io)]
 
@@ -19,7 +18,7 @@ fn sorted_characters(string: &str) -> String {
 
 /// Returns groups of anagrams where each group consists of a set
 /// containing the words
-fn anagrams<T: Iterator<Item=String>>(mut lines: T) -> HashMap<String, HashSet<String>> {
+fn anagrams<T: Iterator<Item=String>>(lines: T) -> HashMap<String, HashSet<String>> {
     let mut groups = HashMap::new();
 
     // Make groups of words according to the letters they contain

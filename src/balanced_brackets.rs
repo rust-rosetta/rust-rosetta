@@ -1,6 +1,7 @@
 // Implements http://rosettacode.org/wiki/Balanced_brackets
 #![allow(unused_features)] // feature(rand) is used only in main
 #![feature(rand)]
+#![feature(core)]
 
 trait Balanced {
     /// Returns true if the brackets are balanced

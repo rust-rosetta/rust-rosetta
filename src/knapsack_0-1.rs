@@ -1,4 +1,5 @@
 // http://rosettacode.org/wiki/Knapsack_problem/0-1
+#![feature(core)]
 
 use std::cmp::max;
 use std::iter::repeat;
