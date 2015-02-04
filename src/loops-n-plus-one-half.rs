@@ -1,4 +1,5 @@
 // Implements http://rosettacode.org/wiki/Loops/N_plus_one_half
+#![feature(core)]
 
 fn main() {
     for i in 1us..11 {

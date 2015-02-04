@@ -1,6 +1,6 @@
 // Implements http://rosettacode.org/wiki/Menu
-#![feature(collections)]
 #![feature(io)]
+#![feature(core)]
 use std::old_io;
 
 // Print the menu followed by the prompt
@@ -20,8 +20,7 @@ fn print_both(menu: &[&str], prompt: &str) {
 fn next_input() -> Option<usize> {
 
     let line = old_io::stdin().read_line().unwrap();
-    let input: Option<usize> = line.trim().parse();
-    input
+    line.trim().parse().ok()
 }
 
 fn select<'a>(menu: &'a [&str], prompt: &str) -> &'a str {

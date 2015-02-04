@@ -1,4 +1,5 @@
 // Implements http://rosettacode.org/wiki/Fibonacci_sequence
+#![feature(core)]
 #[cfg(not(test))]
 fn main() {
     let fns = vec![(fib_recursive as fn(u64) -> u64, "recursive"),

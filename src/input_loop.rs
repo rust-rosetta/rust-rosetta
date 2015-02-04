@@ -1,5 +1,6 @@
 // Implements http://rosettacode.org/wiki/Input_loop
 #![feature(io)]
+#![feature(core)]
 
 use std::old_io;
 

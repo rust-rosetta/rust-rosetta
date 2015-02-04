@@ -1,8 +1,8 @@
 // Implements http://rosettacode.org/wiki/Hello_world/Web_server
 #![feature(io)]
 #![feature(std_misc)]
-#![feature(collections)]
 #![feature(os)]
+#![feature(core)]
 
 use std::old_io::net::tcp::{TcpAcceptor, TcpListener, TcpStream};
 use std::old_io::{Acceptor, Listener, IoResult};
@@ -68,7 +68,7 @@ fn main() {
 
     let host = "127.0.0.1";
     let port = if args.len() == 2 {
-        args[1].parse::<u16>().expect(&*format!("Usage: {} <port>", args[0]))
+        args[1].parse::<u16>().ok().expect(&*format!("Usage: {} <port>", args[0]))
     } else {
         80
     };

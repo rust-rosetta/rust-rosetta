@@ -1,5 +1,5 @@
 // Implements http://rosettacode.org/wiki/Loops/For
-
+#![feature(core)]
 use std::collections::HashMap;
 
 fn main() {

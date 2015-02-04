@@ -1,4 +1,6 @@
 // http://rosettacode.org/wiki/AKS_test_for_primes
+#![allow(unused_features)]
+#![feature(core)]
 
 pub fn is_prime(p: usize) -> bool {
     if p<2 {

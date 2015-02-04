@@ -4,6 +4,8 @@
 // http://en.wikipedia.org/wiki/Word_wrap#Minimum_length
 
 // Implemented as a lazy String iterator, returning a wrapped line each time
+#![allow(unused_features)]
+#![feature(core)]
 use std::str::Words;
 use std::mem::swap;
 
@@ -35,7 +37,7 @@ impl<'a> Iterator for WordWrap<'a> {
         const SPACE_WIDTH: usize = 1;
 
         // Loop, adding words until we run out of words or hit the line length
-        for word in self.words {
+        while let Some(word) = self.words.next() {
             let word_length = word.chars().count();
 
             // If not the first word for this line

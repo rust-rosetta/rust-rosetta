@@ -1,4 +1,5 @@
 // Implements http://rosettacode.org/wiki/Permutations_with_repetitions
+#![feature(core)]
 struct PermutationIterator<'a, T: 'a> {
     universe: &'a [T],
     size: usize,

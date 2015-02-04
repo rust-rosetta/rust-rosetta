@@ -2,7 +2,7 @@
 #![feature(io)]
 #![feature(path)]
 #![feature(os)]
-
+#![feature(core)]
 use std::old_io::fs::File;
 use std::old_io::BufferedReader;
 use std::os::args;

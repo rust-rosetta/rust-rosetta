@@ -1,6 +1,4 @@
 // http://rosettacode.org/wiki/String_concatenation
-#![feature(collections)]
-
 fn add_world(mut x: String) -> String {
     // world is a &'a[u8]
     let world = " world";

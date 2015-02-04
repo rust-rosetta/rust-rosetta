@@ -4,7 +4,6 @@
 // Adapted from the Go version
 #![feature(path)]
 #![feature(io)]
-#![feature(collections)]
 #![feature(std_misc)]
 #![feature(core)]
 

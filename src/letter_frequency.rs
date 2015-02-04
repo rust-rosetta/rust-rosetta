@@ -3,6 +3,7 @@
 #![feature(std_misc)]
 #![feature(io)]
 #![feature(path)]
+#![feature(core)]
 
 #[cfg(not(test))]
 use std::old_io::fs::File;
@@ -11,7 +12,7 @@ use std::old_io::BufferedReader;
 use std::collections::HashMap;
 use std::collections::hash_map::Entry::{Occupied, Vacant};
 
-fn count_chars<T>(mut chars: T) -> HashMap<char, usize>
+fn count_chars<T>(chars: T) -> HashMap<char, usize>
     where T : Iterator<Item=char>
 {
     let mut map: HashMap<char, usize> = HashMap::new();

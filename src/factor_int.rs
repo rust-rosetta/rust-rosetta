@@ -1,5 +1,5 @@
 // Implements http://rosettacode.org/wiki/Factors_of_an_integer
-
+#![feature(core)]
 use std::num::Float;
 
 #[cfg(not(test))]
@@ -8,7 +8,7 @@ fn main() {
     println!("Factors of integer {}:", target);
     let factors = factor_int(target);
     
-    for f in factors.iter() {
+    for f in factors {
         println!("{}", f);
     }
 }

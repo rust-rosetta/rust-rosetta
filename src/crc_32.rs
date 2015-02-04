@@ -1,5 +1,5 @@
 // http://rosettacode.org/wiki/CRC-32
-
+#![feature(core)]
 #[cfg(not(test))]
 fn main() {
     let s = "The quick brown fox jumps over the lazy dog";

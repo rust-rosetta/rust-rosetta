@@ -1,6 +1,5 @@
 // Implements http://rosettacode.org/wiki/Align_columns
-#![feature(collections)]
-
+#![feature(core)]
 
 const TEST_STR: &'static str =
     "Given$a$text$file$of$many$lines,$where$fields$within$a$line$\nare$delineated\

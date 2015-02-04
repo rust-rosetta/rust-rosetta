@@ -2,6 +2,7 @@
 #![feature(rand)]
 #![feature(std_misc)]
 #![feature(io)]
+#![feature(core)]
 
 use std::old_io::timer::sleep;
 use std::rand::random;

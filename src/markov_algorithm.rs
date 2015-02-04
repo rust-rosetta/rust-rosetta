@@ -1,4 +1,5 @@
 // Solution for http://rosettacode.org/wiki/Execute_a_Markov_algorithm
+#![feature(core)]
 #![feature(collections)]
 // Individual markov rule
 struct MarkovRule {

@@ -1,7 +1,5 @@
 // http://rosettacode.org/wiki/Arithmetic/Rational
 #![feature(core)]
-#![feature(collections)]
-
 extern crate num;
 
 use std::num::{Float, SignedInt};

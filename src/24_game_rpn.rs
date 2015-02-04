@@ -1,11 +1,9 @@
 // Implements http://rosettacode.org/wiki/24_game
 // Uses RPN expression
 #![allow(unused_features)] // feature(rand) is used only in main
-
-#![feature(collections)]
 #![feature(rand)]
 #![feature(io)]
-
+#![feature(core)]
 
 #[cfg(not(test))]
 fn main() {
@@ -46,14 +44,14 @@ fn check_input(expr: &str, choices: &[usize]) -> Result<(), String> {
             }
         } else {
             match token.parse::<usize>() {
-                Some(n) => {
+                Ok(n) => {
                     // check if the number is valid
                     if !choices.contains(&n) {
                         return Err(format!("Cannot use {}", n));
                     }
                     stack.push(n)
                 },
-                None => return Err(format!("Invalid input: {}", token))
+                Err(_) => return Err(format!("Invalid input: {}", token))
             }
         }
     }
