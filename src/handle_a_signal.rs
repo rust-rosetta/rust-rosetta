@@ -42,7 +42,7 @@ fn main()
     // Integer counter
     let mut i = 0u32;
     // Every `duration`...
-    for _ in &periodic {
+    for _ in periodic.iter() {
         // Break if SIGINT was handled
         if unsafe { GOT_SIGINT.load(Ordering::Acquire) } { break }
         // Otherwise, increment and display the integer and continue the loop.
