@@ -69,7 +69,7 @@ fn save_pgm(img: &ImageGray8, filename: &str) {
 
     // Write header
 
-    match file.write_line(&* format!("P5\n{}\n{}\n255", img.width, img.height)) {
+    match file.write_line(& format!("P5\n{}\n{}\n255", img.width, img.height)) {
         Err(e) => println!("Failed to write header: {}", e),
         _ => {},
     }

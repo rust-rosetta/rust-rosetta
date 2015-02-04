@@ -68,7 +68,7 @@ fn main() {
 
     let host = "127.0.0.1";
     let port = if args.len() == 2 {
-        args[1].parse::<u16>().ok().expect(&*format!("Usage: {} <port>", args[0]))
+        args[1].parse::<u16>().ok().expect(&format!("Usage: {} <port>", args[0]))
     } else {
         80
     };

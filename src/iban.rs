@@ -38,7 +38,7 @@ fn is_valid(iban: &str) -> bool {
     }
 
     // Expand letters to digits
-    let iban_int = parse_digits(&*iban_chars);
+    let iban_int = parse_digits(&iban_chars);
 
     // Check if the remainder is one
     match iban_int {
