@@ -40,6 +40,7 @@ authors = [
     "Yale Cason, https://github.com/ghotiphud",
     "Makoto Nakashima, https://github.com/gifnksm",
     "Marvin Löbel, https://github.com/Kimundi",
+    "Raphael Heitjohann, https://github.com/trideon3",
 ]
 
 [dependencies]
@@ -896,6 +897,11 @@ path = "src/string_concatenation.rs"
 name = "string_interpolation"
 path = "src/string_interpolation.rs"
 test = false
+
+[[bin]]
+# http://rosettacode.org/wiki/Determine_if_a_string_is_numeric
+name = "string_is_numeric"
+path = "src/string_is_numeric.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/String_matching
