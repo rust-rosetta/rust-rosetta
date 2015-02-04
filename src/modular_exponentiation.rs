@@ -45,7 +45,7 @@ fn test_mod_exp() {
         (18, 112994442, 1000000001, 59108659),
     ];
 
-    for &(a, b, m, expected) in tests.iter() {
+    for &(a, b, m, expected) in &tests {
         let a = a.to_biguint().unwrap();
         let b = b.to_biguint().unwrap();
         let m = m.to_biguint().unwrap();

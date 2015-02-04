@@ -220,7 +220,7 @@ fn main() {
 
     println!("{}", puzzle);
 
-    for answer in solve_sudoku(puzzle).iter() {
+    for answer in &solve_sudoku(puzzle) {
         println!("{}", answer);
     }
 }

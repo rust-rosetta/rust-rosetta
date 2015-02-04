@@ -74,7 +74,7 @@ fn print_aligned_columns(chunks: &Vec<Vec<String>>, max_lengths: &Vec<usize>) {
 #[test]
 fn test_result() {
     let (chunks, max_lengths) = align_columns(TEST_STR);
-    for chunkset in chunks.iter() {
+    for chunkset in &chunks {
         // the number of words in a chunkset is <= the number of values in max_lengths
         assert!(chunkset.len() <= max_lengths.len());
         for j in (0us..chunkset.len()) {

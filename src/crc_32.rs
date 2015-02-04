@@ -22,7 +22,7 @@ fn crc(bytes: &[u8]) -> u32 {
     }
 
     let mut crc: u32 = 0xffffffff;
-    for byte in bytes.iter() {
+    for byte in bytes {
         crc = table[(crc as u8 ^ *byte) as usize] ^ (crc >> 8);
     }
     crc ^ 0xffffffff

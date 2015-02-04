@@ -63,7 +63,7 @@ fn main() {
     }
 
     println!("sums");
-    for &y in [23us, 123, 1234, 12345].iter() {
+    for &y in &[23us, 123, 1234, 12345] {
         println!("{}: {}", y, solver.row_sum(y));
     }
 }

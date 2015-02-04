@@ -39,7 +39,7 @@ fn main() {
     let mut i = 1us;
 
     println!("{:>2}:{:>10} {}", "N", "length", "entropy");
-    for &(length, entropy) in words.iter() {
+    for &(length, entropy) in &words {
         println!("{:>2}:{:>10} {:.15}", i, length, entropy);
         i += 1;
     }

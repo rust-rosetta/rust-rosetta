@@ -19,7 +19,7 @@ fn main() {
     b"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789",
     b"12345678901234567890123456789012345678901234567890123456789012345678901234567890"];
 
-    for &input in inputs.iter() {
+    for &input in &inputs {
         println!("{:?}", md5(input));
     }
 }
@@ -54,7 +54,7 @@ struct MD5([u8; 16]);
 impl Debug for MD5 {
     fn fmt(&self, f: &mut Formatter) -> Result {
         let MD5(md5)=*self;
-        for b in md5.iter() {
+        for b in &md5 {
             try!(write!(f, "{:02x}", *b));
         }
         Ok(())
@@ -186,7 +186,7 @@ fn known_hashes() {
     (b"12345678901234567890123456789012345678901234567890123456789012345678901234567890",
         "57edf4a22be3c955ac49da2e2107b67a")];
 
-    for &(i,o) in in_out.iter() {
+    for &(i,o) in &in_out {
         let m=md5(i);
         assert_eq!(format!("{:?}", m), o.to_string());
     }

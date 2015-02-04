@@ -44,7 +44,7 @@ fn test_entropy() {
         ("Rosetta Code", 3.084962500407)];
     // Good enough, actual float epsilon is much smaller
     let epsilon: f64 = 0.0000001;
-    for (input, expected) in tests.into_iter() {
+    for (input, expected) in tests {
         let output = shannon_entropy(input);
         assert!((output - expected).abs() < epsilon);
     }

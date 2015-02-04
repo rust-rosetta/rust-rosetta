@@ -16,7 +16,7 @@ fn compress(original_str: &str) -> Vec<i32> {
 
    let mut result = vec![];
    let mut w = vec![];
-   for &c in original.iter() {
+   for &c in original {
       let mut wc = w.clone();
       wc.push(c);
 
@@ -50,7 +50,7 @@ fn decompress(compressed: &[i32]) -> String {
    let mut w = vec![compressed[0].clone() as u8];
    let compressed = &compressed[1..];
    let mut result = w.clone();
-   for &k in compressed.iter() {
+   for &k in compressed {
       let entry = match dictionary.get(&k) {
           Some(v) => v.clone(),
           None if k == dict_size => { let mut new = w.clone(); new.push(w[0].clone()); new }

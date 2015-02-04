@@ -20,7 +20,7 @@ fn main() {
     d.write_all(b"The quick brown fox jumps over the lazy dog").unwrap();
     let sha1=d.sha1();
 
-    for h in sha1.iter() {
+    for h in &sha1 {
         print!("{:x} ", *h);
     }
  }
@@ -212,7 +212,7 @@ fn known_sha1s() {
             ,0x10 ,0x0d ,0xb4,0xb3]
          )];
 
-    for &(i, o) in input_output.iter() {
+    for &(i, o) in &input_output {
         let mut d = Digest::new();
         d.write_str(i).unwrap();
         let sha1=d.sha1();

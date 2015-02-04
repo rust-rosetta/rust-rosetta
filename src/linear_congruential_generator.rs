@@ -72,7 +72,7 @@ mod test {
     fn bsd() {
         let values = [12345u32, 1406932606, 654583775, 1449466924, 229283573, 1109335178, 1051550459, 1293799192, 794471793, 551188310];
         let mut lcg = BSDLinearCongruentialGenerator::new(0);
-        for val in values.iter() {
+        for val in &values {
             assert_eq!(lcg.next(), *val);
         }
     }

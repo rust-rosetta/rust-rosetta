@@ -30,7 +30,7 @@ fn largest_min_factor_chan(numbers: &[usize]) -> usize {
     let (sender, receiver) = channel();
 
     // Send all the minimal factors
-    for &x in numbers.iter() {
+    for &x in numbers {
         let child_sender = sender.clone();
         Thread::spawn(move || { child_sender.send(min_factor(x)).unwrap() });
     }

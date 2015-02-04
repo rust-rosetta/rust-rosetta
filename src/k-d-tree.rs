@@ -207,7 +207,7 @@ pub fn main() {
 
     let start_search_time = get_time();
     let mut total_n_visited = 0us;
-    for target in random_targets.iter() {
+    for target in &random_targets {
         let (_, n_visited) = random_tree.find_nearest_neighbor(target);
         total_n_visited += n_visited;
     }
