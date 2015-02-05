@@ -947,6 +947,12 @@ name = "taxicab_numbers"
 path = "src/taxicab_numbers.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/Tic-tac-toe
+name = "tic_tac_toe"
+path = "src/tic_tac_toe.rs"
+test = false
+
+[[bin]]
 # http://rosettacode.org/wiki/Towers_of_Hanoi
 name = "towers_of_hanoi"
 path = "src/towers_of_hanoi.rs"
