@@ -7,7 +7,7 @@ use std::num::Float;
 use std::iter::Map;
 use std::ops::Range;
 
-type DoorIter = Map<u32, DoorState, Range<u32>, fn(u32) -> DoorState>;
+type DoorIter = Map<Range<u32>, fn(u32) -> DoorState>;
 
 #[derive(Debug, PartialEq)]
 enum DoorState { Open, Closed, }

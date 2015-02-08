@@ -4,7 +4,7 @@
 
 use std::usize;
 fn main() {
-    let digit_sum = |&: i: usize| i.to_string().chars()
+    let digit_sum = |i: usize| i.to_string().chars()
         .fold(0us, |d, c| d + c.to_digit(10).unwrap());
     let mut harshads = (1us..usize::MAX).filter(|&n| n % digit_sum(n) == 0);
 

@@ -1,5 +1,4 @@
 // Implements http://rosettacode.org/wiki/Entropy
-#![feature(std_misc)]
 #![feature(core)]
 use std::num::Float;
 use std::collections::HashMap;

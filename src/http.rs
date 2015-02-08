@@ -4,7 +4,7 @@
 #![feature(io)]
 #![feature(core)]
 #![feature(os)]
-#![feature(std_misc)]
+#![feature(env)]
 
 use std::old_io::net::tcp::TcpStream;
 use std::old_io::IoResult;
@@ -30,7 +30,8 @@ fn get_index(target: &str, port: u16) -> IoResult<String> {
 fn main() {
     const PORT: u16 = 80;
 
-    let target = std::os::args().pop().unwrap();
+    let target = std::env::args().next().unwrap()
+        .into_string().unwrap();
     println!("Making the request... This might take a minute.");
     match get_index(&target[], PORT) {
         Ok(out) => println!("{}", out),

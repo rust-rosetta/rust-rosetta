@@ -1,11 +1,12 @@
 // http://rosettacode.org/wiki/Bulls_and_cows
 #![allow(unused_features)] // feature(io) is not used in test
 
-#![feature(rand)]
+
 #![feature(core)]
 #![feature(unicode)]
 #![feature(io)]
- 
+extern crate rand;
+
 use std::fmt::{self, Display};
 use std::char::CharExt;
 
@@ -13,7 +14,7 @@ const NUMBER_OF_DIGITS: usize = 4;
 
 /// generates a random NUMBER_OF_DIGITS
 fn generate_digits() -> Vec<usize> {
-    use std::rand;
+    use rand;
 
     let mut rng = rand::thread_rng();
     rand::sample(&mut rng, (1us..10), 4)

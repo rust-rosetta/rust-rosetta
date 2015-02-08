@@ -1,11 +1,11 @@
 // Implements http://rosettacode.org/wiki/Concurrent_computing
-#![feature(rand)]
+
 #![feature(std_misc)]
 #![feature(io)]
 #![feature(core)]
-
+extern crate rand;
 use std::old_io::timer::sleep;
-use std::rand::random;
+use rand::random;
 use std::time::duration::Duration;
 use std::thread::Thread;
 

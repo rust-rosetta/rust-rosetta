@@ -5,7 +5,7 @@ use std::iter::Unfold;
 #[derive(Copy)]
 enum LuhnState { Even, Odd, }
 
-type Digits = Unfold<u64, u64, fn(&mut u64) -> Option<u64>>;
+type Digits = Unfold<u64, fn(&mut u64) -> Option<u64>>;
 
 fn digits(n: u64) -> Digits {
     fn state(s: &mut u64) -> Option<u64> {

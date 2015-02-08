@@ -16,14 +16,15 @@
 #![feature(unicode)]
 #![feature(collections)]
 #![feature(io)]
-#![feature(rand)]
+
+extern crate rand;
 
 use std::cmp::Ordering::{self, Greater};
 use std::char::CharExt;
 
 #[cfg(not(test))]
 fn main() {
-    use std::{rand, old_io};
+    use std::old_io;
 
     let mut rng = rand::thread_rng();
     let mut input = old_io::stdin();
@@ -358,7 +359,7 @@ mod test {
     #[test]
     fn lexer_iter() {
         // test read token and character's offset in the iterator
-        let t = |&: lex: &mut Lexer, exp_tok: Token, exp_pos: usize| {
+        let t = |lex: &mut Lexer, exp_tok: Token, exp_pos: usize| {
             assert_eq!(lex.next(), Some(exp_tok));
             assert_eq!(lex.offset, exp_pos);
         };
