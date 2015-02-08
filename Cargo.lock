@@ -17,7 +17,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 
 [[package]]
 name = "libc"
-version = "0.1.1"
+version = "0.1.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 
 [[package]]
@@ -38,7 +38,7 @@ name = "rand"
 version = "0.1.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 dependencies = [
- "libc 0.1.1 (registry+https://github.com/rust-lang/crates.io-index)",
+ "libc 0.1.2 (registry+https://github.com/rust-lang/crates.io-index)",
  "log 0.2.2 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
@@ -66,6 +66,6 @@ version = "0.1.16"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 dependencies = [
  "gcc 0.1.7 (registry+https://github.com/rust-lang/crates.io-index)",
- "libc 0.1.1 (registry+https://github.com/rust-lang/crates.io-index)",
+ "libc 0.1.2 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
