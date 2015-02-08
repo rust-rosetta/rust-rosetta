@@ -103,9 +103,9 @@ fn build_encoding_table(tree: &HNode,
                       start_str: &str) {
     match tree.item {
         HItem::Tree(ref data) => {
-            build_encoding_table(&*data.left, table,
+            build_encoding_table(&data.left, table,
                                &format!("{}0", start_str)[]);
-            build_encoding_table(&*data.right, table,
+            build_encoding_table(&data.right, table,
                                &format!("{}1", start_str)[]);
         },
         HItem::Leaf(ch)   => {table.insert(ch, start_str.to_string());}

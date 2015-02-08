@@ -32,7 +32,7 @@ fn benford_distrib(numbers: &[u64]) -> Vec<f32> {
 
     let mut counts = [0u64; 10];
 
-    for num in numbers.iter() {
+    for num in numbers {
         let first = first_digit_of(*num);
         counts[first] += 1;
     }

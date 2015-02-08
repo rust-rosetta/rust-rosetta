@@ -97,7 +97,7 @@ fn test_lev_distance() {
         vec![( "sunday" , "saturday" , (3, "s--unday", "sunurday"))  , 
             ( "sitting" , "kitten" , (3, "sitting", "kitten-")) , 
             ("test" , "test" , (0, "test", "test") )];
-    for (word1, word2, dist) in test_results.into_iter() {
+    for (word1, word2, dist) in test_results {
         let (d, s1, s2) = levenshtein_distance ( word1 , word2 ); 
         assert_eq!( (d, &s1[], &s2[]) , dist);
     }

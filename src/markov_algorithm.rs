@@ -234,7 +234,7 @@ fn main() {
 
 #[test]
 fn test_samples() {
-    for sample in get_samples().iter() {
+    for sample in &get_samples() {
         match MarkovAlgorithm::from_str(sample.ruleset) {
             Ok(algorithm) => assert_eq!(sample.expected_result,
                                         algorithm.apply(sample.input)),

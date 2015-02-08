@@ -16,7 +16,7 @@ fn walk(path: &Path, regex: &Regex) {
         Err(_) => return
     };
 
-    for subpath in result.iter() {
+    for subpath in &result {
         match subpath.filename_str() {
             Some(filename) => {
                 if regex.is_match(filename) {

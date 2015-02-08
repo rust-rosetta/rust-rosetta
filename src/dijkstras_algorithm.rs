@@ -104,7 +104,7 @@ impl<'a> Graph<'a> {
             match queue.pop() {
                 None     => break,
                 Some(DistPair(u, dist_u)) => {
-                    for &v in self.adj_list[u].iter() {
+                    for &v in &(self.adj_list[u]) {
                         let cost_uv = match self.costs.get(&(u, v)) {
                             Some(&x) => x,
                             None     => usize::MAX,

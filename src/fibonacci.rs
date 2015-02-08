@@ -6,7 +6,7 @@ fn main() {
                    (fib_tail_recursive as fn(u64) -> u64, "tail recursive"),
                    (fib_iterative as fn(u64) -> u64, "iterative")];
 
-    for (f, desc) in fns.into_iter() {
+    for (f, desc) in fns {
         let r = (0u64..10).map(|i| f(i)).collect::<Vec<u64>>();
         println!("{} implementation:\n{:?}\n", desc, r);
     }
@@ -64,7 +64,7 @@ mod test {
         let fns = vec![fib_recursive as fn(u64) -> u64, 
             fib_tail_recursive as fn(u64) -> u64,
             fib_iterative as fn(u64) -> u64];
-        for &f in fns.iter() {
+        for &f in &fns {
             tester(f);
         }
     }

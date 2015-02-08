@@ -24,7 +24,7 @@ impl Iterator for GenFibonacci {
 #[cfg(not(test))]
 fn print(buf: Vec<u64>, len: usize) {
     let mut sum = 0;
-    for &elt in buf.iter() { sum += elt; print!("\t{}", elt); }
+    for &elt in &buf { sum += elt; print!("\t{}", elt); }
     let iter = GenFibonacci { buf: buf, sum: sum, idx: 0 };
     for x in iter.take(len) {
         print!("\t{}", x);

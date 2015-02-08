@@ -55,7 +55,7 @@ fn test_is_self_describing() {
         (6210001000, true),
     ];
 
-    for &(n, expected) in tests.iter() {
+    for &(n, expected) in &tests {
         assert_eq!(is_self_describing(n), expected);
     }
 }

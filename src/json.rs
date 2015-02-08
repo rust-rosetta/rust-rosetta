@@ -13,7 +13,7 @@ fn main() {
     // Encode contact to json
     let c = Contact { name: "John".to_string(), city: "Paris".to_string() };
     let json = json::encode(&c);
-    println!("Encoded: {:?}", &*(json.unwrap()));
+    println!("Encoded: {:?}", &(json.unwrap()));
 
     // Decode json to contact
     let json_str = "{\"name\":\"Alan\", \"city\":\"Tokyo\"}";
@@ -24,7 +24,7 @@ fn main() {
 #[test]
 fn test_coherence() {
     let c = Contact { name: "John".to_string(), city: "Paris".to_string() };
-    assert!(json::decode::<Contact>(&*(json::encode(&c)).unwrap()) == Ok(c));
+    assert!(json::decode::<Contact>(&(json::encode(&c)).unwrap()) == Ok(c));
 }
 
 #[test]

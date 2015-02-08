@@ -59,7 +59,7 @@ impl<'a, T> Iterator for PermutationIterator<'a, T> where T: Clone {
 fn main() {
     let universe = ["Annie", "Barbie"];
     for p in permutations(&universe[], 3) {
-        for element in p.iter() {
+        for element in &p {
             print!("{} ", element);
         }
         println!("");

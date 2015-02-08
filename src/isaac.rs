@@ -16,7 +16,7 @@ fn main () {
     println!("msg: {}", MSG);
     println!("key: {}", KEY);
     print!("XOR: ");
-    for a in encr.iter() {
+    for a in &encr {
         print!("{:02X}", *a);
     }
 

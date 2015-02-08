@@ -5,6 +5,7 @@
 #![feature(libc)]
 #![feature(std_misc)]
 #![feature(io)]
+#![feature(core)]
 
 extern crate libc;
 extern crate time;

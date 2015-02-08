@@ -21,7 +21,7 @@ fn with_bits(val: f32, digits: usize) -> f32 {
 fn kahan_sum(lst: &[f32]) -> Option<f32> {
     let mut sum = 0.0f32;
     let mut c = 0.0f32;
-    for i in lst.iter() {
+    for i in lst {
         let y = *i - c;
         let t = sum + y;
         c = (t - sum) - y;
@@ -39,7 +39,7 @@ fn all_sums(vec: &[f32]) -> Vec<f32> {
         match v {
             Some(_v) =>  {
                 let mut sum = 0.0f32;
-                for e in _v.iter() {
+                for e in &_v {
                     sum += with_bits(*e, 1);
                 }
                 res.push(with_bits(sum, 1));

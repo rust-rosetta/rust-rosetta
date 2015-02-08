@@ -93,11 +93,11 @@ fn main() {
                  NUMBER_OF_DIGITS);
         loop {
             let guess_string = reader.read_line().unwrap();
-            let digits_maybe = parse_guess_string(&*guess_string.trim());
+            let digits_maybe = parse_guess_string(&guess_string.trim());
             match digits_maybe {
                 Err(msg) => { println!("{}" , msg); }
                 Ok(guess_digits) => {
-                    match calculate_score(&*given_digits, &*guess_digits) {
+                    match calculate_score(&given_digits, &guess_digits) {
                         (NUMBER_OF_DIGITS, _) => {
                             println!("you win!");
                             break ;

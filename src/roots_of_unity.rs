@@ -9,7 +9,7 @@ use std::f32::consts;
 fn main() {
     let degree = 3us;
 
-    for root in roots_of_unity(degree).iter() {
+    for root in &roots_of_unity(degree) {
         println!("{}", root);
     }
 }

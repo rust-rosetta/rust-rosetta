@@ -10,7 +10,7 @@ use std::ops::{Add, Mul, Neg, Sub, Div};
 
 #[cfg(not(test))]
 fn main() {
-    for p in perfect_numbers(1 << 19).iter() {
+    for p in perfect_numbers(1 << 19) {
         println!("{} is perfect", p);
     }
 }

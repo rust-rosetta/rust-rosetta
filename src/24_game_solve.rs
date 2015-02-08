@@ -30,7 +30,7 @@ fn solve(r: &mut[Rational], target_val: isize) -> Option<String> {
     r.sort();
     loop {
         let all_ops = compute_all_operations(r);
-        for &(res, ref ops) in all_ops.iter() {
+        for &(res, ref ops) in &all_ops {
             if res==Ratio::from_integer(target_val) {return Some(ops.to_string());}
         }
         if ! r.next_permutation() {return None;}
@@ -47,10 +47,10 @@ fn compute_all_operations(l: &[Rational]) -> Vec<(Rational, String)> {
         [x]  => vec![(x, (format!("{}", x)))],
         [x,rest..] => {
             let mut rt=Vec::new();
-            for &(y, ref exp) in compute_all_operations(rest).iter() {
+            for &(y, ref exp) in &compute_all_operations(rest) {
                 let mut sub=vec![(x * y, "*"),(x + y, "+"), (x - y, "-")];
                 if y != Zero::zero() {sub.push( (x/y, "/")); }
-                for &(z, ref op) in sub.iter() {
+                for &(z, ref op) in &sub {
                     let aux = (z, (format!("({} {} {})", x, op, exp )));
                     rt.push(aux);
                 }

@@ -38,7 +38,7 @@ fn is_valid(iban: &str) -> bool {
     }
 
     // Expand letters to digits
-    let iban_int = parse_digits(&*iban_chars);
+    let iban_int = parse_digits(&iban_chars);
 
     // Check if the remainder is one
     match iban_int {
@@ -52,7 +52,7 @@ fn parse_digits(chars: &[char]) -> Option<BigInt> {
     let mut vec: Vec<u8> = Vec::with_capacity(chars.len() + 10);
 
     // Copy the digits to the vector and expand the letters to digits
-    for &c in chars.iter() {
+    for &c in chars {
         match c.to_digit(36) {
             Some(d)	=> vec.extend(d.to_string().bytes()),
             None    => return None

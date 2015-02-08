@@ -12,7 +12,7 @@ fn test_strip_comments() {
                   "  apples, pears "];
     let output = "apples, pears";
 
-    for &input in inputs.iter() {
+    for &input in &inputs {
         assert_eq!(strip_comments(input), output)
     }
 }
@@ -23,7 +23,7 @@ fn main() {
                   "apples, pears ; and bananas",
                   "  apples, pears "];
 
-    for &input in inputs.iter() {
+    for &input in &inputs {
         println!("Input: {}\nStripped: {}", input, strip_comments(input))
     }
 }
