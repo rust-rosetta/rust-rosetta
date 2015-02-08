@@ -3,7 +3,7 @@ use std::ops::Add;
 pub fn accum<'a, T>(mut n: T) -> Box<FnMut(T) -> T + 'a> 
     where T: 'a + Add<T, Output=T> + Copy
 {
-    Box::new(move |&mut: i: T| { n = n + i; n })
+    Box::new(move |i: T| { n = n + i; n })
 }
 
 #[cfg(not(test))]

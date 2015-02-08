@@ -20,7 +20,7 @@ fn main() {
     print_30(odious());
 }
 
-type EvilOdiousIter = Filter<usize, Counter<usize>, fn(&usize) -> bool>;
+type EvilOdiousIter = Filter<Counter<usize>, fn(&usize) -> bool>;
 
 fn even_ones(i: &usize) -> bool { i.count_ones() % 2 == 0 }
 
@@ -33,7 +33,7 @@ fn evil() -> EvilOdiousIter {
     count(0us, 1).filter(even_ones as fn(&usize) -> bool)
 }
 
-fn pow_3() -> Map<usize, usize, Counter<usize>, fn(usize) -> usize> {
+fn pow_3() -> Map<Counter<usize>, fn(usize) -> usize> {
     fn pw(n: usize) -> usize { 3u32.pow(n).count_ones() }
 
     count(0us, 1).map(pw as fn(usize) -> usize)

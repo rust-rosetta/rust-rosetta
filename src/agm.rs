@@ -3,21 +3,19 @@
 // cargo run --name agm arg1 arg2
 
 #![allow(unused_features)] // feature(os) is used only in main
-
 #![feature(std_misc)]
+#![feature(env)]
 #![feature(os)]
-
 #![feature(collections)]
 
 use std::num::Float;
 
 #[cfg(not(test))]
 fn main () {
-    let args = std::os::args();
-    let args = &args[];
+    let mut args = std::env::args();
 
-    let x = args[1].parse::<f32>().unwrap();
-    let y = args[2].parse::<f32>().unwrap();
+    let x = args.next().unwrap().into_string().unwrap().parse::<f32>().unwrap();
+    let y = args.next().unwrap().into_string().unwrap().parse::<f32>().unwrap();
 
     let result = agm(x,y);
     println!("The arithmetic-geometric mean is {}", result);

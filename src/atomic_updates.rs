@@ -9,14 +9,15 @@
 // (previously I tried, in order, std::sync::RwLock, std::sync::Mutex, and std::sync::Semaphore)
 // and this type still appears to have quite a bit of overhead.
 #![feature(core)]
-#![feature(rand)]
+
 #![feature(io)]
 #![feature(std_misc)] 
+extern crate rand;
 
 use std::old_io::timer::Timer;
 use std::iter::AdditiveIterator;
-use std::rand::{Rng, weak_rng};
-use std::rand::distributions::{IndependentSample, Range};
+use rand::{Rng, weak_rng};
+use rand::distributions::{IndependentSample, Range};
 use std::sync::Arc;
 use std::sync::atomic::{AtomicBool, Ordering};
 use std::time::duration::Duration;

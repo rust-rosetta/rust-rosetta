@@ -1,7 +1,8 @@
 // Implements http://rosettacode.org/wiki/Balanced_brackets
 #![allow(unused_features)] // feature(rand) is used only in main
-#![feature(rand)]
+
 #![feature(core)]
+extern crate rand;
 
 trait Balanced {
     /// Returns true if the brackets are balanced
@@ -31,7 +32,7 @@ impl<'a> Balanced for str {
 #[cfg(not(test))]
 
 fn generate_brackets(num: usize) -> String {
-    use std::rand::random;
+    use rand::random;
 
     (0..num).map(|_| if random() { '[' } else { ']' }).collect()
 }

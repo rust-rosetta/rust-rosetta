@@ -3,14 +3,19 @@
 #![feature(path)]
 #![feature(os)]
 #![feature(core)]
+#![feature(env)]
+
 use std::old_io::fs::File;
 use std::old_io::BufferedReader;
-use std::os::args;
+use std::env::args;
 
 fn main() {
-    let filename = match args().len() {
-        1 => panic!("You must enter a filename to read line by line"),
-        _ => args()[1].clone()
+    let filename = {
+        if let Some(o_s) = args().nth(1) {
+            o_s.into_string().unwrap()
+        } else {
+            panic!("You must enter a filename to read line by line")
+        }
     };
 
     let file = File::open(&Path::new(&filename[]));

@@ -1,5 +1,4 @@
 // Implements http://rosettacode.org/wiki/Dijkstra's_algorithm
-#![feature(std_misc)]
 #![feature(core)]
 
 use std::collections::{HashMap, BinaryHeap, DList};

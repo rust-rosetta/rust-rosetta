@@ -1,11 +1,10 @@
 //Implements http://rosettacode.org/wiki/Sorting_algorithms/Quicksort
-
 // Used by the tests
 #![allow(unused_features)]
-#![feature(rand)]
 #![feature(core)]
+extern crate rand;
 #[cfg(test)]
-use std::rand::{thread_rng, Rng};
+use rand::{thread_rng, Rng};
 
 // We use in place quick sort
 // For details see http://en.wikipedia.org/wiki/Quicksort#In-place_version

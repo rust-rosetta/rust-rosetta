@@ -1,6 +1,6 @@
+
 // Implement data structures for a Huffman encoding tree:
 //   http://rosettacode.org/wiki/Huffman_coding
-#![feature(std_misc)]
 #![feature(core)]
 
 use std::collections::HashMap;

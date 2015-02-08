@@ -4,6 +4,7 @@
 #![feature(io)]
 #![feature(path)]
 #![feature(core)]
+extern crate rand;
 
 use std::old_io::{File, BufferedWriter, IoResult};
 use bitmap::Image;
@@ -48,8 +49,8 @@ pub fn main() {
 mod test {
     use bitmap::{Color, Image};
     use std::old_io::{File, BufferedReader};
-    use std::rand;
-    use std::rand::Rng;
+    use rand;
+    use rand::Rng;
     use std::os;
 
     #[test]

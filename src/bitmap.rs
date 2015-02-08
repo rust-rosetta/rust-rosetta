@@ -59,8 +59,6 @@ impl Index<(usize, usize)> for Image {
 }
 
 impl IndexMut<(usize, usize)> for Image {
-    type Output=Color;
-
     fn index_mut<'a>(&'a mut self, &(x, y): &(usize, usize)) -> &'a mut Color {
         & mut self.data[x + y*self.width]
     }

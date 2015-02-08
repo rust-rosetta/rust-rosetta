@@ -11,7 +11,7 @@ fn closure_gen<'a>(x: u32) -> Box<Fn() -> f64 + 'a> {
 }
 
 // type alias for the closure iterator
-type ClosureIter<'a> = Map<u32, Box<Fn() -> f64 + 'a>, Counter<u32>, fn(u32) -> Box<Fn() -> f64 + 'a>>;
+type ClosureIter<'a> = Map<Counter<u32>, fn(u32) -> Box<Fn() -> f64 + 'a>>;
 
 // return an iterator that on every iteration returns
 // a closure computing the index of the iteration squared

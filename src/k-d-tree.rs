@@ -1,11 +1,12 @@
 // Implements http://rosettacode.org/wiki/K-d_tree
 #![feature(core)]
-#![feature(rand)]
+
 
 extern crate time;
+extern crate rand;
 
 use std::num::Float;
-use std::rand::Rng;
+use rand::Rng;
 use std::cmp::Ordering;
 #[cfg(not(test))]
 use time::get_time;
@@ -58,7 +59,7 @@ impl KDTreeNode {
     
         // Split around the median
         let pivot = quickselect_by(points, points_len/2,
-            &|&: a, b| a.coords[dim].partial_cmp(&b.coords[dim]).unwrap());
+            &|a, b| a.coords[dim].partial_cmp(&b.coords[dim]).unwrap());
 
         let left = Some(Box::new(KDTreeNode::new(&mut points[0us..points_len/2],
                 (dim + 1) % pivot.coords.len())));
@@ -178,7 +179,7 @@ pub fn main() {
     let n_random = 1000us;
     let make_random_point = |&:| Point {
         coords: (0us..3).map(
-				|_| (std::rand::thread_rng().gen::<f32>()-0.5f32)*1000f32
+				|_| (rand::thread_rng().gen::<f32>()-0.5f32)*1000f32
 			).collect()
     };
     let mut random_points: Vec<Point> = (0..n_random)
@@ -222,10 +223,10 @@ pub fn main() {
 fn quickselect_by<T>(arr: &mut [T], position: usize, cmp: &Fn(&T, &T) -> Ordering) -> T 
     where T: Clone
 {
-    let mut pivot_index = std::rand::thread_rng().gen_range(0, arr.len());
+    let mut pivot_index = rand::thread_rng().gen_range(0, arr.len());
     // Need to wrap in another closure or we get ownership complaints.
     // Tried using an unboxed closure to get around this but couldn't get it to work.
-    pivot_index = partition_by(arr, pivot_index, &|&: a: &T, b: &T| cmp(a, b));
+    pivot_index = partition_by(arr, pivot_index, &|a: &T, b: &T| cmp(a, b));
     let array_len = arr.len();
     if position == pivot_index {
         arr[position].clone()
