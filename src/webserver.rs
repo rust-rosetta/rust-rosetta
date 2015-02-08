@@ -1,14 +1,17 @@
 // Implements http://rosettacode.org/wiki/Hello_world/Web_server
+#![allow(unused_features)]
 #![feature(io)]
 #![feature(std_misc)]
 #![feature(os)]
+#![feature(env)]
 #![feature(core)]
+#![feature(std_misc)]
 
 use std::old_io::net::tcp::{TcpAcceptor, TcpListener, TcpStream};
 use std::old_io::{Acceptor, Listener, IoResult};
 use std::thread::Thread;
 
-#[cfg(not(test))] use std::os;
+#[cfg(not(test))] use std::env;
 
 fn handle_client(mut stream: TcpStream) -> IoResult<()> {
     let response =
@@ -64,11 +67,14 @@ pub fn handle_server(ip: &str, port: u16) -> IoResult<TcpAcceptor> {
 
 #[cfg(not(test))]
 fn main() {
-    let args = os::args();
-
+    let mut args = env::args();
+    let app_name = args.next().unwrap()
+        .into_string().unwrap();
     let host = "127.0.0.1";
-    let port = if args.len() == 2 {
-        args[1].parse::<u16>().ok().expect(&*format!("Usage: {} <port>", args[0]))
+    let port = if let Some(os_port) = args.next() {
+        let s_port = os_port.into_string().unwrap();
+        s_port.parse::<u16>().ok()
+            .expect(&*format!("Usage: {:?} <port>", app_name))
     } else {
         80
     };

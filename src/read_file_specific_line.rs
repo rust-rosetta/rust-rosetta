@@ -2,19 +2,32 @@
 #![feature(io)]
 #![feature(path)]
 #![feature(os)]
+#![feature(env)]
 
 use std::old_io::fs::File;
 use std::old_io::BufferedReader;
-use std::os::args;
+use std::env::args;
 
 fn main() {
-    match args().len() {
-        2 => panic!("You must enter a filename to read line by line, and a line number"),
-        1 => panic!("You must enter a line number"),
-        _ => {}
-    }
-    let filename = args()[1].clone();
-    let line_number = args()[2].parse::<usize>().ok().expect("You must enter an integer as the line number");
+    let mut args =  args();
+
+    let filename = {
+        if let Some(o_s) = args.nth(1) {
+            o_s.into_string().unwrap()
+        } else {
+            panic!("You must enter a filename to read line by line")
+        }
+    };
+
+    let line_number = {
+        if let Some(o_s) = args.next() {
+            o_s.into_string().unwrap()
+                .parse::<usize>().ok()
+                .expect("You must enter an integer as the line number")
+        } else {
+            panic!("You must enter a filename to read line by line")
+        }
+    };
 
     let file = File::open(&Path::new(&filename[]));
     let mut reader = BufferedReader::new(file);

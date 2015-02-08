@@ -142,7 +142,7 @@ impl<'a> Tokens<'a> {
                     // Unlike the quoted case, it's not an error to encounter EOF before whitespace.
                     let mut end_ch = None;
                     let str = {
-                        let mut iter = self.string.splitn(1, |&mut: ch: char| {
+                        let mut iter = self.string.splitn(1, |ch: char| {
                             let term = ch == ')' || ch == '(';
                             if term { end_ch = Some(ch) }
                             term || ch.is_whitespace()

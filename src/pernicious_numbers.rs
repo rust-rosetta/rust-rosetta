@@ -16,7 +16,7 @@ fn main() {
     }
 }
 
-fn pernicious() -> Filter<u64, Counter<u64>, fn(&u64) -> bool> {
+fn pernicious() -> Filter<Counter<u64>, fn(&u64) -> bool> {
     count(0u64, 1).filter(is_pernicious as fn(&u64) -> bool)
 }
 
