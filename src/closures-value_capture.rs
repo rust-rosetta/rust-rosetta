@@ -4,10 +4,20 @@
 use std::iter::{count, Counter, Map};
 use std::num::Float;
 
+#[allow(dead_code)]
+fn simple_unboxed() {
+    // simple usage when unboxed closures will do
+    let mut v = Vec::new();
+    for i in 0..10 {
+        v.push(move || i * i);
+    }
+    println!("7th val: {}", v[7]());
+}
+
 // given a number x, return the (boxed) closure that
 // computes x squared
 fn closure_gen<'a>(x: u32) -> Box<Fn() -> f64 + 'a> {
-    Box::new(move |&:| (x as f64).powi(2))
+    Box::new(move || (x as f64).powi(2))
 }
 
 // type alias for the closure iterator
