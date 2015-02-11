@@ -7,7 +7,7 @@ use std::old_io as io;
 use std::rand::{thread_rng, Rng};
 use GameState::{PlayerWin, ComputerWin, Draw, Playing};
 
-#[derive(PartialEq)]
+#[derive(PartialEq, Debug)]
 enum GameState {
 	PlayerWin,
 	ComputerWin,
@@ -15,6 +15,7 @@ enum GameState {
 	Playing,
 }
 
+#[cfg(not(test))]
 fn main() {
 	let mut board: [[char; 3]; 3] = [
 		['1', '2', '3'],
@@ -22,6 +23,7 @@ fn main() {
 		['7', '8', '9']
 	];
 
+	draw_board(board);
 	loop {
 		player_turn(&mut board);
 		if check_win(board) != Playing {
@@ -74,7 +76,7 @@ fn which_win(s: char) -> GameState {
 	match s {
 		'X' => PlayerWin,
 		'O' => ComputerWin,
-		_ => Playing
+		_ => unreachable!()
 	}
 }
 
@@ -118,4 +120,35 @@ fn draw_board(board: [[char; 3]; 3]) {
 	for row in board.iter() {
 		println!("{} {} {}", row[0], row[1], row[2]);
 	}
+}
+
+#[test]
+fn test_which_win() {
+	assert_eq!(which_win('X'), PlayerWin);
+	assert_eq!(which_win('O'), ComputerWin);
+}
+
+#[test]
+fn test_check_win() {
+	assert_eq!(check_win([
+			['X','X','X'],
+			['4','O','O'],
+			['7','8','9']
+		]),
+		PlayerWin
+	);
+	assert_eq!(check_win([
+			['O','X','3'],
+			['X','O','6'],
+			['X','8','O']
+		]),
+		ComputerWin
+	);
+	assert_eq!(check_win([
+			['O','X','X'],
+			['X','O','O'],
+			['O','X','X']
+		]),
+		Draw
+	);
 }
