@@ -6,7 +6,10 @@
 #![feature(core)]
 #![feature(plugin)]
 #![feature(collections)]
+#![plugin(regex_macros)]
+#[macro_use]
 extern crate regex;
+//extern crate regex_macros;
 
 #[allow(dead_code)]
 #[cfg(not(test))]
