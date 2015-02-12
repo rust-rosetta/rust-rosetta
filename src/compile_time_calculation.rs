@@ -6,7 +6,7 @@
  
 // we use this attribute to mark factorial_plugin as
 // a syntax extension. The plugin's code is in src/factorial_plugin.rs
-#[plugin] extern crate factorial_plugin;
+#![plugin(factorial_plugin)]
 
 #[cfg(not(test))] 
 fn main() {

@@ -3,8 +3,7 @@
 #![feature(io)]
 #![feature(core)]
 #![feature(plugin)]
-#[plugin]
-extern crate regex_macros;
+#![plugin(regex_macros)]
 extern crate regex;
 
 use regex::Regex;

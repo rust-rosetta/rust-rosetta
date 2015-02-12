@@ -7,9 +7,6 @@
 #![feature(plugin)]
 #![feature(collections)]
 extern crate regex;
-#[macro_use] 
-#[plugin]
-extern crate regex_macros;
 
 #[allow(dead_code)]
 #[cfg(not(test))]
