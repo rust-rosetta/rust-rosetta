@@ -1,6 +1,5 @@
 //http://rosettacode.org/wiki/Flatten_a_list
 
-#![feature(core)]
 #![feature(box_syntax)]
 use std::fmt;
 use Tree::{Node, Leaf};
@@ -24,13 +23,13 @@ impl<T> fmt::Display for Tree<T>
 
 impl<T> fmt::Display for Vec<Tree<T>>
     where T: fmt::Display {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result{
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         let mut first = true;
-        write!(f, "[");
+        try!(write!(f, "["));
         for x in self.iter(){
-            if(!first){ write!(f, ", ");}
-            write!(f, "{}", *x);
-            first = false; 
+            if !first { try!(write!(f, ", ")); }
+            try!(write!(f, "{}", *x));
+            first = false;
         }
         write!(f, "]")
     }
@@ -64,4 +63,25 @@ fn main() {
     let flattened = flatten(list);
 
     println!("{:?}", flattened);
+}
+
+#[test]
+fn rosetta_flatten_test() {
+    //[[1], 2, [[3,4], 5], [[[]]], [[[6]]], 7, 8, []]
+    let list: Tree<i32> = 
+        Node(vec![Node(vec![Leaf(1)]),
+            Leaf(2),
+            Node(vec![Node(vec![Leaf(3), Leaf(4)]), Leaf(5)]),
+            Node(vec![Node(vec![Node(vec![])])]),
+            Node(vec![Node(vec![Node(vec![Leaf(6)])])]),
+            Leaf(7),
+            Leaf(8),
+            Node(vec![])
+            ]);
+
+    println!("{}", list);
+
+    let flattened = flatten(list);
+
+    assert!(flattened == vec!(1,2,3,4,5,6,7,8))
 }
