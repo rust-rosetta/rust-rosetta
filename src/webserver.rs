@@ -68,11 +68,10 @@ pub fn handle_server(ip: &str, port: u16) -> IoResult<TcpAcceptor> {
 #[cfg(not(test))]
 fn main() {
     let mut args = env::args();
-    let app_name = args.next().unwrap()
-        .into_string().unwrap();
+    let app_name = args.next().unwrap();
     let host = "127.0.0.1";
     let port = if let Some(os_port) = args.next() {
-        let s_port = os_port.into_string().unwrap();
+        let s_port = os_port;
         s_port.parse::<u16>().ok()
             .expect(&*format!("Usage: {:?} <port>", app_name))
     } else {

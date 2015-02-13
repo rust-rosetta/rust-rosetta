@@ -5,7 +5,10 @@
 use std::old_io;
 
 fn main() {
-    for line in old_io::stdin().lock().lines() {
+	let mut stdin = old_io::stdin();
+	let mut lock = stdin.lock();
+
+    for line in lock.lines() {
         print!("{}", line.unwrap());
     }
 }

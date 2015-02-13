@@ -12,7 +12,7 @@ use std::env::args;
 fn main() {
     let filename = {
         if let Some(o_s) = args().nth(1) {
-            o_s.into_string().unwrap()
+            o_s
         } else {
             panic!("You must enter a filename to read line by line")
         }

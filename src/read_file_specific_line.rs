@@ -13,7 +13,7 @@ fn main() {
 
     let filename = {
         if let Some(o_s) = args.nth(1) {
-            o_s.into_string().unwrap()
+            o_s
         } else {
             panic!("You must enter a filename to read line by line")
         }
@@ -21,8 +21,7 @@ fn main() {
 
     let line_number = {
         if let Some(o_s) = args.next() {
-            o_s.into_string().unwrap()
-                .parse::<usize>().ok()
+            o_s.parse::<usize>().ok()
                 .expect("You must enter an integer as the line number")
         } else {
             panic!("You must enter a filename to read line by line")
