@@ -2,6 +2,7 @@
 #![feature(plugin)]
 #![plugin(regex_macros)]
 #![feature(core)]
+#![plugin(regex_macros)]
 
 #[macro_use]
 extern crate regex_macros;

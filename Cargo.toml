@@ -410,6 +410,11 @@ path = "src/filesize.rs"
 test = false
 
 [[bin]]
+# http://rosettacode.org/wiki/Flatten_a_list
+name = "flatten_list"
+path = "src/flatten_list.rs"
+
+[[bin]]
 # http://rosettacode.org/wiki/Four_bit_adder
 name = "four_bit_adder"
 path = "src/four_bit_adder.rs"
