@@ -5,7 +5,7 @@
 
 // Implemented as a lazy String iterator, returning a wrapped line each time
 #![allow(unused_features)]
-#![feature(core)]
+
 use std::str::Words;
 use std::mem::swap;
 

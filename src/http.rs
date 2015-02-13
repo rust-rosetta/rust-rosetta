@@ -29,10 +29,11 @@ fn get_index(target: &str, port: u16) -> IoResult<String> {
 
 #[cfg(not(test))]
 fn main() {
+    use std::borrow::ToOwned;
     const PORT: u16 = 80;
 
     let target = std::env::args().next().unwrap()
-        .into_string().unwrap();
+        .to_owned();
     println!("Making the request... This might take a minute.");
     match get_index(&target[], PORT) {
         Ok(out) => println!("{}", out),

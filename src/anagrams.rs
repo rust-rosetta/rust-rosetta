@@ -1,6 +1,6 @@
 // Implements http://rosettacode.org/wiki/Anagrams
 #![allow(unused_features)] // feature(io) is used only in main
-#![feature(core)]
+
 #![feature(std_misc)]
 #![feature(path)]
 #![feature(io)]

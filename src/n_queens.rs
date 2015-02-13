@@ -1,7 +1,7 @@
 // Implements http://rosettacode.org/wiki/N-queens_problem
-#![feature(core)]
 #![feature(std_misc)]
 #![feature(test)]
+#![feature(core)]
 
 extern crate test;
 

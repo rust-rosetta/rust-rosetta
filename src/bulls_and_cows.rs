@@ -2,7 +2,7 @@
 #![allow(unused_features)] // feature(io) is not used in test
 
 
-#![feature(core)]
+
 #![feature(unicode)]
 #![feature(io)]
 extern crate rand;

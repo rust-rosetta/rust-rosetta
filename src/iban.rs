@@ -1,6 +1,6 @@
 // Implements http://rosettacode.org/wiki/IBAN
 #![feature(unicode)]
-#![feature(core)]
+
 
 extern crate num;
 

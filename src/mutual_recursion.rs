@@ -1,5 +1,5 @@
 // Implements http://rosettacode.org/wiki/Mutual_recursion
-#![feature(core)]
+
 
 fn f(n: usize) -> usize {
     match n {

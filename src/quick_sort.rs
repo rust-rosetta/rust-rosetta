@@ -1,7 +1,7 @@
 //Implements http://rosettacode.org/wiki/Sorting_algorithms/Quicksort
 // Used by the tests
 #![allow(unused_features)]
-#![feature(core)]
+
 extern crate rand;
 #[cfg(test)]
 use rand::{thread_rng, Rng};

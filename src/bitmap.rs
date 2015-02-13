@@ -1,7 +1,7 @@
 // Implements http://rosettacode.org/wiki/Basic_bitmap_storage
 #![feature(io)]
 #![feature(path)]
-#![feature(core)]
+
 
 use std::default::Default;
 use std::old_io::{File, BufferedWriter, IoResult};

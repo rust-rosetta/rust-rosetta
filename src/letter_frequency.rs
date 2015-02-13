@@ -3,7 +3,7 @@
 #![feature(std_misc)]
 #![feature(io)]
 #![feature(path)]
-#![feature(core)]
+
 
 #[cfg(not(test))]
 use std::old_io::fs::File;

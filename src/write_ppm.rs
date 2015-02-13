@@ -3,7 +3,7 @@
 #![allow(unused_attributes)]
 #![feature(io)]
 #![feature(path)]
-#![feature(core)]
+
 extern crate rand;
 
 use std::old_io::{File, BufferedWriter, IoResult};
@@ -51,14 +51,14 @@ mod test {
     use std::old_io::{File, BufferedReader};
     use rand;
     use rand::Rng;
-    use std::os;
+    use std::env;
 
     #[test]
     fn write_ppm() {
         let mut image = Image::new(2,1);
         image[(0, 0)] = Color { red: 1, green: 2, blue: 3 };
         image[(1, 0)] = Color { red: 4, green: 5, blue: 6 };
-        let fname = format!("{}/test-{}.ppm", os::tmpdir().as_str().unwrap(), rand::thread_rng().gen::<i32>());
+        let fname = format!("{}/test-{}.ppm", env::temp_dir().as_str().unwrap(), rand::thread_rng().gen::<i32>());
         // Can't use try! macro because we want to panic, not return.
         match image.write_ppm(&fname[]) {
             Ok(_) => {},

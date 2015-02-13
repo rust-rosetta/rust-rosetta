@@ -2,7 +2,7 @@
 #![allow(unused_features)]
 #![allow(unused_attributes)]
 #![feature(collections)]
-#![feature(core)]
+
 use run_length_encoding::encode;
 use std::char::CharExt;
 

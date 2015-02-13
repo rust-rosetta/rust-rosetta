@@ -1,5 +1,5 @@
 // http://rosettacode.org/wiki/Harshad_or_Niven_series
-#![feature(core)]
+
 #![feature(unicode)]
 
 use std::usize;

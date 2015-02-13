@@ -1,5 +1,5 @@
 // http://rosettacode.org/wiki/Run-length_encoding
-#![feature(core)]
+
 use std::iter::repeat;
 use std::char::CharExt;
 

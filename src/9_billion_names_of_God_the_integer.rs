@@ -1,5 +1,5 @@
 //Implements http://rosettacode.org/wiki/9_billion_names_of_God_the_integer
-#![feature(core)]
+
 extern crate num;
 
 use std::cmp::min;

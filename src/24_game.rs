@@ -12,7 +12,7 @@
 
 #![allow(unused_features)] // feature(rand) is used only in main
 
-#![feature(core)]
+
 #![feature(unicode)]
 #![feature(collections)]
 #![feature(io)]

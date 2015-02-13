@@ -1,7 +1,7 @@
 // http://rosettacode.org/wiki/Hamming_numbers
 #![allow(unused_features)]
 #![feature(collections)]
-#![feature(core)]
+
 
 extern crate num;
 use num::bigint::{BigUint, ToBigUint};

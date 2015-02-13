@@ -1,7 +1,9 @@
 // Implements http://rosettacode.org/wiki/Command-line_arguments
-
-use std::os;
+#![feature(env)]
+use std::env;
 
 fn main(){
-    println!("{:?}", os::args());
+    for arg in env::args() {
+        println!("{}", arg);
+    }
 }

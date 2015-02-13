@@ -1,7 +1,7 @@
 // Implements http://rosettacode.org/wiki/100_doors
 #![allow(unused_features)]
 
-#![feature(core)]
+
 #![feature(io)]
 use std::num::Float;
 use std::iter::Map;
