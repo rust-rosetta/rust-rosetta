@@ -1,6 +1,6 @@
 // http://rosettacode.org/wiki/Roots_of_a_function
 #![allow(unused_features)]
-#![feature(core)]
+
 use std::num::Float;
 
 // Note: We cannot use `range_step` here because Floats don't implement

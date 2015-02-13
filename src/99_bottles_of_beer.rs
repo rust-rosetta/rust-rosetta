@@ -1,6 +1,6 @@
 // Implements http://rosettacode.org/wiki/99_Bottles_of_Beer
 #![allow(unused_features)]
-#![feature(core)]
+
 use std::string::String;
 
 #[cfg(not(test))]

@@ -3,7 +3,7 @@
 #![allow(unused_features)] // feature(rand) is used only in main
 
 #![feature(io)]
-#![feature(core)]
+
 extern crate rand;
 
 #[cfg(not(test))]

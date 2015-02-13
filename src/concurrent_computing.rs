@@ -2,7 +2,7 @@
 
 #![feature(std_misc)]
 #![feature(io)]
-#![feature(core)]
+
 extern crate rand;
 use std::old_io::timer::sleep;
 use rand::random;

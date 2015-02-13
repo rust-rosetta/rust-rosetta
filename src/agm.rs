@@ -7,15 +7,17 @@
 #![feature(env)]
 #![feature(os)]
 #![feature(collections)]
+#![feature(core)]
 
 use std::num::Float;
 
 #[cfg(not(test))]
 fn main () {
+    use std::borrow::ToOwned;
     let mut args = std::env::args();
 
-    let x = args.next().unwrap().into_string().unwrap().parse::<f32>().unwrap();
-    let y = args.next().unwrap().into_string().unwrap().parse::<f32>().unwrap();
+    let x = args.next().unwrap().to_owned().parse::<f32>().unwrap();
+    let y = args.next().unwrap().to_owned().parse::<f32>().unwrap();
 
     let result = agm(x,y);
     println!("The arithmetic-geometric mean is {}", result);

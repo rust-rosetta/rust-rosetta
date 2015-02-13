@@ -1,7 +1,7 @@
 // Implements http://rosettacode.org/wiki/Balanced_brackets
 #![allow(unused_features)] // feature(rand) is used only in main
 
-#![feature(core)]
+
 extern crate rand;
 
 trait Balanced {

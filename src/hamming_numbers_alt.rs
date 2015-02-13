@@ -5,7 +5,7 @@
 #![allow(unused_features)]
 #![allow(unused_attributes)]
 #![feature(collections)]
-#![feature(core)]
+
 
 extern crate num;
 

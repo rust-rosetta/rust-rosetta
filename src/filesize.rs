@@ -1,5 +1,7 @@
 // Implements http://rosettacode.org/wiki/File_size
 #![feature(path)]
+#![feature(io)]
+
 use std::old_io::fs::PathExtensions;
 
 fn main() {

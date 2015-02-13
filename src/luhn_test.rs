@@ -1,5 +1,6 @@
 // Implements http://rosettacode.org/wiki/Luhn_test_of_credit_card_numbers
 #![feature(core)]
+
 use std::iter::Unfold;
 
 #[derive(Copy)]

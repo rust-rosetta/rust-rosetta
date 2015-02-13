@@ -1,9 +1,9 @@
 // Implements http://rosettacode.org/wiki/Range_expansion
 #![feature(plugin)]
+#![plugin(regex_macros)]
 #![feature(core)]
 
 #[macro_use]
-#[plugin]
 extern crate regex_macros;
 extern crate regex;
 

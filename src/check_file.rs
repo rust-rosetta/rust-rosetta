@@ -1,5 +1,5 @@
 // Implements http://rosettacode.org/wiki/Check_that_file_exists
-#![feature(core)]
+
 #![feature(io)]
 #![feature(path)]
 

@@ -1,5 +1,5 @@
 // http://rosettacode.org/wiki/Fibonacci_n-step_number_sequences
-#![feature(core)]
+
 
 // state for producing generalized Fibonacci sequences
 struct GenFibonacci {

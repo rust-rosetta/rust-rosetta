@@ -1,5 +1,5 @@
 // Implements http://rosettacode.org/wiki/Sorting_algorithms/Counting_sort
-#![feature(core)]
+
 fn counting_sort(array: &mut [i32], min: i32, max: i32) {
 
     // nothing to do for arrays shorter than 2

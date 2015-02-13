@@ -1,18 +1,18 @@
 // Implements http://rosettacode.org/wiki/Read_a_file_line_by_line
 #![feature(io)]
 #![feature(path)]
-#![feature(os)]
 #![feature(core)]
 #![feature(env)]
 
 use std::old_io::fs::File;
 use std::old_io::BufferedReader;
 use std::env::args;
+use std::borrow::ToOwned;
 
 fn main() {
     let filename = {
         if let Some(o_s) = args().nth(1) {
-            o_s.into_string().unwrap()
+            o_s.to_owned()
         } else {
             panic!("You must enter a filename to read line by line")
         }

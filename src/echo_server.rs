@@ -1,5 +1,5 @@
 // Implements http://rosettacode.org/wiki/Echo_server
-#![feature(core)]
+
 #![feature(io)]
 #![feature(std_misc)]
 use std::old_io::{Acceptor, BufferedReader, IoError, IoResult, Listener, TimedOut};

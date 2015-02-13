@@ -7,7 +7,7 @@
 #![feature(std_misc)]
 #![feature(io)]
 #![feature(path)]
-#![feature(core)]
+
 
 use std::old_io::File;
 use std::old_io::BufferedReader;

@@ -2,13 +2,14 @@
 // It also contains a test module, which checks if all source files are covered by `Cargo.toml`
 #![allow(unused_features)]
 #![feature(path)]
-#![feature(io)]
 #![feature(core)]
+#![feature(io)]
 #![feature(plugin)]
 #![feature(collections)]
+#![plugin(regex_macros)]
+
 extern crate regex;
 #[macro_use] 
-#[plugin]
 extern crate regex_macros;
 
 #[allow(dead_code)]

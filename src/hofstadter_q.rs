@@ -1,5 +1,5 @@
 // Implements an iterable version of http://rosettacode.org/wiki/Hofstadter_Q_sequence
-#![feature(core)]
+
 // Define a struct which stores the state for the iterator.
 struct HofstadterQ {
     next: usize,

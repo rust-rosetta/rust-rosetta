@@ -10,7 +10,7 @@
 use std::old_io::net::tcp::{TcpAcceptor, TcpListener, TcpStream};
 use std::old_io::{Acceptor, Listener, IoResult};
 use std::thread::Thread;
-
+#[cfg(not(test))] use std::borrow::ToOwned;
 #[cfg(not(test))] use std::env;
 
 fn handle_client(mut stream: TcpStream) -> IoResult<()> {
@@ -69,10 +69,10 @@ pub fn handle_server(ip: &str, port: u16) -> IoResult<TcpAcceptor> {
 fn main() {
     let mut args = env::args();
     let app_name = args.next().unwrap()
-        .into_string().unwrap();
+        .to_owned();
     let host = "127.0.0.1";
     let port = if let Some(os_port) = args.next() {
-        let s_port = os_port.into_string().unwrap();
+        let s_port = os_port.to_owned();
         s_port.parse::<u16>().ok()
             .expect(&*format!("Usage: {:?} <port>", app_name))
     } else {

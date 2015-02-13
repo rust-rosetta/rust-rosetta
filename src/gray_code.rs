@@ -1,6 +1,7 @@
 // Implements http://rosettacode.org/wiki/Gray_code
-#![allow(unused_features)]
 #![feature(core)]
+#![allow(unused_features)]
+
 // Encode an usize
 fn gray_encode(integer: usize) -> usize {
     (integer >> 1) ^ integer

@@ -1,5 +1,5 @@
 // Implements http://rosettacode.org/wiki/Set
-#![feature(core)]
+
 use std::collections::HashSet;
 
 fn main() {

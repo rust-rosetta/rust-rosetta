@@ -1,6 +1,6 @@
 // Implements http://rosettacode.org/wiki/Menu
 #![feature(io)]
-#![feature(core)]
+
 use std::old_io;
 
 // Print the menu followed by the prompt

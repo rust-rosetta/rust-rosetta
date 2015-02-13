@@ -1,5 +1,5 @@
 // Implements http://rosettacode.org/wiki/Linear_congruential_generator
-#![feature(core)]
+
 
 trait LinearCongruentialGenerator {
     fn seed(&mut self, seed: u32);

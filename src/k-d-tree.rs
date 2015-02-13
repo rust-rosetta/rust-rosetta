@@ -1,5 +1,5 @@
 // Implements http://rosettacode.org/wiki/K-d_tree
-#![feature(core)]
+
 
 
 extern crate time;
