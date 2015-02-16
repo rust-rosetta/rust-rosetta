@@ -42,6 +42,7 @@ authors = [
     "Marvin Löbel, https://github.com/Kimundi",
     "Raphael Heitjohann, https://github.com/trideon3",
     "Glen De Cauwsemaecker, https://github.com/glendc",
+    "Amos Bird, https://github.com/amosbird",
 ]
 
 [dependencies]
@@ -485,6 +486,11 @@ path = "src/happy_numbers.rs"
 name = "harshad_or_niven_series"
 path = "src/harshad_or_niven_series.rs"
 test = false
+
+[[bin]]
+# http://rosettacode.org/wiki/Hash_join
+name = "hash_join"
+path = "src/hash_join.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Sorting_algorithms/Heapsort
