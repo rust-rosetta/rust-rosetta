@@ -41,6 +41,7 @@ authors = [
     "Makoto Nakashima, https://github.com/gifnksm",
     "Marvin Löbel, https://github.com/Kimundi",
     "Raphael Heitjohann, https://github.com/trideon3",
+    "Glen De Cauwsemaecker, https://github.com/glendc",
 ]
 
 [dependencies]
@@ -234,6 +235,12 @@ path = "src/bubble_sort.rs"
 # http://rosettacode.org/wiki/Bulls_and_cows
 name = "bulls_and_cows"
 path = "src/bulls_and_cows.rs"
+
+[[bin]]
+# http://rosettacode.org/wiki/Call_an_object_method
+name = "call_an_object_method"
+path = "src/call_an_object_method.rs"
+test = false
 
 [[bin]]
 # http://rosettacode.org/wiki/Call_a_foreign-language_function
