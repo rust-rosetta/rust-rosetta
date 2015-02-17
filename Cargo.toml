@@ -240,6 +240,7 @@ path = "src/bulls_and_cows.rs"
 # http://rosettacode.org/wiki/Call_an_object_method
 name = "call_an_object_method"
 path = "src/call_an_object_method.rs"
+test = false
 
 [[bin]]
 # http://rosettacode.org/wiki/Call_a_foreign-language_function
