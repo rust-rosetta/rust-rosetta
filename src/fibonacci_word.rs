@@ -18,15 +18,15 @@ fn fib_words(amount: usize) -> Vec<(usize, f64)> {
 
     // The first two words (we need to add them manually because
     // they are the base of the sequence)
-    data.push((previous.len(), shannon_entropy(&previous[])));
-    data.push((next.len(), shannon_entropy(&next[])));
+    data.push((previous.len(), shannon_entropy(&previous[..])));
+    data.push((next.len(), shannon_entropy(&next[..])));
 
     // The rest of the words
     for _ in (3..amount + 1) {
         let temp = next.clone();
-        next.push_str(&previous[]);
+        next.push_str(&previous[..]);
         previous = temp;
-        data.push((next.len(), shannon_entropy(&next[])));
+        data.push((next.len(), shannon_entropy(&next[..])));
     }
 
     data

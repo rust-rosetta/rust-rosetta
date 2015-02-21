@@ -1,7 +1,7 @@
 // http://rosettacode.org/wiki/Pythagorean_triples
 #![feature(core)]
 
-use std::collections::DList;
+use std::collections::LinkedList;
 use std::num::Int;
 
 /// Count the number of Pythagorean triples whose sum are below the specified limit (inclusive).
@@ -11,7 +11,7 @@ use std::num::Int;
 fn count_pythagorean_triples(below: u64) -> (u64, u64) {
     let mut tot_cnt = 0;
     let mut prim_cnt = 0;
-    let mut queue = DList::new();
+    let mut queue = LinkedList::new();
 
     // Initiate the BFS with the root of the tree: (3, 4, 5)
     queue.push_back((3i64, 4i64, 5i64));

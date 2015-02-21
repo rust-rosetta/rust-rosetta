@@ -80,8 +80,8 @@ fn test_rosetta_vector() {
 #[test]
 fn test_empty_vector() {
     let mut numbers: Vec<i32> = Vec::new();
-    quick_sort(&mut numbers[]);
-    check_sort(&mut numbers[]);
+    quick_sort(&mut numbers[..]);
+    check_sort(&mut numbers[..]);
 }
 
 #[test]
@@ -116,6 +116,6 @@ fn test_already_sorted_vector() {
 fn test_random_numbers() {
     let mut rng = thread_rng();
     let mut numbers : Vec<i32> = rng.gen_iter::<i32>().take(500).collect();
-    quick_sort(&mut numbers[]);
-    check_sort(&mut numbers[]);
+    quick_sort(&mut numbers[..]);
+    check_sort(&mut numbers[..]);
 }

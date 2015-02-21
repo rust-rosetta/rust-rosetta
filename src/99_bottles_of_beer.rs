@@ -5,7 +5,7 @@ use std::string::String;
 
 #[cfg(not(test))]
 fn main() {
-    for num_bottles in (1us..100).rev() {
+    for num_bottles in (1u32..100).rev() {
         println!("{}", bottles_line(num_bottles, true));
         println!("{}", bottles_line(num_bottles, false));
         println!("Take one down, pass it around...");
@@ -14,7 +14,7 @@ fn main() {
     }
 }
 
-fn bottles_line(num_bottles: usize, on_the_wall: bool) -> String {
+fn bottles_line(num_bottles: u32, on_the_wall: bool) -> String {
     let tail = match on_the_wall {
         true => "of beer on the wall!\n",
         false => "of beer\n"

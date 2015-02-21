@@ -70,7 +70,7 @@ fn main() {
 
     // Calculate freuencies of first digits in test data
 
-    let found_distrib = benford_distrib(&fibs[]);
+    let found_distrib = benford_distrib(&fibs[..]);
 
     // Print the stats to compare actual vs expected
 

@@ -8,14 +8,14 @@ use num::bigint::{BigUint, ToBigUint};
 use num::traits::One;
 use num::one;
 use std::cmp::min;
-use std::collections::RingBuf;
+use std::collections::VecDeque;
 use std::ops::Mul;
 
 // needed because hamming_numbers_alt uses this as a library
 #[allow(dead_code)]
 #[cfg(not(test))]
 fn main() {
-    // capacity of the queue currently needs to be a power of 2 because of a bug with RingBuf
+    // capacity of the queue currently needs to be a power of 2 because of a bug with VecDeque
     let hamming : Hamming<BigUint> = Hamming::new(128);
 
     for (idx, h) in hamming.enumerate().take(1_000_000) {
@@ -49,10 +49,10 @@ pub trait HammingNumber : Eq + Ord + ToBigUint + Mul<Output=Self> + One + Clone 
 /// We keep them on three queues and extract the lowest (leftmost) value from
 /// the three queues at each iteration.
 pub struct Hamming<T> {
-    // Using a RingBuf as a queue, push to the back, pop from the front
-    q2: RingBuf<T>,
-    q3: RingBuf<T>,
-    q5: RingBuf<T>
+    // Using a VecDeque as a queue, push to the back, pop from the front
+    q2: VecDeque<T>,
+    q3: VecDeque<T>,
+    q5: VecDeque<T>
 }
 
 impl<T: HammingNumber> Hamming<T> {
@@ -60,9 +60,9 @@ impl<T: HammingNumber> Hamming<T> {
     /// `n` initializes the capacity of the queues
     pub fn new(n: usize) -> Hamming<T> {
         let mut h = Hamming {
-            q2: RingBuf::with_capacity(n),
-            q3: RingBuf::with_capacity(n),
-            q5: RingBuf::with_capacity(n)
+            q2: VecDeque::with_capacity(n),
+            q3: VecDeque::with_capacity(n),
+            q5: VecDeque::with_capacity(n)
         };
 
         h.q2.push_back(one());

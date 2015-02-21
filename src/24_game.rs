@@ -15,7 +15,7 @@
 
 #![feature(unicode)]
 #![feature(collections)]
-#![feature(io)]
+#![feature(old_io)]
 
 extern crate rand;
 
@@ -30,7 +30,7 @@ fn main() {
     let mut input = old_io::stdin();
 
     loop {
-        let mut sample = rand::sample(&mut rng, (1us..10), 4);
+        let mut sample = rand::sample(&mut rng, (1u32..10), 4);
 
         println!("make 24 by combining the following 4 numbers with + - * / or (q)uit");
         println!("{:?}", sample);
@@ -39,7 +39,7 @@ fn main() {
         match line.trim() {
             "q" => break,
             input => {
-                if check_values(&mut sample[], input) {
+                if check_values(&mut sample[..], input) {
                     match Parser::new(input).parse() {
                         Ok(i) if i == 24. => println!("you made it!"),
                         Ok(i) => println!("you entered {}, try again!", i),
@@ -54,7 +54,7 @@ fn main() {
 }
 
 // Returns true if the entered expression uses the values contained in sample
-pub fn check_values(sample:&mut [usize], input:&str) -> bool {
+pub fn check_values(sample:&mut [u32], input:&str) -> bool {
     let lex = Lexer::new(input);
 
     let mut numbers_used = lex.filter_map(|a| {
@@ -62,7 +62,7 @@ pub fn check_values(sample:&mut [usize], input:&str) -> bool {
             Token::Int(i) => Some(i),
             _ => None
         }
-    }).collect::<Vec<usize>>();
+    }).collect::<Vec<u32>>();
 
     numbers_used.sort();
     sample.sort();
@@ -78,7 +78,7 @@ pub enum Token {
     Minus,
     Slash,
     Star,
-    Int(usize)
+    Int(u32)
 }
 
 impl Token {
@@ -122,7 +122,7 @@ pub struct Lexer<'a> {
 
 impl <'a> Lexer<'a> {
     pub fn new(input: &str) -> Lexer {
-        Lexer { input: input, offset: 0us }
+        Lexer { input: input, offset: 0usize }
     }
 
     fn expect(&mut self, expected:&[Token]) -> Result<Token, String> {
@@ -148,7 +148,7 @@ impl <'a> Iterator for Lexer<'a> {
                                       .skip_while(|&(_, ch)| ch.is_whitespace());
 
         let (tok, cur_offset) = match remaining.next() {
-            // Found a digit. if there are others, transform them to `usize`
+            // Found a digit. if there are others, transform them to `u32`
             Some((mut offset, ch)) if ch.is_numeric() => {
                 let mut val = ch.to_digit(10).unwrap();
                 let mut more = false;
@@ -170,7 +170,7 @@ impl <'a> Iterator for Lexer<'a> {
             },
             // found non-digit, try transforming it to the corresponding token
             Some((o, ch)) => (ch.as_token(), o + 1),
-            _   => (None, 0us)
+            _   => (None, 0usize)
         };
 
         // update the offset for the next iteration

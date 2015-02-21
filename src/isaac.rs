@@ -21,7 +21,7 @@ fn main () {
 
     let mut isaac = Isaac::new();
     isaac.seed(KEY, true);
-    let decr = isaac.vernam(&encr[]);
+    let decr = isaac.vernam(&encr[..]);
 
     print!("\nXOR dcr: ");
     println!("{}", String::from_utf8(decr).unwrap())
@@ -174,7 +174,7 @@ mod test {
 
         let mut isaac = Isaac::new();
         isaac.seed(KEY, true);
-        let decr = isaac.vernam(&ENCRIPTED[]);
+        let decr = isaac.vernam(&ENCRIPTED[..]);
 
         for (&a, b) in decr.iter().zip(expected.bytes()) {
             assert_eq!(a, b);

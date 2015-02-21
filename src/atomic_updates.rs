@@ -91,7 +91,7 @@ mod buckets {
                 // dropped.
                 unsafe { ::std::ptr::write(dest as *mut _, bucket) }
             }
-            for t in (&mut transfers[]).iter_mut() {
+            for t in (&mut transfers[..]).iter_mut() {
                 *t = AtomicUint::new(0);
             }
             Buckets { buckets: buckets_, transfers: transfers }
@@ -172,7 +172,7 @@ mod buckets {
 fn make_buckets(initial_sum: usize) -> buckets::Buckets {
     let mut buckets = [0; buckets::N_BUCKETS];
     let mut dist = initial_sum;
-    for (i, b) in (&mut buckets[]).iter_mut().enumerate() {
+    for (i, b) in (&mut buckets[..]).iter_mut().enumerate() {
         let v = dist / (buckets::N_BUCKETS - i);
         *b = v;
         dist -= v;

@@ -78,14 +78,14 @@ fn main() {
     println!("Compressed: {:?}", compressed);
 
     // Show decompressed
-    let decompressed = decompress(&compressed[]);
-    println!("Decompressed: {}", &decompressed[]);
+    let decompressed = decompress(&compressed[..]);
+    println!("Decompressed: {}", &decompressed[..]);
 }
 
 #[test]
 fn test_coherence() {
     for s in (50000i32..50100).map(|n| n.to_string()) {
-        let s = &s[];
+        let s = &s[..];
         assert_eq!(&*decompress(&*compress(s)), s);
     }
 }
