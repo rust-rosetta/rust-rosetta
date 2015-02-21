@@ -4,7 +4,7 @@
 
 
 #![feature(unicode)]
-#![feature(io)]
+#![feature(old_io)]
 extern crate rand;
 
 use std::fmt::{self, Display};
@@ -13,11 +13,11 @@ use std::char::CharExt;
 const NUMBER_OF_DIGITS: usize = 4;
 
 /// generates a random NUMBER_OF_DIGITS
-fn generate_digits() -> Vec<usize> {
+fn generate_digits() -> Vec<u32> {
     use rand;
 
     let mut rng = rand::thread_rng();
-    rand::sample(&mut rng, (1us..10), 4)
+    rand::sample(&mut rng, (1u32..10), 4)
 }
 
 /// types of errors we can have when parsing a malformed guess
@@ -45,7 +45,7 @@ impl fmt::Display for ParseError {
 /// configuration (which would make using a stack-allocated array more
 /// difficult)
 fn parse_guess_string(guess: &str) ->
-    Result<Vec<usize>, ParseError> {
+    Result<Vec<u32>, ParseError> {
     let mut ret = Vec::with_capacity(NUMBER_OF_DIGITS);
 
     for (i, c) in guess.char_indices() {
@@ -67,7 +67,7 @@ fn parse_guess_string(guess: &str) ->
 }
 
 /// returns a tuple with the count of Bulls and Cows in the guess
-fn calculate_score(given_digits: &[usize], guessed_digits: &[usize]) ->
+fn calculate_score(given_digits: &[u32], guessed_digits: &[u32]) ->
     (usize, usize) {
     let mut bulls = 0;
     let mut cows = 0;
@@ -120,7 +120,7 @@ mod test {
         // test we generate NUMBER_OF_DIGITS unique
         // digits between 1 and 9
         let mut digits = super::generate_digits();
-        assert!(digits.iter().all(|&d| d > 0us));
+        assert!(digits.iter().all(|&d| d > 0u32));
         digits.sort();
         digits.dedup();
         assert_eq!(digits.len(), super::NUMBER_OF_DIGITS)

@@ -18,7 +18,7 @@ fn main() {
         }
     };
 
-    let file = File::open(&Path::new(&filename[]));
+    let file = File::open(&Path::new(&filename[..]));
     let mut reader = BufferedReader::new(file);
 
     for line in reader.lines() {

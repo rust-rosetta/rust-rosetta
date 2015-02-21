@@ -13,7 +13,7 @@ fn main() {
     let enc = encode(INPUT);
     println!("encoded {}", enc);
 
-    let dec = decode(&enc[]);
+    let dec = decode(&enc[..]);
     println!("decoded {}", dec.unwrap());
 }
 
@@ -54,7 +54,7 @@ pub fn decode(value: &str) -> Result<String, String> {
         let repeated: String = repeat(c).take(ret).collect();
         start = i + 1;
 
-        result.push_str(&repeated[]);
+        result.push_str(&repeated[..]);
     }
     Ok(result)
 }

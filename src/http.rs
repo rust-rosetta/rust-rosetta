@@ -35,7 +35,7 @@ fn main() {
     let target = std::env::args().next().unwrap()
         .to_owned();
     println!("Making the request... This might take a minute.");
-    match get_index(&target[], PORT) {
+    match get_index(&target[..], PORT) {
         Ok(out) => println!("{}", out),
         Err(e) => println!("Error: {}", e)
     }

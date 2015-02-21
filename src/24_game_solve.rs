@@ -19,7 +19,7 @@ macro_rules! rationals(
 #[cfg(not(test))]
 fn main() {
     let mut r = rationals![1is, 3, 7, 9];
-    let sol = solve(&mut r[], 24).unwrap_or("no solution found".to_string());
+    let sol = solve(&mut r[..], 24).unwrap_or("no solution found".to_string());
     println!("{}", sol);
 }
 // for a vector of rationals r, find the combination of arithmentic
@@ -76,6 +76,6 @@ fn test_rationals_macro() {
 fn test_solve() {
     let mut r = rationals![1is, 3, 7, 9];
     assert_eq!(
-        solve(&mut r[], 24),
+        solve(&mut r[..], 24),
         Some("(9 / (3 / (1 + 7)))".to_string()));
 }

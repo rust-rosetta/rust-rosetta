@@ -60,12 +60,12 @@ mod test {
         image[(1, 0)] = Color { red: 4, green: 5, blue: 6 };
         let fname = format!("{}/test-{}.ppm", env::temp_dir().as_str().unwrap(), rand::thread_rng().gen::<i32>());
         // Can't use try! macro because we want to panic, not return.
-        match image.write_ppm(&fname[]) {
+        match image.write_ppm(&fname[..]) {
             Ok(_) => {},
             Err(e) => panic!(e)
         }
 
-        let file = File::open(&Path::new(&fname[]));
+        let file = File::open(&Path::new(&fname[..]));
         let mut reader = BufferedReader::new(file);
         assert_eq!(reader.read_line().unwrap(), "P6\n");
         assert_eq!(reader.read_line().unwrap(), "2 1 255\n");

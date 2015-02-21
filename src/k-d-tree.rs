@@ -165,7 +165,7 @@ pub fn main() {
         [8f32, 1f32],
         [7f32, 2f32]
     ].iter().map(|x| Point { coords: x.to_vec() }).collect();
-    let wp_tree = KDTreeNode::new(&mut wp_points[], 0);
+    let wp_tree = KDTreeNode::new(&mut wp_points[..], 0);
 
     let wp_target = Point { coords: vec![9f32, 2f32] };
     let (point, n_visited) = wp_tree.find_nearest_neighbor(&wp_target);
@@ -186,7 +186,7 @@ pub fn main() {
 		.map(|_| make_random_point()).collect();
 
     let start_cons_time = get_time();
-    let random_tree = KDTreeNode::new(&mut random_points[], 0);
+    let random_tree = KDTreeNode::new(&mut random_points[..], 0);
     let end_cons_time = get_time();
     println!("1,000 3d points (Construction time: {}ms)", 
              ((end_cons_time.sec - start_cons_time.sec)*1000) as f32 +
@@ -266,7 +266,7 @@ mod test {
             [8f32, 1f32],
             [7f32, 2f32]
         ].iter().map(|x| Point { coords: x.to_vec() }).collect();
-        let wp_tree = KDTreeNode::new(&mut wp_points[], 0);
+        let wp_tree = KDTreeNode::new(&mut wp_points[..], 0);
 
         let wp_target = Point { coords: vec![9f32, 2f32] };
         let (point, _) = wp_tree.find_nearest_neighbor(&wp_target);

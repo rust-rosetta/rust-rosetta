@@ -3,7 +3,7 @@
 #![feature(core)]
 
 use std::usize;
-use std::collections::DList;
+use std::collections::LinkedList;
 use std::iter::repeat;
 
 enum Operation { Insert, Delete, Match, }
@@ -44,8 +44,8 @@ fn levenshtein_distance(s1: &str, s2: &str) -> (usize, String, String) {
                 }
         }
     }
-    let mut res1: DList<char> = DList::new();
-    let mut res2: DList<char> = DList::new();
+    let mut res1: LinkedList<char> = LinkedList::new();
+    let mut res2: LinkedList<char> = LinkedList::new();
     let mut cur_row = l1 - 1;
     let mut cur_col = l2 - 1;
     while cur_row > 0 || cur_col > 0 {
@@ -99,6 +99,6 @@ fn test_lev_distance() {
             ("test" , "test" , (0, "test", "test") )];
     for (word1, word2, dist) in test_results {
         let (d, s1, s2) = levenshtein_distance ( word1 , word2 ); 
-        assert_eq!( (d, &s1[], &s2[]) , dist);
+        assert_eq!( (d, &s1[..], &s2[..]) , dist);
     }
 }

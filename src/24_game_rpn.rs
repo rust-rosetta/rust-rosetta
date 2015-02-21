@@ -2,7 +2,7 @@
 // Uses RPN expression
 #![allow(unused_features)] // feature(rand) is used only in main
 
-#![feature(io)]
+#![feature(old_io)]
 
 extern crate rand;
 
@@ -15,8 +15,8 @@ fn main() {
     let mut reader = old_io::stdin();
 
     // generating 4 numbers
-    let choices: Vec<usize> = (0us..4).map(
-		|_| rng.gen_range(1us, 10)
+    let choices: Vec<u32> = (0u32..4).map(
+		|_| rng.gen_range(1u32, 10)
     ).collect();
     println!("Make 24 with the following numbers");
 
@@ -24,7 +24,7 @@ fn main() {
     loop {
         print!("Your numbers: {}, {}, {}, {}\n", choices[0], choices[1], choices[2], choices[3]);
         let expr = reader.read_line().ok().expect("Failed to read line!");
-        match check_input(&expr[], &choices[]) {
+        match check_input(&expr[..], &choices[..]) {
             Ok(()) => { println!("Good job!"); break; },
             Err(e) => println!("{}", e)
         }
@@ -34,8 +34,8 @@ fn main() {
     }
 }
 
-fn check_input(expr: &str, choices: &[usize]) -> Result<(), String> {
-    let mut stack: Vec<usize> = Vec::new();
+fn check_input(expr: &str, choices: &[u32]) -> Result<(), String> {
+    let mut stack: Vec<u32> = Vec::new();
     for token in expr.words() {
         if is_operator(token) {
             let (a, b) = (stack.pop(), stack.pop());
@@ -44,7 +44,7 @@ fn check_input(expr: &str, choices: &[usize]) -> Result<(), String> {
                 (_, _) => return Err("Not a valid RPN expression!".to_string())
             }
         } else {
-            match token.parse::<usize>() {
+            match token.parse::<u32>() {
                 Ok(n) => {
                     // check if the number is valid
                     if !choices.contains(&n) {
@@ -70,7 +70,7 @@ fn check_input(expr: &str, choices: &[usize]) -> Result<(), String> {
     }
 }
 
-fn evaluate(a: usize, b: usize, op: &str) -> usize {
+fn evaluate(a: u32, b: u32, op: &str) -> u32 {
     match op {
         "+" => a + b,
         "-" => a - b,
@@ -86,7 +86,7 @@ fn is_operator(op: &str) -> bool {
 
 #[test]
 fn test_check_input() {
-    let v1 = [4us, 3, 6, 2];
+    let v1 = [4u32, 3, 6, 2];
 
     // correct result
     assert_eq!(check_input("4 3 * 6 2 * +", &v1), Ok(()));

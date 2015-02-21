@@ -1,6 +1,6 @@
 // Implements http://rosettacode.org/wiki/Active_object
 #![feature(std_misc)]
-#![feature(io)]
+#![feature(old_io)]
 #![feature(core)]
 
 extern crate time;
@@ -36,7 +36,7 @@ pub struct Integrator<S: 'static, T> {
 // f64.  We could possibly replace f64 with a generic as well, but it would make things a bit more
 // complex.
 impl<S: Mul<f64, Output=T> + Float,
-     T: Clone + Send + Float> Integrator<S, T> {
+     T: 'static + Clone + Send + Float> Integrator<S, T> {
     pub fn new(frequency: Duration) -> Integrator<S, T> {
         // We create a pipe allowing functions to be sent from tx (the sending end) to input (the
         // receiving end).  In order to change the function we are integrating from the task in

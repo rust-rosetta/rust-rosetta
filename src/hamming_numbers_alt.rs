@@ -21,7 +21,7 @@ mod hamming_numbers;
 
 #[cfg(not(test))]
 fn main() {
-    // capacity of the queue currently needs to be a power of 2 because of a bug with RingBuf
+    // capacity of the queue currently needs to be a power of 2 because of a bug with VecDeque
     let hamming : Hamming<HammingTriple> = Hamming::new(128);
 
     for (idx, h) in hamming.enumerate().take(1_000_000) {

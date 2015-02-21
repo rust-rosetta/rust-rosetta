@@ -34,7 +34,7 @@ impl Sudoku {
         }
     }
 
-    fn set(&mut self, x: usize, y: usize, n: usize) {
+    fn set(&mut self, x: usize, y: usize, n: u32) {
         self.map[y][x] = 1 << (n - 1);
     }
 

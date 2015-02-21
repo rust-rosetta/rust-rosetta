@@ -8,7 +8,7 @@ fn main() {
                             .map(|i| i.parse::<i32>().ok())
                             .collect::<Vec<Option<i32>>>();
 
-    let sum = match &words[] {
+    let sum = match &words[..] {
         [Some(x), Some(y)] => x + y,
             _ => panic!("Please enter 2 integers")
     };

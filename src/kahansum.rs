@@ -55,7 +55,7 @@ fn main() {
     let v = [10000.0f32, 3.14159, 2.71828];
     let sums = all_sums(&v);
     let res = kahan_sum(&v).unwrap();
-    let max = find_max(&sums[]).unwrap();
+    let max = find_max(&sums[..]).unwrap();
     println!("max: {} res: {}", max, res);
 }
 
@@ -64,7 +64,7 @@ fn test_kahansum() {
     let v = [10000.0f32, 3.14159, 2.71828];
     let sums = all_sums(&v);
     let res = kahan_sum(&v).unwrap();
-    let max = find_max(&sums[]).unwrap();
+    let max = find_max(&sums[..]).unwrap();
     assert!(max < res);
 }
 

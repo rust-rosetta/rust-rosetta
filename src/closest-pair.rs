@@ -112,7 +112,7 @@ pub fn main() {
         Complex::new(0.293786, 0.691701),
         Complex::new(0.839186, 0.728260)
     ];
-    let (p1, p2) = closest_pair(&mut test_data[]).unwrap();
+    let (p1, p2) = closest_pair(&mut test_data[..]).unwrap();
     println!("Closest pair: {} and {}", p1, p2);
     println!("Distance: {}", (p1 - p2).norm_sqr().sqrt());
 }
@@ -137,7 +137,7 @@ mod test {
             Complex::new(0.293786, 0.691701),
             Complex::new(0.839186, 0.728260)
         ];
-        let (p1, p2) = closest_pair(&mut test_data[]).unwrap();
+        let (p1, p2) = closest_pair(&mut test_data[..]).unwrap();
         assert!((p1.re - 0.891663).abs() < 1e-6f32);
         assert!((p1.im - 0.888594).abs() < 1e-6f32);
         assert!((p2.re - 0.925092).abs() < 1e-6f32);

@@ -30,7 +30,7 @@ fn main() {
         }
     };
 
-    let file = File::open(&Path::new(&filename[]));
+    let file = File::open(&Path::new(&filename[..]));
     let mut reader = BufferedReader::new(file);
 
     match reader.lines().skip(line_number-1).next() {

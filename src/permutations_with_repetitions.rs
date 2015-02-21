@@ -35,7 +35,7 @@ impl<'a, T> Iterator for PermutationIterator<'a, T> where T: Clone {
                 let zeroes: Vec<usize> = std::iter::repeat(0)
                                             .take(self.size)
                                             .collect();
-                let result = Some(map(self.universe, &zeroes[]));
+                let result = Some(map(self.universe, &zeroes[..]));
                 self.prev = Some(zeroes);
                 return result
             }
@@ -48,7 +48,7 @@ impl<'a, T> Iterator for PermutationIterator<'a, T> where T: Clone {
                             indexes[i] = 0;
                         }
                         indexes[position] += 1;
-                        return Some(map(self.universe, &indexes[]))
+                        return Some(map(self.universe, &indexes[..]))
                     }
                 }
         }
@@ -58,7 +58,7 @@ impl<'a, T> Iterator for PermutationIterator<'a, T> where T: Clone {
 #[cfg(not(test))]
 fn main() {
     let universe = ["Annie", "Barbie"];
-    for p in permutations(&universe[], 3) {
+    for p in permutations(&universe[..], 3) {
         for element in &p {
             print!("{} ", element);
         }
@@ -73,6 +73,6 @@ mod test {
     #[test]
     fn test_len() {
         let universe = [1us, 132, 323];
-        assert!(permutations(&universe[], 4).count() == 81);
+        assert!(permutations(&universe[..], 4).count() == 81);
     }
 }
