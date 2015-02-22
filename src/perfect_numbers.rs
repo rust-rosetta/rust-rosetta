@@ -9,14 +9,14 @@ fn perfect_number(n: usize) -> bool {
 
 #[cfg(not(test))]
 fn main() {
-  for n in (2..10_000us).filter(|&n| perfect_number(n)) {
+  for n in (2..10_000).filter(|&n| perfect_number(n)) {
     println!("{}", n);
   }
 }
 
 #[test]
 fn test_first_four() {
-  let nums = (2..10_000us).filter(|&n| perfect_number(n))
+  let nums = (2..10_000).filter(|&n| perfect_number(n))
                               .collect::<Vec<usize>>();
   assert_eq!(nums, [6, 28, 496, 8128]);
 }

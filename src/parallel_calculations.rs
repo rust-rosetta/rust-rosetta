@@ -24,7 +24,7 @@ fn min_factor(x: usize) -> usize {
 // The function is implemented using a channel
 #[cfg(test)]
 fn largest_min_factor_chan(numbers: &[usize]) -> usize {
-    use std::thread::Thread;
+    use std::thread::spawn;
     use std::sync::mpsc::channel;
 
     let (sender, receiver) = channel();
@@ -32,11 +32,11 @@ fn largest_min_factor_chan(numbers: &[usize]) -> usize {
     // Send all the minimal factors
     for &x in numbers {
         let child_sender = sender.clone();
-        Thread::spawn(move || { child_sender.send(min_factor(x)).unwrap() });
+        spawn(move || { child_sender.send(min_factor(x)).unwrap() });
     }
 
     // Receive them and keep the largest one
-    numbers.iter().fold(0us, |max, _| {
+    numbers.iter().fold(0, |max, _| {
         std::cmp::max(receiver.recv().unwrap(), max)
     })
 }
@@ -58,7 +58,7 @@ fn largest_min_factor_fut(numbers: &[usize]) -> usize {
 #[cfg(not(test))]
 fn main() {
     // Numbers to be factorized
-    let numbers = &[1122725us,
+    let numbers = &[1122725,
                    1125827,
                    1122725,
                    1152800,
@@ -78,7 +78,7 @@ fn test_basic() {
 
 #[test]
 fn test_equivalence() {
-    let numbers = &[1122725us,
+    let numbers = &[1122725,
                    1125827,
                    1122725,
                    1152800,

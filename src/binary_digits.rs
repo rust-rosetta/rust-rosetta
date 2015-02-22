@@ -12,7 +12,7 @@ impl BinaryString for usize {
 
 #[cfg(not(test))]
 fn main() {
-    for s in (0..17us) {
+    for s in (0..17) {
         println!("{}", s.to_binary_string());
     }
 }
@@ -24,7 +24,7 @@ fn test_digits() {
                     "1000", "1001", "1010", "1011",
                     "1100", "1101", "1110", "1111"];
 
-    for (n, expected) in (0..17us).zip(expected.iter()) {
+    for (n, expected) in (0..17).zip(expected.iter()) {
         assert_eq!(n.to_binary_string(), *expected);
     }
 }

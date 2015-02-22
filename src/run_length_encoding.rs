@@ -21,19 +21,19 @@ pub fn encode(value: &str) -> String {
     let mut ret = String::new();
     let mut chars = value.chars();
 
-    let (mut count, mut cur) = (1us, chars.next());
+    let (mut count, mut cur) = (1, chars.next());
     if cur.is_none() { return ret }
 
     for chr in chars {
         if cur == Some(chr) { count += 1 }
         else {
-                ret.push_str(&(count.to_string())[]);
+                ret.push_str(&(count.to_string())[..]);
                 ret.push(cur.unwrap());
-                count=1us;
+                count=1;
                 cur=Some(chr);
         }
     }
-    ret.push_str(&(count.to_string())[]);
+    ret.push_str(&(count.to_string())[..]);
     ret.push(cur.unwrap());
     ret
 }
@@ -61,6 +61,6 @@ pub fn decode(value: &str) -> Result<String, String> {
 
 #[test]
 fn test_encode_decode() {
-    assert_eq!(decode(&encode(INPUT)[]).unwrap(), INPUT);
+    assert_eq!(decode(&encode(INPUT)[..]).unwrap(), INPUT);
     assert_eq!(decode("a"), Err("expected digit, found a".to_string()));
 }

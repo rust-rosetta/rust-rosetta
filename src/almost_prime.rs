@@ -17,14 +17,14 @@ fn is_kprime(mut n: usize, k: usize) -> bool {
 }
 
 fn get_kprimes(k: usize, amount: usize) -> Vec<usize> {
-    std::iter::count(2us, 1).filter(|&x| is_kprime(x, k))
+    std::iter::count(2, 1).filter(|&x| is_kprime(x, k))
                 .take(amount)
                 .collect()
 }
 
 #[cfg(not(test))]
 fn main() {
-    for k in (1us..6) {
+    for k in (1..6) {
         println!("k = {}: {:?}", k, get_kprimes(k, 10));
     }
 }

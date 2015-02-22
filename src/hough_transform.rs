@@ -2,8 +2,8 @@
 //
 // Contributed by Gavin Baker <gavinb@antonym.org>
 // Adapted from the Go version
-#![feature(path)]
-#![feature(io)]
+#![feature(old_path)]
+#![feature(old_io)]
 #![feature(std_misc)]
 #![feature(core)]
 
@@ -52,7 +52,7 @@ fn load_pgm(filename: &str) -> ImageGray8 {
 
     // Read image data
 
-    match file.read_at_least(img.data.len(), &mut (img.data)[]) {
+    match file.read_at_least(img.data.len(), &mut (img.data)[..]) {
         Ok(bytes_read) => println!("Read {} bytes", bytes_read),
         Err(e) => println!("error reading: {}", e)
     }
@@ -78,7 +78,7 @@ fn save_pgm(img: &ImageGray8, filename: &str) {
 
     // Write binary image data
 
-    match file.write_all(&(img.data[])) {
+    match file.write_all(&(img.data[..])) {
         Err(e) => println!("Failed to image data: {}", e),
         _ => {},
     }

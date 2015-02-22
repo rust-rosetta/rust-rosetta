@@ -1,6 +1,6 @@
 // Implements http://rosettacode.org/wiki/Arithmetic/Integer
-#![feature(io)]
-
+#![feature(old_io)]
+#![feature(str_words)]
 use std::old_io::stdin;
 
 fn main() {

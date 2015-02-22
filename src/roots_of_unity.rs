@@ -7,7 +7,7 @@ use std::f32::consts;
 
 #[cfg(not(test))]
 fn main() {
-    let degree = 3us;
+    let degree = 3;
 
     for root in &roots_of_unity(degree) {
         println!("{}", root);
@@ -28,7 +28,7 @@ fn test_result() {
         Complex::new(-0.5, -0.866025)
     ];
 
-    for (root, &exp) in roots_of_unity(3us).iter().zip(expected.iter()) {
+    for (root, &exp) in roots_of_unity(3).iter().zip(expected.iter()) {
         assert!((*root - exp).norm() < 1e-6);
     }
 }

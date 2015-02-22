@@ -1,13 +1,13 @@
 // http://rosettacode.org/wiki/Binary_search
 #[cfg(not(test))]
 fn main() {
-    println!("{:?}", binary_search(&[1us,2,3,4,5,6], 4));
-    println!("{:?}", binary_search_rec(&[1us,2,3,4,5,6], 4));
+    println!("{:?}", binary_search(&[1,2,3,4,5,6], 4));
+    println!("{:?}", binary_search_rec(&[1,2,3,4,5,6], 4));
 }
 
 // iterative version
 fn binary_search<T: Ord>(haystack: &[T], needle: T) -> Option<usize> {
-    let mut low  = 0us;
+    let mut low  = 0;
     let mut high = haystack.len() - 1;
 
     if high == 0 { return None }
@@ -38,7 +38,7 @@ fn binary_search_rec<T: Ord>(haystack: &[T], needle: T) -> Option<usize> {
 
 #[test]
 fn test_result() {
-    let haystack = &[1us,2,3,4,5,6];
+    let haystack = &[1,2,3,4,5,6];
     let needle = 4;
 
     assert_eq!(binary_search(haystack, needle), Some(3));

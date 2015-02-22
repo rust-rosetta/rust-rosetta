@@ -11,7 +11,7 @@ trait Balanced {
 
 impl<'a> Balanced for str {
     fn is_balanced(&self) -> bool {
-        let mut count = 0is;
+        let mut count = 0;
 
         for bracket in self.chars() {
             let change = match bracket {
@@ -39,7 +39,7 @@ fn generate_brackets(num: usize) -> String {
 
 #[cfg(not(test))]
 fn main() {
-    for i in (0us..10) {
+    for i in (0..10) {
         let brackets = generate_brackets(i);
 
         println!("{}    {}", brackets, brackets.is_balanced())

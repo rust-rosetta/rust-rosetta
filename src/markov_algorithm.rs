@@ -75,7 +75,7 @@ impl MarkovAlgorithm {
             // find the first rule that is applicable
             // (pattern string is in state)
             let possible_rule = self.rules.iter().find(|rule|{
-                state.find_str(&(rule.pattern[])).is_some()
+                state.find_str(&(rule.pattern[..])).is_some()
             });
 
             match possible_rule {
@@ -87,7 +87,7 @@ impl MarkovAlgorithm {
 
                     // unwrap is safe here as the code for finding a rule
                     // already established that the pattern is present
-                    let pos = state.find_str(&(rule.pattern[])).unwrap();
+                    let pos = state.find_str(&(rule.pattern[..])).unwrap();
                     let width = rule.pattern.len();
 
                     // string parts

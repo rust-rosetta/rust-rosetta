@@ -1,6 +1,6 @@
 // Implements http://rosettacode.org/wiki/Rename_a_file
-#![feature(io)]
-#![feature(path)]
+#![feature(old_io)]
+#![feature(old_path)]
 
 use std::old_io::fs;
 

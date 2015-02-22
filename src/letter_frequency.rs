@@ -1,8 +1,8 @@
 // Implements http://rosettacode.org/wiki/Letter_frequency
 #![allow(unused_features)] 
 #![feature(std_misc)]
-#![feature(io)]
-#![feature(path)]
+#![feature(old_io)]
+#![feature(old_path)]
 
 
 #[cfg(not(test))]
@@ -18,7 +18,7 @@ fn count_chars<T>(chars: T) -> HashMap<char, usize>
     let mut map: HashMap<char, usize> = HashMap::new();
     for letter in chars {
         match map.entry(letter) {
-            Vacant(entry) => { entry.insert(1us); },
+            Vacant(entry) => { entry.insert(1); },
             Occupied(mut entry) => { *entry.get_mut() += 1; }
         };
     }

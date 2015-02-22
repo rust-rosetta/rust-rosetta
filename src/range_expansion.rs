@@ -5,7 +5,7 @@
 #![plugin(regex_macros)]
 
 #[macro_use]
-extern crate regex_macros;
+
 extern crate regex;
 
 #[cfg(not(test))]

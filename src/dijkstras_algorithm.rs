@@ -99,7 +99,7 @@ impl<'a> Graph<'a> {
             None      => return Vec::new() // Target not in graph, return empty path.
         };
 
-        dist[source_idx] = 0us;
+        dist[source_idx] = 0;
         queue.push(DistPair(source_idx, dist[source_idx]));
 
         loop{

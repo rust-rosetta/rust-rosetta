@@ -1,6 +1,6 @@
 // Implements http://rosettacode.org/wiki/DNS_query 
 #![allow(unused_features)]
-#![feature(io)]
+#![feature(old_io)]
 #![feature(collections)]
 
 

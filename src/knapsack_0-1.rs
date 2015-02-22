@@ -80,7 +80,7 @@ fn knap_01_dp<'a>(xs: &[Want<'a>], max_weight: usize) -> Vec<Want<'a>> {
     // In a similar vein, the top-down solution would be to memoize the
     // function then compute the results on demand.
 
-    let zero_vec: Vec<usize> = repeat(0us).take(max_weight + 1).collect();
+    let zero_vec: Vec<usize> = repeat(0).take(max_weight + 1).collect();
     let mut best_value: Vec<Vec<usize>> = repeat(zero_vec)
 		.take(xs_len + 1).collect();
 

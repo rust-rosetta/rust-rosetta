@@ -32,7 +32,7 @@ fn is_valid(iban: &str) -> bool {
     };
 
     // Rearrange (first four characters go to the back)
-    for _ in (0us..4) {
+    for _ in (0..4) {
         let front = iban_chars.remove(0);
         iban_chars.push(front);
     }
@@ -42,7 +42,7 @@ fn is_valid(iban: &str) -> bool {
 
     // Check if the remainder is one
     match iban_int {
-        Some(x) => x % 97us.to_bigint().unwrap() == 1us.to_bigint().unwrap(),
+        Some(x) => x % 97.to_bigint().unwrap() == 1.to_bigint().unwrap(),
         None    => false
     }
 }

@@ -1,8 +1,10 @@
 // Implements http://rosettacode.org/wiki/Write_ppm_file
 #![allow(unused_features)]
 #![allow(unused_attributes)]
-#![feature(io)]
-#![feature(path)]
+#![feature(old_io)]
+#![feature(env)]
+#![feature(old_path)]
+#![feature(core)]
 
 extern crate rand;
 
@@ -19,7 +21,7 @@ impl PPMWritable for Image {
         let file = File::create(&Path::new(filename));
         let mut writer = BufferedWriter::new(file);
         try!(writer.write_line("P6"));
-        try!(write!(&mut writer, "{} {} {}\n", self.width, self.height, 255us));
+        try!(write!(&mut writer, "{} {} {}\n", self.width, self.height, 255));
         for color in &(self.data) {
             for channel in &[color.red, color.green, color.blue] {
                 try!(writer.write_u8(*channel));
@@ -37,8 +39,8 @@ pub fn main() {
     // of which is blue
     let mut image = Image::new(64, 64);
     image.fill(Color { red: 255, green: 0, blue: 0 });
-    for y in (0us..64) {
-        for x in (32us..64) {
+    for y in 0..64 {
+        for x in 32..64 {
             image[(x, y)] = Color { red: 0, green: 0, blue: 255 };
         }
     }

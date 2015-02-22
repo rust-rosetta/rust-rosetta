@@ -1,7 +1,6 @@
 // Implements http://rosettacode.org/wiki/Read_a_specific_line_from_a_file
-#![feature(io)]
-#![feature(path)]
-#![feature(core)]
+#![feature(old_io)]
+#![feature(old_path)]
 #![feature(env)]
 
 use std::old_io::fs::File;

@@ -1,7 +1,7 @@
 // http://rosettacode.org/wiki/FASTA_format
 // Ported and adapted from rosettacode D example
-#![feature(io)]
-#![feature(path)]
+#![feature(old_io)]
+#![feature(old_path)]
 
 use std::old_io::fs::File;
 use std::old_io::BufferedReader;

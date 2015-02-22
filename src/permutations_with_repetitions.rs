@@ -72,7 +72,7 @@ mod test {
 
     #[test]
     fn test_len() {
-        let universe = [1us, 132, 323];
+        let universe = [1, 132, 323];
         assert!(permutations(&universe[..], 4).count() == 81);
     }
 }

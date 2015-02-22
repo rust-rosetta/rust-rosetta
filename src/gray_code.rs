@@ -17,7 +17,7 @@ fn gray_decode(integer: usize) -> usize {
 
 #[cfg(not(test))]
 fn main() {
-    for i in (0us..32) {
+    for i in (0..32) {
         println!("{:2} {:0>5} {:0>5} {:2}", i, i, gray_encode(i),
             gray_decode(i));
     }
@@ -25,5 +25,5 @@ fn main() {
 
 #[test]
 fn test_coherence() {
-    assert!((0us..1000).all(|x| gray_decode(gray_encode(x)) == x));
+    assert!((0..1000).all(|x| gray_decode(gray_encode(x)) == x));
 }

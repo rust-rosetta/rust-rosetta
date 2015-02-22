@@ -47,10 +47,10 @@ impl Ord for SortIndex {
 }
 
 fn zigzag(n: usize) -> Vec<Vec<usize>> {
-    let mut l: Vec<SortIndex> = (0us..n*n).map(|i| SortIndex::new(i%n,i/n)).collect();
+    let mut l: Vec<SortIndex> = (0..n*n).map(|i| SortIndex::new(i%n,i/n)).collect();
     l.sort();
 
-	let init_vec = repeat(0us).take(n).collect(); // a vec of 0s 
+	let init_vec = vec![0; n]; 
     let mut result : Vec<Vec<usize>> = repeat(init_vec).take(n).collect();
     for (i,&SortIndex{x,y}) in l.iter().enumerate() {
         result[y][x] = i

@@ -1,6 +1,6 @@
 // Implements http://rosettacode.org/wiki/Create_a_file
-#![feature(path)]
-#![feature(io)]
+#![feature(old_path)]
+#![feature(old_io)]
 
 use std::old_io::{self, File, fs};
 

@@ -1,6 +1,4 @@
 // http://rosettacode.org/wiki/Bitwise_operations
-#![feature(core)]
-
 fn main() {
     let a: u8 = 105;
     let b: u8 = 91;

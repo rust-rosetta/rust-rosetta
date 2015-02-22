@@ -18,7 +18,7 @@
 // decoding technique doesn't allocate extra space for strings.  Does support numbers, but only
 // float types (supporting more types is possible but would complicate the code significantly).
 //
-#![feature(io)]
+#![feature(old_io)]
 #![feature(rustc_private)]
 #![feature(core)]
 #![feature(collections)]

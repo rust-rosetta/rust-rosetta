@@ -1,6 +1,6 @@
 // Implements http://rosettacode.org/wiki/Guess_the_number
 
-#![feature(io)]
+#![feature(old_io)]
 extern crate rand;
 use rand::{thread_rng, Rng};
 use std::old_io::stdio::stdin;

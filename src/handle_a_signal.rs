@@ -4,7 +4,7 @@
 #![allow(unused_features)]
 #![feature(libc)]
 #![feature(std_misc)]
-#![feature(io)]
+#![feature(old_io)]
 
 
 extern crate libc;

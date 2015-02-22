@@ -4,15 +4,13 @@
 // unit, which then prints lines, keeping track of lines printed. At the end of
 // the file, the reader unit requests number of lines printed from the printer
 // unit, and then prints them.
-#![feature(std_misc)]
-#![feature(io)]
-#![feature(path)]
-
+#![feature(old_io)]
+#![feature(old_path)]
 
 use std::old_io::File;
 use std::old_io::BufferedReader;
 use std::sync::mpsc::{channel, Sender, Receiver};
-use std::thread::Thread;
+use std::thread::spawn;
 
 const FILENAME: &'static str = "resources/input.txt";
 
@@ -48,6 +46,6 @@ fn main() {
     let (msg_snd, msg_rcv) = channel();
     let (i_snd, i_rcv) = channel();
 
-    Thread::spawn(move || printer(i_snd, msg_rcv));
-    Thread::spawn(move || reader(msg_snd, i_rcv));
+    spawn(move || printer(i_snd, msg_rcv));
+    spawn(move || reader(msg_snd, i_rcv));
 }

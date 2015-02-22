@@ -2,7 +2,7 @@
 
 
 fn main() {
-    for i in 1us..11 {
+    for i in 1..11 {
         print!("{}", i);
         if i == 10 {
             break;

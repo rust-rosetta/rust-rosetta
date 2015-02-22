@@ -40,7 +40,7 @@ fn exp_factorial(cx: &mut ExtCtxt, sp: Span, tts: &[TokenTree])
     };
     
     // calculating the factorial
-    let result = (1us..(n as usize)+1).fold(1, |accum, elem| accum * elem);    
+    let result = (1..(n as usize)+1).fold(1, |accum, elem| accum * elem);    
 
     MacExpr::new(cx.expr_usize(sp, result))
 }

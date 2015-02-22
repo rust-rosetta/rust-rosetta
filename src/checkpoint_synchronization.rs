@@ -6,12 +6,9 @@
 // waiting at the barrier, at which point all of them will stop waiting.  This
 // can be used to allow threads to do asynchronous work and guarantee properties
 // at checkpoints.
-#![feature(std_misc)]
-
-
 use std::sync::atomic::{AtomicBool, Ordering};
 use std::sync::{Arc, Barrier};
-use std::thread::Thread;
+use std::thread::spawn;
 use std::sync::mpsc::channel;
 
 
@@ -37,7 +34,7 @@ pub fn checkpoint() {
         let arc = arc.clone();
         let tx = tx.clone();
         // Spawn a new worker
-        Thread::spawn( move || -> () {
+        spawn( move || -> () {
             let (ref barrier, ref events) = *arc;
             // Assign an event to this task
             let ref event = events[i];

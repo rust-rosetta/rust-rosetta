@@ -49,7 +49,7 @@ impl Solver {
             self.cache.push(r);
         }
 
-        &self.cache[idx][]
+        &self.cache[idx][..]
     }
 }
 
@@ -58,12 +58,12 @@ fn main() {
     let mut solver = Solver::new();
 
     println!("rows");
-    for n in (1us..11) {
+    for n in 1..11 {
         println!("{}: {}", n, solver.row_string(n));
     }
 
     println!("sums");
-    for &y in &[23us, 123, 1234, 12345] {
+    for &y in &[23, 123, 1234, 12345] {
         println!("{}: {}", y, solver.row_sum(y));
     }
 }

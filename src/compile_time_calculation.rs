@@ -5,16 +5,14 @@
 #![allow(unused_features)]
 #![feature(core)] 
 #![feature(plugin)] 
-#![plugin(factorial_plugin)] 
-
 // we use this attribute to mark factorial_plugin as
 // a syntax extension. The plugin's code is in src/factorial_plugin.rs
-extern crate factorial_plugin;
+#![plugin(factorial_plugin)] 
 
 #[cfg(not(test))] 
 fn main() {
     // we can invoke factorial_10! as a regular macro
-    println!("{}", factorial!(10us));
+    println!("{}", factorial!(10));
 }
 
 #[test]
@@ -22,5 +20,5 @@ fn output() {
     // just testing the output
     // I can't prove programmatically that factorial_10 is actually
     // calculated at compile time
-    assert_eq!(factorial!(10us), 3628800us);
+    assert_eq!(factorial!(10), 3628800);
 }
