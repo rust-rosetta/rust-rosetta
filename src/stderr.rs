@@ -1,5 +1,5 @@
 // Implements http://rosettacode.org/wiki/Hello_world/Standard_error
-#![feature(io)]
+#![feature(old_io)]
 
 use std::old_io;
 

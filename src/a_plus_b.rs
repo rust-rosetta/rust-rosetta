@@ -1,5 +1,6 @@
 // Implements http://rosettacode.org/wiki/A%2BB
-#![feature(io)]
+#![feature(old_io)]
+#![feature(str_words)]
 use std::old_io::stdio;
 
 fn main() {

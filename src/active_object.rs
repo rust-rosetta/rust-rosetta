@@ -10,7 +10,7 @@ use std::f64::consts::PI;
 use std::old_io::timer::Timer;
 use std::sync::{Arc, Mutex};
 use std::time::duration::Duration;
-use std::thread::Thread;
+use std::thread::spawn;
 use std::sync::mpsc::{channel, Sender, SendError};
 use std::ops::Mul;
 
@@ -55,7 +55,7 @@ impl<S: Mul<f64, Output=T> + Float,
             // becomes inaccessible to the outside world.
             output: s.clone(),
         };
-        Thread::spawn(move || -> () {
+        spawn(move || -> () {
             // There is a reasonable argument for failure on failure to initialize the Timer, but
             // it's essentially certain that if we return from the spawn this early main will
             // detect that something is amiss.

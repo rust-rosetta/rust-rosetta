@@ -22,11 +22,11 @@ pub fn is_prime(p: usize) -> bool {
 #[allow(dead_code)]
 #[cfg(not(test))]
 fn main() {
-    for p in 0us..8 {
+    for p in 0..8 {
         println!("{}: {:?}", p, coefficients(p));
     }
 
-    for p in (1us..51).filter(|&x| is_prime(x)) {
+    for p in (1..51).filter(|&x| is_prime(x)) {
         print!("{} ", p);
     }
 }
@@ -37,7 +37,7 @@ fn coefficients(p: usize) -> Vec<i64> {
     } else {
         let mut result = vec![1, -1];
         let zero = Some(0i64);
-        for _ in (1us..p) {
+        for _ in (1..p) {
             result = {
                 let a = result.iter().chain(zero.iter());
                 let b = zero.iter().chain(result.iter());
@@ -59,12 +59,12 @@ fn test_solution() {
                             vec![1, -5, 10, -10, 5, -1],
                             vec![1, -6, 15, -20, 15, -6, 1],
                             vec![1, -7, 21, -35, 35, -21, 7, -1]];
-    let exp_primes = [2us, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47];
+    let exp_primes = [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47];
 
     for (i, exp) in exp_coefficients.iter().enumerate() {
         assert_eq!(*exp, coefficients(i));
     }
 
-    let primes: Vec<usize> = (1us..51).filter(|&i| is_prime(i)).collect();
+    let primes: Vec<usize> = (1..51).filter(|&i| is_prime(i)).collect();
     assert_eq!(exp_primes, primes);
 }

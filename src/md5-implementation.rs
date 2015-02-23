@@ -70,7 +70,7 @@ fn left_rotate(x: u32, c: u32) -> u32 {
 fn to_bytes(val: u64) -> [u8; 8]
 {
     let mut tmp:[u8; 8] = [0u8; 8];
-    for i in (0us..8) {
+    for i in (0..8) {
         tmp[i] = (val >> (8*i)) as u8;
     }
     tmp
@@ -122,7 +122,7 @@ fn md5(initial_msg: &[u8]) -> MD5
         let (mut a, mut b, mut c, mut d) = (h[0], h[1], h[2], h[3]);
 
         // Main loop:
-        for ind in (0us..64) {
+        for ind in (0..64) {
             let (f,g) = match ind {
                 i @ 0...15  => ( (b & c) | ((!b) & d), //f
                                 i ),                   //g

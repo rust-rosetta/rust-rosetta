@@ -1,7 +1,7 @@
 // Implements http://rosettacode.org/wiki/Check_that_file_exists
 
-#![feature(io)]
-#![feature(path)]
+#![feature(old_io)]
+#![feature(old_path)]
 
 use std::old_io::fs::PathExtensions;
 

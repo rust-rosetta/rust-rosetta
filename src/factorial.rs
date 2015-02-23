@@ -32,7 +32,7 @@ fn main () {
                   ("Looooooop", factorial_loop as fn(usize) -> usize)];
     for (name, f) in fs {
         println!("---------\n{}", name);
-        for i in 1us..10 {
+        for i in 1..10 {
             println!("{}", f(i))
         }
     }

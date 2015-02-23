@@ -38,7 +38,7 @@ fn is_happy(mut x: usize) -> bool {
 #[cfg(not(test))]
 fn main() {
     // Print the first 8 happy numbers
-    let v: Vec<usize> = count(1us, 1)
+    let v: Vec<usize> = count(1, 1)
         .filter(|x| is_happy(*x))
         .take(8)
         .collect();
@@ -58,8 +58,8 @@ fn test_digits() {
 
 #[test]
 fn test_is_happy() {
-    let happys = [1us, 7, 10, 13, 19, 23, 28, 31, 1607, 1663];
-    let unhappys = [0us, 2, 3, 4, 5, 6, 8, 9, 29, 1662];
+    let happys = [1, 7, 10, 13, 19, 23, 28, 31, 1607, 1663];
+    let unhappys = [0, 2, 3, 4, 5, 6, 8, 9, 29, 1662];
 
     assert!(happys.iter().all(|&n| is_happy(n)));
     assert!(unhappys.iter().all(|&n| !is_happy(n)));

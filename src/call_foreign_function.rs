@@ -14,8 +14,8 @@ extern "C" {
 
 #[cfg(not(test))]
 fn main() {
-    let a = CString::from_slice(b"a");
-    let b = CString::from_slice(b"b");
+    let a = CString::new(b"a").unwrap();
+    let b = CString::new(b"b").unwrap();
 
     println!("{}", unsafe {
         strcmp(a.as_ptr(), b.as_ptr())
@@ -25,8 +25,8 @@ fn main() {
 #[cfg(test)]
 #[test]
 fn test_strcmp() {
-    let a = CString::from_slice(b"a");
-    let b = CString::from_slice(b"b");
+    let a = CString::new(b"a").unwrap();
+    let b = CString::new(b"b").unwrap();
 
     assert_eq!(unsafe {
         strcmp(a.as_ptr(), b.as_ptr())

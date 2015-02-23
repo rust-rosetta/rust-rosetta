@@ -1,10 +1,10 @@
 // Implements http://rosettacode.org/wiki/Walk_a_directory/Recursively
-#![feature(path)]
-#![feature(io)]
+#![feature(old_path)]
+#![feature(old_io)]
 #![feature(core)]
 
 #![feature(plugin)]
-#![plugin(regex_macros)] extern crate regex_macros;
+#![plugin(regex_macros)]
 extern crate regex;
 
 use regex::Regex;

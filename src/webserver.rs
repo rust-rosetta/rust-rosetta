@@ -1,6 +1,6 @@
 // Implements http://rosettacode.org/wiki/Hello_world/Web_server
 #![allow(unused_features)]
-#![feature(io)]
+#![feature(old_io)]
 #![feature(std_misc)]
 #![feature(os)]
 #![feature(env)]
@@ -9,7 +9,6 @@
 
 use std::old_io::net::tcp::{TcpAcceptor, TcpListener, TcpStream};
 use std::old_io::{Acceptor, Listener, IoResult};
-use std::thread::Thread;
 #[cfg(not(test))] use std::borrow::ToOwned;
 #[cfg(not(test))] use std::env;
 
@@ -38,16 +37,17 @@ charset=UTF-8
 }
 
 pub fn handle_server(ip: &str, port: u16) -> IoResult<TcpAcceptor> {
+    use std::thread::spawn;
     let listener = try!(TcpListener::bind((ip, port)));
     let mut acceptor = listener.listen();
     println!("Listening for connections on port {}", port);
 
     let handle = acceptor.clone();
-    Thread::spawn(move || -> () {
+    spawn(move || -> () {
         for stream in acceptor.incoming() {
             match stream {
                 Ok(s) => {
-                    Thread::spawn(move || {
+                    spawn(move || {
                         match handle_client(s) {
                             Ok(_) => println!("Response sent!"),
                             Err(e) => println!("Failed sending response: {}!", e),

@@ -1,6 +1,7 @@
 // Implements http://rosettacode.org/wiki/Reverse_words_in_a_string
 #![allow(unused_features)]
-
+#![feature(str_words)]
+ 
 fn rev_words(line: &str) -> String {
     line.words().rev().collect::<Vec<&str>>().connect(" ")
 }

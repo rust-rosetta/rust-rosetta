@@ -1,10 +1,9 @@
 // Implements http://rosettacode.org/wiki/Tic-tac-toe
-#![feature(core)]
-#![feature(io)]
-#![feature(rand)]
+#![allow(unused_features)]
+#![feature(old_io)]
 
-use std::old_io as io;
-use std::rand::{thread_rng, Rng};
+extern crate rand;
+
 use GameState::{PlayerWin, ComputerWin, Draw, Playing};
 
 #[derive(PartialEq, Debug)]
@@ -80,7 +79,10 @@ fn which_win(s: char) -> GameState {
 	}
 }
 
+#[cfg(not(test))]
 fn player_turn(board: &mut [[char; 3]; 3]) {
+    use std::old_io as io;
+
 	println!("Player, enter your field of choice!: ");
 	let input = io::stdin().read_line().unwrap();
 	let choice = input.trim().parse::<usize>().unwrap();
@@ -95,7 +97,10 @@ fn player_turn(board: &mut [[char; 3]; 3]) {
 	}
 }
 
+#[cfg(not(test))]
 fn computer_turn(board: &mut [[char; 3]; 3]) {
+    use rand::{thread_rng, Rng};
+
 	// Computer just does a random possible move
 	let mut rng = thread_rng();
 
@@ -116,6 +121,7 @@ fn computer_turn(board: &mut [[char; 3]; 3]) {
 	board[row][col] = 'O';
 }
 
+#[cfg(not(test))]
 fn draw_board(board: [[char; 3]; 3]) {
 	for row in board.iter() {
 		println!("{} {} {}", row[0], row[1], row[2]);

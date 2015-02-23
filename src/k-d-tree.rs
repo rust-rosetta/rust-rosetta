@@ -61,7 +61,7 @@ impl KDTreeNode {
         let pivot = quickselect_by(points, points_len/2,
             &|a, b| a.coords[dim].partial_cmp(&b.coords[dim]).unwrap());
 
-        let left = Some(Box::new(KDTreeNode::new(&mut points[0us..points_len/2],
+        let left = Some(Box::new(KDTreeNode::new(&mut points[0..points_len/2],
                 (dim + 1) % pivot.coords.len())));
         let right = if points.len() >= 3 {
             Some(Box::new(KDTreeNode::new(& mut points[points_len/2+1..points_len],
@@ -176,9 +176,9 @@ pub fn main() {
     println!("Nodes visited: {}", n_visited);
 
     // randomly generated 3D
-    let n_random = 1000us;
+    let n_random = 1000;
     let make_random_point = |&:| Point {
-        coords: (0us..3).map(
+        coords: (0..3).map(
 				|_| (rand::thread_rng().gen::<f32>()-0.5f32)*1000f32
 			).collect()
     };
@@ -201,13 +201,13 @@ pub fn main() {
     println!("Nodes visited: {}", n_visited);
     
     // benchmark search time
-    let n_searches = 1000us;
+    let n_searches = 1000;
     let random_targets: Vec<Point> = (0..n_searches).map(
 		|_| make_random_point()
     ).collect();
 
     let start_search_time = get_time();
-    let mut total_n_visited = 0us;
+    let mut total_n_visited = 0;
     for target in &random_targets {
         let (_, n_visited) = random_tree.find_nearest_neighbor(target);
         total_n_visited += n_visited;
@@ -231,7 +231,7 @@ fn quickselect_by<T>(arr: &mut [T], position: usize, cmp: &Fn(&T, &T) -> Orderin
     if position == pivot_index {
         arr[position].clone()
     } else if position < pivot_index {
-        quickselect_by(&mut arr[0us..pivot_index], position, cmp)
+        quickselect_by(&mut arr[0..pivot_index], position, cmp)
     } else {
         quickselect_by(&mut arr[pivot_index+1..array_len], position - pivot_index - 1, cmp)
     }
@@ -241,8 +241,8 @@ fn partition_by<T>(arr: &mut [T], pivot_index: usize, cmp: &Fn(&T, &T) -> Orderi
 {
     let array_len = arr.len();
     arr.swap(pivot_index, array_len-1);
-    let mut store_index = 0us;
-    for i in (0us..array_len-1) {
+    let mut store_index = 0;
+    for i in (0..array_len-1) {
         if (*cmp)(&arr[i], &arr[array_len-1]) == Less {
             arr.swap(i, store_index);
             store_index += 1;

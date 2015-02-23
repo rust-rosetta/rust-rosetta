@@ -122,7 +122,7 @@ pub struct Lexer<'a> {
 
 impl <'a> Lexer<'a> {
     pub fn new(input: &str) -> Lexer {
-        Lexer { input: input, offset: 0usize }
+        Lexer { input: input, offset: 0 }
     }
 
     fn expect(&mut self, expected:&[Token]) -> Result<Token, String> {
@@ -170,7 +170,7 @@ impl <'a> Iterator for Lexer<'a> {
             },
             // found non-digit, try transforming it to the corresponding token
             Some((o, ch)) => (ch.as_token(), o + 1),
-            _   => (None, 0usize)
+            _   => (None, 0)
         };
 
         // update the offset for the next iteration

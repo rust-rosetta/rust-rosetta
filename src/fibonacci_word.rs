@@ -36,7 +36,7 @@ fn main() {
     println!("Calculating... This may take a couple of minutes...\n");
 
     let words = fib_words(18);
-    let mut i = 1us;
+    let mut i = 1;
 
     println!("{:>2}:{:>10} {}", "N", "length", "entropy");
     for &(length, entropy) in &words {
@@ -49,7 +49,7 @@ fn test_fibonacii_words() {
     use std::num::Float;
 
     let expected = vec![
-        (1us, 0.000000000000000f64),
+        (1, 0.000000000000000f64),
         (1, 0.000000000000000),
         (2, 1.000000000000000),
         (3, 0.918295834054490),

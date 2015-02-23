@@ -2,8 +2,8 @@
 #![allow(unused_features)] // feature(io) is used only in main
 
 #![feature(std_misc)]
-#![feature(path)]
-#![feature(io)]
+#![feature(old_path)]
+#![feature(old_io)]
 
 #[cfg(not(test))]
 use std::old_io::{File, BufferedReader};

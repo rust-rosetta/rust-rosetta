@@ -61,7 +61,7 @@ fn huffman_tree(input: &str) -> HNode {
     let mut freq = HashMap::new();
     for ch in input.chars() {
         match freq.entry(ch) {
-            Vacant(entry) => { entry.insert(1us); },
+            Vacant(entry) => { entry.insert(1); },
             Occupied(mut entry) => { *entry.get_mut() += 1; },
         };
     }
@@ -104,9 +104,9 @@ fn build_encoding_table(tree: &HNode,
     match tree.item {
         HItem::Tree(ref data) => {
             build_encoding_table(&data.left, table,
-                               &format!("{}0", start_str)[]);
+                               &format!("{}0", start_str)[..]);
             build_encoding_table(&data.right, table,
-                               &format!("{}1", start_str)[]);
+                               &format!("{}1", start_str)[..]);
         },
         HItem::Leaf(ch)   => {table.insert(ch, start_str.to_string());}
     };

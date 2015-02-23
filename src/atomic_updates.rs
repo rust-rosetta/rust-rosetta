@@ -10,7 +10,7 @@
 // and this type still appears to have quite a bit of overhead.
 
 #![feature(core)]
-#![feature(io)]
+#![feature(old_io)]
 #![feature(std_misc)] 
 extern crate rand;
 
@@ -21,7 +21,7 @@ use rand::distributions::{IndependentSample, Range};
 use std::sync::Arc;
 use std::sync::atomic::{AtomicBool, Ordering};
 use std::time::duration::Duration;
-use std::thread::Thread;
+use std::thread::spawn;
 
 // The reason I used a module here is simply to keep it clearer who can access what.  Rust
 // protects against data races just fine, but it's not as good at protecting against deadlocks or
@@ -258,10 +258,10 @@ fn perform_atomic_updates(duration: Duration, original_total: usize, num_ticks: 
     // Cloning the arc bumps the reference count.
     let arc_ = arc.clone();
     // Start off the equalize task
-    Thread::spawn(move || { equalize(&arc_.0, &arc_.1, ID_EQUALIZE) });
+    spawn(move || { equalize(&arc_.0, &arc_.1, ID_EQUALIZE) });
     let arc_ = arc.clone();
     // Start off the randomize task
-    Thread::spawn(move || { randomize(&arc_.0, &arc_.1, ID_RANDOMIZE) });
+    spawn(move || { randomize(&arc_.0, &arc_.1, ID_RANDOMIZE) });
     let (ref bl, ref running) = *arc;
     // Run the display task in the current thread, so failure propagates to the user.
     display(bl, running, original_total, duration, num_ticks);

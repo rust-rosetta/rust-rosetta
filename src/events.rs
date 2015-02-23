@@ -7,14 +7,14 @@
 // condvar represents an event on which a task may wait.  The one subtlety is that condvar signals
 // are only received if there is actually a task waiting on the signal--see the below program for
 // an example of how this may be achieved in practice.
-#![feature(io)]
+#![feature(old_io)]
 #![feature(std_misc)]
 extern crate time;
 
 use std::old_io::timer::Timer;
 use std::time::duration::Duration;
 use std::sync::{Arc, Mutex, Condvar};
-use std::thread::Thread;
+use std::thread::spawn;
 
 // Given a duration to wait before sending an event from one process to another, returns the
 // elapsed time before the event was actually sent.
@@ -28,7 +28,7 @@ fn handle_event(duration: Duration) -> Duration {
     let &(ref mutex, ref cond) = &*pair;
     let mut guard = mutex.lock().unwrap();
     // Start our secondary task (which will signal our waiting main task)
-    Thread::spawn(move || {
+    spawn(move || {
 		let &(ref mutex_, ref cond_) = &*pair_;
         // Lock the mutex
         let mut guard  = mutex_.lock().unwrap();

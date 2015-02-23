@@ -1,11 +1,11 @@
 // Implements http://rosettacode.org/wiki/Echo_server
-
 #![feature(io)]
+#![feature(old_io)]
 #![feature(std_misc)]
 use std::old_io::{Acceptor, BufferedReader, IoError, IoResult, Listener, TimedOut};
 use std::old_io::net::tcp::{TcpListener, TcpStream};
 use std::time::Duration;
-use std::thread::Thread;
+use std::thread::spawn;
 
 // The actual echo server
 fn echo_server(host: &'static str, port: u16, timeout: Option<Duration>) -> IoResult<()> {
@@ -31,7 +31,7 @@ fn echo_server(host: &'static str, port: u16, timeout: Option<Duration>) -> IoRe
                 let name = try!(stream.peer_name());
                 println!("New connection: {}", name);
                 // Launch a new thread to deal with the connection.
-                Thread::spawn(move || -> () {
+                spawn(move || -> () {
                     if let Err(e) = echo_session(stream.clone()) {
                         println!("I/O error: {} -- {}", name, e);
                     }

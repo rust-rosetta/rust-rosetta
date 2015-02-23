@@ -5,6 +5,7 @@
 
 // Implemented as a lazy String iterator, returning a wrapped line each time
 #![allow(unused_features)]
+#![feature(str_words)]
 
 use std::str::Words;
 use std::mem::swap;
@@ -76,7 +77,7 @@ fn main () {
          took a golden ball, and threw it up on high and caught it, and this \
          ball was her favorite plaything.";
 
-    for length in 72us..81 {
+    for length in 72..81 {
         println!("Text wrapped at {}", length);
         for line in WordWrap::new(text, length) {
             println!("{}", line);

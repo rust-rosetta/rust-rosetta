@@ -1,7 +1,7 @@
 // Implements http://rosettacode.org/wiki/SHA-1
 // straight port from golang crypto/sha1
 // library implementation
-#![feature(io)]
+#![feature(old_io)]
 #![feature(core)]
 
 use std::old_io::IoResult;
@@ -38,7 +38,7 @@ impl Digest {
         Digest {
             h:  INIT,
             x:  [0u8; CHUNK],
-            nx: 0us,
+            nx: 0,
             len:0u64
         }
     }
@@ -51,15 +51,15 @@ impl Digest {
 
         let m:usize=(len%64u64) as usize;
         if m < 56 {
-            self.write_all(&tmp[0us..56-m]).unwrap();
+            self.write_all(&tmp[0..56-m]).unwrap();
         } else {
-            self.write_all(&tmp[0us..64+56-m]).unwrap();
+            self.write_all(&tmp[0..64+56-m]).unwrap();
         }
 
         // Length in bits (=lengh in bytes*8=shift 3 bits to the right).
         len = len << 3;
-        for i in (0us..8) {
-            tmp[i] = (len >> (56us - 8*i)) as u8;
+        for i in (0..8) {
+            tmp[i] = (len >> (56 - 8*i)) as u8;
         }
         self.write_all(&tmp[0..8]).unwrap();
 
@@ -91,7 +91,7 @@ impl Digest {
         let mut p = data;
 
         while p.len() >= CHUNK {
-            for i in (0us..16) {
+            for i in (0..16) {
                 let j = i * 4;
                 w[i] =  (p[j]   as u32)<<24 |
                         (p[j+1] as u32)<<16 |
@@ -101,13 +101,13 @@ impl Digest {
 
             let (mut a, mut b, mut c, mut d, mut e) = (h0, h1, h2, h3, h4);
 
-            for i in (0us..16) {
+            for i in (0..16) {
                 let f = b & c | (!b) & d;
                 let (a5, b30) = part(a, b);
                 let t = a5 + f + e + w[i&0xf] + k[0];
                  b=a; a=t; e=d; d=c; c=b30;
             }
-            for i in (16us..20) {
+            for i in (16..20) {
                 let tmp = w[(i-3)&0xf] ^ w[(i-8)&0xf] ^ w[(i-14)&0xf] ^ w[(i)&0xf];
                 w[i&0xf] = tmp<<1 | tmp>>(32-1);
                 let f = b & c | (!b) & d;
@@ -115,7 +115,7 @@ impl Digest {
                 let t = a5 + f + e + w[i&0xf] + k[0];
                 b=a; a=t; e=d; d=c; c=b30;
             }
-            for i in (20us..40) {
+            for i in (20..40) {
                 let tmp = w[(i-3)&0xf] ^ w[(i-8)&0xf] ^ w[(i-14)&0xf] ^ w[(i)&0xf];
                 w[i&0xf] = tmp<<1 | tmp>>(32-1);
                 let f = b ^ c ^ d;
@@ -123,7 +123,7 @@ impl Digest {
                 let t = a5 + f + e + w[i&0xf] + k[1];
                 b=a; a=t; e=d; d=c; c=b30;
             }
-            for i in (40us..60) {
+            for i in (40..60) {
                 let tmp = w[(i-3)&0xf] ^ w[(i-8)&0xf] ^ w[(i-14)&0xf] ^ w[(i)&0xf];
                 w[i&0xf] = tmp<<1 | tmp>>(32-1);
                 let f = ((b | c) & d) | (b & c);
@@ -131,7 +131,7 @@ impl Digest {
                 let t = a5 + f + e + w[i&0xf] + k[2];
                 b=a; a=t; e=d; d=c; c=b30;
             }
-            for i in (60us..80) {
+            for i in (60..80) {
                 let tmp = w[(i-3)&0xf] ^ w[(i-8)&0xf] ^ w[(i-14)&0xf] ^ w[(i)&0xf];
                 w[i&0xf] = tmp<<1 | tmp>>(32-1);
                 let f = b ^ c ^ d;
@@ -168,7 +168,7 @@ impl Writer for Digest {
             }
             self.nx += n;
             if self.nx == CHUNK {
-                let x = &(self.x[]);
+                let x = &(self.x[..]);
                 self.h=self.process_block(x);
                 self.nx = 0;
             }

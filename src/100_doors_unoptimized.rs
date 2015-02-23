@@ -22,8 +22,8 @@ fn main() {
 // performs all 100 passes and mutates the vector with
 // the states in place
 fn solve(doors: &mut [bool])  {
-    for pass in 1usize..101 {
-        for door in range_step_inclusive(pass, 100usize, pass) {
+    for pass in 1..101 {
+        for door in range_step_inclusive(pass, 100, pass) {
             // flip the state of the door
             doors[door-1] = !doors[door-1]
         }
@@ -37,7 +37,7 @@ fn solution() {
 
     // test that the doors with index corresponding to
     // a perfect square are now open
-    for i in 1usize..11 {
+    for i in 1..11 {
         assert!(doors[i*i - 1]);
     }
 }

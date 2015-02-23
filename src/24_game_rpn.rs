@@ -1,7 +1,7 @@
 // Implements http://rosettacode.org/wiki/24_game
 // Uses RPN expression
 #![allow(unused_features)] // feature(rand) is used only in main
-
+#![feature(str_words)]
 #![feature(old_io)]
 
 extern crate rand;

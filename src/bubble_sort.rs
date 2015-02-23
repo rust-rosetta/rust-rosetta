@@ -3,7 +3,7 @@
 /// Progress through the slice and 'bubble' elements up until they are in order.
 fn bubble_sort<T: PartialOrd>(v: &mut [T]) {
     (1..v.len()+1).rev().all(|length| {
-        let mut changes = 0us;
+        let mut changes = 0;
 
         for index in (0..length - 1) {
             if v[index] > v[index + 1] {
@@ -28,7 +28,7 @@ mod test {
     fn check_sort<T: PartialOrd>(v: &mut [T]) {
         super::bubble_sort(v);
 
-        for i in (1us..v.len()) {
+        for i in (1..v.len()) {
             assert!(v[i - 1] <= v[i]);
         }
     }

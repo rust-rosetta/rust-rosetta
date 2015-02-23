@@ -1,5 +1,4 @@
 // Implements http://rosettacode.org/wiki/N-queens_problem
-#![feature(std_misc)]
 #![feature(test)]
 #![feature(core)]
 
@@ -7,7 +6,7 @@ extern crate test;
 
 use std::vec::Vec;
 use std::iter::AdditiveIterator;
-use std::thread::Thread;
+use std::thread::spawn;
 use std::sync::mpsc::channel;
 
 #[cfg(test)]
@@ -125,7 +124,7 @@ fn semi_parallel_n_queens(n: i32) -> usize {
         valid_spots = valid_spots ^ spot;
         receivers.push(rx);
 
-        Thread::spawn( move || -> () {
+        spawn( move || -> () {
             tx.send(n_queens_helper(all_ones,
                                     (left_diags | spot) << 1,
                                     (columns | spot),
@@ -140,7 +139,7 @@ fn semi_parallel_n_queens(n: i32) -> usize {
 
 #[test]
 fn test_n_queens() {
-    let real = vec!(1, 1, 0, 0, 2, 10, 4, 40, 92us);
+    let real = vec!(1, 1, 0, 0, 2, 10, 4, 40, 92);
     for num in (0..9i32) {
         assert_eq!(n_queens(num), real[num as usize]);
     }
@@ -148,7 +147,7 @@ fn test_n_queens() {
 
 #[test]
 fn test_parallel_n_queens() {
-    let real = vec!(1, 1, 0, 0, 2, 10, 4, 40, 92us);
+    let real = vec!(1, 1, 0, 0, 2, 10, 4, 40, 92);
     for num in (0..9i32) {
         assert_eq!(semi_parallel_n_queens(num), real[num as usize]);
     }

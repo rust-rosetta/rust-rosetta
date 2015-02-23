@@ -3,7 +3,7 @@
 // directly.
 
 #![feature(unsafe_destructor)]
-#![feature(io)]
+#![feature(old_io)]
 #![feature(std_misc)]
 #![feature(core)]
 
@@ -11,7 +11,7 @@ use std::old_io::timer;
 use std::sync::Arc;
 use std::sync::atomic::{AtomicUint, Ordering};
 use std::time::duration::Duration;
-use std::thread::Thread;
+use std::thread::spawn;
 use std::sync::mpsc::channel;
 
 pub struct CountingSemaphore {
@@ -76,7 +76,7 @@ fn metered(duration: Duration) {
     for i in (0..NUM_WORKERS) {
         let sem = sem.clone();
         let tx = tx.clone();
-        Thread::spawn(move || -> () {
+        spawn(move || -> () {
             // Acquire the resource
             let guard = sem.acquire();
             let count = sem.count();

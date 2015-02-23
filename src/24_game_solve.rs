@@ -4,7 +4,6 @@
 // http://rosettacode.org/wiki/24_game/Solve#Scala
 #![feature(collections)]
 
-
 extern crate num;
 use num::rational::{Ratio, Rational};
 use num::traits::Zero;
@@ -18,7 +17,7 @@ macro_rules! rationals(
 
 #[cfg(not(test))]
 fn main() {
-    let mut r = rationals![1is, 3, 7, 9];
+    let mut r = rationals![1, 3, 7, 9];
     let sol = solve(&mut r[..], 24).unwrap_or("no solution found".to_string());
     println!("{}", sol);
 }
@@ -68,13 +67,13 @@ fn test_rationals_macro() {
     Ratio::from_integer(3),
     Ratio::from_integer(4)],
     // with the rationals! macro
-    (rationals![1is, 2, 3, 4]));
+    (rationals![1, 2, 3, 4]));
 }
 
 #[test]
 #[ignore] // printing of rationals changed but seems wrong...
 fn test_solve() {
-    let mut r = rationals![1is, 3, 7, 9];
+    let mut r = rationals![1, 3, 7, 9];
     assert_eq!(
         solve(&mut r[..], 24),
         Some("(9 / (3 / (1 + 7)))".to_string()));

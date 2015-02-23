@@ -1,16 +1,14 @@
 // Dummy main library
 // It also contains a test module, which checks if all source files are covered by `Cargo.toml`
 #![allow(unused_features)]
-#![feature(path)]
+#![feature(old_path)]
 #![feature(core)]
-#![feature(io)]
+#![feature(old_io)]
 #![feature(plugin)]
 #![feature(collections)]
 #![plugin(regex_macros)]
 
 extern crate regex;
-#[macro_use] 
-extern crate regex_macros;
 
 #[allow(dead_code)]
 #[cfg(not(test))]
@@ -44,7 +42,7 @@ mod test {
     fn get_source_files() -> HashSet<String> {
         let paths = fs::readdir(&Path::new("./src")).unwrap();
         paths.iter().map(|p| p.filename_str().unwrap().to_string())
-                    .filter(|s| s[].ends_with(".rs")).collect()
+                    .filter(|s| s[..].ends_with(".rs")).collect()
     }
 
     // Returns the paths of the source files referenced in Cargo.toml

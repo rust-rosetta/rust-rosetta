@@ -8,7 +8,7 @@ fn merge_sort<E: PartialOrd + Clone>(arr: &[E]) -> Vec<E> {
         return arr.to_vec();
     }
     let midpoint = arr.len()/2;
-    let left = merge_sort(&arr[0us..midpoint]);
+    let left = merge_sort(&arr[0..midpoint]);
     let right = merge_sort(&arr[midpoint..]);
     merge(&left[..], &right[..])
 }
