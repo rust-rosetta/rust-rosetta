@@ -33,10 +33,10 @@ fn evil() -> EvilOdiousIter {
     count(0, 1).filter(even_ones as fn(&usize) -> bool)
 }
 
-fn pow_3() -> Map<Counter<usize>, fn(usize) -> usize> {
-    fn pw(n: usize) -> usize { 3u32.pow(n).count_ones() }
+fn pow_3() -> Map<Counter<u32>, fn(u32) -> usize> {
+    fn pw(n: u32) -> usize { 3u32.pow(n).count_ones() }
 
-    count(0, 1).map(pw as fn(usize) -> usize)
+    count(0, 1).map(pw as fn(u32) -> usize)
 }
 
 #[cfg(test)]
