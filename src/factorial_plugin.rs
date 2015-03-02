@@ -12,7 +12,7 @@ use syntax::codemap::Span;
 use syntax::parse;
 use syntax::parse::token;
 use syntax::ast::TokenTree;
-use syntax::ext::base::{ExtCtxt, MacResult, DummyResult, MacExpr};
+use syntax::ext::base::{ExtCtxt, MacResult, DummyResult, MacEager};
 use syntax::ext::build::AstBuilder;  // trait for expr_usize
 use rustc::plugin::Registry;
 
@@ -42,7 +42,7 @@ fn exp_factorial(cx: &mut ExtCtxt, sp: Span, tts: &[TokenTree])
     // calculating the factorial
     let result = (1..(n as usize)+1).fold(1, |accum, elem| accum * elem);    
 
-    MacExpr::new(cx.expr_usize(sp, result))
+    MacEager::expr(cx.expr_usize(sp, result))
 }
 
 // here's where we register the macro with the name of factorial_10

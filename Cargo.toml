@@ -44,6 +44,7 @@ authors = [
     "Glen De Cauwsemaecker, https://github.com/glendc",
     "Amos Bird, https://github.com/amosbird",
     "Brian Schmitz, https://github.com/foodhype",
+    "Juan Vidal Pich, https://github.com/juanevp",
 ]
 
 [dependencies]
@@ -529,6 +530,11 @@ path = "src/http.rs"
 # http://rosettacode.org/wiki/Huffman_coding
 name = "huffman_coding"
 path = "src/huffman_coding.rs"
+
+[[bin]]
+# http://rosettacode.org/wiki/I_before_E_except_after_C
+name = "i_before_e_except_after_c"
+path = "src/i_before_e_except_after_c.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/IBAN

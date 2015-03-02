@@ -143,7 +143,7 @@ fn integrate() -> f64 {
         (2. * PI * f * t as f64).sin()
     })).ok().expect("Failed to set input");
     timer.sleep(Duration::seconds(2));
-    object.input(Box::new(|&:_| 0.)).ok().expect("Failed to set input");
+    object.input(Box::new(|_| 0.)).ok().expect("Failed to set input");
     timer.sleep(Duration::seconds(1) / 2);
     object.output()
 }
