@@ -177,7 +177,7 @@ pub fn main() {
 
     // randomly generated 3D
     let n_random = 1000;
-    let make_random_point = |&:| Point {
+    let make_random_point = || Point {
         coords: (0..3).map(
 				|_| (rand::thread_rng().gen::<f32>()-0.5f32)*1000f32
 			).collect()

@@ -13,7 +13,7 @@ fn a(k: i32,
 
     let (b, tmp) : (Cell<Option<&Fn() -> i32>>, _ );
     b = Cell::new(None);
-    tmp = |&:| {
+    tmp = || {
             k.set(k.get() - 1);
             a(k.get(), &*b.get().unwrap(), x1, x2, x3, x4)
         };

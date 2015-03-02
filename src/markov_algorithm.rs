@@ -30,7 +30,7 @@ impl MarkovAlgorithm {
             // check for -> (must be preceded by whitespace)
             // invalid ruleset if absent
             // whitespace rules mean there's 2 possible variations: " ->" and "\t->"
-            let arrow_pos = line.find_str(" ->").or_else(|| line.find_str("\t->"));
+            let arrow_pos = line.find(" ->").or_else(|| line.find("\t->"));
             match arrow_pos {
                 None => {
                     // Ruleset is invalid
@@ -75,7 +75,7 @@ impl MarkovAlgorithm {
             // find the first rule that is applicable
             // (pattern string is in state)
             let possible_rule = self.rules.iter().find(|rule|{
-                state.find_str(&(rule.pattern[..])).is_some()
+                state.find(&rule.pattern[..]).is_some()
             });
 
             match possible_rule {
@@ -87,7 +87,7 @@ impl MarkovAlgorithm {
 
                     // unwrap is safe here as the code for finding a rule
                     // already established that the pattern is present
-                    let pos = state.find_str(&(rule.pattern[..])).unwrap();
+                    let pos = state.find(&rule.pattern[..]).unwrap();
                     let width = rule.pattern.len();
 
                     // string parts

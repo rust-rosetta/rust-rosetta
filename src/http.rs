@@ -5,7 +5,6 @@
 #![feature(old_io)]
 #![feature(core)]
 #![feature(os)]
-#![feature(env)]
 #![feature(std_misc)]
 
 use std::old_io::net::tcp::TcpStream;

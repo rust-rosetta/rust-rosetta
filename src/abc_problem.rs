@@ -33,7 +33,7 @@ fn can_be_built_input_first(input: &str) -> bool {
 
     for chr in input.chars() {
         for (ind, block) in BLOCKS.iter().enumerate() {
-            if !used.contains(&ind) && block.contains_char(chr) {
+            if !used.contains(&ind) && block.contains(chr) {
                 used.insert(ind);
                 break
             }
