@@ -1,17 +1,11 @@
+// Implements http://rosettacode.org/wiki/Longest_common_subsequence
 #![feature(collections)]
 
-// Implements http://rosettacode.org/wiki/Longest_common_subsequence
 
 /// Returns the longest common subsequence of a and b.
 fn longest_common_subsequence(a: &str, b: &str) -> String {
-    let mut lengths = Vec::with_capacity(a.len() + 1);
-    for i in 0..a.len() + 1 {
-        lengths.push(Vec::with_capacity(b.len() + 1));
-        for _ in 0..b.len() + 1 {
-            lengths[i].push(0);
-        }
-    }
-
+    let mut lengths = vec![vec![0; b.len() + 1]; a.len() + 1];
+    
     for i in 0..a.len() {
         for j in 0..b.len() {
             if a.char_at(i) == b.char_at(j) {
