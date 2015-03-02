@@ -4,7 +4,6 @@
 
 #![allow(unused_features)] // feature(os) is used only in main
 #![feature(std_misc)]
-#![feature(env)]
 #![feature(os)]
 #![feature(collections)]
 #![feature(core)]

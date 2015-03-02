@@ -2,7 +2,6 @@
 #![allow(unused_features)]
 #![allow(unused_attributes)]
 #![feature(old_io)]
-#![feature(env)]
 #![feature(old_path)]
 #![feature(core)]
 

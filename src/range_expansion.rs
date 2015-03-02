@@ -1,8 +1,6 @@
 // Implements http://rosettacode.org/wiki/Range_expansion
 #![feature(plugin)]
 #![plugin(regex_macros)]
-#![feature(core)]
-#![plugin(regex_macros)]
 
 #[macro_use]
 

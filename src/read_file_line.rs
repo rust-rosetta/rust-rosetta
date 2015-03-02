@@ -1,7 +1,6 @@
 // Implements http://rosettacode.org/wiki/Read_a_file_line_by_line
 #![feature(old_io)]
 #![feature(old_path)]
-#![feature(env)]
 
 use std::old_io::fs::File;
 use std::old_io::BufferedReader;
