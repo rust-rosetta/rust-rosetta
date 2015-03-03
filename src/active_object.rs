@@ -116,9 +116,10 @@ impl<S: Mul<f64, Output=T> + Float,
         integrator
     }
 
-    pub fn input(&self, k: Box<Fn(i64) -> S + Send>) -> Result<(), SendError< Box<Fn(i64) -> S + Send>>> {
-        // The meat of the work is done in the other thread, so to set the input we just send along
-        // the Sender we set earlier...
+    pub fn input(&self, k: Box<Fn(i64) -> S + Send>) ->
+                Result<(), SendError<Box<Fn(i64) -> S + Send>>> {
+        // The meat of the work is done in the other thread, so to set the
+        // input we just send along the Sender we set earlier...
         self.input.send(k)
     }
 

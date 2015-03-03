@@ -22,7 +22,7 @@ fn main() {
     // by calling the static method new of struct Foo
     let foo = Foo::new();
 
-    // get the answer to life 
+    // get the answer to life
     // by calling the instance method of object foo
     println!("The answer to life is {}.", foo.get_the_answer_to_life());
 }

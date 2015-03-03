@@ -1,7 +1,7 @@
 // Implements http://rosettacode.org/wiki/Dot_product
 extern crate num;
 
-use num::traits::Zero; 
+use num::traits::Zero;
 use std::ops::Mul;
 
 fn dotp<T: Zero + Mul<Output=T> + Copy>(this: &[T], other: &[T]) -> T {

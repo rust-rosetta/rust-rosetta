@@ -56,7 +56,7 @@ impl KDTreeNode {
                 right: None
             };
         }
-    
+
         // Split around the median
         let pivot = quickselect_by(points, points_len/2,
             &|a, b| a.coords[dim].partial_cmp(&b.coords[dim]).unwrap());
@@ -188,7 +188,7 @@ pub fn main() {
     let start_cons_time = get_time();
     let random_tree = KDTreeNode::new(&mut random_points[..], 0);
     let end_cons_time = get_time();
-    println!("1,000 3d points (Construction time: {}ms)", 
+    println!("1,000 3d points (Construction time: {}ms)",
              ((end_cons_time.sec - start_cons_time.sec)*1000) as f32 +
              ((end_cons_time.nsec - start_cons_time.nsec) as f32)/1000000f32);
 
@@ -199,7 +199,7 @@ pub fn main() {
     println!("Nearest neighbor: {:?}", point);
     println!("Distance: {}", (point - &random_target).norm_sq().sqrt());
     println!("Nodes visited: {}", n_visited);
-    
+
     // benchmark search time
     let n_searches = 1000;
     let random_targets: Vec<Point> = (0..n_searches).map(
@@ -213,14 +213,14 @@ pub fn main() {
         total_n_visited += n_visited;
     }
     let end_search_time = get_time();
-    println!("Visited an average of {} nodes on {} searches in {} ms", 
+    println!("Visited an average of {} nodes on {} searches in {} ms",
              total_n_visited as f32 / n_searches as f32,
              n_searches,
              ((end_search_time.sec - start_search_time.sec)*1000) as f32 +
              ((end_search_time.nsec - start_search_time.nsec) as f32)/1000000f32);
 }
 
-fn quickselect_by<T>(arr: &mut [T], position: usize, cmp: &Fn(&T, &T) -> Ordering) -> T 
+fn quickselect_by<T>(arr: &mut [T], position: usize, cmp: &Fn(&T, &T) -> Ordering) -> T
     where T: Clone
 {
     let mut pivot_index = rand::thread_rng().gen_range(0, arr.len());
@@ -237,7 +237,7 @@ fn quickselect_by<T>(arr: &mut [T], position: usize, cmp: &Fn(&T, &T) -> Orderin
     }
 }
 
-fn partition_by<T>(arr: &mut [T], pivot_index: usize, cmp: &Fn(&T, &T) -> Ordering) -> usize 
+fn partition_by<T>(arr: &mut [T], pivot_index: usize, cmp: &Fn(&T, &T) -> Ordering) -> usize
 {
     let array_len = arr.len();
     arr.swap(pivot_index, array_len-1);

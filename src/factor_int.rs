@@ -7,7 +7,7 @@ fn main() {
     let target = 78i32;
     println!("Factors of integer {}:", target);
     let factors = factor_int(target);
-    
+
     for f in factors {
         println!("{}", f);
     }
@@ -18,16 +18,16 @@ fn main() {
 // pairs of factors
 fn factor_int(x: i32) -> Vec<i32> {
     let mut factors: Vec<i32> = Vec::new();
-    
+
     let bound: i32 = (x as f64).sqrt().floor() as i32;
-    
+
     for i in (1i32..bound) {
         if x % i == 0 {
             factors.push(i);
             factors.push(x/i);
         }
     }
-    
+
     factors
 }
 

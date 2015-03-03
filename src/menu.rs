@@ -24,7 +24,7 @@ fn next_input() -> Option<usize> {
 }
 
 fn select<'a>(menu: &'a [&str], prompt: &str) -> &'a str {
-    
+
     // Check if menu is empty
     if menu.len() == 0 {
         return "";

@@ -3,7 +3,6 @@
 #![feature(old_io)]
 #![feature(std_misc)]
 #![feature(os)]
-#![feature(env)]
 #![feature(core)]
 #![feature(std_misc)]
 

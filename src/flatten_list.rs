@@ -47,7 +47,7 @@ fn flatten<T>(tree: Tree<T>) -> Vec<T>{
 #[cfg(not(test))]
 fn main() {
     //[[1], 2, [[3,4], 5], [[[]]], [[[6]]], 7, 8, []]
-    let list: Tree<i32> = 
+    let list: Tree<i32> =
         Node(vec![Node(vec![Leaf(1)]),
             Leaf(2),
             Node(vec![Node(vec![Leaf(3), Leaf(4)]), Leaf(5)]),
@@ -68,7 +68,7 @@ fn main() {
 #[test]
 fn rosetta_flatten_test() {
     //[[1], 2, [[3,4], 5], [[[]]], [[[6]]], 7, 8, []]
-    let list: Tree<i32> = 
+    let list: Tree<i32> =
         Node(vec![Node(vec![Leaf(1)]),
             Leaf(2),
             Node(vec![Node(vec![Leaf(3), Leaf(4)]), Leaf(5)]),

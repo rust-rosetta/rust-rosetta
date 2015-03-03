@@ -26,7 +26,7 @@ fn levenshtein_distance(s1: &str, s2: &str) -> (usize, String, String) {
     let l1 = s1.len() + 1;
     let l2 = s2.len() + 1;
 
-    let mut mat: Vec<Vec<usize>> = repeat( 
+    let mut mat: Vec<Vec<usize>> = repeat(
 		repeat(0).take(l2).collect()
 		).take(l1).collect();
     for row in (0..l1) { mat[row][0] = row; }
@@ -52,8 +52,10 @@ fn levenshtein_distance(s1: &str, s2: &str) -> (usize, String, String) {
         let ins = get_val(&mat, cur_row, cur_col - 1, usize::MAX);
         let del = get_val(&mat, cur_row - 1, cur_col, usize::MAX);
         let sub = get_val(&mat, cur_row - 1, cur_col - 1, usize::MAX);
-        let vals =
-            vec!(( sub , Operation::Match ) , ( ins , Operation::Insert ) , ( del , Operation::Delete ));
+        let vals = vec![( sub , Operation::Match ),
+            ( ins , Operation::Insert ),
+            ( del , Operation::Delete )
+        ];
         match vals.into_iter().min_by(|&(x, _)| { x }).unwrap() {
             (_, Operation::Insert) => {
                 cur_col -= 1;
@@ -76,14 +78,14 @@ fn levenshtein_distance(s1: &str, s2: &str) -> (usize, String, String) {
     let aligned1: String = res1.into_iter().collect();
     let aligned2: String = res2.into_iter().collect();
     let lev_dist = mat[l1 - 1][l2 - 1];
-    
+
     return (lev_dist, aligned1, aligned2);
 }
 
 #[cfg(not(test))]
-fn main() { 
-    let (s1, s2) = ("rosettacode", "raisethysword"); 
-    let (lev_dist, aligned1, aligned2) = levenshtein_distance(s1, s2); 
+fn main() {
+    let (s1, s2) = ("rosettacode", "raisethysword");
+    let (lev_dist, aligned1, aligned2) = levenshtein_distance(s1, s2);
     println!("Words are: {}, {}" , s1 , s2);
     println!("Levenshtein Distance: {}" , lev_dist);
     println!("{}" , aligned1);
@@ -94,11 +96,11 @@ fn main() {
 #[test]
 fn test_lev_distance() {
     let test_results =
-        vec![( "sunday" , "saturday" , (3, "s--unday", "sunurday"))  , 
-            ( "sitting" , "kitten" , (3, "sitting", "kitten-")) , 
+        vec![( "sunday" , "saturday" , (3, "s--unday", "sunurday"))  ,
+            ( "sitting" , "kitten" , (3, "sitting", "kitten-")) ,
             ("test" , "test" , (0, "test", "test") )];
     for (word1, word2, dist) in test_results {
-        let (d, s1, s2) = levenshtein_distance ( word1 , word2 ); 
+        let (d, s1, s2) = levenshtein_distance ( word1 , word2 );
         assert_eq!( (d, &s1[..], &s2[..]) , dist);
     }
 }

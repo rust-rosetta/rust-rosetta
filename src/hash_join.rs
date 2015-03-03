@@ -8,7 +8,7 @@ type ResultTable<'a> = Vec<(i64, &'a str, &'a str)>;
 
 fn hash_join<'a>(s: LeftTable<'a>, r: RightTable<'a>) -> ResultTable<'a> {
     let mut hash_map: HashMap<&str, Vec<&str>> = HashMap::new();
-    
+
     //hash phase
     for (name, nemesis) in r {
         if hash_map.contains_key(name) {

@@ -1,7 +1,6 @@
 // Implements http://rosettacode.org/wiki/Walk_a_directory/Recursively
 #![feature(old_path)]
 #![feature(old_io)]
-#![feature(core)]
 
 #![feature(plugin)]
 #![plugin(regex_macros)]

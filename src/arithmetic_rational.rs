@@ -120,7 +120,7 @@ impl Ord for Frac {
 
 impl Neg for Frac {
     type Output = Frac;
-    
+
     fn neg(self) -> Frac {
         Frac{num:-self.num, den:self.den}
     }

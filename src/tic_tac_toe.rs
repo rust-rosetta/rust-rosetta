@@ -34,7 +34,7 @@ fn main() {
 		}
 		draw_board(board);
 	}
-	
+
 	draw_board(board);
 	let announcement = match check_win(board) {
 		PlayerWin => "The Player has won!",
@@ -58,7 +58,7 @@ fn check_win(board: [[char; 3]; 3]) -> GameState {
 		return which_win(board[0][0])
 	} else if board[0][2] == board[1][1] && board[0][2] == board[2][0] {
 		return which_win(board[0][2])
-	} 
+	}
 
 	// check if it's not a draw
 	for row in board.iter() {

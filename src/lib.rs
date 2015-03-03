@@ -61,7 +61,8 @@ mod test {
     }
 
     // Returns the filenames of the source files which are not covered by Cargo.toml
-    fn get_not_covered<'a>(sources: &'a HashSet<String>, paths: &'a HashSet<String>) -> HashSet<&'a String> {
+    fn get_not_covered<'a>(sources: &'a HashSet<String>, paths: &'a HashSet<String>) ->
+                           HashSet<&'a String> {
         sources.difference(paths).collect()
     }
 }

@@ -10,7 +10,7 @@ use std::io::Read;
 #[cfg(not(test))]
 use std::path::Path;
 
-enum MatchState { 
+enum MatchState {
     Nothing,    //Nothing of interest seen so far
     C,          //Last seen a 'c'
     Ce,         //Last seen a 'c' followed by an 'e'
@@ -27,21 +27,21 @@ struct Occurrences {
 }
 
 fn count_occurrences(data: &str) -> Occurrences {
-    //The counting process is implemented by a state machine. The state variable 
-    //tracks what pattern prefix was recognized so far (details at MatchState). 
+    //The counting process is implemented by a state machine. The state variable
+    //tracks what pattern prefix was recognized so far (details at MatchState).
     //Each time a full pattern is matched the corresponding saw_* variable is set
-    //to true to record its presence for the current word (They are not added 
-    //directly to result to ensure that words having multiple occurrences of one 
+    //to true to record its presence for the current word (They are not added
+    //directly to result to ensure that words having multiple occurrences of one
     //pattern are only counted once.).
-    //At each word boundary add to result what was recorded and clear all state 
+    //At each word boundary add to result what was recorded and clear all state
     //for next word.
     let mut result = Occurrences{cie: 0, cei: 0, ie: 0, ei: 0};
-    let mut saw_cie = false; let mut saw_cei = false; 
+    let mut saw_cie = false; let mut saw_cei = false;
     let mut saw_ie = false; let mut saw_ei = false;
     let mut state = MatchState::Nothing;
     for c in data.chars() {
         state = match (state, c.to_lowercase()) {
-            (_, '\n') | (_, '\r') => { 
+            (_, '\n') | (_, '\r') => {
                 if saw_cie {result.cie += 1; saw_cie = false;}
                 if saw_cei {result.cei += 1; saw_cei = false;}
                 if saw_ie  {result.ie += 1;  saw_ie = false;}
@@ -70,9 +70,9 @@ fn main () {
     let mut data = String::new();
     file.read_to_string(&mut data).unwrap();
     let occ = count_occurrences(&data);
-    println!("I before E when not preceded by C is {} (ie: {}, cie: {})", 
+    println!("I before E when not preceded by C is {} (ie: {}, cie: {})",
         if occ.ie > 2 * occ.cie {"plausible"} else {"implausible"}, occ.ie, occ.cie);
-    println!("E before I when preceded by C is {} (cei: {}, ei: {})", 
+    println!("E before I when preceded by C is {} (cei: {}, ei: {})",
         if occ.cei > 2 * occ.ei {"plausible"} else {"implausible"}, occ.cei, occ.ei);
 }
 

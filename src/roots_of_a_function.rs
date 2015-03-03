@@ -5,7 +5,7 @@ use std::num::Float;
 
 // Note: We cannot use `range_step` here because Floats don't implement
 // the `CheckedAdd` trait.
-fn find_roots<T: Copy + PartialOrd + Float, F>(f: F, start: T, stop: T, step: T, epsilon: T) 
+fn find_roots<T: Copy + PartialOrd + Float, F>(f: F, start: T, stop: T, step: T, epsilon: T)
     -> Vec<T> where F: Fn(T) -> T {
     let mut ret = vec![];
     let mut current = start;

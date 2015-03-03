@@ -1,5 +1,5 @@
 // Implements http://rosettacode.org/wiki/Letter_frequency
-#![allow(unused_features)] 
+#![allow(unused_features)]
 #![feature(std_misc)]
 #![feature(old_io)]
 #![feature(old_path)]

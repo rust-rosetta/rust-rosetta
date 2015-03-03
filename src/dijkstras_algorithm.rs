@@ -41,7 +41,7 @@ impl<'a> Graph<'a> {
         Graph{vertices: vertices, adj_list: adj_list, costs: costs}
     }
 
-    /// Returns the index of the vertex, or None if vertex 
+    /// Returns the index of the vertex, or None if vertex
     /// not found.
     fn vertex_index(&self, vertex: &str) -> Option<Node> {
         for (idx, &v) in self.vertices.iter().enumerate(){
@@ -60,7 +60,7 @@ impl<'a> Graph<'a> {
                 self.vertices.len()-1
             })
     }
-    
+
     /// Adds the given edge to the graph.
     fn add_edge(&mut self, from: &'a str, to: &'a str, cost: usize) {
         let from_idx = self.get_or_insert_vertex(from);
@@ -77,15 +77,16 @@ impl<'a> Graph<'a> {
         };
     }
 
-    /// Implements Dijkstra's Algorithm. This uses a Priority Queue to 
-    /// determine which vertex to visit first. Terminates on discovering 
+    /// Implements Dijkstra's Algorithm. This uses a Priority Queue to
+    /// determine which vertex to visit first. Terminates on discovering
     /// the target vertex.
     ///
     /// Returns vector of vertices representing the path, or an empty vector
     /// if there's no path, or if the source or target is not in the graph.
     fn dijkstra(&'a self, source: &str, target: &str) -> Vec<&str> {
         let num_vert = self.vertices.len();
-        let mut dist:Vec<usize> = repeat(usize::MAX).take(num_vert).collect(); //Close enough to infinity
+        let mut dist:Vec<usize> = repeat(usize::MAX).take(num_vert)
+            .collect(); //Close enough to infinity
         let mut prev:HashMap<Node, Node> = HashMap::new();
         let mut queue:BinaryHeap<DistPair> = BinaryHeap::new();
 
@@ -123,7 +124,7 @@ impl<'a> Graph<'a> {
                             queue.push(DistPair(v, dist[v]));
                         }
                         if v == target_idx { break; }
-                    }   
+                    }
                 }
             };
         }
@@ -172,7 +173,7 @@ fn main(){
     graph.add_edge("c", "f", 2);
     graph.add_edge("d", "e", 6);
     graph.add_edge("e", "f", 9);
-    
+
     let path = graph.dijkstra("a", "e");
     println!("Path is: {:?}", path);
 }

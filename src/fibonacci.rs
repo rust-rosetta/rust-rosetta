@@ -61,7 +61,7 @@ mod test {
 
     #[test]
     fn fib_values() {
-        let fns = vec![fib_recursive as fn(u64) -> u64, 
+        let fns = vec![fib_recursive as fn(u64) -> u64,
             fib_tail_recursive as fn(u64) -> u64,
             fib_iterative as fn(u64) -> u64];
         for &f in &fns {

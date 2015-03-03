@@ -1,4 +1,4 @@
-// Implements http://rosettacode.org/wiki/DNS_query 
+// Implements http://rosettacode.org/wiki/DNS_query
 #![allow(unused_features)]
 #![feature(old_io)]
 #![feature(collections)]

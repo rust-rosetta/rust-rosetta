@@ -30,7 +30,7 @@ extern crate test;
 use arena::TypedArena;
 
 use std::old_io;
-use std::num::{self, Float};
+use std::num::{self, Float, FpCategory};
 use self::SExp::*;
 use self::Error::*;
 use self::Token::*;
@@ -206,7 +206,7 @@ impl<'a> SExp<'a> {
         match *self {
             F64(f) => match f.classify() {
                 // We don't want to identify NaN, Infinity, etc. as floats.
-                num::FpCategory::Normal | num::FpCategory::Zero => from_io_result(write!(writer, "{}", f)),
+                FpCategory::Normal | FpCategory::Zero => from_io_result(write!(writer, "{}", f)),
                 _ => Err(NoReprForFloat)
             },
             List(ref l) => {

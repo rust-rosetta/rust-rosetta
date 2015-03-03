@@ -1,5 +1,4 @@
 // http://rosettacode.org/wiki/ABC_Problem
-#![feature(collections)]
 
 use std::collections::HashSet;
 

@@ -41,11 +41,11 @@ fn closest_pair(points: &mut [Point]) -> Option<(Point, Point)> {
     }
 
     points.sort_by(|a, b| (a.re, a.im).partial_cmp(&(b.re, b.im)).unwrap());
-    
+
     let mut closest_pair = (points[0], points[1]);
     let mut closest_distance_sqr = (points[0] - points[1]).norm_sqr();
     let mut closest_distance = closest_distance_sqr.sqrt();
-    
+
     // the strip that we inspect for closest pairs as we sweep right
     let mut strip: BTreeSet<YSortedPoint> = BTreeSet::new();
     strip.insert(YSortedPoint { point: points[0].clone() });
@@ -90,7 +90,7 @@ fn closest_pair(points: &mut [Point]) -> Option<(Point, Point)> {
                 }
             }
         }
-        
+
         // Insert point into strip
         strip.insert(YSortedPoint { point: point.clone() });
     }

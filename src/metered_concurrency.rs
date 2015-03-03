@@ -5,17 +5,17 @@
 #![feature(unsafe_destructor)]
 #![feature(old_io)]
 #![feature(std_misc)]
-#![feature(core)]
 
 use std::old_io::timer;
 use std::sync::Arc;
-use std::sync::atomic::{AtomicUint, Ordering};
+use std::sync::atomic::AtomicUsize;
+use std::sync::atomic::Ordering::SeqCst;
 use std::time::duration::Duration;
 use std::thread::spawn;
 use std::sync::mpsc::channel;
 
 pub struct CountingSemaphore {
-    count: AtomicUint, // Remaining resource count
+    count: AtomicUsize, // Remaining resource count
     backoff: Duration, // How long to sleep if a resource is being contended
 }
 
@@ -27,7 +27,7 @@ impl CountingSemaphore {
     // Create a semaphore with `max` available resources and a linearly increasing backoff of
     // `backoff` (used during spinlock contention).
     pub fn new(max: usize, backoff: Duration) -> CountingSemaphore {
-        CountingSemaphore { count: AtomicUint::new(max), backoff: backoff }
+        CountingSemaphore { count: AtomicUsize::new(max), backoff: backoff }
     }
 
     // Acquire a resource, returning a RAII CountingSemaphoreGuard.
@@ -36,10 +36,10 @@ impl CountingSemaphore {
         let mut backoff: Duration = self.backoff;
         loop {
             // Probably don't need SeqCst here, but it doesn't hurt.
-            let count = self.count.load(Ordering::SeqCst);
+            let count = self.count.load(SeqCst);
             // The check for 0 is necessary to make sure we don't go negative, which is why this
             // must be a compare-and-swap rather than a straight decrement.
-            if count == 0 || self.count.compare_and_swap(count, count - 1, Ordering::SeqCst) != count {
+            if count == 0 || self.count.compare_and_swap(count, count-1, SeqCst) != count {
                 // Linear backoff a la Servo's spinlock contention.
                 timer::sleep(backoff);
                 backoff = backoff + self.backoff;
@@ -53,7 +53,7 @@ impl CountingSemaphore {
 
     // Return remaining resource count
     pub fn count(&self) -> usize {
-        self.count.load(Ordering::SeqCst)
+        self.count.load(SeqCst)
     }
 }
 
@@ -61,7 +61,7 @@ impl CountingSemaphore {
 impl<'a> Drop for CountingSemaphoreGuard<'a> {
     // When the guard is dropped, a resource is released back to the pool.
     fn drop(&mut self) {
-        self.sem.count.fetch_add(1, Ordering::SeqCst);
+        self.sem.count.fetch_add(1, SeqCst);
     }
 }
 

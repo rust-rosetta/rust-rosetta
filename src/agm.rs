@@ -33,7 +33,9 @@ fn agm (x: f32, y: f32) -> f32 {
     let mut a1: f32;
     let mut g1: f32;
 
-    if a * g < 0f32 { panic!("The arithmetric-geometric mean is undefined for numbers less than zero!"); }
+    if a * g < 0f32 {
+        panic!("The arithmetric-geometric mean is undefined for numbers less than zero!");
+    }
     else {
         loop {
             a1 = (a + g) / 2f32;

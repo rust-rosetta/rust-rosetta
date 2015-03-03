@@ -11,7 +11,7 @@
 
 #![feature(core)]
 #![feature(old_io)]
-#![feature(std_misc)] 
+#![feature(std_misc)]
 extern crate rand;
 
 use std::old_io::timer::Timer;
@@ -65,9 +65,10 @@ mod buckets {
     struct Bucket {
         data: AtomicUint,       // The actual data.  It is atomic because it is read (not written)
                                 // outside the Mutex, unless a consistent snapshot is required.
-        mutex: Mutex<()>,       // The mutex used to synchronize writes and snapshot reads of the bucket.
-                                // As the D solution says, using a per-bucket Mutex dramatically improves
-                                // scalability compared to the alternatives.
+        mutex: Mutex<()>,       // The mutex used to synchronize writes and snapshot reads of the
+                                // bucket.
+                                // As the D solution says, using a per-bucket Mutex dramatically
+                                // improves scalability compared to the alternatives.
     }
 
     pub struct Buckets {
@@ -219,7 +220,8 @@ fn randomize(bl: &buckets::Buckets, running: &AtomicBool, worker: usize) {
 // The display task--for a total time of `duration`, it displays information about the update
 // process and checks to make sure that the invariant (that the total remains constant) is
 // preserved.  It prints an update `nticks` times, evenly spaced.
-fn display(bl: &buckets::Buckets, running: &AtomicBool, original_total: usize, duration: Duration, nticks: i32) {
+fn display(bl: &buckets::Buckets, running: &AtomicBool, original_total: usize,
+           duration: Duration, nticks: i32) {
     println!("transfers, N. transfers, buckets, buckets sum:");
 
     let mut timer = Timer::new().unwrap();

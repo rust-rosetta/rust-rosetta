@@ -37,7 +37,7 @@ fn handle_event(duration: Duration) -> Duration {
         // moving the timer creation inside the closure
         // to work around https://github.com/rust-lang/rust/issues/20943
         let mut timer = Timer::new().unwrap();
-        
+
         // Sleep for `duration`.
         timer.sleep(duration);
         // Signal the waiting mutex (equivalent to guard.cond.signal_on(0)).

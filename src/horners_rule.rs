@@ -7,7 +7,7 @@ fn horner<T:Int>(cs:&[T], x:T) -> T {
     cs.iter().rev().fold(Int::zero(), |acc: T, c| (acc*x) + (*c))
 }
 
-#[cfg(not(test))] 
+#[cfg(not(test))]
 fn main() {
     println!("{}", horner(&[-19i32, 7, -4, 6], 3i32)); // 128
 }

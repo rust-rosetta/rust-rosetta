@@ -38,9 +38,9 @@ fn exp_factorial(cx: &mut ExtCtxt, sp: Span, tts: &[TokenTree])
             return DummyResult::any(sp);
         }
     };
-    
+
     // calculating the factorial
-    let result = (1..(n as usize)+1).fold(1, |accum, elem| accum * elem);    
+    let result = (1..(n as usize)+1).fold(1, |accum, elem| accum * elem);
 
     MacEager::expr(cx.expr_usize(sp, result))
 }
