@@ -1,6 +1,7 @@
 [package]
 name = "rust-rosetta"
 version = "0.0.1"
+build = "build.rs"
 authors = [
     "Andrew Hobden, https://github.com/Hoverbear",
     "Adolfo Ochagavía, https://github.com/aochagavia",
