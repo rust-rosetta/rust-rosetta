@@ -1,3 +1,4 @@
+// Implements http://rosettacode.org/wiki/Proper_divisors
 use std::num::Float;
 
 // Populate input vector with prime numbers < maxvalue
