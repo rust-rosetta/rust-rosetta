@@ -77,5 +77,6 @@ pub fn test_events() {
     let out = handle_event(duration);
     // fix build on windows
     // TODO fix properly
-    if cfg!(unix) { assert!(duration <= out); }
+    //if cfg!(unix) {
+    assert!(duration <= out); //}
 }

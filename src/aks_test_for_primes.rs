@@ -2,11 +2,11 @@
 #![allow(unused_features)]
 
 
-pub fn is_prime(p: usize) -> bool {
+pub fn is_prime(p: u32) -> bool {
     if p<2 {
         false
     } else {
-        let mut c = coefficients(p);
+        let mut c = coefficients(p as usize);
         c[0] -= 1;
         for i in (0..(c.len() + 1) / 2) {
             if (c[i] % (p as i64)) != 0 {
@@ -65,6 +65,6 @@ fn test_solution() {
         assert_eq!(*exp, coefficients(i));
     }
 
-    let primes: Vec<usize> = (1..51).filter(|&i| is_prime(i)).collect();
+    let primes: Vec<u32> = (1..51).filter(|&i| is_prime(i)).collect();
     assert_eq!(exp_primes, primes);
 }
