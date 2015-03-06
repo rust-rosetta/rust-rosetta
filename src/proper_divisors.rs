@@ -1,4 +1,3 @@
-// Implements http://rosettacode.org/wiki/Proper_divisors
 use std::num::Float;
 
 // Populate input vector with prime numbers < maxvalue
@@ -26,6 +25,7 @@ fn add_more_prime_numbers(v:&mut Vec<usize>,maxvalue:usize) {
 // Get proper divisors
 fn find_divisors(primes:&mut Vec<usize>, num:usize) -> Vec<usize> {
     assert!(num > 0);
+    if num == 1 {return Vec::new()}
     let mut kprime_factors=vec![1];
     let ceiling = ((num as f64).sqrt()  as usize) + 1;
     add_more_prime_numbers(primes,ceiling);
