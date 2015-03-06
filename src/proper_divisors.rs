@@ -1,21 +1,86 @@
-// Implements http://rosettacode.org/wiki/Proper_divisors
-#![allow(unused_features)]
+use std::num::Float;
 
-fn proper_divisors(n:i32) -> Vec<i32>{
-	(1..(n / 2)+1).filter(|&i| n % i == 0).collect()
+// Populate input vector with prime numbers < maxvalue
+fn add_more_prime_numbers(v:&mut Vec<usize>,maxvalue:usize) {
+    let mut prime:usize=v[v.len()-1];
+    if prime <= 2 {prime=1;} // start with odd number
+    loop {
+        prime+=2;
+        if prime >= maxvalue {break;}
+        let mut isprime=true;
+        let ceiling = (prime as f64).sqrt() as usize;
+        // check below sqrt(prime)
+        for i in v.iter().skip(1).take_while(|&i| *i <= ceiling) {
+            if prime % *i == 0 {
+                isprime=false;
+                break;
+            }
+        }
+        if isprime {
+                v.push(prime);
+        }
+    }
 }
 
-#[cfg(not(test))]
+// Get proper divisors
+fn find_divisors(primes:&mut Vec<usize>, num:usize) -> Vec<usize> {
+    assert!(num > 0);
+    let mut kprime_factors=vec![1];
+    let ceiling = ((num as f64).sqrt()  as usize) + 1;
+    add_more_prime_numbers(primes,ceiling);
+    // Filter all primes num % p == 0
+    let prime_factors:Vec<usize> =
+                            primes.iter()
+                            .filter(|&p| num % *p == 0)
+                            .map(|&n| n)
+                            .collect();
+    // Check all k*p p..ceiling
+    // Following code is ineffective (due to duplicates) but simple
+    for p in prime_factors {
+        let mut kp=p;
+        while kp < ceiling {
+            if num % kp == 0 {
+                kprime_factors.push(kp);
+                kprime_factors.push(num/kp)}
+            kp += p;
+        }
+    }
+    kprime_factors.sort();
+    kprime_factors.dedup();
+    return kprime_factors;
+}
+
+#[allow(dead_code)]
+fn proper_divisors(num:usize) -> Vec<usize> {
+    let mut primes:Vec<usize>=vec![2,3];
+    return find_divisors(&mut primes,num);
+}
+
 fn main() {
-	for n in 1..11{
-		println!("{:?}", proper_divisors(n));
-	}
+    let mut primes:Vec<usize>=vec![2,3]; // reusable prime number array
 
-	let max_divisors = (1..20001)
-		.map(|i| proper_divisors(i).len())
-		.max().unwrap();
+    // Show the proper divisors of the numbers 1 to 10 inclusive.
+    for i in 1..11 {
+        print!("{}: ", i);
+        println!("{:?}", find_divisors(&mut primes,i));
+    }
 
-	println!("{}", max_divisors);
+    //Find a number in the range 1 to 20,000
+    //with the most proper divisors.
+    let mut max_divs:(usize, Vec<usize>)=(0,Vec::new());
+    for n in (1..20001) {
+        let div_q = find_divisors(&mut primes,n).len();
+        if div_q > max_divs.0 {
+            max_divs.0 = div_q;
+            max_divs.1.clear();
+            max_divs.1.push(n);
+        } else if div_q == max_divs.0 {
+            max_divs.1.push(n);
+        }
+    }
+    println!("Most divisors a number within 1 to 20000 has: {}",  max_divs.0);
+    print!("Numbers with {} divisors: ", max_divs.0);
+    println!("{:?}", max_divs.1);
 }
 
 #[test]
