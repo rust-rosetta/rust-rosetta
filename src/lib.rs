@@ -1,10 +1,8 @@
 // Dummy main library
 // It also contains a test module, which checks if all source files are covered by `Cargo.toml`
 #![allow(unused_features)]
-#![feature(old_path)]
-#![feature(core)]
-#![feature(old_io)]
 #![feature(plugin)]
+#![feature(io)]
 #![feature(collections)]
 #![plugin(regex_macros)]
 
@@ -17,9 +15,8 @@ fn main() { }
 #[cfg(test)]
 mod test {
     use std::collections::HashSet;
-    use std::old_io::BufferedReader;
-    use std::old_io::fs::{self, File};
-
+    use std::io::{BufReader, BufReadExt};
+    use std::fs::{self, File};
     // A test to check if all source files are covered by `Cargo.toml`
     #[test]
     fn check_sources_covered() {
@@ -40,15 +37,16 @@ mod test {
 
     // Returns the names of the source files in the `src` directory
     fn get_source_files() -> HashSet<String> {
-        let paths = fs::readdir(&Path::new("./src")).unwrap();
-        paths.iter().map(|p| p.filename_str().unwrap().to_string())
+        let paths = fs::read_dir("./src").unwrap();
+        paths.map(|p| p.unwrap().path().file_name().unwrap().to_os_string()
+                    .into_string().unwrap())
                     .filter(|s| s[..].ends_with(".rs")).collect()
     }
 
     // Returns the paths of the source files referenced in Cargo.toml
     fn get_toml_paths() -> HashSet<String> {
         let c_toml = File::open(&Path::new("./Cargo.toml")).unwrap();
-        let mut reader = BufferedReader::new(c_toml);
+        let mut reader = BufReader::new(c_toml);
         let regex = regex!("path = \"(.*)\"");
         reader.lines().filter_map(|l| {
             let l = l.unwrap();

@@ -4,7 +4,7 @@
 // In case we find a line that doesn't comply with this rules, the build will fail and indicate
 // the cause of the problem.
 
-#![feature(io, fs, path)]
+#![feature(io, path, path_ext)]
 
 use std::fs::{self, File, PathExt};
 use std::io::Read;

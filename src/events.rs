@@ -70,12 +70,9 @@ pub fn main() {
 
 #[test]
 pub fn test_events() {
-    let duration = Duration::seconds(1) / 10; // Process event after one tenth of a second.
+     let duration = Duration::seconds(1) / 10; // Process event after one tenth of a second.
     // Make sure it really did take at least that long for the event to be processed.
 
     let out = handle_event(duration);
-    // fix build on windows
-    // TODO fix properly
-    if cfg!(unix) {
-    assert!(duration <= out); }
+    assert!(duration <= out);
 }
