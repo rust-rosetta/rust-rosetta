@@ -34,7 +34,7 @@ fn evil() -> EvilOdiousIter {
 }
 
 fn pow_3() -> Map<Counter<u32>, fn(u32) -> u32> {
-    fn pw(n: u32) -> u32 { 3u32.pow(n).count_ones() }
+    fn pw(n: u32) -> u32 { 3u64.pow(n).count_ones() }
 
     count(0, 1).map(pw as fn(u32) -> u32)
 }
@@ -63,8 +63,8 @@ mod test {
     #[test]
     fn test_pow_3() {
         let exp = vec![1, 2, 2, 4, 3, 6, 6, 5, 6, 8, 9, 13, 10,
-                        11, 14, 15, 11, 14, 14, 17, 17, 19, 16, 19,
-                        14, 14, 18, 21, 18, 15];
+                        11, 14, 15, 11, 14, 14, 17, 17, 20, 19, 22,
+                        16, 18, 24, 30, 25, 25];
         let act = pow_3().take(30).collect::<Vec<u32>>();
         assert_eq!(act, exp);
     }

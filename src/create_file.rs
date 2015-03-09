@@ -7,6 +7,8 @@ use std::fs::{self, File};
 
 #[cfg(not(test))]
 fn main () {
+    use std::io::Write;
+
     // Create a new file.  We get a Result object from
     // File::create. We could check if there is an error by using
     // .is_error() or by using pattern matching. We choose here to

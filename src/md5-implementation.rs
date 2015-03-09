@@ -6,8 +6,10 @@
 #![feature(core)]
 #![feature(collections)]
 
+use std::num::wrapping::Wrapping as wr;
 use std::iter::range_step;
 use std::fmt::{Debug, Formatter, Result};
+use std::num::Int;
 
 #[cfg(not(test))]
 fn main() {
@@ -61,12 +63,6 @@ impl Debug for MD5 {
     }
 }
 
-// leftrotate function definition
-#[inline]
-fn left_rotate(x: u32, c: u32) -> u32 {
-    (x << c as usize) | (x >> (32 - c) as usize)
-}
-
 fn to_bytes(val: u64) -> [u8; 8]
 {
     let mut tmp:[u8; 8] = [0u8; 8];
@@ -81,7 +77,7 @@ fn md5(initial_msg: &[u8]) -> MD5
     let initial_len=initial_msg.len() as u64;
 
     // These vars will contain the hash
-    let mut h:[u32; 4]=[0x67452301u32, 0xefcdab89, 0x98badcfe, 0x10325476];
+    let mut h:[wr<u32>; 4]=[wr(0x67452301u32), wr(0xefcdab89), wr(0x98badcfe), wr(0x10325476)];
 
      //Pre-processing:
     //append "1" bit to message
@@ -137,32 +133,32 @@ fn md5(initial_msg: &[u8]) -> MD5
             let temp = d;
             d = c;
             c = b;
-            b = b + left_rotate((a + f + K[ind] + w[g]), R[ind]);
+            b = b + wr((a + f + wr(K[ind]) + wr(w[g])).0.rotate_left(R[ind]));
             a = temp;
         }
 
         // Add this chunk's hash to result so far:
-        h[0] += a;
-        h[1] += b;
-        h[2] += c;
-        h[3] += d;
+        h[0] = h[0] + a;
+        h[1] = h[1] + b;
+        h[2] = h[2] + c;
+        h[3] = h[3] + d;
     }
     drop(msg); // cleanup, msg is freed
 
     //var char digest[16] := h0 append h1 append h2 append h3 //(Output is in little-endian)
     let mut digest = [0u8; 16];
     for (i, s) in h.iter().enumerate() {
-        digest[i*4] = (*s ) as u8;
-        digest[i*4+1] = (*s >> 8) as u8;
-        digest[i*4+2] = (*s >> 16) as u8;
-        digest[i*4+3] = (*s >> 24) as u8;
+        digest[i*4] = (*s ).0 as u8;
+        digest[i*4+1] = (*s >> 8).0 as u8;
+        digest[i*4+2] = (*s >> 16).0 as u8;
+        digest[i*4+3] = (*s >> 24).0 as u8;
     }
     MD5(digest)
 }
 
 #[test]
 fn helper_fns() {
-    assert_eq!(64, left_rotate(8, 3));
+    assert_eq!(64, 8.rotate_left(3));
 
     let exp:[u8; 8] = [64u8, 226, 1, 0, 0, 0, 0, 0];
     assert!(to_bytes(123456) == exp);

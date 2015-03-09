@@ -1,5 +1,6 @@
 // Implements http://rosettacode.org/wiki/Linear_congruential_generator
-
+#![feature(core)]
+use std::num::wrapping::Wrapping as w;
 
 trait LinearCongruentialGenerator {
     fn seed(&mut self, seed: u32);
@@ -7,44 +8,45 @@ trait LinearCongruentialGenerator {
 }
 
 struct BSDLinearCongruentialGenerator {
-    state: u32
+    state: w<u32>
 }
 
 impl BSDLinearCongruentialGenerator {
     fn new(seed: u32) -> BSDLinearCongruentialGenerator {
-        BSDLinearCongruentialGenerator { state: seed }
+        BSDLinearCongruentialGenerator { state: w(seed) }
     }
 }
 
 impl LinearCongruentialGenerator for BSDLinearCongruentialGenerator {
     fn seed(&mut self, seed: u32) {
-        self.state = seed;
+        self.state = w(seed);
     }
 
     fn next(&mut self) -> u32 {
-        self.state = (1103515245 * self.state + 12345) % (1 << 31);
-        self.state
+        self.state = w((w(1103515245) * self.state + w(12345)).0 % (1 << 31));
+        self.state.0
     }
 }
 
 struct MSLinearCongruentialGenerator {
-    state: u32
+    state: w<u32>
 }
 
 impl MSLinearCongruentialGenerator {
     fn new(seed: u32) -> MSLinearCongruentialGenerator {
-        MSLinearCongruentialGenerator { state: seed }
+        MSLinearCongruentialGenerator { state: w(seed) }
     }
 }
 
 impl LinearCongruentialGenerator for MSLinearCongruentialGenerator {
     fn seed(&mut self, seed: u32) {
-        self.state = seed;
+        self.state = w(seed);
     }
 
     fn next(&mut self) -> u32 {
-        self.state = (214013 * self.state + 2531011) % (1 << 31);
-        self.state >> 16
+        self.state = w((w(214013) * self.state + w(2531011)).0 % (1 << 31));
+        let w(r) = self.state >> 16;
+        r
     }
 }
 

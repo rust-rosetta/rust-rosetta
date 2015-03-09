@@ -5,6 +5,8 @@
 #![feature(io)]
 #![feature(collections)]
 #![plugin(regex_macros)]
+#![feature(old_path)]
+#![feature(path)]
 
 extern crate regex;
 
@@ -46,7 +48,7 @@ mod test {
     // Returns the paths of the source files referenced in Cargo.toml
     fn get_toml_paths() -> HashSet<String> {
         let c_toml = File::open(&Path::new("./Cargo.toml")).unwrap();
-        let mut reader = BufReader::new(c_toml);
+        let reader = BufReader::new(c_toml);
         let regex = regex!("path = \"(.*)\"");
         reader.lines().filter_map(|l| {
             let l = l.unwrap();
