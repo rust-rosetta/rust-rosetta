@@ -14,7 +14,7 @@ const MAX_NUMBER: usize = 9;
 
 type BITS = u16;
 const MASK_ALL: BITS = 0x1ff;
-const INVALID_CELL: usize = !0;
+const INVALID_CELL: u32 = !0;
 
 #[derive(Copy, Eq, PartialEq, Debug)]
 struct Sudoku {
@@ -26,7 +26,7 @@ impl Sudoku {
         Sudoku { map: [[MASK_ALL; BOARD_WIDTH]; BOARD_HEIGHT] }
     }
 
-    fn get(&self, x: usize, y: usize) -> usize {
+    fn get(&self, x: usize, y: usize) -> u32 {
         match self.map[y][x].count_ones() {
             0 => INVALID_CELL,
             1 => self.map[y][x].trailing_zeros() + 1,

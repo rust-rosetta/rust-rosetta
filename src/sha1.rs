@@ -4,6 +4,7 @@
 #![feature(old_io)]
 #![feature(core)]
 
+use std::num::wrapping::Wrapping as wr;
 use std::old_io::IoResult;
 use std::slice::bytes::copy_memory;
 
@@ -12,7 +13,8 @@ const SIZE: usize = 20;
 
 // The blocksize of SHA1 in bytes.
 const CHUNK:usize = 64;
-const INIT:[u32; 5] = [0x67452301,0xEFCDAB89, 0x98BADCFE, 0x10325476, 0xC3D2E1F0];
+const INIT:[wr<u32>; 5] = [wr(0x67452301),wr(0xEFCDAB89), wr(0x98BADCFE),
+                            wr(0x10325476), wr(0xC3D2E1F0)];
 
 #[cfg(not(test))]
 fn main() {
@@ -27,7 +29,7 @@ fn main() {
 
 // digest represents the partial evaluation of a checksum.
 struct Digest {
-    h:      [u32; 5],
+    h:      [wr<u32>; 5],
     x:      [u8; CHUNK],
     nx:     usize,
     len:    u64
@@ -67,20 +69,20 @@ impl Digest {
 
         let mut digest : [u8; SIZE]=[0u8; SIZE];
         for (i, s) in self.h.iter().enumerate() {
-            digest[i*4] = (*s >> 24) as u8;
-            digest[i*4+1] = (*s >> 16) as u8;
-            digest[i*4+2] = (*s >> 8) as u8;
-            digest[i*4+3] = *s as u8;
+            digest[i*4] = (*s >> 24).0 as u8;
+            digest[i*4+1] = (*s >> 16).0 as u8;
+            digest[i*4+2] = (*s >> 8).0 as u8;
+            digest[i*4+3] = s.0 as u8;
         }
         digest
     }
 
-    fn process_block(&self, data:&[u8]) ->  [u32; 5]{
+    fn process_block(&self, data:&[u8]) ->  [wr<u32>; 5]{
         let k:[u32; 4] = [0x5A827999, 0x6ED9EBA1, 0x8F1BBCDC, 0xCA62C1D6];
 
         #[inline]
-        fn part(a: u32, b: u32) -> (u32, u32) {
-            (a<<5 | a>>(32-5), b<<30 | b>>(32-30))
+        fn part(a: wr<u32>, b: wr<u32>) -> (wr<u32>, wr<u32>) {
+            ((a<<5 | a>>(32-5)), (b<<30 | b>>(32-30)))
         }
 
         let mut w :[u32; 16] = [0u32; 16];
@@ -104,7 +106,7 @@ impl Digest {
             for i in (0..16) {
                 let f = b & c | (!b) & d;
                 let (a5, b30) = part(a, b);
-                let t = a5 + f + e + w[i&0xf] + k[0];
+                let t = a5 + f + e + wr(w[i&0xf]) + wr(k[0]);
                  b=a; a=t; e=d; d=c; c=b30;
             }
             for i in (16..20) {
@@ -112,7 +114,7 @@ impl Digest {
                 w[i&0xf] = tmp<<1 | tmp>>(32-1);
                 let f = b & c | (!b) & d;
                 let (a5, b30) = part(a, b);
-                let t = a5 + f + e + w[i&0xf] + k[0];
+                let t = a5 + f + e + wr(w[i&0xf]) + wr(k[0]);
                 b=a; a=t; e=d; d=c; c=b30;
             }
             for i in (20..40) {
@@ -120,7 +122,7 @@ impl Digest {
                 w[i&0xf] = tmp<<1 | tmp>>(32-1);
                 let f = b ^ c ^ d;
                 let (a5, b30) = part(a, b);
-                let t = a5 + f + e + w[i&0xf] + k[1];
+                let t = a5 + f + e + wr(w[i&0xf]) + wr(k[1]);
                 b=a; a=t; e=d; d=c; c=b30;
             }
             for i in (40..60) {
@@ -128,7 +130,7 @@ impl Digest {
                 w[i&0xf] = tmp<<1 | tmp>>(32-1);
                 let f = ((b | c) & d) | (b & c);
                 let (a5, b30) = part(a, b);
-                let t = a5 + f + e + w[i&0xf] + k[2];
+                let t = a5 + f + e + wr(w[i&0xf]) + wr(k[2]);
                 b=a; a=t; e=d; d=c; c=b30;
             }
             for i in (60..80) {
@@ -136,14 +138,14 @@ impl Digest {
                 w[i&0xf] = tmp<<1 | tmp>>(32-1);
                 let f = b ^ c ^ d;
                 let (a5, b30) = part(a, b);
-                let t = a5 + f + e + w[i&0xf] + k[3];
+                let t = a5 + f + e + wr(w[i&0xf]) + wr(k[3]);
                 b=a; a=t; e=d; d=c; c=b30;
             }
-            h0 += a;
-            h1 += b;
-            h2 += c;
-            h3 += d;
-            h4 += e;
+            h0 = h0 + a;
+            h1 = h1 + b;
+            h2 = h2 + c;
+            h3 = h3 + d;
+            h4 = h4 + e;
 
             p = &p[CHUNK..];
         }

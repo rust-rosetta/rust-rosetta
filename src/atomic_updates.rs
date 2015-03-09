@@ -27,7 +27,7 @@ use std::thread::spawn;
 // protects against data races just fine, but it's not as good at protecting against deadlocks or
 // other types of race conditions.
 mod buckets {
-    use std::sync::atomic::{AtomicUint, Ordering};
+    use std::sync::atomic::{AtomicUsize, Ordering};
     use std::sync::Mutex;
 
     // We hardcode the number of buckets mostly for convenience.  Now that Rust has dynamically
@@ -63,7 +63,7 @@ mod buckets {
     pub const N_WORKERS: usize = 2;
 
     struct Bucket {
-        data: AtomicUint,       // The actual data.  It is atomic because it is read (not written)
+        data: AtomicUsize,       // The actual data.  It is atomic because it is read (not written)
                                 // outside the Mutex, unless a consistent snapshot is required.
         mutex: Mutex<()>,       // The mutex used to synchronize writes and snapshot reads of the
                                 // bucket.
@@ -73,27 +73,27 @@ mod buckets {
 
     pub struct Buckets {
         buckets: [Bucket; N_BUCKETS ], // Buckets containing values to be transferred.
-        transfers: [AtomicUint; N_WORKERS ], // Statistics about total transfers this go-around.
+        transfers: [AtomicUsize; N_WORKERS ], // Statistics about total transfers this go-around.
     }
 
     impl Buckets {
         // Create a new Buckets instance.
         pub fn new(buckets: [usize; N_BUCKETS]) -> Buckets {
             // The unsafe initialization here is required because Bucket is not Clone (it can't be,
-            // since neither AtomicUint nor Mutex are) and we would otherwise have to literally
+            // since neither AtomicUsize nor Mutex are) and we would otherwise have to literally
             // write out N_BUCKETS different values, which would be painful.  As a result, we have
             // to be careful not to allow any failure here, or we'll segfault (by Drop-ing empty
             // buckets).
             let mut buckets_: [Bucket; N_BUCKETS] = unsafe { ::std::mem::uninitialized() };
-            let mut transfers: [AtomicUint; N_WORKERS] = unsafe { ::std::mem::uninitialized() };
+            let mut transfers: [AtomicUsize; N_WORKERS] = unsafe { ::std::mem::uninitialized() };
             for (dest, &src) in buckets_.iter_mut().zip(buckets.iter()){
-                let bucket = Bucket { data: AtomicUint::new(src), mutex: Mutex::new(()) };
+                let bucket = Bucket { data: AtomicUsize::new(src), mutex: Mutex::new(()) };
                 // If we don't use an unsafe write(), the uninitialized mutex in the bucket will be
                 // dropped.
                 unsafe { ::std::ptr::write(dest as *mut _, bucket) }
             }
             for t in (&mut transfers[..]).iter_mut() {
-                *t = AtomicUint::new(0);
+                *t = AtomicUsize::new(0);
             }
             Buckets { buckets: buckets_, transfers: transfers }
         }

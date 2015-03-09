@@ -2,6 +2,7 @@
 // includes the XOR version of the encryption scheme
  #![feature(core)]
 use std::iter::range_step;
+use std::num::wrapping::Wrapping as w;
 
 const MSG :&'static str = "a Top Secret secret";
 const KEY: &'static str = "this is my secret key";
@@ -30,53 +31,55 @@ fn main () {
 macro_rules! mix_v(
    ($a:expr) => (
    {
-       $a[0] ^= $a[1] << 11; $a[3] += $a[0]; $a[1] += $a[2]; $a[1] ^= $a[2] >> 2;
-       $a[4] += $a[1]; $a[2] += $a[3]; $a[2] ^= $a[3] << 8; $a[5] += $a[2];
-       $a[3] += $a[4]; $a[3] ^= $a[4] >> 16; $a[6] += $a[3]; $a[4] += $a[5];
-       $a[4] ^= $a[5] << 10; $a[7] += $a[4]; $a[5] += $a[6]; $a[5] ^= $a[6] >> 4;
-       $a[0] += $a[5]; $a[6] += $a[7]; $a[6] ^= $a[7] << 8; $a[1] += $a[6];
-       $a[7] += $a[0]; $a[7] ^= $a[0] >> 9; $a[2] += $a[7]; $a[0] += $a[1];
+       $a[0] = $a[0] ^ $a[1] << 11; $a[3] = $a[3] + $a[0]; $a[1] = $a[1] + $a[2];
+       $a[1] = $a[1] ^ $a[2] >> 2; $a[4] = $a[4] + $a[1]; $a[2] = $a[2] + $a[3];
+       $a[2] = $a[2] ^ $a[3] << 8; $a[5] = $a[5] + $a[2]; $a[3] = $a[3] + $a[4];
+       $a[3] = $a[3] ^ $a[4] >> 16; $a[6] = $a[6] + $a[3]; $a[4] = $a[4] + $a[5];
+       $a[4] = $a[4] ^ $a[5] << 10; $a[7] = $a[7] + $a[4]; $a[5] = $a[5] + $a[6];
+       $a[5] = $a[5] ^ $a[6] >> 4; $a[0] = $a[0] + $a[5]; $a[6] = $a[6] + $a[7];
+       $a[6] = $a[6] ^ $a[7] << 8; $a[1] = $a[1] + $a[6]; $a[7] = $a[7] + $a[0];
+       $a[7] = $a[7] ^ $a[0] >> 9; $a[2] = $a[2] + $a[7]; $a[0] = $a[0] + $a[1];
    } );
 );
 
 struct Isaac {
-    mm: [u32; 256],
-    aa: u32,
-    bb: u32,
-    cc: u32,
-    rand_rsl: [u32; 256],
+    mm: [w<u32>; 256],
+    aa: w<u32>,
+    bb: w<u32>,
+    cc: w<u32>,
+    rand_rsl: [w<u32>; 256],
     rand_cnt: u32
 }
 
 impl Isaac {
     fn new() -> Isaac {
         Isaac {
-            mm: [0u32; 256],
-            aa: 0,
-            bb: 0,
-            cc: 0,
-            rand_rsl: [0u32; 256],
+            mm: [w(0u32); 256],
+            aa: w(0),
+            bb: w(0),
+            cc: w(0),
+            rand_rsl: [w(0u32); 256],
             rand_cnt: 0
         }
     }
 
     fn isaac(&mut self) {
-        self.cc += 1;
-        self.bb += self.cc;
+        self.cc = self.cc + w(1);
+        self.bb = self.bb + self.cc;
 
         for i in (0..256) {
-            let x = self.mm[i];
+            let w(x) = self.mm[i];
             match i%4 {
-                0 => self.aa ^= self.aa << 13,
-                1 => self.aa ^= self.aa >>  6,
-                2 => self.aa ^= self.aa <<  2,
-                3 => self.aa ^= self.aa >> 16,
+                0 => self.aa = self.aa ^ self.aa << 13,
+                1 => self.aa = self.aa ^ self.aa >>  6,
+                2 => self.aa = self.aa ^ self.aa <<  2,
+                3 => self.aa = self.aa ^ self.aa >> 16,
                 _ => unreachable!()
             }
 
             self.aa = self.mm[((i + 128) % 256) as usize] + self.aa;
-            let y = self.mm[((x >> 2) % 256) as usize] + self.aa + self.bb;
-            self.bb = self.mm[((y >> 10) % 256) as usize] + x;
+            let w(y) = self.mm[((x >> 2) % 256) as usize] + self.aa + self.bb;
+            self.bb = self.mm[((y >> 10) % 256) as usize] + w(x);
             self.rand_rsl[i] = self.bb;
         }
 
@@ -85,7 +88,7 @@ impl Isaac {
 
     fn rand_init(&mut self, flag: bool)
     {
-        let mut a_v = [0x9e3779b9u32; 8];
+        let mut a_v = [w(0x9e3779b9u32); 8];
 
         for _ in (0..4) {
             // scramble it
@@ -96,7 +99,7 @@ impl Isaac {
         // fill in mm[] with messy stuff
             if flag {
                 // use all the information in the seed
-                for j in (0..8) { a_v[j] += self.rand_rsl[i+j]; }
+                for j in (0..8) { a_v[j] = a_v[j] + self.rand_rsl[i+j]; }
             }
             mix_v!(a_v);
             for j in (0..8) { self.mm[i+j] = a_v[j]; }
@@ -105,7 +108,7 @@ impl Isaac {
         if flag {
             // do a second pass to make all of the seed affect all of mm
             for i in range_step(0, 256, 8) {
-                for j in (0..8) { a_v[j] += self.mm[i+j]; }
+                for j in (0..8) { a_v[j] = a_v[j] + self.mm[i+j]; }
                 mix_v!(a_v);
                 for j in (0..8) { self.mm[i+j] = a_v[j]; }
             }
@@ -123,16 +126,16 @@ impl Isaac {
             self.isaac();
             self.rand_cnt = 0;
         }
-        r
+        r.0
     }
 
     // Seed ISAAC with a string
     fn seed(&mut self, seed: &str, flag: bool) {
-        for i in (0..256) { self.mm[i] = 0; }
-        for i in (0..256) { self.rand_rsl[i] = 0; }
+        for i in (0..256) { self.mm[i] = w(0); }
+        for i in (0..256) { self.rand_rsl[i] = w(0); }
 
         for i in (0..seed.len()) {
-            self.rand_rsl[i] = seed.as_bytes()[i] as u32;
+            self.rand_rsl[i] = w(seed.as_bytes()[i] as u32);
         }
         // initialize ISAAC with seed
         self.rand_init(flag);
