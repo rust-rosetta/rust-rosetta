@@ -45,6 +45,7 @@ authors = [
     "Glen De Cauwsemaecker, https://github.com/glendc",
     "Amos Bird, https://github.com/amosbird",
     "Juan Vidal Pich, https://github.com/juanevp",
+    "Peter Jacobs, https://github.com/crespyl",
 ]
 
 [dependencies]
@@ -1005,6 +1006,11 @@ test = false
 # http://rosettacode.org/wiki/Word_wrap
 name = "word_wrap"
 path = "src/word_wrap.rs"
+
+[[bin]]
+# http://rosettacode.org/wiki/Wireworld
+name = "wireworld"
+path = "src/wireworld.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Write_ppm_file
