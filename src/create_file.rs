@@ -1,5 +1,4 @@
 // Implements http://rosettacode.org/wiki/Create_a_file
-#![feature(path_ext)]
 use std::fs::{self, File};
 
 #[cfg(not(test))]

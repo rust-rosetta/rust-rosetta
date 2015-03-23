@@ -1,9 +1,7 @@
 // Implements http://rosettacode.org/wiki/Guess_the_number
-
-#![feature(old_io)]
 extern crate rand;
 use rand::{thread_rng, Rng};
-use std::old_io::stdio::stdin;
+use std::io::stdin;
 
 fn main() {
     let mystery_number = thread_rng().gen_range(0u8, 10) + 1;
@@ -11,7 +9,8 @@ fn main() {
 
     let mut input = stdin();
     loop {
-        let line = input.read_line().unwrap();
+        let mut line = String::new();
+        let _ = input.read_line(&mut line).unwrap();
         match line.trim().parse::<u8>() {
             Ok(guess) if guess == mystery_number => break,
             Ok(_) => println!("Wrong! Try again!"),

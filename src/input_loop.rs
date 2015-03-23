@@ -1,10 +1,8 @@
 // Implements http://rosettacode.org/wiki/Input_loop
-#![feature(old_io)]
-
-use std::old_io;
+use std::io::{self, BufRead};
 
 fn main() {
-    let mut stdin = old_io::stdin();
+    let stdin = io::stdin();
     for line in stdin.lock().lines() {
         print!("{}", line.unwrap());
     }

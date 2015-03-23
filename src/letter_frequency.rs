@@ -1,5 +1,6 @@
 // Implements http://rosettacode.org/wiki/Letter_frequency
 #![feature(std_misc)]
+#![feature(io)]
 
 #[cfg(not(test))]
 use std::fs::File;
@@ -25,7 +26,7 @@ fn count_chars<T>(chars: T) -> HashMap<char, usize>
 #[cfg(not(test))]
 fn main() {
     let file = File::open("resources/unixdict.txt").unwrap();
-    let mut reader = BufReader::new(file);
+    let reader = BufReader::new(file);
 
     println!("{:?}", count_chars(reader.chars().map(|c| c.unwrap())));
 }

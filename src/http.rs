@@ -4,7 +4,7 @@ use std::io::{Read, Result, Write};
 #[cfg(test)]
 mod webserver;
 
-fn get_index(target: &str, port: u16) -> Result<()> {
+fn get_index(target: &str, port: u16) -> Result<String> {
     // Create a socket. Mutable so we can write to it.
     let mut socket = try!(TcpStream::connect((target, port)));
     // Write to the socket as bytes.
@@ -16,8 +16,8 @@ fn get_index(target: &str, port: u16) -> Result<()> {
     try!(write!(&mut socket, "GET / HTTP/1.1\nHost: {}\nConnection: close\n\n", target));
     // Read any response.
     let mut resp = String::new();
-    try!(socket.read_to_string(&mut resp));
-    Ok(())
+    let _ = try!(socket.read_to_string(&mut resp));
+    Ok(resp)
 }
 
 #[cfg(not(test))]

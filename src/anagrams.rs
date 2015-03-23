@@ -1,11 +1,9 @@
 // Implements http://rosettacode.org/wiki/Anagrams
-#![allow(unused_features)] // feature(io) is used only in main
-
 #![feature(std_misc)]
 
 #[cfg(not(test))]
 use std::fs::File;
-use std::io::BufReader;
+use std::io::{BufReader, BufRead};
 use std::collections::{HashMap, HashSet};
 use std::collections::hash_map::Entry::{Occupied, Vacant};
 
@@ -51,7 +49,7 @@ fn largest_groups(groups: &HashMap<String, HashSet<String>>)
 
 #[cfg(not(test))]
 fn main () {
-    let mut reader = BufReader::new(File::open("src/resources/unixdict.txt"));
+    let reader = BufReader::new(File::open("src/resources/unixdict.txt").unwrap());
     let lines = reader.lines().map(|l| l.unwrap());
 
     let anagram_groups = anagrams(lines);

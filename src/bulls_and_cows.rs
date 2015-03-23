@@ -1,4 +1,5 @@
 // http://rosettacode.org/wiki/Bulls_and_cows
+#![feature(old_io)]
 extern crate rand;
 use std::fmt::{self, Display};
 
