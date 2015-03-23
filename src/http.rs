@@ -1,19 +1,10 @@
 // http://rosettacode.org/wiki/HTTP
-#![allow(unused_features)]
-#![allow(unused_attributes)]
-#![feature(io)]
-#![feature(old_io)]
-#![feature(core)]
-#![feature(os)]
-#![feature(std_misc)]
-
-use std::old_io::net::tcp::TcpStream;
-use std::old_io::IoResult;
-
+use std::net::TcpStream;
+use std::io::{Read, Result, Write};
 #[cfg(test)]
 mod webserver;
 
-fn get_index(target: &str, port: u16) -> IoResult<String> {
+fn get_index(target: &str, port: u16) -> Result<()> {
     // Create a socket. Mutable so we can write to it.
     let mut socket = try!(TcpStream::connect((target, port)));
     // Write to the socket as bytes.
@@ -24,7 +15,9 @@ fn get_index(target: &str, port: u16) -> IoResult<String> {
     // will be handled by a HTTP library.
     try!(write!(&mut socket, "GET / HTTP/1.1\nHost: {}\nConnection: close\n\n", target));
     // Read any response.
-    socket.read_to_string()
+    let mut resp = String::new();
+    try!(socket.read_to_string(&mut resp));
+    Ok(())
 }
 
 #[cfg(not(test))]
@@ -47,12 +40,11 @@ fn test_request() {
     const HOST: &'static str = "127.0.0.1";
     const PORT: u16 = 12321;
 
-    let (port, acceptor) = (PORT..::std::u16::MAX)
+    let (port, _acceptor) = (PORT..::std::u16::MAX)
         .map( |port| (port, webserver::handle_server(HOST, port)) )
         .find( |&(_, ref acceptor)| acceptor.is_ok() )
         .unwrap();
 
     let res = get_index(HOST, port);
-    acceptor.unwrap().close_accept().unwrap();
     res.unwrap();
 }

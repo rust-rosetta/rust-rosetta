@@ -1,13 +1,10 @@
 // http://rosettacode.org/wiki/FASTA_format
 // Ported and adapted from rosettacode D example
-#![feature(old_io)]
-#![feature(old_path)]
-
-use std::old_io::fs::File;
-use std::old_io::BufferedReader;
+use std::fs::File;
+use std::io::{BufReader, BufRead};
 
 // We use a type parameter bound `<T: Buffer>` to accept all kinds of buffers
-fn format_fasta<T: Buffer>(reader: &mut T) -> String {
+fn format_fasta<T: BufRead>(reader: &mut T) -> String {
     reader.lines().map(|l| l.unwrap()).fold(String::new(), |mut out, line| {
         // We need to trim new lines
         let ln = line.trim();
@@ -31,8 +28,8 @@ fn format_fasta<T: Buffer>(reader: &mut T) -> String {
 }
 
 fn read_file() -> String {
-    let file = File::open(&Path::new("src/resources/test_data.fasta"));
-    format_fasta(&mut BufferedReader::new(file))
+    let file = File::open("src/resources/test_data.fasta").unwrap();
+    format_fasta(&mut BufReader::new(file))
 }
 
 #[cfg(not(test))]

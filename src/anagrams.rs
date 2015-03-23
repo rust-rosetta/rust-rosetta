@@ -2,11 +2,10 @@
 #![allow(unused_features)] // feature(io) is used only in main
 
 #![feature(std_misc)]
-#![feature(old_path)]
-#![feature(old_io)]
 
 #[cfg(not(test))]
-use std::old_io::{File, BufferedReader};
+use std::fs::File;
+use std::io::BufReader;
 use std::collections::{HashMap, HashSet};
 use std::collections::hash_map::Entry::{Occupied, Vacant};
 
@@ -52,8 +51,7 @@ fn largest_groups(groups: &HashMap<String, HashSet<String>>)
 
 #[cfg(not(test))]
 fn main () {
-    let path = Path::new("src/resources/unixdict.txt");
-    let mut reader = BufferedReader::new(File::open(&path));
+    let mut reader = BufReader::new(File::open("src/resources/unixdict.txt"));
     let lines = reader.lines().map(|l| l.unwrap());
 
     let anagram_groups = anagrams(lines);

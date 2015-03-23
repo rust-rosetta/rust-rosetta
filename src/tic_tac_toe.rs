@@ -1,7 +1,4 @@
 // Implements http://rosettacode.org/wiki/Tic-tac-toe
-#![allow(unused_features)]
-#![feature(old_io)]
-
 extern crate rand;
 
 use GameState::{PlayerWin, ComputerWin, Draw, Playing};
@@ -81,11 +78,12 @@ fn which_win(s: char) -> GameState {
 
 #[cfg(not(test))]
 fn player_turn(board: &mut [[char; 3]; 3]) {
-    use std::old_io as io;
+    use std::io;
 
 	println!("Player, enter your field of choice!: ");
-	let input = io::stdin().read_line().unwrap();
-	let choice = input.trim().parse::<usize>().unwrap();
+    let mut ln = String::new();
+	let _ = io::stdin().read_line(&mut ln);
+	let choice = ln.trim().parse::<usize>().unwrap();
 	let row = (choice - 1) / 3;
 	let col = (choice - 1) % 3;
 

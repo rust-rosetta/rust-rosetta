@@ -1,7 +1,7 @@
 // Implements http://rosettacode.org/wiki/Sieve_of_Eratosthenes
-#![feature(core)]
+#![feature(step_by)]
 
-use std::iter::{repeat, range_step};
+use std::iter::repeat;
 use std::num::Float;
 
 fn int_sqrt(n: usize) -> usize {
@@ -18,7 +18,7 @@ fn simple_sieve(limit: usize) -> Vec<usize> {
 
     for prime in (2..int_sqrt(limit) + 1 + 1) {
         if primes[prime] {
-            for multiple in range_step(prime * prime, limit + 1, prime) {
+            for multiple in (prime * prime..limit + 1).step_by(prime) {
                 primes[multiple] = false
             }
         }

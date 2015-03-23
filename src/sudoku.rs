@@ -1,8 +1,7 @@
 // http://rosettacode.org/wiki/Sudoku
-#![feature(unicode)]
 #![feature(core)]
-
-use std::{fmt, iter};
+#![feature(step_by)]
+use std::fmt;
 use std::str::FromStr;
 use std::num::Int;
 
@@ -47,7 +46,7 @@ impl FromStr for Sudoku {
         let mut sudoku = Sudoku::new();
 
         for (y, line) in s.lines().filter(|l| !l.is_empty()).enumerate() {
-            let line = line.trim_matches(CharExt::is_whitespace);
+            let line = line.trim_matches(|c: char| c.is_whitespace());
             for (x, c) in line.chars().enumerate() {
                 if let Some(d) = c.to_digit(10) {
                     if d != 0 { sudoku.set(x, y, d); }
@@ -150,8 +149,8 @@ fn solve_sudoku(mut puzzle: Sudoku) -> Vec<Sudoku> {
             }
 
             // Check each group
-            for y0 in iter::range_step(0, BOARD_HEIGHT, GROUP_WIDTH) {
-                for x0 in iter::range_step(0, BOARD_WIDTH, GROUP_HEIGHT) {
+            for y0 in (0..BOARD_HEIGHT).step_by(GROUP_WIDTH) {
+                for x0 in (0..BOARD_WIDTH).step_by(GROUP_HEIGHT) {
                     let next = {
                         let mut it = idx_in_grp
                             .iter()

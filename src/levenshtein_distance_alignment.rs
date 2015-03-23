@@ -1,5 +1,5 @@
 // http://rosettacode.org/wiki/Levenshtein_distance/Alignment
-#![feature(collections)]
+#![feature(str_char)]
 #![feature(core)]
 
 use std::usize;

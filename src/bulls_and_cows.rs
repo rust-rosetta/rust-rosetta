@@ -1,14 +1,6 @@
 // http://rosettacode.org/wiki/Bulls_and_cows
-#![allow(unused_features)] // feature(io) is not used in test
-
-
-
-#![feature(unicode)]
-#![feature(old_io)]
 extern crate rand;
-
 use std::fmt::{self, Display};
-use std::char::CharExt;
 
 const NUMBER_OF_DIGITS: usize = 4;
 

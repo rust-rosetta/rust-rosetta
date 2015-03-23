@@ -1,6 +1,6 @@
 // Solution for http://rosettacode.org/wiki/Execute_a_Markov_algorithm
 
-#![feature(collections)]
+#![feature(str_char)]
 // Individual markov rule
 struct MarkovRule {
     pattern: String,

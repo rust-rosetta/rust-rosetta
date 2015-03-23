@@ -1,8 +1,6 @@
 //Implements http://rosettacode.org/wiki/Primality_by_Trial_Division
-#![feature(core)]
-
+#![feature(step_by)]
 use std::num::Float;
-use std::iter::range_step;
 
 fn is_prime(number: i32) -> bool {
     if number % 2 == 0 && number != 2 {
@@ -12,7 +10,7 @@ fn is_prime(number: i32) -> bool {
     let limit = (number as f32).sqrt() as i32 + 1;
 
     // We test if the number is divisible by any odd number up to the limit
-    range_step(3, limit, 2).all(|x| number % x != 0)
+    (3..limit).step_by(2).all(|x| number % x != 0)
 }
 
 #[cfg(not(test))]

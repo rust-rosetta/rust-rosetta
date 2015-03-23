@@ -2,8 +2,9 @@
 #![allow(unused_attributes)]
 #![feature(core)]
 
-use std::iter::{count, Filter, Counter};
+use std::iter::Filter;
 use std::num::Int;
+use std::ops::RangeFrom;
 use aks_test_for_primes::is_prime;
 mod aks_test_for_primes;
 
@@ -16,8 +17,8 @@ fn main() {
     }
 }
 
-fn pernicious() -> Filter<Counter<u64>, fn(&u64) -> bool> {
-    count(0u64, 1).filter(is_pernicious as fn(&u64) -> bool)
+fn pernicious() -> Filter<RangeFrom<u64>, fn(&u64) -> bool> {
+    (0u64..).filter(is_pernicious as fn(&u64) -> bool)
 }
 
 fn is_pernicious(n: &u64) -> bool { is_prime(n.count_ones()) }

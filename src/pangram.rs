@@ -2,13 +2,12 @@
 #![allow(unused_features)]
 #![feature(unicode)]
 
-
 use std::collections::HashSet;
 
 // Returns true if the sentence uses all 26 letters in the English
 // alphabet at least once.
 fn is_pangram(sentence: &str) -> bool {
-    sentence.chars().map(|c| c.to_lowercase())
+    sentence.chars().map(|c| c.to_lowercase().next().unwrap())
         .filter(|&c| c >= 'a' && c <= 'z')
         .collect::<HashSet<char>>().len() == 26
 }

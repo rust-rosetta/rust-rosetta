@@ -1,7 +1,5 @@
 // http://rosettacode.org/wiki/Run-length_encoding
-
 use std::iter::repeat;
-use std::char::CharExt;
 
 const INPUT: &'static str = "WWWWWWWWWWWWBWWWWWWWWWWWWBBBWWWWWWWWWWWWWWWWWWWWWWWWBWWWWWWWWWWWWWW";
 

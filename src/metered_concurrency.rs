@@ -3,15 +3,14 @@
 // directly.
 
 #![feature(unsafe_destructor)]
-#![feature(old_io)]
 #![feature(std_misc)]
+#![feature(thread_sleep)]
 
-use std::old_io::timer;
 use std::sync::Arc;
 use std::sync::atomic::AtomicUsize;
 use std::sync::atomic::Ordering::SeqCst;
 use std::time::duration::Duration;
-use std::thread::spawn;
+use std::thread::{self, spawn};
 use std::sync::mpsc::channel;
 
 pub struct CountingSemaphore {
@@ -41,7 +40,7 @@ impl CountingSemaphore {
             // must be a compare-and-swap rather than a straight decrement.
             if count == 0 || self.count.compare_and_swap(count, count-1, SeqCst) != count {
                 // Linear backoff a la Servo's spinlock contention.
-                timer::sleep(backoff);
+                thread::sleep(backoff);
                 backoff = backoff + self.backoff;
             } else {
                 // We successfully acquired the resource.
@@ -84,7 +83,7 @@ fn metered(duration: Duration) {
             assert!(count < MAX_COUNT);
             println!("Worker {} after acquire: count = {}", i, count);
             // Sleep for `duration`
-            timer::sleep(duration);
+            thread::sleep(duration);
             // Release the resource
             drop(guard);
             // Make sure the count is legal

@@ -1,34 +1,31 @@
 // Implements http://rosettacode.org/wiki/Walk_a_directory/Recursively
-#![feature(old_path)]
-#![feature(old_io)]
-
 #![feature(plugin)]
 #![plugin(regex_macros)]
+#![feature(std_misc)]
 extern crate regex;
 
 use regex::Regex;
-use std::old_io::fs::readdir;
+use std::fs;
+use std::path::AsPath;
 
-fn walk(path: &Path, regex: &Regex) {
-    let result = match readdir(path) {
+fn walk<P>(path: P, regex: &Regex) where P: AsPath {
+    let result = match fs::read_dir(path) {
         Ok(result) => result,
         Err(_) => return
     };
 
-    for subpath in &result {
-        match subpath.filename_str() {
-            Some(filename) => {
-                if regex.is_match(filename) {
-                    println!("{}", subpath.display());
+    for subpath in result {
+        if let Ok(subp) = subpath {
+            if let Ok(filename) = subp.path().into_os_string().into_string() {
+                if regex.is_match(&filename) {
+                    println!("{}", filename);
                 }
-            },
-            None => {}
+                walk(filename, regex);
+            }
         }
-
-        walk(subpath, regex);
     }
 }
 
 fn main() {
-    walk(&Path::new("."), &regex!(r".*\.rs"));
+    walk(".", &regex!(r".*\.rs"));
 }

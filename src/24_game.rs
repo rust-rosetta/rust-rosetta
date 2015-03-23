@@ -20,7 +20,6 @@
 extern crate rand;
 
 use std::cmp::Ordering::{self, Greater};
-use std::char::CharExt;
 
 #[cfg(not(test))]
 fn main() {
@@ -149,14 +148,14 @@ impl <'a> Iterator for Lexer<'a> {
 
         let (tok, cur_offset) = match remaining.next() {
             // Found a digit. if there are others, transform them to `u32`
-            Some((mut offset, ch)) if ch.is_numeric() => {
+            Some((mut offset, ch)) if ch.is_digit(10) => {
                 let mut val = ch.to_digit(10).unwrap();
                 let mut more = false;
 
                 for (idx, ch) in remaining {
                     more = true;
-                    if CharExt::is_numeric(ch) {
-                        let digit = CharExt::to_digit(ch, 10).unwrap();
+                    if ch.is_digit(10) {
+                        let digit = ch.to_digit(10).unwrap();
                         val = val * 10 + digit;
                     } else {
                         offset = idx;

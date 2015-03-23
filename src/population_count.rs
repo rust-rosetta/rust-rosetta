@@ -1,8 +1,9 @@
 // http://rosettacode.org/wiki/Population_count
 #![feature(core)]
 
-use std::iter::{count, Filter, Counter, Map};
+use std::iter::{Filter, Map};
 use std::num::Int;
+use std::ops::RangeFrom;
 
 #[cfg(not(test))]
 fn main() {
@@ -20,23 +21,23 @@ fn main() {
     print_30(odious());
 }
 
-type EvilOdiousIter = Filter<Counter<u32>, fn(&u32) -> bool>;
+type EvilOdiousIter = Filter<RangeFrom<u32>, fn(&u32) -> bool>;
 
 fn even_ones(i: &u32) -> bool { i.count_ones() % 2 == 0 }
 
 fn odious() -> EvilOdiousIter  {
     fn odds(n: &u32) -> bool { !even_ones(n) }
-    count(0, 1).filter(odds as fn(&u32) -> bool)
+    (0..).filter(odds as fn(&u32) -> bool)
 }
 
 fn evil() -> EvilOdiousIter {
-    count(0, 1).filter(even_ones as fn(&u32) -> bool)
+    (0..).filter(even_ones as fn(&u32) -> bool)
 }
 
-fn pow_3() -> Map<Counter<u32>, fn(u32) -> u32> {
+fn pow_3() -> Map<RangeFrom<u32>, fn(u32) -> u32> {
     fn pw(n: u32) -> u32 { 3u64.pow(n).count_ones() }
 
-    count(0, 1).map(pw as fn(u32) -> u32)
+    (0..).map(pw as fn(u32) -> u32)
 }
 
 #[cfg(test)]

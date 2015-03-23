@@ -8,20 +8,17 @@
 // we're using here was the fourth type I tried but the first to produce acceptable performance
 // (previously I tried, in order, std::sync::RwLock, std::sync::Mutex, and std::sync::Semaphore)
 // and this type still appears to have quite a bit of overhead.
-
 #![feature(core)]
-#![feature(old_io)]
-#![feature(std_misc)]
+#![feature(thread_sleep)]
 extern crate rand;
 
-use std::old_io::timer::Timer;
 use std::iter::AdditiveIterator;
 use rand::{Rng, weak_rng};
 use rand::distributions::{IndependentSample, Range};
 use std::sync::Arc;
 use std::sync::atomic::{AtomicBool, Ordering};
 use std::time::duration::Duration;
-use std::thread::spawn;
+use std::thread::{self, spawn};
 
 // The reason I used a module here is simply to keep it clearer who can access what.  Rust
 // protects against data races just fine, but it's not as good at protecting against deadlocks or
@@ -224,7 +221,6 @@ fn display(bl: &buckets::Buckets, running: &AtomicBool, original_total: usize,
            duration: Duration, nticks: i32) {
     println!("transfers, N. transfers, buckets, buckets sum:");
 
-    let mut timer = Timer::new().unwrap();
     let duration = duration / nticks;
     for _ in (0..nticks) {
         // Get a consistent snapshot
@@ -238,7 +234,7 @@ fn display(bl: &buckets::Buckets, running: &AtomicBool, original_total: usize,
         // Check the invariant, failing if necessary.
         assert_eq!(sum, original_total);
         // Sleep before printing again.
-        timer.sleep(duration);
+        thread::sleep(duration);
     }
     // We're done--cleanly exit the other update tasks.
     running.store(false, Ordering::Relaxed);

@@ -1,8 +1,7 @@
 // http://rosettacode.org/wiki/Closures/Value_capture
-#![feature(core)]
-
-use std::iter::{count, Counter, Map};
+use std::iter::Map;
 use std::num::Float;
+use std::ops::RangeFrom;
 
 #[allow(dead_code)]
 fn simple_unboxed() {
@@ -21,13 +20,13 @@ fn closure_gen<'a>(x: u32) -> Box<Fn() -> f64 + 'a> {
 }
 
 // type alias for the closure iterator
-type ClosureIter<'a> = Map<Counter<u32>, fn(u32) -> Box<Fn() -> f64 + 'a>>;
+type ClosureIter<'a> = Map<RangeFrom<u32>, fn(u32) -> Box<Fn() -> f64 + 'a>>;
 
 // return an iterator that on every iteration returns
 // a closure computing the index of the iteration squared
 fn closures_iterator<'a>() -> ClosureIter<'a> {
     let cl_gen : fn(u32) -> Box<Fn() -> f64 + 'a> = closure_gen;
-    count(0, 1).map(cl_gen)
+    (0..).map(cl_gen)
 }
 
 #[cfg(not(test))]

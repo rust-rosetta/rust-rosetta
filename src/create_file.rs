@@ -1,8 +1,5 @@
 // Implements http://rosettacode.org/wiki/Create_a_file
-#![feature(io)]
 #![feature(path_ext)]
-#![feature(path)]
-
 use std::fs::{self, File};
 
 #[cfg(not(test))]
@@ -53,6 +50,6 @@ fn test_create_file() {
         Ok(_) => assert!(true),
         Err(e) => panic!("failed to create_file at {}, error: {}",
                         file_path.display(),
-                        e.description())
+                        e)
     }
 }
