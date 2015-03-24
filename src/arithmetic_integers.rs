@@ -1,10 +1,10 @@
 // Implements http://rosettacode.org/wiki/Arithmetic/Integer
-#![feature(old_io)]
 #![feature(str_words)]
-use std::old_io::stdin;
+use std::io::stdin;
 
 fn main() {
-    let input = stdin().read_line().unwrap();
+    let mut input = String:: new();
+    let _ = stdin().read_line(&mut input).unwrap();
     let words = input.words().take(2)
                                         .map(|s| s.parse().ok())
                                         .collect::<Vec<Option<i32>>>();

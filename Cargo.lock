@@ -2,7 +2,7 @@
 name = "rust-rosetta"
 version = "0.0.1"
 dependencies = [
- "num 0.1.16 (git+https://github.com/rust-lang/num)",
+ "num 0.1.17 (git+https://github.com/rust-lang/num)",
  "rand 0.2.1 (registry+https://github.com/rust-lang/crates.io-index)",
  "regex 0.1.20 (registry+https://github.com/rust-lang/crates.io-index)",
  "regex_macros 0.1.12 (registry+https://github.com/rust-lang/crates.io-index)",
@@ -27,8 +27,8 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 
 [[package]]
 name = "num"
-version = "0.1.16"
-source = "git+https://github.com/rust-lang/num#445fbab108f4fc73df8170a3d92752bb2c8747b0"
+version = "0.1.17"
+source = "git+https://github.com/rust-lang/num#8e69c54e1b327fc37093c7d26ce1187dc846c35f"
 dependencies = [
  "rand 0.2.1 (registry+https://github.com/rust-lang/crates.io-index)",
  "rustc-serialize 0.3.6 (registry+https://github.com/rust-lang/crates.io-index)",

@@ -1,18 +1,15 @@
 // Implements http://rosettacode.org/wiki/24_game
 // Uses RPN expression
-#![allow(unused_features)] // feature(rand) is used only in main
 #![feature(str_words)]
-#![feature(old_io)]
-
 extern crate rand;
 
 #[cfg(not(test))]
 fn main() {
     use rand::{thread_rng, Rng};
-    use std::old_io;
+    use std::io;
 
     let mut rng = thread_rng();
-    let mut reader = old_io::stdin();
+    let mut reader = io::stdin();
 
     // generating 4 numbers
     let choices: Vec<u32> = (0u32..4).map(
@@ -23,13 +20,15 @@ fn main() {
     // start the game loop
     loop {
         print!("Your numbers: {}, {}, {}, {}\n", choices[0], choices[1], choices[2], choices[3]);
-        let expr = reader.read_line().ok().expect("Failed to read line!");
+        let mut expr = String::new();
+        let _ = reader.read_line(&mut expr).ok().expect("Failed to read line!");
         match check_input(&expr[..], &choices[..]) {
             Ok(()) => { println!("Good job!"); break; },
             Err(e) => println!("{}", e)
         }
         print!("Try again? (y/n): ");
-        let choice = reader.read_line().ok().expect("Failed to read line!");
+        let mut choice = String::new();
+        let _ = reader.read_line(&mut choice).ok().expect("Failed to read line!");
         if choice.trim() != "y" { break; }
     }
 }

@@ -10,6 +10,7 @@
 // and this type still appears to have quite a bit of overhead.
 #![feature(core)]
 #![feature(thread_sleep)]
+#![feature(std_misc)]
 extern crate rand;
 
 use std::iter::AdditiveIterator;

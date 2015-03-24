@@ -68,6 +68,7 @@ mod test {
         let mut line = String::new();
         let _ = reader.read_line(&mut line);
         assert_eq!(line, "P6\n");
+        line = String::new();
         let _ = reader.read_line(&mut line);
         assert_eq!(line, "2 1 255\n");
         let mut bytes = reader.bytes();
