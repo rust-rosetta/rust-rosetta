@@ -18,7 +18,7 @@ impl PPMWritable for Image {
         try!(write!(&mut writer, "{} {} {}\n", self.width, self.height, 255));
         for color in &(self.data) {
             for channel in &[color.red, color.green, color.blue] {
-                try!(write!(&mut writer, "{}", *channel as u8));
+                try!(writer.write(&[*channel]));
             }
         }
         Ok(())
