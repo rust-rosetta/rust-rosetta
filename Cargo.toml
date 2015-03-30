@@ -53,10 +53,7 @@ regex_macros = "*"
 time = "*"
 rustc-serialize = "*"
 rand = "*"
-
-[dependencies.num]
-git = "https://github.com/rust-lang/num"
-
+num = "*"
 
 [lib]
 # used by compile_time_calculation.rs

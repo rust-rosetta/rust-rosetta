@@ -8,8 +8,8 @@ use regex::Regex;
 use std::fs;
 use std::path::AsPath;
 
-fn walk<P>(path: P, regex: &Regex) where P: AsPath {
-    let result = match fs::read_dir(path) {
+fn walk<P>(pth: P, regex: &Regex) where P: AsPath {
+    let result = match fs::read_dir(pth.as_path()) {
         Ok(result) => result,
         Err(_) => return
     };

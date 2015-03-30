@@ -1,5 +1,5 @@
 // Implements http://rosettacode.org/wiki/99_Bottles_of_Beer
-#![allow(unused_features)]
+
 
 use std::string::String;
 

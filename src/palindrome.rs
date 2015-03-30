@@ -1,5 +1,5 @@
 // Implements http://rosettacode.org/wiki/Palindrome_detection
-#![allow(unused_features)]
+
 
 // Returns true if the string is a palindrome
 fn palindrome(string: &str) -> bool {

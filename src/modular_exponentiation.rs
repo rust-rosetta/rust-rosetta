@@ -1,5 +1,5 @@
 // http://rosettacode.org/wiki/Modular_exponentiation
-#![allow(unused_features)]
+
 
 extern crate num;
 use num::{BigUint, One};

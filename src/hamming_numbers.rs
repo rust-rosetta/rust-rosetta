@@ -1,6 +1,6 @@
 // http://rosettacode.org/wiki/Hamming_numbers
-#![allow(unused_features)]
-#![feature(collections)]
+
+
 
 
 extern crate num;

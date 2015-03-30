@@ -2,7 +2,7 @@
 extern crate rand;
 
 use std::fs::File;
-use std::io::{BufWriter, Error, Write};
+use std::io::{Error, Write};
 use bitmap::Image;
 mod bitmap;
 
@@ -12,13 +12,14 @@ trait PPMWritable {
 
 impl PPMWritable for Image {
     fn write_ppm(&self, filename: &str) -> Result<(), Error> {
-        let file = try!{File::create(filename)};
-        let mut writer = BufWriter::new(file);
+        let mut writer = try!{File::create(filename)};
+        //let mut writer = BufWriter::new(file);
         try!(writeln!(&mut writer, "P6"));
         try!(write!(&mut writer, "{} {} {}\n", self.width, self.height, 255));
         for color in &(self.data) {
             for channel in &[color.red, color.green, color.blue] {
-                try!(writer.write(&[*channel]));
+                let ch = *channel as u8;
+                try!(writer.write(&[ch]));
             }
         }
         Ok(())
@@ -72,12 +73,12 @@ mod test {
         let _ = reader.read_line(&mut line);
         assert_eq!(line, "2 1 255\n");
         let mut bytes = reader.bytes();
-        assert_eq!(bytes.next().unwrap(), Ok(1));
-        assert_eq!(bytes.next().unwrap(), Ok(2));
-        assert_eq!(bytes.next().unwrap(), Ok(3));
-        assert_eq!(bytes.next().unwrap(), Ok(4));
-        assert_eq!(bytes.next().unwrap(), Ok(5));
-        assert_eq!(bytes.next().unwrap(), Ok(6));
-        assert!(bytes.next().unwrap().is_err());
+        assert_eq!(bytes.next().unwrap(), Ok(49));
+        assert_eq!(bytes.next().unwrap(), Ok(50));
+        assert_eq!(bytes.next().unwrap(), Ok(51));
+        assert_eq!(bytes.next().unwrap(), Ok(52));
+        assert_eq!(bytes.next().unwrap(), Ok(53));
+        assert_eq!(bytes.next().unwrap(), Ok(54));
+        assert!(bytes.next().is_none());
     }
 }

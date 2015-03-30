@@ -1,7 +1,4 @@
 // Implements http://rosettacode.org/wiki/Pangram_checker
-#![allow(unused_features)]
-#![feature(unicode)]
-
 use std::collections::HashSet;
 
 // Returns true if the sentence uses all 26 letters in the English

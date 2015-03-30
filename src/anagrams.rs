@@ -1,9 +1,6 @@
 // Implements http://rosettacode.org/wiki/Anagrams
-#![feature(std_misc)]
-
-#[cfg(not(test))]
-use std::fs::File;
-use std::io::{BufReader, BufRead};
+#[cfg(not(test))] use std::fs::File;
+#[cfg(not(test))] use std::io::{BufReader, BufRead};
 use std::collections::{HashMap, HashSet};
 use std::collections::hash_map::Entry::{Occupied, Vacant};
 

@@ -52,13 +52,13 @@ impl Image {
 impl Index<(usize, usize)> for Image {
     type Output=Color;
 
-    fn index<'a>(&'a self, &(x, y): &(usize, usize)) -> &'a Color {
+    fn index<'a>(&'a self, (x, y): (usize, usize)) -> &'a Color {
         &self.data[x + y*self.width]
     }
 }
 
 impl IndexMut<(usize, usize)> for Image {
-    fn index_mut<'a>(&'a mut self, &(x, y): &(usize, usize)) -> &'a mut Color {
+    fn index_mut<'a>(&'a mut self, (x, y): (usize, usize)) -> &'a mut Color {
         & mut self.data[x + y*self.width]
     }
 }

@@ -1,6 +1,6 @@
 // Implements http://rosettacode.org/wiki/Letter_frequency
-#![feature(std_misc)]
-#![feature(io)]
+#![cfg_attr(test, feature(std_misc))]
+#![cfg_attr(not(test), feature(io))]
 
 #[cfg(not(test))]
 use std::fs::File;
@@ -42,7 +42,7 @@ fn test_basic() {
     let map = count_chars("aaaabbbbc".chars());
 
     assert!(map.len() == 3);
-    assert!(map['a'] == 4);
-    assert!(map['b'] == 4);
-    assert!(map['c'] == 1);
+    assert!(map[&'a'] == 4);
+    assert!(map[&'b'] == 4);
+    assert!(map[&'c'] == 1);
 }

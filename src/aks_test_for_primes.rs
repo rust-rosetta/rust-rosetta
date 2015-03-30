@@ -1,5 +1,5 @@
 // http://rosettacode.org/wiki/AKS_test_for_primes
-#![allow(unused_features)]
+
 
 
 pub fn is_prime(p: u32) -> bool {

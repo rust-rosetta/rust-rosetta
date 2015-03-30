@@ -3,6 +3,7 @@
 // modeled after the scala solution
 // http://rosettacode.org/wiki/24_game/Solve#Scala
 #![feature(collections)]
+#![feature(slice_patterns)]
 
 extern crate num;
 use num::rational::{Ratio, Rational};

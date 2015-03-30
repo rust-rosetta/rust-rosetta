@@ -1,5 +1,6 @@
 // Implements http://rosettacode.org/wiki/A%2BB
 #![feature(str_words)]
+#![feature(slice_patterns)]
 use std::io;
 
 fn main() {

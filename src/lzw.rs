@@ -1,6 +1,6 @@
 // Implements http://rosettacode.org/wiki/LZW_compression
-#![allow(unused_features)]
-#![feature(collections)]
+
+
 
 use std::collections::hash_map::HashMap;
 
@@ -23,7 +23,7 @@ fn compress(original_str: &str) -> Vec<i32> {
       match dictionary.get(&wc) {
          Some(_) => w = wc,
          None => {
-            result.push(dictionary[w]);
+            result.push(dictionary[&w]);
             dictionary.insert(wc, dict_size);
             dict_size += 1;
             w = vec![c];
@@ -32,7 +32,7 @@ fn compress(original_str: &str) -> Vec<i32> {
    }
 
    if w.len() > 0 {
-      result.push(dictionary[w]);
+      result.push(dictionary[&w]);
    }
 
    result
