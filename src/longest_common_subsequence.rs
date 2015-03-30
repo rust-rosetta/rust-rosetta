@@ -50,7 +50,6 @@ fn main() {
     println!("{}", longest_common_subsequence("aaaa", "aaaaaa"));
 }
 
-
 #[test]
 fn test_longest_common_subsequence() {
     assert_eq!(longest_common_subsequence("abc", "abcdefg"), "abc");
@@ -64,6 +63,7 @@ fn test_longest_common_subsequence() {
 
 #[test]
 fn test_unicode() {
-    assert_eq!(longest_common_subsequence("самолетов была отмечена в Японском", "отмечена в"),
-               "отмечена в");
+    assert_eq!(longest_common_subsequence(
+        "самолетов была отмечена в Японском", "отмечена в"),
+        "отмечена в");
 }
