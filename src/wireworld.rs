@@ -1,8 +1,10 @@
+#![feature(std_misc, thread_sleep)]
+
 // Implements http://rosettacode.org/wiki/Wireworld
 
 use std::mem;
 use std::time::duration::Duration;
-use std::old_io::timer::sleep;
+use std::thread::sleep;
 
 // Use VT100 cursor control sequences to animate in-place
 const ANIMATE: bool = true;
@@ -71,11 +73,12 @@ fn main() {
         for i in 0..(w*h) {
             print!("{}", world[i].to_char());
         }
+        print!("\n");
         next_world(&world, &mut next, 14, 7);
         mem::swap(&mut world, &mut next);
 
         if ANIMATE {
-            print!("\x1b[{}A", 7);
+            print!("\x1b[{}A", 8);
             print!("\x1b[{}D", 14);
             sleep(Duration::milliseconds(100));
         }
