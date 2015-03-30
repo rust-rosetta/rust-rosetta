@@ -1,5 +1,4 @@
 // Implements http://rosettacode.org/wiki/Letter_frequency
-#![cfg_attr(test, feature(std_misc))]
 #![cfg_attr(not(test), feature(io))]
 
 #[cfg(not(test))]
