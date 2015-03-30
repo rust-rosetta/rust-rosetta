@@ -1,13 +1,11 @@
-#![feature(std_misc, thread_sleep)]
-
 // Implements http://rosettacode.org/wiki/Wireworld
+#![feature(std_misc, thread_sleep)]
 
 use std::mem;
 use std::time::duration::Duration;
-use std::thread::sleep;
 
 // Use VT100 cursor control sequences to animate in-place
-const ANIMATE: bool = true;
+#[cfg(not(test))] const ANIMATE: bool = true;
 
 #[derive(Copy, Clone)]
 enum Cell {
@@ -57,6 +55,7 @@ fn next_world(input: &[Cell], output: &mut [Cell], w: usize, h: usize) {
 
 #[cfg(not(test))]
 fn main() {
+    use std::thread::sleep;
     let (w, h) = (14usize, 7usize);
     let mut world: Vec<Cell> = "
 +-----------+
@@ -100,7 +99,7 @@ fn test() {
     let mut next: Vec<Cell> = world.clone();
 
     for _ in 0..10 {
-        next_world(&world, &mut next, 14, 7);
+        next_world(&world, &mut next, w, h);
         mem::swap(&mut world, &mut next);
     }
 

@@ -337,6 +337,7 @@ path = "src/create_file.rs"
 # http://rosettacode.org/wiki/Currying
 name = "currying"
 path = "src/currying.rs"
+test = false
 
 [[bin]]
 # http://rosettacode.org/wiki/Dijkstra's_algorithm
