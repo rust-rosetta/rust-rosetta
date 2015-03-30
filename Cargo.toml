@@ -334,6 +334,11 @@ name = "create_file"
 path = "src/create_file.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/Currying
+name = "currying"
+path = "src/currying.rs"
+
+[[bin]]
 # http://rosettacode.org/wiki/Dijkstra's_algorithm
 name = "dijkstras_algorithm"
 path = "src/dijkstras_algorithm.rs"
