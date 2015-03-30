@@ -324,11 +324,6 @@ name = "counting_sort"
 path = "src/counting_sort.rs"
 
 [[bin]]
-# http://rosettacode.org/wiki/Currying
-name = "currying"
-path = "src/currying.rs"
-
-[[bin]]
 # http://rosettacode.org/wiki/CRC-32
 name = "crc_32"
 path = "src/crc_32.rs"
@@ -337,6 +332,11 @@ path = "src/crc_32.rs"
 # http://rosettacode.org/wiki/Create_a_file
 name = "create_file"
 path = "src/create_file.rs"
+
+[[bin]]
+# http://rosettacode.org/wiki/Currying
+name = "currying"
+path = "src/currying.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Dijkstra's_algorithm

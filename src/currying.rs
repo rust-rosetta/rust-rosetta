@@ -6,9 +6,8 @@
 // supported it can be done without the
 // heap allocation/trait object indirection
 
-#![feature(box_syntax)]
-fn add_n(n : i32) -> Box<Fn(i32) -> i32 + 'static>  {
-    box move |&: x| n + x
+fn add_n(n: i32) -> Box<Fn(i32) -> i32>  {
+    Box::new(move |x| n + x)
 }
 
 fn main() {
