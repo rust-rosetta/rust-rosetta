@@ -1,7 +1,7 @@
 // http://rosettacode.org/wiki/The_ISAAC_Cipher
 // includes the XOR version of the encryption scheme
- #![feature(core)]
-use std::iter::range_step;
+#![feature(core)]
+#![feature(step_by)]
 use std::num::wrapping::Wrapping as w;
 
 const MSG :&'static str = "a Top Secret secret";
@@ -95,7 +95,7 @@ impl Isaac {
             mix_v!(a_v);
         }
 
-        for i in range_step(0, 256, 8) {
+        for i in (0..256).step_by(8) {
         // fill in mm[] with messy stuff
             if flag {
                 // use all the information in the seed
@@ -107,7 +107,7 @@ impl Isaac {
 
         if flag {
             // do a second pass to make all of the seed affect all of mm
-            for i in range_step(0, 256, 8) {
+            for i in (0..256).step_by(8) {
                 for j in (0..8) { a_v[j] = a_v[j] + self.mm[i+j]; }
                 mix_v!(a_v);
                 for j in (0..8) { self.mm[i+j] = a_v[j]; }

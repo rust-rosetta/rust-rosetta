@@ -2,7 +2,8 @@
 #![feature(io)]
 #![feature(old_io)]
 #![feature(std_misc)]
-use std::old_io::{Acceptor, BufferedReader, IoError, IoResult, Listener, TimedOut};
+use std::old_io::{Acceptor, BufferedReader, IoError, IoResult, Listener, TimedOut,
+    Writer, BufferPrelude};
 use std::old_io::net::tcp::{TcpListener, TcpStream};
 use std::time::Duration;
 use std::thread::spawn;

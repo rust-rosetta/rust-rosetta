@@ -1,10 +1,5 @@
 // Implements http://rosettacode.org/wiki/Fibonacci_word
-#![allow(unused_features)]
-#![allow(unused_attributes)]
 #![feature(collections)]
-#![feature(std_misc)]
-#![feature(core)]
-
 use entropy::shannon_entropy;
 mod entropy;
 

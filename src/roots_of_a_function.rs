@@ -1,5 +1,5 @@
 // http://rosettacode.org/wiki/Roots_of_a_function
-#![allow(unused_features)]
+
 
 use std::num::Float;
 

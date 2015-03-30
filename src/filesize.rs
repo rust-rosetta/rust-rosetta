@@ -1,13 +1,10 @@
 // Implements http://rosettacode.org/wiki/File_size
-#![feature(old_path)]
-#![feature(old_io)]
-
-use std::old_io::fs::PathExtensions;
-
+use std::fs;
 fn main() {
-    let path_wd = Path::new("input.txt");
-    println!("{}", path_wd.stat().unwrap().size);
-
-    let path_root = Path::new("/input.txt");
-    println!("{}", path_root.stat().unwrap().size);
+    if let Ok(attr) = fs::metadata("input.txt") {
+        println!("size: {}", attr.len());
+    }
+    if let Ok(attr_root) = fs::metadata("/input.txt") {
+        println!("{}", attr_root.len());
+    }
 }

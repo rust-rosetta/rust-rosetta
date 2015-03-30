@@ -1,8 +1,4 @@
 // http://rosettacode.org/wiki/I_before_E_except_after_C
-#![allow(unused_features)] // feature(io, path, fs) are used only in main
-#![feature(fs, io, path, unicode)]
-
-use std::char::CharExt;
 #[cfg(not(test))]
 use std::fs::File;
 #[cfg(not(test))]
@@ -40,7 +36,7 @@ fn count_occurrences(data: &str) -> Occurrences {
     let mut saw_ie = false; let mut saw_ei = false;
     let mut state = MatchState::Nothing;
     for c in data.chars() {
-        state = match (state, c.to_lowercase()) {
+        state = match (state, c.to_lowercase().next().unwrap()) {
             (_, '\n') | (_, '\r') => {
                 if saw_cie {result.cie += 1; saw_cie = false;}
                 if saw_cei {result.cei += 1; saw_cei = false;}

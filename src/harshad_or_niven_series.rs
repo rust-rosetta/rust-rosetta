@@ -1,7 +1,4 @@
 // http://rosettacode.org/wiki/Harshad_or_Niven_series
-
-#![feature(unicode)]
-
 use std::u32;
 fn main() {
     let digit_sum = |i: u32| i.to_string().chars()

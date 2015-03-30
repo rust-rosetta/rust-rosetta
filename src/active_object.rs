@@ -23,7 +23,7 @@ use std::ops::Mul;
 // might look like a good situation for a RwLock--after all, there's no reason for a read in the
 // main task to block writes.  Unfortunately, unless you have significantly more reads than
 // writes (which is certainly not the case here), a Mutex will usually outperform a RwLock.
-pub struct Integrator<S: 'static, T> {
+pub struct Integrator<S: 'static, T: Send> {
     input: Sender<Box<Fn(i64) -> S + Send>>,
     output: Arc<Mutex<T>>,
 }

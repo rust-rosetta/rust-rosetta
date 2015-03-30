@@ -1,7 +1,7 @@
 // Implements http://rosettacode.org/wiki/SHA-256
-#![allow(unused_features)]
+
 #![feature(rustc_private)]
-#![feature(collections)]
+
 
 // note that for now the rustc::util::sha2::Sha256 docs state:
 // This implementation is not intended for external use or for any use where security is

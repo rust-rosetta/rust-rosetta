@@ -1,12 +1,11 @@
 // Implements http://rosettacode.org/wiki/SHA-1
 // straight port from golang crypto/sha1
 // library implementation
-#![feature(old_io)]
 #![feature(core)]
 
 use std::num::wrapping::Wrapping as wr;
-use std::old_io::IoResult;
 use std::slice::bytes::copy_memory;
+use std::io::{Write, Result};
 
 // The size of a SHA1 checksum in bytes.
 const SIZE: usize = 20;
@@ -19,7 +18,7 @@ const INIT:[wr<u32>; 5] = [wr(0x67452301),wr(0xEFCDAB89), wr(0x98BADCFE),
 #[cfg(not(test))]
 fn main() {
     let mut d = Digest::new();
-    d.write_all(b"The quick brown fox jumps over the lazy dog").unwrap();
+    let _ = write!(&mut d, "The quick brown fox jumps over the lazy dog");
     let sha1=d.sha1();
 
     for h in &sha1 {
@@ -153,9 +152,14 @@ impl Digest {
     }
 }
 
-impl Writer for Digest {
+impl Write for Digest {
+    fn write(&mut self, buf: &[u8]) -> Result<usize> {
+        try!(self.write_all(buf));
+        Ok(buf.len())
+    }
+
     #[inline]
-    fn write_all(&mut self, buf: &[u8]) -> IoResult<()> {
+    fn write_all(&mut self, buf: &[u8]) -> Result<()> {
         let mut buf_m = buf;
 
         self.len += buf_m.len() as u64;
@@ -190,6 +194,8 @@ impl Writer for Digest {
         }
         Ok(())
     }
+
+    fn flush(&mut self) -> Result<()> { Ok(()) }
 }
 
 #[test]
@@ -216,7 +222,7 @@ fn known_sha1s() {
 
     for &(i, o) in &input_output {
         let mut d = Digest::new();
-        d.write_str(i).unwrap();
+        let _ = write!(&mut d, "{}", i);
         let sha1=d.sha1();
 
         assert_eq!(sha1, o);

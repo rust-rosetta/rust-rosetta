@@ -1,8 +1,4 @@
 // Implements http://rosettacode.org/wiki/100_doors
-#![allow(unused_features)]
-
-
-#![feature(old_io)]
 use std::num::Float;
 use std::iter::Map;
 use std::ops::Range;

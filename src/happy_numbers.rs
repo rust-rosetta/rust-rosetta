@@ -1,10 +1,4 @@
 // Implements http://rosettacode.org/wiki/Happy_numbers
-#![allow(unused_features)]
-#![feature(core)]
-
-#[cfg(not(test))]
-use std::iter::count;
-
 fn digits(mut n: usize) -> Vec<usize> {
     let mut ds = vec![];
     if n == 0 {
@@ -38,7 +32,7 @@ fn is_happy(mut x: usize) -> bool {
 #[cfg(not(test))]
 fn main() {
     // Print the first 8 happy numbers
-    let v: Vec<usize> = count(1, 1)
+    let v: Vec<usize> = (1..)
         .filter(|x| is_happy(*x))
         .take(8)
         .collect();

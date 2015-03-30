@@ -1,5 +1,7 @@
 // Implements http://rosettacode.org/wiki/Entropy
-#![feature(std_misc)]
+#![allow(unused_attributes)]
+#![allow(unused_features)]
+#![cfg_attr(test, feature(std_misc))]
 use std::num::Float;
 use std::collections::HashMap;
 use std::collections::hash_map::Entry::{Occupied, Vacant};

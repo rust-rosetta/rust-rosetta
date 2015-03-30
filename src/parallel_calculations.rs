@@ -1,10 +1,8 @@
 // Implements http://rosettacode.org/wiki/Parallel_calculations
 // See http://static.rust-lang.org/doc/master/guide-tasks.html for information
 // about tasks, channels, future, etc.
-#![allow(unused_features)]
 #![feature(std_misc)]
-#![feature(test)]
-
+#![cfg_attr(test, feature(test))]
 
 #[cfg(test)]
 extern crate test;

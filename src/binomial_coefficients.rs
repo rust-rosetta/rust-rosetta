@@ -1,6 +1,5 @@
 // http://rosettacode.org/wiki/Evaluate_binomial_coefficients
-#![allow(unused_features)]
-#![feature(core)]
+#![cfg_attr(test, feature(core))]
 
 extern crate num;
 use num::One;

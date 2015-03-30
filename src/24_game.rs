@@ -10,32 +10,23 @@
 // module enforces visibility restrictions so the test module can only access
 // publically exported code, the same as any user of the code.
 
-#![allow(unused_features)] // feature(rand) is used only in main
-
-
-#![feature(unicode)]
-#![feature(collections)]
-#![feature(old_io)]
-
 extern crate rand;
-
 use std::cmp::Ordering::{self, Greater};
-use std::char::CharExt;
 
 #[cfg(not(test))]
 fn main() {
-    use std::old_io;
+    use std::io;
 
     let mut rng = rand::thread_rng();
-    let mut input = old_io::stdin();
+    let mut input = io::stdin();
 
     loop {
         let mut sample = rand::sample(&mut rng, (1u32..10), 4);
 
         println!("make 24 by combining the following 4 numbers with + - * / or (q)uit");
         println!("{:?}", sample);
-
-        let line = input.read_line().unwrap();
+        let mut line = String::new();
+        let _ = input.read_line(&mut line).unwrap();
         match line.trim() {
             "q" => break,
             input => {
@@ -149,14 +140,14 @@ impl <'a> Iterator for Lexer<'a> {
 
         let (tok, cur_offset) = match remaining.next() {
             // Found a digit. if there are others, transform them to `u32`
-            Some((mut offset, ch)) if ch.is_numeric() => {
+            Some((mut offset, ch)) if ch.is_digit(10) => {
                 let mut val = ch.to_digit(10).unwrap();
                 let mut more = false;
 
                 for (idx, ch) in remaining {
                     more = true;
-                    if CharExt::is_numeric(ch) {
-                        let digit = CharExt::to_digit(ch, 10).unwrap();
+                    if ch.is_digit(10) {
+                        let digit = ch.to_digit(10).unwrap();
                         val = val * 10 + digit;
                     } else {
                         offset = idx;

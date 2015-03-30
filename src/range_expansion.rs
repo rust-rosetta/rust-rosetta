@@ -53,7 +53,7 @@ fn test_basic() {
 }
 
 #[test]
-#[should_fail]
+#[should_panic]
 fn test_wrong() {
     let range = "one-five,six";
     assert!(expand_range(range) == vec![1, 2, 3, 4, 5, 6]);

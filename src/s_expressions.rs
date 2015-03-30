@@ -18,18 +18,18 @@
 // decoding technique doesn't allocate extra space for strings.  Does support numbers, but only
 // float types (supporting more types is possible but would complicate the code significantly).
 //
-#![feature(old_io)]
 #![feature(rustc_private)]
 #![feature(core)]
-#![feature(collections)]
+#![feature(str_char)]
 #![feature(test)]
 
 extern crate arena;
 extern crate test;
 
+use std::error::FromError;
 use arena::TypedArena;
 
-use std::old_io;
+use std::io;
 use std::num::{self, Float, FpCategory};
 use self::SExp::*;
 use self::Error::*;
@@ -51,10 +51,16 @@ enum SExp<'a> {
 enum Error {
     NoReprForFloat, // If the float is NaN, Infinity, etc.
     UnterminatedStringLiteral, // Missing an end double quote during string parsing
-    IoError(old_io::IoError), // Some other kind of I/O error
+    IoError(io::Error), // Some other kind of I/O error
     IncorrectCloseDelimiter, // ) appeared where it shouldn't (usually as the first token)
     UnexpectedEOF, // Usually means a missing ), but could also mean there were no tokens at all.
     ExpectedEOF, // More tokens after the list is finished, or after a literal if there is no list.
+}
+
+impl FromError<io::Error> for Error {
+    fn from_error(err: io::Error) -> Error {
+        Error::IoError(err)
+    }
 }
 
 // Tokens returned from the token stream.
@@ -169,11 +175,6 @@ impl<'a> Tokens<'a> {
     }
 }
 
-// Convenience method to turn I/O errors into SExp Errors, inspired by the JSON encoder.
-fn from_io_result<T>(res: old_io::IoResult<T>) -> Result<T, Error> {
-    res.map_err( |err| IoError(err) )
-}
-
 // This is not the most efficient way to do this, because we end up going over numeric literals
 // twice, but it avoids having to write our own number parsing logic.
 fn parse_literal(literal: &str) -> SExp {
@@ -202,33 +203,34 @@ impl<'a> ParseContext<'a> {
 
 impl<'a> SExp<'a> {
     // Serialize a SExp.
-    fn encode<T: old_io::Writer>(&self, writer: &mut T) -> Result<(), Error> {
+    fn encode<T: io::Write>(&self, writer: &mut T) -> Result<(), Error> {
         match *self {
             F64(f) => match f.classify() {
                 // We don't want to identify NaN, Infinity, etc. as floats.
-                FpCategory::Normal | FpCategory::Zero => from_io_result(write!(writer, "{}", f)),
-                _ => Err(NoReprForFloat)
+                FpCategory::Normal | FpCategory::Zero => { try!(write!(writer, "{}", f)); Ok(()) },
+                _ => Err(Error::NoReprForFloat),
             },
             List(ref l) => {
                 // Writing a list is very straightforward--write a left parenthesis, then
                 // recursively call encode on each member, and then write a right parenthesis.  The
                 // only reason the logic is as long as it is is to make sure we don't write
                 // unnecessary spaces between parentheses in the zero or one element cases.
-                try!(from_io_result(writer.write_char('(')));
+                try!(write!(writer,"{}",'('));
                 let mut iter = l.iter();
                 match iter.next() {
                     Some(sexp) => {
                         try!(sexp.encode(writer));
                         for sexp in iter {
-                            try!(from_io_result(writer.write_char(' ')));
+                            try!(write!(writer, "{}", ' '));
                             try!(sexp.encode(writer));
                         }
                     },
                     None => (),
                 }
-                from_io_result(writer.write_char(')'))
+                try!(write!(writer,"{}", ')'));
+                Ok(())
             },
-            Str(s) => from_io_result(write!(writer, "\"{}\"", s)),
+            Str(s) => { try!(write!(writer, "\"{}\"", s)); Ok(())} ,
         }
     }
 
@@ -290,12 +292,12 @@ impl<'a> SExp<'a> {
 
     // Convenience method for the common case where you just want to encode a SExp as a String.
     fn buffer_encode(&self) -> Result<String, Error> {
-        let mut m = old_io::MemWriter::new();
+        let mut m = Vec::new();
         try!(self.encode(&mut m));
         // Because encode() only ever writes valid UTF-8, we can safely skip the secondary check we
         // normally have to do when converting from Vec<u8> to String.  If we didn't know that the
         // buffer was already UTF-8, we'd want to call container_as_str() here.
-        unsafe { Ok(String::from_utf8_unchecked(m.into_inner())) }
+        unsafe { Ok(String::from_utf8_unchecked(m)) }
     }
 }
 

@@ -1,7 +1,5 @@
 // http://rosettacode.org/wiki/Function_composition
-#![allow(unused_features)]
-#![feature(collections)]
-#![feature(core)]
+#![cfg_attr(not(test), feature(core))]
 
 #[cfg(not(test))]
 fn main() {

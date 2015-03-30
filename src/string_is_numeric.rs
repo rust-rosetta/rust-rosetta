@@ -16,7 +16,7 @@ fn test_isize() {
 }
 
 #[test]
-#[should_fail]
+#[should_panic]
 fn test_str() {
 	assert!(is_numeric("j"));
 }

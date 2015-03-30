@@ -1,7 +1,4 @@
 // Implements http://rosettacode.org/wiki/Dijkstra's_algorithm
-#![allow(unused_features)]
-#![feature(core)]
-#![feature(std_misc)]
 
 use std::collections::{HashMap, BinaryHeap, LinkedList};
 use std::collections::hash_map::Entry::{Occupied, Vacant};

@@ -1,29 +1,25 @@
 // Implements http://rosettacode.org/wiki/Write_ppm_file
-#![allow(unused_features)]
-#![allow(unused_attributes)]
-#![feature(old_io)]
-#![feature(old_path)]
-#![feature(core)]
-
 extern crate rand;
 
-use std::old_io::{File, BufferedWriter, IoResult};
+use std::fs::File;
+use std::io::{Error, Write};
 use bitmap::Image;
 mod bitmap;
 
 trait PPMWritable {
-    fn write_ppm(&self, filename: &str) -> IoResult<()>;
+    fn write_ppm(&self, filename: &str) -> Result<(), Error>;
 }
 
 impl PPMWritable for Image {
-    fn write_ppm(&self, filename: &str) -> IoResult<()> {
-        let file = File::create(&Path::new(filename));
-        let mut writer = BufferedWriter::new(file);
-        try!(writer.write_line("P6"));
+    fn write_ppm(&self, filename: &str) -> Result<(), Error> {
+        let mut writer = try!{File::create(filename)};
+        //let mut writer = BufWriter::new(file);
+        try!(writeln!(&mut writer, "P6"));
         try!(write!(&mut writer, "{} {} {}\n", self.width, self.height, 255));
         for color in &(self.data) {
             for channel in &[color.red, color.green, color.blue] {
-                try!(writer.write_u8(*channel));
+                let ch = *channel as u8;
+                try!(writer.write(&[ch]));
             }
         }
         Ok(())
@@ -49,7 +45,8 @@ pub fn main() {
 #[cfg(test)]
 mod test {
     use bitmap::{Color, Image};
-    use std::old_io::{File, BufferedReader};
+    use std::fs::File;
+    use std::io::{BufReader, BufRead, Read};
     use rand;
     use rand::Rng;
     use std::env;
@@ -67,17 +64,21 @@ mod test {
             Err(e) => panic!(e)
         }
 
-        let file = File::open(&Path::new(&fname[..]));
-        let mut reader = BufferedReader::new(file);
-        assert_eq!(reader.read_line().unwrap(), "P6\n");
-        assert_eq!(reader.read_line().unwrap(), "2 1 255\n");
-        assert_eq!(reader.read_byte().unwrap(), 1);
-        assert_eq!(reader.read_byte().unwrap(), 2);
-        assert_eq!(reader.read_byte().unwrap(), 3);
-        assert_eq!(reader.read_byte().unwrap(), 4);
-        assert_eq!(reader.read_byte().unwrap(), 5);
-        assert_eq!(reader.read_byte().unwrap(), 6);
-        assert!(reader.read_byte().is_err());
-
+        let file = File::open(&fname[..]).unwrap();
+        let mut reader = BufReader::new(file);
+        let mut line = String::new();
+        let _ = reader.read_line(&mut line);
+        assert_eq!(line, "P6\n");
+        line = String::new();
+        let _ = reader.read_line(&mut line);
+        assert_eq!(line, "2 1 255\n");
+        let mut bytes = reader.bytes();
+        assert_eq!(bytes.next().unwrap(), Ok(49));
+        assert_eq!(bytes.next().unwrap(), Ok(50));
+        assert_eq!(bytes.next().unwrap(), Ok(51));
+        assert_eq!(bytes.next().unwrap(), Ok(52));
+        assert_eq!(bytes.next().unwrap(), Ok(53));
+        assert_eq!(bytes.next().unwrap(), Ok(54));
+        assert!(bytes.next().is_none());
     }
 }

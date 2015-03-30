@@ -1,9 +1,9 @@
 // Implements http://rosettacode.org/wiki/Basic_bitmap_storage
-#![feature(old_io)]
-#![feature(old_path)]
+
 
 use std::default::Default;
-use std::old_io::{File, BufferedWriter, IoResult};
+use std::io::{Write, BufWriter, Error};
+use std::fs::File;
 use std::ops::{Index, IndexMut};
 
 #[derive(Copy, Clone, Default, PartialEq, Debug)]
@@ -35,14 +35,14 @@ impl Image {
         }
     }
 
-    pub fn write_ppm(&self, filename: &str) -> IoResult<()> {
-        let file = File::create(&Path::new(filename));
-        let mut writer = BufferedWriter::new(file);
-        try!(writer.write_line("P6"));
+    pub fn write_ppm(&self, filename: &str) -> Result<(), Error> {
+        let file = try!(File::create(filename));
+        let mut writer = BufWriter::new(file);
+        try!(writeln!(&mut writer,"P6"));
         try!(write!(&mut writer, "{} {} {}\n", self.width, self.height, 255));
         for color in &(self.data) {
             for channel in &[color.red, color.green, color.blue] {
-                try!(writer.write_u8(*channel));
+                try!(write!(&mut writer, "{}", *channel as u8));
             }
         }
         Ok(())
@@ -52,13 +52,13 @@ impl Image {
 impl Index<(usize, usize)> for Image {
     type Output=Color;
 
-    fn index<'a>(&'a self, &(x, y): &(usize, usize)) -> &'a Color {
+    fn index<'a>(&'a self, (x, y): (usize, usize)) -> &'a Color {
         &self.data[x + y*self.width]
     }
 }
 
 impl IndexMut<(usize, usize)> for Image {
-    fn index_mut<'a>(&'a mut self, &(x, y): &(usize, usize)) -> &'a mut Color {
+    fn index_mut<'a>(&'a mut self, (x, y): (usize, usize)) -> &'a mut Color {
         & mut self.data[x + y*self.width]
     }
 }
@@ -92,7 +92,7 @@ mod test {
     use std::default::Default;
 
     #[test]
-    #[should_fail]
+    #[should_panic]
     #[ignore(unused_variable)]
     fn out_of_bounds() {
         let image = Image::new(10, 10);

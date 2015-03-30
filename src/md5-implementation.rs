@@ -4,22 +4,22 @@
 * on Wikipedia https://en.wikipedia.org/wiki/MD5
 */
 #![feature(core)]
+#![feature(step_by)]
 #![feature(collections)]
 
 use std::num::wrapping::Wrapping as wr;
-use std::iter::range_step;
 use std::fmt::{Debug, Formatter, Result};
 use std::num::Int;
 
 #[cfg(not(test))]
 fn main() {
     let inputs=
-    [b"a",
-    b"abc",
-    b"message digest",
-    b"abcdefghijklmnopqrstuvwxyz",
-    b"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789",
-    b"12345678901234567890123456789012345678901234567890123456789012345678901234567890"];
+    [&b"a"[..],
+    &b"abc"[..],
+    &b"message digest"[..],
+    &b"abcdefghijklmnopqrstuvwxyz"[..],
+    &b"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"[..],
+    &b"12345678901234567890123456789012345678901234567890123456789012345678901234567890"[..]];
 
     for &input in &inputs {
         println!("{:?}", md5(input));
@@ -103,7 +103,7 @@ fn md5(initial_msg: &[u8]) -> MD5
     let mut w:[u32; 16] = [0u32; 16];
     // Process the message in successive 512-bit chunks:
     //for each 512-bit chunk of message:
-    for offset in range_step(0u64, new_len, (512/8)) {
+    for offset in (0u64..new_len).step_by(512/8) {
         // break chunk into sixteen 32-bit words w[j], 0 ≤ j ≤ 15
         for i in (0u32..16) {
             let j = i as usize * 4 + offset as usize;
@@ -167,19 +167,19 @@ fn helper_fns() {
 #[test]
 fn known_hashes() {
     let in_out=
-    [(b"",
+    [(&b""[..],
         "d41d8cd98f00b204e9800998ecf8427e"),
-    (b"a",
+    (&b"a"[..],
         "0cc175b9c0f1b6a831c399e269772661"),
-    (b"abc",
+    (&b"abc"[..],
         "900150983cd24fb0d6963f7d28e17f72"),
-    (b"message digest",
+    (&b"message digest"[..],
         "f96b697d7cb7938d525a2f31aaf161d0"),
-    (b"abcdefghijklmnopqrstuvwxyz",
+    (&b"abcdefghijklmnopqrstuvwxyz"[..],
         "c3fcd3d76192e4007dfb496cca67e13b"),
-    (b"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789",
+    (&b"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"[..],
         "d174ab98d277d9f5a5611c2c9f419d9f"),
-    (b"12345678901234567890123456789012345678901234567890123456789012345678901234567890",
+    (&b"12345678901234567890123456789012345678901234567890123456789012345678901234567890"[..],
         "57edf4a22be3c955ac49da2e2107b67a")];
 
     for &(i,o) in &in_out {

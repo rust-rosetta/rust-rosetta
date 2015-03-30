@@ -48,12 +48,12 @@ authors = [
 ]
 
 [dependencies]
-num = "*"
 regex = "*"
 regex_macros = "*"
 time = "*"
 rustc-serialize = "*"
 rand = "*"
+num = "*"
 
 [lib]
 # used by compile_time_calculation.rs

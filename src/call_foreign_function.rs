@@ -13,8 +13,8 @@ extern "C" {
 
 #[cfg(not(test))]
 fn main() {
-    let a = CString::new(b"a").unwrap();
-    let b = CString::new(b"b").unwrap();
+    let a = CString::new("a").unwrap();
+    let b = CString::new("b").unwrap();
 
     println!("{}", unsafe {
         strcmp(a.as_ptr(), b.as_ptr())
@@ -24,8 +24,8 @@ fn main() {
 #[cfg(test)]
 #[test]
 fn test_strcmp() {
-    let a = CString::new(b"a").unwrap();
-    let b = CString::new(b"b").unwrap();
+    let a = CString::new("a").unwrap();
+    let b = CString::new("b").unwrap();
 
     assert_eq!(unsafe {
         strcmp(a.as_ptr(), b.as_ptr())

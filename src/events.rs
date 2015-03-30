@@ -7,14 +7,13 @@
 // condvar represents an event on which a task may wait.  The one subtlety is that condvar signals
 // are only received if there is actually a task waiting on the signal--see the below program for
 // an example of how this may be achieved in practice.
-#![feature(old_io)]
 #![feature(std_misc)]
+#![feature(thread_sleep)]
 extern crate time;
 
-use std::old_io::timer::Timer;
 use std::time::duration::Duration;
 use std::sync::{Arc, Mutex, Condvar};
-use std::thread::spawn;
+use std::thread::{self, spawn};
 
 // Given a duration to wait before sending an event from one process to another, returns the
 // elapsed time before the event was actually sent.
@@ -34,12 +33,8 @@ fn handle_event(duration: Duration) -> Duration {
         let mut guard  = mutex_.lock().unwrap();
         *guard = true;
 
-        // moving the timer creation inside the closure
-        // to work around https://github.com/rust-lang/rust/issues/20943
-        let mut timer = Timer::new().unwrap();
-
         // Sleep for `duration`.
-        timer.sleep(duration);
+        thread::sleep(duration);
         // Signal the waiting mutex (equivalent to guard.cond.signal_on(0)).
         // One can also signal to all tasks on the waiting mutex with broadcast (broadcast_on(0)).
         //

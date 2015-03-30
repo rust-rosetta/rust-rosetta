@@ -2,13 +2,12 @@
 //
 // Contributed by Gavin Baker <gavinb@antonym.org>
 // Adapted from the Go version
-#![feature(old_path)]
-#![feature(old_io)]
 #![feature(std_misc)]
 #![feature(core)]
 
 use std::num::Float;
-use std::old_io::{BufferedReader, BufferedWriter, File};
+use std::io::{BufReader, BufRead, BufWriter, Write, Read};
+use std::fs::File;
 use std::iter::repeat;
 
 // Simple 8-bit grayscale image
@@ -22,15 +21,17 @@ struct ImageGray8 {
 fn load_pgm(filename: &str) -> ImageGray8 {
 
     // Open file
-
-    let path = Path::new(filename);
-    let mut file = BufferedReader::new(File::open(&path));
+    let mut file = BufReader::new(File::open(filename).unwrap());
 
     // Read header
-    let magic_in = file.read_line().unwrap();
-    let width_in = file.read_line().unwrap();
-    let height_in = file.read_line().unwrap();
-    let maxval_in = file.read_line().unwrap();
+    let mut magic_in = String::new();
+    let _ = file.read_line(&mut magic_in).unwrap();
+    let mut width_in = String::new();
+    let _ = file.read_line(&mut width_in).unwrap();
+    let mut height_in = String::new();
+    let _ = file.read_line(&mut height_in).unwrap();
+    let mut maxval_in = String::new();
+    let _ = file.read_line(&mut maxval_in).unwrap();
 
     assert_eq!(magic_in, "P5\n");
     assert_eq!(maxval_in, "255\n");
@@ -51,9 +52,11 @@ fn load_pgm(filename: &str) -> ImageGray8 {
     };
 
     // Read image data
-
-    match file.read_at_least(img.data.len(), &mut (img.data)[..]) {
-        Ok(bytes_read) => println!("Read {} bytes", bytes_read),
+    let len = img.data.len();
+    match file.read(&mut img.data) {
+        Ok(bytes_read) if bytes_read == len => println!("Read {} bytes", bytes_read),
+        Ok(bytes_read) =>
+            println!("Error: read {} bytes, expected {}", bytes_read, len),
         Err(e) => println!("error reading: {}", e)
     }
 
@@ -63,13 +66,11 @@ fn load_pgm(filename: &str) -> ImageGray8 {
 fn save_pgm(img: &ImageGray8, filename: &str) {
 
     // Open file
-
-    let path = Path::new(filename);
-    let mut file = BufferedWriter::new(File::create(&path));
+    let mut file = BufWriter::new(File::create(filename).unwrap());
 
     // Write header
 
-    match file.write_line(& format!("P5\n{}\n{}\n255", img.width, img.height)) {
+    match writeln!(&mut file, "P5\n{}\n{}\n255", img.width, img.height) {
         Err(e) => println!("Failed to write header: {}", e),
         _ => {},
     }

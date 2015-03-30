@@ -4,11 +4,8 @@
 // unit, which then prints lines, keeping track of lines printed. At the end of
 // the file, the reader unit requests number of lines printed from the printer
 // unit, and then prints them.
-#![feature(old_io)]
-#![feature(old_path)]
-
-use std::old_io::File;
-use std::old_io::BufferedReader;
+use std::fs::File;
+use std::io::{BufReader, BufRead};
 use std::sync::mpsc::{channel, Sender, Receiver};
 use std::thread::spawn;
 
@@ -34,7 +31,7 @@ fn printer(i_snd: Sender<i32>, msg_rcv: Receiver<Message>) {
 }
 
 fn reader(msg_snd: Sender<Message>, i_rcv: Receiver<i32>) {
-    let mut file = BufferedReader::new(File::open(&Path::new(FILENAME)));
+    let file = BufReader::new(File::open(FILENAME).unwrap());
     for line in file.lines() {
         msg_snd.send(Message::Line(line.unwrap())).unwrap();
     }

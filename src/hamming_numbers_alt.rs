@@ -2,9 +2,9 @@
 // alternate version: uses a more efficient representation of Hamming numbers:
 // instead of storing them as BigUint directly, it stores the three exponents
 // i, j and k for 2^i * 3^j * 5 ^k and the logarithm of the number for comparisons
-#![allow(unused_features)]
+
 #![allow(unused_attributes)]
-#![feature(collections)]
+
 
 
 extern crate num;

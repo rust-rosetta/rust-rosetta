@@ -1,17 +1,10 @@
 // Implements http://rosettacode.org/wiki/Hello_world/Web_server
-#![allow(unused_features)]
-#![feature(old_io)]
-#![feature(std_misc)]
-#![feature(os)]
-#![feature(core)]
-#![feature(std_misc)]
-
-use std::old_io::net::tcp::{TcpAcceptor, TcpListener, TcpStream};
-use std::old_io::{Acceptor, Listener, IoResult};
+use std::net::{TcpStream, TcpListener, Shutdown};
+use std::io::{Write, Result};
 #[cfg(not(test))] use std::borrow::ToOwned;
 #[cfg(not(test))] use std::env;
 
-fn handle_client(mut stream: TcpStream) -> IoResult<()> {
+fn handle_client(mut stream: TcpStream) -> Result<()> {
     let response =
 b"HTTP/1.1 200 OK
 Content-Type: text/html;
@@ -32,36 +25,34 @@ charset=UTF-8
 </html>";
 
     try!(stream.write_all(response));
-    stream.close_write()
+    stream.shutdown(Shutdown::Write)
 }
 
-pub fn handle_server(ip: &str, port: u16) -> IoResult<TcpAcceptor> {
+pub fn handle_server(ip: &str, port: u16) -> Result<TcpListener> {
     use std::thread::spawn;
     let listener = try!(TcpListener::bind((ip, port)));
-    let mut acceptor = listener.listen();
+    //let mut acceptor = listener.listen();
     println!("Listening for connections on port {}", port);
 
-    let handle = acceptor.clone();
-    spawn(move || -> () {
-        for stream in acceptor.incoming() {
-            match stream {
-                Ok(s) => {
-                    spawn(move || {
-                        match handle_client(s) {
-                            Ok(_) => println!("Response sent!"),
-                            Err(e) => println!("Failed sending response: {}!", e),
-                        }
-                    });
-                },
-                Err(e) => {
-                    println!("No longer accepting new requests: {}", e);
-                    break
-                }
+    let handle = try!(listener.try_clone());
+    for stream in handle.incoming() {
+        match stream {
+            Ok(s) => {
+                spawn(move || {
+                    match handle_client(s) {
+                        Ok(_) => println!("Response sent!"),
+                        Err(e) => println!("Failed sending response: {}!", e),
+                    }
+                });
+            },
+            Err(e) => {
+                println!("No longer accepting new requests: {}", e);
+                break
             }
         }
-    });
-
-    handle
+    }
+    drop(listener);
+    Ok(handle)
 }
 
 #[cfg(not(test))]

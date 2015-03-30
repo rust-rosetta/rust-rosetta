@@ -2,10 +2,9 @@
 //
 // Contributed by Gavin Baker <gavinb@antonym.org>
 //
-#![feature(old_path)]
-#![feature(old_io)]
 
-use std::old_io::{File, BufferedReader};
+use std::fs::File;
+use std::io::{BufReader, BufRead};
 use std::num::Float;
 
 // Calculate the expected frequency of a digit according to Benford's Law
@@ -48,19 +47,15 @@ fn benford_distrib(numbers: &[u64]) -> Vec<f32> {
 }
 
 fn main() {
-
     // Calculate expected frequencies of all digits according to Benford's Law
-
     let mut expected_distrib = [0f32; 10];
     for digit in (1..10) {
         expected_distrib[digit] = benford_freq(digit as u64);
     }
 
     // Load data from the Fibonacci sequence
-
     let filename = "../src/resources/fib1000.txt";
-    let path = Path::new(filename);
-    let mut file = BufferedReader::new(File::open(&path));
+    let file = BufReader::new(File::open(filename).unwrap());
 
     let fibs: Vec<u64> = file.lines().map(|x| {
         let s = x.unwrap();

@@ -1,6 +1,6 @@
 // http://rosettacode.org/wiki/Sierpinski_triangle
-#![feature(core)]
-use std::iter::{repeat, range_step};
+#![feature(step_by)]
+use std::iter::repeat;
 
 fn main() {
     let order = 4;
@@ -18,7 +18,7 @@ fn main() {
         }
 
         // Compute the next line
-        for j in range_step(i as i32, 0, -1) {
+        for j in (i as i32..0).step_by(-1) {
             state[j as usize] ^= state[(j - 1) as usize];
         }
 

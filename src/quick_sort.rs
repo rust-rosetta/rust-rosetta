@@ -1,6 +1,6 @@
 //Implements http://rosettacode.org/wiki/Sorting_algorithms/Quicksort
 // Used by the tests
-#![allow(unused_features)]
+
 
 extern crate rand;
 #[cfg(test)]

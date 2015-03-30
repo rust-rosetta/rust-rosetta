@@ -1,9 +1,6 @@
 // Implements http://rosettacode.org/wiki/Read_a_specific_line_from_a_file
-#![feature(old_io)]
-#![feature(old_path)]
-
-use std::old_io::fs::File;
-use std::old_io::BufferedReader;
+use std::fs::File;
+use std::io::{BufReader, BufRead};
 use std::env::args;
 use std::borrow::ToOwned;
 
@@ -28,8 +25,8 @@ fn main() {
         }
     };
 
-    let file = File::open(&Path::new(&filename[..]));
-    let mut reader = BufferedReader::new(file);
+    let file = File::open(filename).unwrap();
+    let reader = BufReader::new(file);
 
     match reader.lines().skip(line_number-1).next() {
         None => panic!("No such line (file is too short)"),

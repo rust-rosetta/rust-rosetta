@@ -73,7 +73,7 @@ mod test {
     }
 
     #[test]
-    #[should_fail]
+    #[should_panic]
     fn bad_min() {
         let numbers = &mut [-1i32, 0, 3, 6, 99];
         check_sort(numbers, 2, 99);

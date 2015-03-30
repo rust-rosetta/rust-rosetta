@@ -1,14 +1,11 @@
 // Implements http://rosettacode.org/wiki/Letter_frequency
-#![allow(unused_features)]
-#![feature(std_misc)]
-#![feature(old_io)]
-#![feature(old_path)]
-
+#![cfg_attr(not(test), feature(io))]
 
 #[cfg(not(test))]
-use std::old_io::fs::File;
+use std::fs::File;
+
 #[cfg(not(test))]
-use std::old_io::BufferedReader;
+use std::io::{BufReader, Read};
 use std::collections::HashMap;
 use std::collections::hash_map::Entry::{Occupied, Vacant};
 
@@ -27,8 +24,8 @@ fn count_chars<T>(chars: T) -> HashMap<char, usize>
 
 #[cfg(not(test))]
 fn main() {
-    let file = File::open(&Path::new("resources/unixdict.txt"));
-    let mut reader = BufferedReader::new(file);
+    let file = File::open("resources/unixdict.txt").unwrap();
+    let reader = BufReader::new(file);
 
     println!("{:?}", count_chars(reader.chars().map(|c| c.unwrap())));
 }
@@ -44,7 +41,7 @@ fn test_basic() {
     let map = count_chars("aaaabbbbc".chars());
 
     assert!(map.len() == 3);
-    assert!(map['a'] == 4);
-    assert!(map['b'] == 4);
-    assert!(map['c'] == 1);
+    assert!(map[&'a'] == 4);
+    assert!(map[&'b'] == 4);
+    assert!(map[&'c'] == 1);
 }

@@ -2,11 +2,8 @@
 // Accepts two command line arguments
 // cargo run --name agm arg1 arg2
 
-#![allow(unused_features)] // feature(os) is used only in main
+ // feature(os) is used only in main
 #![feature(std_misc)]
-#![feature(os)]
-#![feature(collections)]
-#![feature(core)]
 
 use std::num::Float;
 
