@@ -44,6 +44,7 @@ authors = [
     "Raphael Heitjohann, https://github.com/trideon3",
     "Glen De Cauwsemaecker, https://github.com/glendc",
     "Amos Bird, https://github.com/amosbird",
+    "Brian Schmitz, https://github.com/foodhype",
     "Juan Vidal Pich, https://github.com/juanevp",
     "Peter Jacobs, https://github.com/crespyl",
 ]
@@ -619,6 +620,11 @@ path = "src/lib.rs"
 # http://rosettacode.org/wiki/Linear_congruential_generator
 name = "linear_congruential_generator"
 path = "src/linear_congruential_generator.rs"
+
+[[bin]]
+# http://rosettacode.org/wiki/Longest_increasing_subsequence
+name = "longest_common_subsequence"
+path = "src/longest_common_subsequence.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Look-and-say_sequence
