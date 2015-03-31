@@ -1,43 +1,28 @@
 // Implements http://rosettacode.org/wiki/Echo_server
-#![feature(io)]
-#![feature(old_io)]
-#![feature(std_misc)]
-use std::old_io::{Acceptor, BufferedReader, IoError, IoResult, Listener, TimedOut,
-    Writer, BufferPrelude};
-use std::old_io::net::tcp::{TcpListener, TcpStream};
-use std::time::Duration;
-use std::thread::spawn;
+
+use std::io::{self, BufRead, BufReader, Write};
+use std::net::{TcpListener, TcpStream};
+use std::thread;
 
 // The actual echo server
-fn echo_server(host: &'static str, port: u16, timeout: Option<Duration>) -> IoResult<()> {
+fn echo_server(host: &'static str, port: u16) -> io::Result<()> {
     // Create a new TCP listener at host:port.
-    let mut listener = try!(TcpListener::bind((host, port)));
-    println!("Starting echo server on {:?}", listener.socket_name());
-
-    let mut acceptor = try!(listener.listen());
-    println!("Echo server started");
-
-    // The server will cease to accept new connectinos after `timeout`.
-    acceptor.set_timeout(timeout.map( |d| d.num_milliseconds() as u64));
+    let listener = try!(TcpListener::bind((host, port)));
+    println!("Starting echo server on {:?}", listener.local_addr());
 
     // Process each new connection to the server
-    for stream in acceptor.incoming() {
+    for stream in listener.incoming() {
         match stream {
-            Err(e @ IoError { kind: TimedOut, .. } ) => {
-                println!("No longer accepting new requests: {}", e);
-                break
-            }
             Err(e) => println!("Connection failed: {}", e),
-            Ok(mut stream) => {
-                let name = try!(stream.peer_name());
-                println!("New connection: {}", name);
+            Ok(stream) => {
+                let addr = try!(stream.peer_addr());
+                println!("New connection: {}", addr);
                 // Launch a new thread to deal with the connection.
-                spawn(move || -> () {
-                    if let Err(e) = echo_session(stream.clone()) {
-                        println!("I/O error: {} -- {}", name, e);
+                thread::spawn(move || {
+                    if let Err(e) = echo_session(stream) {
+                        println!("I/O error: {} -- {}", addr, e);
                     }
-                    println!("Closing connection: {}", name);;
-                    drop(stream);
+                    println!("Closing connection: {}", addr);
                 });
             }
         }
@@ -47,15 +32,15 @@ fn echo_server(host: &'static str, port: u16, timeout: Option<Duration>) -> IoRe
 }
 
 // Each connection gets its own session.
-fn echo_session(mut stream: TcpStream) -> IoResult<()> {
-    let name = try!(stream.peer_name());
-    let ref mut writer = stream.clone();
-    let mut reader = BufferedReader::new(stream);
+fn echo_session(stream: TcpStream) -> io::Result<()> {
+    let addr = try!(stream.peer_addr());
+    let mut writer = stream.try_clone().unwrap();
+    let reader = BufReader::new(stream);
     for line in reader.lines() {
-        let l = try!(line);
-        print!("Received line from {}: {}", name, l);
-        try!(writer.write_str(&l[..]));
-        print!("Wrote line to {}: {}", name, l);
+        let line = try!(line);
+        print!("Received line from {}: {}", addr, line);
+        try!(writer.write_all(line.as_bytes()));
+        print!("Wrote line to {}: {}", addr, line);
     }
     Ok(())
 }
@@ -63,11 +48,7 @@ fn echo_session(mut stream: TcpStream) -> IoResult<()> {
 const HOST: &'static str = "127.0.0.1";
 const PORT: u16 = 12321;
 
-pub fn run_server(duration: Option<Duration>) -> IoResult<()> {
-    echo_server(HOST, PORT, duration)
-}
-
 #[cfg(not(test))]
 pub fn main() {
-    run_server(Some(Duration::minutes(1))).unwrap();
+    echo_server(HOST, PORT).unwrap();
 }
