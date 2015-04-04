@@ -3,7 +3,7 @@
 
 use std::iter::Unfold;
 
-#[derive(Copy)]
+#[derive(Copy, Clone)]
 enum LuhnState { Even, Odd, }
 
 type Digits = Unfold<u64, fn(&mut u64) -> Option<u64>>;

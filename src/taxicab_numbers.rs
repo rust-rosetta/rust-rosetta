@@ -7,7 +7,7 @@ use std::cmp::Ordering;
 
 /// A type to represent a pair-sum of cubes.
 /// value = a^3 + b^3
-#[derive(Copy, PartialEq, Eq)]
+#[derive(Copy, Clone, PartialEq, Eq)]
 struct SumCubes {
     a: u64,
     b: u64,
@@ -110,4 +110,3 @@ fn test_taxicab_numbers() {
         }
     }
 }
-

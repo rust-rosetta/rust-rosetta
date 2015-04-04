@@ -75,7 +75,7 @@ enum Token<'a> {
 // An iterator over a string that yields a stream of Tokens.
 // Implementation note: it probably seems weird to store first, rest, AND string, since they should
 // all be derivable from string.  But see below.
-#[derive(Copy)]
+#[derive(Copy, Clone)]
 struct Tokens<'a> {
     string: &'a str, // The part of the string that still needs to be parsed
     first: Option<char>, // The first character to parse

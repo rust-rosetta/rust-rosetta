@@ -30,7 +30,7 @@ fn perfect_numbers(max: i64) -> Vec<i64> {
     }
     ret
 }
-#[derive(Copy)]
+#[derive(Copy, Clone)]
 struct Frac {
     num: i64,
     den: i64

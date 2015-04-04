@@ -15,7 +15,7 @@ type BITS = u16;
 const MASK_ALL: BITS = 0x1ff;
 const INVALID_CELL: u32 = !0;
 
-#[derive(Copy, Eq, PartialEq, Debug)]
+#[derive(Copy, Clone, Eq, PartialEq, Debug)]
 struct Sudoku {
     map: [[BITS; BOARD_WIDTH]; BOARD_HEIGHT]
 }

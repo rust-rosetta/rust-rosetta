@@ -26,7 +26,7 @@ fn full_adder(a: bool, b: bool, carry: bool) -> (bool, bool) {
   (s1, or(c0, c1))
 }
 
-#[derive(Copy)]
+#[derive(Copy, Clone)]
 struct Nibble([bool; 4]);
 impl Nibble {
   fn new(arr: [u8; 4]) -> Nibble {

@@ -61,7 +61,7 @@ pub fn check_values(sample:&mut [u32], input:&str) -> bool {
 }
 
 // the tokens that our parser is going to recognize
-#[derive(PartialEq,Eq,Debug, Copy)]
+#[derive(PartialEq, Eq, Debug, Copy, Clone)]
 pub enum Token {
     LParen,
     RParen,
@@ -105,7 +105,7 @@ impl Tokenable for char {
 // Lexer reads an expression like (a + b) / c * d
 // as an iterator on the tokens that compose it
 // Int(a), LParen, Plus, Int(b), RParen...
-#[derive(Copy)]
+#[derive(Copy, Clone)]
 pub struct Lexer<'a> {
     input: &'a str,
     offset: usize
@@ -173,7 +173,7 @@ impl <'a> Iterator for Lexer<'a> {
 // Operators are a "higher level" concept than tokens as they define the
 // semantics of the expression language e.g. token "Minus" can correspond to
 // the unary Neg Operator (-a) or to the binary Sub operator (a - b)
-#[derive(PartialEq, Eq, Copy)]
+#[derive(PartialEq, Eq, Copy, Clone)]
 pub enum Operator {
     Neg,
     Add,
