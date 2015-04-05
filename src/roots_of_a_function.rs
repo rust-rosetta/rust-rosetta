@@ -1,7 +1,7 @@
 // http://rosettacode.org/wiki/Roots_of_a_function
+extern crate num;
 
-
-use std::num::Float;
+use num::Float;
 
 // Note: We cannot use `range_step` here because Floats don't implement
 // the `CheckedAdd` trait.

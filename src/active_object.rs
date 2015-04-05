@@ -1,11 +1,12 @@
 // Implements http://rosettacode.org/wiki/Active_object
 #![feature(std_misc)]
 #![feature(old_io)]
-#![feature(core)]
 
 extern crate time;
+extern crate num;
 
-use std::num::Float;
+use num::traits::Zero;
+use num::Float;
 use std::f64::consts::PI;
 use std::old_io::timer::Timer;
 use std::sync::{Arc, Mutex};
@@ -35,7 +36,7 @@ pub struct Integrator<S: 'static, T: Send> {
 // function being integrated) must yield T (the type of the integrated value) when multiplied by
 // f64.  We could possibly replace f64 with a generic as well, but it would make things a bit more
 // complex.
-impl<S: Mul<f64, Output=T> + Float,
+impl<S: Mul<f64, Output=T> + Float + Zero,
      T: 'static + Clone + Send + Float> Integrator<S, T> {
     pub fn new(frequency: Duration) -> Integrator<S, T> {
         // We create a pipe allowing functions to be sent from tx (the sending end) to input (the
@@ -47,7 +48,7 @@ impl<S: Mul<f64, Output=T> + Float,
         // that memory will not be freed as long as there is at least one reference to it.
         // It is similar to C++'s shared_ptr, but it is guaranteed to be safe and is never
         // incremented unless explicitly cloned (by default, it is moved).
-        let s: Arc<Mutex<T>> = Arc::new(Mutex::new(Float::zero()));
+        let s: Arc<Mutex<T>> = Arc::new(Mutex::new(Zero::zero()));
         let integrator = Integrator {
             input: tx,
             // Here is the aforementioned clone.  We have to do it before s enters the closure,
@@ -71,8 +72,8 @@ impl<S: Mul<f64, Output=T> + Float,
             let periodic = timer.periodic(frequency);
             let frequency_ms = frequency.num_milliseconds();
             let mut t = 0;
-            let mut k: Box<Fn(i64) -> S + Send> = Box::new(|_| Float::zero());
-            let mut k_0: S = Float::zero();
+            let mut k: Box<Fn(i64) -> S + Send> = Box::new(|_| Zero::zero());
+            let mut k_0: S = Zero::zero();
             loop {
                 // Here's the selection we talked about above.  Note that we are careful to call
                 // the *non*-failing function, recv(), here.  The reason we do this is because

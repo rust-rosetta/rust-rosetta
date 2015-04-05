@@ -1,7 +1,5 @@
 // Implements http://rosettacode.org/wiki/Averages/Mean_angle
-#![feature(core)]
 
-use std::num::Float;
 use std::f64::consts::PI;
 
 fn mean_angle(angles: &[f64]) -> f64 {

@@ -1,8 +1,5 @@
 // http://rosettacode.org/wiki/Pythagorean_triples
-#![feature(core)]
-
 use std::collections::LinkedList;
-use std::num::Int;
 
 /// Count the number of Pythagorean triples whose sum are below the specified limit (inclusive).
 /// Does a BFS over the tree of primitive Pythagorean triples (see [0]), and uses the fact that

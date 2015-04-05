@@ -66,5 +66,5 @@ fn test_solution() {
     }
 
     let primes: Vec<u32> = (1..51).filter(|&i| is_prime(i)).collect();
-    assert_eq!(exp_primes, primes);
+    assert_eq!(exp_primes, &primes[..]);
 }

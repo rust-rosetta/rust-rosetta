@@ -1,9 +1,10 @@
 // Implements http://rosettacode.org/wiki/Kahan_summation
 #![feature(std_misc)]
 #![feature(collections)]
+extern crate num;
 
-use std::num::Float;
 use std::f32;
+use num::Float;
 
 fn find_max(lst: &[f32]) -> Option<f32> {
     if lst.is_empty() { return None }

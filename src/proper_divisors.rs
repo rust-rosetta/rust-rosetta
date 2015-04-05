@@ -1,5 +1,4 @@
 // Implements http://rosettacode.org/wiki/Proper_divisors
-use std::num::Float;
 
 // Populate input vector with prime numbers < maxvalue
 fn add_more_prime_numbers(v:&mut Vec<usize>,maxvalue:usize) {

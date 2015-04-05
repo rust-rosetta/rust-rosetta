@@ -6,10 +6,8 @@
 // of the divide-and-conquer algorithm, since it's (arguably)
 // easier to implement, and an efficient implementation does not require
 // use of unsafe.
-#![feature(std_misc)]
 extern crate num;
 
-use std::num::Float;
 use std::cmp::{PartialOrd, Ordering};
 use num::complex::Complex;
 use std::collections::BTreeSet;
@@ -70,7 +68,7 @@ fn closest_pair(points: &mut [Point]) -> Option<(Point, Point)> {
         // Compare to points in bounding box
         {
             let low_bound = YSortedPoint {
-                point: Point { re: std::num::Float::infinity(), im: point.im - closest_distance }
+                point: Point { re: ::std::f32::INFINITY, im: point.im - closest_distance }
             };
             let mut strip_iter = strip.iter().skip_while(|&p| p < &low_bound);
             loop {
@@ -121,7 +119,6 @@ pub fn main() {
 mod test {
     use super::closest_pair;
     use num::complex::Complex;
-    use std::num::Float;
 
     #[test]
     fn random_floats() {

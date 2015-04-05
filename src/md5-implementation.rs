@@ -3,13 +3,11 @@
  * Ported from C - Simple MD5 implementation
 * on Wikipedia https://en.wikipedia.org/wiki/MD5
 */
-#![feature(core)]
 #![feature(step_by)]
 #![feature(collections)]
 
-use std::num::wrapping::Wrapping as wr;
+use std::num::Wrapping as wr;
 use std::fmt::{Debug, Formatter, Result};
-use std::num::Int;
 
 #[cfg(not(test))]
 fn main() {
@@ -158,7 +156,7 @@ fn md5(initial_msg: &[u8]) -> MD5
 
 #[test]
 fn helper_fns() {
-    assert_eq!(64, 8.rotate_left(3));
+    assert_eq!(64, 8u32.rotate_left(3));
 
     let exp:[u8; 8] = [64u8, 226, 1, 0, 0, 0, 0, 0];
     assert!(to_bytes(123456) == exp);

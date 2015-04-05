@@ -1,11 +1,8 @@
 // Implements http://rosettacode.org/wiki/K-d_tree
 
-
-
 extern crate time;
 extern crate rand;
 
-use std::num::Float;
 use rand::Rng;
 use std::cmp::Ordering;
 #[cfg(not(test))]

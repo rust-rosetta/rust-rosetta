@@ -41,7 +41,6 @@ fn main() {
 }
 #[test]
 fn test_fibonacii_words() {
-    use std::num::Float;
 
     let expected = vec![
         (1, 0.000000000000000f64),

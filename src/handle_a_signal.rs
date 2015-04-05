@@ -3,6 +3,7 @@
 // Note that this solution only works on Unix.
 #![feature(libc)]
 #![cfg_attr(unix, feature(old_io))]
+#![cfg_attr(unix, feature(std_misc))]
 
 extern crate libc;
 extern crate time;

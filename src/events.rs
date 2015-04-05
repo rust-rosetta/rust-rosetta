@@ -7,17 +7,14 @@
 // condvar represents an event on which a task may wait.  The one subtlety is that condvar signals
 // are only received if there is actually a task waiting on the signal--see the below program for
 // an example of how this may be achieved in practice.
-#![feature(std_misc)]
-#![feature(thread_sleep)]
 extern crate time;
 
-use std::time::duration::Duration;
 use std::sync::{Arc, Mutex, Condvar};
 use std::thread::{self, spawn};
 
 // Given a duration to wait before sending an event from one process to another, returns the
 // elapsed time before the event was actually sent.
-fn handle_event(duration: Duration) -> Duration {
+fn handle_event(duration: u32) -> u32 {
     // Create a Mutex.  By default a Mutex is created with a single condition variable (condvar_id
     // 0) but it can be created with an arbitrary number using Mutex::new_with_condvars();
     let pair = Arc::new((Mutex::new(false), Condvar::new()));
@@ -34,7 +31,7 @@ fn handle_event(duration: Duration) -> Duration {
         *guard = true;
 
         // Sleep for `duration`.
-        thread::sleep(duration);
+        thread::sleep_ms(duration);
         // Signal the waiting mutex (equivalent to guard.cond.signal_on(0)).
         // One can also signal to all tasks on the waiting mutex with broadcast (broadcast_on(0)).
         //
@@ -54,19 +51,19 @@ fn handle_event(duration: Duration) -> Duration {
     // When the guard exits scope, the condvar is reset.
     drop(guard);
     // Return the elapsed time
-    Duration::nanoseconds((end - start) as i64)
+    ((end - start) / 1000000) as u32
 }
 
 #[cfg(not(test))]
 pub fn main() {
-    let duration = Duration::seconds(1); // Process event after one second.
+    let duration = 1000; // Process event after one second.
     println!("{} elapsed before event triggered", handle_event(duration));
 }
 
 #[test]
 pub fn test_events() {
     if !cfg!(windows) { // overflowing on windows (bug in time library?)
-         let duration = Duration::seconds(1) / 10; // Process event after one tenth of a second.
+         let duration = 100; // Process event after one tenth of a second.
         // Make sure it really did take at least that long for the event to be processed.
 
         let out = handle_event(duration);

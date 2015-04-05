@@ -1,7 +1,5 @@
 // Implements http://rosettacode.org/wiki/Prime_decomposition
 
-use std::num::Float;
-
 // We need this to be public because it is used from another file
 pub fn factor(mut nb: usize) -> Vec<usize> {
     let mut result = vec!();

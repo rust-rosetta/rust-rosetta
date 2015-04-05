@@ -1,6 +1,4 @@
 // http://rosettacode.org/wiki/Function_composition
-#![cfg_attr(not(test), feature(core))]
-
 #[cfg(not(test))]
 fn main() {
     use std::f32::consts;

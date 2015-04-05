@@ -1,10 +1,10 @@
 // http://rosettacode.org/wiki/Horner%27s_rule_for_polynomial_evaluation
-#![feature(core)]
-use std::num::Int;
+extern crate num;
 
+use num::traits::{PrimInt, Zero};
 
-fn horner<T:Int>(cs:&[T], x:T) -> T {
-    cs.iter().rev().fold(Int::zero(), |acc: T, c| (acc*x) + (*c))
+fn horner<T: PrimInt + Zero>(cs:&[T], x:T) -> T {
+    cs.iter().rev().fold(Zero::zero(), |acc: T, c| (acc*x) + (*c))
 }
 
 #[cfg(not(test))]

@@ -1,5 +1,4 @@
 // http://rosettacode.org/wiki/Roots_of_unity
-#![feature(core)]
 
 extern crate num;
 use num::complex::{Complex, Complex32};
