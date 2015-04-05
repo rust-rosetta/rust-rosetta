@@ -2,7 +2,6 @@
 #![feature(step_by)]
 
 use std::iter::repeat;
-use std::num::Float;
 
 fn int_sqrt(n: usize) -> usize {
     (n as f64).sqrt() as usize

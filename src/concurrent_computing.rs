@@ -1,10 +1,7 @@
 // Implements http://rosettacode.org/wiki/Concurrent_computing
-#![feature(std_misc)]
-#![feature(thread_sleep)]
 extern crate rand;
-use std::thread::sleep;
+use std::thread::sleep_ms;
 use rand::random;
-use std::time::duration::Duration;
 use std::thread::spawn;
 
 fn main() {
@@ -13,7 +10,7 @@ fn main() {
     for s in strings.into_iter(){
         spawn(move || -> () {
             // We use a random u8 (so an integer from 0 to 255)
-            sleep(Duration::milliseconds(random::<u8>() as i64));
+            sleep_ms(random::<u8>() as u32);
             println!("{}", s);
         });
     }

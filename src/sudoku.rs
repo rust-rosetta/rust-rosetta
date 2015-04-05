@@ -3,7 +3,6 @@
 #![feature(step_by)]
 use std::fmt;
 use std::str::FromStr;
-use std::num::Int;
 
 const BOARD_WIDTH: usize = 9;
 const BOARD_HEIGHT: usize = 9;

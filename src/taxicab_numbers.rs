@@ -1,8 +1,6 @@
 // http://rosettacode.org/wiki/Taxicab_numbers
-#![feature(core)]
 
 use std::collections::BinaryHeap;
-use std::num::Int;
 use std::cmp::Ordering;
 
 /// A type to represent a pair-sum of cubes.

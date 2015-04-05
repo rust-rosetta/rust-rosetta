@@ -1,8 +1,7 @@
 // http://rosettacode.org/wiki/The_ISAAC_Cipher
 // includes the XOR version of the encryption scheme
-#![feature(core)]
 #![feature(step_by)]
-use std::num::wrapping::Wrapping as w;
+use std::num::Wrapping as w;
 
 const MSG :&'static str = "a Top Secret secret";
 const KEY: &'static str = "this is my secret key";

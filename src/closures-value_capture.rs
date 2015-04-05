@@ -1,6 +1,5 @@
 // http://rosettacode.org/wiki/Closures/Value_capture
 use std::iter::Map;
-use std::num::Float;
 use std::ops::RangeFrom;
 
 #[allow(dead_code)]
@@ -39,7 +38,6 @@ fn main() {
 
 #[cfg(test)]
 mod test {
-    use std::num::Float;
     use super::{closure_gen, closures_iterator};
 
     #[test]

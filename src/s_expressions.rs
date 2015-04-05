@@ -19,23 +19,22 @@
 // float types (supporting more types is possible but would complicate the code significantly).
 //
 #![feature(rustc_private)]
-#![feature(core)]
 #![feature(str_char)]
 #![feature(test)]
 
 extern crate arena;
 extern crate test;
 
-use std::error::FromError;
 use arena::TypedArena;
 
 use std::io;
-use std::num::{self, Float, FpCategory};
+use std::num::FpCategory;
+use std::str::FromStr;
 use self::SExp::*;
 use self::Error::*;
 use self::Token::*;
 
-#[derive(PartialEq,Debug,Copy)]
+#[derive(PartialEq,Debug)]
 // The actual SExp structure.  Supports f64s, lists, and string literals.  Note that it takes
 // everything by reference, rather than owning it--this is mostly done just so we can allocate
 // SExps statically (since we don't have to call Vec).  It does complicate the code a bit,
@@ -47,24 +46,24 @@ enum SExp<'a> {
 }
 
 // Errors that can be thrown by the parser.
-#[derive(PartialEq,Debug)]
+#[derive(PartialEq, Debug)]
 enum Error {
     NoReprForFloat, // If the float is NaN, Infinity, etc.
     UnterminatedStringLiteral, // Missing an end double quote during string parsing
-    IoError(io::Error), // Some other kind of I/O error
+    IoError, // Some other kind of I/O error
     IncorrectCloseDelimiter, // ) appeared where it shouldn't (usually as the first token)
     UnexpectedEOF, // Usually means a missing ), but could also mean there were no tokens at all.
     ExpectedEOF, // More tokens after the list is finished, or after a literal if there is no list.
 }
 
-impl FromError<io::Error> for Error {
-    fn from_error(err: io::Error) -> Error {
-        Error::IoError(err)
+impl From<io::Error> for Error {
+    fn from(_err: io::Error) -> Error {
+        Error::IoError
     }
 }
 
 // Tokens returned from the token stream.
-#[derive(PartialEq, Copy)]
+#[derive(PartialEq, Debug)]
 enum Token<'a> {
     ListStart, // Left parenthesis
     ListEnd, // Right parenthesis
@@ -75,7 +74,7 @@ enum Token<'a> {
 // An iterator over a string that yields a stream of Tokens.
 // Implementation note: it probably seems weird to store first, rest, AND string, since they should
 // all be derivable from string.  But see below.
-#[derive(Copy, Clone)]
+#[derive(Copy, Clone, Debug)]
 struct Tokens<'a> {
     string: &'a str, // The part of the string that still needs to be parsed
     first: Option<char>, // The first character to parse
@@ -124,7 +123,7 @@ impl<'a> Tokens<'a> {
                     // Split the string at most once.  This lets us get a
                     // reference to the next piece of the string without having
                     // to loop through the string again.
-                    let mut iter = self.rest.splitn(1, '"');
+                    let mut iter = self.rest.splitn(2, '"');
                     // The first time splitn is run it will never return None, so this is safe.
                     let str = iter.next().unwrap();
                     match iter.next() {
@@ -148,7 +147,7 @@ impl<'a> Tokens<'a> {
                     // Unlike the quoted case, it's not an error to encounter EOF before whitespace.
                     let mut end_ch = None;
                     let str = {
-                        let mut iter = self.string.splitn(1, |ch: char| {
+                        let mut iter = self.string.splitn(2, |ch: char| {
                             let term = ch == ')' || ch == '(';
                             if term { end_ch = Some(ch) }
                             term || ch.is_whitespace()
@@ -179,7 +178,7 @@ impl<'a> Tokens<'a> {
 // twice, but it avoids having to write our own number parsing logic.
 fn parse_literal(literal: &str) -> SExp {
     match literal.bytes().next() {
-        Some(b'0'...b'9') | Some(b'-') => match num::from_str_radix(literal, 10) {
+        Some(b'0'...b'9') | Some(b'-') => match f64::from_str(literal) {
             Ok(f) => F64(f),
             Err(_) => Str(literal)
         },

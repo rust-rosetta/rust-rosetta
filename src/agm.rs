@@ -2,10 +2,9 @@
 // Accepts two command line arguments
 // cargo run --name agm arg1 arg2
 
- // feature(os) is used only in main
-#![feature(std_misc)]
+extern crate num;
 
-use std::num::Float;
+use num::abs;
 
 #[cfg(not(test))]
 fn main () {
@@ -17,10 +16,6 @@ fn main () {
 
     let result = agm(x,y);
     println!("The arithmetic-geometric mean is {}", result);
-}
-
-fn abs<T: Float>(n: T) -> T {
-    if n < Float::zero() { -n } else { n }
 }
 
 fn agm (x: f32, y: f32) -> f32 {

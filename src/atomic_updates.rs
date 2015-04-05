@@ -9,8 +9,6 @@
 // (previously I tried, in order, std::sync::RwLock, std::sync::Mutex, and std::sync::Semaphore)
 // and this type still appears to have quite a bit of overhead.
 #![feature(core)]
-#![feature(thread_sleep)]
-#![feature(std_misc)]
 extern crate rand;
 
 use std::iter::AdditiveIterator;
@@ -18,7 +16,6 @@ use rand::{Rng, weak_rng};
 use rand::distributions::{IndependentSample, Range};
 use std::sync::Arc;
 use std::sync::atomic::{AtomicBool, Ordering};
-use std::time::duration::Duration;
 use std::thread::{self, spawn};
 
 // The reason I used a module here is simply to keep it clearer who can access what.  Rust
@@ -219,7 +216,7 @@ fn randomize(bl: &buckets::Buckets, running: &AtomicBool, worker: usize) {
 // process and checks to make sure that the invariant (that the total remains constant) is
 // preserved.  It prints an update `nticks` times, evenly spaced.
 fn display(bl: &buckets::Buckets, running: &AtomicBool, original_total: usize,
-           duration: Duration, nticks: i32) {
+           duration: u32, nticks: u32) {
     println!("transfers, N. transfers, buckets, buckets sum:");
 
     let duration = duration / nticks;
@@ -235,14 +232,14 @@ fn display(bl: &buckets::Buckets, running: &AtomicBool, original_total: usize,
         // Check the invariant, failing if necessary.
         assert_eq!(sum, original_total);
         // Sleep before printing again.
-        thread::sleep(duration);
+        thread::sleep_ms(duration);
     }
     // We're done--cleanly exit the other update tasks.
     running.store(false, Ordering::Relaxed);
 }
 
 // Putting together all three tasks.
-fn perform_atomic_updates(duration: Duration, original_total: usize, num_ticks: i32)
+fn perform_atomic_updates(duration: u32, original_total: usize, num_ticks: u32)
 {
     // Worker IDs for the two updater tasks.
     const ID_EQUALIZE: usize = 0;
@@ -267,16 +264,16 @@ fn perform_atomic_updates(duration: Duration, original_total: usize, num_ticks: 
 }
 
 const ORIGINAL_TOTAL: usize = 1000;
-const NUM_TICKS: i32 = 10;
+const NUM_TICKS: u32 = 10;
 
 #[cfg(not(test))]
 fn main() {
     // Run for 10 seconds
-    perform_atomic_updates(Duration::seconds(10), ORIGINAL_TOTAL, NUM_TICKS);
+    perform_atomic_updates(10000, ORIGINAL_TOTAL, NUM_TICKS);
 }
 
 #[test]
 fn test_atomic_updates() {
     // Run for 1/10th of a second
-    perform_atomic_updates(Duration::seconds(1) / 10, ORIGINAL_TOTAL, NUM_TICKS);
+    perform_atomic_updates(100, ORIGINAL_TOTAL, NUM_TICKS);
 }

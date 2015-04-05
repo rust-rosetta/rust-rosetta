@@ -3,7 +3,7 @@
 // library implementation
 #![feature(core)]
 
-use std::num::wrapping::Wrapping as wr;
+use std::num::Wrapping as wr;
 use std::slice::bytes::copy_memory;
 use std::io::{Write, Result};
 
@@ -189,7 +189,7 @@ impl Write for Digest {
         let ln=buf_m.len();
         if ln > 0 {
             assert!(self.x.len() >= ln);
-            copy_memory(&mut self.x, buf_m);
+            copy_memory(buf_m, &mut self.x);
             self.nx = ln;
         }
         Ok(())

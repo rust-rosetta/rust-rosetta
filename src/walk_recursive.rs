@@ -2,7 +2,6 @@
 #![feature(plugin)]
 #![plugin(regex_macros)]
 #![cfg_attr(test, feature(std_misc))]
-#![feature(convert)]
 extern crate regex;
 
 use regex::Regex;

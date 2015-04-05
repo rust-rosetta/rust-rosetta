@@ -1,8 +1,6 @@
 // http://rosettacode.org/wiki/Population_count
-#![feature(core)]
 
 use std::iter::{Filter, Map};
-use std::num::Int;
 use std::ops::RangeFrom;
 
 #[cfg(not(test))]

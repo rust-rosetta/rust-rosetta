@@ -1,38 +1,12 @@
 //http://rosettacode.org/wiki/Flatten_a_list
 
 #![feature(box_syntax)]
-use std::fmt;
 use Tree::{Node, Leaf};
 
 #[derive(Debug)]
 enum Tree<T>{
     Node(Vec<Tree<T>>),
     Leaf(T),
-}
-
-/// fmt::Display is implemented here for pretty printing.
-impl<T> fmt::Display for Tree<T>
-    where T: fmt::Display {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result{
-        match *self {
-            Node(ref vec) => write!(f, "{}", vec),
-            Leaf(ref val) => write!(f, "{}", val)
-        }
-    }
-}
-
-impl<T> fmt::Display for Vec<Tree<T>>
-    where T: fmt::Display {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        let mut first = true;
-        try!(write!(f, "["));
-        for x in self.iter(){
-            if !first { try!(write!(f, ", ")); }
-            try!(write!(f, "{}", *x));
-            first = false;
-        }
-        write!(f, "]")
-    }
 }
 
 fn flatten<T>(tree: Tree<T>) -> Vec<T>{
@@ -58,7 +32,7 @@ fn main() {
             Node(vec![])
             ]);
 
-    println!("{}", list);
+    println!("{:?}", list);
 
     let flattened = flatten(list);
 
@@ -79,7 +53,7 @@ fn rosetta_flatten_test() {
             Node(vec![])
             ]);
 
-    println!("{}", list);
+    println!("{:?}", list);
 
     let flattened = flatten(list);
 

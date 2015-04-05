@@ -2,10 +2,6 @@
 //
 // Contributed by Gavin Baker <gavinb@antonym.org>
 // Adapted from the Go version
-#![feature(std_misc)]
-#![feature(core)]
-
-use std::num::Float;
 use std::io::{BufReader, BufRead, BufWriter, Write, Read};
 use std::fs::File;
 use std::iter::repeat;

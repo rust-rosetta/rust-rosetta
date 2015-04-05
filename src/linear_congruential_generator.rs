@@ -1,6 +1,5 @@
 // Implements http://rosettacode.org/wiki/Linear_congruential_generator
-#![feature(core)]
-use std::num::wrapping::Wrapping as w;
+use std::num::Wrapping as w;
 
 trait LinearCongruentialGenerator {
     fn seed(&mut self, seed: u32);

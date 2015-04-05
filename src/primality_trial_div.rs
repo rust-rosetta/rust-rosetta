@@ -1,6 +1,5 @@
 //Implements http://rosettacode.org/wiki/Primality_by_Trial_Division
 #![feature(step_by)]
-use std::num::Float;
 
 fn is_prime(number: i32) -> bool {
     if number % 2 == 0 && number != 2 {
