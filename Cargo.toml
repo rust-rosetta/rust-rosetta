@@ -512,6 +512,7 @@ path = "src/heap_sort.rs"
 # http://rosettacode.org/wiki/Higher-order_functions
 name = "higher_order_functions"
 path = "src/higher_order_functions.rs"
+test = false
 
 [[bin]]
 # http://rosettacode.org/wiki/Hofstadter_Q_sequence
