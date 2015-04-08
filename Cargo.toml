@@ -47,6 +47,7 @@ authors = [
     "Brian Schmitz, https://github.com/foodhype",
     "Juan Vidal Pich, https://github.com/juanevp",
     "Peter Jacobs, https://github.com/crespyl",
+    "Alex Globus, https://github.com/aglobus",
 ]
 
 [dependencies]
@@ -506,6 +507,12 @@ path = "src/hash_join.rs"
 # http://rosettacode.org/wiki/Sorting_algorithms/Heapsort
 name = "heap_sort"
 path = "src/heap_sort.rs"
+
+[[bin]]
+# http://rosettacode.org/wiki/Higher-order_functions
+name = "higher_order_functions"
+path = "src/higher_order_functions.rs"
+test = false
 
 [[bin]]
 # http://rosettacode.org/wiki/Hofstadter_Q_sequence
