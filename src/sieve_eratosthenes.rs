@@ -15,7 +15,7 @@ fn simple_sieve(limit: usize) -> Vec<usize> {
 
     let mut primes: Vec<bool> = repeat(true).take(limit+1).collect();
 
-    for prime in (2..int_sqrt(limit) + 1 + 1) {
+    for prime in (2..int_sqrt(limit) + 1) {
         if primes[prime] {
             for multiple in (prime * prime..limit + 1).step_by(prime) {
                 primes[multiple] = false
