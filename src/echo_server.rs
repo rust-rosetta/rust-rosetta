@@ -38,9 +38,9 @@ fn echo_session(stream: TcpStream) -> io::Result<()> {
     let reader = BufReader::new(stream);
     for line in reader.lines() {
         let line = try!(line);
-        print!("Received line from {}: {}", addr, line);
+        println!("Received line from {}: {}", addr, line);
         try!(writer.write_all(line.as_bytes()));
-        print!("Wrote line to {}: {}", addr, line);
+        println!("Wrote line to {}: {}", addr, line);
     }
     Ok(())
 }
