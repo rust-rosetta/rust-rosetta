@@ -7,7 +7,7 @@
 use std::fs::File;
 use std::io::{BufReader, BufRead};
 use std::sync::mpsc::{channel, Sender, Receiver};
-use std::thread::spawn;
+use std::thread;
 
 const FILENAME: &'static str = "resources/input.txt";
 
@@ -21,7 +21,7 @@ fn printer(i_snd: Sender<i32>, msg_rcv: Receiver<Message>) {
     loop {
         match msg_rcv.recv().unwrap() {
             Message::Line(line) => {
-                print!("{}", line);
+                println!("{}", line);
                 count += 1;
             }
             Message::End => {break;}
@@ -36,13 +36,13 @@ fn reader(msg_snd: Sender<Message>, i_rcv: Receiver<i32>) {
         msg_snd.send(Message::Line(line.unwrap())).unwrap();
     }
     msg_snd.send(Message::End).unwrap();
-    println!("Total Lines: {:?}", i_rcv.recv());
+    println!("Total Lines: {}", i_rcv.recv().unwrap());
 }
 
 fn main() {
     let (msg_snd, msg_rcv) = channel();
     let (i_snd, i_rcv) = channel();
 
-    spawn(move || printer(i_snd, msg_rcv));
-    spawn(move || reader(msg_snd, i_rcv));
+    thread::spawn(move || printer(i_snd, msg_rcv));
+    thread::spawn(move || reader(msg_snd, i_rcv));
 }
