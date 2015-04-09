@@ -22,13 +22,13 @@ fn exp_factorial(cx: &mut ExtCtxt, sp: Span, tts: &[TokenTree])
 
     // Try to parse a literal (doesn't need to be a number)
     let literal = match parser.parse_lit() {
-		Ok(l) => l,
-		Err(_) => {
-			// span_err shows a compile time error to the user
-			cx.span_err(sp, "fatal error");
-			return DummyResult::any(sp);
-		}
-	};
+        Ok(l) => l,
+        Err(_) => {
+            // span_err shows a compile time error to the user
+            cx.span_err(sp, "fatal error");
+            return DummyResult::any(sp);
+        }
+    };
 
     // Take the number of the literal (if it is a number)
     let n: u64 = match literal.node {
