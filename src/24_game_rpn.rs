@@ -5,11 +5,12 @@ extern crate rand;
 
 #[cfg(not(test))]
 fn main() {
-    use rand::{thread_rng, Rng};
-    use std::io;
+    use rand::Rng;
+    use std::io::{self, Write};
 
-    let mut rng = thread_rng();
-    let mut reader = io::stdin();
+    let mut rng = rand::thread_rng();
+    let mut stdin = io::stdin();
+    let mut stdout = io::stdout();
 
     // generating 4 numbers
     let choices: Vec<u32> = (0u32..4).map(
@@ -18,18 +19,20 @@ fn main() {
     println!("Make 24 with the following numbers");
 
     // start the game loop
+    let mut buffer = String::new();
     loop {
-        print!("Your numbers: {}, {}, {}, {}\n", choices[0], choices[1], choices[2], choices[3]);
-        let mut expr = String::new();
-        let _ = reader.read_line(&mut expr).ok().expect("Failed to read line!");
-        match check_input(&expr[..], &choices[..]) {
+        println!("Your numbers: {}, {}, {}, {}", choices[0], choices[1], choices[2], choices[3]);
+        buffer.clear();
+        stdin.read_line(&mut buffer).ok().expect("Failed to read line!");
+        match check_input(&buffer[..], &choices[..]) {
             Ok(()) => { println!("Good job!"); break; },
             Err(e) => println!("{}", e)
         }
         print!("Try again? (y/n): ");
-        let mut choice = String::new();
-        let _ = reader.read_line(&mut choice).ok().expect("Failed to read line!");
-        if choice.trim() != "y" { break; }
+        stdout.flush().unwrap();
+        buffer.clear();
+        stdin.read_line(&mut buffer).ok().expect("Failed to read line!");
+        if buffer.trim() != "y" { break; }
     }
 }
 
