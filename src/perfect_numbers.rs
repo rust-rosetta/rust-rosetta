@@ -1,10 +1,8 @@
 // Implements http://rosettacode.org/wiki/Perfect_numbers
 #![feature(core)]
 
-use std::iter::{AdditiveIterator};
-
 fn perfect_number(n: usize) -> bool {
-  (1..(n / 2)+1).filter(|&i| n % i == 0).sum() == n
+  (1..(n / 2)+1).filter(|&i| n % i == 0).sum::<usize>() == n
 }
 
 #[cfg(not(test))]

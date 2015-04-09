@@ -3,7 +3,6 @@
 extern crate num;
 
 use num::traits::Zero;
-use std::iter::AdditiveIterator;
 
 fn equilibrium_indices(v: &[i32]) -> Vec<usize> {
     let mut right = v.iter().map(|&x| x).sum();

@@ -5,7 +5,6 @@
 extern crate test;
 
 use std::vec::Vec;
-use std::iter::AdditiveIterator;
 use std::thread::spawn;
 use std::sync::mpsc::channel;
 
@@ -132,7 +131,7 @@ fn semi_parallel_n_queens(n: i32) -> usize {
         });
     }
 
-    receivers.iter().map(|r| r.recv().unwrap()).sum() + ((columns == all_ones) as usize)
+    receivers.iter().map(|r| r.recv().unwrap()).sum::<usize>() + ((columns == all_ones) as usize)
 }
 
 // Tests

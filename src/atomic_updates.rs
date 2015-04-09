@@ -11,7 +11,6 @@
 #![feature(core)]
 extern crate rand;
 
-use std::iter::AdditiveIterator;
 use rand::{Rng, weak_rng};
 use rand::distributions::{IndependentSample, Range};
 use std::sync::Arc;
@@ -224,9 +223,9 @@ fn display(bl: &buckets::Buckets, running: &AtomicBool, original_total: usize,
         // Get a consistent snapshot
         let (s, tc) = bl.snapshot();
         // Sum up the buckets
-        let sum = s.iter().map( |&i| i ).sum();
+        let sum = s.iter().map( |&i| i ).sum::<usize>();
         // Sum up the transfers.
-        let n_transfers = tc.iter().map( |&i| i ).sum();
+        let n_transfers = tc.iter().map( |&i| i ).sum::<usize>();
         // Print the relevant information.
         println!("{:?}, {}, {:?}, {}", tc, n_transfers, s, sum);
         // Check the invariant, failing if necessary.
