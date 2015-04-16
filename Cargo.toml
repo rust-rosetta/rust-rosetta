@@ -58,6 +58,9 @@ rustc-serialize = "*"
 rand = "*"
 num = "*"
 
+[dependencies.schedule_recv]
+git = "https://github.com/PeterReid/schedule_recv"
+
 [lib]
 # used by compile_time_calculation.rs
 # http://rosettacode.org/wiki/Compile-time_calculation

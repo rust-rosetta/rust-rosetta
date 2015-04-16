@@ -1,19 +1,19 @@
 // Implements http://rosettacode.org/wiki/Active_object
 #![feature(std_misc)]
-#![feature(old_io)]
 
 extern crate time;
 extern crate num;
+extern crate schedule_recv;
 
 use num::traits::Zero;
 use num::Float;
 use std::f64::consts::PI;
-use std::old_io::timer::Timer;
 use std::sync::{Arc, Mutex};
 use std::time::duration::Duration;
-use std::thread::spawn;
+use std::thread::{self, spawn};
 use std::sync::mpsc::{channel, Sender, SendError};
 use std::ops::Mul;
+use schedule_recv::periodic_ms;
 
 // Rust supports both shared-memory and actor models of concurrency, and the Integrator utilizes
 // both.  We use a Sender (actor model) to send the Integrator new functions, while we use a Mutex
@@ -25,7 +25,7 @@ use std::ops::Mul;
 // main task to block writes.  Unfortunately, unless you have significantly more reads than
 // writes (which is certainly not the case here), a Mutex will usually outperform a RwLock.
 pub struct Integrator<S: 'static, T: Send> {
-    input: Sender<Box<Fn(i64) -> S + Send>>,
+    input: Sender<Box<Fn(u32) -> S + Send>>,
     output: Arc<Mutex<T>>,
 }
 
@@ -38,7 +38,7 @@ pub struct Integrator<S: 'static, T: Send> {
 // complex.
 impl<S: Mul<f64, Output=T> + Float + Zero,
      T: 'static + Clone + Send + Float> Integrator<S, T> {
-    pub fn new(frequency: Duration) -> Integrator<S, T> {
+    pub fn new(frequency: u32) -> Integrator<S, T> {
         // We create a pipe allowing functions to be sent from tx (the sending end) to input (the
         // receiving end).  In order to change the function we are integrating from the task in
         // which the Integrator lives, we simply send the function through tx.
@@ -57,22 +57,14 @@ impl<S: Mul<f64, Output=T> + Float + Zero,
             output: s.clone(),
         };
         spawn(move || -> () {
-            // There is a reasonable argument for failure on failure to initialize the Timer, but
-            // it's essentially certain that if we return from the spawn this early main will
-            // detect that something is amiss.
-            let mut timer = match Timer::new() {
-                Ok(timer) => timer,
-                Err(_) => return
-            };
             // The frequency is how often we want to "tick" as we update our integrated total.  In
             // Rust, timers can yield Receivers that are periodically notified with an empty
             // message (where the period is the frequency).  This is useful because it lets us wait
             // on either a tick or another type of message (in this case, a request to change the
             // function we are integrating).
-            let periodic = timer.periodic(frequency);
-            let frequency_ms = frequency.num_milliseconds();
+            let periodic = periodic_ms(frequency);
             let mut t = 0;
-            let mut k: Box<Fn(i64) -> S + Send> = Box::new(|_| Zero::zero());
+            let mut k: Box<Fn(u32) -> S + Send> = Box::new(|_| Zero::zero());
             let mut k_0: S = Zero::zero();
             loop {
                 // Here's the selection we talked about above.  Note that we are careful to call
@@ -85,7 +77,7 @@ impl<S: Mul<f64, Output=T> + Float + Zero,
                 select! {
                     res = periodic.recv() => match res {
                         Ok(_) => {
-                            t += frequency_ms;
+                            t += frequency;
                             let k_1: S = k(t);
                             // Rust Mutexes are a bit different from Mutexes in many other
                             // languages, in that the protected data is actually encapsulated by
@@ -102,7 +94,7 @@ impl<S: Mul<f64, Output=T> + Float + Zero,
                             // additional subtleties around the actual implementation, but that's
                             // the basic idea.
                             let mut s = s.lock().unwrap();
-                            *s = *s + (k_1 + k_0) * (frequency_ms as f64 / 2.);
+                            *s = *s + (k_1 + k_0) * (frequency as f64 / 2.);
                             k_0 = k_1;
                         }
                         Err(_) => break,
@@ -117,8 +109,8 @@ impl<S: Mul<f64, Output=T> + Float + Zero,
         integrator
     }
 
-    pub fn input(&self, k: Box<Fn(i64) -> S + Send>) ->
-                Result<(), SendError<Box<Fn(i64) -> S + Send>>> {
+    pub fn input(&self, k: Box<Fn(u32) -> S + Send>) ->
+                Result<(), SendError<Box<Fn(u32) -> S + Send>>> {
         // The meat of the work is done in the other thread, so to set the
         // input we just send along the Sender we set earlier...
         self.input.send(k)
@@ -138,15 +130,14 @@ impl<S: Mul<f64, Output=T> + Float + Zero,
 // to 2pi * f * t, and then wait as described in the Rosetta stone problem.
 #[cfg(not(test))]
 fn integrate() -> f64 {
-    let object = Integrator::new(Duration::milliseconds(10));
-    let mut timer = Timer::new().unwrap();
-    object.input(Box::new(|t: i64| {
+    let object = Integrator::new(10);
+    object.input(Box::new(|t: u32| {
         let f = 1. / Duration::seconds(2).num_milliseconds() as f64;
         (2. * PI * f * t as f64).sin()
     })).ok().expect("Failed to set input");
-    timer.sleep(Duration::seconds(2));
+    thread::sleep_ms(2000);
     object.input(Box::new(|_| 0.)).ok().expect("Failed to set input");
-    timer.sleep(Duration::seconds(1) / 2);
+    thread::sleep_ms(500);
     object.output()
 }
 
@@ -156,19 +147,18 @@ fn main() {
 }
 
 #[test]
-#[ignore] // Will fail on a heavily loaded machine
+//#[ignore] // Will fail on a heavily loaded machine
 fn solution() {
     // We should just be able to call integrate, but can't represent the closure properly due to
     // rust-lang/rust issue #17060 if we make frequency or period a variable.
     // FIXME(pythonesque): When unboxed closures are fixed, fix integrate() to take two arguments.
-    let object = Integrator::new(Duration::milliseconds(10));
-    let mut timer = Timer::new().unwrap();
-    object.input(Box::new(|t: i64| {
+    let object = Integrator::new(10);
+    object.input(Box::new(|t: u32| {
         let f = 1. / (Duration::seconds(2) / 10).num_milliseconds() as f64;
         (2. * PI * f * t as f64).sin()
     })).ok().expect("Failed to set input");
-    timer.sleep(Duration::seconds(2) / 10);
+    thread::sleep_ms(200);
     object.input(Box::new(|_| 0.)).ok().expect("Failed to set input");
-    timer.sleep(Duration::seconds(1) / 10);
-    assert_eq!(object.output() as i64, 0)
+    thread::sleep_ms(100);
+    assert_eq!(object.output() as u32, 0)
 }

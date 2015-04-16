@@ -2,7 +2,6 @@
 //
 // Note that this solution only works on Unix.
 #![feature(libc)]
-#![cfg_attr(unix, feature(old_io))]
 #![cfg_attr(unix, feature(std_misc))]
 
 extern crate libc;
@@ -13,14 +12,12 @@ fn main()
 {
     use libc::consts::os::posix88::SIGINT;
     use libc::funcs::posix01::signal;
-    use std::old_io::timer::Timer;
     use std::mem;
     use std::sync::atomic::{AtomicBool, ATOMIC_BOOL_INIT, Ordering};
     use std::time::duration::Duration;
 
     // The time between ticks of our counter.
-    let duration = Duration::seconds(1) / 2;
-    let mut timer = Timer::new().unwrap();
+    let duration = 500u32; //Duration::seconds(1) / 2;
     // "SIGINT received" global variable.
     static mut GOT_SIGINT: AtomicBool = ATOMIC_BOOL_INIT;
     unsafe {
@@ -35,13 +32,13 @@ fn main()
         // Make handle_sigint the signal handler for SIGINT.
         signal::signal(SIGINT, mem::transmute(handle_sigint));
     }
-    let periodic = timer.periodic(duration);
     // Get the start time...
     let start = time::precise_time_ns();
     // Integer counter
     let mut i = 0u32;
     // Every `duration`...
-    for _ in periodic.iter() {
+    loop {
+        std::thread::sleep_ms(duration);
         // Break if SIGINT was handled
         if unsafe { GOT_SIGINT.load(Ordering::Acquire) } { break }
         // Otherwise, increment and display the integer and continue the loop.

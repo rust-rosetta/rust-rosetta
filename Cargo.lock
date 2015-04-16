@@ -4,15 +4,21 @@ version = "0.0.1"
 dependencies = [
  "num 0.1.22 (registry+https://github.com/rust-lang/crates.io-index)",
  "rand 0.3.7 (registry+https://github.com/rust-lang/crates.io-index)",
- "regex 0.1.27 (registry+https://github.com/rust-lang/crates.io-index)",
+ "regex 0.1.28 (registry+https://github.com/rust-lang/crates.io-index)",
  "regex_macros 0.1.15 (registry+https://github.com/rust-lang/crates.io-index)",
  "rustc-serialize 0.3.12 (registry+https://github.com/rust-lang/crates.io-index)",
+ "schedule_recv 0.0.1 (git+https://github.com/PeterReid/schedule_recv)",
  "time 0.1.24 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
 [[package]]
 name = "gcc"
 version = "0.3.4"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+
+[[package]]
+name = "lazy_static"
+version = "0.1.10"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 
 [[package]]
@@ -48,7 +54,7 @@ dependencies = [
 
 [[package]]
 name = "regex"
-version = "0.1.27"
+version = "0.1.28"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 
 [[package]]
@@ -56,13 +62,22 @@ name = "regex_macros"
 version = "0.1.15"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 dependencies = [
- "regex 0.1.27 (registry+https://github.com/rust-lang/crates.io-index)",
+ "regex 0.1.28 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
 [[package]]
 name = "rustc-serialize"
 version = "0.3.12"
 source = "registry+https://github.com/rust-lang/crates.io-index"
+
+[[package]]
+name = "schedule_recv"
+version = "0.0.1"
+source = "git+https://github.com/PeterReid/schedule_recv#3b4e52b7bbe4be70b0e20025d3ad51aadcab66e3"
+dependencies = [
+ "lazy_static 0.1.10 (registry+https://github.com/rust-lang/crates.io-index)",
+ "time 0.1.24 (registry+https://github.com/rust-lang/crates.io-index)",
+]
 
 [[package]]
 name = "time"
