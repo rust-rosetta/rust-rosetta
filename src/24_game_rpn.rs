@@ -1,6 +1,5 @@
 // Implements http://rosettacode.org/wiki/24_game
 // Uses RPN expression
-#![feature(str_words)]
 extern crate rand;
 
 #[cfg(not(test))]
@@ -38,7 +37,7 @@ fn main() {
 
 fn check_input(expr: &str, choices: &[u32]) -> Result<(), String> {
     let mut stack: Vec<u32> = Vec::new();
-    for token in expr.words() {
+    for token in expr.split_whitespace() {
         if is_operator(token) {
             let (a, b) = (stack.pop(), stack.pop());
             match (a, b) {

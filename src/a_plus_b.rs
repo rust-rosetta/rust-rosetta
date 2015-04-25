@@ -1,12 +1,11 @@
 // Implements http://rosettacode.org/wiki/A%2BB
-#![feature(str_words)]
 #![feature(slice_patterns)]
 use std::io;
 
 fn main() {
     let mut input = String::new();
     let _ = io::stdin().read_line(&mut input).unwrap();
-    let words = input.words().take(2)
+    let words = input.split_whitespace().take(2)
                             .map(|i| i.parse::<i32>().ok())
                             .collect::<Vec<Option<i32>>>();
 

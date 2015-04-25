@@ -1,5 +1,4 @@
 // Implements http://rosettacode.org/wiki/Kahan_summation
-#![feature(std_misc)]
 #![feature(collections)]
 extern crate num;
 
@@ -14,7 +13,7 @@ fn find_max(lst: &[f32]) -> Option<f32> {
 }
 
 fn with_bits(val: f32, digits: usize) -> f32 {
-    let num = std::f32::to_str_digits(val, digits);
+    let num = format!("{:.*}", digits, val);
     num.parse::<f32>().unwrap()
 }
 

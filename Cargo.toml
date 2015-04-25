@@ -52,7 +52,7 @@ authors = [
 
 [dependencies]
 regex = "*"
-regex_macros = "*"
+#regex_macros = "*"
 time = "*"
 rustc-serialize = "*"
 rand = "*"
@@ -61,13 +61,15 @@ num = "*"
 [dependencies.schedule_recv]
 git = "https://github.com/PeterReid/schedule_recv"
 
-[lib]
-# used by compile_time_calculation.rs
-# http://rosettacode.org/wiki/Compile-time_calculation
-name = "factorial_plugin"
-crate-type = ["dylib"]
-path = "src/factorial_plugin.rs"
-test = false
+## compiler plugins are not available in rust stable
+## this can only currently be compiled on nightly
+#[lib]
+## used by compile_time_calculation.rs
+## http://rosettacode.org/wiki/Compile-time_calculation
+#name = "factorial_plugin"
+#crate-type = ["dylib"]
+#path = "src/factorial_plugin.rs"
+#test = false
 
 [[bin]]
 # http://rosettacode.org/wiki/100_doors
@@ -101,8 +103,8 @@ path = "src/99_bottles_of_beer.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/9_billion_names_of_God_the_integer
-name = "9_billion_names_of_God_the_integer"
-path = "src/9_billion_names_of_God_the_integer.rs"
+name = "9_billion_names_of_god_the_integer"
+path = "src/9_billion_names_of_god_the_integer.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Arithmetic-geometric_mean
@@ -299,10 +301,12 @@ name = "command_line_arguments"
 path = "src/command_line_args.rs"
 test = false
 
-[[bin]]
-# http://rosettacode.org/wiki/Compile-time_calculation
-name = "compile_time_calculation"
-path = "src/compile_time_calculation.rs"
+## compiler plugins are not available in rust stable
+## this can only currently be compiled on nightly
+#[[bin]]
+## http://rosettacode.org/wiki/Compile-time_calculation
+#name = "compile_time_calculation"
+#path = "src/compile_time_calculation.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Arithmetic/Complex

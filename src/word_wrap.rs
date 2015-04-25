@@ -4,14 +4,11 @@
 // http://en.wikipedia.org/wiki/Word_wrap#Minimum_length
 
 // Implemented as a lazy String iterator, returning a wrapped line each time
-
-#![feature(str_words)]
-
-use std::str::Words;
 use std::mem::swap;
+use std::str::SplitWhitespace;
 
 pub struct WordWrap<'a> {
-    words: Words<'a>,
+    words: SplitWhitespace<'a>,
     line_length: usize,
     next_line: String
 }
@@ -19,7 +16,7 @@ pub struct WordWrap<'a> {
 impl<'a> WordWrap<'a> {
     fn new(text: &'a str, line_length: usize) -> WordWrap {
         WordWrap {
-            words : text.words(),
+            words : text.split_whitespace(),
             line_length : line_length,
             next_line: String::new(),
         }
