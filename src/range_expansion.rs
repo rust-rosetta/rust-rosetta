@@ -1,9 +1,4 @@
 // Implements http://rosettacode.org/wiki/Range_expansion
-#![feature(plugin)]
-#![plugin(regex_macros)]
-
-#[macro_use]
-
 extern crate regex;
 
 #[cfg(not(test))]
@@ -25,13 +20,14 @@ fn expand_range(range: &str) -> Vec<isize> {
 
 // Expand a single element, which can be a number or a range.
 fn expand_item(item: &str) -> Vec<isize> {
+    use regex::Regex;
     // Handle the case of a single number
-    for cap in regex!(r"^(-?\d+)$").captures_iter(item) {
+    for cap in Regex::new(r"^(-?\d+)$").unwrap().captures_iter(item) {
         return vec![cap.at(0).and_then(|s| s.parse().ok()).unwrap()]
     }
 
     // Handle the case of a range
-    for cap in regex!(r"^(-?\d+)-(-?\d+)$").captures_iter(item) {
+    for cap in Regex::new(r"^(-?\d+)-(-?\d+)$").unwrap().captures_iter(item) {
         let left: isize = cap.at(1).and_then(|s| s.parse().ok()).unwrap();
         let right: isize = cap.at(2).and_then(|s| s.parse().ok()).unwrap();
 

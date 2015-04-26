@@ -1,17 +1,13 @@
 // Dummy main library
 // It also contains a test module, which checks if all source files are covered by `Cargo.toml`
-#![feature(plugin)]
-
-#![plugin(regex_macros)]
-
 extern crate regex;
 
 #[allow(dead_code)]
-#[cfg(not(test))]
 fn main() { }
 
 #[cfg(test)]
 mod test {
+    use regex::Regex;
     use std::collections::HashSet;
     use std::io::{BufReader, BufRead};
     use std::fs::{self, File};
@@ -46,7 +42,7 @@ mod test {
     fn get_toml_paths() -> HashSet<String> {
         let c_toml = File::open("./Cargo.toml").unwrap();
         let reader = BufReader::new(c_toml);
-        let regex = regex!("path = \"(.*)\"");
+        let regex = Regex::new("path = \"(.*)\"").unwrap();
         reader.lines().filter_map(|l| {
             let l = l.unwrap();
             regex.captures(&l).map(|c| c.at(1).map(|s| Path::new(s))

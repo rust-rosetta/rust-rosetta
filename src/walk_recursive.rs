@@ -1,7 +1,4 @@
 // Implements http://rosettacode.org/wiki/Walk_a_directory/Recursively
-#![feature(plugin)]
-#![plugin(regex_macros)]
-#![cfg_attr(test, feature(std_misc))]
 extern crate regex;
 
 use regex::Regex;
@@ -28,5 +25,5 @@ fn walk<P>(pth: P, regex: &Regex) where P: AsRef<Path> {
 }
 
 fn main() {
-    walk(".", &regex!(r".*\.rs"));
+    walk(".", &Regex::new(r".*\.rs").unwrap());
 }

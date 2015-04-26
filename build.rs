@@ -4,9 +4,7 @@
 // In case we find a line that doesn't comply with this rules, the build will fail and indicate
 // the cause of the problem.
 
-#![feature(path_ext)]
-
-use std::fs::{self, File, PathExt};
+use std::fs::{self, File, metadata};
 use std::io::Read;
 use std::path::Path;
 
@@ -16,7 +14,7 @@ fn main() {
 
     for f in files {
         let path = f.path();
-        if path.is_file() {
+        if metadata(&path).unwrap().is_file() {
             check(&path);
         }
     }

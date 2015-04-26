@@ -1,12 +1,11 @@
 // Implements http://rosettacode.org/wiki/Arithmetic/Integer
-#![feature(str_words)]
 #![cfg_attr(not(test), feature(slice_patterns))]
 use std::io::stdin;
 
 fn main() {
     let mut input = String:: new();
     let _ = stdin().read_line(&mut input).unwrap();
-    let words = input.words().take(2)
+    let words = input.split_whitespace().take(2)
                                         .map(|s| s.parse().ok())
                                         .collect::<Vec<Option<i32>>>();
 

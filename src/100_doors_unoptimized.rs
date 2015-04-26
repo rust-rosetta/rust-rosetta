@@ -1,8 +1,6 @@
 // Implements http://rosettacode.org/wiki/100_doors
 // this is the unoptimized version that performs all 100
 // passes, as per the original description of the problem
-#![feature(core)]
-use std::iter::range_step_inclusive;
 
 #[cfg(not(test))]
 fn main() {
@@ -23,9 +21,11 @@ fn main() {
 // the states in place
 fn solve(doors: &mut [bool])  {
     for pass in 1..101 {
-        for door in range_step_inclusive(pass, 100, pass) {
+        let mut p = pass;
+        while p <= 100 {
             // flip the state of the door
-            doors[door-1] = !doors[door-1]
+            doors[p-1] = !doors[p-1];
+            p += pass;
         }
      }
 }
