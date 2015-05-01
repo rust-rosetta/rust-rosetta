@@ -44,6 +44,8 @@ path = "src/hailstone.rs"
 
 ## Contributing ##
 
+Please try to keep your contributions adherant to the official style guide which you can see at [this temporary location](http://aturon.github.io/).
+
 Here's an idea of what a workflow would look like (in general-ish):
 
 **If it's your first time**
