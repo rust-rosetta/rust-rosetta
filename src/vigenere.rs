@@ -37,7 +37,7 @@ fn vigenere(plaintext: &str, key: &str, encrypt: bool) -> String {
 
         output.push(output_byte as char);
     }
-    output    
+    output
 }
 
 fn to_sanitized_bytes(string: &str) -> Vec<u8> {
