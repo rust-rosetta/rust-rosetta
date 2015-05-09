@@ -2,8 +2,6 @@
 // Rust has a perfectly good Semaphore type already.  It lacks count(), though, so we can't use it
 // directly.
 
-#![feature(unsafe_destructor)]
-
 use std::sync::Arc;
 use std::sync::atomic::AtomicUsize;
 use std::sync::atomic::Ordering::SeqCst;
@@ -53,7 +51,6 @@ impl CountingSemaphore {
     }
 }
 
-#[unsafe_destructor]
 impl<'a> Drop for CountingSemaphoreGuard<'a> {
     // When the guard is dropped, a resource is released back to the pool.
     fn drop(&mut self) {
