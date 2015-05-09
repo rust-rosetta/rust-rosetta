@@ -1,6 +1,4 @@
 // Implements http://rosettacode.org/wiki/Vigen%C3%A8re_cipher
-#![feature(convert)]
-
 use std::ascii::AsciiExt;
 
 const ASCII_A: u8 = 'A' as u8;
@@ -11,7 +9,7 @@ fn main() {
     let key = "VIGENERECIPHER";
 
     let enc = vigenere(msg, key, true);
-    let dec = vigenere(enc.as_str(), key, false);
+    let dec = vigenere(&enc, key, false);
 
     println!("msg: {}", msg);
     println!("key: {}", key);
@@ -64,7 +62,7 @@ fn test_enc_dec() {
 
     let enc = vigenere(plaintext, key, true);
     assert_eq!("WMCEEIKLGRPIFVMEUGXQPWQVIOIAVEYXUEKFKBTALVXTGAFXYEVKPAGY", enc);
-    let dec = vigenere(enc.as_str(), key, false);
+    let dec = vigenere(&enc, key, false);
     assert_eq!("BEWARETHEJABBERWOCKMYSONTHEJAWSTHATBITETHECLAWSTHATCATCH", dec);
 }
 
@@ -77,7 +75,7 @@ fn test_equal_len_key_and_plaintext() {
 
     let enc = vigenere(plaintext, key, true);
     assert_eq!("MMNTVGVVGVTNMM", enc);
-    let dec = vigenere(enc.as_str(), key, false);
+    let dec = vigenere(&enc, key, false);
     assert_eq!(plaintext, dec);
 }
 
