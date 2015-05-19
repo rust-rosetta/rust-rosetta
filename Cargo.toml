@@ -948,6 +948,11 @@ path = "src/stderr.rs"
 test = false
 
 [[bin]]
+# http://rosettacode.org/wiki/Standard_deviation
+name = "stdev"
+path = "src/stdev.rs"
+
+[[bin]]
 # http://rosettacode.org/wiki/String_concatenation
 name = "string_concatenation"
 path = "src/string_concatenation.rs"
