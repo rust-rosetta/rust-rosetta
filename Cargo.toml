@@ -879,6 +879,11 @@ name = "rot13"
 path = "src/rot13.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/RSA_code
+name = "rsa_code"
+path = "src/rsa_code.rs"
+
+[[bin]]
 # http://rosettacode.org/wiki/Run-length_encoding
 name = "run_length_encoding"
 path = "src/run_length_encoding.rs"
