@@ -9,7 +9,7 @@ use num::traits::Zero;
 use num::Float;
 use std::f64::consts::PI;
 use std::sync::{Arc, Mutex};
-use std::time::duration::Duration;
+use time::Duration;
 use std::thread::{self, spawn};
 use std::sync::mpsc::{channel, Sender, SendError};
 use std::ops::Mul;
