@@ -146,6 +146,7 @@ fn main() {
     println!("{}", integrate());
 }
 
+#[ignore]
 #[test]
 //#[ignore] // Will fail on a heavily loaded machine
 fn solution() {
