@@ -1,7 +1,6 @@
 // Implements http://rosettacode.org/wiki/Handle_a_signal
 //
 // Note that this solution only works on Unix.
-#![feature(libc)]
 #![cfg_attr(unix, feature(std_misc))]
 
 extern crate libc;
