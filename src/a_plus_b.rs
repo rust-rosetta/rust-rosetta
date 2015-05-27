@@ -8,11 +8,12 @@ fn main() {
                             .map(|i| i.parse::<i32>().ok())
                             .collect::<Vec<Option<i32>>>();
 
-    let sum = words.iter().fold(0, |a, &b| {
-            if let Some(x) =  b { a + x }
-            else { panic!("Please enter 2 integers") }
-        }
-    );
+    let err_msg = "Please enter 2 integers";
+    let sum = if words.len() == 2 {
+        words[0].expect(err_msg) + words[1].expect(err_msg)
+    } else {
+        panic!(err_msg);
+    };
 
     println!("{}", sum);
 }
