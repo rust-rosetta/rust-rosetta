@@ -58,6 +58,7 @@ time = "*"
 rustc-serialize = "*"
 rand = "*"
 num = "*"
+libc="*"
 
 [dependencies.schedule_recv]
 git = "https://github.com/PeterReid/schedule_recv"

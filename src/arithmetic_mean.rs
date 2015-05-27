@@ -1,12 +1,11 @@
 // Implements http://rosettacode.org/wiki/Averages/Arithmetic_mean
-#![feature(core)]
 
 // The mean is not defined for an empty list, so we must return an Option
 fn mean(list: &[f64]) -> Option<f64> {
     match list.len() {
         0 => None,
         n => {
-            let sum = list.iter().map(|&x| x).sum::<f64>();
+            let sum = list.iter().fold(0f64, |a, &b| a + b);
             Some(sum / n as f64)
         }
     }
