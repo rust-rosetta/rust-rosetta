@@ -3,8 +3,6 @@ use std::usize;
 use std::collections::LinkedList;
 use std::iter::repeat;
 
-//enum Operation { Insert, Delete, Match, }
-
 // Returns the value of a 2D vector given a pair of indexes.
 // Returns the default value if indices are out of bounds.
 fn get_val(mat: &Vec<Vec<usize>>, r: usize, c: usize, default: usize) -> usize {
