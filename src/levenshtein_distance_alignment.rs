@@ -1,12 +1,7 @@
 // http://rosettacode.org/wiki/Levenshtein_distance/Alignment
-#![feature(str_char)]
-#![feature(core)]
-
 use std::usize;
 use std::collections::LinkedList;
 use std::iter::repeat;
-
-enum Operation { Insert, Delete, Match, }
 
 // Returns the value of a 2D vector given a pair of indexes.
 // Returns the default value if indices are out of bounds.
@@ -34,7 +29,7 @@ fn levenshtein_distance(s1: &str, s2: &str) -> (usize, String, String) {
     for row in (1..l1) {
         for col in (1..l2) {
             mat[row][col] =
-                if s1.char_at(row - 1) == s2.char_at(col - 1) {
+                if s1.chars().nth(row - 1).unwrap() == s2.chars().nth(col - 1).unwrap() {
                     mat[row - 1][col - 1]
                 } else {
                     let vals =
@@ -52,27 +47,21 @@ fn levenshtein_distance(s1: &str, s2: &str) -> (usize, String, String) {
         let ins = get_val(&mat, cur_row, cur_col - 1, usize::MAX);
         let del = get_val(&mat, cur_row - 1, cur_col, usize::MAX);
         let sub = get_val(&mat, cur_row - 1, cur_col - 1, usize::MAX);
-        let vals = vec![( sub , Operation::Match ),
-            ( ins , Operation::Insert ),
-            ( del , Operation::Delete )
-        ];
-        match vals.into_iter().min_by(|&(x, _)| { x }).unwrap() {
-            (_, Operation::Insert) => {
-                cur_col -= 1;
-                res1.push_front('-');
-                res2.push_front(s1.char_at(cur_col));
-            }
-            (_, Operation::Delete) => {
-                cur_row -= 1;
-                res1.push_front(s1.char_at(cur_row));
-                res2.push_front('-');
-            }
-            (_, Operation::Match) => {
-                cur_row -= 1;
-                cur_col -= 1;
-                res1.push_front(s1.char_at(cur_row));
-                res2.push_front(s2.char_at(cur_col));
-            }
+        let min_val = [sub, ins, del];
+        let min_val = min_val.into_iter().min().unwrap();
+        if *min_val == sub {
+            cur_row -= 1;
+            cur_col -= 1;
+            res1.push_front(s1.chars().nth(cur_row).unwrap());
+            res2.push_front(s2.chars().nth(cur_col).unwrap());
+        } else if *min_val == ins {
+            cur_col -= 1;
+            res1.push_front('-');
+            res2.push_front(s1.chars().nth(cur_col).unwrap());
+        } else if *min_val == del {
+            cur_row -= 1;
+            res1.push_front(s1.chars().nth(cur_row).unwrap());
+            res2.push_front('-');
         }
     }
     let aligned1: String = res1.into_iter().collect();

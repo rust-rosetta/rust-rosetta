@@ -1,7 +1,6 @@
 // Implements http://rosettacode.org/wiki/Handle_a_signal
 //
 // Note that this solution only works on Unix.
-#![feature(libc)]
 #![cfg_attr(unix, feature(std_misc))]
 
 extern crate libc;
@@ -14,7 +13,7 @@ fn main()
     use libc::funcs::posix01::signal;
     use std::mem;
     use std::sync::atomic::{AtomicBool, ATOMIC_BOOL_INIT, Ordering};
-    use std::time::duration::Duration;
+    use time::duration::Duration;
 
     // The time between ticks of our counter.
     let duration = 500u32; //Duration::seconds(1) / 2;

@@ -9,7 +9,7 @@ use num::traits::Zero;
 use num::Float;
 use std::f64::consts::PI;
 use std::sync::{Arc, Mutex};
-use std::time::duration::Duration;
+use time::Duration;
 use std::thread::{self, spawn};
 use std::sync::mpsc::{channel, Sender, SendError};
 use std::ops::Mul;
@@ -147,7 +147,7 @@ fn main() {
 }
 
 #[test]
-//#[ignore] // Will fail on a heavily loaded machine
+#[ignore] // Will fail on a heavily loaded machine
 fn solution() {
     // We should just be able to call integrate, but can't represent the closure properly due to
     // rust-lang/rust issue #17060 if we make frequency or period a variable.

@@ -1,5 +1,4 @@
 // Implements http://rosettacode.org/wiki/A%2BB
-#![feature(slice_patterns)]
 use std::io;
 
 fn main() {
@@ -9,9 +8,11 @@ fn main() {
                             .map(|i| i.parse::<i32>().ok())
                             .collect::<Vec<Option<i32>>>();
 
-    let sum = match &words[..] {
-        [Some(x), Some(y)] => x + y,
-            _ => panic!("Please enter 2 integers")
+    let err_msg = "Please enter 2 integers";
+    let sum = if words.len() == 2 {
+        words[0].expect(err_msg) + words[1].expect(err_msg)
+    } else {
+        panic!(err_msg);
     };
 
     println!("{}", sum);

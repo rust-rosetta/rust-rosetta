@@ -1,6 +1,4 @@
 // Implements http://rosettacode.org/wiki/Call_a_foreign-language_function
-#![feature(libc)]
-
 extern crate libc;
 
 use libc::c_char;
