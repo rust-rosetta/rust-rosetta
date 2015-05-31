@@ -49,6 +49,7 @@ authors = [
     "Peter Jacobs, https://github.com/crespyl",
     "Alex Globus, https://github.com/aglobus",
     "Tair Rzayev, https://github.com/tairrzayev",
+    "Mathieu David, https://github.com/azerupi",
 ]
 
 [dependencies]
@@ -374,6 +375,12 @@ test = false
 # http://rosettacode.org/wiki/Empty_program
 name = "empty"
 path = "src/empty.rs"
+test = false
+
+[[bin]]
+# http://rosettacode.org/wiki/Empty_directory
+name = "empty_directory"
+path = "src/empty_directory.rs"
 test = false
 
 [[bin]]
