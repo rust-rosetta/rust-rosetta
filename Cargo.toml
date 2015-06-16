@@ -50,6 +50,7 @@ authors = [
     "Alex Globus, https://github.com/aglobus",
     "Tair Rzayev, https://github.com/tairrzayev",
     "Mathieu David, https://github.com/azerupi",
+    "Keiichi Watanabe, https://github.com/kw-udon",
 ]
 
 [dependencies]
@@ -625,6 +626,11 @@ path = "src/kahansum.rs"
 # http://rosettacode.org/wiki/Knapsack_problem/0-1
 name = "knapsack_0-1"
 path = "src/knapsack_0-1.rs"
+
+[[bin]]
+# http://rosettacode.org/wiki/Knight's_tour
+name = "knights_tour"
+path = "src/knights_tour.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Leap_year
