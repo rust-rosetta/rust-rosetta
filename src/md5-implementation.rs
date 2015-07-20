@@ -4,7 +4,6 @@
 * on Wikipedia https://en.wikipedia.org/wiki/MD5
 */
 #![feature(step_by)]
-#![feature(collections)]
 
 use std::num::Wrapping as wr;
 use std::fmt::{Debug, Formatter, Result};
@@ -94,7 +93,7 @@ fn md5(initial_msg: &[u8]) -> MD5
     }
 
     // append the len in bits at the end of the buffer.
-    msg.push_all(&to_bytes(initial_len << 3));
+    msg.extend(&to_bytes(initial_len << 3));
 
     assert_eq!(msg.len() % 64, 0);
 

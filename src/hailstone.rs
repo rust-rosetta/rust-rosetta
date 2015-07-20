@@ -1,6 +1,6 @@
 // Implements http://rosettacode.org/wiki/Hailstone_sequence
 // Define a struct which stores the state for the iterator.
-#![feature(core)]
+#![feature(iter_cmp)]
 
 struct Hailstone {
     next: usize, // Accessible only to the current module.

@@ -13,7 +13,7 @@ fn main()
     use libc::funcs::posix01::signal;
     use std::mem;
     use std::sync::atomic::{AtomicBool, ATOMIC_BOOL_INIT, Ordering};
-    use time::duration::Duration;
+    use time::Duration;
 
     // The time between ticks of our counter.
     let duration = 500u32; //Duration::seconds(1) / 2;

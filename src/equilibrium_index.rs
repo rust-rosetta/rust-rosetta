@@ -1,11 +1,10 @@
 // http://rosettacode.org/wiki/Equilibrium_index
-#![feature(core)]
 extern crate num;
 
 use num::traits::Zero;
 
 fn equilibrium_indices(v: &[i32]) -> Vec<usize> {
-    let mut right = v.iter().map(|&x| x).sum();
+    let mut right = v.iter().fold(0, |a, &b| a + b);
     let mut left = i32::zero();
 
     v.iter().enumerate().fold(vec![], |mut out, (i, &el)| {

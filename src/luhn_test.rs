@@ -1,25 +1,29 @@
 // Implements http://rosettacode.org/wiki/Luhn_test_of_credit_card_numbers
-#![feature(core)]
+struct Digits {
+    m: u64
+}
 
-use std::iter::Unfold;
+impl Iterator for Digits {
+    type Item = u64;
 
-#[derive(Copy, Clone)]
-enum LuhnState { Even, Odd, }
-
-type Digits = Unfold<u64, fn(&mut u64) -> Option<u64>>;
-
-fn digits(n: u64) -> Digits {
-    fn state(s: &mut u64) -> Option<u64> {
-       match *s {
+    fn next(&mut self) -> Option<u64> {
+        match self.m {
            0 => None,
            n => {
                let ret = n % 10;
-               *s = n / 10;
+               self.m = n / 10;
                Some(ret)
            }
        }
     }
-    Unfold::new(n, state as fn(&mut u64) -> Option<u64>)
+}
+
+#[derive(Copy, Clone)]
+enum LuhnState { Even, Odd, }
+
+
+fn digits(n: u64) -> Digits {
+    Digits{m: n}
 }
 
 fn luhn_test(n: u64) -> bool {

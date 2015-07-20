@@ -25,7 +25,7 @@ impl Solver {
         (0..idx).map(|i| &r[i+1] - &r[i])
                      .map(|n| n.to_string())
                      .collect::<Vec<String>>()
-                     .connect(", ")
+                     .join(", ")
     }
 
     // Convenience method to access the last column in a culmulated calculation
