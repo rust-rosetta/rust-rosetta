@@ -1,7 +1,7 @@
 // Implements http://rosettacode.org/wiki/SHA-1
 // straight port from golang crypto/sha1
 // library implementation
-#![feature(core)]
+#![feature(slice_bytes)]
 
 use std::num::Wrapping as wr;
 use std::slice::bytes::copy_memory;

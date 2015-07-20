@@ -8,7 +8,6 @@
 // we're using here was the fourth type I tried but the first to produce acceptable performance
 // (previously I tried, in order, std::sync::RwLock, std::sync::Mutex, and std::sync::Semaphore)
 // and this type still appears to have quite a bit of overhead.
-#![feature(core)]
 extern crate rand;
 
 use rand::{Rng, weak_rng};
@@ -223,9 +222,9 @@ fn display(bl: &buckets::Buckets, running: &AtomicBool, original_total: usize,
         // Get a consistent snapshot
         let (s, tc) = bl.snapshot();
         // Sum up the buckets
-        let sum = s.iter().map( |&i| i ).sum::<usize>();
+        let sum = s.iter().fold(0, |a, &b| a + b);
         // Sum up the transfers.
-        let n_transfers = tc.iter().map( |&i| i ).sum::<usize>();
+        let n_transfers = tc.iter().fold(0, |a, &b| a + b);
         // Print the relevant information.
         println!("{:?}, {}, {:?}, {}", tc, n_transfers, s, sum);
         // Check the invariant, failing if necessary.

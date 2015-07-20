@@ -1,5 +1,4 @@
 // Implements http://rosettacode.org/wiki/Fibonacci_word
-#![feature(collections)]
 use entropy::shannon_entropy;
 mod entropy;
 
@@ -8,8 +7,8 @@ mod entropy;
 // and the second one its entropy
 fn fib_words(amount: usize) -> Vec<(usize, f64)> {
     let mut data = Vec::with_capacity(amount);
-    let mut previous = String::from_str("1");
-    let mut next = String::from_str("0");
+    let mut previous = String::from("1");
+    let mut next = String::from("0");
 
     // The first two words (we need to add them manually because
     // they are the base of the sequence)

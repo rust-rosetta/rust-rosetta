@@ -1,5 +1,5 @@
 // Implements http://rosettacode.org/wiki/Active_object
-#![feature(std_misc)]
+#![feature(mpsc_select)]
 
 extern crate time;
 extern crate num;

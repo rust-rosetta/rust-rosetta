@@ -1,9 +1,7 @@
 // http://rosettacode.org/wiki/Monte_Carlo_methods
 
-#![feature(core)]
 extern crate rand;
 use rand::Rng;
-use std::iter::iterate;
 
 #[inline]
 fn inside_circle(p:(f64, f64)) -> i64 {
@@ -25,7 +23,7 @@ fn simulate(time: i64) -> f64 {
 
 #[cfg(not(test))]
 pub fn main() {
-    for i in iterate(1000, |x| x*10).take(5) {
+    for i in (3..9).map(|a| 10i64.pow(a)) {
         println!("{:10}:{:.10}" , i, 4f64 * simulate(i));
     }
 }

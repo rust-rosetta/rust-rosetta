@@ -2,7 +2,7 @@
 
 // modeled after the scala solution
 // http://rosettacode.org/wiki/24_game/Solve#Scala
-#![feature(collections)]
+#![feature(permutations)]
 #![feature(slice_patterns)]
 
 extern crate num;

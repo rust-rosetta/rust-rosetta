@@ -1,11 +1,11 @@
 // Implements http://rosettacode.org/wiki/Reverse_words_in_a_string
 
 fn rev_words(line: &str) -> String {
-    line.split_whitespace().rev().collect::<Vec<&str>>().connect(" ")
+    line.split_whitespace().rev().collect::<Vec<&str>>().join(" ")
 }
 
 fn rev_words_on_lines(text: &str) -> String {
-     text.lines().map(rev_words).collect::<Vec<String>>().connect("\n")
+     text.lines().map(rev_words).collect::<Vec<String>>().join("\n")
 }
 
 #[cfg(not(test))]

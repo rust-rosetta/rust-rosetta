@@ -1,5 +1,5 @@
 // http://rosettacode.org/wiki/Sudoku
-#![feature(core)]
+#![feature(iter_cmp)]
 #![feature(step_by)]
 use std::fmt;
 use std::str::FromStr;

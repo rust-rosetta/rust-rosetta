@@ -1,5 +1,5 @@
 // Implements http://rosettacode.org/wiki/Kahan_summation
-#![feature(collections)]
+#![feature(permutations)]
 extern crate num;
 
 use std::f32;
