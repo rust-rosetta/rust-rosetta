@@ -1046,7 +1046,7 @@ test = false
 # http://rosettacode.org/wiki/Unix/ls
 name = "unix_ls"
 path = "src/unix_ls.rs"
-test = "false"
+test = false
 
 [[bin]]
 # http://rosettacode.org/wiki/Vigen%C3%A8re_cipher
