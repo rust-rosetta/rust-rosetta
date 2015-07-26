@@ -51,6 +51,7 @@ authors = [
     "Tair Rzayev, https://github.com/tairrzayev",
     "Mathieu David, https://github.com/azerupi",
     "Keiichi Watanabe, https://github.com/kw-udon",
+    "ZoomRmc, https://github.com/zoomrmc",
 ]
 
 [dependencies]
@@ -1040,6 +1041,12 @@ path = "src/tic_tac_toe.rs"
 name = "towers_of_hanoi"
 path = "src/towers_of_hanoi.rs"
 test = false
+
+[[bin]]
+# http://rosettacode.org/wiki/Unix/ls
+name = "unix_ls"
+path = "src/unix_ls.rs"
+test = "false"
 
 [[bin]]
 # http://rosettacode.org/wiki/Vigen%C3%A8re_cipher
