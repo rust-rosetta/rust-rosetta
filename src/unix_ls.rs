@@ -15,13 +15,11 @@ fn main() {
 }
 
 fn print_files(path:&Path) {
-    let mut entries: Vec<String> = fs::read_dir(path).unwrap()
-        .map(|x|
-            x.unwrap().path() // DirEntry to PathBuf
-            .file_name().unwrap() // trim to file name
-            .to_os_string()
-            .into_string().unwrap()
-        ).collect(); // collecting Vec of file names
+    let mut entries: Vec<_> = fs::read_dir(path).unwrap()
+        .map(|x| x.unwrap().file_name())
+        .collect();
     entries.sort();
-    for x in entries {println!("{}", x); }
+    for x in entries {
+        println!("{}", x.to_string_lossy());
+    }
 }
