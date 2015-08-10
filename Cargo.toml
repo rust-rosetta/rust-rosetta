@@ -52,6 +52,7 @@ authors = [
     "Mathieu David, https://github.com/azerupi",
     "Keiichi Watanabe, https://github.com/kw-udon",
     "ZoomRmc, https://github.com/zoomrmc",
+    "Robin Stumm, https://github.com/dermetfan"
 ]
 
 [dependencies]
@@ -324,6 +325,11 @@ test = false
 name = "concurrent_computing"
 path = "src/concurrent_computing.rs"
 test = false
+
+[[bin]]
+# http://rosettacode.org/wiki/Convert_seconds_to_compound_duration
+name = "convert_seconds_to_compound_duration"
+path = "src/convert_seconds_to_compound_duration.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Count_in_octal
