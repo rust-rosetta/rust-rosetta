@@ -52,6 +52,7 @@ authors = [
     "Mathieu David, https://github.com/azerupi",
     "Keiichi Watanabe, https://github.com/kw-udon",
     "ZoomRmc, https://github.com/zoomrmc",
+    "Robin Stumm, https://github.com/dermetfan"
 ]
 
 [dependencies]
@@ -110,6 +111,11 @@ path = "src/99_bottles_of_beer.rs"
 # http://rosettacode.org/wiki/9_billion_names_of_God_the_integer
 name = "9_billion_names_of_god_the_integer"
 path = "src/9_billion_names_of_god_the_integer.rs"
+
+[[bin]]
+# http://rosettacode.org/wiki/Address_of_a_variable
+name = "address_of_a_variable"
+path = "src/address_of_a_variable.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Arithmetic-geometric_mean
@@ -324,6 +330,11 @@ test = false
 name = "concurrent_computing"
 path = "src/concurrent_computing.rs"
 test = false
+
+[[bin]]
+# http://rosettacode.org/wiki/Convert_seconds_to_compound_duration
+name = "convert_seconds_to_compound_duration"
+path = "src/convert_seconds_to_compound_duration.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Count_in_octal
