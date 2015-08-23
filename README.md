@@ -62,10 +62,15 @@ Here's an idea of what a workflow would look like (in general-ish):
 * Update your fork ([Details](https://help.github.com/articles/syncing-a-fork))
 * Create a branch that is reasonably unique:
     - `git branch hoverbear-hailstone`
+* Switch to your newly created branch:
+    - `git checkout hoverbear-hailstone`
 * Make your changes for this problem.
     - Add the new definition to the `Cargo.toml`
     - Add one code file with the appropriate name to the `src/` directory. If you need any data there is a separate folder for that.
     - Make sure to include unit tests for us, and comments! :)
+* Stage your changes for commit, adding new and modified files to it:
+    - `git add /src/new_file.rs`
+    - `git add Cargo.toml`
 * Check `git status` to make sure you don't mangle anything else.
 * Commit your changes 
     - `git commit -a -m "Implement blah blah blah"`
