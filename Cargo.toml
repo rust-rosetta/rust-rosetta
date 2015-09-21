@@ -52,6 +52,7 @@ authors = [
     "Mathieu David, https://github.com/azerupi",
     "Keiichi Watanabe, https://github.com/kw-udon",
     "ZoomRmc, https://github.com/zoomrmc",
+    "Kevin Darlington, https://github.com/kdar",
 ]
 
 [dependencies]
@@ -62,6 +63,7 @@ rustc-serialize = "*"
 rand = "*"
 num = "*"
 libc="*"
+rustbox = "*"
 
 [dependencies.schedule_recv]
 git = "https://github.com/PeterReid/schedule_recv"
@@ -85,6 +87,11 @@ path = "src/100_doors.rs"
 # http://rosettacode.org/wiki/100_doors
 name = "100_doors_unoptimized"
 path = "src/100_doors_unoptimized.rs"
+
+[[bin]]
+# http://rosettacode.org/wiki/2048
+name = "2048"
+path = "src/2048.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/24_game
