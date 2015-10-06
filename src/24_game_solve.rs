@@ -2,12 +2,13 @@
 
 // modeled after the scala solution
 // http://rosettacode.org/wiki/24_game/Solve#Scala
-#![feature(permutations)]
 #![feature(slice_patterns)]
 
 extern crate num;
+extern crate permutohedron;
 use num::rational::{Ratio, Rational};
 use num::traits::Zero;
+use permutohedron::Heap;
 // convenience macro to create a fixed-sized vector
 // of rationals by writing:
 // rational![1, 2, ...] instead of
@@ -33,7 +34,8 @@ fn solve(r: &mut[Rational], target_val: isize) -> Option<String> {
         for &(res, ref ops) in &all_ops {
             if res==Ratio::from_integer(target_val) {return Some(ops.to_string());}
         }
-        if ! r.next_permutation() {return None;}
+        let mut perm = Heap::new(r);
+        if perm.next_permutation() == None {return None;}
     }
 }
 // applies all the valid combinations of + - * and / to the
@@ -59,6 +61,7 @@ fn compute_all_operations(l: &[Rational]) -> Vec<(Rational, String)> {
         }
     }
 }
+
 #[test]
 fn test_rationals_macro() {
     assert_eq!(

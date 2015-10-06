@@ -64,6 +64,8 @@ rand = "*"
 num = "*"
 libc="*"
 rustbox = "*"
+permutohedron = "*"
+eventual = "*"
 
 [dependencies.schedule_recv]
 git = "https://github.com/PeterReid/schedule_recv"
