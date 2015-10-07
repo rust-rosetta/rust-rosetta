@@ -6,7 +6,7 @@
 extern crate test;
 extern crate eventual;
 
-use eventual::Future;
+use eventual::{Future, Async};
 use prime_decomposition::factor;
 
 mod prime_decomposition;
