@@ -53,6 +53,7 @@ authors = [
     "Keiichi Watanabe, https://github.com/kw-udon",
     "ZoomRmc, https://github.com/zoomrmc",
     "Kevin Darlington, https://github.com/kdar",
+    "Andy Russell, https://github.com/euclio",
 ]
 
 [dependencies]
@@ -522,6 +523,11 @@ path = "src/happy_numbers.rs"
 name = "harshad_or_niven_series"
 path = "src/harshad_or_niven_series.rs"
 test = false
+
+[[bin]]
+# http://rosettacode.org/wiki/Hash_from_two_arrays
+name = "hash_from_two_arrays"
+path = "src/hash_from_two_arrays.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Hash_join
