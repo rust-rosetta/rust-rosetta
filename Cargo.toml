@@ -67,9 +67,10 @@ time = "*"
 rustc-serialize = "*"
 rand = "*"
 num = "*"
-libc="*"
+libc = "0.1.0"
 permutohedron = "*"
 eventual = "*"
+hyper = "0.6.15"
 
 # dependency does not compile on Windows, currently only used for 2048
 rustbox = { version = "*", optional = true }
@@ -935,6 +936,11 @@ path = "src/roots_of_a_function.rs"
 # http://rosettacode.org/wiki/Roots_of_unity
 name = "roots_of_unity"
 path = "src/roots_of_unity.rs"
+
+[[bin]]
+# http://rosettacode.org/wiki/Rosetta_Code/Find_unimplemented_tasks
+name = "rosetta_code_find_unimplemented_tasks"
+path = "src/rosetta_code/find_unimplemented_tasks.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Rot-13
