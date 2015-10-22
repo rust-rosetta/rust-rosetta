@@ -1,9 +1,11 @@
 // Implements http://rosettacode.org/wiki/Kahan_summation
-#![feature(permutations)]
 extern crate num;
+extern crate permutohedron;
 
 use std::f32;
 use num::Float;
+use permutohedron::Heap;
+
 
 fn find_max(lst: &[f32]) -> Option<f32> {
     if lst.is_empty() { return None }
@@ -30,9 +32,9 @@ fn kahan_sum(lst: &[f32]) -> Option<f32> {
 }
 
 
-fn all_sums(vec: &[f32]) -> Vec<f32> {
+fn all_sums(vec: &mut [f32]) -> Vec<f32> {
     let mut res = Vec::new();
-    let mut perms = vec.permutations();
+    let mut perms = Heap::new(vec);
     loop {
         let v = perms.next();
         match v {
@@ -52,7 +54,7 @@ fn all_sums(vec: &[f32]) -> Vec<f32> {
 #[cfg(not(test))]
 fn main() {
     let v = [10000.0f32, 3.14159, 2.71828];
-    let sums = all_sums(&v);
+    let sums = all_sums(&mut v.clone());
     let res = kahan_sum(&v).unwrap();
     let max = find_max(&sums[..]).unwrap();
     println!("max: {} res: {}", max, res);
@@ -61,7 +63,7 @@ fn main() {
 #[test]
 fn test_kahansum() {
     let v = [10000.0f32, 3.14159, 2.71828];
-    let sums = all_sums(&v);
+    let sums = all_sums(&mut v.clone());
     let res = kahan_sum(&v).unwrap();
     let max = find_max(&sums[..]).unwrap();
     assert!(max < res);

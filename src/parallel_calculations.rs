@@ -2,13 +2,11 @@
 // See http://static.rust-lang.org/doc/master/guide-tasks.html for information
 // about tasks, channels, future, etc.
 #![cfg_attr(test, feature(test))]
-#![feature(future)]
-
-#![cfg_attr(test, feature(test))]
 #[cfg(test)]
 extern crate test;
+extern crate eventual;
 
-use std::sync::Future;
+use eventual::{Future, Async};
 use prime_decomposition::factor;
 
 mod prime_decomposition;
@@ -41,17 +39,16 @@ fn largest_min_factor_chan(numbers: &[usize]) -> usize {
 }
 
 // Returns the largest minimal factor of the numbers in a slice
-// The function is implemented using the Future struct
+// The function is implemented using the Future struct from crate "eventual"
 fn largest_min_factor_fut(numbers: &[usize]) -> usize {
     // We will save the future values of the minimal factor in the results vec
-    let mut results: Vec<Future<usize>> = (0..numbers.len()).map(
-		|i| {
-			let number = numbers[i];
-			Future::spawn(move || { min_factor(number) })
-		}).collect();
-
+    let results: Vec<Future<usize, ()>>  = (0..numbers.len()).map(
+        |i| {
+            let number = numbers[i];
+            Future::spawn(move || { min_factor(number) })
+        }).collect();
     // Get the largest minimal factor of all results
-    results.iter_mut().map(|r| r.get()).max().unwrap()
+    results.into_iter().map(|f| f.await().ok().unwrap() ).max().unwrap()
 }
 
 #[cfg(not(test))]
