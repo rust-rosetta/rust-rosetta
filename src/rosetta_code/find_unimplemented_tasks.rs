@@ -10,9 +10,9 @@ use hyper::header::Connection;
 use rustc_serialize::json::Json;
 
 #[derive(Clone, PartialEq, Eq, Hash, Debug)]
-struct Task {
-    id: String,
-    title: String,
+pub struct Task {
+    pub id: String,
+    pub title: String,
 }
 
 struct Category {
@@ -91,10 +91,14 @@ impl Iterator for Category {
     }
 }
 
-fn unimplemented_tasks(lang: &str) -> Vec<Task> {
-    let all_tasks = Category::new("Programming Tasks")
+pub fn all_tasks() -> Vec<Task> {
+    Category::new("Programming Tasks")
         .flat_map(|tasks| tasks)
-        .collect::<HashSet<_>>();
+        .collect()
+}
+
+pub fn unimplemented_tasks(lang: &str) -> Vec<Task> {
+    let all_tasks = all_tasks().iter().cloned().collect::<HashSet<_>>();
     let implemented_tasks = Category::new(lang)
         .flat_map(|tasks| tasks)
         .collect::<HashSet<_>>();
