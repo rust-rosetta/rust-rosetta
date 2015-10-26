@@ -1,4 +1,4 @@
-// Implements http://rosettacode.org/wiki/Call_an_object_method
+// http://rosettacode.org/wiki/Call_an_object_method
 
 struct Foo;
 

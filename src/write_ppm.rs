@@ -1,4 +1,4 @@
-// Implements http://rosettacode.org/wiki/Write_ppm_file
+// http://rosettacode.org/wiki/Write_ppm_file
 extern crate rand;
 
 use std::fs::File;

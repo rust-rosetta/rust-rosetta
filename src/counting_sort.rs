@@ -1,4 +1,4 @@
-// Implements http://rosettacode.org/wiki/Sorting_algorithms/Counting_sort
+// http://rosettacode.org/wiki/Sorting_algorithms/Counting_sort
 
 fn counting_sort(array: &mut [i32], min: i32, max: i32) {
 

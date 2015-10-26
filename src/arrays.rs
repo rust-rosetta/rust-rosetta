@@ -1,4 +1,4 @@
-// Implements http://rosettacode.org/wiki/Arrays
+// http://rosettacode.org/wiki/Arrays
 
 #[cfg(not(test))]
 fn main() {}

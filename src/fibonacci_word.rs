@@ -1,4 +1,4 @@
-// Implements http://rosettacode.org/wiki/Fibonacci_word
+// http://rosettacode.org/wiki/Fibonacci_word
 use entropy::shannon_entropy;
 mod entropy;
 

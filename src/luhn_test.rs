@@ -1,4 +1,4 @@
-// Implements http://rosettacode.org/wiki/Luhn_test_of_credit_card_numbers
+// http://rosettacode.org/wiki/Luhn_test_of_credit_card_numbers
 struct Digits {
     m: u64
 }

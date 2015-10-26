@@ -1,4 +1,4 @@
-// Implements http://rosettacode.org/wiki/Hello_world/Standard_error
+// http://rosettacode.org/wiki/Hello_world/Standard_error
 use std::io::{self, Write};
 
 fn main() {

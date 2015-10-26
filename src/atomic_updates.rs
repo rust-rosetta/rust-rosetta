@@ -1,4 +1,4 @@
-// Implements http://rosettacode.org/wiki/Atomic_updates
+// http://rosettacode.org/wiki/Atomic_updates
 //
 // This is mostly a straight port of the D version.  Originally, the "non-locking" Go solution was
 // tried, because it was supposed to be faster than the version with Mutexes, but my experience was

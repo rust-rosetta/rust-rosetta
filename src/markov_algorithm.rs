@@ -1,4 +1,4 @@
-// Solution for http://rosettacode.org/wiki/Execute_a_Markov_algorithm
+// http://rosettacode.org/wiki/Execute_a_Markov_algorithm
 
 #![feature(str_char)]
 // Individual markov rule

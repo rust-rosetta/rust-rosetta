@@ -1,4 +1,4 @@
-// Implements http://rosettacode.org/wiki/Letter_frequency
+// http://rosettacode.org/wiki/Letter_frequency
 #![cfg_attr(not(test), feature(io))]
 
 #[cfg(not(test))]

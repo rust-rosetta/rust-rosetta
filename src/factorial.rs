@@ -1,4 +1,4 @@
-// Implements http://rosettacode.org/wiki/Factorial
+// http://rosettacode.org/wiki/Factorial
 #![cfg_attr(test, feature(test))]
 
 // Calculate the factorial using recursion

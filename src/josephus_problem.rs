@@ -1,4 +1,4 @@
-// Implements http://rosettacode.org/wiki/Josephus_problem
+// http://rosettacode.org/wiki/Josephus_problem
 
 
 // implementation based on observation:

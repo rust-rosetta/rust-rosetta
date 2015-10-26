@@ -1,5 +1,5 @@
-// Implements http://rosettacode.org/wiki/24_game
-// with a recursive descent parser for a simple calculator (+ - * /)
+// http://rosettacode.org/wiki/24_game
+// Implements with a recursive descent parser for a simple calculator (+ - * /)
 // using the shunting yard algorithm as explained on
 // http://www.engr.mun.ca/~theo/Misc/exp_parsing.htm
 // It follows operator precedence (i.e. 2 + 3 * 3 = 11),

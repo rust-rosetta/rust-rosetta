@@ -1,4 +1,4 @@
-// Implements http://rosettacode.org/wiki/Input_loop
+// http://rosettacode.org/wiki/Input_loop
 use std::io::{self, BufRead};
 
 fn main() {

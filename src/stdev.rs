@@ -1,4 +1,4 @@
-// Implements http://rosettacode.org/wiki/Standard_deviation
+// http://rosettacode.org/wiki/Standard_deviation
 struct StDev {
     len: usize,
     sum: f32,

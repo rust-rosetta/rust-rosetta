@@ -1,4 +1,4 @@
-// Implements http://rosettacode.org/wiki/IBAN
+// http://rosettacode.org/wiki/IBAN
 extern crate num;
 
 use num::bigint::{BigInt, ToBigInt};

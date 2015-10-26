@@ -1,4 +1,4 @@
-// Implements http://rosettacode.org/wiki/Hailstone_sequence
+// http://rosettacode.org/wiki/Hailstone_sequence
 // Define a struct which stores the state for the iterator.
 #![feature(iter_cmp)]
 

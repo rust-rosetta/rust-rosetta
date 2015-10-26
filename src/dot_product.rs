@@ -1,4 +1,4 @@
-// Implements http://rosettacode.org/wiki/Dot_product
+// http://rosettacode.org/wiki/Dot_product
 extern crate num;
 
 use num::traits::Zero;

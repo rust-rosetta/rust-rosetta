@@ -1,4 +1,4 @@
-// Implements http://rosettacode.org/wiki/Loops/Infinite
+// http://rosettacode.org/wiki/Loops/Infinite
 
 fn main() {
     loop {

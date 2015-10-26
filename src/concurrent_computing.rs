@@ -1,4 +1,4 @@
-// Implements http://rosettacode.org/wiki/Concurrent_computing
+// http://rosettacode.org/wiki/Concurrent_computing
 extern crate rand;
 use std::thread::sleep_ms;
 use rand::random;

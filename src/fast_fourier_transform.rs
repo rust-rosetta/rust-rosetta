@@ -1,4 +1,4 @@
-// Implements http://rosettacode.org/wiki/Fast_Fourier_transform
+// http://rosettacode.org/wiki/Fast_Fourier_transform
 extern crate num;
 
 use std::f32::consts::PI;

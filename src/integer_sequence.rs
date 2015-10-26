@@ -1,4 +1,4 @@
-// Implements http://rosettacode.org/wiki/Integer_sequence
+// http://rosettacode.org/wiki/Integer_sequence
 
 extern crate num;
 

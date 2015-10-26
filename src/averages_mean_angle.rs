@@ -1,4 +1,4 @@
-// Implements http://rosettacode.org/wiki/Averages/Mean_angle
+// http://rosettacode.org/wiki/Averages/Mean_angle
 
 use std::f64::consts::PI;
 

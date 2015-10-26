@@ -75,6 +75,9 @@ hyper = "0.6.15"
 # dependency does not compile on Windows, currently only used for 2048
 rustbox = { version = "*", optional = true }
 
+[build-dependencies]
+regex = "0.1.41"
+
 [dependencies.schedule_recv]
 git = "https://github.com/PeterReid/schedule_recv"
 

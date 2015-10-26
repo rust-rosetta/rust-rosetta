@@ -1,4 +1,4 @@
-// Implements http://rosettacode.org/wiki/Handle_a_signal
+// http://rosettacode.org/wiki/Handle_a_signal
 //
 // Note that this solution only works on Unix.
 #![cfg_attr(unix, feature(std_misc))]

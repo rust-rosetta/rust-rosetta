@@ -1,4 +1,4 @@
-// Implements http://rosettacode.org/wiki/Factors_of_an_integer
+// http://rosettacode.org/wiki/Factors_of_an_integer
 
 #[cfg(not(test))]
 fn main() {

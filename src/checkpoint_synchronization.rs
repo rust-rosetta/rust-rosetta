@@ -1,4 +1,4 @@
-// Implements http://rosettacode.org/wiki/Checkpoint_synchronization
+// http://rosettacode.org/wiki/Checkpoint_synchronization
 //
 // We implement this task using Rust's Barriers.  Barriers are simply thread
 // synchronization points--if a task waits at a barrier, it will not continue

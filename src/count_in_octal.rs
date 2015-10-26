@@ -1,4 +1,4 @@
-// Implements http://rosettacode.org/wiki/Count_in_octal
+// http://rosettacode.org/wiki/Count_in_octal
 #![feature(range_inclusive)]
 
 use std::u8;

@@ -1,4 +1,4 @@
-// Implements http://rosettacode.org/wiki/String_interpolation
+// http://rosettacode.org/wiki/String_interpolation
 
 #[cfg(not(test))]
 fn main() {

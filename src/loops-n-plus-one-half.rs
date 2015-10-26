@@ -1,4 +1,4 @@
-// Implements http://rosettacode.org/wiki/Loops/N_plus_one_half
+// http://rosettacode.org/wiki/Loops/N_plus_one_half
 
 
 fn main() {

@@ -1,4 +1,4 @@
-// Implements http://rosettacode.org/wiki/Short-circuit_evaluation
+// http://rosettacode.org/wiki/Short-circuit_evaluation
 
 fn a(x: bool) -> bool {
     println!("Inside function a");

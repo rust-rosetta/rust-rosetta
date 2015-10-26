@@ -1,4 +1,4 @@
-// Implements http://rosettacode.org/wiki/DNS_query
+// http://rosettacode.org/wiki/DNS_query
 #![feature(lookup_host)]
 use std::io;
 use std::net::{Ipv4Addr, Ipv6Addr};

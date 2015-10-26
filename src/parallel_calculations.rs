@@ -1,4 +1,4 @@
-// Implements http://rosettacode.org/wiki/Parallel_calculations
+// http://rosettacode.org/wiki/Parallel_calculations
 // See http://static.rust-lang.org/doc/master/guide-tasks.html for information
 // about tasks, channels, future, etc.
 #![cfg_attr(test, feature(test))]

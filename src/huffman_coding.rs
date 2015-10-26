@@ -1,6 +1,5 @@
-
+// http://rosettacode.org/wiki/Huffman_coding
 // Implement data structures for a Huffman encoding tree:
-//   http://rosettacode.org/wiki/Huffman_coding
 use std::collections::HashMap;
 use std::collections::hash_map::Entry::{Occupied, Vacant};
 use std::collections::BinaryHeap;

@@ -1,4 +1,4 @@
-// Implements http://rosettacode.org/wiki/Currying
+// http://rosettacode.org/wiki/Currying
 
 // add_n returns a a boxed unboxed closure.
 

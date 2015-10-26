@@ -1,3 +1,4 @@
+// http://rosettacode.org/wiki/Accumulator_factory
 use std::ops::Add;
 
 pub fn accum<'a, T>(mut n: T) -> Box<FnMut(T) -> T + 'a>

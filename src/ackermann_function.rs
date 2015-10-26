@@ -1,4 +1,4 @@
-// Implements http://rosettacode.org/wiki/Ackermann_function
+// http://rosettacode.org/wiki/Ackermann_function
 
 fn ack(m: isize, n: isize) -> isize {
     if m == 0 {

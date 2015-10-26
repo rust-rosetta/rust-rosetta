@@ -1,4 +1,4 @@
-// Implements http://rosettacode.org/wiki/Guess_the_number
+// http://rosettacode.org/wiki/Guess_the_number
 extern crate rand;
 use rand::{thread_rng, Rng};
 use std::io::stdin;

@@ -1,4 +1,4 @@
-// Implements http://rosettacode.org/wiki/N-queens_problem
+// http://rosettacode.org/wiki/N-queens_problem
 #![feature(test)]
 
 extern crate test;

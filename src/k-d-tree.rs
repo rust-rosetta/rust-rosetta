@@ -1,4 +1,4 @@
-// Implements http://rosettacode.org/wiki/K-d_tree
+// http://rosettacode.org/wiki/K-d_tree
 
 extern crate time;
 extern crate rand;

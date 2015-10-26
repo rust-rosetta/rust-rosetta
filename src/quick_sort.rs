@@ -1,4 +1,4 @@
-//Implements http://rosettacode.org/wiki/Sorting_algorithms/Quicksort
+// http://rosettacode.org/wiki/Sorting_algorithms/Quicksort
 // Used by the tests
 
 

@@ -1,4 +1,4 @@
-// Implements http://rosettacode.org/wiki/2048
+// http://rosettacode.org/wiki/2048
 //
 // Based on the C++ version: http://rosettacode.org/wiki/2048#C.2B.2B
 // Uses rustbox (termbox) to draw the board.
