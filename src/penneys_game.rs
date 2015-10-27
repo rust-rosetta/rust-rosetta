@@ -77,10 +77,10 @@ fn main() {
     }
     println!("Tossing coins...");
     let mut coins = String::new();
-        for _ in (0..2) { //toss first 2 coins
-            coins.push(toss_coin(true));
-            std::thread::sleep_ms(500);
-        }
+    for _ in (0..2) { //toss first 2 coins
+        coins.push(toss_coin(true));
+        std::thread::sleep_ms(500);
+    }
     loop {
         coins.push(toss_coin(true));
         std::thread::sleep_ms(500);
