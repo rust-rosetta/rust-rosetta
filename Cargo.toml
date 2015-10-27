@@ -805,6 +805,12 @@ name = "pascals_triangle"
 path = "src/pascals_triangle.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/Penney's_game
+name = "penneys_game"
+path = "src/penneys_game.rs"
+test = false
+
+[[bin]]
 # http://rosettacode.org/wiki/Perfect_numbers
 name = "perfect_numbers"
 path = "src/perfect_numbers.rs"
