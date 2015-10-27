@@ -899,6 +899,12 @@ name = "rps_game"
 path = "src/rock_paper_scissors.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/Averages/Root_mean_square
+name = "root_mean_square"
+path = "src/root_mean_square.rs"
+test = true
+
+[[bin]]
 # http://rosettacode.org/wiki/Roots_of_a_function
 name = "roots_of_a_function"
 path = "src/roots_of_a_function.rs"
