@@ -3,14 +3,17 @@
 // Based on the C++ version: http://rosettacode.org/wiki/2048#C.2B.2B
 // Uses rustbox (termbox) to draw the board.
 
+//mod added for conditional compilation
+#[cfg(feature = "2048")]
+mod mod2048 {
 extern crate rustbox;
 extern crate rand;
 
 use std::default::Default;
 use std::fmt;
-use rand::distributions::{IndependentSample, Range};
-use rustbox::{Color, RustBox};
-use rustbox::Key as RKey;
+use self::rand::distributions::{IndependentSample, Range};
+use self::rustbox::{Color, RustBox};
+use self::rustbox::Key as RKey;
 
 #[derive(PartialEq, Clone)]
 enum Direction {
@@ -448,7 +451,7 @@ impl<'a> Game<'a> {
   }
 }
 
-fn main() {
+pub fn main() {
   let rustbox = match RustBox::init(Default::default()) {
     Result::Ok(v) => v,
     Result::Err(e) => panic!("{}", e),
@@ -458,3 +461,11 @@ fn main() {
   let mut game = Game::new(&ui);
   game.run();
 }
+}
+
+#[cfg(feature = "2048")]
+fn main() { mod2048::main(); }
+
+// main to make the compiler happy when 2048 feature is disabled.
+#[cfg(not(feature = "2048"))]
+fn main() {}

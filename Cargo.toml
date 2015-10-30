@@ -57,6 +57,9 @@ authors = [
     "Andy Russell, https://github.com/euclio",
 ]
 
+[features]
+2048 = ["rustbox"]
+
 [dependencies]
 regex = "*"
 #regex_macros = "*"
@@ -65,9 +68,11 @@ rustc-serialize = "*"
 rand = "*"
 num = "*"
 libc="*"
-rustbox = "*"
 permutohedron = "*"
 eventual = "*"
+
+# dependency does not compile on Windows, currently only used for 2048
+rustbox = { version = "*", optional = true }
 
 [dependencies.schedule_recv]
 git = "https://github.com/PeterReid/schedule_recv"
