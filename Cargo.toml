@@ -58,7 +58,7 @@ authors = [
 ]
 
 [features]
-2048 = ["rustbox"]
+unixOnly = ["rustbox"]
 
 [dependencies]
 regex = "*"

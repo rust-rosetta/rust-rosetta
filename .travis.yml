@@ -2,5 +2,5 @@ language: rust
 rust: nightly
 sudo: false
 script:
-    - cargo build --features "2048" --verbose
-    - cargo test --features "2048" --verbose
+    - cargo build --features "unixOnly" --verbose
+    - cargo test --features "unixOnly" --verbose
