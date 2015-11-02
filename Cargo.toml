@@ -35,6 +35,7 @@ authors = [
     "Joshua Skootsky, https://github.com/JoshuaSkootsky",
     "James Hurst, https://github.com/jamesrhurst",
     "Yukang Chen, https://github.com/chenyukang",
+    "Rahul Sharma, https://github.com/creativcoder",
     "Rootul Patel, https://github.com/rootulp",
     "Frank McSherry, http://github.com/frankmcsherry",
     "Bartosz Marcinkowski, https://github.com/bm371613",
@@ -893,6 +894,11 @@ test = false
 # http://rosettacode.org/wiki/Repeat_a_string
 name = "repeat_str"
 path = "src/repeat_str.rs"
+
+[[bin]]
+# http://rosettacode.org/wiki/Globally_replace_text_in_several_files
+name = "replace_word"
+path = "src/replace_word.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Reverse_words_in_a_string
