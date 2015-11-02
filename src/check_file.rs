@@ -1,7 +1,5 @@
 // Implements http://rosettacode.org/wiki/Check_that_file_exists
-#![feature(path_ext)]
 use std::path::Path;
-use std::fs::PathExt;
 
 fn main() {
     let paths = ["input.txt", "docs"];

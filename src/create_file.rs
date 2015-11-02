@@ -1,5 +1,4 @@
 // Implements http://rosettacode.org/wiki/Create_a_file
-#![cfg_attr(test, feature(path_ext))]
 use std::fs::{self, File};
 
 #[cfg(not(test))]
@@ -32,7 +31,6 @@ fn main () {
 
 #[test]
 fn test_create_file() {
-    use std::fs::PathExt;
     use std::path::Path;
 
     let build_dir = Path::new("build-tests");
