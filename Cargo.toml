@@ -622,7 +622,7 @@ path = "src/isaac.rs"
 [[bin]]
 # http://rosettacode.org/wiki/Jensen's_Device
 name = "jensens_device"
-spath = "src/jensens_device.rs"
+path = "src/jensens_device.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Josephus_problem
