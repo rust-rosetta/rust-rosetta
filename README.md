@@ -72,7 +72,7 @@ Here's an idea of what a workflow would look like (in general-ish):
     - `git add /src/new_file.rs`
     - `git add Cargo.toml`
 * Check `git status` to make sure you don't mangle anything else.
-* Commit your changes 
+* Commit your changes
     - `git commit -a -m "Implement blah blah blah"`
 * Submit a [Pull request](https://help.github.com/articles/creating-a-pull-request) here.
 
@@ -81,3 +81,29 @@ Here's an idea of what a workflow would look like (in general-ish):
 * Delete the branch.
 
 If this is unclear or you're having difficulties, just open an issue, we'd love to help.
+
+## Testing ##
+
+If you are contributing a problem to this repository please try to include a test so we can verify correctness. Here are some guidelines:
+
+* Try to keep tests under 5 seconds on your machine (some problems require longer, that's fine). Do not include tests which may cause system instability (For example: forkbombs).
+* The testing code should demonstrate invocation and result of the completed task, not the task itself.
+  * For example, if the task takes parameters, the `#[test]` should create the necessary values and pass them in.
+  * Remember to test for failure, too. I.E. If you're reading a file line by line, what happens if a file doesn't exist? One of Rust's biggest benefits is how it handles errors, show it off!
+* Only talk to servers Rosetta code specifically directs you to.
+* Do not download files unless that **is** the task. If that is the case make sure to delete the files afterwards.
+* Do not execute anything unless that **is** the task. Do not execute anything as root.
+* Do not depend on root privileges.
+* Your testing code should be as simple as possible. Ideally it would look similar to this:
+
+```rust
+#[test]
+fn test_file_exists {
+    // ... Instantiate your necessary values (if there are enough to warrant it!) to pass in.
+    let foo = 1;
+    // ... Invoke your task and store the result.
+    let result = my_task(foo);
+    // ... Assert, unwrap, match, etc.
+    assert_eq!(result, expected);
+}
+```
