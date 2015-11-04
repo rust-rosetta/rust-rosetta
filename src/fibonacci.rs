@@ -37,7 +37,7 @@ fn fib_tail_recursive(n: u64) -> u64 {
 fn fib_iterative(n: u64) -> u64 {
     let (mut cur, mut next) = (0u64, 1u64);
 
-    for _ in (0u64..n) {
+    for _ in 0u64..n {
         let tmp = cur + next;
         cur = next;
         next = tmp;

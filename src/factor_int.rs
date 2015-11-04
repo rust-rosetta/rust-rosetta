@@ -19,7 +19,7 @@ fn factor_int(x: i32) -> Vec<i32> {
 
     let bound: i32 = (x as f64).sqrt().floor() as i32;
 
-    for i in (1i32..bound) {
+    for i in 1i32..bound {
         if x % i == 0 {
             factors.push(i);
             factors.push(x/i);

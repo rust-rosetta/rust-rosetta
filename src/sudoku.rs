@@ -63,12 +63,12 @@ impl fmt::Display for Sudoku {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         let hbar = "+---+---+---+";
 
-        for y in (0 .. BOARD_HEIGHT) {
+        for y in 0 .. BOARD_HEIGHT {
             if y % GROUP_HEIGHT == 0 {
                 try!(writeln!(f, "{}", hbar));
             }
 
-            for x in (0 .. BOARD_WIDTH) {
+            for x in 0 .. BOARD_WIDTH {
                 if x % GROUP_WIDTH == 0 {
                     try!(write!(f, "|"));
                 }
@@ -97,8 +97,8 @@ fn solve_sudoku(mut puzzle: Sudoku) -> Vec<Sudoku> {
 
         // If the number at cell (x, y) is uniquely determined, that number must
         // not have appeared at the cells in the same row/column/group.
-        for y in (0 .. BOARD_HEIGHT) {
-            for x in (0 .. BOARD_WIDTH) {
+        for y in 0 .. BOARD_HEIGHT {
+            for x in 0 .. BOARD_WIDTH {
                 if puzzle.map[y][x].count_ones() != 1 { continue }
 
                 let (x0, y0) = ((x / GROUP_WIDTH) * GROUP_WIDTH,
@@ -120,11 +120,11 @@ fn solve_sudoku(mut puzzle: Sudoku) -> Vec<Sudoku> {
 
         // If `n` appears only once at the cell in the row/column/group, the
         // number of the cell must be `n`.
-        for n in (0 .. MAX_NUMBER) {
+        for n in 0 .. MAX_NUMBER {
             let bit = 1 << n;
 
             // Check each rows
-            for y in (0 .. BOARD_HEIGHT) {
+            for y in 0 .. BOARD_HEIGHT {
                 let next = {
                     let mut it = (0 .. BOARD_WIDTH)
                         .filter(|&x| puzzle.map[y][x] & bit != 0);
@@ -136,7 +136,7 @@ fn solve_sudoku(mut puzzle: Sudoku) -> Vec<Sudoku> {
             }
 
             // Check each column
-            for x in (0 .. BOARD_WIDTH) {
+            for x in 0 .. BOARD_WIDTH {
                 let next = {
                     let mut it = (0 .. BOARD_HEIGHT)
                         .filter(|&y| puzzle.map[y][x] & bit != 0);
@@ -187,7 +187,7 @@ fn solve_sudoku(mut puzzle: Sudoku) -> Vec<Sudoku> {
         .unwrap();
 
     let mut answers = vec![];
-    for n in (0 .. MAX_NUMBER) {
+    for n in 0 .. MAX_NUMBER {
         let bit = 1 << n;
         if puzzle.map[y][x] & bit == 0 { continue }
 

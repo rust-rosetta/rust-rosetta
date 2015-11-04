@@ -22,7 +22,7 @@ fn get_kprimes(k: usize, amount: usize) -> Vec<usize> {
 
 #[cfg(not(test))]
 fn main() {
-    for k in (1..6) {
+    for k in 1..6 {
         println!("k = {}: {:?}", k, get_kprimes(k, 10));
     }
 }

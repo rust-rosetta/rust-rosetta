@@ -103,8 +103,8 @@ fn hough(image: &ImageGray8, out_width: usize, out_height: usize) -> ImageGray8 
 
     // Process input image in raster order
 
-    for y in (0..in_height) {
-        for x in (0..in_width) {
+    for y in 0..in_height {
+        for x in 0..in_width {
             let in_idx = y*in_width+x;
             let col = image.data[in_idx];
             if col == 255 {

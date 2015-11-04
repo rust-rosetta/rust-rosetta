@@ -39,7 +39,7 @@ fn generate_brackets(num: usize) -> String {
 
 #[cfg(not(test))]
 fn main() {
-    for i in (0..10) {
+    for i in 0..10 {
         let brackets = generate_brackets(i);
 
         println!("{}    {}", brackets, brackets.is_balanced())

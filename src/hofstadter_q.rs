@@ -45,7 +45,7 @@ fn main() {
     println!("H(1) = 1");
     println!("H(2) = 1");
     // Print the rest of the sequence.
-    for i in (3..1+upto) {
+    for i in 3..1+upto {
         println!("H({}) = {}", i, it.next().unwrap());
     }
 }
@@ -59,7 +59,7 @@ fn test_first_ten() {
     // Test that the first ten values are as expected
     // The first two values are hardcoded, so no need to test those.
     let hofstadter_q_expected = vec![2,3,3,4,5,5,6,6];
-    for i in (0..8) {
+    for i in 0..8 {
         assert_eq!(hofstadter_q_expected[i], it.next().unwrap());
     }
 }
@@ -74,7 +74,7 @@ fn test_thousandth() {
     let mut it = hof.take(upto - 2);
     let expected: usize = 502;
     // Test that the upto-th term is as expected.
-    for _ in (3..upto) {
+    for _ in 3..upto {
         it.next();
     }
     assert_eq!(expected, it.next().unwrap());

@@ -22,7 +22,7 @@ fn pascaltriangle(rows: usize) -> Vec<Vec<usize>> {
 fn printpascal(rows: &Vec<Vec<usize>>) {
     let mut i = 0;
     for row in rows.iter() {
-        for _ in (0..(rows.len() - i)) {
+        for _ in 0..(rows.len() - i) {
             print!(" ");
         }
 

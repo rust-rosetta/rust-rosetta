@@ -16,7 +16,7 @@ fn fib_words(amount: usize) -> Vec<(usize, f64)> {
     data.push((next.len(), shannon_entropy(&next[..])));
 
     // The rest of the words
-    for _ in (3..amount + 1) {
+    for _ in 3..(amount + 1) {
         let temp = next.clone();
         next.push_str(&previous[..]);
         previous = temp;

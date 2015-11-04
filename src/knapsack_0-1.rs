@@ -85,9 +85,9 @@ fn knap_01_dp<'a>(xs: &[Want<'a>], max_weight: usize) -> Vec<Want<'a>> {
 		.take(xs_len + 1).collect();
 
     // loop over the items
-    for i in (0..xs_len) {
+    for i in 0..xs_len {
         // loop over the weights
-        for w in (1..max_weight + 1) {
+        for w in 1..(max_weight + 1) {
             // do we have room in our knapsack?
             if xs[i].weight > w {
                 // if we don't, then we'll say that the value doesn't change

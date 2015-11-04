@@ -28,7 +28,7 @@ mod test {
     fn check_sort<T: PartialOrd>(v: &mut [T]) {
         super::bubble_sort(v);
 
-        for i in (1..v.len()) {
+        for i in 1..v.len() {
             assert!(v[i - 1] <= v[i]);
         }
     }
