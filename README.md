@@ -37,7 +37,7 @@ Then add the entry in *lexicographical* ordering into [`Cargo.toml`](./Cargo.tom
 
 ```toml
 [[bin]]
-# http://rosettacode.org/wiki/wiki/FizzBuzz
+# http://rosettacode.org/wiki/FizzBuzz
 name = "fizzbuzz"
 path = "src/fizzbuzz.rs"
 ```
