@@ -25,7 +25,7 @@ Looking to help out? Great, thanks! We have a few guidelines:
 ### Requirements ###
 * Your code should build cleanly on latest nightly provided by [`rustup.sh`](http://doc.rust-lang.org/book/installing-rust.html)
 * Please, use [rustfmt](https://github.com/nrc/rustfmt) tool on your code. 
-If it's not possible, try to keep your contributions adherant to the official style guide which you can see at [this location](http://doc.rust-lang.org/nightly/style/). The style guide is still a work-in-progress, so there may be small differences.
+If it's not possible, try to keep your contributions adherent to the official style guide which you can see at [this location](http://doc.rust-lang.org/nightly/style/). The style guide is still a work-in-progress, so there may be small differences.
 * Include a link to the Rosetta Code Problem at the top of the code sample like this:
 
 ```rust
