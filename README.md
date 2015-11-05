@@ -9,7 +9,7 @@ A repository for completing [this issue on mozilla/rust](https://github.com/mozi
 
 [List of Tasks Remaining](http://rosettacode.org/wiki/Reports:Tasks_not_implemented_in_Rust)
 
-> Important: Not all `rust-rosetta` tasks exist in their current form on Rosetta Code. Please double check before you start.
+> Important: Not all `rust-rosetta` tasks exist in their current form on Rosetta Code. Please cross-check with this repository before you start.
 
 ## Tasks Complete ##
 
@@ -19,33 +19,30 @@ All tasks that have been completed are listed (along with a link to the problem)
 Looking to help out? Great, thanks! We have a few guidelines:
 
 * The code you contribute *is* public domain.
-* Your code should build cleanly latest nightly provided by [`rustup.sh`](http://doc.rust-lang.org/book/installing-rust.html)
-* Keep your code as simple as possible, please avoid Dead Code warnings.
 * Don't be afraid of comments, the code is going to be written once, read hundreds of times, and maintained until past the 1.0 release of Rust.
-* Include a link to the Rosetta Code Problem at the top of the code sample.
-* Add a line to the `Cargo.toml` below. (It's alphabetical!)
+* Keep your code as simple as possible, please avoid Dead Code warnings.
 
-
-The top of your code should look like this:
+### Requirements ###
+* Your code should build cleanly on latest nightly provided by [`rustup.sh`](http://doc.rust-lang.org/book/installing-rust.html)
+* Please, use [rustfmt](https://github.com/nrc/rustfmt) tool on your code. 
+If it's not possible, try to keep your contributions adherent to the official style guide which you can see at [this location](http://doc.rust-lang.org/nightly/style/). The style guide is still a work-in-progress, so there may be small differences.
+* Include a link to the Rosetta Code Problem at the top of the code sample like this:
 
 ```rust
-// http://rosettacode.org/wiki/foo
+// http://rosettacode.org/wiki/FizzBuzz
 ```
-If you'd like, you're welcome to add your contact details, name, or other information as well.
-
+* When implementing a new task, add the following to the `Cargo.toml` (It's alphabetical!):
+If you'd like, you're welcome to add your contact details, name, or other information first.
 Then add the entry in *lexicographical* ordering into [`Cargo.toml`](./Cargo.toml) like this:
 
 ```toml
 [[bin]]
-# http://rosettacode.org/wiki/Hailstone_sequence
-name = "hailstone"
-path = "src/hailstone.rs"
+# http://rosettacode.org/wiki/FizzBuzz
+name = "fizzbuzz"
+path = "src/fizzbuzz.rs"
 ```
 
-## Contributing ##
-
-Please try to keep your contributions adherant to the official style guide which you can see at [this location](http://doc.rust-lang.org/nightly/style/). The style guide is still a work-in-progress, so there may be small differences.
-
+### Contributing process ###
 Here's an idea of what a workflow would look like (in general-ish):
 
 **If it's your first time**
@@ -61,9 +58,9 @@ Here's an idea of what a workflow would look like (in general-ish):
 * Make sure you're on `master` branch.
 * Update your fork ([Details](https://help.github.com/articles/syncing-a-fork))
 * Create a branch that is reasonably unique:
-    - `git branch hoverbear-hailstone`
+    - `git branch hoverbear-fizzbuzz`
 * Switch to your newly created branch:
-    - `git checkout hoverbear-hailstone`
+    - `git checkout hoverbear-fizzbuzz`
 * Make your changes for this problem.
     - Add the new definition to the `Cargo.toml`
     - Add one code file with the appropriate name to the `src/` directory. If you need any data there is a separate folder for that.
