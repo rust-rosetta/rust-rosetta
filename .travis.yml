@@ -1,3 +1,6 @@
 language: rust
 rust: nightly
 sudo: false
+script:
+    - cargo build --features "unixOnly" --verbose
+    - cargo test --features "unixOnly" --verbose
