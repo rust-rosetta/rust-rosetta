@@ -218,7 +218,7 @@ fn display(bl: &buckets::Buckets, running: &AtomicBool, original_total: usize,
     println!("transfers, N. transfers, buckets, buckets sum:");
 
     let duration = duration / nticks;
-    for _ in (0..nticks) {
+    for _ in 0..nticks {
         // Get a consistent snapshot
         let (s, tc) = bl.snapshot();
         // Sum up the buckets

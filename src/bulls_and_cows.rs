@@ -63,7 +63,7 @@ fn calculate_score(given_digits: &[u32], guessed_digits: &[u32]) ->
     (usize, usize) {
     let mut bulls = 0;
     let mut cows = 0;
-    for i in (0..NUMBER_OF_DIGITS) {
+    for i in 0..NUMBER_OF_DIGITS {
         let pos = guessed_digits.iter()
             .position(|&a| a == given_digits[i]);
 

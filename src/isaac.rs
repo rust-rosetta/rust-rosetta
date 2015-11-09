@@ -66,7 +66,7 @@ impl Isaac {
         self.cc = self.cc + w(1);
         self.bb = self.bb + self.cc;
 
-        for i in (0..256) {
+        for i in 0..256 {
             let w(x) = self.mm[i];
             match i%4 {
                 0 => self.aa = self.aa ^ self.aa << 13,
@@ -89,7 +89,7 @@ impl Isaac {
     {
         let mut a_v = [w(0x9e3779b9u32); 8];
 
-        for _ in (0..4) {
+        for _ in 0..4 {
             // scramble it
             mix_v!(a_v);
         }
@@ -98,18 +98,18 @@ impl Isaac {
         // fill in mm[] with messy stuff
             if flag {
                 // use all the information in the seed
-                for j in (0..8) { a_v[j] = a_v[j] + self.rand_rsl[i+j]; }
+                for j in 0..8 { a_v[j] = a_v[j] + self.rand_rsl[i+j]; }
             }
             mix_v!(a_v);
-            for j in (0..8) { self.mm[i+j] = a_v[j]; }
+            for j in 0..8 { self.mm[i+j] = a_v[j]; }
         }
 
         if flag {
             // do a second pass to make all of the seed affect all of mm
             for i in (0..256).step_by(8) {
-                for j in (0..8) { a_v[j] = a_v[j] + self.mm[i+j]; }
+                for j in 0..8 { a_v[j] = a_v[j] + self.mm[i+j]; }
                 mix_v!(a_v);
-                for j in (0..8) { self.mm[i+j] = a_v[j]; }
+                for j in 0..8 { self.mm[i+j] = a_v[j]; }
             }
         }
 
@@ -130,10 +130,10 @@ impl Isaac {
 
     // Seed ISAAC with a string
     fn seed(&mut self, seed: &str, flag: bool) {
-        for i in (0..256) { self.mm[i] = w(0); }
-        for i in (0..256) { self.rand_rsl[i] = w(0); }
+        for i in 0..256 { self.mm[i] = w(0); }
+        for i in 0..256 { self.rand_rsl[i] = w(0); }
 
-        for i in (0..seed.len()) {
+        for i in 0..seed.len() {
             self.rand_rsl[i] = w(seed.as_bytes()[i] as u32);
         }
         // initialize ISAAC with seed

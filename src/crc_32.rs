@@ -9,9 +9,9 @@ fn main() {
 fn crc(bytes: &[u8]) -> u32 {
     // Store the CRC of all possible 256 one byte values in table
     let mut table: [u32; 256] = [0; 256];
-    for i in (0..table.len()) {
+    for i in 0..table.len() {
         let mut word = i as u32;
-        for _ in (0..8) {
+        for _ in 0..8 {
             if word & 1 == 1 {
                 word = (word >> 1) ^ 0xedb88320
             } else {

@@ -13,7 +13,7 @@ fn binomial(n: usize, mut k: usize) -> BigUint {
 
     // Compute the coefficient
     let mut res: BigUint = One::one();
-    for i in (1..k + 1) {
+    for i in 1..(k + 1) {
         let m: BigUint = (n - k + i).to_biguint().unwrap();
         res = res * m;
         let d: BigUint = (i).to_biguint().unwrap();
@@ -40,4 +40,3 @@ fn test_binomial() {
     assert_eq!(binomial(300, 30),
         BigUint::from_str_radix("173193226149263513034110205899732811401360", 10).unwrap());
 }
-

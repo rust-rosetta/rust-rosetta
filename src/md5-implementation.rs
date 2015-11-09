@@ -63,7 +63,7 @@ impl Debug for MD5 {
 fn to_bytes(val: u64) -> [u8; 8]
 {
     let mut tmp:[u8; 8] = [0u8; 8];
-    for i in (0..8) {
+    for i in 0..8 {
         tmp[i] = (val >> (8*i)) as u8;
     }
     tmp
@@ -88,7 +88,7 @@ fn md5(initial_msg: &[u8]) -> MD5
     let mut msg = initial_msg.to_vec();
     msg.push(0x80u8); // append the "1" bit; most significant bit is "first"
 
-    for _ in (initial_len + 1..new_len) {
+    for _ in (initial_len + 1)..new_len {
         msg.push(0); // append "0" bits
     }
 
@@ -102,7 +102,7 @@ fn md5(initial_msg: &[u8]) -> MD5
     //for each 512-bit chunk of message:
     for offset in (0u64..new_len).step_by(512/8) {
         // break chunk into sixteen 32-bit words w[j], 0 ≤ j ≤ 15
-        for i in (0u32..16) {
+        for i in 0u32..16 {
             let j = i as usize * 4 + offset as usize;
             w[i as usize] =
                     (msg[j]   as u32)      |

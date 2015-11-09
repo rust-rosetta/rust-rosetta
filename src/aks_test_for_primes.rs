@@ -8,7 +8,7 @@ pub fn is_prime(p: u32) -> bool {
     } else {
         let mut c = coefficients(p as usize);
         c[0] -= 1;
-        for i in (0..(c.len() + 1) / 2) {
+        for i in 0..(c.len() + 1) / 2 {
             if (c[i] % (p as i64)) != 0 {
                 return false
             }
@@ -37,7 +37,7 @@ fn coefficients(p: usize) -> Vec<i64> {
     } else {
         let mut result = vec![1, -1];
         let zero = Some(0i64);
-        for _ in (1..p) {
+        for _ in 1..p {
             result = {
                 let a = result.iter().chain(zero.iter());
                 let b = zero.iter().chain(result.iter());
