@@ -17,7 +17,7 @@ fn factorial_iterative(n: usize) -> usize {
 // Calculate the factorial using a for loop
 fn factorial_loop(n: usize) -> usize {
     let mut fac = 1;
-    for x in (1..n+1) {
+    for x in 1..n + 1 {
         fac *= x;
     }
     fac

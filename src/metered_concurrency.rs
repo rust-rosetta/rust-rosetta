@@ -66,7 +66,7 @@ fn metered(duration: u32) {
     let sem = Arc::new(CountingSemaphore::new(MAX_COUNT, backoff));
     // Create a channel for notifying the main task that the workers are done
     let (tx, rx) = channel();
-    for i in (0..NUM_WORKERS) {
+    for i in 0..NUM_WORKERS {
         let sem = sem.clone();
         let tx = tx.clone();
         spawn(move || -> () {
@@ -90,7 +90,7 @@ fn metered(duration: u32) {
     }
     drop(tx);
     // Wait for all the subtasks to finish
-    for _ in (0..NUM_WORKERS) {
+    for _ in 0..NUM_WORKERS {
         rx.recv().unwrap();
     }
 }

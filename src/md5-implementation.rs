@@ -115,7 +115,7 @@ fn md5(initial_msg: &[u8]) -> MD5
         let (mut a, mut b, mut c, mut d) = (h[0], h[1], h[2], h[3]);
 
         // Main loop:
-        for ind in (0..64) {
+        for ind in 0..64 {
             let (f,g) = match ind {
                 i @ 0...15  => ( (b & c) | ((!b) & d), //f
                                 i ),                   //g

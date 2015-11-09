@@ -5,7 +5,7 @@ fn bubble_sort<T: PartialOrd>(v: &mut [T]) {
     (1..v.len()+1).rev().all(|length| {
         let mut changes = 0;
 
-        for index in (0..length - 1) {
+        for index in 0..length - 1 {
             if v[index] > v[index + 1] {
                 changes += 1;
                 v.swap(index, index + 1);

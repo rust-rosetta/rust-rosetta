@@ -48,7 +48,7 @@ fn benford_distrib(numbers: &[u64]) -> Vec<f32> {
 fn main() {
     // Calculate expected frequencies of all digits according to Benford's Law
     let mut expected_distrib = [0f32; 10];
-    for digit in (1..10) {
+    for digit in 1..10 {
         expected_distrib[digit] = benford_freq(digit as u64);
     }
 
@@ -70,7 +70,7 @@ fn main() {
     println!("\nBenford's Law - Digit Distribution");
     println!("\nFirst 1000 Numbers in the Fibonacci Sequence\n");
     println!("digit    expect     found     delta");
-    for digit in (1..10) {
+    for digit in 1..10 {
         let expected_pc = expected_distrib[digit] * 100.0;
         let found_pc = found_distrib[digit] * 100.0;
         let delta_pc = expected_pc - found_pc;

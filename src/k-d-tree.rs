@@ -239,7 +239,7 @@ fn partition_by<T>(arr: &mut [T], pivot_index: usize, cmp: &Fn(&T, &T) -> Orderi
     let array_len = arr.len();
     arr.swap(pivot_index, array_len-1);
     let mut store_index = 0;
-    for i in (0..array_len-1) {
+    for i in 0..array_len - 1 {
         if (*cmp)(&arr[i], &arr[array_len-1]) == Less {
             arr.swap(i, store_index);
             store_index += 1;

@@ -3,11 +3,11 @@
 fn pascaltriangle(rows: usize) -> Vec<Vec<usize>> {
     let mut all_rows = Vec::with_capacity(rows);
 
-    for row in (0..rows) {
+    for row in 0..rows {
         let mut row_vals = Vec::with_capacity(row + 1);
         let mut value = 1;
 
-        for col in (0..row + 1) {
+        for col in 0..row + 1 {
             row_vals.push(value);
             value = value * (row - col)/(col + 1)
         }
