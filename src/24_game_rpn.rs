@@ -8,7 +8,7 @@ fn main() {
     use std::io::{self, Write};
 
     let mut rng = rand::thread_rng();
-    let mut stdin = io::stdin();
+    let stdin = io::stdin();
     let mut stdout = io::stdout();
 
     // generating 4 numbers

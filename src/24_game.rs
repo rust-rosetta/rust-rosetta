@@ -18,7 +18,7 @@ fn main() {
     use std::io;
 
     let mut rng = rand::thread_rng();
-    let mut input = io::stdin();
+    let input = io::stdin();
 
     loop {
         let mut sample = rand::sample(&mut rng, (1u32..10), 4);

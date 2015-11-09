@@ -78,7 +78,7 @@ fn calculate_score(given_digits: &[u32], guessed_digits: &[u32]) ->
 
 #[cfg(not(test))]
 fn main() {
-    let mut reader = std::io::stdin();
+    let reader = std::io::stdin();
     loop {
         let given_digits = generate_digits();
         println!("I have chosen my {} digits. Please guess what they are" ,
