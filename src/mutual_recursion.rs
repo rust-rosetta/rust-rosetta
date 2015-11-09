@@ -1,4 +1,4 @@
-// Implements http://rosettacode.org/wiki/Mutual_recursion
+// http://rosettacode.org/wiki/Mutual_recursion
 
 
 fn f(n: usize) -> usize {

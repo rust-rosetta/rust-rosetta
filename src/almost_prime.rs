@@ -1,4 +1,4 @@
-// Implements http://rosettacode.org/wiki/Almost_prime
+// http://rosettacode.org/wiki/Almost_prime
 fn is_kprime(mut n: usize, k: usize) -> bool {
     let mut p = 2;
     let mut f = 0;

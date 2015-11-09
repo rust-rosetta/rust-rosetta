@@ -1,4 +1,4 @@
-// Implements http://rosettacode.org/wiki/Determine_if_a_string_is_numeric
+// http://rosettacode.org/wiki/Determine_if_a_string_is_numeric
 
 fn is_numeric (s: &str) -> bool {
 	s.parse::<f64>().is_ok()

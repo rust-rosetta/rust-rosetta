@@ -1,6 +1,6 @@
+// http://rosettacode.org/wiki/100_doors
 extern crate num;
 
-// Implements http://rosettacode.org/wiki/100_doors
 use num::Float;
 use std::iter::Map;
 use std::ops::Range;

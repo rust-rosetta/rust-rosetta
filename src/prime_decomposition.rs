@@ -1,4 +1,4 @@
-// Implements http://rosettacode.org/wiki/Prime_decomposition
+// http://rosettacode.org/wiki/Prime_decomposition
 
 // We need this to be public because it is used from another file
 pub fn factor(mut nb: usize) -> Vec<usize> {

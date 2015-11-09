@@ -1,4 +1,4 @@
-// Implements http://rosettacode.org/wiki/Arithmetic/Integer
+// http://rosettacode.org/wiki/Arithmetic/Integer
 #![cfg_attr(not(test), feature(slice_patterns))]
 use std::io::stdin;
 

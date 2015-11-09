@@ -1,3 +1,3 @@
-// Implements http://rosettacode.org/wiki/Empty_program
+// http://rosettacode.org/wiki/Empty_program
 
 fn main(){}

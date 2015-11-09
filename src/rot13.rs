@@ -1,4 +1,4 @@
-// Implements http://rosettacode.org/wiki/Rot-13
+// http://rosettacode.org/wiki/Rot-13
 
 fn rot13 (string: &str) -> String {
     fn rot13u8 (c: char) -> char {

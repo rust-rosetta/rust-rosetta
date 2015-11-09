@@ -1,4 +1,4 @@
-// Implements http://rosettacode.org/wiki/Kahan_summation
+// http://rosettacode.org/wiki/Kahan_summation
 extern crate num;
 extern crate permutohedron;
 

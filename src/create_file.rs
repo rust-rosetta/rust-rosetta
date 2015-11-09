@@ -1,4 +1,4 @@
-// Implements http://rosettacode.org/wiki/Create_a_file
+// http://rosettacode.org/wiki/Create_a_file
 use std::fs::{self, File};
 
 #[cfg(not(test))]

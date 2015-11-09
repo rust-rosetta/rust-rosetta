@@ -1,4 +1,4 @@
-// Implements http://rosettacode.org/wiki/Menu
+// http://rosettacode.org/wiki/Menu
 use std::io;
 // Print the menu followed by the prompt
 fn print_both(menu: &[&str], prompt: &str) {

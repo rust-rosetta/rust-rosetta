@@ -1,4 +1,4 @@
-// Implements http://rosettacode.org/wiki/Happy_numbers
+// http://rosettacode.org/wiki/Happy_numbers
 fn digits(mut n: usize) -> Vec<usize> {
     let mut ds = vec![];
     if n == 0 {

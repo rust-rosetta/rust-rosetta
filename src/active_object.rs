@@ -1,4 +1,4 @@
-// Implements http://rosettacode.org/wiki/Active_object
+// http://rosettacode.org/wiki/Active_object
 #![feature(mpsc_select)]
 
 extern crate time;

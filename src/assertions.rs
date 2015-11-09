@@ -1,4 +1,4 @@
-// Implements http://rosettacode.org/wiki/Assertions
+// http://rosettacode.org/wiki/Assertions
 
 fn main() {
     let my_number = 42;

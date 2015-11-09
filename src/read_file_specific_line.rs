@@ -1,4 +1,4 @@
-// Implements http://rosettacode.org/wiki/Read_a_specific_line_from_a_file
+// http://rosettacode.org/wiki/Read_a_specific_line_from_a_file
 use std::fs::File;
 use std::io::{BufReader, BufRead};
 use std::env::args;

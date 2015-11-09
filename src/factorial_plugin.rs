@@ -1,3 +1,4 @@
+// http://rosettacode.org/wiki/Factorial
 #![crate_type="dylib"]
 #![feature(plugin_registrar)]
 #![feature(rustc_private)]

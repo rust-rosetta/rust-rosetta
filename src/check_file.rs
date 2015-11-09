@@ -1,4 +1,4 @@
-// Implements http://rosettacode.org/wiki/Check_that_file_exists
+// http://rosettacode.org/wiki/Check_that_file_exists
 use std::path::Path;
 
 fn main() {

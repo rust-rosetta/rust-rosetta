@@ -1,4 +1,4 @@
-// Implements http://rosettacode.org/wiki/Hello_world/Web_server
+// http://rosettacode.org/wiki/Hello_world/Web_server
 use std::net::{TcpStream, TcpListener, Shutdown};
 use std::io::{Write, Result};
 #[cfg(not(test))] use std::borrow::ToOwned;

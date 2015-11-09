@@ -1,4 +1,4 @@
-// Implements http://rosettacode.org/wiki/Linear_congruential_generator
+// http://rosettacode.org/wiki/Linear_congruential_generator
 use std::num::Wrapping as w;
 
 trait LinearCongruentialGenerator {

@@ -1,4 +1,4 @@
-// Implements http://rosettacode.org/wiki/Palindrome_detection
+// http://rosettacode.org/wiki/Palindrome_detection
 
 
 // Returns true if the string is a palindrome

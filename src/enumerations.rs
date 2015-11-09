@@ -1,4 +1,4 @@
-// Implements http://rosettacode.org/wiki/Enumerations
+// http://rosettacode.org/wiki/Enumerations
 
 #[allow(dead_code)]
 enum Fruits {

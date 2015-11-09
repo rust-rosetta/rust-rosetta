@@ -1,4 +1,4 @@
-// Implements http://rosettacode.org/wiki/SHA-256
+// http://rosettacode.org/wiki/SHA-256
 
 #![feature(rustc_private)]
 

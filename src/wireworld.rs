@@ -1,4 +1,4 @@
-// Implements http://rosettacode.org/wiki/Wireworld
+// http://rosettacode.org/wiki/Wireworld
 
 use std::mem;
 

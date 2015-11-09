@@ -1,4 +1,4 @@
-// Implements http://rosettacode.org/wiki/Sum_digits_of_an_integer
+// http://rosettacode.org/wiki/Sum_digits_of_an_integer
 
 
 fn sum(n: usize, base: usize) -> usize {

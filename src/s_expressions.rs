@@ -1,4 +1,4 @@
-// Implements http://rosettacode.org/wiki/S-Expressions
+// http://rosettacode.org/wiki/S-Expressions
 //
 // This implementation isn't based on anything in particular, although it's probably informed by a
 // lot of Rust's JSON encoding code.  It should be very fast (both encoding and decoding the toy

@@ -1,4 +1,4 @@
-// Implements http://rosettacode.org/wiki/MD5/Implementation
+// http://rosettacode.org/wiki/MD5/Implementation
 /*
  * Ported from C - Simple MD5 implementation
 * on Wikipedia https://en.wikipedia.org/wiki/MD5

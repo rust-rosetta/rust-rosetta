@@ -1,4 +1,4 @@
-// Implements http://rosettacode.org/wiki/Higher-order_functions
+// http://rosettacode.org/wiki/Higher-order_functions
 fn plain_function() {
     println!("regular function");
 }

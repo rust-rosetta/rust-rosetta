@@ -1,4 +1,4 @@
-// Implements http://rosettacode.org/wiki/Fibonacci_sequence
+// http://rosettacode.org/wiki/Fibonacci_sequence
 
 #[cfg(not(test))]
 fn main() {

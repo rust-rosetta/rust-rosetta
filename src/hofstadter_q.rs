@@ -1,4 +1,5 @@
-// Implements an iterable version of http://rosettacode.org/wiki/Hofstadter_Q_sequence
+// http://rosettacode.org/wiki/Hofstadter_Q_sequence
+// An iterable version.
 
 // Define a struct which stores the state for the iterator.
 struct HofstadterQ {

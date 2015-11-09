@@ -1,4 +1,4 @@
-// Implements http://rosettacode.org/wiki/Rock-paper-scissors
+// http://rosettacode.org/wiki/Rock-paper-scissors
 // Unfortunately, this won't compile without Cargo, due to the "rand"
 // crate conflict, so it should be noted on rosettacode task page.
 

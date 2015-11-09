@@ -1,4 +1,4 @@
-// Implements http://rosettacode.org/wiki/Host_introspection
+// http://rosettacode.org/wiki/Host_introspection
 
 fn main() {
     println!("word size: {} bits", 8 * std::mem::size_of::<usize>());

@@ -1,4 +1,4 @@
-// Implements http://rosettacode.org/wiki/Vigen%C3%A8re_cipher
+// http://rosettacode.org/wiki/Vigen%C3%A8re_cipher
 use std::ascii::AsciiExt;
 
 const ASCII_A: u8 = 'A' as u8;

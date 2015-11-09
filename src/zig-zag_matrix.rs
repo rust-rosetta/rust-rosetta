@@ -1,5 +1,5 @@
-// implements http://rosettacode.org/wiki/Zig-zag_matrix
-// with the sorting indexes algorithm
+// http://rosettacode.org/wiki/Zig-zag_matrix
+// Implements with the sorting indexes algorithm
 // explained in the discussion page
 // http://rosettacode.org/wiki/Talk:Zig-zag_matrix
 use std::iter::repeat;

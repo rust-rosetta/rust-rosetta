@@ -1,4 +1,4 @@
-// Implements http://rosettacode.org/wiki/RSA_code
+// http://rosettacode.org/wiki/RSA_code
 extern crate num;
 
 use num::bigint::BigUint;

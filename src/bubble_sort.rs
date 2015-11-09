@@ -1,4 +1,4 @@
-//Implements http://rosettacode.org/wiki/Sorting_algorithms/Bubble_sort
+// http://rosettacode.org/wiki/Sorting_algorithms/Bubble_sort
 
 /// Progress through the slice and 'bubble' elements up until they are in order.
 fn bubble_sort<T: PartialOrd>(v: &mut [T]) {

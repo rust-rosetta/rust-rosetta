@@ -1,4 +1,4 @@
-// Implements http://rosettacode.org/wiki/Loops/For
+// http://rosettacode.org/wiki/Loops/For
 
 fn main() {
     for i in 1..6 {

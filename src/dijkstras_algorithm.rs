@@ -1,4 +1,4 @@
-// Implements http://rosettacode.org/wiki/Dijkstra's_algorithm
+// http://rosettacode.org/wiki/Dijkstra's_algorithm
 
 use std::collections::{HashMap, BinaryHeap, LinkedList};
 use std::collections::hash_map::Entry::{Occupied, Vacant};

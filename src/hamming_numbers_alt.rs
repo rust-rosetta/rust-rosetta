@@ -1,4 +1,4 @@
-// Implements http://rosettacode.org/wiki/Hamming_numbers
+// http://rosettacode.org/wiki/Hamming_numbers
 // alternate version: uses a more efficient representation of Hamming numbers:
 // instead of storing them as BigUint directly, it stores the three exponents
 // i, j and k for 2^i * 3^j * 5 ^k and the logarithm of the number for comparisons

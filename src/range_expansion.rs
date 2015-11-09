@@ -1,4 +1,4 @@
-// Implements http://rosettacode.org/wiki/Range_expansion
+// http://rosettacode.org/wiki/Range_expansion
 extern crate regex;
 
 #[cfg(not(test))]

@@ -1,4 +1,4 @@
-// Implements http://rosettacode.org/wiki/Command-line_arguments
+// http://rosettacode.org/wiki/Command-line_arguments
 
 use std::env;
 

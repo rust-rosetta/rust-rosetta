@@ -1,4 +1,4 @@
-//http://rosettacode.org/wiki/Flatten_a_list
+// http://rosettacode.org/wiki/Flatten_a_list
 
 #![feature(box_syntax)]
 use Tree::{Node, Leaf};

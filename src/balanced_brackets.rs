@@ -1,4 +1,4 @@
-// Implements http://rosettacode.org/wiki/Balanced_brackets
+// http://rosettacode.org/wiki/Balanced_brackets
  // feature(rand) is used only in main
 
 

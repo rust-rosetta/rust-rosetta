@@ -1,4 +1,4 @@
-// Implements http://rosettacode.org/wiki/Arena_storage_pool
+// http://rosettacode.org/wiki/Arena_storage_pool
 #![feature(rustc_private)]
 
 extern crate arena;

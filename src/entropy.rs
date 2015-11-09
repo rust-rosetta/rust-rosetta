@@ -1,4 +1,4 @@
-// Implements http://rosettacode.org/wiki/Entropy
+// http://rosettacode.org/wiki/Entropy
 #![allow(unused_attributes)]
 #![allow(unused_features)]
 #![cfg_attr(test, feature(std_misc))]

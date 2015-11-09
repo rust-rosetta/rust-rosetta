@@ -1,4 +1,4 @@
-// Implements http://rosettacode.org/wiki/Align_columns
+// http://rosettacode.org/wiki/Align_columns
 const TEST_STR: &'static str =
     "Given$a$text$file$of$many$lines,$where$fields$within$a$line$\nare$delineated\
     $by$a$single$'dollar'$character,$write$a$program\nthat$aligns$each$column$of\

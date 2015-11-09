@@ -1,4 +1,4 @@
-// Implements http://rosettacode.org/wiki/Walk_a_directory/Recursively
+// http://rosettacode.org/wiki/Walk_a_directory/Recursively
 extern crate regex;
 
 use regex::Regex;

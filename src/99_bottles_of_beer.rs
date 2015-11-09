@@ -1,6 +1,4 @@
-// Implements http://rosettacode.org/wiki/99_Bottles_of_Beer
-
-
+// http://rosettacode.org/wiki/99_Bottles_of_Beer
 use std::string::String;
 
 #[cfg(not(test))]

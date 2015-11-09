@@ -1,4 +1,4 @@
-// Implements http://rosettacode.org/wiki/24_game
+// http://rosettacode.org/wiki/24_game
 // Uses RPN expression
 extern crate rand;
 

@@ -1,6 +1,10 @@
 // Dummy main library
 // It also contains a test module, which checks if all source files are covered by `Cargo.toml`
+extern crate hyper;
 extern crate regex;
+extern crate rustc_serialize;
+
+pub mod rosetta_code;
 
 #[allow(dead_code)]
 fn main() { }

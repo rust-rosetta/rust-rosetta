@@ -1,4 +1,4 @@
-// Implements http://rosettacode.org/wiki/Arithmetic/Complex
+// http://rosettacode.org/wiki/Arithmetic/Complex
 
 extern crate num;
 

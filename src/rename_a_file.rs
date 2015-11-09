@@ -1,4 +1,4 @@
-// Implements http://rosettacode.org/wiki/Rename_a_file
+// http://rosettacode.org/wiki/Rename_a_file
 use std::fs;
 
 fn main() {

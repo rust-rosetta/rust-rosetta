@@ -11,6 +11,17 @@ A repository for completing [this issue on mozilla/rust](https://github.com/mozi
 
 > Important: Not all `rust-rosetta` tasks exist in their current form on Rosetta Code. Please cross-check with this repository before you start.
 
+### Coverage ###
+
+The `coverage` subcrate contains commands that are useful for discovering
+incomplete solutions, or finding solutions that are different from the version
+posted to the Rosetta Code wiki. To see what commands are available:
+
+```sh
+$ cd coverage
+$ cargo run --release -- --help
+```
+
 ## Tasks Complete ##
 
 All tasks that have been completed are listed (along with a link to the problem) in [`Cargo.toml`](./Cargo.toml)

@@ -1,4 +1,4 @@
-//http://rosettacode.org/wiki/Function_definition
+// http://rosettacode.org/wiki/Function_definition
 use std::ops::Mul;
 
 // Function taking 2 ints, multply them and return the value

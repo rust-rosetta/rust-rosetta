@@ -1,4 +1,4 @@
-// Implements http://rosettacode.org/wiki/Sort_an_integer_array
+// http://rosettacode.org/wiki/Sort_an_integer_array
 
 #[cfg(not(test))]
 fn main() {

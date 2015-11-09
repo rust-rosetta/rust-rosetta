@@ -1,4 +1,4 @@
-// Implements http://rosettacode.org/wiki/Anagrams
+// http://rosettacode.org/wiki/Anagrams
 #[cfg(not(test))] use std::fs::File;
 #[cfg(not(test))] use std::io::{BufReader, BufRead};
 use std::collections::{HashMap, HashSet};
