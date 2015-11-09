@@ -468,6 +468,11 @@ path = "src/filesize.rs"
 test = false
 
 [[bin]]
+# http://rosettacode.org/wiki/FizzBuzz
+name = "fizzbuzz"
+path = "src/fizzbuzz.rs"
+
+[[bin]]
 # http://rosettacode.org/wiki/Flatten_a_list
 name = "flatten_list"
 path = "src/flatten_list.rs"
