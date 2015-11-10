@@ -119,7 +119,7 @@ path = "src/24_game_rpn.rs"
 [[bin]]
 # http://rosettacode.org/wiki/24_game/Solve
 name = "24_game_solve"
-path = "src/24_game_solve.rs"
+path = "src/24_game/solve.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/99_Bottles_of_Beer
@@ -190,19 +190,19 @@ test = false
 
 [[bin]]
 # http://rosettacode.org/wiki/Arithmetic/Integer
-name = "arithmetic_integers"
-path = "src/arithmetic_integers.rs"
+name = "arithmetic_integer"
+path = "src/arithmetic/integer.rs"
 test = false
 
 [[bin]]
 # http://rosettacode.org/wiki/Averages/Arithmetic_mean
-name = "arithmetic_mean"
-path = "src/arithmetic_mean.rs"
+name = "averages_arithmetic_mean"
+path = "src/averages/arithmetic_mean.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Arithmetic/Rational
 name = "arithmetic_rational"
-path = "src/arithmetic_rational.rs"
+path = "src/arithmetic/rational.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Arrays
@@ -223,7 +223,7 @@ path = "src/atomic_updates.rs"
 [[bin]]
 # http://rosettacode.org/wiki/Averages/Mean_angle
 name = "averages_mean_angle"
-path = "src/averages_mean_angle.rs"
+path = "src/averages/mean_angle.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Balanced_brackets
@@ -264,8 +264,8 @@ test = false
 
 [[bin]]
 # http://rosettacode.org/wiki/Sorting_algorithms/Bubble_sort
-name = "bubble_sort"
-path = "src/bubble_sort.rs"
+name = "sorting_algorithms_bubble_sort"
+path = "src/sorting_algorithms/bubble_sort.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Bulls_and_cows
@@ -312,8 +312,8 @@ path = "src/closest-pair.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Closures/Value_capture
-name = "closures-value_capture"
-path = "src/closures-value_capture.rs"
+name = "closures_value_capture"
+path = "src/closures/value_capture.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Comma_quibbling
@@ -335,8 +335,8 @@ test = false
 
 [[bin]]
 # http://rosettacode.org/wiki/Arithmetic/Complex
-name = "complex"
-path = "src/complex.rs"
+name = "arithmetic_complex"
+path = "src/arithmetic/complex.rs"
 test = false
 
 [[bin]]
@@ -353,8 +353,8 @@ test = false
 
 [[bin]]
 # http://rosettacode.org/wiki/Sorting_algorithms/Counting_sort
-name = "counting_sort"
-path = "src/counting_sort.rs"
+name = "sorting_algorithms_counting_sort"
+path = "src/sorting_algorithms/counting_sort.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/CRC-32
@@ -553,8 +553,8 @@ path = "src/hash_join.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Sorting_algorithms/Heapsort
-name = "heap_sort"
-path = "src/heap_sort.rs"
+name = "sorting_algorithms_heap_sort"
+path = "src/sorting_algorithms/heap_sort.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Higher-order_functions
@@ -660,8 +660,8 @@ path = "src/kahansum.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Knapsack_problem/0-1
-name = "knapsack_0-1"
-path = "src/knapsack_0-1.rs"
+name = "knapsack_problem_0-1"
+path = "src/knapsack_problem/0-1.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Knight's_tour
@@ -681,7 +681,7 @@ path = "src/letter_frequency.rs"
 [[bin]]
 # http://rosettacode.org/wiki/Levenshtein_distance/Alignment
 name = "levenshtein_distance_alignment"
-path = "src/levenshtein_distance_alignment.rs"
+path = "src/levenshtein_distance/alignment.rs"
 
 [[bin]]
 name = "lib"
@@ -704,32 +704,32 @@ path = "src/look-and-say_sequence.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Loops/For
-name = "loops-for"
-path = "src/loops-for.rs"
+name = "loops_for"
+path = "src/loops/for.rs"
 test = false
 
 [[bin]]
 # http://rosettacode.org/wiki/Loops/Foreach
-name = "loops-foreach"
-path = "src/loops-foreach.rs"
+name = "loops_foreach"
+path = "src/loops/foreach.rs"
 test = false
 
 [[bin]]
 # http://rosettacode.org/wiki/Loops/Infinite
-name = "loops-infinite"
-path = "src/loops-infinite.rs"
+name = "loops_infinite"
+path = "src/loops_infinite.rs"
 test = false
 
 [[bin]]
 # http://rosettacode.org/wiki/Loops/N_plus_one_half
-name = "loops-n-plus-one-half"
-path = "src/loops-n-plus-one-half.rs"
+name = "loops_n_plus_one_half"
+path = "src/loops/n_plus_one_half.rs"
 test = false
 
 [[bin]]
 # http://rosettacode.org/wiki/Loops/While
-name = "loops-while"
-path = "src/loops-while.rs"
+name = "loops_while"
+path = "src/loops/while.rs"
 test = false
 
 [[bin]]
@@ -754,8 +754,8 @@ path = "src/markov_algorithm.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/MD5/Implementation
-name = "md5-implementation"
-path = "src/md5-implementation.rs"
+name = "md5_implementation"
+path = "src/md5/implementation.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Menu
@@ -764,8 +764,8 @@ path = "src/menu.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Sorting_algorithms/Merge_sort
-name = "merge-sort"
-path = "src/merge-sort.rs"
+name = "sorting_algorithms_merge_sort"
+path = "src/sorting_algorithms/merge_sort.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Metered_concurrency
@@ -877,8 +877,8 @@ path = "src/pythagorean_triples.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Sorting_algorithms/Quicksort
-name = "quick_sort"
-path = "src/quick_sort.rs"
+name = "sorting_algorithms_quick_sort"
+path = "src/sorting_algorithms/quick_sort.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Range_expansion
@@ -931,8 +931,8 @@ path = "src/rock_paper_scissors.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Averages/Root_mean_square
-name = "root_mean_square"
-path = "src/root_mean_square.rs"
+name = "averages_root_mean_square"
+path = "src/averages/root_mean_square.rs"
 test = true
 
 [[bin]]
@@ -1025,8 +1025,8 @@ path = "src/stack.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Hello_world/Standard_error
-name = "stderr"
-path = "src/stderr.rs"
+name = "hello_world_standard_error"
+path = "src/hello_world/standard_error.rs"
 test = false
 
 [[bin]]
@@ -1107,7 +1107,7 @@ test = false
 [[bin]]
 # http://rosettacode.org/wiki/Unix/ls
 name = "unix_ls"
-path = "src/unix_ls.rs"
+path = "src/unix/ls.rs"
 test = false
 
 [[bin]]
@@ -1117,14 +1117,14 @@ path = "src/vigenere.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Walk_a_directory/Recursively
-name = "walk_recursive"
-path = "src/walk_recursive.rs"
+name = "walk_a_directory_recursively"
+path = "src/walk_a_directory/recursively.rs"
 test = false
 
 [[bin]]
 # http://rosettacode.org/wiki/Hello_world/Web_server
-name = "webserver"
-path = "src/webserver.rs"
+name = "hello_world_web_server"
+path = "src/hello_world/web_server.rs"
 test = false
 
 [[bin]]
