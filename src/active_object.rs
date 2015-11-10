@@ -1,7 +1,6 @@
 // http://rosettacode.org/wiki/Active_object
 #![feature(mpsc_select)]
 
-extern crate time;
 extern crate num;
 extern crate schedule_recv;
 
@@ -9,8 +8,8 @@ use num::traits::Zero;
 use num::Float;
 use std::f64::consts::PI;
 use std::sync::{Arc, Mutex};
-use time::Duration;
 use std::thread::{self, spawn};
+use std::time::Duration;
 use std::sync::mpsc::{channel, Sender, SendError};
 use std::ops::Mul;
 use schedule_recv::periodic_ms;
@@ -132,12 +131,13 @@ impl<S: Mul<f64, Output=T> + Float + Zero,
 fn integrate() -> f64 {
     let object = Integrator::new(10);
     object.input(Box::new(|t: u32| {
-        let f = 1. / Duration::seconds(2).num_milliseconds() as f64;
+        let two_seconds_ms = 2 * 1000;
+        let f = 1. / two_seconds_ms as f64;
         (2. * PI * f * t as f64).sin()
     })).ok().expect("Failed to set input");
-    thread::sleep_ms(2000);
+    thread::sleep(Duration::from_secs(2));
     object.input(Box::new(|_| 0.)).ok().expect("Failed to set input");
-    thread::sleep_ms(500);
+    thread::sleep(Duration::from_millis(500));
     object.output()
 }
 
@@ -154,11 +154,12 @@ fn solution() {
     // FIXME(pythonesque): When unboxed closures are fixed, fix integrate() to take two arguments.
     let object = Integrator::new(10);
     object.input(Box::new(|t: u32| {
-        let f = 1. / (Duration::seconds(2) / 10).num_milliseconds() as f64;
+        let two_seconds_ms = 2 * 1000;
+        let f = 1. / (two_seconds_ms / 10) as f64;
         (2. * PI * f * t as f64).sin()
     })).ok().expect("Failed to set input");
-    thread::sleep_ms(200);
+    thread::sleep(Duration::from_millis(200));
     object.input(Box::new(|_| 0.)).ok().expect("Failed to set input");
-    thread::sleep_ms(100);
+    thread::sleep(Duration::from_millis(100));
     assert_eq!(object.output() as u32, 0)
 }

@@ -24,10 +24,10 @@ fn levenshtein_distance(s1: &str, s2: &str) -> (usize, String, String) {
     let mut mat: Vec<Vec<usize>> = repeat(
 		repeat(0).take(l2).collect()
 		).take(l1).collect();
-    for row in (0..l1) { mat[row][0] = row; }
-    for col in (0..l2) { mat[0][col] = col; }
-    for row in (1..l1) {
-        for col in (1..l2) {
+    for row in 0..l1 { mat[row][0] = row; }
+    for col in 0..l2 { mat[0][col] = col; }
+    for row in 1..l1 {
+        for col in 1..l2 {
             mat[row][col] =
                 if s1.chars().nth(row - 1).unwrap() == s2.chars().nth(col - 1).unwrap() {
                     mat[row - 1][col - 1]

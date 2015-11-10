@@ -11,10 +11,11 @@ extern crate time;
 
 use std::sync::{Arc, Mutex, Condvar};
 use std::thread::{self, spawn};
+use std::time::Duration;
 
 // Given a duration to wait before sending an event from one process to another, returns the
 // elapsed time before the event was actually sent.
-fn handle_event(duration: u32) -> u32 {
+fn handle_event(duration: Duration) -> Duration {
     // Create a Mutex.  By default a Mutex is created with a single condition variable (condvar_id
     // 0) but it can be created with an arbitrary number using Mutex::new_with_condvars();
     let pair = Arc::new((Mutex::new(false), Condvar::new()));
@@ -31,7 +32,7 @@ fn handle_event(duration: u32) -> u32 {
         *guard = true;
 
         // Sleep for `duration`.
-        thread::sleep_ms(duration);
+        thread::sleep(duration);
         // Signal the waiting mutex (equivalent to guard.cond.signal_on(0)).
         // One can also signal to all tasks on the waiting mutex with broadcast (broadcast_on(0)).
         //
@@ -51,19 +52,19 @@ fn handle_event(duration: u32) -> u32 {
     // When the guard exits scope, the condvar is reset.
     drop(guard);
     // Return the elapsed time
-    ((end - start) / 1000000) as u32
+    Duration::from_millis((end - start) / 1000000)
 }
 
 #[cfg(not(test))]
 pub fn main() {
-    let duration = 1000; // Process event after one second.
-    println!("{} elapsed before event triggered", handle_event(duration));
+    let duration = Duration::from_secs(1); // Process event after one second.
+    println!("{} seconds elapsed before event triggered", handle_event(duration).as_secs());
 }
 
 #[test]
 pub fn test_events() {
     if !cfg!(windows) { // overflowing on windows (bug in time library?)
-         let duration = 100; // Process event after one tenth of a second.
+        let duration = Duration::from_secs(1) / 10; // Process event after one tenth of a second.
         // Make sure it really did take at least that long for the event to be processed.
 
         let out = handle_event(duration);

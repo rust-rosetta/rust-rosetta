@@ -64,7 +64,7 @@ fn main() {
     //Find a number in the range 1 to 20,000
     //with the most proper divisors.
     let mut max_divs:(usize, Vec<usize>)=(0,Vec::new());
-    for n in (1..20001) {
+    for n in 1..20001 {
         let div_q = find_divisors(&mut primes,n).len();
         if div_q > max_divs.0 {
             max_divs.0 = div_q;

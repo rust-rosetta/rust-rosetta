@@ -44,7 +44,7 @@ fn main() {
 
 fn check_win(board: [[char; 3]; 3]) -> GameState {
 	// check for win
-	for i in (0..3) {
+	for i in 0..3 {
 		if board[i][0] == board[i][1] && board[i][0] == board[i][2] {
 			return which_win(board[i][0])
 		} else if board[0][i] == board[1][i] && board[0][i] == board[2][i] {
@@ -103,8 +103,8 @@ fn computer_turn(board: &mut [[char; 3]; 3]) {
 	let mut rng = thread_rng();
 
 	let mut possible_choices: Vec<char> = vec![];
-	for row_i in (0..3) {
-		for col_i in (0..3) {
+	for row_i in 0..3 {
+		for col_i in 0..3 {
 			if board[row_i][col_i] != 'X' && board[row_i][col_i] != 'O' {
 				possible_choices.push(board[row_i][col_i]);
 			}

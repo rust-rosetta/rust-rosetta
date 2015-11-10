@@ -7,7 +7,7 @@ fn compress(original_str: &str) -> Vec<i32> {
    let mut dict_size = 256;
    let mut dictionary = HashMap::new();
 
-   for i in (0i32..dict_size) {
+   for i in 0i32..dict_size {
       dictionary.insert(vec!(i as u8), i);
    }
 
@@ -40,7 +40,7 @@ fn decompress(compressed: &[i32]) -> String {
    let mut dict_size = 256;
    let mut dictionary = HashMap::new();
 
-   for i in (0i32..dict_size) {
+   for i in 0i32..dict_size {
       dictionary.insert(i, vec![i as u8]);
    }
 
