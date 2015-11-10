@@ -36,17 +36,21 @@ If no tasks are specified, determines the status for all tasks.
 Optionally prints out a diff as well.
 
 Usage:
-    coverage [options] [<tasks>...]
+    coverage [options] [--localonly | --remoteonly] [<tasks>...]
 
 Options:
     -h --help       Show this screen.
     --nodiff        Don't print diffs.
+    --localonly     Only print tasks that are implemented locally, but not on the wiki.
+    --remoteonly    Only print tasks that are implemented on the wiki, but not locally.
 ";
 
 #[derive(Debug, RustcDecodable)]
 struct Args {
     arg_tasks: Vec<String>,
     flag_nodiff: bool,
+    flag_localonly: bool,
+    flag_remoteonly: bool,
 }
 
 // Normalizes a title according to MediaWiki's rules.
@@ -99,9 +103,6 @@ fn main() {
 
     for title in task_titles {
         let task_url = &format!("http://rosettacode.org/wiki/{}", normalize(&title));
-        t.attr(term::Attr::Bold).unwrap();
-        writeln!(t, "{}", title).unwrap();
-        t.reset().unwrap();
 
         let local_code = local_tasks.get(&normalize(&title))
             .and_then(|path| File::open(path).ok())
@@ -121,6 +122,18 @@ fn main() {
         res.read_to_string(&mut body).unwrap();
         let online_code = rust_re.captures(&body)
             .and_then(|captures| Some(captures.at(1).unwrap()));
+
+        if args.flag_localonly && !(local_code.is_some() && online_code.is_none()) {
+            continue
+        }
+
+        if args.flag_remoteonly && !(local_code.is_none() && online_code.is_some()) {
+            continue
+        }
+
+        t.attr(term::Attr::Bold).unwrap();
+        writeln!(t, "{}", title).unwrap();
+        t.reset().unwrap();
 
         writeln!(t, "Local: {}, Remote: {}", local_code.is_some(), online_code.is_some()).unwrap();
 
