@@ -6,6 +6,7 @@
 // In case we find a line that doesn't comply with this rules, the build will fail and indicate
 // the cause of the problem.
 extern crate regex;
+extern crate toml;
 
 use std::fs::{self, File, metadata};
 use std::io::Read;
@@ -13,7 +14,32 @@ use std::path::Path;
 
 use regex::Regex;
 
+fn check_toml() {
+    let mut cargo_toml_file = File::open("Cargo.toml").unwrap();
+    let mut cargo_toml_string = String::new();
+    cargo_toml_file.read_to_string(&mut cargo_toml_string).unwrap();
+
+    let cargo_toml = toml::Parser::new(&cargo_toml_string).parse().unwrap();
+    let binaries = cargo_toml.get("bin").unwrap().as_slice().unwrap().to_owned();
+    let mut sorted_binaries = binaries.clone();
+    sorted_binaries.sort_by(|a, b| {
+        let a_name = a.as_table().unwrap().get("name").unwrap().as_str().unwrap();
+        let b_name = b.as_table().unwrap().get("name").unwrap().as_str().unwrap();
+        a_name.cmp(b_name)
+    });
+
+    for (bin, correct_bin) in binaries.iter().zip(sorted_binaries) {
+        let bin_name = bin.as_table().unwrap().get("name").unwrap().as_str().unwrap();
+        let correct_bin_name = correct_bin.as_table().unwrap().get("name").unwrap().as_str().unwrap();
+        if bin_name != correct_bin_name {
+            panic!("{} is not in the correct order in Cargo.toml!", bin_name);
+        }
+    }
+}
+
 fn main() {
+    check_toml();
+
     let files = fs::read_dir("src").unwrap()
                                    .map(|e| e.unwrap());
 

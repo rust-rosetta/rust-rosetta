@@ -77,6 +77,7 @@ rustbox = { version = "*", optional = true }
 
 [build-dependencies]
 regex = "0.1.41"
+toml = "0.1"
 
 [dependencies.schedule_recv]
 git = "https://github.com/PeterReid/schedule_recv"
@@ -132,11 +133,6 @@ name = "9_billion_names_of_god_the_integer"
 path = "src/9_billion_names_of_god_the_integer.rs"
 
 [[bin]]
-# http://rosettacode.org/wiki/Arithmetic-geometric_mean
-name = "agm"
-path = "src/agm.rs"
-
-[[bin]]
 # http://rosettacode.org/wiki/A%2BB
 name = "a_plus_b"
 path = "src/a_plus_b.rs"
@@ -161,6 +157,11 @@ path = "src/ackermann_function.rs"
 # http://rosettacode.org/wiki/Active_object
 name = "active_object"
 path = "src/active_object.rs"
+
+[[bin]]
+# http://rosettacode.org/wiki/Arithmetic-geometric_mean
+name = "agm"
+path = "src/agm.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/AKS_test_for_primes
@@ -189,15 +190,16 @@ path = "src/arena_storage_pool.rs"
 test = false
 
 [[bin]]
+# http://rosettacode.org/wiki/Arithmetic/Complex
+name = "arithmetic_complex"
+path = "src/arithmetic/complex.rs"
+test = false
+
+[[bin]]
 # http://rosettacode.org/wiki/Arithmetic/Integer
 name = "arithmetic_integer"
 path = "src/arithmetic/integer.rs"
 test = false
-
-[[bin]]
-# http://rosettacode.org/wiki/Averages/Arithmetic_mean
-name = "averages_arithmetic_mean"
-path = "src/averages/arithmetic_mean.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Arithmetic/Rational
@@ -221,9 +223,20 @@ name = "atomic_updates"
 path = "src/atomic_updates.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/Averages/Arithmetic_mean
+name = "averages_arithmetic_mean"
+path = "src/averages/arithmetic_mean.rs"
+
+[[bin]]
 # http://rosettacode.org/wiki/Averages/Mean_angle
 name = "averages_mean_angle"
 path = "src/averages/mean_angle.rs"
+
+[[bin]]
+# http://rosettacode.org/wiki/Averages/Root_mean_square
+name = "averages_root_mean_square"
+path = "src/averages/root_mean_square.rs"
+test = true
 
 [[bin]]
 # http://rosettacode.org/wiki/Balanced_brackets
@@ -235,11 +248,6 @@ path = "src/balanced_brackets.rs"
 name = "benford"
 path = "src/benford.rs"
 test = false
-
-[[bin]]
-# http://rosettacode.org/wiki/Basic_bitmap_storage
-name = "bitmap"
-path = "src/bitmap.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Binary_digits
@@ -257,15 +265,15 @@ name = "binomial_coefficients"
 path = "src/binomial_coefficients.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/Basic_bitmap_storage
+name = "bitmap"
+path = "src/bitmap.rs"
+
+[[bin]]
 # http://rosettacode.org/wiki/Bitwise_operations
 name = "bitwise_operations"
 path = "src/bitwise_operations.rs"
 test = false
-
-[[bin]]
-# http://rosettacode.org/wiki/Sorting_algorithms/Bubble_sort
-name = "sorting_algorithms_bubble_sort"
-path = "src/sorting_algorithms/bubble_sort.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Bulls_and_cows
@@ -334,12 +342,6 @@ test = false
 #path = "src/compile_time_calculation.rs"
 
 [[bin]]
-# http://rosettacode.org/wiki/Arithmetic/Complex
-name = "arithmetic_complex"
-path = "src/arithmetic/complex.rs"
-test = false
-
-[[bin]]
 # http://rosettacode.org/wiki/Concurrent_computing
 name = "concurrent_computing"
 path = "src/concurrent_computing.rs"
@@ -350,11 +352,6 @@ test = false
 name = "count_in_octal"
 path = "src/count_in_octal.rs"
 test = false
-
-[[bin]]
-# http://rosettacode.org/wiki/Sorting_algorithms/Counting_sort
-name = "sorting_algorithms_counting_sort"
-path = "src/sorting_algorithms/counting_sort.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/CRC-32
@@ -427,24 +424,24 @@ name = "events"
 path = "src/events.rs"
 
 [[bin]]
-# http://rosettacode.org/wiki/Factorial
-name = "factorial"
-path = "src/factorial.rs"
-
-[[bin]]
 # http://rosettacode.org/wiki/Factors_of_an_integer
 name = "factor_int"
 path = "src/factor_int.rs"
 
 [[bin]]
-# http://rosettacode.org/wiki/FASTA_format
-name = "fasta"
-path = "src/fasta.rs"
+# http://rosettacode.org/wiki/Factorial
+name = "factorial"
+path = "src/factorial.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Fast_Fourier_transform
 name = "fast_fourier_transform"
 path = "src/fast_fourier_transform.rs"
+
+[[bin]]
+# http://rosettacode.org/wiki/FASTA_format
+name = "fasta"
+path = "src/fasta.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Fibonacci_sequence
@@ -552,9 +549,16 @@ name = "hash_join"
 path = "src/hash_join.rs"
 
 [[bin]]
-# http://rosettacode.org/wiki/Sorting_algorithms/Heapsort
-name = "sorting_algorithms_heap_sort"
-path = "src/sorting_algorithms/heap_sort.rs"
+# http://rosettacode.org/wiki/Hello_world/Standard_error
+name = "hello_world_standard_error"
+path = "src/hello_world/standard_error.rs"
+test = false
+
+[[bin]]
+# http://rosettacode.org/wiki/Hello_world/Web_server
+name = "hello_world_web_server"
+path = "src/hello_world/web_server.rs"
+test = false
 
 [[bin]]
 # http://rosettacode.org/wiki/Higher-order_functions
@@ -717,7 +721,7 @@ test = false
 [[bin]]
 # http://rosettacode.org/wiki/Loops/Infinite
 name = "loops_infinite"
-path = "src/loops_infinite.rs"
+path = "src/loops/infinite.rs"
 test = false
 
 [[bin]]
@@ -761,11 +765,6 @@ path = "src/md5/implementation.rs"
 # http://rosettacode.org/wiki/Menu
 name = "menu"
 path = "src/menu.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Sorting_algorithms/Merge_sort
-name = "sorting_algorithms_merge_sort"
-path = "src/sorting_algorithms/merge_sort.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Metered_concurrency
@@ -876,11 +875,6 @@ name = "pythagorean_triples"
 path = "src/pythagorean_triples.rs"
 
 [[bin]]
-# http://rosettacode.org/wiki/Sorting_algorithms/Quicksort
-name = "sorting_algorithms_quick_sort"
-path = "src/sorting_algorithms/quick_sort.rs"
-
-[[bin]]
 # http://rosettacode.org/wiki/Range_expansion
 name = "range_expansion"
 path = "src/range_expansion.rs"
@@ -925,17 +919,6 @@ name = "reverse_words_str"
 path = "src/reverse_words_str.rs"
 
 [[bin]]
-# http://rosettacode.org/wiki/Rock-paper-scissors
-name = "rps_game"
-path = "src/rock_paper_scissors.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Averages/Root_mean_square
-name = "averages_root_mean_square"
-path = "src/averages/root_mean_square.rs"
-test = true
-
-[[bin]]
 # http://rosettacode.org/wiki/Roots_of_a_function
 name = "roots_of_a_function"
 path = "src/roots_of_a_function.rs"
@@ -954,6 +937,11 @@ path = "src/rosetta_code/find_unimplemented_tasks.rs"
 # http://rosettacode.org/wiki/Rot-13
 name = "rot13"
 path = "src/rot13.rs"
+
+[[bin]]
+# http://rosettacode.org/wiki/Rock-paper-scissors
+name = "rps_game"
+path = "src/rock_paper_scissors.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/RSA_code
@@ -1019,15 +1007,34 @@ name = "sort_int"
 path = "src/sort_int.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/Sorting_algorithms/Bubble_sort
+name = "sorting_algorithms_bubble_sort"
+path = "src/sorting_algorithms/bubble_sort.rs"
+
+[[bin]]
+# http://rosettacode.org/wiki/Sorting_algorithms/Counting_sort
+name = "sorting_algorithms_counting_sort"
+path = "src/sorting_algorithms/counting_sort.rs"
+
+[[bin]]
+# http://rosettacode.org/wiki/Sorting_algorithms/Heapsort
+name = "sorting_algorithms_heap_sort"
+path = "src/sorting_algorithms/heap_sort.rs"
+
+[[bin]]
+# http://rosettacode.org/wiki/Sorting_algorithms/Merge_sort
+name = "sorting_algorithms_merge_sort"
+path = "src/sorting_algorithms/merge_sort.rs"
+
+[[bin]]
+# http://rosettacode.org/wiki/Sorting_algorithms/Quicksort
+name = "sorting_algorithms_quick_sort"
+path = "src/sorting_algorithms/quick_sort.rs"
+
+[[bin]]
 # http://rosettacode.org/wiki/Stack
 name = "stack"
 path = "src/stack.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Hello_world/Standard_error
-name = "hello_world_standard_error"
-path = "src/hello_world/standard_error.rs"
-test = false
 
 [[bin]]
 # http://rosettacode.org/wiki/Standard_deviation
@@ -1122,20 +1129,14 @@ path = "src/walk_a_directory/recursively.rs"
 test = false
 
 [[bin]]
-# http://rosettacode.org/wiki/Hello_world/Web_server
-name = "hello_world_web_server"
-path = "src/hello_world/web_server.rs"
-test = false
+# http://rosettacode.org/wiki/Wireworld
+name = "wireworld"
+path = "src/wireworld.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Word_wrap
 name = "word_wrap"
 path = "src/word_wrap.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Wireworld
-name = "wireworld"
-path = "src/wireworld.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Write_ppm_file
