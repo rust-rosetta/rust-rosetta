@@ -4,6 +4,8 @@
 extern crate rand;
 
 use std::io::{stdout, stdin, Read, Write};
+use std::thread;
+use std::time::Duration;
 use rand::{Rng, thread_rng};
 
 fn toss_coin(print:bool) -> char {
@@ -76,11 +78,11 @@ fn main() {
         let mut coins = String::new();
         for _ in 0..2 { //toss first 2 coins
             coins.push(toss_coin(true));
-            std::thread::sleep_ms(500);
+            thread::sleep(Duration::from_millis(500));
         }
         loop {
             coins.push(toss_coin(true));
-            std::thread::sleep_ms(500);
+            thread::sleep(Duration::from_millis(500));
             if coins.contains(&useq) {
                 println!("\nYou win!");
                 break;

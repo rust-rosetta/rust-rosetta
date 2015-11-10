@@ -1,6 +1,8 @@
 // http://rosettacode.org/wiki/Wireworld
 
 use std::mem;
+use std::thread;
+use std::time::Duration;
 
 // Use VT100 cursor control sequences to animate in-place
 #[cfg(not(test))] const ANIMATE: bool = true;
@@ -53,7 +55,6 @@ fn next_world(input: &[Cell], output: &mut [Cell], w: usize, h: usize) {
 
 #[cfg(not(test))]
 fn main() {
-    use std::thread::sleep_ms;
     let (w, h) = (14usize, 7usize);
     let mut world: Vec<Cell> = "
 +-----------+
@@ -77,7 +78,7 @@ fn main() {
         if ANIMATE {
             print!("\x1b[{}A", 8);
             print!("\x1b[{}D", 14);
-            sleep_ms(100);
+            thread::sleep(Duration::from_millis(100));
         }
     }
 }

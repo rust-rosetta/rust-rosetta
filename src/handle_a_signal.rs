@@ -1,22 +1,20 @@
 // http://rosettacode.org/wiki/Handle_a_signal
-//
-// Note that this solution only works on Unix.
-#![cfg_attr(unix, feature(std_misc))]
 
 extern crate libc;
 extern crate time;
 
+use std::mem;
+use std::sync::atomic::{AtomicBool, ATOMIC_BOOL_INIT, Ordering};
+use std::time::Duration;
+
+use libc::consts::os::posix88::SIGINT;
+use libc::funcs::posix01::signal;
+
 #[cfg(all(unix, not(test)))]
-fn main()
-{
-    use libc::consts::os::posix88::SIGINT;
-    use libc::funcs::posix01::signal;
-    use std::mem;
-    use std::sync::atomic::{AtomicBool, ATOMIC_BOOL_INIT, Ordering};
-    use time::Duration;
+fn main() {
 
     // The time between ticks of our counter.
-    let duration = 500u32; //Duration::seconds(1) / 2;
+    let duration = Duration::from_secs(1) / 2;
     // "SIGINT received" global variable.
     static mut GOT_SIGINT: AtomicBool = ATOMIC_BOOL_INIT;
     unsafe {
@@ -37,7 +35,7 @@ fn main()
     let mut i = 0u32;
     // Every `duration`...
     loop {
-        std::thread::sleep_ms(duration);
+        std::thread::sleep(duration);
         // Break if SIGINT was handled
         if unsafe { GOT_SIGINT.load(Ordering::Acquire) } { break }
         // Otherwise, increment and display the integer and continue the loop.
@@ -47,13 +45,12 @@ fn main()
     // Get the end time.
     let end = time::precise_time_ns();
     // Compute the difference
-    let diff = Duration::nanoseconds((end - start) as i64);
+    let diff = Duration::from_millis((end - start) / 1000000);
     // Print the difference and exit
-    println!("Program has run for {} seconds", diff);
+    println!("Program has run for {} seconds", diff.as_secs());
 }
 
 #[cfg(not(unix))]
-fn main()
-{
+fn main() {
     println!("Not supported on this platform");
 }

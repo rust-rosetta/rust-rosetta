@@ -6,11 +6,12 @@ use std::sync::Arc;
 use std::sync::atomic::AtomicUsize;
 use std::sync::atomic::Ordering::SeqCst;
 use std::thread::{self, spawn};
+use std::time::Duration;
 use std::sync::mpsc::channel;
 
 pub struct CountingSemaphore {
     count: AtomicUsize, // Remaining resource count
-    backoff: u32, // How long to sleep if a resource is being contended
+    backoff: Duration, // How long to sleep if a resource is being contended
 }
 
 pub struct CountingSemaphoreGuard<'a> {
@@ -20,7 +21,7 @@ pub struct CountingSemaphoreGuard<'a> {
 impl CountingSemaphore {
     // Create a semaphore with `max` available resources and a linearly increasing backoff of
     // `backoff` (used during spinlock contention).
-    pub fn new(max: usize, backoff: u32) -> CountingSemaphore {
+    pub fn new(max: usize, backoff: Duration) -> CountingSemaphore {
         CountingSemaphore { count: AtomicUsize::new(max), backoff: backoff }
     }
 
@@ -35,7 +36,7 @@ impl CountingSemaphore {
             // must be a compare-and-swap rather than a straight decrement.
             if count == 0 || self.count.compare_and_swap(count, count-1, SeqCst) != count {
                 // Linear backoff a la Servo's spinlock contention.
-                thread::sleep_ms(backoff);
+                thread::sleep(backoff);
                 backoff = backoff + self.backoff;
             } else {
                 // We successfully acquired the resource.
@@ -58,10 +59,10 @@ impl<'a> Drop for CountingSemaphoreGuard<'a> {
     }
 }
 
-fn metered(duration: u32) {
+fn metered(duration: Duration) {
     static MAX_COUNT: usize = 4; // Total available resources
     static NUM_WORKERS: u8 = 10; // Number of workers contending for the resources
-    let backoff = 1; // Linear backoff time
+    let backoff = Duration::from_millis(1); // Linear backoff time
     // Create a shared reference to the semaphore
     let sem = Arc::new(CountingSemaphore::new(MAX_COUNT, backoff));
     // Create a channel for notifying the main task that the workers are done
@@ -77,7 +78,7 @@ fn metered(duration: u32) {
             assert!(count < MAX_COUNT);
             println!("Worker {} after acquire: count = {}", i, count);
             // Sleep for `duration`
-            thread::sleep_ms(duration);
+            thread::sleep(duration);
             // Release the resource
             drop(guard);
             // Make sure the count is legal
@@ -98,11 +99,11 @@ fn metered(duration: u32) {
 #[test]
 fn test_metered_concurrency() {
     // Hold each resource for 1/20 of a second per worker
-    metered(1000 / 20);
+    metered(Duration::from_secs(1) / 20);
 }
 
 #[cfg(not(test))]
 fn main() {
     // Hold each resource for 2 seconds per worker
-    metered(2000);
+    metered(Duration::from_secs(2));
 }
