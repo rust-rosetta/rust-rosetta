@@ -1017,9 +1017,9 @@ name = "price_fraction"
 path = "src/price_fraction.rs"
 
 [[bin]]
-# http://rosettacode.org/wiki/Primality_by_Trial_Division
-name = "primality_trial_div"
-path = "src/primality_trial_div.rs"
+# http://rosettacode.org/wiki/Primality_by_trial_division
+name = "primality_by_trial_division"
+path = "src/primality_by_trial_division.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Prime_decomposition

@@ -1,4 +1,4 @@
-// http://rosettacode.org/wiki/Primality_by_Trial_Division
+// http://rosettacode.org/wiki/Primality_by_trial_division
 #![feature(step_by)]
 
 fn is_prime(number: i32) -> bool {
