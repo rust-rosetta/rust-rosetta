@@ -640,6 +640,11 @@ path = "src/hello_world/standard_error.rs"
 test = false
 
 [[bin]]
+# http://rosettacode.org/wiki/Hello_world/Text
+name = "hello_world_text"
+path = "src/hello_world/text.rs"
+
+[[bin]]
 # http://rosettacode.org/wiki/Hello_world/Web_server
 name = "hello_world_web_server"
 path = "src/hello_world/web_server.rs"
