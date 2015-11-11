@@ -560,6 +560,11 @@ name = "function_def"
 path = "src/function_def.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/General_FizzBuzz
+name = "general_fizzbuzz"
+path = "src/general_fizzbuzz.rs"
+
+[[bin]]
 # http://rosettacode.org/wiki/Gray_code
 name = "gray_code"
 path = "src/gray_code.rs"
