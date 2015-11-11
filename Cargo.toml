@@ -1335,6 +1335,11 @@ name = "vigenere"
 path = "src/vigenere.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/Walk_a_directory/Non-recursively
+name = "walk_a_directory_non_recursively"
+path = "src/walk_a_directory/non_recursively.rs"
+
+[[bin]]
 # http://rosettacode.org/wiki/Walk_a_directory/Recursively
 name = "walk_a_directory_recursively"
 path = "src/walk_a_directory/recursively.rs"
