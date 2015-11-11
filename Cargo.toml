@@ -807,6 +807,11 @@ name = "loop_over_multiple_arrays_simultaneously"
 path = "src/loop_over_multiple_arrays_simulataneously.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/Loops/Break
+name = "loops_break"
+path = "src/loops/break.rs"
+
+[[bin]]
 # http://rosettacode.org/wiki/Loops/For
 name = "loops_for"
 path = "src/loops/for.rs"
