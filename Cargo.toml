@@ -383,6 +383,11 @@ path = "src/concurrent_computing.rs"
 test = false
 
 [[bin]]
+# http://rosettacode.org/wiki/Convert_seconds_to_compound_duration
+name = "convert_seconds_to_compound_duration"
+path = "src/convert_seconds_to_compound_duration.rs"
+
+[[bin]]
 # http://rosettacode.org/wiki/Count_in_octal
 name = "count_in_octal"
 path = "src/count_in_octal.rs"
