@@ -1285,6 +1285,11 @@ name = "sum_of_a_series"
 path = "src/sum_of_a_series.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/Sum_of_squares
+name = "sum_of_squares"
+path = "src/sum_of_squares.rs"
+
+[[bin]]
 # http://rosettacode.org/wiki/Generic_swap
 name = "swap"
 path = "src/swap.rs"
