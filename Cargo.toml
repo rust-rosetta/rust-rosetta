@@ -1270,6 +1270,11 @@ name = "sudoku"
 path = "src/sudoku.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/Sum_and_product_of_an_array
+name = "sum_and_product_of_an_array"
+path = "src/sum_and_product_of_an_array.rs"
+
+[[bin]]
 # http://rosettacode.org/wiki/Sum_digits_of_an_integer
 name = "sum_digits"
 path = "src/sum_digits.rs"
