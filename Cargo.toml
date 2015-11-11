@@ -318,6 +318,11 @@ path = "src/callback_to_array.rs"
 test = false
 
 [[bin]]
+# http://rosettacode.org/wiki/Catalan_numbers
+name = "catalan_numbers"
+path = "src/catalan_numbers.rs"
+
+[[bin]]
 # http://rosettacode.org/wiki/Check_that_file_exists
 name = "check_file"
 path = "src/check_file.rs"
