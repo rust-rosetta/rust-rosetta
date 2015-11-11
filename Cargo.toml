@@ -364,6 +364,11 @@ name = "command_line_arguments"
 path = "src/command_line_args.rs"
 test = false
 
+[[bin]]
+# http://rosettacode.org/wiki/Comments
+name = "comments"
+path = "src/comments.rs"
+
 ## compiler plugins are not available in rust stable
 ## this can only currently be compiled on nightly
 #[[bin]]
