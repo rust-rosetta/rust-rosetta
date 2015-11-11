@@ -1010,6 +1010,11 @@ name = "power_set"
 path = "src/power_set.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/Price_fraction
+name = "price_fraction"
+path = "src/price_fraction.rs"
+
+[[bin]]
 # http://rosettacode.org/wiki/Primality_by_Trial_Division
 name = "primality_trial_div"
 path = "src/primality_trial_div.rs"
