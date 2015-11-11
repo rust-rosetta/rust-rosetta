@@ -519,6 +519,11 @@ name = "fibonacci_word"
 path = "src/fibonacci_word.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/File_input/output
+name = "file_input_output"
+path = "src/file_input_output.rs"
+
+[[bin]]
 # http://rosettacode.org/wiki/File_size
 name = "filesize"
 path = "src/filesize.rs"
