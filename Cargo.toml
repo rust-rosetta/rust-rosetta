@@ -763,6 +763,11 @@ name = "knights_tour"
 path = "src/knights_tour.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/Knuth_shuffle
+name = "knuth_shuffle"
+path = "src/knuth_shuffle.rs"
+
+[[bin]]
 # http://rosettacode.org/wiki/Leap_year
 name = "leap_year"
 path = "src/leap_year.rs"
