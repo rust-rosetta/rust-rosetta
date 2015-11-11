@@ -464,6 +464,11 @@ name = "ethiopian_multiplication"
 path = "src/ethiopian_multiplication.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/Euler's_sum_of_powers_conjecture
+name = "eulers_sum_of_powers_conjecture"
+path = "src/eulers_sum_of_powers_conjecture.rs"
+
+[[bin]]
 # http://rosettacode.org/wiki/Events
 name = "events"
 path = "src/events.rs"
