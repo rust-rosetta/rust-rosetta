@@ -323,6 +323,11 @@ name = "catalan_numbers"
 path = "src/catalan_numbers.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/Character_codes
+name = "character_codes"
+path = "src/character_codes.rs"
+
+[[bin]]
 # http://rosettacode.org/wiki/Check_that_file_exists
 name = "check_file"
 path = "src/check_file.rs"
