@@ -1,8 +1,11 @@
 // http://rosettacode.org/wiki/HTTP
+mod hello_world;
+
 use std::net::TcpStream;
 use std::io::{Read, Result, Write};
+
 #[cfg(test)]
-mod webserver;
+use hello_world::web_server;
 
 fn get_index(target: &str, port: u16) -> Result<String> {
     // Create a socket. Mutable so we can write to it.
@@ -41,7 +44,7 @@ fn test_request() {
     const PORT: u16 = 12321;
 
     let (port, _acceptor) = (PORT..::std::u16::MAX)
-        .map( |port| (port, webserver::handle_server(HOST, port)) )
+        .map( |port| (port, web_server::handle_server(HOST, port)) )
         .find( |&(_, ref acceptor)| acceptor.is_ok() )
         .unwrap();
 
