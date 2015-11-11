@@ -184,6 +184,11 @@ name = "almost_prime"
 path = "src/almost_prime.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/Amicable_pairs
+name = "amicable_pairs"
+path = "src/amicable_pairs.rs"
+
+[[bin]]
 # http://rosettacode.org/wiki/Anagrams
 name = "anagrams"
 path = "src/anagrams.rs"
