@@ -285,6 +285,11 @@ name = "bitmap"
 path = "src/bitmap.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/Bitmap/Write_a_PPM_file
+name = "bitmap_write_a_ppm_file"
+path = "src/bitmap/write_a_ppm_file.rs"
+
+[[bin]]
 # http://rosettacode.org/wiki/Bitwise_operations
 name = "bitwise_operations"
 path = "src/bitwise_operations.rs"
