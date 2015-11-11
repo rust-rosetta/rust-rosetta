@@ -629,6 +629,11 @@ name = "hash_join"
 path = "src/hash_join.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/Hello_world/Newline_omission
+name = "hello_world_newline_omission"
+path = "src/hello_world/newline_omission.rs"
+
+[[bin]]
 # http://rosettacode.org/wiki/Hello_world/Standard_error
 name = "hello_world_standard_error"
 path = "src/hello_world/standard_error.rs"
