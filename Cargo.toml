@@ -995,6 +995,11 @@ name = "pernicious_numbers"
 path = "src/pernicious_numbers.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/Playing_cards
+name = "playing_cards"
+path = "src/playing_cards.rs"
+
+[[bin]]
 # http://rosettacode.org/wiki/Population_count
 name = "population_count"
 path = "src/population_count.rs"
