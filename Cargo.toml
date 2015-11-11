@@ -72,6 +72,7 @@ libc = "0.2"
 permutohedron = "0.1"
 eventual = { git = "https://github.com/carllerche/eventual" }
 hyper = "0.6"
+unicode-segmentation = "0.1"
 
 # dependency does not compile on Windows, currently only used for 2048
 rustbox = { version = "*", optional = true }
@@ -1078,6 +1079,11 @@ path = "src/repeat_str.rs"
 # http://rosettacode.org/wiki/Globally_replace_text_in_several_files
 name = "replace_word"
 path = "src/replace_word.rs"
+
+[[bin]]
+# http://rosettacode.org/wiki/Reverse_a_string
+name = "reverse_a_string"
+path = "src/reverse_a_string.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Reverse_words_in_a_string
