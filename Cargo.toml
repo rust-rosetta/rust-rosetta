@@ -928,6 +928,11 @@ name = "n_queens"
 path = "src/n_queens.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/N'th
+name = "nth"
+path = "src/nth.rs"
+
+[[bin]]
 # http://rosettacode.org/wiki/Check_output_device_is_a_terminal
 name = "output_is_terminal"
 path = "src/output_is_terminal.rs"
