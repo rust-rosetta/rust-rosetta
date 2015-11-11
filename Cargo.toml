@@ -459,6 +459,11 @@ name = "equilibrium_index"
 path = "src/equilibrium_index.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/Ethiopian_multiplication
+name = "ethiopian_multiplication"
+path = "src/ethiopian_multiplication.rs"
+
+[[bin]]
 # http://rosettacode.org/wiki/Events
 name = "events"
 path = "src/events.rs"
