@@ -851,6 +851,11 @@ path = "src/loops/n_plus_one_half.rs"
 test = false
 
 [[bin]]
+# http://rosettacode.org/wiki/Loops/Nested
+name = "loops_nested"
+path = "src/loops/nested.rs"
+
+[[bin]]
 # http://rosettacode.org/wiki/Loops/While
 name = "loops_while"
 path = "src/loops/while.rs"
