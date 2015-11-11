@@ -817,6 +817,11 @@ name = "loops_continue"
 path = "src/loops/continue.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/Loops/Downward_for
+name = "loops_downward_for"
+path = "src/loops/downward_for.rs"
+
+[[bin]]
 # http://rosettacode.org/wiki/Loops/For
 name = "loops_for"
 path = "src/loops/for.rs"
