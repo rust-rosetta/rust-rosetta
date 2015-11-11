@@ -802,6 +802,11 @@ name = "look-and-say_sequence"
 path = "src/look-and-say_sequence.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/Loop_over_multiple_arrays_simultaneously
+name = "loop_over_multiple_arrays_simultaneously"
+path = "src/loop_over_multiple_arrays_simulataneously.rs"
+
+[[bin]]
 # http://rosettacode.org/wiki/Loops/For
 name = "loops_for"
 path = "src/loops/for.rs"
