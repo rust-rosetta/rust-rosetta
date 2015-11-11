@@ -964,6 +964,11 @@ name = "parallel_calculations"
 path = "src/parallel_calculations.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/Parametric_polymorphism
+name = "parametric_polymorphism"
+path = "src/parametric_polymorphism.rs"
+
+[[bin]]
 # http://rosettacode.org/wiki/Pascal%27s_triangle
 name = "pascals_triangle"
 path = "src/pascals_triangle.rs"
