@@ -812,6 +812,11 @@ name = "loops_break"
 path = "src/loops/break.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/Loops/Continue
+name = "loops_continue"
+path = "src/loops/continue.rs"
+
+[[bin]]
 # http://rosettacode.org/wiki/Loops/For
 name = "loops_for"
 path = "src/loops/for.rs"
