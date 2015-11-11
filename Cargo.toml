@@ -828,6 +828,11 @@ path = "src/loops/for.rs"
 test = false
 
 [[bin]]
+# http://rosettacode.org/wiki/Loops/For_with_a_specified_step
+name = "loops_for_with_a_specified_step"
+path = "src/loops/for_with_a_specified_step.rs"
+
+[[bin]]
 # http://rosettacode.org/wiki/Loops/Foreach
 name = "loops_foreach"
 path = "src/loops/foreach.rs"
