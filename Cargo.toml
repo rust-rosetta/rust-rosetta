@@ -62,6 +62,7 @@ unixOnly = ["rustbox"]
 
 [dependencies]
 regex = "0.1"
+docopt = "0.6"
 #regex_macros = "*"
 time = "0.1"
 rustc-serialize = "0.3"
@@ -1056,6 +1057,11 @@ test = false
 name = "recursion_depth"
 path = "src/recursion_depth.rs"
 test = false
+
+[[bin]]
+# http://rosettacode.org/wiki/Remove_lines_from_a_file
+name = "remove_lines_from_a_file"
+path = "src/remove_lines_from_a_file.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Rename_a_file

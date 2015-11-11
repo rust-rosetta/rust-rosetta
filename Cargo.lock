@@ -2,6 +2,7 @@
 name = "rust-rosetta"
 version = "0.0.1"
 dependencies = [
+ "docopt 0.6.75 (registry+https://github.com/rust-lang/crates.io-index)",
  "eventual 0.1.4 (git+https://github.com/carllerche/eventual)",
  "hyper 0.6.15 (registry+https://github.com/rust-lang/crates.io-index)",
  "libc 0.2.2 (registry+https://github.com/rust-lang/crates.io-index)",
@@ -52,6 +53,16 @@ dependencies = [
  "rustc-serialize 0.3.16 (registry+https://github.com/rust-lang/crates.io-index)",
  "time 0.1.34 (registry+https://github.com/rust-lang/crates.io-index)",
  "url 0.2.37 (registry+https://github.com/rust-lang/crates.io-index)",
+]
+
+[[package]]
+name = "docopt"
+version = "0.6.75"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+dependencies = [
+ "regex 0.1.41 (registry+https://github.com/rust-lang/crates.io-index)",
+ "rustc-serialize 0.3.16 (registry+https://github.com/rust-lang/crates.io-index)",
+ "strsim 0.3.0 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
 [[package]]
@@ -299,6 +310,11 @@ dependencies = [
  "hpack 0.2.0 (registry+https://github.com/rust-lang/crates.io-index)",
  "log 0.3.3 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
+
+[[package]]
+name = "strsim"
+version = "0.3.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
 
 [[package]]
 name = "syncbox"
