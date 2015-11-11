@@ -1096,6 +1096,11 @@ name = "roman_numerals_decode"
 path = "src/roman_numerals/decode.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/Roman_numerals/Encode
+name = "roman_numerals_encode"
+path = "src/roman_numerals/encode.rs"
+
+[[bin]]
 # http://rosettacode.org/wiki/Roots_of_a_function
 name = "roots_of_a_function"
 path = "src/roots_of_a_function.rs"
