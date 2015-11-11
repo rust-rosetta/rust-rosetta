@@ -474,6 +474,11 @@ name = "events"
 path = "src/events.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/Execute_a_system_command
+name = "execute_a_system_command"
+path = "src/execute_a_system_command.rs"
+
+[[bin]]
 # http://rosettacode.org/wiki/Factors_of_an_integer
 name = "factor_int"
 path = "src/factor_int.rs"
