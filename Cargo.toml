@@ -1173,6 +1173,11 @@ path = "src/short_circuit_evaluation.rs"
 test = false
 
 [[bin]]
+# http://rosettacode.org/wiki/Show_the_epoch
+name = "show_the_epoch"
+path = "src/show_the_epoch.rs"
+
+[[bin]]
 # http://rosettacode.org/wiki/Sierpinski_triangle
 name = "sierpinski_triangle"
 path = "src/sierpinski_triangle.rs"
