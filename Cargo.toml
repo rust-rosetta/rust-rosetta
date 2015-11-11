@@ -61,22 +61,22 @@ authors = [
 unixOnly = ["rustbox"]
 
 [dependencies]
-regex = "*"
+regex = "0.1"
 #regex_macros = "*"
-time = "*"
-rustc-serialize = "*"
-rand = "*"
-num = "*"
-libc = "0.1.0"
-permutohedron = "*"
-eventual = "*"
-hyper = "0.6.15"
+time = "0.1"
+rustc-serialize = "0.3"
+rand = "0.3"
+num = "0.1"
+libc = "0.2"
+permutohedron = "0.1"
+eventual = { git = "https://github.com/carllerche/eventual" }
+hyper = "0.6"
 
 # dependency does not compile on Windows, currently only used for 2048
 rustbox = { version = "*", optional = true }
 
 [build-dependencies]
-regex = "0.1.41"
+regex = "0.1"
 toml = "0.1"
 
 [dependencies.schedule_recv]

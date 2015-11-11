@@ -7,12 +7,10 @@ use std::mem;
 use std::sync::atomic::{AtomicBool, ATOMIC_BOOL_INIT, Ordering};
 use std::time::Duration;
 
-use libc::consts::os::posix88::SIGINT;
-use libc::funcs::posix01::signal;
+use libc::SIGINT;
 
 #[cfg(all(unix, not(test)))]
 fn main() {
-
     // The time between ticks of our counter.
     let duration = Duration::from_secs(1) / 2;
     // "SIGINT received" global variable.
@@ -27,7 +25,7 @@ fn main() {
             GOT_SIGINT.store(true, Ordering::Release);
         }
         // Make handle_sigint the signal handler for SIGINT.
-        signal::signal(SIGINT, mem::transmute(handle_sigint));
+        libc::signal(SIGINT, mem::transmute(handle_sigint));
     }
     // Get the start time...
     let start = time::precise_time_ns();
