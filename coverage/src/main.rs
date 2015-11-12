@@ -36,13 +36,14 @@ If no tasks are specified, determines the status for all tasks.
 Optionally prints out a diff as well.
 
 Usage:
-    coverage [options] [--localonly | --remoteonly] [<tasks>...]
+    coverage [options] [--localonly | --remoteonly | --unimplemented] [<tasks>...]
 
 Options:
-    -h --help       Show this screen.
-    --nodiff        Don't print diffs.
-    --localonly     Only print tasks that are implemented locally, but not on the wiki.
-    --remoteonly    Only print tasks that are implemented on the wiki, but not locally.
+    -h --help           Show this screen.
+    --nodiff            Don't print diffs.
+    --localonly         Only print tasks that are implemented locally, but not on the wiki.
+    --remoteonly        Only print tasks that are implemented on the wiki, but not locally.
+    --unimplemented     Only print tasks that neither implemented locally nor remotely.
 ";
 
 #[derive(Debug, RustcDecodable)]
@@ -51,6 +52,7 @@ struct Args {
     flag_nodiff: bool,
     flag_localonly: bool,
     flag_remoteonly: bool,
+    flag_unimplemented: bool,
 }
 
 // Normalizes a title according to MediaWiki's rules.
@@ -128,6 +130,10 @@ fn main() {
         }
 
         if args.flag_remoteonly && !(local_code.is_none() && online_code.is_some()) {
+            continue
+        }
+
+        if args.flag_unimplemented && (local_code.is_some() || online_code.is_some()) {
             continue
         }
 
