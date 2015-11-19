@@ -1,4 +1,4 @@
-// http://rosettacode.org/wiki/A%2BB
+// http://rosettacode.org/wiki/A+B
 use std::io;
 
 fn main() {

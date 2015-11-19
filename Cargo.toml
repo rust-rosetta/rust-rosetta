@@ -135,7 +135,7 @@ name = "9_billion_names_of_god_the_integer"
 path = "src/9_billion_names_of_god_the_integer.rs"
 
 [[bin]]
-# http://rosettacode.org/wiki/A%2BB
+# http://rosettacode.org/wiki/A+B
 name = "a_plus_b"
 path = "src/a_plus_b.rs"
 test = false
