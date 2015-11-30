@@ -4,7 +4,7 @@
 // explicitly to the phase feature gate
 #![feature(plugin)]
 // we use this attribute to mark factorial_plugin as
-// a syntax extension. The plugin's code is in src/factorial_plugin.rs
+// a syntax extension. The plugin's code is in src/factorial_plugin
 #![plugin(factorial_plugin)]
 
 fn main() {

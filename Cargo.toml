@@ -63,7 +63,6 @@ unixOnly = ["rustbox"]
 [dependencies]
 regex = "0.1"
 docopt = "0.6"
-#regex_macros = "*"
 time = "0.1"
 rustc-serialize = "0.3"
 rand = "0.3"
@@ -81,22 +80,15 @@ rustbox = { version = "*", optional = true }
 [dependencies.use-another-language-to-call-a-function]
 path = "src/use_another_language_to_call_a_function"
 
+[dependencies.factorial-plugin]
+path = "src/factorial_plugin"
+
 [build-dependencies]
 regex = "0.1"
 toml = "0.1"
 
 [dependencies.schedule_recv]
 git = "https://github.com/PeterReid/schedule_recv"
-
-## compiler plugins are not available in rust stable
-## this can only currently be compiled on nightly
-#[lib]
-## used by compile_time_calculation.rs
-## http://rosettacode.org/wiki/Compile-time_calculation
-#name = "factorial_plugin"
-#crate-type = ["dylib"]
-#path = "src/factorial_plugin.rs"
-#test = false
 
 [[bin]]
 # http://rosettacode.org/wiki/100_doors
@@ -390,12 +382,10 @@ test = false
 name = "comments"
 path = "src/comments.rs"
 
-## compiler plugins are not available in rust stable
-## this can only currently be compiled on nightly
-#[[bin]]
-## http://rosettacode.org/wiki/Compile-time_calculation
-#name = "compile_time_calculation"
-#path = "src/compile_time_calculation.rs"
+[[bin]]
+# http://rosettacode.org/wiki/Compile-time_calculation
+name = "compile_time_calculation"
+path = "src/compile_time_calculation.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Concurrent_computing
