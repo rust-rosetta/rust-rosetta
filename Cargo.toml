@@ -77,6 +77,10 @@ unicode-segmentation = "0.1"
 # dependency does not compile on Windows, currently only used for 2048
 rustbox = { version = "*", optional = true }
 
+# subcrates
+[dependencies.use-another-language-to-call-a-function]
+path = "src/use_another_language_to_call_a_function"
+
 [build-dependencies]
 regex = "0.1"
 toml = "0.1"
@@ -1328,6 +1332,11 @@ test = false
 name = "unix_ls"
 path = "src/unix/ls.rs"
 test = false
+
+[[bin]]
+# http://rosettacode.org/wiki/Use_another_language_to_call_a_function
+name = "use_another_language_to_call_a_function"
+path = "src/use_another_language_to_call_a_function.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Vigen%C3%A8re_cipher
