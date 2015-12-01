@@ -456,6 +456,11 @@ path = "src/enumerations.rs"
 test = false
 
 [[bin]]
+# http://rosettacode.org/wiki/Environment_variables
+name = "environment_variables"
+path = "src/environment_variables.rs"
+
+[[bin]]
 # http://rosettacode.org/wiki/Equilibrium_index
 name = "equilibrium_index"
 path = "src/equilibrium_index.rs"
