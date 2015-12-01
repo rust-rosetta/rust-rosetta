@@ -10,7 +10,6 @@ hyper = "0.6.15"
 regex = "0.1.41"
 rustc-serialize = "0.3.16"
 term = "0.2.12"
-url = "0.2.37"
 walkdir = "0.1.3"
 
 [dependencies.rust-rosetta]

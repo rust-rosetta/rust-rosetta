@@ -6,7 +6,6 @@ extern crate regex;
 extern crate rust_rosetta;
 extern crate rustc_serialize;
 extern crate walkdir;
-extern crate url;
 
 use rust_rosetta::rosetta_code::find_unimplemented_tasks::all_tasks;
 
@@ -22,7 +21,6 @@ use hyper::Client;
 use hyper::header::Connection;
 use regex::Regex;
 use term::Terminal;
-use url::percent_encoding;
 use walkdir::WalkDir;
 
 const USAGE: &'static str = "
@@ -55,15 +53,9 @@ struct Args {
     flag_unimplemented: bool,
 }
 
-// Normalizes a title according to MediaWiki's rules.
-//
-// TODO: This function is pretty fragile. A better solution would be to query the API with the URL
-// in the task, and then parse the normalized title from that.
+// Transforms a task title to a URL task title.
 fn normalize(title: &str) -> String {
-    let title = title.replace(" ", "_");
-    let url_encoded_title =
-        percent_encoding::utf8_percent_encode(&title, percent_encoding::QUERY_ENCODE_SET);
-    url_encoded_title.replace("+", "%2B")
+    title.replace(" ", "_")
 }
 
 fn main() {
@@ -101,7 +93,7 @@ fn main() {
     };
 
     // Extracts the code from the first <lang rust> tag
-    let rust_re = Regex::new(r"==\{\{header\|Rust\}\}==\s+<lang rust>((?s:.*?))</lang>").unwrap();
+    let rust_re = Regex::new(r"==\{\{header\|Rust\}\}==(?s:.*?)<lang rust>((?s:.*?))</lang>").unwrap();
 
     for title in task_titles {
         let task_url = &format!("http://rosettacode.org/wiki/{}", normalize(&title));
