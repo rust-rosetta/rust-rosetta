@@ -93,7 +93,7 @@ fn main() {
     };
 
     // Extracts the code from the first <lang rust> tag
-    let rust_re = Regex::new(r"==\{\{header\|Rust\}\}==\s+<lang rust>((?s:.*?))</lang>").unwrap();
+    let rust_re = Regex::new(r"==\{\{header\|Rust\}\}==(?s:.*?)<lang rust>((?s:.*?))</lang>").unwrap();
 
     for title in task_titles {
         let task_url = &format!("http://rosettacode.org/wiki/{}", normalize(&title));
