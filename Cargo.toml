@@ -55,6 +55,7 @@ authors = [
     "ZoomRmc, https://github.com/zoomrmc",
     "Kevin Darlington, https://github.com/kdar",
     "Andy Russell, https://github.com/euclio",
+    "Orhan Balci, https://github.com/orhanbalci"
 ]
 
 [features]
@@ -892,6 +893,11 @@ path = "src/magic_squares_of_odd_order.rs"
 # http://rosettacode.org/wiki/Man_or_boy_test
 name = "man_or_boy"
 path = "src/man_or_boy.rs"
+
+[[bin]]
+# http://rosettacode.org/wiki/Map_range
+name = "map_range"
+path = "src/map_range.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Execute_a_Markov_algorithm
