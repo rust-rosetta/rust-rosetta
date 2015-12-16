@@ -7,12 +7,14 @@
 // the cause of the problem.
 extern crate regex;
 extern crate toml;
+extern crate unicode_segmentation;
 
 use std::fs::{self, File, metadata};
 use std::io::Read;
 use std::path::Path;
 
 use regex::Regex;
+use unicode_segmentation::UnicodeSegmentation;
 
 fn check_toml() {
     let mut cargo_toml_file = File::open("Cargo.toml").unwrap();
@@ -79,7 +81,7 @@ fn check(path: &Path) {
         }
 
         // Check length
-        if line.len() > 100 {
+        if UnicodeSegmentation::graphemes(line, true).count() > 100 {
             line_error(i + 1, path, "line is longer than 100 characters");
         }
 
