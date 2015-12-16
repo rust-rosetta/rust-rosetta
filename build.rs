@@ -30,7 +30,12 @@ fn check_toml() {
 
     for (bin, correct_bin) in binaries.iter().zip(sorted_binaries) {
         let bin_name = bin.as_table().unwrap().get("name").unwrap().as_str().unwrap();
-        let correct_bin_name = correct_bin.as_table().unwrap().get("name").unwrap().as_str().unwrap();
+        let correct_bin_name = correct_bin.as_table()
+                                          .unwrap()
+                                          .get("name")
+                                          .unwrap()
+                                          .as_str()
+                                          .unwrap();
         if bin_name != correct_bin_name {
             panic!("{} is not in the correct order in Cargo.toml!", bin_name);
         }
@@ -40,8 +45,9 @@ fn check_toml() {
 fn main() {
     check_toml();
 
-    let files = fs::read_dir("src").unwrap()
-                                   .map(|e| e.unwrap());
+    let files = fs::read_dir("src")
+                    .unwrap()
+                    .map(|e| e.unwrap());
 
     for f in files {
         let path = f.path();
@@ -60,8 +66,10 @@ fn check(path: &Path) {
             // Ensure the first line has a URL of the proper form
             let task_comment = Regex::new(r"// http://rosettacode\.org/wiki/.+").unwrap();
             if !task_comment.is_match(line) {
-                line_error(i + 1, path, "file does not start with \
-                           \"// http://rosettacode.org/wiki/<TASK NAME>\"");
+                line_error(i + 1,
+                           path,
+                           "file does not start with \"// http://rosettacode.org/wiki/<TASK \
+                            NAME>\"");
             }
         }
 
@@ -86,5 +94,7 @@ fn check(path: &Path) {
 
 fn line_error(line: usize, path: &Path, msg: &str) {
     panic!("Formatting error, {} (line {} of file \"{}\")",
-           msg, line, path.to_str().unwrap())
+           msg,
+           line,
+           path.to_str().unwrap())
 }
