@@ -196,6 +196,11 @@ name = "anagrams"
 path = "src/anagrams.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/Anonymous_recursion
+name = "anonymous_recursion"
+path = "src/anonymous_recursion.rs"
+
+[[bin]]
 # http://rosettacode.org/wiki/Arena_storage_pool
 name = "arena_storage_pool"
 path = "src/arena_storage_pool.rs"
