@@ -1214,6 +1214,11 @@ name = "sieve_eratosthenes"
 path = "src/sieve_eratosthenes.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/Sleep
+name = "sleep"
+path = "src/sleep.rs"
+
+[[bin]]
 # http://rosettacode.org/wiki/Sort_an_integer_array
 name = "sort_int"
 path = "src/sort_int.rs"
