@@ -1239,6 +1239,11 @@ name = "sorting_algorithms_sleep_sort"
 path = "src/sorting_algorithms/sleep_sort.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/Sorting_algorithms/Stooge_sort
+name = "sorting_algorithms_stooge_sort"
+path = "src/sorting_algorithms/stooge_sort.rs"
+
+[[bin]]
 # http://rosettacode.org/wiki/Stack
 name = "stack"
 path = "src/stack.rs"
