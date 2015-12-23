@@ -1381,6 +1381,11 @@ name = "word_wrap"
 path = "src/word_wrap.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/Write_entire_file
+name = "write_entire_file"
+path = "src/write_entire_file.rs"
+
+[[bin]]
 # http://rosettacode.org/wiki/Write_ppm_file
 name = "write_ppm"
 path = "src/write_ppm.rs"
