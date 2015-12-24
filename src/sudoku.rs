@@ -182,7 +182,7 @@ fn solve_sudoku(mut puzzle: Sudoku) -> Vec<Sudoku> {
     // Find the first undetermined cell.
     let (x, y, _cnt) = *it.iter()
         .filter(|& &(_x, _y, cnt)| cnt > 1)
-        .min_by(|& &(_x, _y, cnt)| cnt)
+        .min_by_key(|& &(_x, _y, cnt)| cnt)
         .unwrap();
 
     let mut answers = vec![];
