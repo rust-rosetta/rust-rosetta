@@ -26,7 +26,6 @@ fn counting_sort(array: &mut [i32], min: i32, max: i32) {
 
 }
 
-#[cfg(not(test))]
 fn main() {
     let mut numbers = [4i32, 65, 2, -31, 0, 99, 2, 83, 782, 1];
     counting_sort(&mut numbers, -31, 782);

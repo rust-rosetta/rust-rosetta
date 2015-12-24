@@ -40,7 +40,6 @@ fn luhn_test(n: u64) -> bool {
     sum % 10 == 0
 }
 
-#[cfg(not(test))]
 fn main() {
     let nos = [49927398716, 49927398717, 1234567812345678, 1234567812345670];
     for n in &nos {

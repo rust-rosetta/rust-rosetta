@@ -8,7 +8,6 @@ pub struct Contact {
     city: String
 }
 
-#[cfg(not(test))]
 fn main() {
     // Encode contact to json
     let c = Contact { name: "John".to_string(), city: "Paris".to_string() };

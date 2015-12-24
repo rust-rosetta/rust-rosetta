@@ -7,7 +7,6 @@ fn quibble(seq: &[&str]) -> String {
     }
 }
 
-#[cfg(not(test))]
 fn main() {
     println!("{}", quibble(&[]));
     println!("{}", quibble(&["ABC"]));

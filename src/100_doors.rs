@@ -21,7 +21,6 @@ fn calculate_doors() -> DoorIter {
     (1u32..101).map(door_status as fn(u32) -> DoorState)
 }
 
-#[cfg(not(test))]
 fn main() {
     let doors = calculate_doors();
     for (i, x) in doors.enumerate() { println!("Door {} is {:?}" , i + 1 , x); }

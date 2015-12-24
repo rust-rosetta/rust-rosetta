@@ -20,7 +20,6 @@ pub fn is_prime(p: u32) -> bool {
 // need to allow dead code because this is used as a library
 // by pernicious numbers
 #[allow(dead_code)]
-#[cfg(not(test))]
 fn main() {
     for p in 0..8 {
         println!("{}: {:?}", p, coefficients(p));

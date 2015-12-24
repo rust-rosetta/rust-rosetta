@@ -37,4 +37,8 @@ fn six_million_seconds() {
     assert_eq!(seconds_to_compound(6000000), "9 wk, 6 d, 10 hr, 40 min");
 }
 
-fn main() {}
+fn main() {
+    println!("7,259 seconds = {}", seconds_to_compound(7259));
+    println!("86,400 seconds = {}", seconds_to_compound(86400));
+    println!("6,000,000 seconds = {}", seconds_to_compound(6000000));
+}

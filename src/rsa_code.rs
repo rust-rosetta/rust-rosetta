@@ -30,7 +30,6 @@ fn mod_exp(b: &BigUint, e: &BigUint, n: &BigUint) -> Result<BigUint, &'static st
     Ok(result)
 }
 
-#[cfg(not(test))]
 fn main() {
     let msg = "Rosetta Code";
 

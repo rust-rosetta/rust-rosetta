@@ -96,7 +96,6 @@ fn closest_pair(points: &mut [Point]) -> Option<(Point, Point)> {
     Some(closest_pair)
 }
 
-#[cfg(not(test))]
 pub fn main() {
     let mut test_data = [
         Complex::new(0.654682, 0.925557),

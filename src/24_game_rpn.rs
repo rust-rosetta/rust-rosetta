@@ -2,7 +2,6 @@
 // Uses RPN expression
 extern crate rand;
 
-#[cfg(not(test))]
 fn main() {
     use rand::Rng;
     use std::io::{self, Write};

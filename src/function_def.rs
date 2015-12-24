@@ -24,7 +24,6 @@ fn test_multiply() {
   assert_eq!(multiply(2i32,2), 4);
 }
 
-#[cfg(not(test))]
 fn main() {
   println!("2 multiply 4 = {}", multiply(2i32,4));
   println!("2.0 multiply 4.0 = {}", multiply_gen(2.0f32, 4.0));

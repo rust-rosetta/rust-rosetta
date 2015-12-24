@@ -53,7 +53,6 @@ impl Solver {
     }
 }
 
-#[cfg(not(test))]
 fn main() {
     let mut solver = Solver::new();
 

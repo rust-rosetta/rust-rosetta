@@ -10,7 +10,6 @@ const  BLOCKS: &'static [&'static str] = &["BO", "XK", "DQ", "CP", "NA",
                                            "JW", "HU", "VI", "AN", "OB",
                                            "ER", "FS", "LY", "PC", "ZM"];
 
-#[cfg(not(test))]
 fn main() {
     println!("******\nmethod 1\n******");
     for word in WORDS {

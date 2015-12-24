@@ -19,7 +19,6 @@ use std::cmp::Ordering::{Less, Equal, Greater};
 
 mod hamming_numbers;
 
-#[cfg(not(test))]
 fn main() {
     // capacity of the queue currently needs to be a power of 2 because of a bug with VecDeque
     let hamming : Hamming<HammingTriple> = Hamming::new(128);

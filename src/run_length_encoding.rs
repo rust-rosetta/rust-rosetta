@@ -6,7 +6,6 @@ const INPUT: &'static str = "WWWWWWWWWWWWBWWWWWWWWWWWWBBBWWWWWWWWWWWWWWWWWWWWWWW
 // Needed so look-and-say_sequence compiles cleanly, because it
 // uses this code as a library
 #[allow(dead_code)]
-#[cfg(not(test))]
 fn main() {
     let enc = encode(INPUT);
     println!("encoded {}", enc);

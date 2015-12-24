@@ -1,6 +1,5 @@
 // http://rosettacode.org/wiki/Arrays
 
-#[cfg(not(test))]
 fn main() {}
 
 #[test]

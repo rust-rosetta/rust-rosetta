@@ -5,7 +5,6 @@ extern crate arena;
 
 use arena::TypedArena;
 
-#[cfg(not(test))]
 fn main() {
     // Memory is allocated using the default allocator (currently jemalloc).  The memory is
     // allocated in chunks, and when one chunk is full another is allocated.  This ensures that

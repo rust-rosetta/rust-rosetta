@@ -4,7 +4,6 @@ fn is_numeric (s: &str) -> bool {
 	s.parse::<f64>().is_ok()
 }
 
-#[cfg(not(test))]
 fn main() {
 	println!("{}", is_numeric("4.034"));
 }

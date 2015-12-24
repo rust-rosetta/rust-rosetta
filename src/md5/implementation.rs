@@ -8,7 +8,6 @@
 use std::num::Wrapping as wr;
 use std::fmt::{Debug, Formatter, Result};
 
-#[cfg(not(test))]
 fn main() {
     let inputs=
     [&b"a"[..],

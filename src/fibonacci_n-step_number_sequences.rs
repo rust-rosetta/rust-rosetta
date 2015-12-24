@@ -21,7 +21,6 @@ impl Iterator for GenFibonacci {
 }
 
 // prints the starting buf and len number of additional elements
-#[cfg(not(test))]
 fn print(buf: Vec<u64>, len: usize) {
     let mut sum = 0;
     for &elt in &buf { sum += elt; print!("\t{}", elt); }
@@ -57,7 +56,6 @@ fn test(mut buf: Vec<u64>, tgt: Vec<u64>) {
 // Fib4:	1	1	2	4	8	15	29	56	108	208
 // Lucas:	2	1	3	4	7	11	18	29	47	76
 
-#[cfg(not(test))]
 fn main() {
     print!("Fib2:");
     print(vec![1,1], 10 - 2);

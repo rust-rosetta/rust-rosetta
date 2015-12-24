@@ -42,7 +42,6 @@ fn count_pythagorean_triples(below: u64) -> (u64, u64) {
     (tot_cnt, prim_cnt)
 }
 
-#[cfg(not(test))]
 fn main() {
     for n in 1..9 {
         let (tot, prim) = count_pythagorean_triples(10u64.pow(n));

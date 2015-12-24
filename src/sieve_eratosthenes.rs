@@ -26,7 +26,6 @@ fn simple_sieve(limit: usize) -> Vec<usize> {
     (2..limit + 1).filter(|&n| primes[n]).collect()
 }
 
-#[cfg(not(test))]
 fn main() {
     println!("{:?}", simple_sieve(100))
 }

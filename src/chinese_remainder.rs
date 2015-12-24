@@ -1,6 +1,5 @@
 // http://rosettacode.org/wiki/Chinese_remainder_theorem
 
-#[cfg(not(test))]
 fn main() {
     let l = [(2, 3), (3, 5), (2, 7)];
     println!("{:?}", chinese_remainder(&l));

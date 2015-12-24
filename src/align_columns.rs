@@ -6,7 +6,6 @@ const TEST_STR: &'static str =
     $space.\nFurther,$allow$for$each$word$in$a$column$to$be$either$left$\n\
     justified,$right$justified,$or$center$justified$within$its$column.\n";
 
-#[cfg(not(test))]
 fn main() {
     let (chunks, max_lengths) = align_columns(TEST_STR);
     print_aligned_columns(&chunks, &max_lengths);

@@ -26,7 +26,6 @@ impl PPMWritable for Image {
     }
 }
 
-#[cfg(not(test))]
 pub fn main() {
     use bitmap::Color;
 

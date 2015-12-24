@@ -15,7 +15,6 @@ fn m(n: usize) -> usize {
     }
 }
 
-#[cfg(not(test))]
 fn main() {
     for i in (0..20).map(f) {
         print!("{} ", i);

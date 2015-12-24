@@ -18,7 +18,6 @@ fn pascaltriangle(rows: usize) -> Vec<Vec<usize>> {
     all_rows
 }
 
-#[cfg(not(test))]
 fn printpascal(rows: &Vec<Vec<usize>>) {
     let mut i = 0;
     for row in rows.iter() {
@@ -36,7 +35,6 @@ fn printpascal(rows: &Vec<Vec<usize>>) {
     }
 }
 
-#[cfg(not(test))]
 fn main() {
     printpascal(&pascaltriangle(5));
 }

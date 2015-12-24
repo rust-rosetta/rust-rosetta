@@ -1,5 +1,6 @@
 // http://rosettacode.org/wiki/Factorial
-#![cfg_attr(test, feature(test))]
+#![feature(test)]
+extern crate test;
 
 // Calculate the factorial using recursion
 fn factorial_recursive (n: usize) -> usize {
@@ -23,7 +24,6 @@ fn factorial_loop(n: usize) -> usize {
     fac
 }
 
-#[cfg(not(test))]
 fn main () {
     let fs = vec![("Recursive", factorial_recursive as fn(usize) -> usize),
                   ("Iterative", factorial_iterative as fn(usize) -> usize),

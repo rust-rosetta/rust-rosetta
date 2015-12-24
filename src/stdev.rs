@@ -19,7 +19,6 @@ impl StDev {
     }
 }
 
-#[cfg(not(test))]
 fn main() {
     let test_data: [i32; 8] = [2, 4, 4, 4, 5, 5, 7, 9];
     let mut sd = StDev::new();

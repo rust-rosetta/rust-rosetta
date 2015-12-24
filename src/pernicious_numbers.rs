@@ -6,7 +6,6 @@ use std::ops::RangeFrom;
 use aks_test_for_primes::is_prime;
 mod aks_test_for_primes;
 
-#[cfg(not(test))]
 fn main() {
     for i in pernicious().take(25) { print!("{} " , i); }
     println!("");

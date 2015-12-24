@@ -2,7 +2,6 @@
 // this is the unoptimized version that performs all 100
 // passes, as per the original description of the problem
 
-#[cfg(not(test))]
 fn main() {
     // states for the 100 doors
     // uses a vector of booleans,

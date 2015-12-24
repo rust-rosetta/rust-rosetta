@@ -64,7 +64,6 @@ fn decompress(compressed: &[i32]) -> String {
    String::from_utf8(result).unwrap()
 }
 
-#[cfg(not(test))]
 fn main() {
     // Show original
     let original = "TOBEORNOTTOBEORTOBEORNOT";

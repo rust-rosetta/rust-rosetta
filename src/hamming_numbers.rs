@@ -13,7 +13,6 @@ use std::ops::Mul;
 
 // needed because hamming_numbers_alt uses this as a library
 #[allow(dead_code)]
-#[cfg(not(test))]
 fn main() {
     // capacity of the queue currently needs to be a power of 2 because of a bug with VecDeque
     let hamming : Hamming<BigUint> = Hamming::new(128);

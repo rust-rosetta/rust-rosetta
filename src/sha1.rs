@@ -14,7 +14,6 @@ const CHUNK:usize = 64;
 const INIT:[wr<u32>; 5] = [wr(0x67452301),wr(0xEFCDAB89), wr(0x98BADCFE),
                             wr(0x10325476), wr(0xC3D2E1F0)];
 
-#[cfg(not(test))]
 fn main() {
     let mut d = Digest::new();
     let _ = write!(&mut d, "The quick brown fox jumps over the lazy dog");

@@ -3,7 +3,6 @@
 use std::iter::{Filter, Map};
 use std::ops::RangeFrom;
 
-#[cfg(not(test))]
 fn main() {
     fn print_30<T: Iterator<Item=u32>>(it: T) {
         for i in it.take(30) { print!("{} " , i); }

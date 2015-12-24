@@ -129,7 +129,6 @@ fn hough(image: &ImageGray8, out_width: usize, out_height: usize) -> ImageGray8 
     accum
 }
 
-#[cfg(not(test))]
 fn main() {
 
     let image = load_pgm("../src/resources/Pentagon.pgm");

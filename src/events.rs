@@ -55,7 +55,6 @@ fn handle_event(duration: Duration) -> Duration {
     Duration::from_millis((end - start) / 1000000)
 }
 
-#[cfg(not(test))]
 pub fn main() {
     let duration = Duration::from_secs(1); // Process event after one second.
     println!("{} seconds elapsed before event triggered", handle_event(duration).as_secs());

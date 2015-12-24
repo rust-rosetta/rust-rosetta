@@ -5,7 +5,6 @@ extern crate rand;
 
 use rand::Rng;
 use std::cmp::Ordering;
-#[cfg(not(test))]
 use time::get_time;
 use std::ops::Sub;
 use std::cmp::Ordering::Less;
@@ -151,7 +150,6 @@ impl KDTreeNode {
     }
 }
 
-#[cfg(not(test))]
 pub fn main() {
     // wordpress
     let mut wp_points: Vec<Point> = [

@@ -1,8 +1,9 @@
 // http://rosettacode.org/wiki/Anagrams
-#[cfg(not(test))] use std::fs::File;
-#[cfg(not(test))] use std::io::{BufReader, BufRead};
 use std::collections::{HashMap, HashSet};
 use std::collections::hash_map::Entry::{Occupied, Vacant};
+use std::fs::File;
+use std::io::BufReader;
+use std::io::prelude::*;
 
 fn sorted_characters(string: &str) -> String {
     let mut chars = string.chars().collect::<Vec<char>>();
@@ -44,7 +45,6 @@ fn largest_groups(groups: &HashMap<String, HashSet<String>>)
     }).collect()
 }
 
-#[cfg(not(test))]
 fn main () {
     let reader = BufReader::new(File::open("src/resources/unixdict.txt").unwrap());
     let lines = reader.lines().map(|l| l.unwrap());

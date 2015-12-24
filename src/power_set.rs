@@ -38,7 +38,6 @@ fn test() {
                           vec!(3), vec!(3, 1), vec!(3, 2), vec!(3, 2, 1)));
 }
 
-#[cfg(not(test))]
 fn main() {
     let mut set = Vec::<i32>::new();
     set.push(1);

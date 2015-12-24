@@ -1,5 +1,4 @@
 // http://rosettacode.org/wiki/Binary_search
-#[cfg(not(test))]
 fn main() {
     println!("{:?}", binary_search(&[1,2,3,4,5,6], 4));
     println!("{:?}", binary_search_rec(&[1,2,3,4,5,6], 4));

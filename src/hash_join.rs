@@ -30,7 +30,6 @@ fn hash_join<'a>(s: LeftTable<'a>, r: RightTable<'a>) -> ResultTable<'a> {
     return result;
 }
 
-#[cfg(not(test))]
 pub fn main() {
     let table1 = vec![(27, "Jonah"),
               (18, "Alan"),

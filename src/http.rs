@@ -23,7 +23,6 @@ fn get_index(target: &str, port: u16) -> Result<String> {
     Ok(resp)
 }
 
-#[cfg(not(test))]
 fn main() {
     use std::borrow::ToOwned;
     const PORT: u16 = 80;

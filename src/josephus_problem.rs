@@ -11,7 +11,6 @@ fn josephus(n: u32, k: u32) -> u32 {
     result
 }
 
-#[cfg(not(test))]
 fn main() {
     let n = 5;
     let k = 2;

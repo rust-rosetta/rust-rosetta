@@ -22,7 +22,6 @@ fn mod_exp<T: Integer + Clone>(mut a: T, mut b: T, m: T) -> T {
     res
 }
 
-#[cfg(not(test))]
 fn main() {
     use num::pow;
 

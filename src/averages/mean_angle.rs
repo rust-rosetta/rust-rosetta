@@ -17,7 +17,6 @@ fn mean_angle(angles: &[f64]) -> f64 {
     mean_sin.atan2(mean_cos) * 180. / PI
 }
 
-#[cfg(not(test))]
 fn main() {
     let set1 = &[350., 10.];
     let set2 = &[90., 180., 270., 360.];

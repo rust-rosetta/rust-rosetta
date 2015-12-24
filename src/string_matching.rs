@@ -8,7 +8,6 @@ fn match_string(container: &str, target: &str) -> (bool, bool, bool) {
   (starts, contains, ends)
 }
 
-#[cfg(not(test))]
 fn print_info(container: &str, target: &str) {
   println!(r#"Matching "{}" in the string "{}""#, target, container);
   let (starts, contains, ends) = match_string(container,target);
@@ -24,7 +23,6 @@ fn print_info(container: &str, target: &str) {
   }
 }
 
-#[cfg(not(test))]
 fn main() {
   print_info("abcd", "ab");
   print_info("abcd", "bc");

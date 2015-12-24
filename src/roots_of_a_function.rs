@@ -29,7 +29,6 @@ fn test_find_roots() {
     }
 }
 
-#[cfg(not(test))]
 fn main() {
     let roots = find_roots(|x: f64| x*x*x - 3.0*x*x + 2.0*x,
                            -1.0, 3.0, 0.0001, 0.00000001);

@@ -48,7 +48,6 @@ fn echo_session(stream: TcpStream) -> io::Result<()> {
 const HOST: &'static str = "127.0.0.1";
 const PORT: u16 = 12321;
 
-#[cfg(not(test))]
 pub fn main() {
     echo_server(HOST, PORT).unwrap();
 }

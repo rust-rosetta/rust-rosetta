@@ -48,7 +48,6 @@ fn biggest_hailstone(limit: usize) -> (usize, usize) {
                     .unwrap()
 }
 
-#[cfg(not(test))]
 fn main() {
     // Find the hailstone for 27.
     let two_seven = Hailstone::new(27).collect::<Vec<usize>>();

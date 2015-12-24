@@ -12,7 +12,6 @@ fn gray_decode(integer: usize) -> usize {
     }
 }
 
-#[cfg(not(test))]
 fn main() {
     for i in 0..32 {
         println!("{:2} {:0>5} {:0>5} {:2}", i, i, gray_encode(i),

@@ -127,7 +127,6 @@ impl<S: Mul<f64, Output=T> + Float + Zero,
 
 // This function is fairly straightforward.  We create the integrator, set its input function k(t)
 // to 2pi * f * t, and then wait as described in the Rosetta stone problem.
-#[cfg(not(test))]
 fn integrate() -> f64 {
     let object = Integrator::new(10);
     object.input(Box::new(|t: u32| {
@@ -141,7 +140,6 @@ fn integrate() -> f64 {
     object.output()
 }
 
-#[cfg(not(test))]
 fn main() {
     println!("{}", integrate());
 }

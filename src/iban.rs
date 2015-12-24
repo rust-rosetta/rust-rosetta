@@ -3,7 +3,6 @@ extern crate num;
 
 use num::bigint::{BigInt, ToBigInt};
 
-#[cfg(not(test))]
 fn main() {
     if is_valid("GB82 WEST 1234 5698 7654 32") {
         println!("IBAN correctly validated!");

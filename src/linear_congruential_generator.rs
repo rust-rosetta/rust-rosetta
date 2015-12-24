@@ -49,7 +49,6 @@ impl LinearCongruentialGenerator for MSLinearCongruentialGenerator {
     }
 }
 
-#[cfg(not(test))]
 fn main() {
     let mut bsd = BSDLinearCongruentialGenerator::new(0);
     let mut ms = MSLinearCongruentialGenerator::new(0);

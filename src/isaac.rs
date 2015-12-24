@@ -6,7 +6,6 @@ use std::num::Wrapping as w;
 const MSG :&'static str = "a Top Secret secret";
 const KEY: &'static str = "this is my secret key";
 
-#[cfg(not(test))]
 fn main () {
     let mut isaac = Isaac::new();
     isaac.seed(KEY, true);

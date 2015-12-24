@@ -9,7 +9,7 @@ use std::time::Duration;
 
 use libc::SIGINT;
 
-#[cfg(all(unix, not(test)))]
+#[cfg(unix)]
 fn main() {
     // The time between ticks of our counter.
     let duration = Duration::from_secs(1) / 2;

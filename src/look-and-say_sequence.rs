@@ -3,7 +3,6 @@ use run_length_encoding::encode;
 
 mod run_length_encoding;
 
-#[cfg(not(test))]
 fn main() {
     let mut s = look_and_say("1");
     for _ in 0..20 {

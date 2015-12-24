@@ -51,7 +51,6 @@ fn find_divisors(primes:&mut Vec<usize>, num:usize) -> Vec<usize> {
     return kprime_factors;
 }
 
-#[cfg(not(test))]
 fn main() {
     let mut primes:Vec<usize>=vec![2,3]; // reusable prime number array
 

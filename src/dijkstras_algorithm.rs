@@ -158,7 +158,6 @@ fn test_dijkstras() {
     assert!(graph.dijkstra("a", "e").is_empty());
 }
 
-#[cfg(not(test))]
 fn main(){
     let mut graph = Graph::new();
     graph.add_edge("a", "b", 7);

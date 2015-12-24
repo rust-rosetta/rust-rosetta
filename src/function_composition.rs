@@ -1,5 +1,4 @@
 // http://rosettacode.org/wiki/Function_composition
-#[cfg(not(test))]
 fn main() {
     use std::f32::consts;
 

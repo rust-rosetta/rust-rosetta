@@ -17,7 +17,6 @@ fn bubble_sort<T: PartialOrd>(v: &mut [T]) {
     });
 }
 
-#[cfg(not(test))]
 fn main() {
     let mut numbers = [4i32, 65, 2, -31, 0, 99, 2, 83, 782, 1];
     bubble_sort(&mut numbers);

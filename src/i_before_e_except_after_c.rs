@@ -1,9 +1,6 @@
 // http://rosettacode.org/wiki/I_before_E_except_after_C
-#[cfg(not(test))]
 use std::fs::File;
-#[cfg(not(test))]
 use std::io::Read;
-#[cfg(not(test))]
 use std::path::Path;
 
 enum MatchState {
@@ -59,7 +56,6 @@ fn count_occurrences(data: &str) -> Occurrences {
     result
 }
 
-#[cfg(not(test))]
 fn main () {
     let path = Path::new("src/resources/unixdict.txt");
     let mut file = File::open(&path).unwrap();

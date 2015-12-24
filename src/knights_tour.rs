@@ -104,7 +104,6 @@ fn knights_tour(x: i32, y: i32) -> Option<Board> {
 }
 
 
-#[cfg(not(test))]
 fn main() {
 
     let (x, y) = (3, 1);

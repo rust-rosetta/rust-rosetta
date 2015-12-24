@@ -13,7 +13,6 @@
 extern crate rand;
 use std::cmp::Ordering::{self, Greater};
 
-#[cfg(not(test))]
 fn main() {
     use std::io;
 

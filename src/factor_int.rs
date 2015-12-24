@@ -1,6 +1,5 @@
 // http://rosettacode.org/wiki/Factors_of_an_integer
 
-#[cfg(not(test))]
 fn main() {
     let target = 78i32;
     println!("Factors of integer {}:", target);
