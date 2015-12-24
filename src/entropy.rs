@@ -1,7 +1,4 @@
 // http://rosettacode.org/wiki/Entropy
-#![allow(unused_attributes)]
-#![allow(unused_features)]
-#![feature(std_misc)]
 use std::collections::HashMap;
 use std::collections::hash_map::Entry::{Occupied, Vacant};
 

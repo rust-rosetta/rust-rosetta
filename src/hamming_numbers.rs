@@ -1,8 +1,4 @@
 // http://rosettacode.org/wiki/Hamming_numbers
-
-
-
-
 extern crate num;
 use num::bigint::{BigUint, ToBigUint};
 use num::traits::One;

@@ -3,10 +3,6 @@
 // instead of storing them as BigUint directly, it stores the three exponents
 // i, j and k for 2^i * 3^j * 5 ^k and the logarithm of the number for comparisons
 
-#![allow(unused_attributes)]
-
-
-
 extern crate num;
 
 use hamming_numbers::{Hamming, HammingNumber};
@@ -145,7 +141,6 @@ fn hamming_iter() {
 }
 
 #[test]
-
 fn hamming_iter_1million() {
     let mut hamming = Hamming::<HammingTriple>::new(128);
     // one-million-th hamming number has index 999_999 because indexes are zero-based

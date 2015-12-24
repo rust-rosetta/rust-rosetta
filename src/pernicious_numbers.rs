@@ -1,6 +1,4 @@
 // http://rosettacode.org/wiki/Pernicious_numbers
-#![allow(unused_attributes)]
-
 use std::iter::Filter;
 use std::ops::RangeFrom;
 use aks_test_for_primes::is_prime;
