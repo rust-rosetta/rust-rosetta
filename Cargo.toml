@@ -496,6 +496,11 @@ name = "execute_brainfuck"
 path = "src/execute_brainfuck.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/Execute_HQ9+
+name = "execute_hq9_plus"
+path = "src/execute_hq9_plus.rs"
+
+[[bin]]
 # http://rosettacode.org/wiki/Factors_of_an_integer
 name = "factor_int"
 path = "src/factor_int.rs"
