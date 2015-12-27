@@ -200,6 +200,11 @@ name = "anagrams"
 path = "src/anagrams.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/Anonymous_recursion
+name = "anonymous_recursion"
+path = "src/anonymous_recursion.rs"
+
+[[bin]]
 # http://rosettacode.org/wiki/Arena_storage_pool
 name = "arena_storage_pool"
 path = "src/arena_storage_pool.rs"
@@ -300,6 +305,11 @@ path = "src/bitmap/write_a_ppm_file.rs"
 name = "bitwise_operations"
 path = "src/bitwise_operations.rs"
 test = false
+
+[[bin]]
+# http://rosettacode.org/wiki/Boolean_values
+name = "boolean_values"
+path = "src/boolean_values.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Bulls_and_cows
@@ -419,6 +429,11 @@ path = "src/create_file.rs"
 name = "currying"
 path = "src/currying.rs"
 test = false
+
+[[bin]]
+# http://rosettacode.org/wiki/Delete_a_file
+name = "delete_a_file"
+path = "src/delete_a_file.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Dijkstra's_algorithm
@@ -559,6 +574,11 @@ path = "src/fizzbuzz.rs"
 # http://rosettacode.org/wiki/Flatten_a_list
 name = "flatten_list"
 path = "src/flatten_list.rs"
+
+[[bin]]
+# http://rosettacode.org/wiki/Fork
+name = "fork"
+path = "src/fork.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Four_bit_adder
@@ -1203,6 +1223,11 @@ name = "sieve_eratosthenes"
 path = "src/sieve_eratosthenes.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/Sleep
+name = "sleep"
+path = "src/sleep.rs"
+
+[[bin]]
 # http://rosettacode.org/wiki/Sort_an_integer_array
 name = "sort_int"
 path = "src/sort_int.rs"
@@ -1241,6 +1266,11 @@ path = "src/sorting_algorithms/quick_sort.rs"
 # http://rosettacode.org/wiki/Sorting_algorithms/Sleep_sort
 name = "sorting_algorithms_sleep_sort"
 path = "src/sorting_algorithms/sleep_sort.rs"
+
+[[bin]]
+# http://rosettacode.org/wiki/Sorting_algorithms/Stooge_sort
+name = "sorting_algorithms_stooge_sort"
+path = "src/sorting_algorithms/stooge_sort.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Stack
@@ -1375,9 +1405,19 @@ name = "word_wrap"
 path = "src/word_wrap.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/Write_entire_file
+name = "write_entire_file"
+path = "src/write_entire_file.rs"
+
+[[bin]]
 # http://rosettacode.org/wiki/Write_ppm_file
 name = "write_ppm"
 path = "src/write_ppm.rs"
+
+[[bin]]
+# http://rosettacode.org/wiki/Zero_to_the_zero_power
+name = "zero_to_the_zero_power"
+path = "src/zero_to_the_zero_power.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Zig-zag_matrix
