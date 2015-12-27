@@ -1126,6 +1126,11 @@ name = "roots_of_unity"
 path = "src/roots_of_unity.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/Rosetta_Code/Find_bare_lang_tags
+name = "rosetta_code_find_bare_lang_tags"
+path = "src/rosetta_code/find_bare_lang_tags.rs"
+
+[[bin]]
 # http://rosettacode.org/wiki/Rosetta_Code/Find_unimplemented_tasks
 name = "rosetta_code_find_unimplemented_tasks"
 path = "src/rosetta_code/find_unimplemented_tasks.rs"
