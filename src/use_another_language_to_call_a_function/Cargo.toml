@@ -1,0 +1,10 @@
+[package]
+name = "use-another-language-to-call-a-function"
+version = "1.0.0"
+authors = ["Andy Russell, https://github.com/euclio"]
+
+[dependencies]
+libc = "0.2"
+
+[lib]
+crate_type = ["dylib"]
