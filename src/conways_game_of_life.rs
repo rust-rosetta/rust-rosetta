@@ -1,11 +1,8 @@
 // http://rosettacode.org/wiki/Conway's_Game_of_Life
 
+use std::time::Duration;
 use std::mem;
-
-// Use VT100 cursor control sequences to animate in-place
-#[cfg(not(test))] use std::thread;
-#[cfg(not(test))] use std::time::Duration;
-#[cfg(not(test))] const ANIMATE: bool = true;
+use std::thread;
 
 #[derive(Copy, Clone)]
 enum Cell {
@@ -54,7 +51,6 @@ fn next_world(input: &[Cell], output: &mut [Cell], w: usize, h: usize) {
     }
 }
 
-#[cfg(not(test))]
 fn main() {
     let (w, h) = (100usize, 9usize);
     let mut world: Vec<Cell> = "
@@ -80,11 +76,10 @@ fn main() {
         next_world(&world, &mut next, w, h);
         mem::swap(&mut world, &mut next);
 
-        if ANIMATE {
-            print!("\x1b[{}A", h+1);
-            print!("\x1b[{}D", w+1);
-            thread::sleep(Duration::from_millis(100));
-        }
+        // Use VT100 cursor control sequences to animate in-place.
+        print!("\x1b[{}A", h+1);
+        print!("\x1b[{}D", w+1);
+        thread::sleep(Duration::from_millis(100));
     }
 }
 

@@ -71,7 +71,6 @@ fn levenshtein_distance(s1: &str, s2: &str) -> (usize, String, String) {
     return (lev_dist, aligned1, aligned2);
 }
 
-#[cfg(not(test))]
 fn main() {
     let (s1, s2) = ("rosettacode", "raisethysword");
     let (lev_dist, aligned1, aligned2) = levenshtein_distance(s1, s2);

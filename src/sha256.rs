@@ -9,7 +9,6 @@
 extern crate rustc;
 use rustc::util::sha2::{Sha256, Digest};
 
-#[cfg(not(test))]
 fn main() {
     println!("{}", sha_256("Rosetta code"));
 }

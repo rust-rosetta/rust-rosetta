@@ -1,7 +1,6 @@
 // http://rosettacode.org/wiki/99_Bottles_of_Beer
 use std::string::String;
 
-#[cfg(not(test))]
 fn main() {
     for num_bottles in (1u32..100).rev() {
         println!("{}", bottles_line(num_bottles, true));

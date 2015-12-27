@@ -46,7 +46,6 @@ fn select<'a>(menu: &'a [&str], prompt: &str) -> &'a str {
     }
 }
 
-#[cfg(not(test))]
 fn main() {
 
     let prompt = "Choose one.";

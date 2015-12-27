@@ -4,7 +4,6 @@ extern crate num;
 use num::complex::{Complex, Complex32};
 use std::f32::consts;
 
-#[cfg(not(test))]
 fn main() {
     let degree = 3;
 

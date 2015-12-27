@@ -1,9 +1,6 @@
 // http://rosettacode.org/wiki/Parallel_calculations
 // See http://static.rust-lang.org/doc/master/guide-tasks.html for information
 // about tasks, channels, future, etc.
-#![cfg_attr(test, feature(test))]
-#[cfg(test)]
-extern crate test;
 extern crate eventual;
 
 use eventual::{Future, Async};
@@ -51,7 +48,6 @@ fn largest_min_factor_fut(numbers: &[usize]) -> usize {
     results.into_iter().map(|f| f.await().ok().unwrap() ).max().unwrap()
 }
 
-#[cfg(not(test))]
 fn main() {
     // Numbers to be factorized
     let numbers = &[1122725,

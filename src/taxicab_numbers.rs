@@ -79,7 +79,6 @@ impl Iterator for TaxicabNumbers {
     }
 }
 
-#[cfg(not(test))]
 fn main() {
     let numbers = TaxicabNumbers::new();
     for (at, ways) in numbers.take(2006).enumerate()

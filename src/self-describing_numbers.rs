@@ -28,7 +28,6 @@ fn is_self_describing(mut n: u64) -> bool {
     cnt.iter().all(|&c| c == 0)
 }
 
-#[cfg(not(test))]
 fn main() {
     // Print out all self-describing numbers below 10^8
     for i in 0u64..100_000_000 {

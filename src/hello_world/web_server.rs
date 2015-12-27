@@ -1,8 +1,7 @@
 // http://rosettacode.org/wiki/Hello_world/Web_server
+use std::env;
 use std::net::{TcpStream, TcpListener, Shutdown};
 use std::io::{Write, Result};
-#[cfg(not(test))] use std::borrow::ToOwned;
-#[cfg(not(test))] use std::env;
 
 fn handle_client(mut stream: TcpStream) -> Result<()> {
     let response =
@@ -55,7 +54,7 @@ pub fn handle_server(ip: &str, port: u16) -> Result<TcpListener> {
     Ok(handle)
 }
 
-#[cfg(not(test))]
+#[allow(dead_code)]
 fn main() {
     let mut args = env::args();
     let app_name = args.next().unwrap()

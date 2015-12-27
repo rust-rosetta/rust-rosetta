@@ -10,7 +10,6 @@ use std::sync::mpsc::channel;
 #[cfg(test)]
 use test::Bencher;
 
-#[cfg(not(test))]
 fn main() {
     for num in 0i32..16 {
         println!("Sequential: {}: {}", num, n_queens(num));

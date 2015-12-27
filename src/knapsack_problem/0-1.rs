@@ -126,7 +126,6 @@ fn knap_01_dp<'a>(xs: &[Want<'a>], max_weight: usize) -> Vec<Want<'a>> {
     return result;
 }
 
-#[cfg(not(test))]
 fn main () {
     let xs = knap_01_dp(ITEMS, 400);
 

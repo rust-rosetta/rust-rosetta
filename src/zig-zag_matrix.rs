@@ -58,7 +58,6 @@ fn zigzag(n: usize) -> Vec<Vec<usize>> {
     result
 }
 
-#[cfg(not(test))]
 fn main() {
     println!("{:?}", zigzag(5));
 }

@@ -11,7 +11,6 @@ enum GameState {
 	Playing,
 }
 
-#[cfg(not(test))]
 fn main() {
 	let mut board: [[char; 3]; 3] = [
 		['1', '2', '3'],
@@ -76,7 +75,6 @@ fn which_win(s: char) -> GameState {
 	}
 }
 
-#[cfg(not(test))]
 fn player_turn(board: &mut [[char; 3]; 3]) {
     use std::io;
 
@@ -95,7 +93,6 @@ fn player_turn(board: &mut [[char; 3]; 3]) {
 	}
 }
 
-#[cfg(not(test))]
 fn computer_turn(board: &mut [[char; 3]; 3]) {
     use rand::{thread_rng, Rng};
 
@@ -119,7 +116,6 @@ fn computer_turn(board: &mut [[char; 3]; 3]) {
 	board[row][col] = 'O';
 }
 
-#[cfg(not(test))]
 fn draw_board(board: [[char; 3]; 3]) {
 	for row in board.iter() {
 		println!("{} {} {}", row[0], row[1], row[2]);

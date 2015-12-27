@@ -265,7 +265,6 @@ fn perform_atomic_updates(duration: Duration, original_total: usize, num_ticks: 
 const ORIGINAL_TOTAL: usize = 1000;
 const NUM_TICKS: u32 = 10;
 
-#[cfg(not(test))]
 fn main() {
     perform_atomic_updates(Duration::from_secs(10), ORIGINAL_TOTAL, NUM_TICKS);
 }

@@ -17,7 +17,6 @@ macro_rules! rationals(
     ($($e:expr),+) => ([$(Ratio::<isize>::from_integer($e)),+])
 );
 
-#[cfg(not(test))]
 fn main() {
     let mut r = rationals![1, 3, 7, 9];
     let sol = solve(&mut r[..], 24).unwrap_or("no solution found".to_string());

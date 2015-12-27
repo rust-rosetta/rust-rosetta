@@ -29,7 +29,6 @@ impl<'a> Balanced for str {
 }
 
 /// Generates random brackets
-#[cfg(not(test))]
 
 fn generate_brackets(num: usize) -> String {
     use rand::random;
@@ -37,7 +36,6 @@ fn generate_brackets(num: usize) -> String {
     (0..num).map(|_| if random() { '[' } else { ']' }).collect()
 }
 
-#[cfg(not(test))]
 fn main() {
     for i in 0..10 {
         let brackets = generate_brackets(i);

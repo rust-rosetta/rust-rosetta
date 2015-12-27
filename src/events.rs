@@ -55,7 +55,6 @@ fn handle_event(duration: Duration) -> Duration {
     Duration::from_millis((end - start) / 1000000)
 }
 
-#[cfg(not(test))]
 pub fn main() {
     let duration = Duration::from_secs(1); // Process event after one second.
     println!("{} seconds elapsed before event triggered", handle_event(duration).as_secs());
@@ -63,11 +62,10 @@ pub fn main() {
 
 #[test]
 pub fn test_events() {
-    if !cfg!(windows) { // overflowing on windows (bug in time library?)
-        let duration = Duration::from_secs(1) / 10; // Process event after one tenth of a second.
-        // Make sure it really did take at least that long for the event to be processed.
+    // Process event after one tenth of a second.
+    let duration = Duration::from_secs(1) / 10;
 
-        let out = handle_event(duration);
-        assert!(duration <= out);
-    }
+    // Make sure it really did take at least that long for the event to be processed.
+    let out = handle_event(duration);
+    assert!(duration <= out);
 }

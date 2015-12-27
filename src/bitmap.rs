@@ -61,7 +61,6 @@ impl IndexMut<(usize, usize)> for Image {
     }
 }
 
-#[cfg(not(test))]
 #[allow(dead_code)]
 pub fn main() {
     let mut image = Image::new(10, 10);

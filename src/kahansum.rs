@@ -51,7 +51,6 @@ fn all_sums(vec: &mut [f32]) -> Vec<f32> {
     res
 }
 
-#[cfg(not(test))]
 fn main() {
     let v = [10000.0f32, 3.14159, 2.71828];
     let sums = all_sums(&mut v.clone());

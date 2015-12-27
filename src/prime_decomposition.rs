@@ -33,7 +33,6 @@ pub fn factor(mut nb: usize) -> Vec<usize> {
 // Needed so parallel_calculations compiles cleanly, because it
 // uses this code as a library
 #[allow(dead_code)]
-#[cfg(not(test))]
 fn main() {
     println!("Factors of 5: {:?}", factor(5));
     println!("Factors of 15: {:?}", factor(15));

@@ -61,7 +61,6 @@ impl<'a> Iterator for WordWrap<'a> {
     }
 }
 
-#[cfg(not(test))]
 fn main () {
     let text =
         "In olden times when wishing still helped one, there lived a king \

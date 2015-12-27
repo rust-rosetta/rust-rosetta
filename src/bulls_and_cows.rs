@@ -76,7 +76,6 @@ fn calculate_score(given_digits: &[u32], guessed_digits: &[u32]) ->
     return (bulls, cows);
 }
 
-#[cfg(not(test))]
 fn main() {
     let reader = std::io::stdin();
     loop {

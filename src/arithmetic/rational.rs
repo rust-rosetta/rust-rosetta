@@ -1,12 +1,10 @@
 // http://rosettacode.org/wiki/Arithmetic/Rational
-extern crate num;
-
+#![feature(zero_one)]
+use std::num::{Zero, One};
 use std::fmt;
-use num::traits::{Zero, One};
 use std::cmp::Ordering;
 use std::ops::{Add, Mul, Neg, Sub, Div};
 
-#[cfg(not(test))]
 fn main() {
     for p in perfect_numbers(1 << 19) {
         println!("{} is perfect", p);
@@ -44,7 +42,6 @@ fn gcd(m: i64, n:i64) -> i64 {
 fn lcm(m: i64, n:i64) -> i64 {
     m.abs() / gcd(m, n) * n.abs()
 }
-
 
 impl Frac {
     // fails on den=0
@@ -157,17 +154,13 @@ impl Div for Frac {
     }
 }
 
-impl num::Zero for Frac {
+impl Zero for Frac {
     fn zero() -> Frac {
         Frac::new(0, 1)
     }
-
-    fn is_zero(&self) -> bool {
-        self.num == 0 && self.den == 0
-    }
 }
 
-impl num::One for Frac {
+impl One for Frac {
     fn one() -> Frac {
         Frac::new(1, 1)
     }
@@ -183,9 +176,9 @@ fn operators() {
     assert_eq!(a/b, Frac::new(5, 8));
 
     let (a, b) =  (Frac::new(1, 2), Frac::new(1,2));
-    assert_eq!(a+b, num::One::one());
-    assert_eq!(b-a, num::Zero::zero());
-    assert_eq!(a-b, num::Zero::zero());
+    assert_eq!(a+b, One::one());
+    assert_eq!(b-a, Zero::zero());
+    assert_eq!(a-b, Zero::zero());
     assert_eq!(a*b, Frac::new(1, 4));
     assert_eq!(a/b, Frac::new(1, 1));
 }

@@ -102,7 +102,6 @@ fn test_metered_concurrency() {
     metered(Duration::from_secs(1) / 20);
 }
 
-#[cfg(not(test))]
 fn main() {
     // Hold each resource for 2 seconds per worker
     metered(Duration::from_secs(2));

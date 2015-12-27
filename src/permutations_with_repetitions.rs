@@ -55,7 +55,6 @@ impl<'a, T> Iterator for PermutationIterator<'a, T> where T: Clone {
     }
 }
 
-#[cfg(not(test))]
 fn main() {
     let universe = ["Annie", "Barbie"];
     for p in permutations(&universe[..], 3) {

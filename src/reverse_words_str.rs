@@ -8,7 +8,6 @@ fn rev_words_on_lines(text: &str) -> String {
      text.lines().map(rev_words).collect::<Vec<String>>().join("\n")
 }
 
-#[cfg(not(test))]
 fn main() {
     let text = "---------- Ice and Fire ------------
 

@@ -32,7 +32,6 @@ fn read_file() -> String {
     format_fasta(&mut BufReader::new(file))
 }
 
-#[cfg(not(test))]
 fn main() {
     let s = read_file();
     println!("{}", s);

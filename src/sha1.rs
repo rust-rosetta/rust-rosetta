@@ -1,9 +1,6 @@
 // http://rosettacode.org/wiki/SHA-1
 // Straight port from golang crypto/sha1 library implementation
-#![feature(slice_bytes)]
-
 use std::num::Wrapping as wr;
-use std::slice::bytes::copy_memory;
 use std::io::{Write, Result};
 
 // The size of a SHA1 checksum in bytes.
@@ -14,7 +11,6 @@ const CHUNK:usize = 64;
 const INIT:[wr<u32>; 5] = [wr(0x67452301),wr(0xEFCDAB89), wr(0x98BADCFE),
                             wr(0x10325476), wr(0xC3D2E1F0)];
 
-#[cfg(not(test))]
 fn main() {
     let mut d = Digest::new();
     let _ = write!(&mut d, "The quick brown fox jumps over the lazy dog");
@@ -188,7 +184,7 @@ impl Write for Digest {
         let ln=buf_m.len();
         if ln > 0 {
             assert!(self.x.len() >= ln);
-            copy_memory(buf_m, &mut self.x);
+            self.x.as_mut().write_all(&buf_m).unwrap();
             self.nx = ln;
         }
         Ok(())

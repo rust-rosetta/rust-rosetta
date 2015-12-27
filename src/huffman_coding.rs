@@ -183,7 +183,6 @@ fn test_table_construction() {
             (one == "00" && two == "01"));
 }
 
-#[cfg(not(test))]
 fn main() {
     let to_encode = "this is an example for huffman encoding";
     let tree = huffman_tree(to_encode);

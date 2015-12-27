@@ -68,7 +68,6 @@ pub fn checkpoint() {
     }
 }
 
-#[cfg(not(test))]
 fn main() {
     checkpoint();
 }

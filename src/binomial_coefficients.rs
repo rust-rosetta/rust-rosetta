@@ -23,7 +23,6 @@ fn binomial(n: usize, mut k: usize) -> BigUint {
     res
 }
 
-#[cfg(not(test))]
 fn main() {
     println!("{}", binomial(5, 3));
 }

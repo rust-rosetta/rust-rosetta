@@ -29,7 +29,6 @@ fn is_happy(mut x: usize) -> bool {
     true
 }
 
-#[cfg(not(test))]
 fn main() {
     // Print the first 8 happy numbers
     let v: Vec<usize> = (1..)

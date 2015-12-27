@@ -28,7 +28,6 @@ fn closures_iterator<'a>() -> ClosureIter<'a> {
     (0..).map(cl_gen)
 }
 
-#[cfg(not(test))]
 fn main() {
     // Take the first 9 closures from the iterator and call them
     for c in closures_iterator().take(9) {

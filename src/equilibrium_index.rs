@@ -19,7 +19,6 @@ fn equilibrium_indices(v: &[i32]) -> Vec<usize> {
     })
 }
 
-#[cfg(not(test))]
 fn main() {
     let v = [-7i32, 1, 5, 2, -4, 3, 0];
     let indices = equilibrium_indices(&v);

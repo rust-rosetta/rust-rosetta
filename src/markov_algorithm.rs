@@ -218,7 +218,6 @@ fn get_samples<'a>() -> [RCSample<'a>; 5] {
     ]
 }
 
-#[cfg(not(test))]
 fn main() {
     for (index, sample) in get_samples().iter().enumerate() {
         match MarkovAlgorithm::from_str(sample.ruleset) {

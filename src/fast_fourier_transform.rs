@@ -35,7 +35,6 @@ fn fft(arr: &[Complex<f32>]) -> Vec<Complex<f32>> {
     out
 }
 
-#[cfg(not(test))]
 fn main() {
     let test = [
         Complex::new(1f32, 0f32),

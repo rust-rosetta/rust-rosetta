@@ -9,7 +9,6 @@ use std::fs::File;
 use std::fs::OpenOptions;
 use std::io::Write;
 
-#[allow(unused_must_use)]
 fn main() {
 	// opens file for writing replaced lines
 	let out_fd = OpenOptions::new()
@@ -22,7 +21,7 @@ fn main() {
 	match out_fd {
 		Ok(ref v) => {
 			let mut writer = BufWriter::new(v);
-			writer.write_all(line.as_bytes());
+			writer.write_all(line.as_bytes()).unwrap();
 		},
 		Err(ref e) => {println!("Error:{}",e);},
 	}
@@ -33,14 +32,14 @@ fn main() {
 			let mut reader = BufReader::new(handle);
 			let mut line = String::new();
 			// read the first line
-			reader.read_line(&mut line);
+			reader.read_line(&mut line).unwrap();
 			// loop until line end
 			while line.trim()!="" {
 			let mut replaced_line = line.trim().replace("Goodbye London!","Hello New York!");
 			replaced_line = replaced_line + "\n";
    			write_line(&replaced_line[..]);
    			line.clear();
-   			reader.read_line(&mut line);
+   			reader.read_line(&mut line).unwrap();
    			}
 		},
 		Err(e) => println!("Error:{}",e),

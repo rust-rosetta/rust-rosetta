@@ -22,7 +22,6 @@ fn a(k: i32,
     if k.get() <= 0 { x4() + x5() } else { b.get().unwrap()() }
 }
 
-#[cfg(not(test))]
 fn main() {
     println!("%{}", a(10, &|| 1, &|| -1, &|| -1, &|| 1, &|| 0));
 }

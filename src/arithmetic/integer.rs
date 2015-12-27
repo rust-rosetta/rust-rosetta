@@ -1,5 +1,5 @@
 // http://rosettacode.org/wiki/Arithmetic/Integer
-#![cfg_attr(not(test), feature(slice_patterns))]
+#![feature(slice_patterns)]
 use std::io::stdin;
 
 fn main() {

@@ -3,7 +3,6 @@ use std::ascii::AsciiExt;
 
 const ASCII_A: u8 = 'A' as u8;
 
-#[cfg(not(test))]
 fn main() {
     let msg = "Beware the Jabberwock, my son! The jaws that bite, the claws that catch!";
     let key = "VIGENERECIPHER";

@@ -72,7 +72,6 @@ fn four_bit_adder(a: Nibble, b: Nibble, carry: bool) -> (Nibble, bool) {
   (Nibble([s3, s2, s1, s0]), carry)
 }
 
-#[cfg(not(test))]
 fn main() {
   let nib_a = Nibble::new([1u8, 0, 1, 1]);
   let a = nib_a.to_u8(false);

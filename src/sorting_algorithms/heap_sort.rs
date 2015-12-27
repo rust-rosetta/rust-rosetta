@@ -69,7 +69,6 @@ fn sift_down<T: Ord>(a: &mut [T], start: usize, end: usize) {
     }
 }
 
-#[cfg(not(test))]
 pub fn main() {
     let mut arr = [1i32,5,2,7,3,9,4,6,8];
     heap_sort(&mut arr);

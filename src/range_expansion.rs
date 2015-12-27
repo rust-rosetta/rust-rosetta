@@ -1,7 +1,6 @@
 // http://rosettacode.org/wiki/Range_expansion
 extern crate regex;
 
-#[cfg(not(test))]
 fn main() {
     let range = "-6,-3-1,3-5,7-11,14,15,17-20";
     println!("Expanded range: {:?}", expand_range(range));

@@ -1,10 +1,8 @@
 // http://rosettacode.org/wiki/Letter_frequency
-#![cfg_attr(not(test), feature(io))]
+#![feature(io)]
 
-#[cfg(not(test))]
 use std::fs::File;
 
-#[cfg(not(test))]
 use std::io::{BufReader, Read};
 use std::collections::HashMap;
 use std::collections::hash_map::Entry::{Occupied, Vacant};
@@ -22,7 +20,6 @@ fn count_chars<T>(chars: T) -> HashMap<char, usize>
     map
 }
 
-#[cfg(not(test))]
 fn main() {
     let file = File::open("resources/unixdict.txt").unwrap();
     let reader = BufReader::new(file);

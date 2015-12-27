@@ -39,7 +39,6 @@ fn longest_common_subsequence(a: &str, b: &str) -> String {
 
 
 // Demonstration code
-#[cfg(not(test))]
 fn main() {
     println!("{}", longest_common_subsequence("abc", "abcd"));
     println!("{}", longest_common_subsequence("ABCDGH", "AEDFHR"));

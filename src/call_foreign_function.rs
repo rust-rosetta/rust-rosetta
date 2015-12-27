@@ -9,7 +9,6 @@ extern "C" {
     fn strcmp(a: *const c_char, b: *const c_char) -> i32;
 }
 
-#[cfg(not(test))]
 fn main() {
     let a = CString::new("a").unwrap();
     let b = CString::new("b").unwrap();

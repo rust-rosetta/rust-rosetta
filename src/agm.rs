@@ -6,7 +6,6 @@ extern crate num;
 
 use num::abs;
 
-#[cfg(not(test))]
 fn main () {
     use std::borrow::ToOwned;
     let mut args = std::env::args();

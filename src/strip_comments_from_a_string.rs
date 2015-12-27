@@ -17,7 +17,6 @@ fn test_strip_comments() {
     }
 }
 
-#[cfg(not(test))]
 fn main() {
     let inputs = ["apples, pears # and bananas",
                   "apples, pears ; and bananas",

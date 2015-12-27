@@ -9,7 +9,6 @@ fn is_pangram(sentence: &str) -> bool {
         .collect::<HashSet<char>>().len() == 26
 }
 
-#[cfg(not(test))]
 fn main() {
     let test_sentences = ["The quick brown fox jumps over the lazy dog.",
                           "The quick brown frog jumps over the lazy dog."];

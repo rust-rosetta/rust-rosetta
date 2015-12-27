@@ -18,7 +18,6 @@ fn palindrome(string: &str) -> bool {
 }
 
 // Demonstration code
-#[cfg(not(test))]
 fn main() {
     let test_strings = ["nope", "eevee", "lalala", "rust", "lalalal"];
     for &string in &test_strings {

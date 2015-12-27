@@ -5,7 +5,6 @@ use std::thread;
 use std::time::Duration;
 
 // Use VT100 cursor control sequences to animate in-place
-#[cfg(not(test))] const ANIMATE: bool = true;
 
 #[derive(Copy, Clone)]
 enum Cell {
@@ -53,7 +52,6 @@ fn next_world(input: &[Cell], output: &mut [Cell], w: usize, h: usize) {
     }
 }
 
-#[cfg(not(test))]
 fn main() {
     let (w, h) = (14usize, 7usize);
     let mut world: Vec<Cell> = "
@@ -75,11 +73,9 @@ fn main() {
         next_world(&world, &mut next, 14, 7);
         mem::swap(&mut world, &mut next);
 
-        if ANIMATE {
-            print!("\x1b[{}A", 8);
-            print!("\x1b[{}D", 14);
-            thread::sleep(Duration::from_millis(100));
-        }
+        print!("\x1b[{}A", 8);
+        print!("\x1b[{}D", 14);
+        thread::sleep(Duration::from_millis(100));
     }
 }
 

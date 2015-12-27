@@ -21,7 +21,6 @@ fn simulate(time: i64) -> f64 {
     (cnt as f64) / (time as f64)
 }
 
-#[cfg(not(test))]
 pub fn main() {
     for i in (3..9).map(|a| 10i64.pow(a)) {
         println!("{:10}:{:.10}" , i, 4f64 * simulate(i));

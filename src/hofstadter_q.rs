@@ -34,7 +34,6 @@ impl Iterator for HofstadterQ {
     }
 }
 
-#[cfg(not(test))]
 fn main() {
     // Set up the iterable.
     let hof: HofstadterQ = HofstadterQ::new();

@@ -1,7 +1,6 @@
 // http://rosettacode.org/wiki/Create_a_file
 use std::fs::{self, File};
 
-#[cfg(not(test))]
 fn main () {
     use std::io::Write;
 

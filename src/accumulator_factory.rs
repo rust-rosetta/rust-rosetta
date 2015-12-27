@@ -7,7 +7,6 @@ pub fn accum<'a, T>(mut n: T) -> Box<FnMut(T) -> T + 'a>
     Box::new(move |i: T| { n = n + i; n })
 }
 
-#[cfg(not(test))]
 pub fn main() {
     println!("{}", accumulate());
 }

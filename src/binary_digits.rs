@@ -10,7 +10,6 @@ impl BinaryString for usize {
     }
 }
 
-#[cfg(not(test))]
 fn main() {
     for s in 0..17 {
         println!("{}", s.to_binary_string());

@@ -1,5 +1,4 @@
 // http://rosettacode.org/wiki/Sudoku
-#![feature(iter_cmp)]
 #![feature(step_by)]
 use std::fmt;
 use std::str::FromStr;
@@ -183,7 +182,7 @@ fn solve_sudoku(mut puzzle: Sudoku) -> Vec<Sudoku> {
     // Find the first undetermined cell.
     let (x, y, _cnt) = *it.iter()
         .filter(|& &(_x, _y, cnt)| cnt > 1)
-        .min_by(|& &(_x, _y, cnt)| cnt)
+        .min_by_key(|& &(_x, _y, cnt)| cnt)
         .unwrap();
 
     let mut answers = vec![];
@@ -212,7 +211,6 @@ const INPUT: &'static str = "
     000036040
 ";
 
-#[cfg(not(test))]
 fn main() {
     let puzzle = INPUT.parse::<Sudoku>().unwrap();
 

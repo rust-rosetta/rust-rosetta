@@ -24,7 +24,6 @@ fn get_ips(host: &str) -> io::Result<Vec<Ips>> {
     Ok(ips)
 }
 
-#[cfg(not(test))]
 fn main() {
     for ip in &(get_ips("www.kame.net").unwrap()) {
         match ip {

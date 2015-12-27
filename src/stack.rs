@@ -31,7 +31,6 @@ impl<T> Stack<T> {
     }
 }
 
-#[cfg(not(test))]
 fn main() {
     let mut stack = Stack::new();
 
