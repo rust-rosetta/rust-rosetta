@@ -1131,6 +1131,11 @@ name = "rosetta_code_find_unimplemented_tasks"
 path = "src/rosetta_code/find_unimplemented_tasks.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/Rosetta_Code/Fix_code_tags
+name = "rosetta_code_fix_code_tags"
+path = "src/rosetta_code/fix_code_tags.rs"
+
+[[bin]]
 # http://rosettacode.org/wiki/Rot-13
 name = "rot13"
 path = "src/rot13.rs"
