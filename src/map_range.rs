@@ -3,7 +3,6 @@ fn map_range(from_range: (f64, f64), to_range: (f64, f64), s: f64) -> f64 {
     to_range.0 + (s - from_range.0) * (to_range.1 - to_range.0) / (from_range.1 - from_range.0)
 }
 
-#[cfg(not(test))]
 fn main() {
     let input: Vec<f64> = vec![0.0, 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0];
     let result = input.into_iter()
