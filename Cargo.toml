@@ -344,6 +344,11 @@ name = "character_codes"
 path = "src/character_codes.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/Chat_server
+name = "chat_server"
+path = "src/chat_server.rs"
+
+[[bin]]
 # http://rosettacode.org/wiki/Check_that_file_exists
 name = "check_file"
 path = "src/check_file.rs"
