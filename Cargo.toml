@@ -84,6 +84,7 @@ path = "src/use_another_language_to_call_a_function"
 [build-dependencies]
 regex = "0.1"
 toml = "0.1"
+unicode-segmentation = "0.1.2"
 
 [dependencies.schedule_recv]
 git = "https://github.com/PeterReid/schedule_recv"
