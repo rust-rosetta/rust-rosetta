@@ -1,4 +1,5 @@
 // http://rosettacode.org/wiki/Palindrome_detection
+// http://rosettacode.org/wiki/Test_a_function
 
 
 // Returns true if the string is a palindrome
