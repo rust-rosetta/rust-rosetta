@@ -1373,6 +1373,12 @@ name = "tic_tac_toe"
 path = "src/tic_tac_toe.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/Tokenize_a_string
+name = "tokenize_a_string"
+path = "src/tokenize_a_string.rs"
+test = false
+
+[[bin]]
 # http://rosettacode.org/wiki/Towers_of_Hanoi
 name = "towers_of_hanoi"
 path = "src/towers_of_hanoi.rs"
