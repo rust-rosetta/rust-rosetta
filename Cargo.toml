@@ -72,6 +72,7 @@ permutohedron = "0.1"
 eventual = { git = "https://github.com/carllerche/eventual" }
 hyper = "0.6"
 unicode-segmentation = "0.1"
+url = "0.5"
 
 # dependency does not compile on Windows, currently only used for 2048
 rustbox = { version = "*", optional = true }
@@ -1388,6 +1389,12 @@ test = false
 # http://rosettacode.org/wiki/Unix/ls
 name = "unix_ls"
 path = "src/unix/ls.rs"
+test = false
+
+[[bin]]
+# http://rosettacode.org/wiki/URL_parser
+name = "url_parser"
+path = "src/url_parser.rs"
 test = false
 
 [[bin]]
