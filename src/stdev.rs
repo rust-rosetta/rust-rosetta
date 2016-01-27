@@ -7,7 +7,11 @@ struct StDev {
 
 impl StDev {
     fn new() -> StDev {
-        StDev { len: 0, sum: 0.0, sum_sq: 0.0 }
+        StDev {
+            len: 0,
+            sum: 0.0,
+            sum_sq: 0.0,
+        }
     }
 
     fn stdev(&mut self, n: f32) -> f32 {

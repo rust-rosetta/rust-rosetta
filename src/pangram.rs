@@ -1,20 +1,27 @@
 // http://rosettacode.org/wiki/Pangram_checker
 use std::collections::HashSet;
 
-// Returns true if the sentence uses all 26 letters in the English
-// alphabet at least once.
+/// Returns true if the sentence uses all 26 letters in the English
+/// alphabet at least once.
 fn is_pangram(sentence: &str) -> bool {
-    sentence.chars().map(|c| c.to_lowercase().next().unwrap())
-        .filter(|&c| c >= 'a' && c <= 'z')
-        .collect::<HashSet<char>>().len() == 26
+    sentence.chars()
+            .map(|c| c.to_lowercase().next().unwrap())
+            .filter(|&c| c >= 'a' && c <= 'z')
+            .collect::<HashSet<char>>()
+            .len() == 26
 }
 
 fn main() {
     let test_sentences = ["The quick brown fox jumps over the lazy dog.",
                           "The quick brown frog jumps over the lazy dog."];
     for &sentence in &test_sentences {
-        println!("\"{}\" {} a pangram", sentence,
-                 if is_pangram(sentence) { "is" } else { "is not" });
+        println!("\"{}\" {} a pangram",
+                 sentence,
+                 if is_pangram(sentence) {
+                     "is"
+                 } else {
+                     "is not"
+                 });
     }
 }
 

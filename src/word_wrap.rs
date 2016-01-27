@@ -1,23 +1,23 @@
 // http://rosettacode.org/wiki/Word_wrap
 
-// Using the minimum length greedy algorithm
-// http://en.wikipedia.org/wiki/Word_wrap#Minimum_length
-
-// Implemented as a lazy String iterator, returning a wrapped line each time
+//! Using the minimum length greedy algorithm
+//! http://en.wikipedia.org/wiki/Word_wrap#Minimum_length
+//!
+//! Implemented as a lazy String iterator, returning a wrapped line each time
 use std::mem::swap;
 use std::str::SplitWhitespace;
 
 pub struct WordWrap<'a> {
     words: SplitWhitespace<'a>,
     line_length: usize,
-    next_line: String
+    next_line: String,
 }
 
 impl<'a> WordWrap<'a> {
     fn new(text: &'a str, line_length: usize) -> WordWrap {
         WordWrap {
-            words : text.split_whitespace(),
-            line_length : line_length,
+            words: text.split_whitespace(),
+            line_length: line_length,
             next_line: String::new(),
         }
     }
@@ -44,8 +44,7 @@ impl<'a> Iterator for WordWrap<'a> {
                     // Out of space, save word for next line
                     self.next_line.push_str(word);
                     break;
-                }
-                else {
+                } else {
                     // Add a space and keep going
                     this_line.push(' ');
                     space_left -= SPACE_WIDTH;
@@ -57,21 +56,23 @@ impl<'a> Iterator for WordWrap<'a> {
             space_left -= word_length;
         }
 
-        if this_line.is_empty() { None } else { Some(this_line) }
+        if this_line.is_empty() {
+            None
+        } else {
+            Some(this_line)
+        }
     }
 }
 
-fn main () {
-    let text =
-        "In olden times when wishing still helped one, there lived a king \
-         whose daughters were all beautiful, but the youngest was so beautiful \
-         that the sun itself, which has seen so much, was astonished whenever \
-         it shone in her face.  Close by the king's castle lay a great dark \
-         forest, and under an old lime tree in the forest was a well, and when \
-         the day was very warm, the king's child went out into the forest and \
-         sat down by the side of the cool fountain, and when she was bored she \
-         took a golden ball, and threw it up on high and caught it, and this \
-         ball was her favorite plaything.";
+fn main() {
+    let text = "In olden times when wishing still helped one, there lived a king whose daughters \
+                were all beautiful, but the youngest was so beautiful that the sun itself, which \
+                has seen so much, was astonished whenever it shone in her face.  Close by the \
+                king's castle lay a great dark forest, and under an old lime tree in the forest \
+                was a well, and when the day was very warm, the king's child went out into the \
+                forest and sat down by the side of the cool fountain, and when she was bored she \
+                took a golden ball, and threw it up on high and caught it, and this ball was her \
+                favorite plaything.";
 
     for length in 72..81 {
         println!("Text wrapped at {}", length);
@@ -122,8 +123,7 @@ fn test_squash_multiple_spaces() {
 
 #[test]
 fn test_unicode() {
-    let mut w =
-        WordWrap::new("Nous étions à l'Étude, quand le Proviseur entra", 11);
+    let mut w = WordWrap::new("Nous étions à l'Étude, quand le Proviseur entra", 11);
     assert_eq!(w.next().unwrap(), "Nous étions");
     assert_eq!(w.next().unwrap(), "à l'Étude,");
     assert_eq!(w.next().unwrap(), "quand le");

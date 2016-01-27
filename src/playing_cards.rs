@@ -7,12 +7,31 @@ use Pip::*;
 use Suit::*;
 
 #[derive(Copy, Clone, Debug)]
-enum Pip { Ace, Two, Three, Four, Five, Six, Seven, Eight, Nine, Ten, Jack, Queen, King }
-static PIPS: [Pip; 13] =
-    [Ace, Two, Three, Four, Five, Six, Seven, Eight, Nine, Ten, Jack, Queen, King];
+enum Pip {
+    Ace,
+    Two,
+    Three,
+    Four,
+    Five,
+    Six,
+    Seven,
+    Eight,
+    Nine,
+    Ten,
+    Jack,
+    Queen,
+    King,
+}
+static PIPS: [Pip; 13] = [Ace, Two, Three, Four, Five, Six, Seven, Eight, Nine, Ten, Jack, Queen,
+                          King];
 
 #[derive(Copy, Clone, Debug)]
-enum Suit { Spades, Hearts, Diamonds, Clubs }
+enum Suit {
+    Spades,
+    Hearts,
+    Diamonds,
+    Clubs,
+}
 static SUITS: [Suit; 4] = [Spades, Hearts, Diamonds, Clubs];
 
 struct Card {
@@ -30,10 +49,13 @@ struct Deck(Vec<Card>);
 
 impl Deck {
     fn new() -> Deck {
-        let mut cards:Vec<Card> = Vec::with_capacity(52);
+        let mut cards: Vec<Card> = Vec::with_capacity(52);
         for &suit in SUITS.iter() {
             for &pip in PIPS.iter() {
-                cards.push( Card{pip: pip, suit: suit} );
+                cards.push(Card {
+                    pip: pip,
+                    suit: suit,
+                });
             }
         }
         Deck(cards)

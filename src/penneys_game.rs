@@ -1,5 +1,4 @@
 // http://rosettacode.org/wiki/Penney's_game
-// H = true, T = false
 
 extern crate rand;
 
@@ -8,26 +7,33 @@ use std::thread;
 use std::time::Duration;
 use rand::{Rng, thread_rng};
 
-fn toss_coin(print:bool) -> char {
-    let c : char;
-    if thread_rng().gen::<bool>() {c = 'H'} else {c = 'T'}
+fn toss_coin(print: bool) -> char {
+    let c: char;
+    if thread_rng().gen::<bool>() {
+        c = 'H'
+    } else {
+        c = 'T'
+    }
     if print {
-        print!("{}",c);
+        print!("{}", c);
         stdout().flush().ok().expect("Could not flush stdout");
-        }
+    }
     c
 }
 
-fn gen_sequence(seed : Option<&str>) -> String {
+fn gen_sequence(seed: Option<&str>) -> String {
     let mut seq = String::new();
     match seed {
         Some(s) => {
             let c0 = s.chars().next().unwrap();
-            if c0 == 'H' {seq.push('T')
-                } else {seq.push('H')}
+            if c0 == 'H' {
+                seq.push('T')
+            } else {
+                seq.push('H')
+            }
             seq.push(c0);
             seq.push(s.chars().nth(1).unwrap());
-        },
+        }
         None => {
             for _ in 0..3 {
                 seq.push(toss_coin(false))
@@ -37,18 +43,15 @@ fn gen_sequence(seed : Option<&str>) -> String {
     seq
 }
 
-fn read_sequence(used_seq : Option<&str>) -> String {
+fn read_sequence(used_seq: Option<&str>) -> String {
     let mut seq = String::new();
     loop {
         seq.clear();
         println!("Please, enter sequence of 3 coins: H (heads) or T (tails): ");
         stdin().read_line(&mut seq).ok().expect("failed to read line");
         seq = seq.trim().to_uppercase();
-        if !(
-            seq.chars().all(|c| c == 'H' || c == 'T') &&
-            seq.len() == 3 &&
-            seq != used_seq.unwrap_or("")
-            ) {
+        if !(seq.chars().all(|c| c == 'H' || c == 'T') && seq.len() == 3 &&
+             seq != used_seq.unwrap_or("")) {
             println!("Please enter correct sequence!");
             continue;
         }
@@ -59,13 +62,13 @@ fn read_sequence(used_seq : Option<&str>) -> String {
 fn main() {
     println!("--Penney's game--");
     loop {
-        let useq : String;
-        let aiseq : String;
+        let useq: String;
+        let aiseq: String;
         if thread_rng().gen::<bool>() {
             println!("You choose first!");
             useq = read_sequence(None);
             println!("Your sequence: {}", useq);
-            aiseq = gen_sequence( Some(&useq) );
+            aiseq = gen_sequence(Some(&useq));
             println!("My sequence: {}", aiseq);
         } else {
             println!("I choose first!");
@@ -76,7 +79,8 @@ fn main() {
         }
         println!("Tossing coins...");
         let mut coins = String::new();
-        for _ in 0..2 { //toss first 2 coins
+        for _ in 0..2 {
+            // toss first 2 coins
             coins.push(toss_coin(true));
             thread::sleep(Duration::from_millis(500));
         }
@@ -98,7 +102,7 @@ fn main() {
         stdin().read_line(&mut input).ok().expect("failed to read line");
         match input.chars().next().unwrap() {
             'Y' | 'y' => continue,
-            _ => break
+            _ => break,
         }
     }
 }

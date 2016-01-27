@@ -1,11 +1,10 @@
 // http://rosettacode.org/wiki/Closest-pair_problem
 
-// We interpret complex numbers as points in the Cartesian plane, here.
-// We also use the sweepline/plane sweep closest pairs algorithm
-// (http://www.cs.mcgill.ca/~cs251/ClosestPair/ClosestPairPS.html) instead
-// of the divide-and-conquer algorithm, since it's (arguably)
-// easier to implement, and an efficient implementation does not require
-// use of unsafe.
+//! We interpret complex numbers as points in the Cartesian plane, here. We also use the
+//! sweepline/plane sweep closest pairs algorithm
+//! (http://www.cs.mcgill.ca/~cs251/ClosestPair/ClosestPairPS.html) instead of the
+//! divide-and-conquer algorithm, since it's (arguably) easier to implement, and an efficient
+//! implementation does not require use of unsafe.
 extern crate num;
 
 use std::cmp::{PartialOrd, Ordering};
@@ -13,10 +12,10 @@ use num::complex::Complex;
 use std::collections::BTreeSet;
 type Point = Complex<f32>;
 
-// Wrapper around Point (i.e. Complex<f32>) so that we can use a TreeSet
+/// Wrapper around Point (i.e. Complex<f32>) so that we can use a TreeSet
 #[derive(PartialEq)]
 struct YSortedPoint {
-    point: Point
+    point: Point,
 }
 
 impl PartialOrd for YSortedPoint {
@@ -35,7 +34,7 @@ impl Eq for YSortedPoint {}
 
 fn closest_pair(points: &mut [Point]) -> Option<(Point, Point)> {
     if points.len() < 2 {
-        return None
+        return None;
     }
 
     points.sort_by(|a, b| (a.re, a.im).partial_cmp(&(b.re, b.im)).unwrap());
@@ -68,13 +67,16 @@ fn closest_pair(points: &mut [Point]) -> Option<(Point, Point)> {
         // Compare to points in bounding box
         {
             let low_bound = YSortedPoint {
-                point: Point { re: ::std::f32::INFINITY, im: point.im - closest_distance }
+                point: Point {
+                    re: ::std::f32::INFINITY,
+                    im: point.im - closest_distance,
+                },
             };
             let mut strip_iter = strip.iter().skip_while(|&p| p < &low_bound);
             loop {
                 let point2 = match strip_iter.next() {
                     None => break,
-                    Some(p) => p.point
+                    Some(p) => p.point,
                 };
                 if point2.im - point.im >= closest_distance {
                     // we've reached the end of the box
@@ -97,42 +99,38 @@ fn closest_pair(points: &mut [Point]) -> Option<(Point, Point)> {
 }
 
 pub fn main() {
-    let mut test_data = [
-        Complex::new(0.654682, 0.925557),
-        Complex::new(0.409382, 0.619391),
-        Complex::new(0.891663, 0.888594),
-        Complex::new(0.716629, 0.996200),
-        Complex::new(0.477721, 0.946355),
-        Complex::new(0.925092, 0.818220),
-        Complex::new(0.624291, 0.142924),
-        Complex::new(0.211332, 0.221507),
-        Complex::new(0.293786, 0.691701),
-        Complex::new(0.839186, 0.728260)
-    ];
+    let mut test_data = [Complex::new(0.654682, 0.925557),
+                         Complex::new(0.409382, 0.619391),
+                         Complex::new(0.891663, 0.888594),
+                         Complex::new(0.716629, 0.996200),
+                         Complex::new(0.477721, 0.946355),
+                         Complex::new(0.925092, 0.818220),
+                         Complex::new(0.624291, 0.142924),
+                         Complex::new(0.211332, 0.221507),
+                         Complex::new(0.293786, 0.691701),
+                         Complex::new(0.839186, 0.728260)];
     let (p1, p2) = closest_pair(&mut test_data[..]).unwrap();
     println!("Closest pair: {} and {}", p1, p2);
     println!("Distance: {}", (p1 - p2).norm_sqr().sqrt());
 }
 
 #[cfg(test)]
-mod test {
+mod tests {
     use super::closest_pair;
     use num::complex::Complex;
 
     #[test]
     fn random_floats() {
-        let mut test_data = [
-            Complex::new(0.654682, 0.925557),
-            Complex::new(0.409382, 0.619391),
-            Complex::new(0.891663, 0.888594),
-            Complex::new(0.716629, 0.996200),
-            Complex::new(0.477721, 0.946355),
-            Complex::new(0.925092, 0.818220),
-            Complex::new(0.624291, 0.142924),
-            Complex::new(0.211332, 0.221507),
-            Complex::new(0.293786, 0.691701),
-            Complex::new(0.839186, 0.728260)
-        ];
+        let mut test_data = [Complex::new(0.654682, 0.925557),
+                             Complex::new(0.409382, 0.619391),
+                             Complex::new(0.891663, 0.888594),
+                             Complex::new(0.716629, 0.996200),
+                             Complex::new(0.477721, 0.946355),
+                             Complex::new(0.925092, 0.818220),
+                             Complex::new(0.624291, 0.142924),
+                             Complex::new(0.211332, 0.221507),
+                             Complex::new(0.293786, 0.691701),
+                             Complex::new(0.839186, 0.728260)];
         let (p1, p2) = closest_pair(&mut test_data[..]).unwrap();
         assert!((p1.re - 0.891663).abs() < 1e-6f32);
         assert!((p1.im - 0.888594).abs() < 1e-6f32);

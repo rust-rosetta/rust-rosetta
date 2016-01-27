@@ -6,7 +6,7 @@ fn main() {
     for path in paths.iter().map(|&x| Path::new(x)) {
         let msg = match path.exists() {
             true => "exists",
-            false => "does not exist"
+            false => "does not exist",
         };
 
         println!("{} {}.", path.display(), msg);

@@ -11,7 +11,7 @@ fn eulers_sum_of_powers() -> (usize, usize, usize, usize, usize) {
                 for x3 in 1..x2 {
                     let pow_sum = pow5[x0] + pow5[x1] + pow5[x2] + pow5[x3];
                     if let Ok(n) = pow5_to_n(pow_sum) {
-                        return (x0, x1, x2, x3, n)
+                        return (x0, x1, x2, x3, n);
                     }
                 }
             }

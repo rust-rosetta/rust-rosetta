@@ -14,13 +14,13 @@ fn main() {
 fn bottles_line(num_bottles: u32, on_the_wall: bool) -> String {
     let tail = match on_the_wall {
         true => "of beer on the wall!\n",
-        false => "of beer\n"
+        false => "of beer\n",
     };
 
     match num_bottles {
         0 => format!("No bottles {}", tail),
         1 => format!("One bottle {}", tail),
-        n => format!("{} bottles {}", n, tail)
+        n => format!("{} bottles {}", n, tail),
     }
 }
 

@@ -1,10 +1,10 @@
-// This build script checks that all files in the `src` directory have lines of at most 100
-// characters and don't contain trailing whitespace.
-//
-// It also ensures that comment indicating which task a file solves is at the top.
-//
-// In case we find a line that doesn't comply with this rules, the build will fail and indicate
-// the cause of the problem.
+//! This build script checks that all files in the `src` directory have lines of at most 100
+//! characters and don't contain trailing whitespace.
+//!
+//! It also ensures that comment indicating which task a file solves is at the top.
+//!
+//! In case we find a line that doesn't comply with this rules, the build will fail and indicate
+//! the cause of the problem.
 extern crate regex;
 extern crate toml;
 extern crate unicode_segmentation;

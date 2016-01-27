@@ -10,9 +10,9 @@ fn main() {
     }
 }
 
-// Compute the factors of an integer
-// This method uses a simple check on each value between 1 and sqrt(x) to find
-// pairs of factors
+/// Compute the factors of an integer
+/// This method uses a simple check on each value between 1 and sqrt(x) to find
+/// pairs of factors
 fn factor_int(x: i32) -> Vec<i32> {
     let mut factors: Vec<i32> = Vec::new();
 
@@ -21,7 +21,7 @@ fn factor_int(x: i32) -> Vec<i32> {
     for i in 1i32..bound {
         if x % i == 0 {
             factors.push(i);
-            factors.push(x/i);
+            factors.push(x / i);
         }
     }
 

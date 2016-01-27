@@ -2,7 +2,7 @@
 
 extern crate url;
 
-use url::{Url, ParseError};
+use url::Url;
 
 fn print_url(url: Url) {
     println!("scheme:      {:?}", url.scheme);
@@ -15,7 +15,7 @@ fn print_url(url: Url) {
     if let Some(path) = url.path() {
         println!("path:        {:?}", path);
     }
-    if let Some(data) = url.non_relative_scheme_data() {
+    if let Some(..) = url.non_relative_scheme_data() {
         println!("scheme_data: {:?}", url.scheme_data);
     }
     if let Some(query) = url.query {

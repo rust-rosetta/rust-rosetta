@@ -1,4 +1,5 @@
 // http://rosettacode.org/wiki/Guess_the_number
+
 extern crate rand;
 use rand::{thread_rng, Rng};
 use std::io::stdin;
@@ -14,7 +15,7 @@ fn main() {
         match line.trim().parse::<u8>() {
             Ok(guess) if guess == mystery_number => break,
             Ok(_) => println!("Wrong! Try again!"),
-            Err(_) => println!("Please enter an integer")
+            Err(_) => println!("Please enter an integer"),
         }
     }
 

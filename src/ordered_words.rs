@@ -1,6 +1,6 @@
 // http://rosettacode.org/wiki/Ordered_words
 use std::fs::File;
-use std::io::{BufReader,BufRead};
+use std::io::{BufReader, BufRead};
 
 fn is_ordered(s: &str) -> bool {
     let mut prev = '\x00';
@@ -35,8 +35,10 @@ fn find_longest_ordered_words(dict: Vec<String>) -> Vec<String> {
 }
 
 fn main() {
-    let lines = BufReader::new(File::open("unixdict.txt").unwrap()).lines()
-        .map(|l|l.unwrap()).collect();
+    let lines = BufReader::new(File::open("unixdict.txt").unwrap())
+                    .lines()
+                    .map(|l| l.unwrap())
+                    .collect();
 
     let longest_ordered = find_longest_ordered_words(lines);
 

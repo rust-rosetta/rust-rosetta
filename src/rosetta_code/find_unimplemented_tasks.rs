@@ -38,54 +38,76 @@ impl Iterator for Category {
 
     fn next(&mut self) -> Option<Self::Item> {
         if self.cmcontinue.is_none() && !self.is_first_iteration {
-            return None
+            return None;
         }
 
         self.is_first_iteration = false;
 
         let cmcontinue = match self.cmcontinue {
             Some(ref cmcontinue) => format!("&cmcontinue={}", cmcontinue),
-            None => "".to_owned()
+            None => "".to_owned(),
         };
 
-        let url = &format!("http://rosettacode.org/mw/api.php?\
-            action=query&\
-            list=categorymembers&\
-            cmtitle=Category:{}&\
-            cmlimit=500&format=json{}", self.name, cmcontinue);
+        let url = &format!("http://rosettacode.org/mw/api.\
+                            php?action=query&list=categorymembers&cmtitle=Category:\
+                            {}&cmlimit=500&format=json{}",
+                           self.name,
+                           cmcontinue);
 
-        let mut res = self.http_client.get(url)
-            .header(Connection::close())
-            .send()
-            .unwrap();
+        let mut res = self.http_client
+                          .get(url)
+                          .header(Connection::close())
+                          .send()
+                          .unwrap();
 
         let mut body = String::new();
         res.read_to_string(&mut body).unwrap();
 
         let json = Json::from_str(&body).unwrap();
-        let tasks = json.as_object().unwrap()
-                        .get("query").unwrap().as_object().unwrap()
-                        .get("categorymembers").unwrap().as_array().unwrap()
+        let tasks = json.as_object()
+                        .unwrap()
+                        .get("query")
+                        .unwrap()
+                        .as_object()
+                        .unwrap()
+                        .get("categorymembers")
+                        .unwrap()
+                        .as_array()
+                        .unwrap()
                         .iter()
                         .map(|cm| {
                             let cm_obj = cm.as_object().unwrap();
                             Task {
-                                id: cm_obj.get("pageid").unwrap().as_u64().unwrap()
-                                        .to_string(),
-                                title: cm_obj.get("title").unwrap().as_string().unwrap()
-                                        .to_owned(),
+                                id: cm_obj.get("pageid")
+                                          .unwrap()
+                                          .as_u64()
+                                          .unwrap()
+                                          .to_string(),
+                                title: cm_obj.get("title")
+                                             .unwrap()
+                                             .as_string()
+                                             .unwrap()
+                                             .to_owned(),
                             }
                         })
                         .collect::<Vec<_>>();
 
-        self.cmcontinue = json.as_object().unwrap()
-                          .get("query-continue")
-                          .map(|query_continue| {
-                              query_continue.as_object().unwrap()
-                                  .get("categorymembers").unwrap().as_object().unwrap()
-                                  .get("cmcontinue").unwrap().as_string().unwrap()
-                                  .to_owned()
-                          });
+        self.cmcontinue = json.as_object()
+                              .unwrap()
+                              .get("query-continue")
+                              .map(|query_continue| {
+                                  query_continue.as_object()
+                                                .unwrap()
+                                                .get("categorymembers")
+                                                .unwrap()
+                                                .as_object()
+                                                .unwrap()
+                                                .get("cmcontinue")
+                                                .unwrap()
+                                                .as_string()
+                                                .unwrap()
+                                                .to_owned()
+                              });
 
         Some(tasks)
     }
@@ -100,11 +122,11 @@ pub fn all_tasks() -> Vec<Task> {
 pub fn unimplemented_tasks(lang: &str) -> Vec<Task> {
     let all_tasks = all_tasks().iter().cloned().collect::<HashSet<_>>();
     let implemented_tasks = Category::new(lang)
-        .flat_map(|tasks| tasks)
-        .collect::<HashSet<_>>();
+                                .flat_map(|tasks| tasks)
+                                .collect::<HashSet<_>>();
     let mut unimplemented_tasks = all_tasks.difference(&implemented_tasks)
-        .cloned()
-        .collect::<Vec<Task>>();
+                                           .cloned()
+                                           .collect::<Vec<Task>>();
     unimplemented_tasks.sort_by(|a, b| a.title.cmp(&b.title));
     unimplemented_tasks
 }

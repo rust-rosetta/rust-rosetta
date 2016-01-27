@@ -6,7 +6,7 @@ extern crate rustc_serialize;
 use docopt::Docopt;
 use regex::Regex;
 
-const USAGE: &'static str = "
+const USAGE: &'static str = r"
 Usage: walk_a_directory_non_recursively <pattern>
 
 Walks the directory tree starting with the current working directory and
@@ -20,8 +20,8 @@ struct Args {
 
 fn main() {
     let args: Args = Docopt::new(USAGE)
-        .and_then(|d| d.decode())
-        .unwrap_or_else(|e| e.exit());
+                         .and_then(|d| d.decode())
+                         .unwrap_or_else(|e| e.exit());
 
     let re = Regex::new(&args.arg_pattern).unwrap();
     let paths = std::fs::read_dir(".").unwrap();

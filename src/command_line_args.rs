@@ -2,7 +2,7 @@
 
 use std::env;
 
-fn main(){
+fn main() {
     for arg in env::args() {
         println!("{}", arg);
     }

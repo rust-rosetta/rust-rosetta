@@ -14,7 +14,12 @@ fn main() {
         }
 
         for j in 0..i + 1 {
-            print!(" {}", if state[j] { "*" } else { " " });
+            print!(" {}",
+                   if state[j] {
+                       "*"
+                   } else {
+                       " "
+                   });
         }
 
         // Compute the next line

@@ -5,7 +5,7 @@ use std::env::args;
 use std::borrow::ToOwned;
 
 fn main() {
-    let mut args =  args();
+    let mut args = args();
 
     let filename = {
         if let Some(o_s) = args.nth(1) {
@@ -18,8 +18,9 @@ fn main() {
     let line_number = {
         if let Some(o_s) = args.next() {
             o_s.to_owned()
-                .parse::<usize>().ok()
-                .expect("You must enter an integer as the line number")
+               .parse::<usize>()
+               .ok()
+               .expect("You must enter an integer as the line number")
         } else {
             panic!("You must enter a filename to read line by line")
         }
@@ -28,13 +29,14 @@ fn main() {
     let file = File::open(filename).unwrap();
     let reader = BufReader::new(file);
 
-    match reader.lines().skip(line_number-1).next() {
+    match reader.lines().skip(line_number - 1).next() {
         None => panic!("No such line (file is too short)"),
-        Some(result) => match result {
-            // Handle any errors that may arise
-            Ok(ln) => print!("{}", ln),
-            Err(error) => print!("{}", error)
+        Some(result) => {
+            match result {
+                // Handle any errors that may arise
+                Ok(ln) => print!("{}", ln),
+                Err(error) => print!("{}", error),
+            }
         }
     }
 }
-

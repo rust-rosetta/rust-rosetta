@@ -3,7 +3,7 @@
 extern crate time;
 use time::{at, get_time, strftime};
 
-fn main () {
+fn main() {
     // Prints the current time as a timespec containing the seconds
     // and nanoseconds since 1970-01-01T00:00:00Z.
     let time_ts = get_time();

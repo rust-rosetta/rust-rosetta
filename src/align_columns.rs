@@ -1,10 +1,12 @@
 // http://rosettacode.org/wiki/Align_columns
-const TEST_STR: &'static str =
-    "Given$a$text$file$of$many$lines,$where$fields$within$a$line$\nare$delineated\
-    $by$a$single$'dollar'$character,$write$a$program\nthat$aligns$each$column$of\
-    $fields$by$ensuring$that$words$in$each$\ncolumn$are$separated$by$at$least$one\
-    $space.\nFurther,$allow$for$each$word$in$a$column$to$be$either$left$\n\
-    justified,$right$justified,$or$center$justified$within$its$column.\n";
+
+const TEST_STR: &'static str = r"Given$a$text$file$of$many$lines,$where$fields$within$a$line$
+are$delineated$by$a$single$'dollar'$character,$write$a$program
+that$aligns$each$column$of$fields$by$ensuring$that$words$in$each$
+column$are$separated$by$at$least$one$space.
+Further,$allow$for$each$word$in$a$column$to$be$either$left$
+justified,$right$justified,$or$center$justified$within$its$column.
+";
 
 fn main() {
     let (chunks, max_lengths) = align_columns(TEST_STR);
@@ -20,7 +22,7 @@ fn align_columns(text: &str) -> (Vec<Vec<String>>, Vec<usize>) {
         let ref input = lines[i];
         let split_input: Vec<String> = input[..].split('$').map(|s| s.to_string()).collect();
         chunks.push(split_input.clone());
-        let v: Vec<usize> = split_input.iter().map(|chunk| chunk.len() ).collect();
+        let v: Vec<usize> = split_input.iter().map(|chunk| chunk.len()).collect();
 
         for i in 0..v.len() {
             if i < max_lengths.len() {
@@ -56,11 +58,11 @@ fn print_aligned_columns(chunks: &Vec<Vec<String>>, max_lengths: &Vec<usize>) {
         for j in 0..chunks[i].len() {
             let ref string: String = chunks[i][j];
             let spaces: usize = 1 + max_lengths[j] - string.len();
-            for _ in 0..spaces>>1 {
+            for _ in 0..spaces >> 1 {
                 print!(" ");
             }
             print!("{}", string);
-            for _ in 0..(spaces - (spaces>>1)) {
+            for _ in 0..(spaces - (spaces >> 1)) {
                 print!(" ");
             }
         }

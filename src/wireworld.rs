@@ -4,8 +4,6 @@ use std::mem;
 use std::thread;
 use std::time::Duration;
 
-// Use VT100 cursor control sequences to animate in-place
-
 #[derive(Copy, Clone)]
 enum Cell {
     Empty(char),
@@ -13,6 +11,7 @@ enum Cell {
     Tail,
     Conductor,
 }
+
 impl Cell {
     fn from_char(c: char) -> Cell {
         match c {
@@ -33,20 +32,33 @@ impl Cell {
 }
 
 fn next_world(input: &[Cell], output: &mut [Cell], w: usize, h: usize) {
-    for i in 0..(w*h) {
+    for i in 0..(w * h) {
         match input[i] {
-            Cell::Empty(c)  => output[i] = Cell::Empty(c),
-            Cell::Tail      => output[i] = Cell::Conductor,
-            Cell::Head      => output[i] = Cell::Tail,
+            Cell::Empty(c) => output[i] = Cell::Empty(c),
+            Cell::Tail => output[i] = Cell::Conductor,
+            Cell::Head => output[i] = Cell::Tail,
             Cell::Conductor => {
-                let nc = vec![
-                    input.get(i-w-1), input.get(i-w), input.get(i-w+1),
-                    input.get(i-1),                   input.get(i+1),
-                    input.get(i+w-1), input.get(i+w), input.get(i+w+1)
-                ].iter().fold(0, |sum, &o| {
-                    if let Some(&Cell::Head) = o { sum + 1 } else { sum }
-                });
-                output[i] = if nc == 1 || nc == 2 { Cell::Head } else { Cell::Conductor };
+                let nc = vec![input.get(i - w - 1),
+                              input.get(i - w),
+                              input.get(i - w + 1),
+                              input.get(i - 1),
+                              input.get(i + 1),
+                              input.get(i + w - 1),
+                              input.get(i + w),
+                              input.get(i + w + 1)]
+                             .iter()
+                             .fold(0, |sum, &o| {
+                                 if let Some(&Cell::Head) = o {
+                                     sum + 1
+                                 } else {
+                                     sum
+                                 }
+                             });
+                output[i] = if nc == 1 || nc == 2 {
+                    Cell::Head
+                } else {
+                    Cell::Conductor
+                };
             }
         }
     }
@@ -54,7 +66,7 @@ fn next_world(input: &[Cell], output: &mut [Cell], w: usize, h: usize) {
 
 fn main() {
     let (w, h) = (14usize, 7usize);
-    let mut world: Vec<Cell> = "
+    let mut world: Vec<Cell> = r"
 +-----------+
 |tH.........|
 |.   .      |
@@ -62,17 +74,21 @@ fn main() {
 |.   .      |
 |Ht.. ......|
 +-----------+
-".chars().map(|c| Cell::from_char(c)).collect();
+"
+                                   .chars()
+                                   .map(|c| Cell::from_char(c))
+                                   .collect();
     let mut next: Vec<Cell> = world.clone();
 
     loop {
-        for i in 0..(w*h) {
+        for i in 0..(w * h) {
             print!("{}", world[i].to_char());
         }
         print!("\n");
         next_world(&world, &mut next, 14, 7);
         mem::swap(&mut world, &mut next);
 
+        // Use VT100 cursor control sequences to animate in-place
         print!("\x1b[{}A", 8);
         print!("\x1b[{}D", 14);
         thread::sleep(Duration::from_millis(100));
@@ -82,7 +98,7 @@ fn main() {
 #[test]
 fn test() {
     let (w, h) = (14usize, 7usize);
-    let mut world: Vec<Cell> = "
+    let mut world: Vec<Cell> = r"
 +-----------+
 |tH.........|
 |.   .      |
@@ -90,7 +106,10 @@ fn test() {
 |.   .      |
 |Ht.. ......|
 +-----------+
-".chars().map(|c| Cell::from_char(c)).collect();
+"
+                                   .chars()
+                                   .map(|c| Cell::from_char(c))
+                                   .collect();
     let mut next: Vec<Cell> = world.clone();
 
     for _ in 0..10 {
@@ -99,7 +118,7 @@ fn test() {
     }
 
     let result: String = world.iter().map(|c| c.to_char()).collect();
-    let correct = "
+    let correct = r"
 +-----------+
 |.tH.tH.tH.t|
 |H   t      |

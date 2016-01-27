@@ -1,21 +1,21 @@
 // http://rosettacode.org/wiki/Rot-13
 
-fn rot13 (string: &str) -> String {
-    fn rot13u8 (c: char) -> char {
+fn rot13(string: &str) -> String {
+    fn rot13u8(c: char) -> char {
         let d = c as u8;
         match c {
-            'a' ... 'm'
-            | 'A' ... 'M' => (d + 13) as char,
-            'n' ... 'z'
-            | 'N' ... 'Z' => (d - 13) as char,
-            _ => c
+            'a'...'m' |
+            'A'...'M' => (d + 13) as char,
+            'n'...'z' |
+            'N'...'Z' => (d - 13) as char,
+            _ => c,
         }
     }
 
     string.chars().map(rot13u8).collect()
 }
 
-fn main () {
+fn main() {
     let string = "Do you love apples?";
 
     println!("Original: {}", string);

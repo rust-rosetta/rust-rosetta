@@ -9,7 +9,7 @@ fn pascaltriangle(rows: usize) -> Vec<Vec<usize>> {
 
         for col in 0..row + 1 {
             row_vals.push(value);
-            value = value * (row - col)/(col + 1)
+            value = value * (row - col) / (col + 1)
         }
 
         all_rows.push(row_vals);
@@ -41,11 +41,6 @@ fn main() {
 
 #[test]
 fn test_triangle() {
-    assert_eq!(pascaltriangle(5), vec!(
-                  vec!(1),
-                 vec!(1, 1),
-               vec!(1, 2, 1),
-              vec!(1, 3, 3, 1),
-             vec!(1, 4, 6, 4, 1)
-            ));
+    assert_eq!(pascaltriangle(5),
+               vec![vec![1], vec![1, 1], vec![1, 2, 1], vec![1, 3, 3, 1], vec![1, 4, 6, 4, 1]]);
 }
