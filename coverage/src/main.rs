@@ -23,7 +23,7 @@ use regex::Regex;
 use term::Terminal;
 use walkdir::WalkDir;
 
-const USAGE: &'static str = "
+const USAGE: &'static str = r"
 Detect unimplemented tasks.
 
 This script prints out the name of each task, followed by whether it is implemented online,
@@ -53,15 +53,15 @@ struct Args {
     flag_unimplemented: bool,
 }
 
-// Transforms a task title to a URL task title.
+/// Transforms a task title to a URL task title.
 fn normalize(title: &str) -> String {
     title.replace(" ", "_")
 }
 
 fn main() {
     let args: Args = Docopt::new(USAGE)
-                        .and_then(|d| d.decode())
-                        .unwrap_or_else(|e| e.exit());
+                         .and_then(|d| d.decode())
+                         .unwrap_or_else(|e| e.exit());
 
     let mut t = term::stdout().unwrap();
 
@@ -73,10 +73,9 @@ fn main() {
     let task_comment = Regex::new("// http://rosettacode.org/wiki/(.+)").unwrap();
     for entry in WalkDir::new("../src") {
         let entry = entry.unwrap();
-        if entry.file_type().is_dir()
-            || entry.path().extension().map_or(false, |e| e != "rs")
-            || entry.path().file_name().map_or(false, |name| name == "lib.rs" || name == "mod.rs"){
-            continue
+        if entry.file_type().is_dir() || entry.path().extension().map_or(false, |e| e != "rs") ||
+           entry.path().file_name().map_or(false, |name| name == "lib.rs" || name == "mod.rs") {
+            continue;
         }
 
         let file = File::open(entry.path()).unwrap();
@@ -93,51 +92,57 @@ fn main() {
     };
 
     // Extracts the code from the first <lang rust> tag
-    let rust_re = Regex::new(r"==\{\{header\|Rust\}\}==(?s:.*?)<lang rust>((?s:.*?))</lang>").unwrap();
+    let rust_re = Regex::new(r"==\{\{header\|Rust\}\}==(?s:.*?)<lang rust>((?s:.*?))</lang>")
+                      .unwrap();
 
     for title in task_titles {
         let task_url = &format!("http://rosettacode.org/wiki/{}", normalize(&title));
 
         let local_code = local_tasks.get(&normalize(&title))
-            .and_then(|path| File::open(path).ok())
-            .and_then(|mut file| {
-                let mut local_code = String::new();
-                file.read_to_string(&mut local_code).unwrap();
-                Some(local_code)
-            });
+                                    .and_then(|path| File::open(path).ok())
+                                    .and_then(|mut file| {
+                                        let mut local_code = String::new();
+                                        file.read_to_string(&mut local_code).unwrap();
+                                        Some(local_code)
+                                    });
 
 
         let mut res = http_client.get(&format!("{}?{}", task_url, "action=raw"))
-            .header(Connection::close())
-            .send()
-            .unwrap();
+                                 .header(Connection::close())
+                                 .send()
+                                 .unwrap();
 
         let mut body = String::new();
         res.read_to_string(&mut body).unwrap();
         let online_code = rust_re.captures(&body)
-            .and_then(|captures| Some(captures.at(1).unwrap()));
+                                 .and_then(|captures| Some(captures.at(1).unwrap()));
 
         if args.flag_localonly && !(local_code.is_some() && online_code.is_none()) {
-            continue
+            continue;
         }
 
         if args.flag_remoteonly && !(local_code.is_none() && online_code.is_some()) {
-            continue
+            continue;
         }
 
         if args.flag_unimplemented && (local_code.is_some() || online_code.is_some()) {
-            continue
+            continue;
         }
 
         t.attr(term::Attr::Bold).unwrap();
         writeln!(t, "{}", title).unwrap();
         t.reset().unwrap();
 
-        writeln!(t, "Local: {}, Remote: {}", local_code.is_some(), online_code.is_some()).unwrap();
+        writeln!(t,
+                 "Local: {}, Remote: {}",
+                 local_code.is_some(),
+                 online_code.is_some())
+            .unwrap();
 
         if !args.flag_nodiff && online_code.is_some() && local_code.is_some() {
-            let (_dist, changeset) =
-                difference::diff(&online_code.unwrap(), &local_code.unwrap(), "\n");
+            let (_dist, changeset) = difference::diff(&online_code.unwrap(),
+                                                      &local_code.unwrap(),
+                                                      "\n");
 
             let mut t = term::stdout().unwrap();
 
@@ -146,13 +151,13 @@ fn main() {
                     Difference::Same(ref x) => {
                         t.reset().unwrap();
                         writeln!(t, " {}", x).unwrap();
-                    },
+                    }
                     Difference::Add(ref x) => {
                         t.fg(term::color::GREEN).unwrap();
                         for line in x.split("\n") {
                             writeln!(t, "+{}", line).unwrap();
                         }
-                    },
+                    }
                     Difference::Rem(ref x) => {
                         t.fg(term::color::RED).unwrap();
                         for line in x.split("\n") {
@@ -166,5 +171,3 @@ fn main() {
         t.flush().unwrap();
     }
 }
-
-

@@ -1,9 +1,14 @@
 // http://rosettacode.org/wiki/Comma_quibbling
+
 fn quibble(seq: &[&str]) -> String {
     match seq.len() {
         0 => "{}".to_string(),
-        1 => format!("{{{}}}", seq[0] ),
-        _ => format!("{{{} and {}}}", seq[.. seq.len() - 1].join(", "), seq.last().unwrap())
+        1 => format!("{{{}}}", seq[0]),
+        _ => {
+            format!("{{{} and {}}}",
+                    seq[..seq.len() - 1].join(", "),
+                    seq.last().unwrap())
+        }
     }
 }
 

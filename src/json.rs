@@ -5,12 +5,15 @@ use rustc_serialize::json;
 #[derive(Debug, RustcEncodable, RustcDecodable, PartialEq, Eq)]
 pub struct Contact {
     name: String,
-    city: String
+    city: String,
 }
 
 fn main() {
     // Encode contact to json
-    let c = Contact { name: "John".to_string(), city: "Paris".to_string() };
+    let c = Contact {
+        name: "John".to_string(),
+        city: "Paris".to_string(),
+    };
     let json = json::encode(&c);
     println!("Encoded: {:?}", &(json.unwrap()));
 
@@ -22,7 +25,10 @@ fn main() {
 
 #[test]
 fn test_coherence() {
-    let c = Contact { name: "John".to_string(), city: "Paris".to_string() };
+    let c = Contact {
+        name: "John".to_string(),
+        city: "Paris".to_string(),
+    };
     assert!(json::decode::<Contact>(&(json::encode(&c)).unwrap()) == Ok(c));
 }
 
@@ -30,5 +36,9 @@ fn test_coherence() {
 fn test_decode() {
     let json_str = "{\"name\":\"Alan\", \"city\":\"Tokyo\"}";
     let contact: Contact = json::decode(json_str).unwrap();
-    assert!(contact == Contact { name: "Alan".to_string(), city: "Tokyo".to_string() });
+    assert!(contact ==
+            Contact {
+        name: "Alan".to_string(),
+        city: "Tokyo".to_string(),
+    });
 }

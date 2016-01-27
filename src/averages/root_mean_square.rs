@@ -1,6 +1,6 @@
 // http://rosettacode.org/wiki/Averages/Root_mean_square
 
-// The mean is not defined for an empty list, so we must return an Option
+/// The mean is not defined for an empty list, so we must return an Option
 fn rms(list: &[f64]) -> Option<f64> {
     match list.len() {
         0 => None,
@@ -12,7 +12,7 @@ fn rms(list: &[f64]) -> Option<f64> {
 }
 
 fn main() {
-    let input:Vec<_> = (1..11).map(|x| x as f64).collect();
+    let input: Vec<_> = (1..11).map(|x| x as f64).collect();
 
     // 6.2048368229954285
     let rms = rms(&input).unwrap();

@@ -4,8 +4,7 @@ use std::net::{TcpStream, TcpListener, Shutdown};
 use std::io::{Write, Result};
 
 fn handle_client(mut stream: TcpStream) -> Result<()> {
-    let response =
-b"HTTP/1.1 200 OK
+    let response = b"HTTP/1.1 200 OK
 Content-Type: text/html;
 charset=UTF-8
 
@@ -30,7 +29,6 @@ charset=UTF-8
 pub fn handle_server(ip: &str, port: u16) -> Result<TcpListener> {
     use std::thread::spawn;
     let listener = try!(TcpListener::bind((ip, port)));
-    //let mut acceptor = listener.listen();
     println!("Listening for connections on port {}", port);
 
     let handle = try!(listener.try_clone());
@@ -43,10 +41,10 @@ pub fn handle_server(ip: &str, port: u16) -> Result<TcpListener> {
                         Err(e) => println!("Failed sending response: {}!", e),
                     }
                 });
-            },
+            }
             Err(e) => {
                 println!("No longer accepting new requests: {}", e);
-                break
+                break;
             }
         }
     }
@@ -57,13 +55,15 @@ pub fn handle_server(ip: &str, port: u16) -> Result<TcpListener> {
 #[allow(dead_code)]
 fn main() {
     let mut args = env::args();
-    let app_name = args.next().unwrap()
-        .to_owned();
+    let app_name = args.next()
+                       .unwrap()
+                       .to_owned();
     let host = "127.0.0.1";
     let port = if let Some(os_port) = args.next() {
         let s_port = os_port.to_owned();
-        s_port.parse::<u16>().ok()
-            .expect(&*format!("Usage: {:?} <port>", app_name))
+        s_port.parse::<u16>()
+              .ok()
+              .expect(&*format!("Usage: {:?} <port>", app_name))
     } else {
         80
     };

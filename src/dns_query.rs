@@ -14,13 +14,14 @@ fn get_ips(host: &str) -> io::Result<Vec<Ips>> {
     use Ips::{IpV4, IpV6};
 
     let hosts = try!(net::lookup_host(host));
-    let ips: Vec<_> = hosts.filter_map(|h|
-        match h {
-            Ok(SocketAddr::V4(s_v4)) => Some(IpV4(s_v4.ip().clone())),
-            Ok(SocketAddr::V6(s_v6)) => Some(IpV6(s_v6.ip().clone())),
-            _ => None,
-        }
-    ).collect();
+    let ips: Vec<_> = hosts.filter_map(|h| {
+                               match h {
+                                   Ok(SocketAddr::V4(s_v4)) => Some(IpV4(s_v4.ip().clone())),
+                                   Ok(SocketAddr::V6(s_v6)) => Some(IpV6(s_v6.ip().clone())),
+                                   _ => None,
+                               }
+                           })
+                           .collect();
     Ok(ips)
 }
 
@@ -28,13 +29,13 @@ fn main() {
     for ip in &(get_ips("www.kame.net").unwrap()) {
         match ip {
             &Ips::IpV4(ip) => println!("ip v4: {}", ip),
-            &Ips::IpV6(ip) => println!("ip v6: {}", ip)
+            &Ips::IpV6(ip) => println!("ip v6: {}", ip),
         }
     }
 }
 
 #[cfg(test)]
-mod test {
+mod tests {
     use super::{Ips, get_ips};
     use std::net::{Ipv4Addr, Ipv6Addr};
     use std::str::FromStr;

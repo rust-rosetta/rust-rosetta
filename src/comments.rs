@@ -1,5 +1,7 @@
 // http://rosettacode.org/wiki/Comments
 
+//! A module level comment
+
 // A single line comment
 
 /*
@@ -7,7 +9,7 @@
  *
  *  /*
  *   *  containing nested multi-line comment
- *   *  (nesting supported since 0.9-pre https://github.com/mozilla/rust/issues/9468)
+ *   *  (nesting supported since 0.9-pre https://github.com/rust-lang/rust/issues/9468)
  *   */
  */
 
@@ -20,7 +22,6 @@
  *  is not considered to be part of the comment text,
  *  blanks and tabs preceding the initial asterisk (*) are also stripped.
  */
-
 fn example1() {
     //! Inner single line Rustdoc comments apply to their enclosing item.
 

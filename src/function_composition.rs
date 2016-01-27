@@ -1,4 +1,5 @@
 // http://rosettacode.org/wiki/Function_composition
+
 fn main() {
     use std::f32::consts;
 
@@ -13,15 +14,20 @@ fn main() {
 }
 
 fn compose<'a, F, G, A, B, C>(f: F, g: G) -> Box<Fn(A) -> C + 'a>
-    where G: Fn(A) -> B + 'a, F: Fn(B) -> C + 'a
+    where G: Fn(A) -> B + 'a,
+          F: Fn(B) -> C + 'a
 {
-    Box::new( move |a: A| f(g(a)) )
+    Box::new(move |a: A| f(g(a)))
 }
 
 #[test]
 fn test_compose() {
-    fn inc(x: usize) -> usize { x + 1 }
-    fn mul(x: usize) -> usize { x * 3 }
+    fn inc(x: usize) -> usize {
+        x + 1
+    }
+    fn mul(x: usize) -> usize {
+        x * 3
+    }
 
     let comp = compose(inc, mul);
     assert_eq!((*comp)(3), 10);

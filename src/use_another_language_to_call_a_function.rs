@@ -28,5 +28,5 @@ fn buffer_contains_data() {
 fn main() {
     println!("This task is not a binary.");
     println!("Please see the comment at the top of \
-             src/use_another_language_to_call_a_function/src/lib.rs.");
+              src/use_another_language_to_call_a_function/src/lib.rs.");
 }

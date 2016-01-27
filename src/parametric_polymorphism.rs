@@ -6,9 +6,10 @@ struct TreeNode<T> {
     right: Option<Box<TreeNode<T>>>,
 }
 
-impl <T> TreeNode<T> {
-    fn my_map<U,F>(&self, f: &F) -> TreeNode<U> where
-            F: Fn(&T) -> U {
+impl<T> TreeNode<T> {
+    fn my_map<U, F>(&self, f: &F) -> TreeNode<U>
+        where F: Fn(&T) -> U
+    {
         TreeNode {
             value: f(&self.value),
             left: match self.left {
@@ -41,8 +42,8 @@ fn main() {
             right: None,
         })),
     };
-    root.my_map(&|x| { println!("{}" , x)});
+    root.my_map(&|x| println!("{}", x));
     println!("---------------");
     let new_root = root.my_map(&|x| *x as f64 * 333.333f64);
-    new_root.my_map(&|x| { println!("{}" , x) });
+    new_root.my_map(&|x| println!("{}", x));
 }

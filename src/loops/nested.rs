@@ -16,7 +16,9 @@ fn main() {
     'outer: for row in matrix.iter() {
         for &item in row.iter() {
             print!("{:2} ", item);
-            if item == 20 { break 'outer }
+            if item == 20 {
+                break 'outer;
+            }
         }
         println!("");
     }

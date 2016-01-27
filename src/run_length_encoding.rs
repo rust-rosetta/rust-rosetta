@@ -19,15 +19,18 @@ pub fn encode(value: &str) -> String {
     let mut chars = value.chars();
 
     let (mut count, mut cur) = (1, chars.next());
-    if cur.is_none() { return ret }
+    if cur.is_none() {
+        return ret;
+    }
 
     for chr in chars {
-        if cur == Some(chr) { count += 1 }
-        else {
-                ret.push_str(&(count.to_string())[..]);
-                ret.push(cur.unwrap());
-                count=1;
-                cur=Some(chr);
+        if cur == Some(chr) {
+            count += 1
+        } else {
+            ret.push_str(&(count.to_string())[..]);
+            ret.push(cur.unwrap());
+            count = 1;
+            cur = Some(chr);
         }
     }
     ret.push_str(&(count.to_string())[..]);
@@ -37,13 +40,19 @@ pub fn encode(value: &str) -> String {
 
 pub fn decode(value: &str) -> Result<String, String> {
     let mut result = String::new();
-    if value.is_empty() { return Ok(result) }
+    if value.is_empty() {
+        return Ok(result);
+    }
 
     let mut start = 0;
 
     for (i, c) in value.char_indices() {
-        if c.is_numeric() { continue }
-        if i==start { return Err(format!("expected digit, found {}", c)) }
+        if c.is_numeric() {
+            continue;
+        }
+        if i == start {
+            return Err(format!("expected digit, found {}", c));
+        }
 
         let ret_s = &value[start..i];
         let ret = ret_s.parse::<usize>().unwrap();

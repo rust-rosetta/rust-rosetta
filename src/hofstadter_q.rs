@@ -1,23 +1,28 @@
 // http://rosettacode.org/wiki/Hofstadter_Q_sequence
-// An iterable version.
 
-// Define a struct which stores the state for the iterator.
+//! An iterable version.
+
+/// Define a struct which stores the state for the iterator.
 struct HofstadterQ {
     next: usize,
-    memoize_vec: Vec<usize>
+    memoize_vec: Vec<usize>,
 }
 
 impl HofstadterQ {
-  // Define a constructor for the struct.
+    /// Define a constructor for the struct.
     fn new() -> HofstadterQ {
-        HofstadterQ { next: 1, memoize_vec: vec![1] }
+        HofstadterQ {
+            next: 1,
+            memoize_vec: vec![1],
+        }
     }
 }
 
-// Implement the hofstadter q iteration sequence.
+/// Implement the hofstadter q iteration sequence.
 impl Iterator for HofstadterQ {
     type Item = usize;
-    // This gets called to fetch the next item of the iterator.
+
+    /// This gets called to fetch the next item of the iterator.
     fn next(&mut self) -> Option<usize> {
         // Cache the current value.
         self.memoize_vec.push(self.next);
@@ -45,7 +50,7 @@ fn main() {
     println!("H(1) = 1");
     println!("H(2) = 1");
     // Print the rest of the sequence.
-    for i in 3..1+upto {
+    for i in 3..1 + upto {
         println!("H({}) = {}", i, it.next().unwrap());
     }
 }
@@ -58,7 +63,7 @@ fn test_first_ten() {
     let mut it = hof.take(10);
     // Test that the first ten values are as expected
     // The first two values are hardcoded, so no need to test those.
-    let hofstadter_q_expected = vec![2,3,3,4,5,5,6,6];
+    let hofstadter_q_expected = vec![2, 3, 3, 4, 5, 5, 6, 6];
     for i in 0..8 {
         assert_eq!(hofstadter_q_expected[i], it.next().unwrap());
     }

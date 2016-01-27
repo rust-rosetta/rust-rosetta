@@ -3,40 +3,48 @@ use std::usize;
 use std::collections::LinkedList;
 use std::iter::repeat;
 
-// Returns the value of a 2D vector given a pair of indexes.
-// Returns the default value if indices are out of bounds.
+/// Returns the value of a 2D vector given a pair of indexes.
+/// Returns the default value if indices are out of bounds.
 fn get_val(mat: &Vec<Vec<usize>>, r: usize, c: usize, default: usize) -> usize {
     match mat.get(r) {
         Some(col) => {
-            match col.get(c) { Some(v) => *v, None => default, }
+            match col.get(c) {
+                Some(v) => *v,
+                None => default,
+            }
         }
         None => default,
     }
 }
-// Implementation of the Needleman–Wunsch algorithm, with modification
-// to the scoring method to only allow positive ints.
-//
-// http://en.wikipedia.org/wiki/Needleman%E2%80%93Wunsch_algorithm
+
+/// Implementation of the Needleman–Wunsch algorithm, with modification
+/// to the scoring method to only allow positive ints.
+///
+/// http://en.wikipedia.org/wiki/Needleman%E2%80%93Wunsch_algorithm
 fn levenshtein_distance(s1: &str, s2: &str) -> (usize, String, String) {
     let l1 = s1.len() + 1;
     let l2 = s2.len() + 1;
 
-    let mut mat: Vec<Vec<usize>> = repeat(
-		repeat(0).take(l2).collect()
-		).take(l1).collect();
-    for row in 0..l1 { mat[row][0] = row; }
-    for col in 0..l2 { mat[0][col] = col; }
+    let mut mat: Vec<Vec<usize>> = repeat(repeat(0).take(l2).collect())
+                                       .take(l1)
+                                       .collect();
+    for row in 0..l1 {
+        mat[row][0] = row;
+    }
+    for col in 0..l2 {
+        mat[0][col] = col;
+    }
     for row in 1..l1 {
         for col in 1..l2 {
-            mat[row][col] =
-                if s1.chars().nth(row - 1).unwrap() == s2.chars().nth(col - 1).unwrap() {
-                    mat[row - 1][col - 1]
-                } else {
-                    let vals =
-                        [mat[row - 1][col] + 1, mat[row][col - 1] + 1,
-                         mat[row - 1][col - 1] + 1];
-                    *vals.iter().min().unwrap()
-                }
+            mat[row][col] = if s1.chars().nth(row - 1).unwrap() ==
+                               s2.chars().nth(col - 1).unwrap() {
+                mat[row - 1][col - 1]
+            } else {
+                let vals = [mat[row - 1][col] + 1,
+                            mat[row][col - 1] + 1,
+                            mat[row - 1][col - 1] + 1];
+                *vals.iter().min().unwrap()
+            }
         }
     }
     let mut res1: LinkedList<char> = LinkedList::new();
@@ -74,21 +82,20 @@ fn levenshtein_distance(s1: &str, s2: &str) -> (usize, String, String) {
 fn main() {
     let (s1, s2) = ("rosettacode", "raisethysword");
     let (lev_dist, aligned1, aligned2) = levenshtein_distance(s1, s2);
-    println!("Words are: {}, {}" , s1 , s2);
-    println!("Levenshtein Distance: {}" , lev_dist);
-    println!("{}" , aligned1);
-    println!("{}" , aligned2);
+    println!("Words are: {}, {}", s1, s2);
+    println!("Levenshtein Distance: {}", lev_dist);
+    println!("{}", aligned1);
+    println!("{}", aligned2);
 
 }
 
 #[test]
 fn test_lev_distance() {
-    let test_results =
-        vec![( "sunday" , "saturday" , (3, "s--unday", "sunurday"))  ,
-            ( "sitting" , "kitten" , (3, "sitting", "kitten-")) ,
-            ("test" , "test" , (0, "test", "test") )];
+    let test_results = vec![("sunday", "saturday", (3, "s--unday", "sunurday")),
+                            ("sitting", "kitten", (3, "sitting", "kitten-")),
+                            ("test", "test", (0, "test", "test"))];
     for (word1, word2, dist) in test_results {
-        let (d, s1, s2) = levenshtein_distance ( word1 , word2 );
-        assert_eq!( (d, &s1[..], &s2[..]) , dist);
+        let (d, s1, s2) = levenshtein_distance(word1, word2);
+        assert_eq!((d, &s1[..], &s2[..]), dist);
     }
 }

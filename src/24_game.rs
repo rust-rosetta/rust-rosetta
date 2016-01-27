@@ -1,14 +1,9 @@
 // http://rosettacode.org/wiki/24_game
-// Implements with a recursive descent parser for a simple calculator (+ - * /)
-// using the shunting yard algorithm as explained on
-// http://www.engr.mun.ca/~theo/Misc/exp_parsing.htm
-// It follows operator precedence (i.e. 2 + 3 * 3 = 11),
-// understands negation (-5 + 6 = 1), ignores whitespace
-// and allows the use of parentheses
 
-// We use a glob import in our test module. Seperating tests into a seperate
-// module enforces visibility restrictions so the test module can only access
-// publically exported code, the same as any user of the code.
+//! Implements with a recursive descent parser for a simple calculator (+ - * /) using the shunting
+//! yard algorithm as explained on http://www.engr.mun.ca/~theo/Misc/exp_parsing.htm. It follows
+//! operator precedence (i.e. 2 + 3 * 3 = 11), understands negation (-5 + 6 = 1), ignores
+//! whitespace and allows the use of parentheses
 
 extern crate rand;
 use std::cmp::Ordering::{self, Greater};
@@ -33,7 +28,7 @@ fn main() {
                     match Parser::new(input).parse() {
                         Ok(i) if i == 24. => println!("you made it!"),
                         Ok(i) => println!("you entered {}, try again!", i),
-                        Err(s)  => println!("{}", s)
+                        Err(s) => println!("{}", s),
                     };
                 } else {
                     println!("unrecognized input, try again")
@@ -43,23 +38,24 @@ fn main() {
     }
 }
 
-// Returns true if the entered expression uses the values contained in sample
-pub fn check_values(sample:&mut [u32], input:&str) -> bool {
+/// Returns true if the entered expression uses the values contained in sample
+pub fn check_values(sample: &mut [u32], input: &str) -> bool {
     let lex = Lexer::new(input);
 
     let mut numbers_used = lex.filter_map(|a| {
-        match a {
-            Token::Int(i) => Some(i),
-            _ => None
-        }
-    }).collect::<Vec<u32>>();
+                                  match a {
+                                      Token::Int(i) => Some(i),
+                                      _ => None,
+                                  }
+                              })
+                              .collect::<Vec<u32>>();
 
     numbers_used.sort();
     sample.sort();
     numbers_used == sample
 }
 
-// the tokens that our parser is going to recognize
+/// the tokens that our parser is going to recognize
 #[derive(PartialEq, Eq, Debug, Copy, Clone)]
 pub enum Token {
     LParen,
@@ -68,22 +64,23 @@ pub enum Token {
     Minus,
     Slash,
     Star,
-    Int(u32)
+    Int(u32),
 }
 
 impl Token {
-   // are tokens associated to a binary operation?
-   fn is_binary(&self) -> bool {
+    /// are tokens associated to a binary operation?
+    fn is_binary(&self) -> bool {
         match *self {
             Token::Plus | Token::Minus | Token::Slash | Token::Star => true,
-            _ => false
+            _ => false,
         }
     }
 }
 
-trait Tokenable { fn as_token(&self) -> Option<Token>; }
+trait Tokenable {
+    fn as_token(&self) -> Option<Token>; }
 
-// map a character to its corresponding token
+/// map a character to its corresponding token
 impl Tokenable for char {
     #[inline]
     fn as_token(&self) -> Option<Token> {
@@ -94,48 +91,46 @@ impl Tokenable for char {
             '-' => Token::Minus,
             '/' => Token::Slash,
             '*' => Token::Star,
-            _ => return None
+            _ => return None,
         };
 
         Some(tok)
     }
 }
 
-// Lexer reads an expression like (a + b) / c * d
-// as an iterator on the tokens that compose it
-// Int(a), LParen, Plus, Int(b), RParen...
+/// Lexer reads an expression like (a + b) / c * d as an iterator on the tokens that compose it
+/// Int(a), LParen, Plus, Int(b), RParen...
 #[derive(Copy, Clone)]
 pub struct Lexer<'a> {
     input: &'a str,
-    offset: usize
+    offset: usize,
 }
 
-impl <'a> Lexer<'a> {
+impl<'a> Lexer<'a> {
     pub fn new(input: &str) -> Lexer {
-        Lexer { input: input, offset: 0 }
+        Lexer {
+            input: input,
+            offset: 0,
+        }
     }
 
-    fn expect(&mut self, expected:&[Token]) -> Result<Token, String> {
+    fn expect(&mut self, expected: &[Token]) -> Result<Token, String> {
         let n = self.offset;
         match self.next() {
-            Some(a) if expected.contains(&a)  => Ok(a),
-            other  => Err(format!("Parsing error: {:?} was unexpected at offset {}",
-                                  other,
-                                  n))
+            Some(a) if expected.contains(&a) => Ok(a),
+            other => Err(format!("Parsing error: {:?} was unexpected at offset {}", other, n)),
         }
     }
 }
 
-impl <'a> Iterator for Lexer<'a> {
+impl<'a> Iterator for Lexer<'a> {
     type Item = Token;
 
     fn next(&mut self) -> Option<Token> {
         // slice the original string starting from the current offset
         let mut remaining = self.input[self.offset..]
-                                      // keep track of the original indice
-                                      .char_indices()
-                                      // advance to the next non-whitespace char
-                                      .skip_while(|&(_, ch)| ch.is_whitespace());
+                                .char_indices()
+                                .skip_while(|&(_, ch)| ch.is_whitespace());
 
         let (tok, cur_offset) = match remaining.next() {
             // Found a digit. if there are others, transform them to `u32`
@@ -157,10 +152,10 @@ impl <'a> Iterator for Lexer<'a> {
                     offset = 1;
                 }
                 (Some(Token::Int(val)), offset)
-            },
+            }
             // found non-digit, try transforming it to the corresponding token
             Some((o, ch)) => (ch.as_token(), o + 1),
-            _   => (None, 0)
+            _ => (None, 0),
         };
 
         // update the offset for the next iteration
@@ -169,9 +164,9 @@ impl <'a> Iterator for Lexer<'a> {
     }
 }
 
-// Operators are a "higher level" concept than tokens as they define the
-// semantics of the expression language e.g. token "Minus" can correspond to
-// the unary Neg Operator (-a) or to the binary Sub operator (a - b)
+/// Operators are a "higher level" concept than tokens as they define the semantics of the
+/// expression language e.g. token "Minus" can correspond to the unary Neg Operator (-a) or to the
+/// binary Sub operator (a - b)
 #[derive(PartialEq, Eq, Copy, Clone)]
 pub enum Operator {
     Neg,
@@ -179,52 +174,50 @@ pub enum Operator {
     Sub,
     Mul,
     Div,
-    Sentinel
+    Sentinel,
 }
 
 impl Operator {
-     fn precedence(&self) -> usize  {
+    fn precedence(&self) -> usize {
         match *self {
             Operator::Sentinel => 0,
             Operator::Add | Operator::Sub => 1,
             Operator::Neg => 2,
-            Operator::Mul | Operator::Div => 3
+            Operator::Mul | Operator::Div => 3,
         }
     }
 }
 
-// Operator precedence for binary operators:
-// * if x has higher precedence than y precedence for x > precedence for y
-// * if x and y have equal precedence the first one has precedence
-// e.g. in expression (4 / 2 * 2) operators * and / have the same precedence,
-// but the operations must be performed in the order they appear
-// (division first, multiplication second) otherwise results are different
+/// Operator precedence for binary operators:
+/// * if x has higher precedence than y precedence for x > precedence for y
+/// * if x and y have equal precedence the first one has precedence
+/// e.g. in expression (4 / 2 * 2) operators * and / have the same precedence, but the operations
+/// must be performed in the order they appear (division first, multiplication second) otherwise
+/// results are different
 impl PartialOrd for Operator {
     fn partial_cmp(&self, other: &Operator) -> Option<Ordering> {
         match (self.precedence(), other.precedence()) {
             (a, b) if a == b => Some(Greater),
-            (a, b) => a.partial_cmp(&b)
+            (a, b) => a.partial_cmp(&b),
         }
     }
 }
 
-// recursive descent parser
-// with the shunting yard algorithm as explained on
-// http://www.engr.mun.ca/~theo/Misc/exp_parsing.htm
-// I followed the names of the methods as closely as possible vs the pseudo-code
-// that illustrates the algorithm
+/// recursive descent parser with the shunting yard algorithm as explained on
+/// http://www.engr.mun.ca/~theo/Misc/exp_parsing.htm. I followed the names of the methods as
+/// closely as possible vs the pseudo-code that illustrates the algorithm
 pub struct Parser<'a> {
     operators: Vec<Operator>,
     operands: Vec<f32>,
-    lexer: Lexer<'a>
+    lexer: Lexer<'a>,
 }
 
-impl <'a> Parser<'a> {
+impl<'a> Parser<'a> {
     pub fn new(input: &str) -> Parser {
         Parser {
             operators: vec![],
             operands: vec![],
-            lexer: Lexer::new(input)
+            lexer: Lexer::new(input),
         }
     }
 
@@ -233,8 +226,8 @@ impl <'a> Parser<'a> {
         try!(self.e());
         return match self.operands.last() {
             Some(r) => Ok(*r),
-            None => Err("something went wrong, got no result".to_string())
-        }
+            None => Err("something went wrong, got no result".to_string()),
+        };
     }
 
     fn e(&mut self) -> Result<(), String> {
@@ -249,7 +242,7 @@ impl <'a> Parser<'a> {
                         Token::Star => Operator::Mul,
                         Token::Slash => Operator::Div,
                         // there are no other binary operators
-                        _ => unreachable!()
+                        _ => unreachable!(),
                     };
 
                     self.push_operator(op);
@@ -258,14 +251,14 @@ impl <'a> Parser<'a> {
                     self.lexer.next();
                     try!(self.p());
                 }
-                _ => break
+                _ => break,
             }
         }
 
         loop {
             match self.operators.last() {
                 Some(&op) if op != Operator::Sentinel => self.pop_operator(),
-                _ => return Ok(())
+                _ => return Ok(()),
             }
         }
     }
@@ -278,13 +271,13 @@ impl <'a> Parser<'a> {
                 try!(self.e());
                 try!(self.lexer.expect(&[Token::RParen]));
                 self.operators.pop();
-            },
+            }
             Some(Token::Minus) => {
                 self.push_operator(Operator::Neg);
                 try!(self.p());
-            },
+            }
             Some(e) => return Err(format!("unexpected token {:?}", e)),
-            _ => return Err("unexpected end of command".to_string())
+            _ => return Err("unexpected end of command".to_string()),
         }
         Ok(())
     }
@@ -296,7 +289,7 @@ impl <'a> Parser<'a> {
             Some(Operator::Mul) => self.binary_op(|t1, t2| t1 * t2),
             Some(Operator::Div) => self.binary_op(|t1, t2| t1 / t2),
             Some(Operator::Neg) => self.unary_op(|t1| -t1),
-            _ => unreachable!()
+            _ => unreachable!(),
         }
     }
 
@@ -309,28 +302,31 @@ impl <'a> Parser<'a> {
     }
 
     #[inline]
-    fn binary_op<F>(&mut self, op: F) where F: Fn(f32, f32) -> f32 {
+    fn binary_op<F>(&mut self, op: F)
+        where F: Fn(f32, f32) -> f32
+    {
         match (self.operands.pop(), self.operands.pop()) {
             (Some(t1), Some(t2)) => self.operands.push(op(t2, t1)),
-            _ => unreachable!()
+            _ => unreachable!(),
         }
     }
 
     #[inline]
-    fn unary_op<F>(&mut self, op: F) where F: Fn(f32) -> f32 {
+    fn unary_op<F>(&mut self, op: F)
+        where F: Fn(f32) -> f32
+    {
         match self.operands.pop() {
             Some(t1) => self.operands.push(op(t1)),
-            _ => unreachable!()
+            _ => unreachable!(),
         }
     }
 }
 
-
 #[cfg(test)]
-mod test {
+mod tests {
     use super::{Token, Lexer, Parser};
     use super::Operator::{Add, Sub, Mul, Div};
-    use super::{check_values};
+    use super::check_values;
     use super::Token::{LParen, RParen, Plus, Slash, Star, Int};
 
     #[test]
@@ -357,7 +353,7 @@ mod test {
         let tok = &mut Lexer::new("  15 + 4");
         t(tok, Int(15), 4);
         t(tok, Plus, 6);
-        let read = tok.expect(&[LParen,Int(4),RParen]);
+        let read = tok.expect(&[LParen, Int(4), RParen]);
         assert_eq!(read, Ok(Int(4)));
 
         let mut tok = Lexer::new("");

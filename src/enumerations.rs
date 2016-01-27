@@ -4,15 +4,14 @@
 enum Fruits {
     Apple,
     Banana,
-    Cherry
+    Cherry,
 }
 
 #[allow(dead_code)]
 enum Days {
     Monday = 0,
     Tuesday = 1,
-    Wednesday = 2
-    // You know the rest...
+    Wednesday = 2, // You know the rest...
 }
 
 fn main() {}

@@ -4,10 +4,10 @@ extern crate docopt;
 
 use docopt::Docopt;
 
-use std::io::{BufReader,BufRead};
+use std::io::{BufReader, BufRead};
 use std::fs::File;
 
-const USAGE: &'static str = "
+const USAGE: &'static str = r"
 Usage: remove_lines_from_a_file <start> <count> <file>
 ";
 
@@ -20,8 +20,8 @@ struct Args {
 
 fn main() {
     let args: Args = Docopt::new(USAGE)
-        .and_then(|d| d.decode())
-        .unwrap_or_else(|e| e.exit());
+                         .and_then(|d| d.decode())
+                         .unwrap_or_else(|e| e.exit());
 
     let file = BufReader::new(File::open(args.arg_file).unwrap());
 

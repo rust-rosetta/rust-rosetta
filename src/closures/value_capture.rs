@@ -24,7 +24,7 @@ type ClosureIter<'a> = Map<RangeFrom<u32>, fn(u32) -> Box<Fn() -> f64 + 'a>>;
 // return an iterator that on every iteration returns
 // a closure computing the index of the iteration squared
 fn closures_iterator<'a>() -> ClosureIter<'a> {
-    let cl_gen : fn(u32) -> Box<Fn() -> f64 + 'a> = closure_gen;
+    let cl_gen: fn(u32) -> Box<Fn() -> f64 + 'a> = closure_gen;
     (0..).map(cl_gen)
 }
 
@@ -36,7 +36,7 @@ fn main() {
 }
 
 #[cfg(test)]
-mod test {
+mod tests {
     use super::{closure_gen, closures_iterator};
 
     #[test]

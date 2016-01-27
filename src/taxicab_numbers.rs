@@ -14,7 +14,11 @@ struct SumCubes {
 
 impl SumCubes {
     fn new(a: u64, b: u64) -> SumCubes {
-        SumCubes{ value: a.pow(3) + b.pow(3), a: a, b: b }
+        SumCubes {
+            value: a.pow(3) + b.pow(3),
+            a: a,
+            b: b,
+        }
     }
 }
 
@@ -33,14 +37,14 @@ impl Ord for SumCubes {
 
 /// An iterator through all Taxicab numbers
 struct TaxicabNumbers {
-    // Use a BinaryHeap as a priority queue to iterate through sums of
-    // cubes efficiently in increasing order
+    /// Use a BinaryHeap as a priority queue to iterate through sums of
+    /// cubes efficiently in increasing order
     pq: BinaryHeap<SumCubes>,
 }
 
 impl TaxicabNumbers {
     fn new() -> TaxicabNumbers {
-        let mut res = TaxicabNumbers{ pq: BinaryHeap::new() };
+        let mut res = TaxicabNumbers { pq: BinaryHeap::new() };
         res.pq.push(SumCubes::new(1, 1)); // Start with 1^3 + 1^3
         res
     }
@@ -71,9 +75,9 @@ impl Iterator for TaxicabNumbers {
             }
 
             // Populate the priority queue with more sums
-            self.pq.push(SumCubes::new(nxt.a+1, nxt.b));
+            self.pq.push(SumCubes::new(nxt.a + 1, nxt.b));
             if nxt.a == nxt.b {
-                self.pq.push(SumCubes::new(nxt.a+1, nxt.b+1));
+                self.pq.push(SumCubes::new(nxt.a + 1, nxt.b + 1));
             }
         }
     }
@@ -81,7 +85,8 @@ impl Iterator for TaxicabNumbers {
 
 fn main() {
     let numbers = TaxicabNumbers::new();
-    for (at, ways) in numbers.take(2006).enumerate()
+    for (at, ways) in numbers.take(2006)
+                             .enumerate()
                              .filter(|&(at, _)| at + 1 <= 25 || at + 1 >= 2000) {
         print!("{:>4}:{:>10}", at + 1, ways[0].value);
         for &SumCubes{ a, b, .. } in &ways {
@@ -94,11 +99,10 @@ fn main() {
 #[test]
 fn test_taxicab_numbers() {
     // A001235 on OEIS
-    let seq = [1729u64,4104,13832,20683,32832,39312,40033,46683,
-               64232,65728,110656,110808,134379,149389,165464,
-               171288,195841,216027,216125,262656,314496,320264,
-               327763,373464,402597,439101,443889,513000,513856,
-               515375,525824,558441,593047,684019,704977];
+    let seq = [1729u64, 4104, 13832, 20683, 32832, 39312, 40033, 46683, 64232, 65728, 110656,
+               110808, 134379, 149389, 165464, 171288, 195841, 216027, 216125, 262656, 314496,
+               320264, 327763, 373464, 402597, 439101, 443889, 513000, 513856, 515375, 525824,
+               558441, 593047, 684019, 704977];
 
     for (&expected, ways) in seq.iter().zip(TaxicabNumbers::new()) {
         assert!(ways.len() > 1);

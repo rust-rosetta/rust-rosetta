@@ -1,11 +1,13 @@
 // http://rosettacode.org/wiki/Sorting_algorithms/Insertion_sort
 
-fn insertion_sort<T>(arr: &mut [T]) where T: Ord {
+fn insertion_sort<T>(arr: &mut [T])
+    where T: Ord
+{
     for i in 1..arr.len() {
         let mut j = i;
-        while j > 0 && arr[j] < arr[j-1] {
-            arr.swap(j, j-1);
-            j = j-1;
+        while j > 0 && arr[j] < arr[j - 1] {
+            arr.swap(j, j - 1);
+            j = j - 1;
         }
     }
 }

@@ -14,7 +14,9 @@ fn main() {
         let number: isize = rng.gen_range(LOWEST, HIGHEST + 1);
         let mut num_guesses = 0;
 
-        println!("I have chosen my number between {} and {}. You know what to do", LOWEST, HIGHEST);
+        println!("I have chosen my number between {} and {}. You know what to do",
+                 LOWEST,
+                 HIGHEST);
 
         loop {
             num_guesses += 1;
@@ -31,7 +33,7 @@ fn main() {
                 }
                 Some(n) if n < number => println!("too low!"),
                 Some(n) if n > number => println!("too high!"),
-                Some(_) => println!("something went wrong")
+                Some(_) => println!("something went wrong"),
             }
         }
     }

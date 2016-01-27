@@ -6,10 +6,10 @@ use std::cmp::min;
 use num::{BigUint, Zero, One};
 
 pub struct Solver {
-    // The `cache` is a private implementation detail,
-    // it would be an improvement to throw away unused values
-    // from the cache (to reduce memory for larger inputs)
-    cache: Vec<Vec<BigUint>>
+    /// The `cache` is a private implementation detail,
+    /// it would be an improvement to throw away unused values
+    /// from the cache (to reduce memory for larger inputs)
+    cache: Vec<Vec<BigUint>>,
 }
 
 impl Solver {
@@ -18,17 +18,18 @@ impl Solver {
         Solver { cache: vec![vec![One::one()]] }
     }
 
-    // Returns a string representing a line
+    /// Returns a string representing a line
     pub fn row_string(&mut self, idx: usize) -> String {
         let r = self.cumulative(idx);
 
-        (0..idx).map(|i| &r[i+1] - &r[i])
-                     .map(|n| n.to_string())
-                     .collect::<Vec<String>>()
-                     .join(", ")
+        (0..idx)
+            .map(|i| &r[i + 1] - &r[i])
+            .map(|n| n.to_string())
+            .collect::<Vec<String>>()
+            .join(", ")
     }
 
-    // Convenience method to access the last column in a culmulated calculation
+    /// Convenience method to access the last column in a culmulated calculation
     pub fn row_sum(&mut self, idx: usize) -> &BigUint {
         // This can never fail as we always add zero or one, so it's never empty.
         self.cumulative(idx).last().unwrap()
@@ -36,12 +37,12 @@ impl Solver {
 
     fn cumulative(&mut self, idx: usize) -> &[BigUint] {
         for l in self.cache.len()..idx + 1 {
-            let mut r : Vec<BigUint> = vec![Zero::zero()];
+            let mut r: Vec<BigUint> = vec![Zero::zero()];
 
             for x in 1..l + 1 {
                 let w = {
-                    let y = &r[x-1];
-                    let z = &self.cache[l-x][min(x, l-x)];
+                    let y = &r[x - 1];
+                    let z = &self.cache[l - x][min(x, l - x)];
                     y + z
                 };
                 r.push(w)
@@ -68,12 +69,12 @@ fn main() {
 }
 
 #[cfg(test)]
-mod test {
+mod tests {
     use super::Solver;
     use num::BigUint;
 
     #[test]
-    fn test_cumulative() {
+    fn cumulative() {
         let mut solver = Solver::new();
         let mut t = |n: usize, expected: &str| {
             assert_eq!(solver.row_sum(n), &expected.parse::<BigUint>().unwrap());
@@ -84,9 +85,8 @@ mod test {
         t(1234, "156978797223733228787865722354959930");
     }
 
-
     #[test]
-    fn test_row() {
+    fn row() {
         let mut solver = Solver::new();
         let mut t = |n: usize, expected: &str| {
             assert_eq!(solver.row_string(n), expected);
