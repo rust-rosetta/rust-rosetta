@@ -979,7 +979,7 @@ path = "src/null_object.rs"
 [[bin]]
 # http://rosettacode.org/wiki/Abundant,_deficient_and_perfect_number_classifications
 name = "number_classifications"
-path = "src/number_classification.rs"
+path = "src/number_classifications.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Ordered_words
