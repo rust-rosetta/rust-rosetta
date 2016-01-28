@@ -55,6 +55,7 @@ authors = [
     "ZoomRmc, https://github.com/zoomrmc",
     "Kevin Darlington, https://github.com/kdar",
     "Andy Russell, https://github.com/euclio",
+    "Joel S, https://github.com/bitrauser",
 ]
 
 [features]
@@ -1031,6 +1032,11 @@ path = "src/permutations_with_repetitions.rs"
 # http://rosettacode.org/wiki/Pernicious_numbers
 name = "pernicious_numbers"
 path = "src/pernicious_numbers.rs"
+
+[[bin]]
+# http://rosettacode.org/wiki/Pick_random_element
+name = "pick_random_element"
+path = "src/pick_random_element.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Playing_cards
