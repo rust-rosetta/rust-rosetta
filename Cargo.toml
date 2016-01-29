@@ -56,6 +56,7 @@ authors = [
     "Kevin Darlington, https://github.com/kdar",
     "Andy Russell, https://github.com/euclio",
     "Joel S, https://github.com/bitrauser",
+    "Stefan Bostain, https://github.com/zilulil",
 ]
 
 [features]
@@ -975,6 +976,11 @@ path = "src/nth.rs"
 # http://rosettacode.org/wiki/Null_object
 name = "null_object"
 path = "src/null_object.rs"
+
+[[bin]]
+# http://rosettacode.org/wiki/Abundant,_deficient_and_perfect_number_classifications
+name = "number_classifications"
+path = "src/number_classifications.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Ordered_words
