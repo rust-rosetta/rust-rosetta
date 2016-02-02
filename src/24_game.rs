@@ -7,6 +7,8 @@
 
 extern crate rand;
 use std::cmp::Ordering::{self, Greater};
+use std::iter::Peekable;
+use std::str::CharIndices;
 
 fn main() {
     use std::io;
@@ -42,7 +44,7 @@ fn main() {
 pub fn check_values(sample: &mut [u32], input: &str) -> bool {
     let lex = Lexer::new(input);
 
-    let mut numbers_used = lex.filter_map(|a| {
+    let mut numbers_used = lex.filter_map(|(_,a)| {
                                   match a {
                                       Token::Int(i) => Some(i),
                                       _ => None,
@@ -64,6 +66,7 @@ pub enum Token {
     Minus,
     Slash,
     Star,
+    Unknown,
     Int(u32),
 }
 
@@ -77,97 +80,64 @@ impl Token {
     }
 }
 
-trait Tokenable {
-    fn as_token(&self) -> Option<Token>; }
-
-/// map a character to its corresponding token
-impl Tokenable for char {
-    #[inline]
-    fn as_token(&self) -> Option<Token> {
-        let tok = match *self {
-            '(' => Token::LParen,
-            ')' => Token::RParen,
-            '+' => Token::Plus,
-            '-' => Token::Minus,
-            '/' => Token::Slash,
-            '*' => Token::Star,
-            _ => return None,
-        };
-
-        Some(tok)
-    }
-}
-
-/// Lexer reads an expression like (a + b) / c * d as an iterator on the tokens that compose it
-/// Int(a), LParen, Plus, Int(b), RParen...
-#[derive(Copy, Clone)]
 pub struct Lexer<'a> {
-    input: &'a str,
-    offset: usize,
+    input: Peekable<CharIndices<'a>>,
 }
 
 impl<'a> Lexer<'a> {
     pub fn new(input: &str) -> Lexer {
         Lexer {
-            input: input,
-            offset: 0,
+            input: input.char_indices().peekable(),
         }
     }
 
-    fn expect(&mut self, expected: &[Token]) -> Result<Token, String> {
-        let n = self.offset;
-        match self.next() {
-            Some(a) if expected.contains(&a) => Ok(a),
-            other => Err(format!("Parsing error: {:?} was unexpected at offset {}", other, n)),
+    fn expect<I>(iter: &mut I, expected: &[Token]) -> Result<Token, String>
+                            where I: Iterator<Item = (usize, Token)> {
+        match iter.next() {
+            Some((_, a)) if expected.contains(&a) => Ok(a),
+            Some((n, other)) =>
+                Err(format!("Parsing error: {:?} was unexpected at offset {}",
+                other, n)),
+            None => Err("unexpected end of token list".into()),
         }
     }
 }
 
 impl<'a> Iterator for Lexer<'a> {
-    type Item = Token;
+    type Item = (usize, Token);
 
-    fn next(&mut self) -> Option<Token> {
-        // slice the original string starting from the current offset
-        let mut remaining = self.input[self.offset..]
-                                .char_indices()
-                                .skip_while(|&(_, ch)| ch.is_whitespace());
-
-        let (tok, cur_offset) = match remaining.next() {
-            // Found a digit. if there are others, transform them to `u32`
-            Some((mut offset, ch)) if ch.is_digit(10) => {
-                let mut val = ch.to_digit(10).unwrap();
-                let mut more = false;
-
-                for (idx, ch) in remaining {
-                    more = true;
-                    if ch.is_digit(10) {
-                        let digit = ch.to_digit(10).unwrap();
-                        val = val * 10 + digit;
-                    } else {
-                        offset = idx;
-                        break;
-                    }
-                }
-                if !more {
-                    offset = 1;
-                }
-                (Some(Token::Int(val)), offset)
-            }
-            // found non-digit, try transforming it to the corresponding token
-            Some((o, ch)) => (ch.as_token(), o + 1),
-            _ => (None, 0),
-        };
-
-        // update the offset for the next iteration
-        self.offset += cur_offset;
-        tok
+    fn next(&mut self) -> Option<(usize, Token)> {
+        if let Some((idx, c)) = self.input.by_ref()
+                .skip_while(|&(_, c)| c.is_whitespace()).next() {
+            let ret = match c {
+                '(' => Token::LParen,
+                ')' => Token::RParen,
+                '+' => Token::Plus,
+                '-' => Token::Minus,
+                '/' => Token::Slash,
+                '*' => Token::Star,
+                d @ '0'...'9' => {
+                        let mut val = d.to_digit(10). unwrap();
+                        while let Some(dg) = self.input.by_ref().peek()
+                                .and_then(|&(_, di)| di.to_digit(10)) {
+                            val = val * 10 + dg;
+                            self.input.by_ref().next();
+                        }
+                        Token::Int(val)
+                    },
+                _ => Token::Unknown,
+            };
+            Some((idx, ret))
+        } else {
+            None
+        }
     }
 }
 
 /// Operators are a "higher level" concept than tokens as they define the semantics of the
 /// expression language e.g. token "Minus" can correspond to the unary Neg Operator (-a) or to the
 /// binary Sub operator (a - b)
-#[derive(PartialEq, Eq, Copy, Clone)]
+#[derive(PartialEq, Eq, Copy, Clone, Debug)]
 pub enum Operator {
     Neg,
     Add,
@@ -209,7 +179,7 @@ impl PartialOrd for Operator {
 pub struct Parser<'a> {
     operators: Vec<Operator>,
     operands: Vec<f32>,
-    lexer: Lexer<'a>,
+    lexer: Peekable<Lexer<'a>>,
 }
 
 impl<'a> Parser<'a> {
@@ -217,7 +187,7 @@ impl<'a> Parser<'a> {
         Parser {
             operators: vec![],
             operands: vec![],
-            lexer: Lexer::new(input),
+            lexer: Lexer::new(input).peekable(),
         }
     }
 
@@ -232,51 +202,46 @@ impl<'a> Parser<'a> {
 
     fn e(&mut self) -> Result<(), String> {
         try!(self.p());
+        while let Some(&(_, x)) = self.lexer.by_ref().peek() {
+            if ! x.is_binary() { break; }
 
-        loop {
-            match self.lexer.peekable().peek() {
-                Some(&x) if x.is_binary() => {
-                    let op = match x {
-                        Token::Plus => Operator::Add,
-                        Token::Minus => Operator::Sub,
-                        Token::Star => Operator::Mul,
-                        Token::Slash => Operator::Div,
-                        // there are no other binary operators
-                        _ => unreachable!(),
-                    };
+            let op = match x {
+                Token::Plus => Operator::Add,
+                Token::Minus => Operator::Sub,
+                Token::Star => Operator::Mul,
+                Token::Slash => Operator::Div,
+                // there are no other binary operators
+                _ => unreachable!(),
+            };
+            self.push_operator(op);
 
-                    self.push_operator(op);
-
-                    // Consume the peeked value
-                    self.lexer.next();
-                    try!(self.p());
-                }
-                _ => break,
-            }
+            // Consume the peeked value
+            self.lexer.by_ref().next();
+            try!(self.p());
         }
 
-        loop {
-            match self.operators.last() {
-                Some(&op) if op != Operator::Sentinel => self.pop_operator(),
-                _ => return Ok(()),
-            }
+        while let Some(&op) = self.operators.last() {
+            if op == Operator::Sentinel { return Ok(()) }
+            self.pop_operator();
         }
+        unreachable!() // algorithm fail: reached the end without finding
+                       // the sentinel
     }
 
     fn p(&mut self) -> Result<(), String> {
-        match self.lexer.next() {
-            Some(Token::Int(n)) => self.operands.push(n as f32),
-            Some(Token::LParen) => {
+        match self.lexer.by_ref().next() {
+            Some((_, Token::Int(n))) => self.operands.push(n as f32),
+            Some((_, Token::LParen)) => {
                 self.operators.push(Operator::Sentinel);
                 try!(self.e());
-                try!(self.lexer.expect(&[Token::RParen]));
+                try!(Lexer::expect(&mut self.lexer, &[Token::RParen]));
                 self.operators.pop();
             }
-            Some(Token::Minus) => {
+            Some((_, Token::Minus)) => {
                 self.push_operator(Operator::Neg);
                 try!(self.p());
             }
-            Some(e) => return Err(format!("unexpected token {:?}", e)),
+            Some((p, e)) => return Err(format!("unexpected token {:?} at pos {}", e, p)),
             _ => return Err("unexpected end of command".to_string()),
         }
         Ok(())
@@ -346,14 +311,13 @@ mod tests {
     fn lexer_iter() {
         // test read token and character's offset in the iterator
         let t = |lex: &mut Lexer, exp_tok: Token, exp_pos: usize| {
-            assert_eq!(lex.next(), Some(exp_tok));
-            assert_eq!(lex.offset, exp_pos);
+            assert_eq!(lex.next(), Some((exp_pos,exp_tok)));
         };
 
         let tok = &mut Lexer::new("  15 + 4");
-        t(tok, Int(15), 4);
-        t(tok, Plus, 6);
-        let read = tok.expect(&[LParen, Int(4), RParen]);
+        t(tok, Int(15), 2);
+        t(tok, Plus, 5);
+        let read = Lexer::expect(tok, &[LParen, Int(4), RParen]);
         assert_eq!(read, Ok(Int(4)));
 
         let mut tok = Lexer::new("");
@@ -363,15 +327,15 @@ mod tests {
         assert_eq!(tok.next(), None);
 
         let tok = &mut Lexer::new("2 * (3+4/2)");
-        t(tok, Int(2), 1);
-        t(tok, Star, 3);
-        t(tok, LParen, 5);
-        t(tok, Int(3), 6);
-        t(tok, Plus, 7);
-        t(tok, Int(4), 8);
-        t(tok, Slash, 9);
-        t(tok, Int(2), 10);
-        t(tok, RParen, 11);
+        t(tok, Int(2), 0);
+        t(tok, Star, 2);
+        t(tok, LParen, 4);
+        t(tok, Int(3), 5);
+        t(tok, Plus, 6);
+        t(tok, Int(4), 7);
+        t(tok, Slash, 8);
+        t(tok, Int(2), 9);
+        t(tok, RParen, 10);
     }
 
     #[test]
@@ -384,7 +348,7 @@ mod tests {
         t("2+3*4", Ok(14.));
         t("4*(3+2)", Ok(20.));
         t("5/(3+2)*3", Ok(3.));
-        t("2++12", Err("unexpected token Plus".to_string()));
+        t("2++12", Err("unexpected token Plus at pos 2".to_string()));
         t("-2+12", Ok(10.));
         t("-2*(2+3)", Ok(-10.));
 
