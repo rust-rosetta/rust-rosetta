@@ -99,7 +99,7 @@ fn count_occurrences(data: &str) -> Occurrences {
 }
 
 fn main() {
-    let path = Path::new("src/resources/unixdict.txt");
+    let path = Path::new("resources/unixdict.txt");
     let mut file = File::open(&path).unwrap();
     let mut data = String::new();
     file.read_to_string(&mut data).unwrap();

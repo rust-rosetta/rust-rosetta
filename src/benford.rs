@@ -53,8 +53,7 @@ fn main() {
     }
 
     // Load data from the Fibonacci sequence
-    let filename = "../src/resources/fib1000.txt";
-    let file = BufReader::new(File::open(filename).unwrap());
+    let file = BufReader::new(File::open("resources/fib1000.txt").unwrap());
 
     let fibs: Vec<u64> = file.lines()
                              .map(|x| {
