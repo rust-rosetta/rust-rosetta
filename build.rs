@@ -8,13 +8,15 @@
 extern crate regex;
 extern crate toml;
 extern crate unicode_segmentation;
+extern crate walkdir;
 
-use std::fs::{self, File, metadata};
+use std::fs::{self, File};
 use std::io::Read;
 use std::path::Path;
 
 use regex::Regex;
 use unicode_segmentation::UnicodeSegmentation;
+use walkdir::WalkDir;
 
 fn check_toml() {
     let mut cargo_toml_file = File::open("Cargo.toml").unwrap();
@@ -47,31 +49,40 @@ fn check_toml() {
 fn main() {
     check_toml();
 
-    let files = fs::read_dir("src")
-                    .unwrap()
-                    .map(|e| e.unwrap());
-
-    for f in files {
-        let path = f.path();
-        if metadata(&path).unwrap().is_file() {
-            check(&path);
+    for entry in WalkDir::new("src") {
+        let entry = entry.unwrap();
+        if fs::metadata(&entry.path()).unwrap().is_file() {
+            check(&entry.path());
         }
     }
+}
+
+fn check_task_name(path: &Path, line: &str) {
+    // Ensure the first line has a URL of the proper form
+    let task_comment = Regex::new(r"// http://rosettacode\.org/wiki/.+").unwrap();
+    if !task_comment.is_match(line) {
+        line_error(1,
+                   path,
+                   "file does not start with \"// http://rosettacode.org/wiki/<TASK NAME>\"");
+    }
+
 }
 
 fn check(path: &Path) {
     let mut content = String::new();
     File::open(&path).unwrap().read_to_string(&mut content).unwrap();
 
+    let lib_or_mod = Regex::new("^lib|mod$").unwrap();
     for (i, mut line) in content.lines().enumerate() {
-        if i == 0 && path.file_name().unwrap() != "lib.rs" {
-            // Ensure the first line has a URL of the proper form
-            let task_comment = Regex::new(r"// http://rosettacode\.org/wiki/.+").unwrap();
-            if !task_comment.is_match(line) {
-                line_error(i + 1,
-                           path,
-                           "file does not start with \"// http://rosettacode.org/wiki/<TASK \
-                            NAME>\"");
+        if i == 0 {
+            match path.extension().and_then(|s| s.to_str()) {
+                Some("rs") => {
+                    // Ignore lib and mod files.
+                    if !lib_or_mod.is_match(path.file_stem().unwrap().to_str().unwrap()) {
+                        check_task_name(&path, &line);
+                    }
+                }
+                _ => (),
             }
         }
 

@@ -90,6 +90,7 @@ path = "src/factorial_plugin"
 regex = "0.1"
 toml = "0.1"
 unicode-segmentation = "0.1.2"
+walkdir = "0.1"
 
 [dependencies.schedule_recv]
 git = "https://github.com/PeterReid/schedule_recv"
