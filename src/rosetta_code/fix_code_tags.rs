@@ -1,5 +1,4 @@
-#![feature(custom_attribute)]
-
+// http://rosettacode.org/wiki/Rosetta_Code/Fix_code_tags
 extern crate regex;
 
 use std::io;
