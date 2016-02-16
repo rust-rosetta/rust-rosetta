@@ -73,14 +73,21 @@ fn main() {
     let task_comment = Regex::new("// http://rosettacode.org/wiki/(.+)").unwrap();
     for entry in WalkDir::new("../src") {
         let entry = entry.unwrap();
-        if entry.file_type().is_dir() || entry.path().extension().map_or(false, |e| e != "rs") ||
-           entry.path().file_name().map_or(false, |name| name == "lib.rs" || name == "mod.rs") {
-            continue;
+        let lib_or_mod = Regex::new("^lib|mod$").unwrap();
+        let file_stem = entry.path().file_stem().unwrap().to_str().unwrap();
+
+        // If we find a non-Rust file (or a lib or mod) skip it.
+        match entry.path().extension().and_then(|s| s.to_str()) {
+            Some("rs") if !lib_or_mod.is_match(file_stem) => (),
+            _ => continue,
         }
 
         let file = File::open(entry.path()).unwrap();
         let first_line = BufReader::new(file).lines().next().unwrap().unwrap();
-        let task_name = task_comment.captures(&first_line).and_then(|c| c.at(1)).unwrap();
+        let task_name = task_comment.captures(&first_line)
+                                    .and_then(|c| c.at(1))
+                                    .expect(&format!("could not parse task name for {:?}",
+                                                     entry.path()));
 
         local_tasks.insert(task_name.to_owned(), entry.path().to_owned());
     }
