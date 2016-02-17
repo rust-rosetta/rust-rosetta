@@ -433,6 +433,11 @@ name = "compile_time_calculation"
 path = "src/compile_time_calculation.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/Compound_data_type
+name = "compound_data_type"
+path = "src/compound_data_type.rs"
+
+[[bin]]
 # http://rosettacode.org/wiki/Concurrent_computing
 name = "concurrent_computing"
 path = "src/concurrent_computing.rs"
