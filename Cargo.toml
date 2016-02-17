@@ -392,6 +392,11 @@ name = "chinese_remainder"
 path = "src/chinese_remainder.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/Circles_of_given_radius_through_two_points
+name = "circles_of_given_radius_through_two_points"
+path = "src/circles_of_given_radius_through_two_points.rs"
+
+[[bin]]
 # http://rosettacode.org/wiki/Closest-pair_problem
 name = "closest-pair"
 path = "src/closest-pair.rs"
