@@ -339,6 +339,11 @@ name = "bulls_and_cows"
 path = "src/bulls_and_cows.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/Caesar_cipher
+name = "caesar_cipher"
+path = "src/caesar_cipher.rs"
+
+[[bin]]
 # http://rosettacode.org/wiki/Call_an_object_method
 name = "call_an_object_method"
 path = "src/call_an_object_method.rs"
