@@ -276,6 +276,11 @@ name = "averages_mean_angle"
 path = "src/averages/mean_angle.rs"
 
 [[bin]]
+# http://www.rosettacode.org/wiki/Averages/Median
+name = "averages_median"
+path = "src/averages/median.rs"
+
+[[bin]]
 # http://rosettacode.org/wiki/Averages/Root_mean_square
 name = "averages_root_mean_square"
 path = "src/averages/root_mean_square.rs"
