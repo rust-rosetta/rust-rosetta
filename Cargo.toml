@@ -256,6 +256,11 @@ path = "src/assertions.rs"
 test = false
 
 [[bin]]
+# http://rosettacode.org/wiki/Associative_array/Creation
+name = "associative_array_creation"
+path = "src/associative_array/creation.rs"
+
+[[bin]]
 # http://rosettacode.org/wiki/Atomic_updates
 name = "atomic_updates"
 path = "src/atomic_updates.rs"
