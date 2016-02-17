@@ -28,7 +28,7 @@ fn format_fasta<T: BufRead>(reader: &mut T) -> String {
 }
 
 fn read_file() -> String {
-    let file = File::open("src/resources/test_data.fasta").unwrap();
+    let file = File::open("resources/test_data.fasta").unwrap();
     format_fasta(&mut BufReader::new(file))
 }
 

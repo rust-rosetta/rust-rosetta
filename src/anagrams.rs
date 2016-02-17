@@ -49,7 +49,7 @@ fn largest_groups(groups: &HashMap<String, HashSet<String>>) -> HashMap<String, 
 }
 
 fn main() {
-    let reader = BufReader::new(File::open("src/resources/unixdict.txt").unwrap());
+    let reader = BufReader::new(File::open("resources/unixdict.txt").unwrap());
     let lines = reader.lines().map(|l| l.unwrap());
 
     let anagram_groups = anagrams(lines);
