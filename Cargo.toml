@@ -407,6 +407,11 @@ name = "closures_value_capture"
 path = "src/closures/value_capture.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/Combinations
+name = "combinations"
+path = "src/combinations.rs"
+
+[[bin]]
 # http://rosettacode.org/wiki/Comma_quibbling
 name = "comma_quibbling"
 path = "src/comma_quibbling.rs"
