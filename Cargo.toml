@@ -240,6 +240,11 @@ name = "arithmetic_rational"
 path = "src/arithmetic/rational.rs"
 
 [[bin]]
+# http://www.rosettacode.org/wiki/Array_length
+name = "array_length"
+path = "src/array_length.rs"
+
+[[bin]]
 # http://rosettacode.org/wiki/Arrays
 name = "arrays"
 path = "src/arrays.rs"
