@@ -147,6 +147,11 @@ name = "abc_problem"
 path = "src/abc_problem.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/Abstract_type
+name = "abstract_type"
+path = "src/abstract_type.rs"
+
+[[bin]]
 # http://rosettacode.org/wiki/Accumulator_factory
 name = "accumulator_factory"
 path = "src/accumulator_factory.rs"
