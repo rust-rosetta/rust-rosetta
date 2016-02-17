@@ -167,6 +167,11 @@ name = "active_object"
 path = "src/active_object.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/Address_of_a_variable
+name = "address_of_a_variable"
+path = "src/address_of_a_variable.rs"
+
+[[bin]]
 # http://rosettacode.org/wiki/Arithmetic-geometric_mean
 name = "agm"
 path = "src/agm.rs"
