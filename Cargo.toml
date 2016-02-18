@@ -539,6 +539,11 @@ path = "src/empty_directory.rs"
 test = false
 
 [[bin]]
+# http://rosettacode.org/wiki/Enforced_mutability
+name = "enforced_immutability"
+path = "src/enforced_immutability.rs"
+
+[[bin]]
 # http://rosettacode.org/wiki/Entropy
 name = "entropy"
 path = "src/entropy.rs"
