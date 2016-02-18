@@ -697,6 +697,11 @@ path = "src/greater_element_list.rs"
 test = false
 
 [[bin]]
+# http://rosettacode.org/wiki/Greatest_subsequential_sum
+name = "greatest_subsequential_sum"
+path = "src/greatest_subsequential_sum.rs"
+
+[[bin]]
 # http://rosettacode.org/wiki/Guess_the_number
 name = "guess_number"
 path = "src/guess_number.rs"
