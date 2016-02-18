@@ -61,6 +61,7 @@ authors = [
 
 [features]
 unixOnly = ["rustbox"]
+with-gtk = ["gtk"]
 
 [dependencies]
 regex = "0.1"
@@ -78,6 +79,9 @@ url = "0.5"
 
 # dependency does not compile on Windows, currently only used for 2048
 rustbox = { version = "*", optional = true }
+
+# requires GTK library
+gtk = { git = "https://github.com/gtk-rs/gtk.git", optional = true }
 
 # subcrates
 [dependencies.use-another-language-to-call-a-function]
@@ -758,6 +762,11 @@ path = "src/hash_from_two_arrays.rs"
 # http://rosettacode.org/wiki/Hash_join
 name = "hash_join"
 path = "src/hash_join.rs"
+
+[[bin]]
+# http://rosettacode.org/wiki/Hello_world/Graphical
+name = "hello_world_graphical"
+path = "src/hello_world/graphical.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Hello_world/Newline_omission
