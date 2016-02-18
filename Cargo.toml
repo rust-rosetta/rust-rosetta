@@ -415,6 +415,11 @@ path = "src/count_in_octal.rs"
 test = false
 
 [[bin]]
+# http://www.rosettacode.org/wiki/Count_occurrences_of_a_substring
+name = "count_occurences_of_substring"
+path = "src/count_occurences_of_substring.rs"
+
+[[bin]]
 # http://rosettacode.org/wiki/CRC-32
 name = "crc_32"
 path = "src/crc_32.rs"
