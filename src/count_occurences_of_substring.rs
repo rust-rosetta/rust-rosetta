@@ -1,4 +1,4 @@
-// Implements http://rosettacode.org/wiki/Count_occurrences_of_a_substring
+// http://rosettacode.org/wiki/Count_occurrences_of_a_substring
 // Author : Rahul Sharma
 // Github : github.com/creativcoder
 
