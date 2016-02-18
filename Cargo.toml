@@ -713,6 +713,11 @@ name = "guess_the_number_with_feedback"
 path = "src/guess_the_number/with_feedback.rs"
 
 [[bin]]
+# http://www.rosettacode.org/wiki/Guess_the_number/With_feedback_(player)
+name = "guess_the_number_with_feedback_player"
+path = "src/guess_the_number/with_feedback_player.rs"
+
+[[bin]]
 # http://rosettacode.org/wiki/Hailstone_sequence
 name = "hailstone"
 path = "src/hailstone.rs"
