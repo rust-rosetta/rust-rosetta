@@ -407,6 +407,11 @@ name = "closures_value_capture"
 path = "src/closures/value_capture.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/Collections
+name = "collections"
+path = "src/collections.rs"
+
+[[bin]]
 # http://rosettacode.org/wiki/Combinations
 name = "combinations"
 path = "src/combinations.rs"
