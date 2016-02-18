@@ -516,6 +516,11 @@ name = "doubly_linked_list_element_definition"
 path = "src/doubly_linked_list/element_definition.rs"
 
 [[bin]]
+# http://www.rosettacode.org/wiki/Doubly-linked_list/Element_insertion
+name = "doubly_linked_list_element_insertion"
+path = "src/doubly_linked_list/element_insertion.rs"
+
+[[bin]]
 # http://rosettacode.org/wiki/Echo_server
 name = "echo_server"
 path = "src/echo_server.rs"
