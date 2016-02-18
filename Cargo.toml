@@ -511,6 +511,11 @@ name = "dot_product"
 path = "src/dot_product.rs"
 
 [[bin]]
+# http://www.rosettacode.org/wiki/Doubly-linked_list/Element_definition
+name = "doubly_linked_list_element_definition"
+path = "src/doubly_linked_list/element_definition.rs"
+
+[[bin]]
 # http://rosettacode.org/wiki/Echo_server
 name = "echo_server"
 path = "src/echo_server.rs"
