@@ -481,6 +481,11 @@ path = "src/currying.rs"
 test = false
 
 [[bin]]
+# http://www.rosettacode.org/wiki/Deal_cards_for_FreeCell
+name = "deal_cards_for_freecell"
+path = "src/deal_cards_for_freecell.rs"
+
+[[bin]]
 # http://rosettacode.org/wiki/Delete_a_file
 name = "delete_a_file"
 path = "src/delete_a_file.rs"
