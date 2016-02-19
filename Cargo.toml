@@ -1092,6 +1092,11 @@ name = "menu"
 path = "src/menu.rs"
 
 [[bin]]
+# https://rosettacode.org/wiki/Metaprogramming
+name = "metaprogramming"
+path = "src/metaprogramming.rs"
+
+[[bin]]
 # http://rosettacode.org/wiki/Metered_concurrency
 name = "metered_concurrency"
 path = "src/metered_concurrency.rs"
