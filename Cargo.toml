@@ -796,6 +796,11 @@ path = "src/hello_world/web_server.rs"
 test = false
 
 [[bin]]
+# http://rosettacode.org/wiki/Here_document
+name = "here_document"
+path = "src/here_document.rs"
+
+[[bin]]
 # http://rosettacode.org/wiki/Higher-order_functions
 name = "higher_order_functions"
 path = "src/higher_order_functions.rs"
