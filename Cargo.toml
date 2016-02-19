@@ -1270,6 +1270,11 @@ name = "quine"
 path = "src/quine.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/Random_numbers
+name = "random_numbers"
+path = "src/random_numbers.rs"
+
+[[bin]]
 # http://rosettacode.org/wiki/Range_expansion
 name = "range_expansion"
 path = "src/range_expansion.rs"
