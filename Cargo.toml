@@ -1467,6 +1467,11 @@ name = "singly_linked_list_element_insertion"
 path = "src/singly_linked_list/element_insertion.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/Singly-linked_list/Traversal
+name = "singly_linked_list_traversal"
+path = "src/singly_linked_list/traversal.rs"
+
+[[bin]]
 # http://rosettacode.org/wiki/Sleep
 name = "sleep"
 path = "src/sleep.rs"
