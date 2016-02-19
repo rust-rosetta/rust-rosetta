@@ -1148,6 +1148,11 @@ name = "number_classifications"
 path = "src/number_classifications.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/Numerical_integration
+name = "numerical_integration"
+path = "src/numerical_integration.rs"
+
+[[bin]]
 # http://rosettacode.org/wiki/Ordered_words
 name = "ordered_words"
 path = "src/ordered_words.rs"
