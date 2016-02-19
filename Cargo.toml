@@ -65,16 +65,17 @@ with-gtk = ["gtk"]
 with-ncurses = ["ncurses"]
 
 [dependencies]
-regex = "0.1"
 docopt = "0.6"
-time = "0.1"
-rustc-serialize = "0.3"
-rand = "0.3"
-num = "0.1"
-libc = "0.2"
-permutohedron = "0.1"
 eventual = { git = "https://github.com/carllerche/eventual" }
 hyper = "0.6"
+libc = "0.2"
+num = "0.1"
+permutohedron = "0.1"
+rand = "0.3"
+regex = "0.1"
+rustc-serialize = "0.3"
+rust-crypto = "0.2"
+time = "0.1"
 unicode-segmentation = "0.1"
 url = "0.5"
 
@@ -1074,6 +1075,11 @@ path = "src/markov_algorithm.rs"
 # http://rosettacode.org/wiki/Maximum_triangle_path_sum
 name = "maximum_triangle_path_sum"
 path = "src/maximum_triangle_path_sum.rs"
+
+[[bin]]
+# http://rosettacode.org/wiki/MD5
+name = "md5"
+path = "src/md5.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/MD5/Implementation
