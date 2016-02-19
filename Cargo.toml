@@ -1457,6 +1457,11 @@ name = "sieve_eratosthenes"
 path = "src/sieve_eratosthenes.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/Singly-linked_list/Element_definition
+name = "singly_linked_list_element_definition"
+path = "src/singly_linked_list/element_definition.rs"
+
+[[bin]]
 # http://rosettacode.org/wiki/Sleep
 name = "sleep"
 path = "src/sleep.rs"
