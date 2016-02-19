@@ -1260,6 +1260,11 @@ name = "pythagorean_triples"
 path = "src/pythagorean_triples.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/Queue/Definition
+name = "queue_definition"
+path = "src/queue/definition.rs"
+
+[[bin]]
 # http://rosettacode.org/wiki/Range_expansion
 name = "range_expansion"
 path = "src/range_expansion.rs"
