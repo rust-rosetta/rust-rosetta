@@ -849,6 +849,11 @@ name = "iban"
 path = "src/iban.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/Include_a_file
+name = "include_a_file"
+path = "src/include_a_file.rs"
+
+[[bin]]
 # http://rosettacode.org/wiki/Infinity
 name = "infinity"
 path = "src/infinity.rs"
