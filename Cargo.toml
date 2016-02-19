@@ -1404,6 +1404,11 @@ name = "s_expressions"
 path = "src/s_expressions.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/Search_a_list
+name = "search_a_list"
+path = "src/search_a_list.rs"
+
+[[bin]]
 # http://rosettacode.org/wiki/Self-describing_numbers
 name = "self-describing_numbers"
 path = "src/self-describing_numbers.rs"
