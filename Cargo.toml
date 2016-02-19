@@ -1265,6 +1265,11 @@ name = "queue_definition"
 path = "src/queue/definition.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/Quine
+name = "quine"
+path = "src/quine.rs"
+
+[[bin]]
 # http://rosettacode.org/wiki/Range_expansion
 name = "range_expansion"
 path = "src/range_expansion.rs"
