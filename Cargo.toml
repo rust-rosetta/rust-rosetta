@@ -1280,6 +1280,11 @@ name = "range_expansion"
 path = "src/range_expansion.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/Range_extraction
+name = "range_extraction"
+path = "src/range_extraction.rs"
+
+[[bin]]
 # http://rosettacode.org/wiki/Read_a_file_line_by_line
 name = "read_file_line"
 path = "src/read_file_line.rs"
