@@ -1,4 +1,4 @@
-// http://rosettacode.org/wiki/Unix/ls#Rust
+// http://rosettacode.org/wiki/Unix/ls
 
 //! Works only with correct paths or no arguments at all
 

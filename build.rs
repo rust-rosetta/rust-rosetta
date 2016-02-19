@@ -59,13 +59,13 @@ fn main() {
 
 fn check_task_name(path: &Path, line: &str) {
     // Ensure the first line has a URL of the proper form
-    let task_comment = Regex::new(r"// http://rosettacode\.org/wiki/.+").unwrap();
+    let task_comment = Regex::new(r"^// http://rosettacode\.org/wiki/[^#]+$").unwrap();
     if !task_comment.is_match(line) {
         line_error(1,
                    path,
-                   "file does not start with \"// http://rosettacode.org/wiki/<TASK NAME>\"");
+                   "header is missing or malformed. The line should exactly match \
+                   '// http://rosettacode.org/wiki/<TASK NAME>'");
     }
-
 }
 
 fn check(path: &Path) {
