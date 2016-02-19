@@ -1071,6 +1071,11 @@ name = "markov_algorithm"
 path = "src/markov_algorithm.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/Maximum_triangle_path_sum
+name = "maximum_triangle_path_sum"
+path = "src/maximum_triangle_path_sum.rs"
+
+[[bin]]
 # http://rosettacode.org/wiki/MD5/Implementation
 name = "md5_implementation"
 path = "src/md5/implementation.rs"
