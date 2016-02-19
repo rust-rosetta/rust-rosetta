@@ -57,6 +57,7 @@ authors = [
     "Andy Russell, https://github.com/euclio",
     "Joel S, https://github.com/bitrauser",
     "Stefan Bostain, https://github.com/zilulil",
+    "Fernando Gimenez, https://github.com/pijamarda",
 ]
 
 [features]
@@ -905,6 +906,12 @@ path = "src/loops/nested.rs"
 # http://rosettacode.org/wiki/Loops/While
 name = "loops_while"
 path = "src/loops/while.rs"
+test = false
+
+[[bin]]
+# https://rosettacode.org/wiki/Ludic_numbers
+name = "ludic"
+path = "src/ludic.rs"
 test = false
 
 [[bin]]
