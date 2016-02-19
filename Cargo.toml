@@ -1297,6 +1297,11 @@ path = "src/read_file_specific_line.rs"
 test = false
 
 [[bin]]
+# http://rosettacode.org/wiki/Real_constants_and_functions
+name = "real_constants_and_functions"
+path = "src/real_constants_and_functions.rs"
+
+[[bin]]
 # http://rosettacode.org/wiki/Find_limit_of_recursion
 name = "recursion_depth"
 path = "src/recursion_depth.rs"
