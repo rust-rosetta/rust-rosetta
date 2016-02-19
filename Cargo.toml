@@ -1245,6 +1245,11 @@ name = "prime_decomposition"
 path = "src/prime_decomposition.rs"
 
 [[bin]]
+# https://rosettacode.org/wiki/Program_name
+name = "program_name"
+path = "src/program_name.rs"
+
+[[bin]]
 # http://rosettacode.org/wiki/Proper_divisors
 name = "proper_divisors"
 path = "src/proper_divisors.rs"
