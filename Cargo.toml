@@ -1329,6 +1329,11 @@ name = "replace_word"
 path = "src/replace_word.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/Return_multiple_values
+name = "return_multiple_values"
+path = "src/return_multiple_values.rs"
+
+[[bin]]
 # http://rosettacode.org/wiki/Reverse_a_string
 name = "reverse_a_string"
 path = "src/reverse_a_string.rs"
