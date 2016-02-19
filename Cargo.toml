@@ -996,6 +996,11 @@ name = "loops_continue"
 path = "src/loops/continue.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/Loops/Do-while
+name = "loops_do_while"
+path = "src/loops/do_while.rs"
+
+[[bin]]
 # http://rosettacode.org/wiki/Loops/Downward_for
 name = "loops_downward_for"
 path = "src/loops/downward_for.rs"
