@@ -1553,6 +1553,11 @@ path = "src/string_interpolation.rs"
 test = false
 
 [[bin]]
+# http://rosettacode.org/wiki/String_interpolation_(included)
+name = "string_interpolation_included"
+path = "src/string_interpolation_included.rs"
+
+[[bin]]
 # http://rosettacode.org/wiki/Determine_if_a_string_is_numeric
 name = "string_is_numeric"
 path = "src/string_is_numeric.rs"
