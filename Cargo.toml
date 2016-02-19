@@ -62,6 +62,7 @@ authors = [
 [features]
 unixOnly = ["rustbox"]
 with-gtk = ["gtk"]
+with-ncurses = ["ncurses"]
 
 [dependencies]
 regex = "0.1"
@@ -82,6 +83,9 @@ rustbox = { version = "*", optional = true }
 
 # requires GTK library
 gtk = { git = "https://github.com/gtk-rs/gtk.git", optional = true }
+
+# required ncurses library
+ncurses = { version = "5.80", optional = true }
 
 # subcrates
 [dependencies.use-another-language-to-call-a-function]
@@ -916,6 +920,11 @@ path = "src/k-d-tree.rs"
 # http://rosettacode.org/wiki/Kahan_summation
 name = "kahansum"
 path = "src/kahansum.rs"
+
+[[bin]]
+# http://rosettacode.org/wiki/Keyboard_input/Obtain_a_Y_or_N_response
+name = "keyboard_input_obtain_a_y_or_n_response"
+path = "src/keyboard_input/obtain_a_y_or_n_response.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Knapsack_problem/0-1
