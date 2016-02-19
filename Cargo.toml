@@ -1655,6 +1655,11 @@ name = "use_another_language_to_call_a_function"
 path = "src/use_another_language_to_call_a_function.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/User_input/Text
+name = "user_input_text"
+path = "src/user_input/text.rs"
+
+[[bin]]
 # http://rosettacode.org/wiki/Vigen%C3%A8re_cipher
 name = "vigenere"
 path = "src/vigenere.rs"
