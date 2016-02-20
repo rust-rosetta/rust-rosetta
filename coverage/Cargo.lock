@@ -5,10 +5,12 @@ dependencies = [
  "difference 0.4.1 (registry+https://github.com/rust-lang/crates.io-index)",
  "docopt 0.6.78 (registry+https://github.com/rust-lang/crates.io-index)",
  "hyper 0.7.2 (registry+https://github.com/rust-lang/crates.io-index)",
- "regex 0.1.54 (registry+https://github.com/rust-lang/crates.io-index)",
+ "lazy_static 0.1.15 (registry+https://github.com/rust-lang/crates.io-index)",
+ "regex 0.1.55 (registry+https://github.com/rust-lang/crates.io-index)",
  "rust-rosetta 0.0.1",
  "rustc-serialize 0.3.18 (registry+https://github.com/rust-lang/crates.io-index)",
  "term 0.2.14 (registry+https://github.com/rust-lang/crates.io-index)",
+ "url 0.5.5 (registry+https://github.com/rust-lang/crates.io-index)",
  "walkdir 0.1.5 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
@@ -49,7 +51,7 @@ name = "docopt"
 version = "0.6.78"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 dependencies = [
- "regex 0.1.54 (registry+https://github.com/rust-lang/crates.io-index)",
+ "regex 0.1.55 (registry+https://github.com/rust-lang/crates.io-index)",
  "rustc-serialize 0.3.18 (registry+https://github.com/rust-lang/crates.io-index)",
  "strsim 0.3.0 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
@@ -267,7 +269,7 @@ dependencies = [
 
 [[package]]
 name = "regex"
-version = "0.1.54"
+version = "0.1.55"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 dependencies = [
  "aho-corasick 0.5.1 (registry+https://github.com/rust-lang/crates.io-index)",
@@ -306,7 +308,7 @@ dependencies = [
  "num 0.1.31 (registry+https://github.com/rust-lang/crates.io-index)",
  "permutohedron 0.2.1 (registry+https://github.com/rust-lang/crates.io-index)",
  "rand 0.3.14 (registry+https://github.com/rust-lang/crates.io-index)",
- "regex 0.1.54 (registry+https://github.com/rust-lang/crates.io-index)",
+ "regex 0.1.55 (registry+https://github.com/rust-lang/crates.io-index)",
  "rust-crypto 0.2.34 (registry+https://github.com/rust-lang/crates.io-index)",
  "rustc-serialize 0.3.18 (registry+https://github.com/rust-lang/crates.io-index)",
  "schedule_recv 0.0.1 (git+https://github.com/PeterReid/schedule_recv)",
