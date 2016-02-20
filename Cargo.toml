@@ -96,6 +96,7 @@ path = "src/use_another_language_to_call_a_function"
 path = "src/factorial_plugin"
 
 [build-dependencies]
+lazy_static = "0.1"
 regex = "0.1"
 toml = "0.1"
 unicode-segmentation = "0.1.2"
