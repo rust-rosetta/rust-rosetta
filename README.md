@@ -2,7 +2,7 @@
 [![Build Status](https://travis-ci.org/Hoverbear/rust-rosetta.png)](https://travis-ci.org/Hoverbear/rust-rosetta)
 [![Coverage Status](https://coveralls.io/repos/Hoverbear/rust-rosetta/badge.svg?branch=master&service=github)](https://coveralls.io/github/Hoverbear/rust-rosetta?branch=master)
 
-A repository for completing [this issue on rust-lang/rust](https://github.com/rust-lang/rust/issues/10513). This repository contains minimal working code for many simple (and not so simple) tasks. New contributors and learners of the language are welcome. We will try to work with you to make the code more idiomatic over time.
+A repository for completing [this issue on mozilla/rust](https://github.com/rust-lang/rust/issues/10513). This repository contains minimal working code for many simple (and not so simple) tasks. New contributors and learners of the language are welcome. We will try to work with you to make the code more idiomatic over time.
 
 > Working on a problem, need some help? Drop by #rust-rosetta on irc.mozilla.org.
 

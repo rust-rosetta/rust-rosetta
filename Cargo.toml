@@ -62,32 +62,23 @@ authors = [
 
 [features]
 unixOnly = ["rustbox"]
-with-gtk = ["gtk"]
-with-ncurses = ["ncurses"]
 
 [dependencies]
+regex = "0.1"
 docopt = "0.6"
+time = "0.1"
+rustc-serialize = "0.3"
+rand = "0.3"
+num = "0.1"
+libc = "0.2"
+permutohedron = "0.1"
 eventual = { git = "https://github.com/carllerche/eventual" }
 hyper = "0.6"
-libc = "0.2"
-num = "0.1"
-permutohedron = "0.1"
-rand = "0.3"
-regex = "0.1"
-rustc-serialize = "0.3"
-rust-crypto = "0.2"
-time = "0.1"
 unicode-segmentation = "0.1"
 url = "0.5"
 
 # dependency does not compile on Windows, currently only used for 2048
 rustbox = { version = "*", optional = true }
-
-# requires GTK library
-gtk = { git = "https://github.com/gtk-rs/gtk.git", optional = true }
-
-# required ncurses library
-ncurses = { version = "5.80", optional = true }
 
 # subcrates
 [dependencies.use-another-language-to-call-a-function]
@@ -97,7 +88,6 @@ path = "src/use_another_language_to_call_a_function"
 path = "src/factorial_plugin"
 
 [build-dependencies]
-lazy_static = "0.1"
 regex = "0.1"
 toml = "0.1"
 unicode-segmentation = "0.1.2"
@@ -158,11 +148,6 @@ name = "abc_problem"
 path = "src/abc_problem.rs"
 
 [[bin]]
-# http://rosettacode.org/wiki/Abstract_type
-name = "abstract_type"
-path = "src/abstract_type.rs"
-
-[[bin]]
 # http://rosettacode.org/wiki/Accumulator_factory
 name = "accumulator_factory"
 path = "src/accumulator_factory.rs"
@@ -176,11 +161,6 @@ path = "src/ackermann_function.rs"
 # http://rosettacode.org/wiki/Active_object
 name = "active_object"
 path = "src/active_object.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Address_of_a_variable
-name = "address_of_a_variable"
-path = "src/address_of_a_variable.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Arithmetic-geometric_mean
@@ -251,11 +231,6 @@ name = "arithmetic_rational"
 path = "src/arithmetic/rational.rs"
 
 [[bin]]
-# http://www.rosettacode.org/wiki/Array_length
-name = "array_length"
-path = "src/array_length.rs"
-
-[[bin]]
 # http://rosettacode.org/wiki/Arrays
 name = "arrays"
 path = "src/arrays.rs"
@@ -265,11 +240,6 @@ path = "src/arrays.rs"
 name = "assertions"
 path = "src/assertions.rs"
 test = false
-
-[[bin]]
-# http://rosettacode.org/wiki/Associative_array/Creation
-name = "associative_array_creation"
-path = "src/associative_array/creation.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Atomic_updates
@@ -285,11 +255,6 @@ path = "src/averages/arithmetic_mean.rs"
 # http://rosettacode.org/wiki/Averages/Mean_angle
 name = "averages_mean_angle"
 path = "src/averages/mean_angle.rs"
-
-[[bin]]
-# http://www.rosettacode.org/wiki/Averages/Median
-name = "averages_median"
-path = "src/averages/median.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Averages/Root_mean_square
@@ -350,11 +315,6 @@ name = "bulls_and_cows"
 path = "src/bulls_and_cows.rs"
 
 [[bin]]
-# http://rosettacode.org/wiki/Caesar_cipher
-name = "caesar_cipher"
-path = "src/caesar_cipher.rs"
-
-[[bin]]
 # http://rosettacode.org/wiki/Call_an_object_method
 name = "call_an_object_method"
 path = "src/call_an_object_method.rs"
@@ -403,11 +363,6 @@ name = "chinese_remainder"
 path = "src/chinese_remainder.rs"
 
 [[bin]]
-# http://rosettacode.org/wiki/Circles_of_given_radius_through_two_points
-name = "circles_of_given_radius_through_two_points"
-path = "src/circles_of_given_radius_through_two_points.rs"
-
-[[bin]]
 # http://rosettacode.org/wiki/Closest-pair_problem
 name = "closest-pair"
 path = "src/closest-pair.rs"
@@ -416,16 +371,6 @@ path = "src/closest-pair.rs"
 # http://rosettacode.org/wiki/Closures/Value_capture
 name = "closures_value_capture"
 path = "src/closures/value_capture.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Collections
-name = "collections"
-path = "src/collections.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Combinations
-name = "combinations"
-path = "src/combinations.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Comma_quibbling
@@ -447,11 +392,6 @@ path = "src/comments.rs"
 # http://rosettacode.org/wiki/Compile-time_calculation
 name = "compile_time_calculation"
 path = "src/compile_time_calculation.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Compound_data_type
-name = "compound_data_type"
-path = "src/compound_data_type.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Concurrent_computing
@@ -497,19 +437,9 @@ path = "src/currying.rs"
 test = false
 
 [[bin]]
-# http://www.rosettacode.org/wiki/Deal_cards_for_FreeCell
-name = "deal_cards_for_freecell"
-path = "src/deal_cards_for_freecell.rs"
-
-[[bin]]
 # http://rosettacode.org/wiki/Delete_a_file
 name = "delete_a_file"
 path = "src/delete_a_file.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Determine_if_only_one_instance_is_running
-name = "determine_if_only_one_instance_is_running"
-path = "src/determine_if_only_one_instance_is_running.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Dijkstra's_algorithm
@@ -525,16 +455,6 @@ path = "src/dns_query.rs"
 # http://rosettacode.org/wiki/Dot_product
 name = "dot_product"
 path = "src/dot_product.rs"
-
-[[bin]]
-# http://www.rosettacode.org/wiki/Doubly-linked_list/Element_definition
-name = "doubly_linked_list_element_definition"
-path = "src/doubly_linked_list/element_definition.rs"
-
-[[bin]]
-# http://www.rosettacode.org/wiki/Doubly-linked_list/Element_insertion
-name = "doubly_linked_list_element_insertion"
-path = "src/doubly_linked_list/element_insertion.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Echo_server
@@ -553,11 +473,6 @@ test = false
 name = "empty_directory"
 path = "src/empty_directory.rs"
 test = false
-
-[[bin]]
-# http://rosettacode.org/wiki/Enforced_mutability
-name = "enforced_immutability"
-path = "src/enforced_immutability.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Entropy
@@ -589,11 +504,6 @@ path = "src/ethiopian_multiplication.rs"
 # http://rosettacode.org/wiki/Euler's_sum_of_powers_conjecture
 name = "eulers_sum_of_powers_conjecture"
 path = "src/eulers_sum_of_powers_conjecture.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Even_or_odd
-name = "even_or_odd"
-path = "src/even_or_odd.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Events
@@ -713,11 +623,6 @@ path = "src/greater_element_list.rs"
 test = false
 
 [[bin]]
-# http://rosettacode.org/wiki/Greatest_subsequential_sum
-name = "greatest_subsequential_sum"
-path = "src/greatest_subsequential_sum.rs"
-
-[[bin]]
 # http://rosettacode.org/wiki/Guess_the_number
 name = "guess_number"
 path = "src/guess_number.rs"
@@ -727,11 +632,6 @@ test = false
 # http://rosettacode.org/wiki/Guess_the_number/With_feedback
 name = "guess_the_number_with_feedback"
 path = "src/guess_the_number/with_feedback.rs"
-
-[[bin]]
-# http://www.rosettacode.org/wiki/Guess_the_number/With_feedback_(player)
-name = "guess_the_number_with_feedback_player"
-path = "src/guess_the_number/with_feedback_player.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Hailstone_sequence
@@ -776,16 +676,6 @@ name = "hash_join"
 path = "src/hash_join.rs"
 
 [[bin]]
-# http://rosettacode.org/wiki/Hello_world/Graphical
-name = "hello_world_graphical"
-path = "src/hello_world/graphical.rs"
-
-[[bin]]
-# http://www.rosettacode.org/wiki/Hello_world/Line_printer
-name = "hello_world_line_printer"
-path = "src/hello_world/line_printer.rs"
-
-[[bin]]
 # http://rosettacode.org/wiki/Hello_world/Newline_omission
 name = "hello_world_newline_omission"
 path = "src/hello_world/newline_omission.rs"
@@ -806,11 +696,6 @@ path = "src/hello_world/text.rs"
 name = "hello_world_web_server"
 path = "src/hello_world/web_server.rs"
 test = false
-
-[[bin]]
-# http://rosettacode.org/wiki/Here_document
-name = "here_document"
-path = "src/here_document.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Higher-order_functions
@@ -861,11 +746,6 @@ name = "iban"
 path = "src/iban.rs"
 
 [[bin]]
-# http://rosettacode.org/wiki/Include_a_file
-name = "include_a_file"
-path = "src/include_a_file.rs"
-
-[[bin]]
 # http://rosettacode.org/wiki/Infinity
 name = "infinity"
 path = "src/infinity.rs"
@@ -884,11 +764,6 @@ path = "src/input_loop.rs"
 test = false
 
 [[bin]]
-# http://rosettacode.org/wiki/Integer_comparison
-name = "integer_comparison"
-path = "src/integer_comparison.rs"
-
-[[bin]]
 # http://rosettacode.org/wiki/Integer_sequence
 name = "integer_sequence"
 path = "src/integer_sequence.rs"
@@ -898,11 +773,6 @@ test = false
 # http://rosettacode.org/wiki/The_ISAAC_Cipher
 name = "isaac"
 path = "src/isaac.rs"
-
-[[bin]]
-# https://rosettacode.org/wiki/Iterated_digits_squaring
-name = "iterated_digits_squaring"
-path = "src/iterated_digits_squaring.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Jensen's_Device
@@ -930,11 +800,6 @@ name = "kahansum"
 path = "src/kahansum.rs"
 
 [[bin]]
-# http://rosettacode.org/wiki/Keyboard_input/Obtain_a_Y_or_N_response
-name = "keyboard_input_obtain_a_y_or_n_response"
-path = "src/keyboard_input/obtain_a_y_or_n_response.rs"
-
-[[bin]]
 # http://rosettacode.org/wiki/Knapsack_problem/0-1
 name = "knapsack_problem_0-1"
 path = "src/knapsack_problem/0-1.rs"
@@ -958,11 +823,6 @@ path = "src/leap_year.rs"
 # http://rosettacode.org/wiki/Letter_frequency
 name = "letter_frequency"
 path = "src/letter_frequency.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Levenshtein_distance
-name = "levenshtein_distance"
-path = "src/levenshtein_distance.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Levenshtein_distance/Alignment
@@ -1002,11 +862,6 @@ path = "src/loops/break.rs"
 # http://rosettacode.org/wiki/Loops/Continue
 name = "loops_continue"
 path = "src/loops/continue.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Loops/Do-while
-name = "loops_do_while"
-path = "src/loops/do_while.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Loops/Downward_for
@@ -1085,16 +940,6 @@ name = "markov_algorithm"
 path = "src/markov_algorithm.rs"
 
 [[bin]]
-# http://rosettacode.org/wiki/Maximum_triangle_path_sum
-name = "maximum_triangle_path_sum"
-path = "src/maximum_triangle_path_sum.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/MD5
-name = "md5"
-path = "src/md5.rs"
-
-[[bin]]
 # http://rosettacode.org/wiki/MD5/Implementation
 name = "md5_implementation"
 path = "src/md5/implementation.rs"
@@ -1103,11 +948,6 @@ path = "src/md5/implementation.rs"
 # http://rosettacode.org/wiki/Menu
 name = "menu"
 path = "src/menu.rs"
-
-[[bin]]
-# https://rosettacode.org/wiki/Metaprogramming
-name = "metaprogramming"
-path = "src/metaprogramming.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Metered_concurrency
@@ -1129,11 +969,6 @@ path = "src/modular_inverse.rs"
 name = "monte_carlo_methods"
 path = "src/monte_carlo_methods.rs"
 test = false
-
-[[bin]]
-# https://rosettacode.org/wiki/Multiplication_tables
-name = "multiplication_tables"
-path = "src/multiplication_tables.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Mutual_recursion
@@ -1159,11 +994,6 @@ path = "src/null_object.rs"
 # http://rosettacode.org/wiki/Abundant,_deficient_and_perfect_number_classifications
 name = "number_classifications"
 path = "src/number_classifications.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Numerical_integration
-name = "numerical_integration"
-path = "src/numerical_integration.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Ordered_words
@@ -1258,11 +1088,6 @@ name = "prime_decomposition"
 path = "src/prime_decomposition.rs"
 
 [[bin]]
-# https://rosettacode.org/wiki/Program_name
-name = "program_name"
-path = "src/program_name.rs"
-
-[[bin]]
 # http://rosettacode.org/wiki/Proper_divisors
 name = "proper_divisors"
 path = "src/proper_divisors.rs"
@@ -1273,29 +1098,9 @@ name = "pythagorean_triples"
 path = "src/pythagorean_triples.rs"
 
 [[bin]]
-# http://rosettacode.org/wiki/Queue/Definition
-name = "queue_definition"
-path = "src/queue/definition.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Quine
-name = "quine"
-path = "src/quine.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Random_numbers
-name = "random_numbers"
-path = "src/random_numbers.rs"
-
-[[bin]]
 # http://rosettacode.org/wiki/Range_expansion
 name = "range_expansion"
 path = "src/range_expansion.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Range_extraction
-name = "range_extraction"
-path = "src/range_extraction.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Read_a_file_line_by_line
@@ -1308,11 +1113,6 @@ test = false
 name = "read_file_specific_line"
 path = "src/read_file_specific_line.rs"
 test = false
-
-[[bin]]
-# http://rosettacode.org/wiki/Real_constants_and_functions
-name = "real_constants_and_functions"
-path = "src/real_constants_and_functions.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Find_limit_of_recursion
@@ -1340,11 +1140,6 @@ path = "src/repeat_str.rs"
 # http://rosettacode.org/wiki/Globally_replace_text_in_several_files
 name = "replace_word"
 path = "src/replace_word.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Return_multiple_values
-name = "return_multiple_values"
-path = "src/return_multiple_values.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Reverse_a_string
@@ -1417,11 +1212,6 @@ name = "s_expressions"
 path = "src/s_expressions.rs"
 
 [[bin]]
-# http://rosettacode.org/wiki/Search_a_list
-name = "search_a_list"
-path = "src/search_a_list.rs"
-
-[[bin]]
 # http://rosettacode.org/wiki/Self-describing_numbers
 name = "self-describing_numbers"
 path = "src/self-describing_numbers.rs"
@@ -1470,29 +1260,9 @@ name = "sieve_eratosthenes"
 path = "src/sieve_eratosthenes.rs"
 
 [[bin]]
-# http://rosettacode.org/wiki/Singly-linked_list/Element_definition
-name = "singly_linked_list_element_definition"
-path = "src/singly_linked_list/element_definition.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Singly-linked_list/Element_insertion
-name = "singly_linked_list_element_insertion"
-path = "src/singly_linked_list/element_insertion.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Singly-linked_list/Traversal
-name = "singly_linked_list_traversal"
-path = "src/singly_linked_list/traversal.rs"
-
-[[bin]]
 # http://rosettacode.org/wiki/Sleep
 name = "sleep"
 path = "src/sleep.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Sockets
-name = "sockets"
-path = "src/sockets.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Sort_an_integer_array
@@ -1550,11 +1320,6 @@ name = "stdev"
 path = "src/stdev.rs"
 
 [[bin]]
-# http://rosettacode.org/wiki/String_case
-name = "string_case"
-path = "src/string_case.rs"
-
-[[bin]]
 # http://rosettacode.org/wiki/String_concatenation
 name = "string_concatenation"
 path = "src/string_concatenation.rs"
@@ -1564,11 +1329,6 @@ path = "src/string_concatenation.rs"
 name = "string_interpolation"
 path = "src/string_interpolation.rs"
 test = false
-
-[[bin]]
-# http://rosettacode.org/wiki/String_interpolation_(included)
-name = "string_interpolation_included"
-path = "src/string_interpolation_included.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Determine_if_a_string_is_numeric
@@ -1666,11 +1426,6 @@ test = false
 # http://rosettacode.org/wiki/Use_another_language_to_call_a_function
 name = "use_another_language_to_call_a_function"
 path = "src/use_another_language_to_call_a_function.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/User_input/Text
-name = "user_input_text"
-path = "src/user_input/text.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Vigen%C3%A8re_cipher

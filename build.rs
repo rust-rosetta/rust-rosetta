@@ -5,8 +5,6 @@
 //!
 //! In case we find a line that doesn't comply with this rules, the build will fail and indicate
 //! the cause of the problem.
-#[macro_use]
-extern crate lazy_static;
 extern crate regex;
 extern crate toml;
 extern crate unicode_segmentation;
@@ -20,13 +18,6 @@ use regex::Regex;
 use unicode_segmentation::UnicodeSegmentation;
 use walkdir::WalkDir;
 
-lazy_static!{
-    static ref LIB_OR_MOD_RE: Regex = Regex::new("^lib|mod$").unwrap();
-    static ref TASK_COMMENT_RE: Regex =
-            Regex::new(r"^// http://rosettacode\.org/wiki/[^#]+$").unwrap();
-}
-
-/// Checks that all binaries are in lexicographic order in `Cargo.toml`.
 fn check_toml() {
     let mut cargo_toml_file = File::open("Cargo.toml").unwrap();
     let mut cargo_toml_string = String::new();
@@ -61,40 +52,37 @@ fn main() {
     for entry in WalkDir::new("src") {
         let entry = entry.unwrap();
         if fs::metadata(&entry.path()).unwrap().is_file() {
-
-            // Only check Rust files
-            match entry.path().extension().and_then(|s| s.to_str()) {
-                Some("rs") => {
-                    check(&entry.path());
-                }
-                _ => (),
-            }
+            check(&entry.path());
         }
     }
 }
 
-/// Checks that all tasks contain a comment with a link to the Rosetta Code task they are
-/// implementing as the first line of the file.
 fn check_task_name(path: &Path, line: &str) {
     // Ensure the first line has a URL of the proper form
-    if !TASK_COMMENT_RE.is_match(line) {
+    let task_comment = Regex::new(r"// http://rosettacode\.org/wiki/.+").unwrap();
+    if !task_comment.is_match(line) {
         line_error(1,
                    path,
-                   "header is missing or malformed. The line should exactly match '// \
-                    http://rosettacode.org/wiki/<TASK NAME>'");
+                   "file does not start with \"// http://rosettacode.org/wiki/<TASK NAME>\"");
     }
+
 }
 
-/// Performs all checks on a particular file.
 fn check(path: &Path) {
     let mut content = String::new();
     File::open(&path).unwrap().read_to_string(&mut content).unwrap();
 
+    let lib_or_mod = Regex::new("^lib|mod$").unwrap();
     for (i, mut line) in content.lines().enumerate() {
         if i == 0 {
-            // Ignore lib and mod files.
-            if !LIB_OR_MOD_RE.is_match(path.file_stem().unwrap().to_str().unwrap()) {
-                check_task_name(&path, &line);
+            match path.extension().and_then(|s| s.to_str()) {
+                Some("rs") => {
+                    // Ignore lib and mod files.
+                    if !lib_or_mod.is_match(path.file_stem().unwrap().to_str().unwrap()) {
+                        check_task_name(&path, &line);
+                    }
+                }
+                _ => (),
             }
         }
 
