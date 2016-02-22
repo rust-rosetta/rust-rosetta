@@ -909,7 +909,7 @@ path = "src/loops/while.rs"
 test = false
 
 [[bin]]
-# https://rosettacode.org/wiki/Ludic_numbers
+# http://rosettacode.org/wiki/Ludic_numbers
 name = "ludic"
 path = "src/ludic.rs"
 test = false

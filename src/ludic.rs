@@ -1,4 +1,4 @@
-// https://rosettacode.org/wiki/Ludic_numbers
+// http://rosettacode.org/wiki/Ludic_numbers
 
 const ARRAY_MAX: usize = 25000;
 const LUDIC_MAX: usize = 2100;
@@ -6,17 +6,10 @@ const LUDIC_MAX: usize = 2100;
 fn main() {
 
     // Variable that will hold all the ludic numbers
-    let mut result: Vec<i32> = vec![];
+    let mut result: Vec<usize> = vec![];
 
     // Array that will hold the first array with 25.000 numbers starting with number 2
-    let mut array: [i32; ARRAY_MAX] = [0; ARRAY_MAX];
-
-    // Construct the first array
-    let mut first_number: i32 = 2;
-    for i in 0..array.len() {
-        array[i] = first_number;
-        first_number += 1;
-    }
+    let mut array = (2..(ARRAY_MAX+2)).collect::<Vec<_>>();
 
     // Calculate LUDIC_MAX Ludic numbers
     // First Ludic numbers is '1'
@@ -29,7 +22,7 @@ fn main() {
         for i in 0..array.len() {
             // modulo operation:
             // ((a % b) + b) % b
-            let modulo = ((i as i32 % next_ludic) + next_ludic) % next_ludic;
+            let modulo = ((i as usize % next_ludic) + next_ludic) % next_ludic;
 
             if modulo != 0 {
                 array[counter] = array[i];
@@ -53,7 +46,7 @@ fn main() {
 }
 
 //Function that prints the first 'n' Ludic numbers
-fn print_n_ludics(x: &Vec<i32>, n: usize) {
+fn print_n_ludics(x: &Vec<usize>, n: usize) {
     for i in 0..n {
         print!("{} ", x[i]);
     }
@@ -61,7 +54,7 @@ fn print_n_ludics(x: &Vec<i32>, n: usize) {
 }
 
 //Function that calculates how many Ludic numbers are below 'max_num'
-fn print_num_ludics_upto(x: &Vec<i32>, max_num: i32) {
+fn print_num_ludics_upto(x: &Vec<usize>, max_num: usize) {
     let mut num: i32 = 0;
     for i in 0..x.len() {
         if x[i] < max_num {
@@ -72,7 +65,7 @@ fn print_num_ludics_upto(x: &Vec<i32>, max_num: i32) {
 }
 
 //Function that prints Ludic numbers between to numbers
-fn print_ludics_from_to(x: &Vec<i32>, from: usize, to: usize) {
+fn print_ludics_from_to(x: &Vec<usize>, from: usize, to: usize) {
     for i in from - 1..to - 1 {
         print!("{} ", x[i]);
     }
@@ -80,7 +73,7 @@ fn print_ludics_from_to(x: &Vec<i32>, from: usize, to: usize) {
 }
 
 //Function that calculates triplets until certain Ludic number
-fn print_tiples_until(x: &Vec<i32>, limit: i32) {
+fn print_tiples_until(x: &Vec<usize>, limit: usize) {
     let mut counter: usize = 0;
 
     while x[counter] < limit {
