@@ -67,10 +67,10 @@ with-ncurses = ["ncurses"]
 [dependencies]
 docopt = "0.6"
 eventual = { git = "https://github.com/carllerche/eventual" }
-hyper = "0.6"
+hyper = "0.7"
 libc = "0.2"
 num = "0.1"
-permutohedron = "0.1"
+permutohedron = "0.2"
 rand = "0.3"
 regex = "0.1"
 rustc-serialize = "0.3"
