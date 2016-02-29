@@ -5,7 +5,7 @@ const LUDIC_MAX: usize = 2100;
 
 fn main() {
 
-    // Variable that will hold all the ludic numbers
+    // Vector that will hold all the ludic numbers
     let mut result: Vec<usize> = vec![];
 
     // Array that will hold the first array with 25.000 numbers starting with number 2
