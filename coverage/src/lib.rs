@@ -43,6 +43,9 @@ pub struct Task {
     /// The code of the task implemented on the Rosetta Code wiki. If the task is not yet
     /// implemented online, it will be `None`.
     pub remote_code: Option<String>,
+
+    /// The URL of the task on the RosettaCode wiki.
+    pub url: String, // FIXME: Should be a url::Url
 }
 
 impl Task {
@@ -148,10 +151,14 @@ impl Iterator for TaskIterator {
                                                   .map(|captures| captures.at(1).unwrap())
                                                   .map(|code| code.to_owned());
 
+            let mut wiki_url = task_url.clone();
+            wiki_url.query = None;
+
             Task {
                 title: title.to_owned(),
                 local_code: local_code,
                 remote_code: remote_code,
+                url: wiki_url.serialize(),
             }
         })
     }
