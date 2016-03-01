@@ -1,9 +1,13 @@
+#![feature(plugin, custom_derive)]
+#![plugin(serde_macros)]
+
 #[macro_use]
 extern crate lazy_static;
 
 extern crate hyper;
 extern crate regex;
 extern crate rust_rosetta;
+extern crate serde;
 extern crate url;
 extern crate walkdir;
 
@@ -32,6 +36,7 @@ lazy_static!{
 
 }
 
+#[derive(Debug, Serialize, Deserialize)]
 pub struct Task {
     /// The title of the task.
     pub title: String,
