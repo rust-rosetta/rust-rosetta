@@ -34,6 +34,12 @@ lazy_static!{
     static ref RUST_WIKI_SECTION_RE: Regex =
         Regex::new(r"==\{\{header\|Rust\}\}==(?s:.*?)<lang rust>((?s:.*?))</lang>").unwrap();
 
+    /// The location of implemented tasks.
+    ///
+    /// Uses the `RUST_ROSETTA_SRC` environment variable if specified, otherwise uses `src` in the
+    /// parent directory.
+    static ref RUST_ROSETTA_SRC: PathBuf =
+        PathBuf::from(option_env!("RUST_ROSETTA_SRC").unwrap_or("../src"));
 }
 
 #[derive(Debug, Serialize, Deserialize)]
@@ -93,7 +99,7 @@ impl TaskIterator {
         // Determine which tasks are implemented locally by walking the src folder and reading the
         // comment at the top of the file.
         let mut local_tasks = HashMap::new();
-        for entry in WalkDir::new("../src") {
+        for entry in WalkDir::new(RUST_ROSETTA_SRC.as_path()) {
             let entry = entry.unwrap();
             let file_stem = entry.path().file_stem().unwrap().to_str().unwrap();
 
