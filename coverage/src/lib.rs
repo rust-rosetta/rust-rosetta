@@ -57,6 +57,9 @@ pub struct Task {
 
     /// The URL of the task on the RosettaCode wiki.
     pub url: String, // FIXME: Should be a url::Url
+
+    /// The relative path to where the task is in the repository, if implemented.
+    pub path: Option<PathBuf>,
 }
 
 impl Task {
@@ -101,22 +104,23 @@ impl TaskIterator {
         let mut local_tasks = HashMap::new();
         for entry in WalkDir::new(RUST_ROSETTA_SRC.as_path()) {
             let entry = entry.unwrap();
-            let file_stem = entry.path().file_stem().unwrap().to_str().unwrap();
+            let path = entry.path();
+            let file_stem = path.file_stem().unwrap().to_str().unwrap();
 
             // If we find a non-Rust file (or a lib or mod) skip it.
-            match entry.path().extension().and_then(|s| s.to_str()) {
+            match path.extension().and_then(|s| s.to_str()) {
                 Some("rs") if !LIB_OR_MOD.is_match(file_stem) => (),
                 _ => continue,
             }
 
-            let file = File::open(entry.path()).unwrap();
+            let file = File::open(path).unwrap();
             let first_line = BufReader::new(file).lines().next().unwrap().unwrap();
             let task_name = TASK_COMMENT_RE.captures(&first_line)
                                            .and_then(|c| c.at(1))
                                            .expect(&format!("could not parse task name for {:?}",
-                                                            entry.path()));
+                                                            path));
 
-            local_tasks.insert(task_name.to_owned(), entry.path().to_owned());
+            local_tasks.insert(task_name.to_owned(), path.to_owned());
         }
 
         TaskIterator {
@@ -140,15 +144,14 @@ impl Iterator for TaskIterator {
             task_url.set_query_from_pairs(&[("action", "raw")]);
 
 
-            let local_code = self.local_tasks
-                                 .get(&normalized_title)
-                                 .and_then(|path| File::open(path).ok())
-                                 .map(|mut file| {
-                                     let mut local_code = String::new();
-                                     file.read_to_string(&mut local_code).unwrap();
-                                     local_code
-                                 });
-
+            let path = self.local_tasks.remove(&normalized_title);
+            let local_code = path.clone().and_then(|path| {
+                File::open(path).ok().map(|mut file| {
+                    let mut local_code = String::new();
+                    file.read_to_string(&mut local_code).unwrap();
+                    local_code
+                })
+            });
 
             let mut res = self.client
                               .get(&task_url.serialize())
@@ -165,11 +168,16 @@ impl Iterator for TaskIterator {
             let mut wiki_url = task_url.clone();
             wiki_url.query = None;
 
+            let relative_path = path.map(|path| {
+                path.strip_prefix(RUST_ROSETTA_SRC.parent().unwrap()).unwrap().to_owned()
+            });
+
             Task {
                 title: title.to_owned(),
                 local_code: local_code,
                 remote_code: remote_code,
                 url: wiki_url.serialize(),
+                path: relative_path,
             }
         })
     }
