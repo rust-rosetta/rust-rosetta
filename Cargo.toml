@@ -58,6 +58,7 @@ authors = [
     "Joel S, https://github.com/bitrauser",
     "Stefan Bostain, https://github.com/zilulil",
     "Fernando Gimenez, https://github.com/pijamarda",
+    "Michael Huynh, https://github.com/miqid"
 ]
 
 [features]
@@ -375,6 +376,11 @@ test = false
 # http://rosettacode.org/wiki/Catalan_numbers
 name = "catalan_numbers"
 path = "src/catalan_numbers.rs"
+
+[[bin]]
+# http://rosettacode.org/wiki/Catamorphism
+name = "catamorphism"
+path = "src/catamorphism.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Character_codes
