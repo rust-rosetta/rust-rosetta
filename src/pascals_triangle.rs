@@ -1,4 +1,4 @@
-// http://rosettacode.org/wiki/Pascal%27s_triangle
+// http://rosettacode.org/wiki/Pascal's_triangle
 
 fn pascaltriangle(rows: usize) -> Vec<Vec<usize>> {
     let mut all_rows = Vec::with_capacity(rows);
