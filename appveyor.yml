@@ -10,6 +10,9 @@ environment:
     BITS: 32
   - TARGET: i686-pc-windows-gnu
     BITS: 32
+
+shallow_clone: true
+
 install:
   - ps: Start-FileDownload "https://static.rust-lang.org/dist/rust-nightly-${env:TARGET}.exe"
   - rust-nightly-%TARGET%.exe /VERYSILENT /NORESTART /DIR="C:\Program Files (x86)\Rust"
