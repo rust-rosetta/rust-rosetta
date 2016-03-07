@@ -1621,6 +1621,11 @@ name = "string_case"
 path = "src/string_case.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/String_comparison
+name = "string_comparison"
+path = "src/string_comparison.rs"
+
+[[bin]]
 # http://rosettacode.org/wiki/String_concatenation
 name = "string_concatenation"
 path = "src/string_concatenation.rs"
