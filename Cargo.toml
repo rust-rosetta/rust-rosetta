@@ -1359,6 +1359,11 @@ name = "range_extraction"
 path = "src/range_extraction.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/Read_entire_file
+name = "read_entire_file"
+path = "src/read_entire_file.rs"
+
+[[bin]]
 # http://rosettacode.org/wiki/Read_a_file_line_by_line
 name = "read_file_line"
 path = "src/read_file_line.rs"
