@@ -528,6 +528,11 @@ name = "dijkstras_algorithm"
 path = "src/dijkstras_algorithm.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/Dining_philosophers
+name = "dining_philosophers"
+path = "src/dining_philosophers.rs"
+
+[[bin]]
 # http://rosettacode.org/wiki/DNS_query
 name = "dns_query"
 path = "src/dns_query.rs"
