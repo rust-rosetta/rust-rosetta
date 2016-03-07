@@ -739,6 +739,11 @@ path = "src/greater_element_list.rs"
 test = false
 
 [[bin]]
+# http://rosettacode.org/wiki/Greatest_common_divisor
+name = "greatest_common_divisor"
+path = "src/greatest_common_divisor.rs"
+
+[[bin]]
 # http://rosettacode.org/wiki/Greatest_subsequential_sum
 name = "greatest_subsequential_sum"
 path = "src/greatest_subsequential_sum.rs"
