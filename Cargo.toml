@@ -1657,6 +1657,11 @@ name = "strip_comments_from_a_string"
 path = "src/strip_comments_from_a_string.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/Strip_whitespace_from_a_string/Top_and_tail
+name = "strip_whitespace_from_a_string_top_and_tail"
+path = "src/strip_whitespace_from_a_string/top_and_tail.rs"
+
+[[bin]]
 # http://rosettacode.org/wiki/Sudoku
 name = "sudoku"
 path = "src/sudoku.rs"
