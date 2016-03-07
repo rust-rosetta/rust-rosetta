@@ -273,6 +273,11 @@ name = "associative_array_creation"
 path = "src/associative_array/creation.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/Associative_array/Iteration
+name = "associative_array_iteration"
+path = "src/associative_array/iteration.rs"
+
+[[bin]]
 # http://rosettacode.org/wiki/Atomic_updates
 name = "atomic_updates"
 path = "src/atomic_updates.rs"
