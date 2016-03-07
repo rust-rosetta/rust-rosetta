@@ -723,6 +723,11 @@ name = "general_fizzbuzz"
 path = "src/general_fizzbuzz.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/Generate_lower_case_ASCII_alphabet
+name = "generate_lower_case_ascii_alphabet"
+path = "src/generate_lower_case_ascii_alphabet.rs"
+
+[[bin]]
 # http://rosettacode.org/wiki/Gray_code
 name = "gray_code"
 path = "src/gray_code.rs"
