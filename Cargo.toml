@@ -996,6 +996,11 @@ name = "knuth_shuffle"
 path = "src/knuth_shuffle.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/Langton's_ant
+name = "langtons_ant"
+path = "src/langtons_ant.rs"
+
+[[bin]]
 # http://rosettacode.org/wiki/Leap_year
 name = "leap_year"
 path = "src/leap_year.rs"
