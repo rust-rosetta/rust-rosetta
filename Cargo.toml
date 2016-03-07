@@ -1732,6 +1732,11 @@ path = "src/towers_of_hanoi.rs"
 test = false
 
 [[bin]]
+# http://rosettacode.org/wiki/Ulam_spiral_(for_primes)
+name = "ulam_spiral_for_primes"
+path = "src/ulam_spiral_for_primes.rs"
+
+[[bin]]
 # http://rosettacode.org/wiki/Unix/ls
 name = "unix_ls"
 path = "src/unix/ls.rs"
