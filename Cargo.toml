@@ -902,6 +902,11 @@ name = "include_a_file"
 path = "src/include_a_file.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/Increment_a_numerical_string
+name = "increment_a_numerical_string"
+path = "src/increment_a_numerical_string.rs"
+
+[[bin]]
 # http://rosettacode.org/wiki/Infinity
 name = "infinity"
 path = "src/infinity.rs"
