@@ -817,6 +817,11 @@ name = "hello_world_line_printer"
 path = "src/hello_world/line_printer.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/Hello_world/Newbie
+name = "hello_world_newbie"
+path = "src/hello_world/newbie.rs"
+
+[[bin]]
 # http://rosettacode.org/wiki/Hello_world/Newline_omission
 name = "hello_world_newline_omission"
 path = "src/hello_world/newline_omission.rs"
