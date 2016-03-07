@@ -62,7 +62,6 @@ authors = [
 ]
 
 [features]
-unixOnly = ["rustbox"]
 with-gtk = ["gtk"]
 with-ncurses = ["ncurses"]
 
@@ -81,8 +80,8 @@ time = "0.1"
 unicode-segmentation = "0.1"
 url = "0.5"
 
-# dependency does not compile on Windows, currently only used for 2048
-rustbox = { version = "*", optional = true }
+[target.'cfg(unix)'.dependencies]
+rustbox = "0.8"
 
 # requires GTK library
 gtk = { git = "https://github.com/gtk-rs/gtk.git", optional = true }
