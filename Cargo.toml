@@ -1116,6 +1116,11 @@ name = "luhn_test"
 path = "src/luhn_test.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/Lychrel_numbers
+name = "lychrel_numbers"
+path = "src/lychrel_numbers.rs"
+
+[[bin]]
 # http://rosettacode.org/wiki/LZW_compression
 name = "lzw"
 path = "src/lzw.rs"
