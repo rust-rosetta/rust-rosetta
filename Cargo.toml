@@ -1710,6 +1710,11 @@ name = "taxicab_numbers"
 path = "src/taxicab_numbers.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/The_Twelve_Days_of_Christmas
+name = "the_twelve_days_of_christmas"
+path = "src/the_twelve_days_of_christmas.rs"
+
+[[bin]]
 # http://rosettacode.org/wiki/Tic-tac-toe
 name = "tic_tac_toe"
 path = "src/tic_tac_toe.rs"
