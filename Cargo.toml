@@ -698,6 +698,11 @@ name = "fork"
 path = "src/fork.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/Formatted_numeric_output
+name = "formatted_numeric_output"
+path = "src/formatted_numeric_output.rs"
+
+[[bin]]
 # http://rosettacode.org/wiki/Four_bit_adder
 name = "four_bit_adder"
 path = "src/four_bit_adder.rs"
