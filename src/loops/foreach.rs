@@ -1,8 +1,33 @@
-// http://rosettacode.org/wiki/Loops/For
+// http://rosettacode.org/wiki/Loops/Foreach
 
 use std::collections::HashMap;
 
 fn main() {
+    // Rust's for-loop already is a foreach-loop.
+    let collection = vec![1, 2, 3, 4, 5];
+    for elem in collection {
+        println!("{}", elem);
+    }
+
+    // Do note that Rust moves values by default and doesn't copy them. A vector would be unusable
+    // after looping over it like above. To preserve it, borrow it or use an Iter, to mutate values
+    // do a mutable borrow or create an IterMut. To get an immutable reference omit the mut-part.
+
+    let mut collection = vec![1, 2, 3, 4, 5];
+    for mut_ref in &mut collection {
+        // alternatively:
+        // for mut_ref in collection.iter_mut() {
+        *mut_ref *= 2;
+        println!("{}", *mut_ref);
+    }
+
+    // immutable borrow
+    for immut_ref in &collection {
+        // alternatively:
+        // for immut_ref in collection.iter() {
+        println!("{}", *immut_ref);
+    }
+
     // Iterate through the characters of a string
     let s = "hello, world!";
     for i in s.chars() {

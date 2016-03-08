@@ -273,6 +273,11 @@ name = "associative_array_creation"
 path = "src/associative_array/creation.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/Associative_array/Iteration
+name = "associative_array_iteration"
+path = "src/associative_array/iteration.rs"
+
+[[bin]]
 # http://rosettacode.org/wiki/Atomic_updates
 name = "atomic_updates"
 path = "src/atomic_updates.rs"
@@ -523,6 +528,11 @@ name = "dijkstras_algorithm"
 path = "src/dijkstras_algorithm.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/Dining_philosophers
+name = "dining_philosophers"
+path = "src/dining_philosophers.rs"
+
+[[bin]]
 # http://rosettacode.org/wiki/DNS_query
 name = "dns_query"
 path = "src/dns_query.rs"
@@ -688,6 +698,11 @@ name = "fork"
 path = "src/fork.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/Formatted_numeric_output
+name = "formatted_numeric_output"
+path = "src/formatted_numeric_output.rs"
+
+[[bin]]
 # http://rosettacode.org/wiki/Four_bit_adder
 name = "four_bit_adder"
 path = "src/four_bit_adder.rs"
@@ -708,6 +723,11 @@ name = "general_fizzbuzz"
 path = "src/general_fizzbuzz.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/Generate_lower_case_ASCII_alphabet
+name = "generate_lower_case_ascii_alphabet"
+path = "src/generate_lower_case_ascii_alphabet.rs"
+
+[[bin]]
 # http://rosettacode.org/wiki/Gray_code
 name = "gray_code"
 path = "src/gray_code.rs"
@@ -717,6 +737,11 @@ path = "src/gray_code.rs"
 name = "greater_element_list"
 path = "src/greater_element_list.rs"
 test = false
+
+[[bin]]
+# http://rosettacode.org/wiki/Greatest_common_divisor
+name = "greatest_common_divisor"
+path = "src/greatest_common_divisor.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Greatest_subsequential_sum
@@ -790,6 +815,11 @@ path = "src/hello_world/graphical.rs"
 # http://www.rosettacode.org/wiki/Hello_world/Line_printer
 name = "hello_world_line_printer"
 path = "src/hello_world/line_printer.rs"
+
+[[bin]]
+# http://rosettacode.org/wiki/Hello_world/Newbie
+name = "hello_world_newbie"
+path = "src/hello_world/newbie.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Hello_world/Newline_omission
@@ -872,6 +902,11 @@ name = "include_a_file"
 path = "src/include_a_file.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/Increment_a_numerical_string
+name = "increment_a_numerical_string"
+path = "src/increment_a_numerical_string.rs"
+
+[[bin]]
 # http://rosettacode.org/wiki/Infinity
 name = "infinity"
 path = "src/infinity.rs"
@@ -916,6 +951,11 @@ name = "jensens_device"
 path = "src/jensens_device.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/JortSort
+name = "jortsort"
+path = "src/jortsort.rs"
+
+[[bin]]
 # http://rosettacode.org/wiki/Josephus_problem
 name = "josephus_problem"
 path = "src/josephus_problem.rs"
@@ -954,6 +994,11 @@ path = "src/knights_tour.rs"
 # http://rosettacode.org/wiki/Knuth_shuffle
 name = "knuth_shuffle"
 path = "src/knuth_shuffle.rs"
+
+[[bin]]
+# http://rosettacode.org/wiki/Langton's_ant
+name = "langtons_ant"
+path = "src/langtons_ant.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Leap_year
@@ -1071,6 +1116,11 @@ name = "luhn_test"
 path = "src/luhn_test.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/Lychrel_numbers
+name = "lychrel_numbers"
+path = "src/lychrel_numbers.rs"
+
+[[bin]]
 # http://rosettacode.org/wiki/LZW_compression
 name = "lzw"
 path = "src/lzw.rs"
@@ -1119,6 +1169,11 @@ path = "src/metaprogramming.rs"
 # http://rosettacode.org/wiki/Metered_concurrency
 name = "metered_concurrency"
 path = "src/metered_concurrency.rs"
+
+[[bin]]
+# http://rosettacode.org/wiki/Middle_three_digits
+name = "middle_three_digits"
+path = "src/middle_three_digits.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Modular_exponentiation
@@ -1302,6 +1357,11 @@ path = "src/range_expansion.rs"
 # http://rosettacode.org/wiki/Range_extraction
 name = "range_extraction"
 path = "src/range_extraction.rs"
+
+[[bin]]
+# http://rosettacode.org/wiki/Read_entire_file
+name = "read_entire_file"
+path = "src/read_entire_file.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Read_a_file_line_by_line
@@ -1561,6 +1621,11 @@ name = "string_case"
 path = "src/string_case.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/String_comparison
+name = "string_comparison"
+path = "src/string_comparison.rs"
+
+[[bin]]
 # http://rosettacode.org/wiki/String_concatenation
 name = "string_concatenation"
 path = "src/string_concatenation.rs"
@@ -1590,6 +1655,11 @@ path = "src/string_matching.rs"
 # http://rosettacode.org/wiki/Strip_comments_from_a_string
 name = "strip_comments_from_a_string"
 path = "src/strip_comments_from_a_string.rs"
+
+[[bin]]
+# http://rosettacode.org/wiki/Strip_whitespace_from_a_string/Top_and_tail
+name = "strip_whitespace_from_a_string_top_and_tail"
+path = "src/strip_whitespace_from_a_string/top_and_tail.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Sudoku
@@ -1640,6 +1710,11 @@ name = "taxicab_numbers"
 path = "src/taxicab_numbers.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/The_Twelve_Days_of_Christmas
+name = "the_twelve_days_of_christmas"
+path = "src/the_twelve_days_of_christmas.rs"
+
+[[bin]]
 # http://rosettacode.org/wiki/Tic-tac-toe
 name = "tic_tac_toe"
 path = "src/tic_tac_toe.rs"
@@ -1655,6 +1730,16 @@ test = false
 name = "towers_of_hanoi"
 path = "src/towers_of_hanoi.rs"
 test = false
+
+[[bin]]
+# http://rosettacode.org/wiki/Ulam_spiral_(for_primes)
+name = "ulam_spiral_for_primes"
+path = "src/ulam_spiral_for_primes.rs"
+
+[[bin]]
+# http://rosettacode.org/wiki/Unicode_variable_names
+name = "unicode_variable_names"
+path = "src/unicode_variable_names.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Unix/ls
