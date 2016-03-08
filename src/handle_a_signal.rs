@@ -8,6 +8,7 @@ use std::sync::atomic::{AtomicBool, ATOMIC_BOOL_INIT, Ordering};
 use std::thread;
 use std::time::Duration;
 
+#[cfg(unix)]
 use libc::SIGINT;
 
 #[cfg(unix)]
