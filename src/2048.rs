@@ -3,7 +3,7 @@
 //! Based on the C++ version: http://rosettacode.org/wiki/2048#C.2B.2B
 //! Uses rustbox (termbox) to draw the board.
 
-#[cfg(feature = "unixOnly")]
+#[cfg(unix)]
 mod mod2048 {
     extern crate rustbox;
     extern crate rand;
@@ -61,11 +61,11 @@ mod mod2048 {
             match self.rustbox.poll_event(false) {
                 Ok(rustbox::Event::KeyEvent(key)) => {
                     match key {
-                        Some(RKey::Char('q')) => Some(Key::Char('q')),
-                        Some(RKey::Up) => Some(Key::Up),
-                        Some(RKey::Down) => Some(Key::Down),
-                        Some(RKey::Left) => Some(Key::Left),
-                        Some(RKey::Right) => Some(Key::Right),
+                        RKey::Char('q') => Some(Key::Char('q')),
+                        RKey::Up => Some(Key::Up),
+                        RKey::Down => Some(Key::Down),
+                        RKey::Left => Some(Key::Left),
+                        RKey::Right => Some(Key::Right),
                         _ => None,
                     }
                 }
@@ -508,11 +508,13 @@ mod mod2048 {
     }
 }
 
-#[cfg(feature = "unixOnly")]
+#[cfg(unix)]
 fn main() {
     mod2048::main();
 }
 
 // main to make the compiler happy when 2048 feature is disabled.
-#[cfg(not(feature = "unixOnly"))]
-fn main() {}
+#[cfg(not(unix))]
+fn main() {
+    println!("This solution is not supported on Windows.");
+}
