@@ -11,7 +11,7 @@ A repository for completing [this issue on rust-lang/rust](https://github.com/ru
 
 [List of Tasks Remaining](http://rosettacode.org/wiki/Reports:Tasks_not_implemented_in_Rust)
 
-> Important: Not all `rust-rosetta` tasks exist in their current form on Rosetta Code. Please cross-check with this repository before you start.
+> Important: Not all `rust-rosetta` tasks exist in their current form on Rosetta Code. Please cross-check with this repository before you start. Alternatively, check out [rust-rosetta coverage](https://euclio.github.io/rosetta-coverage) to see an automatically generated report of which tasks have been implemented where.
 
 ### Coverage ###
 
