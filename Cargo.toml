@@ -1565,6 +1565,11 @@ name = "sort_int"
 path = "src/sort_int.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/Sort_using_a_custom_comparator
+name = "sort_using_custom_comparator"
+path = "src/sort_using_custom_comparator.rs"
+
+[[bin]]
 # http://rosettacode.org/wiki/Sorting_algorithms/Bubble_sort
 name = "sorting_algorithms_bubble_sort"
 path = "src/sorting_algorithms/bubble_sort.rs"
