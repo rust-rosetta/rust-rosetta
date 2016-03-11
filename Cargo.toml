@@ -1560,6 +1560,11 @@ name = "sockets"
 path = "src/sockets.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/Sort_an_array_of_composite_structures
+name = "sort_an_array_of_composites"
+path = "src/sort_an_array_of_composites.rs"
+
+[[bin]]
 # http://rosettacode.org/wiki/Sort_an_integer_array
 name = "sort_an_int_array"
 path = "src/sort_an_int_array.rs"
