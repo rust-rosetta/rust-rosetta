@@ -66,6 +66,7 @@ authors = [
 [features]
 with-gtk = ["gtk"]
 with-ncurses = ["ncurses"]
+with-xlib = ["x11/xlib"]
 
 [dependencies]
 docopt = "0.6"
@@ -84,6 +85,13 @@ url = "0.5"
 
 [target.'cfg(unix)'.dependencies]
 rustbox = "0.8"
+
+[target.'cfg(target_os="linux")'.dependencies]
+x11 = "2.3.1"
+
+[target.'cfg(windows)'.dependencies]
+winapi = "0.2.6"
+user32-sys = "0.1.2"
 
 # requires GTK library
 gtk = { git = "https://github.com/gtk-rs/gtk.git", optional = true }
@@ -1196,6 +1204,11 @@ path = "src/modular_inverse.rs"
 name = "monte_carlo_methods"
 path = "src/monte_carlo_methods.rs"
 test = false
+
+[[bin]]
+# https://rosettacode.org/wiki/Mouse_position
+name = "mouse_position"
+path = "src/mouse_position.rs"
 
 [[bin]]
 # https://rosettacode.org/wiki/Multiplication_tables
