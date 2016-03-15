@@ -58,7 +58,8 @@ authors = [
     "Joel S, https://github.com/bitrauser",
     "Stefan Bostain, https://github.com/zilulil",
     "Fernando Gimenez, https://github.com/pijamarda",
-    "Michael Huynh, https://github.com/miqid"
+    "Michael Huynh, https://github.com/miqid",
+    "Marc Tiehuis, https://github.com/tiehuis"
 ]
 
 [features]
@@ -1224,6 +1225,11 @@ path = "src/number_classifications.rs"
 # http://rosettacode.org/wiki/Numerical_integration
 name = "numerical_integration"
 path = "src/numerical_integration.rs"
+
+[[bin]]
+# http://rosettacode.org/wiki/One_of_n_lines_in_a_file
+name = "one_of_n_lines_in_a_file"
+path = "src/one_of_n_lines_in_a_file.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Ordered_words
