@@ -56,29 +56,24 @@ mod tests {
         let b_vec: Vec<(i32, &str)> = vec![(3, "owe"), (4, "you")];
         let c_vec = concatenate_arrays::<(i32, &str)>(a_vec.as_slice(), b_vec.as_slice());
 
-        assert_eq!(c_vec, [(0, "hay"), (1, "ye"), (2, "eye"), (3, "owe"), (4, "you")]);
+        assert_eq!(c_vec,
+                   [(0, "hay"), (1, "ye"), (2, "eye"), (3, "owe"), (4, "you")]);
     }
 
     #[test]
     fn test_concatenation_struct() {
-        let a_vec: Vec<Dummy> = vec![
-            Dummy { a: 0.0, b: "hay"},
-            Dummy { a: 1.1, b: "ye"},
-            Dummy { a: 2.2, b: "eye"}
-        ];
-        let b_vec: Vec<Dummy> = vec![
-            Dummy { a: 3.3, b: "owe"},
-            Dummy { a: 4.4, b: "you"},
-        ];
+        let a_vec: Vec<Dummy> = vec![Dummy { a: 0.0, b: "hay" },
+                                     Dummy { a: 1.1, b: "ye" },
+                                     Dummy { a: 2.2, b: "eye" }];
+        let b_vec: Vec<Dummy> = vec![Dummy { a: 3.3, b: "owe" }, Dummy { a: 4.4, b: "you" }];
 
         let c_vec = concatenate_arrays::<Dummy>(a_vec.as_slice(), b_vec.as_slice());
 
-        assert_eq!(c_vec, [
-            Dummy { a: 0.0, b: "hay"},
-            Dummy { a: 1.1, b: "ye"},
-            Dummy { a: 2.2, b: "eye"},
-            Dummy { a: 3.3, b: "owe"},
-            Dummy { a: 4.4, b: "you"},
-        ]);
+        assert_eq!(c_vec,
+                   [Dummy { a: 0.0, b: "hay" },
+                    Dummy { a: 1.1, b: "ye" },
+                    Dummy { a: 2.2, b: "eye" },
+                    Dummy { a: 3.3, b: "owe" },
+                    Dummy { a: 4.4, b: "you" }]);
     }
 }
