@@ -1560,9 +1560,24 @@ name = "sockets"
 path = "src/sockets.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/Sort_an_array_of_composite_structures
+name = "sort_an_array_of_composites"
+path = "src/sort_an_array_of_composites.rs"
+
+[[bin]]
 # http://rosettacode.org/wiki/Sort_an_integer_array
-name = "sort_int"
-path = "src/sort_int.rs"
+name = "sort_an_int_array"
+path = "src/sort_an_int_array.rs"
+
+[[bin]]
+# http://rosettacode.org/wiki/Sort_disjoint_sublist
+name = "sort_disjoint_sublist"
+path = "src/sort_disjoint_sublist.rs"
+
+[[bin]]
+# http://rosettacode.org/wiki/Sort_using_a_custom_comparator
+name = "sort_using_custom_comparator"
+path = "src/sort_using_custom_comparator.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Sorting_algorithms/Bubble_sort
