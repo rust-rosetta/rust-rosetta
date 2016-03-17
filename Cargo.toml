@@ -482,6 +482,11 @@ name = "continued_fraction"
 path = "src/continued_fraction.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/Continued_fraction/Arithmetic/Construct_from_rational_number
+name = "continued_fraction_from_rational"
+path = "src/continued_fraction_from_rational.rs"
+
+[[bin]]
 # http://rosettacode.org/wiki/Convert_seconds_to_compound_duration
 name = "convert_seconds_to_compound_duration"
 path = "src/convert_seconds_to_compound_duration.rs"
