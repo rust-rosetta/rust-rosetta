@@ -384,6 +384,11 @@ path = "src/callback_to_array.rs"
 test = false
 
 [[bin]]
+# http://rosettacode.org/wiki/Carmichael_3_strong_pseudoprimes
+name = "carmichael_3_strong_pseudoprimes"
+path = "src/carmichael_3_strong_pseudoprimes.rs"
+
+[[bin]]
 # http://rosettacode.org/wiki/Catalan_numbers
 name = "catalan_numbers"
 path = "src/catalan_numbers.rs"
