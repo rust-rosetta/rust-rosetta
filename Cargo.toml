@@ -60,6 +60,7 @@ authors = [
     "Fernando Gimenez, https://github.com/pijamarda",
     "Michael Huynh, https://github.com/miqid",
     "Marc Tiehuis, https://github.com/tiehuis"
+    "Dillon Tracy, https://github.com/ibnopcit"
 ]
 
 [features]
@@ -250,6 +251,11 @@ test = false
 # http://rosettacode.org/wiki/Arithmetic/Rational
 name = "arithmetic_rational"
 path = "src/arithmetic/rational.rs"
+
+[[bin]]
+# http://www.rosettacode.org/wiki/Array_concatenation
+name = "array_concatenation"
+path = "src/array_concatenation.rs"
 
 [[bin]]
 # http://www.rosettacode.org/wiki/Array_length
