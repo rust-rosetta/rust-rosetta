@@ -4,14 +4,14 @@
 
 extern crate rand;
 
-use rand::{thread_rng};
+use rand::{ThreadRng, thread_rng};
 use rand::distributions::{IndependentSample, Range};
-use std::collections::{HashMap, HashSet};
+use std::collections::HashSet;
 use std::env;
 use std::process;
 
 fn help() {
-    println!("usage: average_loop_length <max N> <trials>");
+    println!("usage: average_loop_length <max_N> <trials>");
 }
 
 fn main() {
@@ -20,70 +20,60 @@ fn main() {
     let mut trials: u32 = 1000;
 
     match args.len() {
-        1 => {},
+        1 => {}
         3 => {
             max_n = args[1].parse::<u32>().unwrap();
             trials = args[2].parse::<u32>().unwrap();
-        },
+        }
         _ => {
             help();
             process::exit(0);
         }
     }
 
+    let mut rng = thread_rng();
+
     println!(" N    average    analytical    (error)");
     println!("===  =========  ============  =========");
     for n in 1..(max_n + 1) {
         let the_analytical = analytical(n);
-        let the_empirical = empirical(n, trials);
+        let the_empirical = empirical(n, trials, &mut rng);
         println!(" {:>2}     {:3.4}        {:3.4}  ( {:>+1.2}%)",
-            n,
-            the_empirical,
-            the_analytical,
-            100f64 * (the_empirical / the_analytical - 1f64)
-        );
+                 n,
+                 the_empirical,
+                 the_analytical,
+                 100f64 * (the_empirical / the_analytical - 1f64));
     }
 }
 
 fn factorial(n: u32) -> f64 {
-    (1..n+1).fold(1f64, |p, n| p*n as f64)
+    (1..n + 1).fold(1f64, |p, n| p * n as f64)
 }
 
 fn analytical(n: u32) -> f64 {
-    let sum: f64 = (1..(n+1)).map(|i| {
-        factorial(n) /
-        (n as f64).powi(i as i32) /
-        factorial(n - i)
-    }).fold(0f64, |a, v| a+v);
+    let sum: f64 = (1..(n + 1))
+                       .map(|i| factorial(n) / (n as f64).powi(i as i32) / factorial(n - i))
+                       .fold(0f64, |a, v| a + v);
     sum
 }
 
-fn make_mapping(n: u32) -> HashMap<u32, u32> {
-    let mut mapping: HashMap<u32, u32> = HashMap::new();
-    let mut rng = thread_rng();
-    let range = Range::new(1u32, n+1);
-    for i in 1..n+1 {
-        mapping.insert(i as u32, range.ind_sample(&mut rng));
-    }
-    mapping
-}
+fn empirical(n: u32, trials: u32, rng: &mut ThreadRng) -> f64 {
+    let sum: f64 = (0..trials)
+                       .map(|_t| {
+                           let mut item = 1u32;
+                           let mut seen = HashSet::new();
+                           let range = Range::new(1u32, n + 1);
 
-fn empirical(n: u32, trials: u32) -> f64 {
-    let sum: f64 = (0..trials).map(|_t| {
-        let a_mapping = make_mapping(n);
-        let mut item = 1u32;
-        let mut seen = HashSet::new();
-        seen.insert(item);
-
-        for step in 1..(n+1) {
-            item = *a_mapping.get(&item).unwrap();
-            if seen.contains(&item) {
-                return step as f64;
-            }
-            seen.insert(item);
-        }
-        n as f64
-    }).fold(0f64, |a, v| a+v);
+                           for step in 0..n {
+                               if seen.contains(&item) {
+                                   return step as f64;
+                               }
+                               seen.insert(item);
+                               item = range.ind_sample(rng);
+                           }
+                           n as f64
+                       })
+                       .fold(0f64, |a, v| a + v);
     sum / trials as f64
 }
 
@@ -91,6 +81,7 @@ fn empirical(n: u32, trials: u32) -> f64 {
 #[cfg(test)]
 mod tests {
     use super::{factorial, analytical, empirical};
+    use rand::{thread_rng};
 
     #[test]
     fn test_factorial() {
@@ -99,13 +90,14 @@ mod tests {
 
     #[test]
     fn test_analytical() {
-        assert!((analytical(10)-3.6602).abs() < 0.0001);
-        assert!((analytical(20)-5.2936).abs() < 0.0001);
+        assert!((analytical(10) - 3.6602).abs() < 0.0001);
+        assert!((analytical(20) - 5.2936).abs() < 0.0001);
     }
 
     #[test]
     fn test_empirical() {
-        let emp = empirical(20, 10000);
+        let mut rng = thread_rng();
+        let emp = empirical(20, 10000, &mut rng);
         let ana = analytical(20);
         assert!((emp / ana - 1f64).abs() < 0.05);
     }
