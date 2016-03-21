@@ -1016,6 +1016,11 @@ name = "json"
 path = "src/json.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/Jaro_distance
+name = "jaro_distance"
+path = "src/jaro_distance.rs"
+
+[[bin]]
 # http://rosettacode.org/wiki/K-d_tree
 name = "k-d-tree"
 path = "src/k-d-tree.rs"
