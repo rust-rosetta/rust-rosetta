@@ -321,6 +321,11 @@ path = "src/benford.rs"
 test = false
 
 [[bin]]
+# http://rosettacode.org/wiki/Bernoulli_numbers
+name = "bernoulli_numbers"
+path = "src/bernoulli_numbers.rs"
+
+[[bin]]
 # http://rosettacode.org/wiki/Binary_digits
 name = "binary_digits"
 path = "src/binary_digits.rs"
