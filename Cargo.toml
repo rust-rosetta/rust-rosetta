@@ -1628,6 +1628,11 @@ name = "sorting_algorithms_quick_sort"
 path = "src/sorting_algorithms/quick_sort.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/Sorting_algorithms/Selection_sort
+name = "sorting_algorithms_selection_sort"
+path = "src/sorting_algorithms/selection_sort.rs"
+
+[[bin]]
 # http://rosettacode.org/wiki/Sorting_algorithms/Sleep_sort
 name = "sorting_algorithms_sleep_sort"
 path = "src/sorting_algorithms/sleep_sort.rs"
