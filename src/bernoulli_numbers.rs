@@ -1,7 +1,8 @@
 // http://rosettacode.org/wiki/Bernoulli_numbers
 
-// Relative speeds of optimized, iterator, and naive implementations is
-// 625:25:1
+// 2.5 implementations here:  naive, optimized, and an iterator using
+// the optimized function. The speeds vary significantly: relative
+// speeds of optimized:iterator:naive implementations is 625:25:1.
 
 #![feature(test)]
 
