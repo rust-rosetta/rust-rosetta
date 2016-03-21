@@ -1,9 +1,9 @@
 // http://rosettacode.org/wiki/Sorting_algorithms/Selection_sort
 
 fn selection_sort<T: Ord>(v: &mut [T]) {
-    
+
     let len = v.len();
-    
+
     for j in 0..len - 1 {
         let mut min_index = j;
         for i in j + 1..len {
