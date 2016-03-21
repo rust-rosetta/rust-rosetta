@@ -40,7 +40,7 @@ fn jaro(str1: &str, str2: &str) -> f64 {
             if str2_matches[k] {
                 continue;
             }
-            // if chars at str1 and str2 are not equal at k
+            // if str1 at i and str2 at k are not equal
             if str1.chars().nth(i).unwrap() != str2.chars().nth(k).unwrap() {
                 continue;
             }
