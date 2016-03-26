@@ -349,6 +349,11 @@ name = "binomial_coefficients"
 path = "src/binomial_coefficients.rs"
 
 [[bin]]
+# https://rosettacode.org/wiki/Bitcoin/address_validation
+name = "bitcoin_address_validation"
+path = "src/bitcoin/address_validation.rs"
+
+[[bin]]
 # http://rosettacode.org/wiki/Basic_bitmap_storage
 name = "bitmap"
 path = "src/bitmap.rs"
