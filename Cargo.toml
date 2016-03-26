@@ -392,6 +392,11 @@ path = "src/callback_to_array.rs"
 test = false
 
 [[bin]]
+# http://rosettacode.org/wiki/Carmichael_3_strong_pseudoprimes
+name = "carmichael_3_strong_pseudoprimes"
+path = "src/carmichael_3_strong_pseudoprimes.rs"
+
+[[bin]]
 # http://rosettacode.org/wiki/Catalan_numbers
 name = "catalan_numbers"
 path = "src/catalan_numbers.rs"
@@ -483,6 +488,16 @@ path = "src/compound_data_type.rs"
 name = "concurrent_computing"
 path = "src/concurrent_computing.rs"
 test = false
+
+[[bin]]
+# http://rosettacode.org/wiki/Continued_fraction
+name = "continued_fraction"
+path = "src/continued_fraction.rs"
+
+[[bin]]
+# http://rosettacode.org/wiki/Continued_fraction/Arithmetic/Construct_from_rational_number
+name = "continued_fraction_from_rational"
+path = "src/continued_fraction_from_rational.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Convert_seconds_to_compound_duration
