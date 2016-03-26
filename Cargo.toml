@@ -297,6 +297,11 @@ name = "atomic_updates"
 path = "src/atomic_updates.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/Average_loop_length
+name = "average_loop_length"
+path = "src/average_loop_length.rs"
+
+[[bin]]
 # http://rosettacode.org/wiki/Averages/Arithmetic_mean
 name = "averages_arithmetic_mean"
 path = "src/averages/arithmetic_mean.rs"
