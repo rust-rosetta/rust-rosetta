@@ -61,7 +61,8 @@ authors = [
     "Michael Huynh, https://github.com/miqid",
     "Marc Tiehuis, https://github.com/tiehuis",
     "Dillon Tracy, https://github.com/ibnopcit",
-    "Orhan Balci, https://github.com/orhanbalci"    
+    "Orhan Balci, https://github.com/orhanbalci",
+    "Jesús Espino, https://github.com/jespino"
 ]
 
 [features]
@@ -1799,6 +1800,12 @@ test = false
 # http://rosettacode.org/wiki/Towers_of_Hanoi
 name = "towers_of_hanoi"
 path = "src/towers_of_hanoi.rs"
+test = false
+
+[[bin]]
+# http://rosettacode.org/wiki/Truncate_a_file
+name = "truncate-a-file"
+path = "src/truncate_a_file.rs"
 test = false
 
 [[bin]]
