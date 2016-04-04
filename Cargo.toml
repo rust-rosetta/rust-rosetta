@@ -953,6 +953,11 @@ name = "iterated_digits_squaring"
 path = "src/iterated_digits_squaring.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/Jaro_distance
+name = "jaro_distance"
+path = "src/jaro_distance.rs"
+
+[[bin]]
 # http://rosettacode.org/wiki/Jensen's_Device
 name = "jensens_device"
 path = "src/jensens_device.rs"
@@ -971,11 +976,6 @@ path = "src/josephus_problem.rs"
 # http://rosettacode.org/wiki/JSON
 name = "json"
 path = "src/json.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Jaro_distance
-name = "jaro_distance"
-path = "src/jaro_distance.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/K-d_tree
