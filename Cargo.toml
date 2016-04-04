@@ -60,7 +60,8 @@ authors = [
     "Fernando Gimenez, https://github.com/pijamarda",
     "Michael Huynh, https://github.com/miqid",
     "Marc Tiehuis, https://github.com/tiehuis",
-    "Dillon Tracy, https://github.com/ibnopcit"
+    "Dillon Tracy, https://github.com/ibnopcit",
+    "Orhan Balci, https://github.com/orhanbalci"    
 ]
 
 [features]
@@ -1173,6 +1174,11 @@ path = "src/magic_squares_of_odd_order.rs"
 # http://rosettacode.org/wiki/Man_or_boy_test
 name = "man_or_boy"
 path = "src/man_or_boy.rs"
+
+[[bin]]
+# http://rosettacode.org/wiki/Map_range
+name = "map_range"
+path = "src/map_range.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Execute_a_Markov_algorithm
