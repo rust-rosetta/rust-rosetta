@@ -61,16 +61,9 @@ authors = [
     "Michael Huynh, https://github.com/miqid",
     "Marc Tiehuis, https://github.com/tiehuis",
     "Dillon Tracy, https://github.com/ibnopcit",
-<<<<<<< HEAD
-<<<<<<< 309fd13ee14d64c062df98dbde8c5617f92e18b9
     "Orhan Balci, https://github.com/orhanbalci",
     "Jesús Espino, https://github.com/jespino"
-=======
     "Allen Bui, https://github.com/allenbui94"
->>>>>>> format jaro_distance.rs and add name to contributors
-=======
-    "Allen Bui, https://github.com/allenbui94"
->>>>>>> 590e3751af7421ea6ba854b37f1d8e0dca76712e
 ]
 
 [features]
