@@ -1,0 +1,32 @@
+environment:
+  OPENSSL_LIBS: ssleay32:libeay32
+  RUST_DIR: C:\Rust\
+  matrix:
+  - TARGET: x86_64-pc-windows-msvc
+    BITS: 64
+  - TARGET: i686-pc-windows-msvc
+    BITS: 32
+  - TARGET: i686-pc-windows-gnu
+    BITS: 32
+
+shallow_clone: true
+
+install:
+  - ps: Start-FileDownload "https://static.rust-lang.org/dist/rust-nightly-${env:TARGET}.msi"
+  - msiexec /i rust-nightly-%TARGET%.msi /quiet /passive /qn /norestart INSTALLDIR=%RUST_DIR%
+  - SET PATH=%PATH%;%RUST_DIR%\bin
+  - SET PATH=%PATH%;C:\MinGW\bin
+  - SET OPENSSL_INCLUDE_DIR=C:\OpenSSL-Win%BITS%\include
+  - SET OPENSSL_LIB_DIR=C:\OpenSSL-Win%BITS%\lib
+  - rustc -V
+  - cargo -V
+
+build: false
+
+test_script:
+  # The copy helps DLL search resolve compatible versions of OpenSSL DLLs for
+  # the build target executable. This works around the AppVeyor build
+  # environment preferring to load DLLs that would be incompatible with 64-bit
+  # build configurations.
+  - ps: cp -path "C:\OpenSSL-Win${env:BITS}\*.dll" -destination (md -force "$env:APPVEYOR_BUILD_FOLDER\target\debug")
+  - cargo test

@@ -30,7 +30,6 @@ fn mod_exp(b: &BigUint, e: &BigUint, n: &BigUint) -> Result<BigUint, &'static st
     Ok(result)
 }
 
-#[cfg(not(test))]
 fn main() {
     let msg = "Rosetta Code";
 
@@ -107,4 +106,3 @@ mod tests {
         assert_eq!(Err("base and modulus are not relatively prime"), result);
     }
 }
-

@@ -17,7 +17,6 @@ fn test_ack() {
     assert_eq!(expected, found)
 }
 
-#[cfg(not(test))]
 fn main() {
     let a = ack(3, 4);
     println!("{}", a);

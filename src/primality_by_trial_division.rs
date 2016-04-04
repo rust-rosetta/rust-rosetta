@@ -12,7 +12,6 @@ fn is_prime(number: i32) -> bool {
     (3..limit).step_by(2).all(|x| number % x != 0)
 }
 
-#[cfg(not(test))]
 fn main() {
     println!("{}", is_prime(15485863)); // The 1 000 000th prime.
     println!("{}", is_prime(62773913)); // The product of the 1000th and 1001st primes.

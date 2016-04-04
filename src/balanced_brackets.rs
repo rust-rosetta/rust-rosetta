@@ -1,6 +1,4 @@
 // http://rosettacode.org/wiki/Balanced_brackets
- // feature(rand) is used only in main
-
 
 extern crate rand;
 
@@ -17,11 +15,13 @@ impl<'a> Balanced for str {
             let change = match bracket {
                 '[' => 1,
                 ']' => -1,
-                _ => panic!("Strings should only contain brackets")
+                _ => panic!("Strings should only contain brackets"),
             };
 
             count += change;
-            if count < 0 { return false; }
+            if count < 0 {
+                return false;
+            }
         }
 
         count == 0
@@ -29,15 +29,20 @@ impl<'a> Balanced for str {
 }
 
 /// Generates random brackets
-#[cfg(not(test))]
-
 fn generate_brackets(num: usize) -> String {
     use rand::random;
 
-    (0..num).map(|_| if random() { '[' } else { ']' }).collect()
+    (0..num)
+        .map(|_| {
+            if random() {
+                '['
+            } else {
+                ']'
+            }
+        })
+        .collect()
 }
 
-#[cfg(not(test))]
 fn main() {
     for i in 0..10 {
         let brackets = generate_brackets(i);

@@ -20,7 +20,7 @@ fn main() {
         // Handle any errors that may arise
         match line {
             Ok(ln) => print!("{}", ln),
-            Err(error) => print!("{}", error)
+            Err(error) => print!("{}", error),
         }
     }
     println!("");

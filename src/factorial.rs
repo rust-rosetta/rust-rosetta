@@ -1,20 +1,22 @@
 // http://rosettacode.org/wiki/Factorial
-#![cfg_attr(test, feature(test))]
 
-// Calculate the factorial using recursion
-fn factorial_recursive (n: usize) -> usize {
+#![feature(test)]
+extern crate test;
+
+/// Calculate the factorial using recursion
+fn factorial_recursive(n: usize) -> usize {
     match n {
         0 => 1,
-        _ => n * factorial_recursive(n-1)
+        _ => n * factorial_recursive(n - 1),
     }
 }
 
-// Calculate the factorial using a fold
+/// Calculate the factorial using a fold
 fn factorial_iterative(n: usize) -> usize {
-    (1..n+1).fold(1, |p, t| p * t)
+    (1..n + 1).fold(1, |p, t| p * t)
 }
 
-// Calculate the factorial using a for loop
+/// Calculate the factorial using a for loop
 fn factorial_loop(n: usize) -> usize {
     let mut fac = 1;
     for x in 1..n + 1 {
@@ -23,8 +25,7 @@ fn factorial_loop(n: usize) -> usize {
     fac
 }
 
-#[cfg(not(test))]
-fn main () {
+fn main() {
     let fs = vec![("Recursive", factorial_recursive as fn(usize) -> usize),
                   ("Iterative", factorial_iterative as fn(usize) -> usize),
                   ("Looooooop", factorial_loop as fn(usize) -> usize)];
@@ -36,14 +37,12 @@ fn main () {
     }
 }
 
-// Some tests and benchmarks
 #[cfg(test)]
 mod tests {
-    extern crate test;
-    use self::test::Bencher;
     use super::{factorial_recursive, factorial_iterative, factorial_loop};
+    use super::test::{self, Bencher};
 
-    // Tests
+    /// Tests
     fn t(f: fn(usize) -> usize) {
         assert_eq!(f(0), 1);
         assert_eq!(f(1), 1);

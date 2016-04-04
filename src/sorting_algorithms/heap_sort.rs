@@ -1,6 +1,6 @@
 // http://rosettacode.org/wiki/Sorting_algorithms/Heapsort
 
-// This is ported from the Dart heap sort implementation
+/// This is ported from the Dart heap sort implementation
 fn heap_sort<T: Ord>(a: &mut [T]) {
     let count = a.len();
 
@@ -32,7 +32,7 @@ fn heapify<T: Ord>(a: &mut [T], count: usize) {
     }
 
     // start is assigned the index in 'a' of the last parent node
-    let mut start:i32 = count as i32 - 2 / 2; // binary heap
+    let mut start: i32 = count as i32 - 2 / 2; // binary heap
 
     while start >= 0 {
         // sift down the node at index 'start' to the proper place
@@ -48,9 +48,9 @@ fn sift_down<T: Ord>(a: &mut [T], start: usize, end: usize) {
     let mut root = start;
 
     // while the root has at least one child
-    while (root*2 + 1) <= end {
+    while (root * 2 + 1) <= end {
         // root*2+1 points to the left child
-        let mut child:usize = root*2 + 1 as usize;
+        let mut child: usize = root * 2 + 1 as usize;
 
         // if the chile has a sibling and the child's value is less that its sibling's...
         if child + 1 <= end && a[child] < a[child + 1] {
@@ -69,23 +69,22 @@ fn sift_down<T: Ord>(a: &mut [T], start: usize, end: usize) {
     }
 }
 
-#[cfg(not(test))]
 pub fn main() {
-    let mut arr = [1i32,5,2,7,3,9,4,6,8];
+    let mut arr = [1i32, 5, 2, 7, 3, 9, 4, 6, 8];
     heap_sort(&mut arr);
     println!("After sort: {:?}", arr);
 
-    let mut arr = [1i32,2,3,4,5,6,7,8,9];
+    let mut arr = [1i32, 2, 3, 4, 5, 6, 7, 8, 9];
     heap_sort(&mut arr);
     println!("After sort: {:?}", arr);
 
-    let mut arr = [9i32,8,7,6,5,4,3,2,1];
+    let mut arr = [9i32, 8, 7, 6, 5, 4, 3, 2, 1];
     heap_sort(&mut arr);
     println!("After sort: {:?}", arr);
 }
 
 #[cfg(test)]
-mod test {
+mod tests {
     use super::heap_sort;
 
     #[test]

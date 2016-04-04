@@ -1,14 +1,9 @@
 // http://rosettacode.org/wiki/Sorting_algorithms/Quicksort
-// Used by the tests
-
-
 extern crate rand;
-#[cfg(test)]
-use rand::{thread_rng, Rng};
 
-// We use in place quick sort
-// For details see http://en.wikipedia.org/wiki/Quicksort#In-place_version
-fn quick_sort<T: Ord>(v: &mut[T]) {
+/// We use in place quick sort
+/// For details see http://en.wikipedia.org/wiki/Quicksort#In-place_version
+fn quick_sort<T: Ord>(v: &mut [T]) {
     let len = v.len();
     if len < 2 {
         return;
@@ -20,12 +15,12 @@ fn quick_sort<T: Ord>(v: &mut[T]) {
     quick_sort(&mut v[0..pivot_index]);
 
     // Sort the right side
-    quick_sort(& mut v[pivot_index + 1..len]);
+    quick_sort(&mut v[pivot_index + 1..len]);
 }
 
-// Reorders the slice with values lower than the pivot at the left side,
-// and values bigger than it at the right side.
-// Also returns the store index.
+/// Reorders the slice with values lower than the pivot at the left side,
+/// and values bigger than it at the right side.
+/// Also returns the store index.
 fn partition<T: Ord>(v: &mut [T]) -> usize {
     let len = v.len();
     let pivot_index = len / 2;
@@ -44,7 +39,6 @@ fn partition<T: Ord>(v: &mut [T]) -> usize {
     store_index
 }
 
-#[cfg(not(test))]
 fn main() {
     // Sort numbers
     let mut numbers = [4i32, 65, 2, -31, 0, 99, 2, 83, 782, 1];
@@ -62,60 +56,67 @@ fn main() {
 }
 
 #[cfg(test)]
-fn check_sort<T: Ord>(v: &[T]) {
-    if v.len() > 1 {
-        for i in 0..(v.len()-1) {
-            assert!(v[i] <= v[i+1]);
+mod tests {
+    use rand::{thread_rng, Rng};
+
+    use super::quick_sort;
+
+    fn check_sort<T: Ord>(v: &[T]) {
+        if v.len() > 1 {
+            for i in 0..(v.len() - 1) {
+                assert!(v[i] <= v[i + 1]);
+            }
         }
     }
-}
 
-#[test]
-fn test_rosetta_vector() {
-    let numbers = &mut [4i32, 65, 2, -31, 0, 99, 2, 83, 782, 1];
-    quick_sort(numbers);
-    check_sort(numbers);
-}
+    #[test]
+    fn test_rosetta_vector() {
+        let numbers = &mut [4i32, 65, 2, -31, 0, 99, 2, 83, 782, 1];
+        quick_sort(numbers);
+        check_sort(numbers);
+    }
 
-#[test]
-fn test_empty_vector() {
-    let mut numbers: Vec<i32> = Vec::new();
-    quick_sort(&mut numbers[..]);
-    check_sort(&mut numbers[..]);
-}
+    #[test]
+    fn test_empty_vector() {
+        let mut numbers: Vec<i32> = Vec::new();
+        quick_sort(&mut numbers[..]);
+        check_sort(&mut numbers[..]);
+    }
 
-#[test]
-fn test_one_element_vector() {
-    let numbers = &mut [0i32];
-    quick_sort(numbers);
-    check_sort(numbers);
-}
+    #[test]
+    fn test_one_element_vector() {
+        let numbers = &mut [0i32];
+        quick_sort(numbers);
+        check_sort(numbers);
+    }
 
-#[test]
-fn test_repeat_vector() {
-    let numbers = &mut [1i32, 1, 1, 1, 1];
-    quick_sort(numbers);
-    check_sort(numbers);
-}
+    #[test]
+    fn test_repeat_vector() {
+        let numbers = &mut [1i32, 1, 1, 1, 1];
+        quick_sort(numbers);
+        check_sort(numbers);
+    }
 
-#[test]
-fn test_worst_case_vector() {
-    let numbers = &mut [20i32, 10, 0, -1, -5];
-    quick_sort(numbers);
-    check_sort(numbers);
-}
+    #[test]
+    fn test_worst_case_vector() {
+        let numbers = &mut [20i32, 10, 0, -1, -5];
+        quick_sort(numbers);
+        check_sort(numbers);
+    }
 
-#[test]
-fn test_already_sorted_vector() {
-    let numbers = &mut [-1i32, 0, 3, 6, 99];
-    quick_sort(numbers);
-    check_sort(numbers);
-}
+    #[test]
+    fn test_already_sorted_vector() {
+        let numbers = &mut [-1i32, 0, 3, 6, 99];
+        quick_sort(numbers);
+        check_sort(numbers);
+    }
 
-#[test]
-fn test_random_numbers() {
-    let mut rng = thread_rng();
-    let mut numbers : Vec<i32> = rng.gen_iter::<i32>().take(500).collect();
-    quick_sort(&mut numbers[..]);
-    check_sort(&mut numbers[..]);
+    #[test]
+    fn test_random_numbers() {
+        let mut rng = thread_rng();
+        let mut numbers: Vec<i32> = rng.gen_iter::<i32>().take(500).collect();
+        quick_sort(&mut numbers[..]);
+        check_sort(&mut numbers[..]);
+    }
+
 }

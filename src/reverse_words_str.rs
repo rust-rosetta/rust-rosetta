@@ -5,12 +5,11 @@ fn rev_words(line: &str) -> String {
 }
 
 fn rev_words_on_lines(text: &str) -> String {
-     text.lines().map(rev_words).collect::<Vec<String>>().join("\n")
+    text.lines().map(rev_words).collect::<Vec<String>>().join("\n")
 }
 
-#[cfg(not(test))]
 fn main() {
-    let text = "---------- Ice and Fire ------------
+    let text = r"---------- Ice and Fire ------------
 
 fire, in end will world the say Some
 ice. in say Some

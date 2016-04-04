@@ -3,14 +3,13 @@
 extern crate libc;
 extern crate time;
 
-use std::mem;
-use std::sync::atomic::{AtomicBool, ATOMIC_BOOL_INIT, Ordering};
-use std::time::Duration;
-
-use libc::SIGINT;
-
-#[cfg(all(unix, not(test)))]
+#[cfg(unix)]
 fn main() {
+    use std::mem;
+    use std::sync::atomic::{AtomicBool, ATOMIC_BOOL_INIT, Ordering};
+    use std::thread;
+    use std::time::Duration;
+    use libc::SIGINT;
     // The time between ticks of our counter.
     let duration = Duration::from_secs(1) / 2;
     // "SIGINT received" global variable.
@@ -33,9 +32,11 @@ fn main() {
     let mut i = 0u32;
     // Every `duration`...
     loop {
-        std::thread::sleep(duration);
+        thread::sleep(duration);
         // Break if SIGINT was handled
-        if unsafe { GOT_SIGINT.load(Ordering::Acquire) } { break }
+        if unsafe { GOT_SIGINT.load(Ordering::Acquire) } {
+            break;
+        }
         // Otherwise, increment and display the integer and continue the loop.
         i += 1;
         println!("{}", i);

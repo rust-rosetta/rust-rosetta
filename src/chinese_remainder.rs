@@ -1,6 +1,5 @@
 // http://rosettacode.org/wiki/Chinese_remainder_theorem
 
-#[cfg(not(test))]
 fn main() {
     let l = [(2, 3), (3, 5), (2, 7)];
     println!("{:?}", chinese_remainder(&l));
@@ -15,7 +14,7 @@ fn chinese_remainder(l: &[(i32, i32)]) -> Option<i32> {
 
         let inv = match mul_inv(term, n) {
             Some(inv) => inv,
-            None => return None
+            None => return None,
         };
 
         term *= inv;
@@ -27,7 +26,8 @@ fn chinese_remainder(l: &[(i32, i32)]) -> Option<i32> {
 
 fn mul_inv(a: i32, b: i32) -> Option<i32> {
     let (gcd, mut x, _) = egcd(a, b);
-    if gcd != 1 { // No multiplicative inverse exists
+    if gcd != 1 {
+        // No multiplicative inverse exists
         return None;
     }
     if x < 0 {

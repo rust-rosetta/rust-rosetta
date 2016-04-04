@@ -1,12 +1,12 @@
 // http://rosettacode.org/wiki/Currying
 
-// add_n returns a a boxed unboxed closure.
+//! add_n returns a a boxed unboxed closure.
+//!
+//! TODO: Once "unboxed, abstract return types" are
+//! supported it can be done without the
+//! heap allocation/trait object indirection
 
-// Once "unboxed, abstract return types" are
-// supported it can be done without the
-// heap allocation/trait object indirection
-
-fn add_n(n: i32) -> Box<Fn(i32) -> i32>  {
+fn add_n(n: i32) -> Box<Fn(i32) -> i32> {
     Box::new(move |x| n + x)
 }
 

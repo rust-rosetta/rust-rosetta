@@ -11,7 +11,7 @@ fn main() {
 
     let mut children = vec![];
 
-    for s in strings.into_iter(){
+    for s in strings.into_iter() {
         children.push(thread::spawn(move || {
             // We use a random u8 (so an integer from 0 to 255)
             thread::sleep(Duration::from_millis(random::<u8>() as u64));

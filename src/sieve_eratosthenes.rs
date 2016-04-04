@@ -7,13 +7,13 @@ fn int_sqrt(n: usize) -> usize {
     (n as f64).sqrt() as usize
 }
 
-// Return the prime numbers up to limit
+/// Return the prime numbers up to limit
 fn simple_sieve(limit: usize) -> Vec<usize> {
     if limit < 2 {
-        return vec!();
+        return vec![];
     }
 
-    let mut primes: Vec<bool> = repeat(true).take(limit+1).collect();
+    let mut primes: Vec<bool> = repeat(true).take(limit + 1).collect();
 
     for prime in 2..(int_sqrt(limit) + 1) {
         if primes[prime] {
@@ -26,7 +26,6 @@ fn simple_sieve(limit: usize) -> Vec<usize> {
     (2..limit + 1).filter(|&n| primes[n]).collect()
 }
 
-#[cfg(not(test))]
 fn main() {
     println!("{:?}", simple_sieve(100))
 }

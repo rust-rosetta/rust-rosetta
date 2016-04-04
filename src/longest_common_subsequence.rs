@@ -12,8 +12,7 @@ fn longest_common_subsequence(a: &str, b: &str) -> String {
             if a_char == b_char {
                 lengths[i + 1][j + 1] = lengths[i][j] + 1;
             } else {
-                lengths[i + 1][j + 1] = std::cmp::max(
-                        lengths[i + 1][j], lengths[i][j + 1]);
+                lengths[i + 1][j + 1] = std::cmp::max(lengths[i + 1][j], lengths[i][j + 1]);
             }
         }
     }
@@ -37,9 +36,6 @@ fn longest_common_subsequence(a: &str, b: &str) -> String {
     lcs.into_iter().rev().collect()
 }
 
-
-// Demonstration code
-#[cfg(not(test))]
 fn main() {
     println!("{}", longest_common_subsequence("abc", "abcd"));
     println!("{}", longest_common_subsequence("ABCDGH", "AEDFHR"));
@@ -63,7 +59,7 @@ fn test_longest_common_subsequence() {
 
 #[test]
 fn test_unicode() {
-    assert_eq!(longest_common_subsequence(
-        "самолетов была отмечена в Японском", "отмечена в"),
-        "отмечена в");
+    assert_eq!(longest_common_subsequence("самолетов была отмечена в Японском",
+                                          "отмечена в"),
+               "отмечена в");
 }

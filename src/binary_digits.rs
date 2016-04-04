@@ -10,7 +10,6 @@ impl BinaryString for usize {
     }
 }
 
-#[cfg(not(test))]
 fn main() {
     for s in 0..17 {
         println!("{}", s.to_binary_string());
@@ -19,10 +18,8 @@ fn main() {
 
 #[test]
 fn test_digits() {
-    let expected = ["0", "1", "10", "11",
-                    "100", "101", "110", "111",
-                    "1000", "1001", "1010", "1011",
-                    "1100", "1101", "1110", "1111"];
+    let expected = ["0", "1", "10", "11", "100", "101", "110", "111", "1000", "1001", "1010",
+                    "1011", "1100", "1101", "1110", "1111"];
 
     for (n, expected) in (0..17).zip(expected.iter()) {
         assert_eq!(n.to_binary_string(), *expected);

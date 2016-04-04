@@ -1,0 +1,7 @@
+[package]
+name = "factorial-plugin"
+version = "1.0.0"
+authors = ["Paolo Falabella, https://github.com/pfalabella"]
+
+[lib]
+crate_type = ["dylib"]

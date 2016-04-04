@@ -1,8 +1,8 @@
 // http://rosettacode.org/wiki/Prime_decomposition
 
-// We need this to be public because it is used from another file
+/// We need this to be public because it is used from another file
 pub fn factor(mut nb: usize) -> Vec<usize> {
-    let mut result = vec!();
+    let mut result = vec![];
 
     // First we take out all even factors.
     while nb % 2 == 0 {
@@ -33,7 +33,6 @@ pub fn factor(mut nb: usize) -> Vec<usize> {
 // Needed so parallel_calculations compiles cleanly, because it
 // uses this code as a library
 #[allow(dead_code)]
-#[cfg(not(test))]
 fn main() {
     println!("Factors of 5: {:?}", factor(5));
     println!("Factors of 15: {:?}", factor(15));
@@ -43,8 +42,8 @@ fn main() {
 
 #[test]
 fn test_basic() {
-    assert!(factor(5) == vec!(5));
-    assert!(factor(15) == vec!(3, 5));
-    assert!(factor(16) == vec!(2, 2, 2, 2));
-    assert!(factor(10287) == vec!(3, 3, 3, 3, 127));
+    assert!(factor(5) == vec![5]);
+    assert!(factor(15) == vec![3, 5]);
+    assert!(factor(16) == vec![2, 2, 2, 2]);
+    assert!(factor(10287) == vec![3, 3, 3, 3, 127]);
 }

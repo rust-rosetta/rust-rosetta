@@ -5,11 +5,15 @@ fn is_leap_year(year: i32) -> bool {
     year % 4 == 0 && (year % 100 != 0 || year % 400 == 0)
 }
 
-#[cfg(not(test))]
-fn main () {
+fn main() {
     for &year in &[1900, 1995, 1996, 1999, 2000, 2001] {
-        println!("{} {} a leap year", year,
-                 if is_leap_year(year) { "is" } else { "is not" });
+        println!("{} {} a leap year",
+                 year,
+                 if is_leap_year(year) {
+                     "is"
+                 } else {
+                     "is not"
+                 });
     }
 }
 

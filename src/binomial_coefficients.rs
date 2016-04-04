@@ -1,4 +1,5 @@
 // http://rosettacode.org/wiki/Evaluate_binomial_coefficients
+
 extern crate num;
 
 use num::One;
@@ -23,13 +24,11 @@ fn binomial(n: usize, mut k: usize) -> BigUint {
     res
 }
 
-#[cfg(not(test))]
 fn main() {
     println!("{}", binomial(5, 3));
 }
 
 #[test]
-
 fn test_binomial() {
     use num::traits::Num;
 
@@ -38,5 +37,5 @@ fn test_binomial() {
     assert_eq!(binomial(5, 3), 10.to_biguint().unwrap());
     assert_eq!(binomial(31, 17), 265182525.to_biguint().unwrap());
     assert_eq!(binomial(300, 30),
-        BigUint::from_str_radix("173193226149263513034110205899732811401360", 10).unwrap());
+               BigUint::from_str_radix("173193226149263513034110205899732811401360", 10).unwrap());
 }

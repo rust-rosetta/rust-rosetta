@@ -6,11 +6,11 @@ use std::f32;
 use num::Float;
 use permutohedron::Heap;
 
-
 fn find_max(lst: &[f32]) -> Option<f32> {
-    if lst.is_empty() { return None }
-    let max = lst.iter().fold(f32::NEG_INFINITY,
-                              |a, &b| Float::max(a, b));
+    if lst.is_empty() {
+        return None;
+    }
+    let max = lst.iter().fold(f32::NEG_INFINITY, |a, &b| Float::max(a, b));
     Some(max)
 }
 
@@ -31,27 +31,25 @@ fn kahan_sum(lst: &[f32]) -> Option<f32> {
     Some(with_bits(sum, 1))
 }
 
-
 fn all_sums(vec: &mut [f32]) -> Vec<f32> {
     let mut res = Vec::new();
     let mut perms = Heap::new(vec);
     loop {
         let v = perms.next();
         match v {
-            Some(_v) =>  {
+            Some(_v) => {
                 let mut sum = 0.0f32;
                 for e in &_v {
                     sum += with_bits(*e, 1);
                 }
                 res.push(with_bits(sum, 1));
             }
-            None => break
+            None => break,
         }
     }
     res
 }
 
-#[cfg(not(test))]
 fn main() {
     let v = [10000.0f32, 3.14159, 2.71828];
     let sums = all_sums(&mut v.clone());

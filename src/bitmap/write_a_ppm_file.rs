@@ -1,4 +1,5 @@
 // http://rosettacode.org/wiki/Bitmap/Write_a_PPM_file
+
 use std::path::Path;
 use std::io::Write;
 use std::fs::File;
@@ -19,7 +20,11 @@ impl PPM {
     pub fn new(height: u32, width: u32) -> PPM {
         let size = 3 * height * width;
         let buffer = vec![0; size as usize];
-        PPM { height: height, width: width, data: buffer }
+        PPM {
+            height: height,
+            width: width,
+            data: buffer,
+        }
     }
 
     fn buffer_size(&self) -> u32 {
@@ -41,9 +46,9 @@ impl PPM {
                 let r = self.data[offset];
                 let g = self.data[offset + 1];
                 let b = self.data[offset + 2];
-                Some(RGB {r: r, g: g, b: b})
-            },
-            None => None
+                Some(RGB { r: r, g: g, b: b })
+            }
+            None => None,
         }
     }
 
@@ -54,8 +59,8 @@ impl PPM {
                 self.data[offset + 1] = color.g;
                 self.data[offset + 2] = color.b;
                 true
-            },
-            None => false
+            }
+            None => false,
         }
     }
 

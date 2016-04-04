@@ -11,14 +11,17 @@ fn permutations<T>(universe: &[T], size: usize) -> PermutationIterator<T> {
         universe: universe,
         size: size,
         prev: None,
-    }
+    };
 }
 
-fn map<T>(values: &[T], ixs: &[usize]) -> Vec<T> where T: Clone {
+fn map<T>(values: &[T], ixs: &[usize]) -> Vec<T>
+    where T: Clone
+{
     return ixs.iter().map(|&i| values[i].clone()).collect();
 }
 
-impl<'a, T> Iterator for PermutationIterator<'a, T> where T: Clone {
+impl<'a, T> Iterator for PermutationIterator<'a, T> where T: Clone
+{
     type Item = Vec<T>;
 
     fn next(&mut self) -> Option<Vec<T>> {
@@ -33,29 +36,29 @@ impl<'a, T> Iterator for PermutationIterator<'a, T> where T: Clone {
 
             None => {
                 let zeroes: Vec<usize> = std::iter::repeat(0)
-                                            .take(self.size)
-                                            .collect();
+                                             .take(self.size)
+                                             .collect();
                 let result = Some(map(self.universe, &zeroes[..]));
                 self.prev = Some(zeroes);
-                return result
+                return result;
             }
 
-            Some (ref mut indexes) =>
+            Some(ref mut indexes) => {
                 match indexes.iter().position(|&i| i + 1 < n) {
-                    None            => return None,
-                    Some(position)  => {
+                    None => return None,
+                    Some(position) => {
                         for i in 0..(position) {
                             indexes[i] = 0;
                         }
                         indexes[position] += 1;
-                        return Some(map(self.universe, &indexes[..]))
+                        return Some(map(self.universe, &indexes[..]));
                     }
                 }
+            }
         }
     }
 }
 
-#[cfg(not(test))]
 fn main() {
     let universe = ["Annie", "Barbie"];
     for p in permutations(&universe[..], 3) {
@@ -67,7 +70,7 @@ fn main() {
 }
 
 #[cfg(test)]
-mod test {
+mod tests {
     use super::permutations;
 
     #[test]

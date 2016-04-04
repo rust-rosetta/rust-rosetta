@@ -1,17 +1,15 @@
 // http://rosettacode.org/wiki/Josephus_problem
 
-
-// implementation based on observation:
-// `josephus(n, k) == if n < 2 { 0 } else { (josephus(n - 1, k) + k) % n }`
+/// implementation based on observation:
+/// `josephus(n, k) == if n < 2 { 0 } else { (josephus(n - 1, k) + k) % n }`
 fn josephus(n: u32, k: u32) -> u32 {
     let mut result = 0u32;
-    for i in 2..(n+1) {
+    for i in 2..(n + 1) {
         result = (result + k) % i;
-    };
+    }
     result
 }
 
-#[cfg(not(test))]
 fn main() {
     let n = 5;
     let k = 2;
@@ -19,7 +17,7 @@ fn main() {
 }
 
 #[cfg(test)]
-mod test {
+mod tests {
     use super::josephus;
 
     #[test]

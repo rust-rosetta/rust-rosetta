@@ -1,6 +1,7 @@
 // http://rosettacode.org/wiki/Metered_concurrency
-// Rust has a perfectly good Semaphore type already.  It lacks count(), though, so we can't use it
-// directly.
+
+//! Rust has a perfectly good Semaphore type already. It lacks count(), though, so we can't use it
+//! directly.
 
 use std::sync::Arc;
 use std::sync::atomic::AtomicUsize;
@@ -10,22 +11,29 @@ use std::time::Duration;
 use std::sync::mpsc::channel;
 
 pub struct CountingSemaphore {
-    count: AtomicUsize, // Remaining resource count
-    backoff: Duration, // How long to sleep if a resource is being contended
+    /// Remaining resource count
+    count: AtomicUsize,
+
+    /// How long to sleep if a resource is being contended
+    backoff: Duration,
 }
 
 pub struct CountingSemaphoreGuard<'a> {
-    sem: &'a CountingSemaphore, // A reference to the owning semaphore.
+    /// A reference to the owning semaphore.
+    sem: &'a CountingSemaphore,
 }
 
 impl CountingSemaphore {
-    // Create a semaphore with `max` available resources and a linearly increasing backoff of
-    // `backoff` (used during spinlock contention).
+    /// Create a semaphore with `max` available resources and a linearly increasing backoff of
+    /// `backoff` (used during spinlock contention).
     pub fn new(max: usize, backoff: Duration) -> CountingSemaphore {
-        CountingSemaphore { count: AtomicUsize::new(max), backoff: backoff }
+        CountingSemaphore {
+            count: AtomicUsize::new(max),
+            backoff: backoff,
+        }
     }
 
-    // Acquire a resource, returning a RAII CountingSemaphoreGuard.
+    /// Acquire a resource, returning a RAII CountingSemaphoreGuard.
     pub fn acquire(&self) -> CountingSemaphoreGuard {
         // Spinlock until remaining resource count is at least 1
         let mut backoff = self.backoff;
@@ -34,13 +42,13 @@ impl CountingSemaphore {
             let count = self.count.load(SeqCst);
             // The check for 0 is necessary to make sure we don't go negative, which is why this
             // must be a compare-and-swap rather than a straight decrement.
-            if count == 0 || self.count.compare_and_swap(count, count-1, SeqCst) != count {
+            if count == 0 || self.count.compare_and_swap(count, count - 1, SeqCst) != count {
                 // Linear backoff a la Servo's spinlock contention.
                 thread::sleep(backoff);
                 backoff = backoff + self.backoff;
             } else {
                 // We successfully acquired the resource.
-                break
+                break;
             }
         }
         CountingSemaphoreGuard { sem: self }
@@ -53,7 +61,7 @@ impl CountingSemaphore {
 }
 
 impl<'a> Drop for CountingSemaphoreGuard<'a> {
-    // When the guard is dropped, a resource is released back to the pool.
+    /// When the guard is dropped, a resource is released back to the pool.
     fn drop(&mut self) {
         self.sem.count.fetch_add(1, SeqCst);
     }
@@ -102,7 +110,6 @@ fn test_metered_concurrency() {
     metered(Duration::from_secs(1) / 20);
 }
 
-#[cfg(not(test))]
 fn main() {
     // Hold each resource for 2 seconds per worker
     metered(Duration::from_secs(2));

@@ -1,6 +1,7 @@
 // http://rosettacode.org/wiki/Menu
 use std::io;
-// Print the menu followed by the prompt
+
+/// Print the menu followed by the prompt
 fn print_both(menu: &[&str], prompt: &str) {
 
     // Iterate through array and print index, period, and menu item
@@ -12,13 +13,14 @@ fn print_both(menu: &[&str], prompt: &str) {
     println!("{}", prompt);
 }
 
-
-// Grab the next line of input
+/// Grab the next line of input
 fn next_input() -> Option<usize> {
-    let mut in_s= String::new();
+    let mut in_s = String::new();
     if let Ok(_) = io::stdin().read_line(&mut in_s) {
         in_s.trim().parse().ok()
-    } else { None }
+    } else {
+        None
+    }
 }
 
 fn select<'a>(menu: &'a [&str], prompt: &str) -> &'a str {
@@ -37,7 +39,7 @@ fn select<'a>(menu: &'a [&str], prompt: &str) -> &'a str {
 
         let num = match input {
             Some(num) => num,
-            None      => continue
+            None => continue,
         };
 
         if num < menu.len() {
@@ -46,9 +48,7 @@ fn select<'a>(menu: &'a [&str], prompt: &str) -> &'a str {
     }
 }
 
-#[cfg(not(test))]
 fn main() {
-
     let prompt = "Choose one.";
     let menu = &["fee fie", "huff and puff", "mirror mirror", "tick tock"];
     println!("{}", select(menu, prompt));

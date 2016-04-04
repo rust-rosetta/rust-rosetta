@@ -1,8 +1,9 @@
 # rust-rosetta #
-[![Build Status](https://travis-ci.org/Hoverbear/rust-rosetta.png)](https://travis-ci.org/Hoverbear/rust-rosetta)
+[![Linux Build Status](https://travis-ci.org/Hoverbear/rust-rosetta.png)](https://travis-ci.org/Hoverbear/rust-rosetta)
+[![Windows Build status](https://ci.appveyor.com/api/projects/status/xtm3xu8j4sou5jst/branch/master?svg=true)](https://ci.appveyor.com/project/Hoverbear/rust-rosetta/branch/master)
 [![Coverage Status](https://coveralls.io/repos/Hoverbear/rust-rosetta/badge.svg?branch=master&service=github)](https://coveralls.io/github/Hoverbear/rust-rosetta?branch=master)
 
-A repository for completing [this issue on mozilla/rust](https://github.com/mozilla/rust/issues/10513). This repository contains minimal working code for many simple (and not so simple) tasks. New contributors and learners of the language are welcome. We will try to work with you to make the code more idiomatic over time.
+A repository for completing [this issue on rust-lang/rust](https://github.com/rust-lang/rust/issues/10513). This repository contains minimal working code for many simple (and not so simple) tasks. New contributors and learners of the language are welcome. We will try to work with you to make the code more idiomatic over time.
 
 > Working on a problem, need some help? Drop by #rust-rosetta on irc.mozilla.org.
 
@@ -10,7 +11,7 @@ A repository for completing [this issue on mozilla/rust](https://github.com/mozi
 
 [List of Tasks Remaining](http://rosettacode.org/wiki/Reports:Tasks_not_implemented_in_Rust)
 
-> Important: Not all `rust-rosetta` tasks exist in their current form on Rosetta Code. Please cross-check with this repository before you start.
+> Important: Not all `rust-rosetta` tasks exist in their current form on Rosetta Code. Please cross-check with this repository before you start. Alternatively, check out [rust-rosetta coverage](https://euclio.github.io/rosetta-coverage) to see an automatically generated report of which tasks have been implemented where.
 
 ### Coverage ###
 
@@ -36,7 +37,7 @@ Looking to help out? Great, thanks! We have a few guidelines:
 
 ### Requirements ###
 * Your code should build cleanly on latest nightly provided by [`rustup.sh`](http://doc.rust-lang.org/book/installing-rust.html)
-* Please, use [rustfmt](https://github.com/nrc/rustfmt) tool on your code.
+* Please, use [rustfmt](https://github.com/rust-lang-nursery/rustfmt) tool on your code.
 If it's not possible, try to keep your contributions adherent to the official style guide which you can see at [this location](http://doc.rust-lang.org/nightly/style/). The style guide is still a work-in-progress, so there may be small differences.
 * Include a link to the Rosetta Code Problem at the top of the code sample like this:
 
@@ -60,7 +61,7 @@ Here's an idea of what a workflow would look like (in general-ish):
 **If it's your first time**
 
 * Choose a problem off Rosetta Code.
-* Fork this repo on Github. ([Help here!](https://help.github.com/articles/fork-a-repo))
+* Fork this repo on Github. ([Help here!](https://help.github.com/articles/fork-a-repo/))
 * Clone your resulting repo onto your machine.
 * When you contribute your first pull request, include yourself in the authors of the `Cargo.toml`!
 
@@ -68,7 +69,7 @@ Here's an idea of what a workflow would look like (in general-ish):
 
 * Navigate to your `rust-rosetta` directory.
 * Make sure you're on `master` branch.
-* Update your fork ([Details](https://help.github.com/articles/syncing-a-fork))
+* Update your fork ([Details](https://help.github.com/articles/syncing-a-fork/))
 * Create a branch that is reasonably unique:
     - `git branch hoverbear-fizzbuzz`
 * Switch to your newly created branch:
@@ -83,7 +84,7 @@ Here's an idea of what a workflow would look like (in general-ish):
 * Check `git status` to make sure you don't mangle anything else.
 * Commit your changes
     - `git commit -a -m "Implement blah blah blah"`
-* Submit a [Pull request](https://help.github.com/articles/creating-a-pull-request) here.
+* Submit a [Pull request](https://help.github.com/articles/creating-a-pull-request/) here.
 
 **After it's accepted**
 

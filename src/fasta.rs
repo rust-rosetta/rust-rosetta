@@ -1,9 +1,9 @@
 // http://rosettacode.org/wiki/FASTA_format
-// Ported and adapted from rosettacode D example
+
+//! Ported and adapted from rosettacode D example
 use std::fs::File;
 use std::io::{BufReader, BufRead};
 
-// We use a type parameter bound `<T: Buffer>` to accept all kinds of buffers
 fn format_fasta<T: BufRead>(reader: &mut T) -> String {
     reader.lines().map(|l| l.unwrap()).fold(String::new(), |mut out, line| {
         // We need to trim new lines
@@ -21,18 +21,17 @@ fn format_fasta<T: BufRead>(reader: &mut T) -> String {
                 out.push_str(": ");
             }
             // Other lines are just pushed
-            _ => out.push_str(ln)
+            _ => out.push_str(ln),
         }
         out
     })
 }
 
 fn read_file() -> String {
-    let file = File::open("src/resources/test_data.fasta").unwrap();
+    let file = File::open("resources/test_data.fasta").unwrap();
     format_fasta(&mut BufReader::new(file))
 }
 
-#[cfg(not(test))]
 fn main() {
     let s = read_file();
     println!("{}", s);
@@ -41,6 +40,7 @@ fn main() {
 #[test]
 fn test_format_fasta() {
     let s = read_file();
-    assert_eq!(s, "Rosetta_Example_1: THERECANBENOSPACE
+    assert_eq!(s,
+               r"Rosetta_Example_1: THERECANBENOSPACE
 Rosetta_Example_2: THERECANBESEVERALLINESBUTTHEYALLMUSTBECONCATENATED");
 }

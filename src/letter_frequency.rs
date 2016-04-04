@@ -1,28 +1,29 @@
 // http://rosettacode.org/wiki/Letter_frequency
-#![cfg_attr(not(test), feature(io))]
+#![feature(io)]
 
-#[cfg(not(test))]
 use std::fs::File;
 
-#[cfg(not(test))]
 use std::io::{BufReader, Read};
 use std::collections::HashMap;
 use std::collections::hash_map::Entry::{Occupied, Vacant};
 
 fn count_chars<T>(chars: T) -> HashMap<char, usize>
-    where T : Iterator<Item=char>
+    where T: Iterator<Item = char>
 {
     let mut map: HashMap<char, usize> = HashMap::new();
     for letter in chars {
         match map.entry(letter) {
-            Vacant(entry) => { entry.insert(1); },
-            Occupied(mut entry) => { *entry.get_mut() += 1; }
+            Vacant(entry) => {
+                entry.insert(1);
+            }
+            Occupied(mut entry) => {
+                *entry.get_mut() += 1;
+            }
         };
     }
     map
 }
 
-#[cfg(not(test))]
 fn main() {
     let file = File::open("resources/unixdict.txt").unwrap();
     let reader = BufReader::new(file);

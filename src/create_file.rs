@@ -1,8 +1,7 @@
 // http://rosettacode.org/wiki/Create_a_file
 use std::fs::{self, File};
 
-#[cfg(not(test))]
-fn main () {
+fn main() {
     use std::io::Write;
 
     // Create a new file.  We get a Result object from
@@ -46,8 +45,10 @@ fn test_create_file() {
     }
     match File::create(&file_path) {
         Ok(_) => assert!(true),
-        Err(e) => panic!("failed to create_file at {}, error: {}",
-                        file_path.display(),
-                        e)
+        Err(e) => {
+            panic!("failed to create_file at {}, error: {}",
+                   file_path.display(),
+                   e)
+        }
     }
 }

@@ -1,22 +1,25 @@
 // http://rosettacode.org/wiki/Gray_code
-// Encode an usize
+
+/// Encode an usize
 fn gray_encode(integer: usize) -> usize {
     (integer >> 1) ^ integer
 }
 
-// Decode an usize
+/// Decode an usize
 fn gray_decode(integer: usize) -> usize {
     match integer {
         0 => 0,
-        _ => integer ^ gray_decode(integer >> 1)
+        _ => integer ^ gray_decode(integer >> 1),
     }
 }
 
-#[cfg(not(test))]
 fn main() {
     for i in 0..32 {
-        println!("{:2} {:0>5} {:0>5} {:2}", i, i, gray_encode(i),
-            gray_decode(i));
+        println!("{:2} {:0>5} {:0>5} {:2}",
+                 i,
+                 i,
+                 gray_encode(i),
+                 gray_decode(i));
     }
 }
 

@@ -1,7 +1,4 @@
 // http://rosettacode.org/wiki/Entropy
-#![allow(unused_attributes)]
-#![allow(unused_features)]
-#![cfg_attr(test, feature(std_misc))]
 use std::collections::HashMap;
 use std::collections::hash_map::Entry::{Occupied, Vacant};
 
@@ -11,8 +8,12 @@ pub fn shannon_entropy(s: &str) -> f64 {
     // Count occurrences of each char
     for c in s.chars() {
         match map.entry(c) {
-            Vacant(entry) => { entry.insert(1); },
-            Occupied(mut entry) => { *entry.get_mut() += 1; },
+            Vacant(entry) => {
+                entry.insert(1);
+            }
+            Occupied(mut entry) => {
+                *entry.get_mut() += 1;
+            }
         };
     }
 
@@ -27,21 +28,19 @@ pub fn shannon_entropy(s: &str) -> f64 {
 // Needed so fibonacci_word compiles cleanly, because fibonacci_word
 // uses this code as a library
 #[allow(dead_code)]
-#[cfg(not(test))]
 fn main() {
     println!("{}", shannon_entropy("1223334444"));
 }
 
 #[test]
 fn test_entropy() {
-    let tests = vec![
-        ("1223334444", 1.846439344671f64),
-        ("1223334444555555555", 1.969811065121),
-        ("122333", 1.459147917061),
-        ("1227774444", 1.846439344671),
-        ("aaBBcccDDDD", 1.936260027482),
-        ("1234567890abcdefghijklmnopqrstuvwxyz", 5.169925004424),
-        ("Rosetta Code", 3.084962500407)];
+    let tests = vec![("1223334444", 1.846439344671f64),
+                     ("1223334444555555555", 1.969811065121),
+                     ("122333", 1.459147917061),
+                     ("1227774444", 1.846439344671),
+                     ("aaBBcccDDDD", 1.936260027482),
+                     ("1234567890abcdefghijklmnopqrstuvwxyz", 5.169925004424),
+                     ("Rosetta Code", 3.084962500407)];
     // Good enough, actual float epsilon is much smaller
     let epsilon: f64 = 0.0000001;
     for (input, expected) in tests {

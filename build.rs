@@ -1,19 +1,32 @@
-// This build script checks that all files in the `src` directory have lines of at most 100
-// characters and don't contain trailing whitespace.
-//
-// It also ensures that comment indicating which task a file solves is at the top.
-//
-// In case we find a line that doesn't comply with this rules, the build will fail and indicate
-// the cause of the problem.
+//! This build script checks that all files in the `src` directory have lines of at most 100
+//! characters and don't contain trailing whitespace.
+//!
+//! It also ensures that comment indicating which task a file solves is at the top.
+//!
+//! In case we find a line that doesn't comply with this rules, the build will fail and indicate
+//! the cause of the problem.
+#[macro_use]
+extern crate lazy_static;
 extern crate regex;
 extern crate toml;
+extern crate unicode_segmentation;
+extern crate walkdir;
 
-use std::fs::{self, File, metadata};
+use std::fs::{self, File};
 use std::io::Read;
 use std::path::Path;
 
 use regex::Regex;
+use unicode_segmentation::UnicodeSegmentation;
+use walkdir::WalkDir;
 
+lazy_static!{
+    static ref LIB_OR_MOD_RE: Regex = Regex::new("^lib|mod$").unwrap();
+    static ref TASK_COMMENT_RE: Regex =
+            Regex::new(r"^// http://rosettacode\.org/wiki/[^#]+$").unwrap();
+}
+
+/// Checks that all binaries are in lexicographic order in `Cargo.toml`.
 fn check_toml() {
     let mut cargo_toml_file = File::open("Cargo.toml").unwrap();
     let mut cargo_toml_string = String::new();
@@ -30,7 +43,12 @@ fn check_toml() {
 
     for (bin, correct_bin) in binaries.iter().zip(sorted_binaries) {
         let bin_name = bin.as_table().unwrap().get("name").unwrap().as_str().unwrap();
-        let correct_bin_name = correct_bin.as_table().unwrap().get("name").unwrap().as_str().unwrap();
+        let correct_bin_name = correct_bin.as_table()
+                                          .unwrap()
+                                          .get("name")
+                                          .unwrap()
+                                          .as_str()
+                                          .unwrap();
         if bin_name != correct_bin_name {
             panic!("{} is not in the correct order in Cargo.toml!", bin_name);
         }
@@ -40,28 +58,43 @@ fn check_toml() {
 fn main() {
     check_toml();
 
-    let files = fs::read_dir("src").unwrap()
-                                   .map(|e| e.unwrap());
+    for entry in WalkDir::new("src") {
+        let entry = entry.unwrap();
+        if fs::metadata(&entry.path()).unwrap().is_file() {
 
-    for f in files {
-        let path = f.path();
-        if metadata(&path).unwrap().is_file() {
-            check(&path);
+            // Only check Rust files
+            match entry.path().extension().and_then(|s| s.to_str()) {
+                Some("rs") => {
+                    check(&entry.path());
+                }
+                _ => (),
+            }
         }
     }
 }
 
+/// Checks that all tasks contain a comment with a link to the Rosetta Code task they are
+/// implementing as the first line of the file.
+fn check_task_name(path: &Path, line: &str) {
+    // Ensure the first line has a URL of the proper form
+    if !TASK_COMMENT_RE.is_match(line) {
+        line_error(1,
+                   path,
+                   "header is missing or malformed. The line should exactly match '// \
+                    http://rosettacode.org/wiki/<TASK NAME>'");
+    }
+}
+
+/// Performs all checks on a particular file.
 fn check(path: &Path) {
     let mut content = String::new();
     File::open(&path).unwrap().read_to_string(&mut content).unwrap();
 
     for (i, mut line) in content.lines().enumerate() {
-        if i == 0 && path.file_name().unwrap() != "lib.rs" {
-            // Ensure the first line has a URL of the proper form
-            let task_comment = Regex::new(r"// http://rosettacode\.org/wiki/.+").unwrap();
-            if !task_comment.is_match(line) {
-                line_error(i + 1, path, "file does not start with \
-                           \"// http://rosettacode.org/wiki/<TASK NAME>\"");
+        if i == 0 {
+            // Ignore lib and mod files.
+            if !LIB_OR_MOD_RE.is_match(path.file_stem().unwrap().to_str().unwrap()) {
+                check_task_name(&path, &line);
             }
         }
 
@@ -71,7 +104,7 @@ fn check(path: &Path) {
         }
 
         // Check length
-        if line.len() > 100 {
+        if UnicodeSegmentation::graphemes(line, true).count() > 100 {
             line_error(i + 1, path, "line is longer than 100 characters");
         }
 
@@ -86,5 +119,7 @@ fn check(path: &Path) {
 
 fn line_error(line: usize, path: &Path, msg: &str) {
     panic!("Formatting error, {} (line {} of file \"{}\")",
-           msg, line, path.to_str().unwrap())
+           msg,
+           line,
+           path.to_str().unwrap())
 }

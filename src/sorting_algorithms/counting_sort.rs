@@ -4,7 +4,7 @@ fn counting_sort(array: &mut [i32], min: i32, max: i32) {
 
     // nothing to do for arrays shorter than 2
     if array.len() < 2 {
-        return
+        return;
     }
 
     // we count occurences of values
@@ -26,14 +26,13 @@ fn counting_sort(array: &mut [i32], min: i32, max: i32) {
 
 }
 
-#[cfg(not(test))]
 fn main() {
     let mut numbers = [4i32, 65, 2, -31, 0, 99, 2, 83, 782, 1];
     counting_sort(&mut numbers, -31, 782);
 }
 
 #[cfg(test)]
-mod test {
+mod tests {
     fn check_sort(array: &mut [i32], min: i32, max: i32) {
         super::counting_sort(array, min, max);
 
@@ -79,4 +78,3 @@ mod test {
         check_sort(numbers, 2, 99);
     }
 }
-

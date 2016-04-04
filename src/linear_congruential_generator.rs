@@ -7,7 +7,7 @@ trait LinearCongruentialGenerator {
 }
 
 struct BSDLinearCongruentialGenerator {
-    state: w<u32>
+    state: w<u32>,
 }
 
 impl BSDLinearCongruentialGenerator {
@@ -28,7 +28,7 @@ impl LinearCongruentialGenerator for BSDLinearCongruentialGenerator {
 }
 
 struct MSLinearCongruentialGenerator {
-    state: w<u32>
+    state: w<u32>,
 }
 
 impl MSLinearCongruentialGenerator {
@@ -49,7 +49,6 @@ impl LinearCongruentialGenerator for MSLinearCongruentialGenerator {
     }
 }
 
-#[cfg(not(test))]
 fn main() {
     let mut bsd = BSDLinearCongruentialGenerator::new(0);
     let mut ms = MSLinearCongruentialGenerator::new(0);
@@ -66,14 +65,14 @@ fn main() {
 }
 
 #[cfg(test)]
-mod test {
+mod tests {
     use super::{LinearCongruentialGenerator, BSDLinearCongruentialGenerator,
                 MSLinearCongruentialGenerator};
 
     #[test]
     fn bsd() {
-        let values = [12345u32, 1406932606, 654583775, 1449466924, 229283573,
-                      1109335178, 1051550459, 1293799192, 794471793, 551188310];
+        let values = [12345u32, 1406932606, 654583775, 1449466924, 229283573, 1109335178,
+                      1051550459, 1293799192, 794471793, 551188310];
         let mut lcg = BSDLinearCongruentialGenerator::new(0);
         for val in &values {
             assert_eq!(lcg.next(), *val);

@@ -2,7 +2,7 @@
 
 /// Progress through the slice and 'bubble' elements up until they are in order.
 fn bubble_sort<T: PartialOrd>(v: &mut [T]) {
-    (1..v.len()+1).rev().all(|length| {
+    (1..v.len() + 1).rev().all(|length| {
         let mut changes = 0;
 
         for index in 0..length - 1 {
@@ -17,14 +17,13 @@ fn bubble_sort<T: PartialOrd>(v: &mut [T]) {
     });
 }
 
-#[cfg(not(test))]
 fn main() {
     let mut numbers = [4i32, 65, 2, -31, 0, 99, 2, 83, 782, 1];
     bubble_sort(&mut numbers);
 }
 
 #[cfg(test)]
-mod test {
+mod tests {
     fn check_sort<T: PartialOrd>(v: &mut [T]) {
         super::bubble_sort(v);
 

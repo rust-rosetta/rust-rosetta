@@ -1,11 +1,10 @@
 // http://rosettacode.org/wiki/Checkpoint_synchronization
-//
-// We implement this task using Rust's Barriers.  Barriers are simply thread
-// synchronization points--if a task waits at a barrier, it will not continue
-// until the number of tasks for which the variable was initialized are also
-// waiting at the barrier, at which point all of them will stop waiting.  This
-// can be used to allow threads to do asynchronous work and guarantee properties
-// at checkpoints.
+
+//! We implement this task using Rust's Barriers.  Barriers are simply thread synchronization
+//! points--if a task waits at a barrier, it will not continue until the number of tasks for which
+//! the variable was initialized are also waiting at the barrier, at which point all of them will
+//! stop waiting.  This can be used to allow threads to do asynchronous work and guarantee
+//! properties at checkpoints.
 use std::sync::atomic::{AtomicBool, Ordering};
 use std::sync::{Arc, Barrier};
 use std::thread::spawn;
@@ -34,7 +33,7 @@ pub fn checkpoint() {
         let arc = arc.clone();
         let tx = tx.clone();
         // Spawn a new worker
-        spawn( move || -> () {
+        spawn(move || -> () {
             let (ref barrier, ref events) = *arc;
             // Assign an event to this task
             let ref event = events[i];
@@ -45,7 +44,7 @@ pub fn checkpoint() {
                 // Checkpoint 1
                 barrier.wait();
                 // Between checkpoints 1 and 2, all events are on.
-                assert!(events.iter().all( |e| e.load(Ordering::Acquire) ));
+                assert!(events.iter().all(|e| e.load(Ordering::Acquire)));
                 // Checkpoint 2
                 barrier.wait();
                 // Between checkpoints 2 and 3, turn this task's event off.
@@ -53,7 +52,7 @@ pub fn checkpoint() {
                 // Checkpoint 3
                 barrier.wait();
                 // Between checkpoints 3 and 4, all events are off.
-                assert!(events.iter().all( |e| !e.load(Ordering::Acquire) ));
+                assert!(events.iter().all(|e| !e.load(Ordering::Acquire)));
                 // Checkpoint 4
                 barrier.wait();
             }
@@ -68,7 +67,6 @@ pub fn checkpoint() {
     }
 }
 
-#[cfg(not(test))]
 fn main() {
     checkpoint();
 }

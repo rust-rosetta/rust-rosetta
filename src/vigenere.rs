@@ -1,9 +1,8 @@
-// http://rosettacode.org/wiki/Vigen%C3%A8re_cipher
+// http://rosettacode.org/wiki/Vigenère_cipher
 use std::ascii::AsciiExt;
 
 const ASCII_A: u8 = 'A' as u8;
 
-#[cfg(not(test))]
 fn main() {
     let msg = "Beware the Jabberwock, my son! The jaws that bite, the claws that catch!";
     let key = "VIGENERECIPHER";
@@ -40,11 +39,9 @@ fn vigenere(plaintext: &str, key: &str, encrypt: bool) -> String {
 
 fn to_sanitized_bytes(string: &str) -> Vec<u8> {
     string.chars()
-        // keep only alphabethical characters...
-        .filter(|&c| c.is_alphabetic())
-        // ... and convert them to upper case
-        .map(|c| c.to_ascii_uppercase() as u8 )
-        .collect::<Vec<u8>>()
+          .filter(|&c| c.is_alphabetic())
+          .map(|c| c.to_ascii_uppercase() as u8)
+          .collect::<Vec<u8>>()
 }
 
 fn enc_byte(m: u8, k: u8) -> u8 {
@@ -61,9 +58,11 @@ fn test_enc_dec() {
     let key = "VIGENERECIPHER";
 
     let enc = vigenere(plaintext, key, true);
-    assert_eq!("WMCEEIKLGRPIFVMEUGXQPWQVIOIAVEYXUEKFKBTALVXTGAFXYEVKPAGY", enc);
+    assert_eq!("WMCEEIKLGRPIFVMEUGXQPWQVIOIAVEYXUEKFKBTALVXTGAFXYEVKPAGY",
+               enc);
     let dec = vigenere(&enc, key, false);
-    assert_eq!("BEWARETHEJABBERWOCKMYSONTHEJAWSTHATBITETHECLAWSTHATCATCH", dec);
+    assert_eq!("BEWARETHEJABBERWOCKMYSONTHEJAWSTHATBITETHECLAWSTHATCATCH",
+               dec);
 }
 
 #[test]
@@ -86,4 +85,3 @@ fn test_empty_string_enc_dec() {
     let dec = vigenere("", "", false);
     assert_eq!("", dec);
 }
-

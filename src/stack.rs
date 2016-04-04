@@ -1,8 +1,8 @@
 // http://rosettacode.org/wiki/Stack
 #[derive(Debug)]
 struct Stack<T> {
-    // We use a vector because of simplicity
-    vec: Vec<T>
+    /// We use a vector because of simplicity
+    vec: Vec<T>,
 }
 
 impl<T> Stack<T> {
@@ -10,28 +10,27 @@ impl<T> Stack<T> {
         Stack { vec: Vec::new() }
     }
 
-    // Adds an element at the top of the stack
+    /// Adds an element at the top of the stack
     fn push(&mut self, elem: T) {
         self.vec.push(elem);
     }
 
-    // Removes and returns the element at the top of the stack
+    /// Removes and returns the element at the top of the stack
     fn pop(&mut self) -> Option<T> {
         self.vec.pop()
     }
 
-    // Returns a reference of the element at the top of the stack
+    /// Returns a reference of the element at the top of the stack
     fn peek(&self) -> Option<&T> {
         self.vec.last()
     }
 
-    // Returns true if the stack is empty
+    /// Returns true if the stack is empty
     fn empty(&self) -> bool {
         self.vec.len() == 0
     }
 }
 
-#[cfg(not(test))]
 fn main() {
     let mut stack = Stack::new();
 

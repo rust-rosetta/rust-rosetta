@@ -16,10 +16,11 @@ fn main() {
 
     let src: Vec<char> = {
         let mut buf = String::new();
-        match File::open(&args[1])
-        {
-            Ok(mut f) => { f.read_to_string(&mut buf).unwrap(); }
-            Err(e)    => {
+        match File::open(&args[1]) {
+            Ok(mut f) => {
+                f.read_to_string(&mut buf).unwrap();
+            }
+            Err(e) => {
                 println!("Error opening '{}': {}", args[1], e);
                 return;
             }
@@ -37,19 +38,32 @@ fn main() {
         let mut scope_stack = Vec::new();
         for (idx, ch) in src.iter().enumerate() {
             match ch {
-                &'[' => { scope_stack.push(idx); }
-                &']' => { m.insert(scope_stack.pop().unwrap(), idx); }
-                _    => { /* ignore */ }
+                &'[' => {
+                    scope_stack.push(idx);
+                }
+                &']' => {
+                    m.insert(scope_stack.pop().unwrap(), idx);
+                }
+                _ => {
+                    // ignore
+                }
             }
         }
 
         m
     };
 
-    let mut pc: usize = 0;                                  // Program counter
-    let mut mem: [Wrapping<u8>;5000] = [Wrapping(0);5000];  // Program cemory
-    let mut ptr: usize = 0;                                 // Pointer
-    let mut stack: Vec<usize> = Vec::new();                 // Bracket stack
+    // Program counter
+    let mut pc: usize = 0;
+
+    // Program memory
+    let mut mem: [Wrapping<u8>; 5000] = [Wrapping(0); 5000];
+
+    // Pointer
+    let mut ptr: usize = 0;
+
+    // Bracket stack
+    let mut stack: Vec<usize> = Vec::new();
 
     let stdin_ = stdin();
     let mut reader = stdin_.lock().bytes();
@@ -58,16 +72,28 @@ fn main() {
 
         if debug {
             println!("(BFDB) PC: {:04} \tPTR: {:04} \t$PTR: {:03} \tSTACK_DEPTH: {} \tSYMBOL: {}",
-                     pc, ptr, val, stack.len(), src[pc]);
+                     pc,
+                     ptr,
+                     val,
+                     stack.len(),
+                     src[pc]);
         }
 
         const ONE: Wrapping<u8> = Wrapping(1);
         match src[pc] {
-            '>' => { ptr += 1; }
-            '<' => { ptr -= 1; }
+            '>' => {
+                ptr += 1;
+            }
+            '<' => {
+                ptr -= 1;
+            }
 
-            '+' => { mem[ptr] = mem[ptr] + ONE; }
-            '-' => { mem[ptr] = mem[ptr] - ONE; }
+            '+' => {
+                mem[ptr] = mem[ptr] + ONE;
+            }
+            '-' => {
+                mem[ptr] = mem[ptr] - ONE;
+            }
 
             '[' => {
                 if val == 0 {
@@ -94,7 +120,7 @@ fn main() {
                 mem[ptr] = Wrapping(reader.next().unwrap().unwrap());
             }
 
-            _   => { /* ignore */ }
+            _ => (),
         }
 
         pc += 1;

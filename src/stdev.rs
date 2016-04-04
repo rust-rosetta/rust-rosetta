@@ -7,7 +7,11 @@ struct StDev {
 
 impl StDev {
     fn new() -> StDev {
-        StDev { len: 0, sum: 0.0, sum_sq: 0.0 }
+        StDev {
+            len: 0,
+            sum: 0.0,
+            sum_sq: 0.0,
+        }
     }
 
     fn stdev(&mut self, n: f32) -> f32 {
@@ -19,7 +23,6 @@ impl StDev {
     }
 }
 
-#[cfg(not(test))]
 fn main() {
     let test_data: [i32; 8] = [2, 4, 4, 4, 5, 5, 7, 9];
     let mut sd = StDev::new();

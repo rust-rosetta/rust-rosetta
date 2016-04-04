@@ -6,10 +6,12 @@ use std::fs;
 use std::convert::AsRef;
 use std::path::Path;
 
-fn walk<P>(pth: P, regex: &Regex) where P: AsRef<Path> {
+fn walk<P>(pth: P, regex: &Regex)
+    where P: AsRef<Path>
+{
     let result = match fs::read_dir(pth) {
         Ok(result) => result,
-        Err(_) => return
+        Err(_) => return,
     };
 
     for subpath in result {

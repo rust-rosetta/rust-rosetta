@@ -19,7 +19,9 @@ fn main() {
 
     let mut entries = Vec::new();
     for l in lines {
-        if &l == "" { break }
+        if &l == "" {
+            break;
+        }
         let entry = parse_entry(&l);
         entries.push(entry);
     }
