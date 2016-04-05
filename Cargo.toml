@@ -1679,6 +1679,11 @@ name = "sorting_algorithms_merge_sort"
 path = "src/sorting_algorithms/merge_sort.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/Sorting_algorithms/Pancake_sort
+name = "sorting_algorithms_pancake_sort"
+path = "src/sorting_algorithms/pancake_sort.rs"
+
+[[bin]]
 # http://rosettacode.org/wiki/Sorting_algorithms/Quicksort
 name = "sorting_algorithms_quick_sort"
 path = "src/sorting_algorithms/quick_sort.rs"
