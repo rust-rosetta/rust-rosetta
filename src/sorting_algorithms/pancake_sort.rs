@@ -1,16 +1,11 @@
 // http://rosettacode.org/wiki/Sorting_algorithms/Pancake_sort
-
 fn pancake_sort<T: Ord>(mut v: &mut [T]) {
-
     let len = v.len();
-
     // trivial case -- no flips
     if len < 2 {
         return;
     }
-
     for i in (1..len + 1).rev() {
-
         // find index of maximum from 0 to i
         let mut max_index = 0;
         for j in 0..i {
@@ -18,7 +13,6 @@ fn pancake_sort<T: Ord>(mut v: &mut [T]) {
                 max_index = j;
             }
         }
-
         // if max_index is not where it's supposed to be
         // do two flips to move it to i - 1
         if max_index != i - 1 {
@@ -27,28 +21,22 @@ fn pancake_sort<T: Ord>(mut v: &mut [T]) {
         }
     }
 }
-
 // function to flip a section of a mutable collection from 0..num
 fn flip<E: PartialOrd>(v: &mut [E], num: usize) {
-
     for i in 0..(num + 1) / 2 {
         v.swap(i, num - i);
     }
-
 }
-
 fn main() {
     // Sort numbers
     let mut numbers = [4i32, 65, 2, -31, 0, 99, 2, 83, 782, 1];
     println!("Before: {:?}", numbers);
-
     pancake_sort(&mut numbers);
     println!("After: {:?}", numbers);
-
     // Sort strings
     let mut strings = ["beach", "hotel", "airplane", "car", "house", "art"];
     println!("Before: {:?}", strings);
-
     pancake_sort(&mut strings);
     println!("After: {:?}", strings);
 }
+// #[test]
