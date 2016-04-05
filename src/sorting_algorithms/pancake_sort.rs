@@ -18,7 +18,7 @@ fn pancake_sort<T: Ord>(mut v: &mut [T]) {
                 max_index = j;
             }
         }
-        
+
         // if max_index is not where it's supposed to be
         // do two flips to move it to i - 1
         if max_index != i - 1 {
