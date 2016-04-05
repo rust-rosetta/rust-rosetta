@@ -62,7 +62,8 @@ authors = [
     "Marc Tiehuis, https://github.com/tiehuis",
     "Dillon Tracy, https://github.com/ibnopcit",
     "Orhan Balci, https://github.com/orhanbalci",
-    "Jesús Espino, https://github.com/jespino"
+    "Jesús Espino, https://github.com/jespino",
+    "Allen Bui, https://github.com/allenbui94"
 ]
 
 [features]
@@ -992,6 +993,11 @@ name = "iterated_digits_squaring"
 path = "src/iterated_digits_squaring.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/Jaro_distance
+name = "jaro_distance"
+path = "src/jaro_distance.rs"
+
+[[bin]]
 # http://rosettacode.org/wiki/Jensen's_Device
 name = "jensens_device"
 path = "src/jensens_device.rs"
@@ -1670,6 +1676,11 @@ path = "src/sorting_algorithms/merge_sort.rs"
 # http://rosettacode.org/wiki/Sorting_algorithms/Quicksort
 name = "sorting_algorithms_quick_sort"
 path = "src/sorting_algorithms/quick_sort.rs"
+
+[[bin]]
+# http://rosettacode.org/wiki/Sorting_algorithms/Selection_sort
+name = "sorting_algorithms_selection_sort"
+path = "src/sorting_algorithms/selection_sort.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Sorting_algorithms/Sleep_sort
