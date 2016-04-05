@@ -600,6 +600,12 @@ name = "doubly_linked_list_element_insertion"
 path = "src/doubly_linked_list/element_insertion.rs"
 
 [[bin]]
+# https://www.rosettacode.org/wiki/Dutch_national_flag_problem
+name = "dutch_flag"
+path = "src/dutch_flag.rs"
+test = false
+
+[[bin]]
 # http://rosettacode.org/wiki/Echo_server
 name = "echo_server"
 path = "src/echo_server.rs"
