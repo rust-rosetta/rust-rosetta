@@ -47,3 +47,14 @@ fn main() {
     println!("a dutch flag {}", color_to_string(&color_array));
 
 }
+
+#[test]
+fn test_dutch_national_flag() {
+    let flag_array = [0, 1, 2];
+    assert_eq!(true, check_sorted(&flag_array));
+
+    let mut color_array = [2, 0, 1];
+    assert_eq!(false, check_sorted(&color_array));
+    color_array.sort();
+    assert_eq!(flag_array, color_array);
+}
