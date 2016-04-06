@@ -39,4 +39,44 @@ fn main() {
     pancake_sort(&mut strings);
     println!("After: {:?}", strings);
 }
-// #[test]
+#[cfg(test)]
+mod tests {
+    use super::pancake_sort;
+    fn check_sort<T: Ord>(v: &[T]) {
+        if v.len() > 1 {
+            for i in 0..(v.len() - 1) {
+                assert!(v[i] <= v[i + 1]);
+            }
+        }
+    }
+    #[test]
+    fn test_rosetta_vector() {
+        let numbers = &mut [4i32, 65, 2, -31, 0, 99, 2, 83, 782, 1];
+        pancake_sort(numbers);
+        check_sort(numbers);
+    }
+    #[test]
+    fn test_empty_vector() {
+        let mut numbers: Vec<i32> = Vec::new();
+        pancake_sort(&mut numbers[..]);
+        check_sort(&mut numbers[..]);
+    }
+    #[test]
+    fn test_one_element_vector() {
+        let numbers = &mut [0i32];
+        pancake_sort(numbers);
+        check_sort(numbers);
+    }
+    #[test]
+    fn test_repeat_vector() {
+        let numbers = &mut [1i32, 1, 1, 1, 1];
+        pancake_sort(numbers);
+        check_sort(numbers);
+    }
+    #[test]
+    fn test_string_vector() {
+        let strings = &mut ["beach", "hotel", "airplane", "car", "house", "art"];
+        pancake_sort(strings);
+        check_sort(strings);
+    }
+}
