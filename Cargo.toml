@@ -73,6 +73,7 @@ with-ncurses = ["ncurses"]
 with-xlib = ["x11/xlib"]
 
 [dependencies]
+chrono = "0.2"
 docopt = "0.6"
 eventual = "0.1.6"
 hyper = "0.8"
@@ -590,6 +591,11 @@ path = "src/dijkstras_algorithm.rs"
 # http://rosettacode.org/wiki/Dining_philosophers
 name = "dining_philosophers"
 path = "src/dining_philosophers.rs"
+
+[[bin]]
+# http://rosettacode.org/wiki/Discordian_date
+name = "discordian_date"
+path = "src/discordian_date.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/DNS_query
