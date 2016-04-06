@@ -3,9 +3,11 @@
 [![Windows Build status](https://ci.appveyor.com/api/projects/status/xtm3xu8j4sou5jst/branch/master?svg=true)](https://ci.appveyor.com/project/Hoverbear/rust-rosetta/branch/master)
 [![Coverage Status](https://coveralls.io/repos/Hoverbear/rust-rosetta/badge.svg?branch=master&service=github)](https://coveralls.io/github/Hoverbear/rust-rosetta?branch=master)
 
-A repository for completing [this issue on rust-lang/rust](https://github.com/rust-lang/rust/issues/10513). This repository contains minimal working code for many simple (and not so simple) tasks. New contributors and learners of the language are welcome. We will try to work with you to make the code more idiomatic over time.
+A repository for completing [this issue on rust-lang/rust](https://github.com/rust-lang/rust/issues/10513). This repository contains minimal working code for many simple (and not so simple) tasks. New contributors and learners of the language are welcome. We will try to work with you to make the code more idiomatic if you'd like!
 
-> Working on a problem, need some help? Drop by #rust-rosetta on irc.mozilla.org.
+Development is done on the `nightly` channel of Rust. You can get this using [`rustup`](rustup.rs).
+
+This is a project for learning. If you're working on a problem and need some help? Drop by #rust-rosetta on [irc.mozilla.org](https://kiwiirc.com/client/irc.mozilla.org). *(Note: It's an asynchronous protocol, responses may be slow!)*
 
 ## Tasks Remaining ##
 
@@ -32,8 +34,8 @@ All tasks that have been completed are listed (along with a link to the problem)
 Looking to help out? Great, thanks! We have a few guidelines:
 
 * The code you contribute *is* public domain.
-* Don't be afraid of comments, the code is going to be written once, read hundreds of times, and maintained until past the 1.0 release of Rust.
-* Keep your code as simple as possible, please avoid Dead Code warnings.
+* Don't be afraid of comments, the code is going to be written once, read hundreds of times, and maintained well past when you submit it.
+* Keep your code as simple as possible, please avoid dead code warnings.
 
 ### Requirements ###
 * Your code should build cleanly on latest nightly provided by [`rustup.sh`](http://doc.rust-lang.org/book/installing-rust.html)
