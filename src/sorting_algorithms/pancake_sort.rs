@@ -1,4 +1,5 @@
 // http://rosettacode.org/wiki/Sorting_algorithms/Pancake_sort
+
 fn pancake_sort<T: Ord>(mut v: &mut [T]) {
     let len = v.len();
     // trivial case -- no flips
