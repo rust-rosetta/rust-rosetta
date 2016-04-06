@@ -1654,6 +1654,11 @@ name = "sort_using_custom_comparator"
 path = "src/sort_using_custom_comparator.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/Sorting_algorithms/Bogosort
+name = "sorting_algorithms_bogo_sort"
+path = "src/sorting_algorithms/bogo_sort.rs"
+
+[[bin]]
 # http://rosettacode.org/wiki/Sorting_algorithms/Bubble_sort
 name = "sorting_algorithms_bubble_sort"
 path = "src/sorting_algorithms/bubble_sort.rs"
