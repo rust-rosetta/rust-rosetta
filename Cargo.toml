@@ -1219,6 +1219,11 @@ name = "md5_implementation"
 path = "src/md5/implementation.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/Averages/Mean_angle
+name = "mean_angle"
+path = "src/mean_angle.rs"
+
+[[bin]]
 # http://rosettacode.org/wiki/Menu
 name = "menu"
 path = "src/menu.rs"
@@ -1227,6 +1232,7 @@ path = "src/menu.rs"
 # https://rosettacode.org/wiki/Metaprogramming
 name = "metaprogramming"
 path = "src/metaprogramming.rs"
+
 
 [[bin]]
 # http://rosettacode.org/wiki/Metered_concurrency
