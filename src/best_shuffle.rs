@@ -88,7 +88,6 @@ fn _best_shuffle_perm(w: &String) -> Solution {
     let mut permutocopy = w_bytes.clone();
     let mut permutations = permutohedron::Heap::new(&mut permutocopy);
     while let Some(p) = permutations.next_permutation() {
-        // println!("testing permutation {:?}", str::from_utf8(p).unwrap());
         let hamm = hamming(&w_bytes, p);
         soln = min(soln,
                    Solution {
