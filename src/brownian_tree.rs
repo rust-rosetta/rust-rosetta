@@ -5,17 +5,13 @@
 
 extern crate image;
 extern crate rand;
-//extern crate test;
 
 use image::ColorType;
 use rand::distributions::{IndependentSample, Range};
 use std::cmp::{min, max};
 use std::env;
-//use std::io::Result;
 use std::path::Path;
 use std::process;
-
-const GRAY_QUANTUM: u32 = 1;
 
 fn help() {
     println!("Usage: brownian_tree <output_path> <mote_count> <edge_length>");
@@ -53,7 +49,6 @@ fn main() {
     let fudge = std::u8::MAX / our_max;
     let balanced: Vec<u8> = field_raw.iter().map(|e| e * fudge).collect();
 
-    println!("max is {}", our_max);
     match image::save_buffer(output_path, & balanced, width as u32, height as u32,
         ColorType::Gray(8)) {
         Err(e) => println!("Error writing output image:\n{}", e),
@@ -65,8 +60,7 @@ fn main() {
 fn populate_structure (raw: &mut Vec<u8>, width: usize, height: usize, mc: u32) {
     // Vector of 'width' elements slices
     let mut field_base: Vec<_> = raw.as_mut_slice().chunks_mut(width).collect();
-
-    // Final 2d array
+    // Addressable 2d vector
     let mut field: &mut [&mut [u8]] = field_base.as_mut_slice();
 
     // Seed mote
@@ -81,12 +75,14 @@ fn populate_structure (raw: &mut Vec<u8>, width: usize, height: usize, mc: u32) 
         if i % 100 == 0 {
             println!("{}", i)
         }
+
         // Spawn mote
         let mut x = x_spawn_range.ind_sample(&mut rng);
         let mut y = y_spawn_range.ind_sample(&mut rng);
+
         // Increment field value when motes spawn on top of the structure
         if field[x][y] > 0 {
-            field[x][y] = min(field[x][y] as u32 + GRAY_QUANTUM, std::u8::MAX as u32) as u8;
+            field[x][y] = min(field[x][y] as u32 + 1, std::u8::MAX as u32) as u8;
             continue;
         }
 
@@ -96,7 +92,7 @@ fn populate_structure (raw: &mut Vec<u8>, width: usize, height: usize, mc: u32) 
                            field[x-1][y+1] + field[x][y+1] + field[x+1][y+1];
 
             if contacts > 0 {
-                field[x][y] = min(field[x][y] as u32 + GRAY_QUANTUM, std::u8::MAX as u32) as u8;
+                field[x][y] = min(field[x][y] as u32 + 1, std::u8::MAX as u32) as u8;
                 break;
             } else {
                 let xw = walk_range.ind_sample(&mut rng) + x as i32;
@@ -117,6 +113,7 @@ fn populate_structure (raw: &mut Vec<u8>, width: usize, height: usize, mc: u32) 
 #[cfg(test)]
 mod tests {
     use super::{populate_structure};
+    use std::cmp::{max};
 
     #[test]
     fn test_brownian_tree() {
