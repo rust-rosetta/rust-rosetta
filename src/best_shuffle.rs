@@ -1,7 +1,5 @@
 // http://rosettacode.org/wiki/Best_shuffle
 
-//
-
 extern crate permutohedron;
 extern crate rand;
 
