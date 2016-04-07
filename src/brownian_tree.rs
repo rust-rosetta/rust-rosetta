@@ -1,7 +1,7 @@
 // http://rosettacode.org/wiki/Brownian_tree
 
 
-//#![feature(test)]
+// #![feature(test)]
 
 extern crate image;
 extern crate rand;
@@ -25,13 +25,13 @@ fn main() {
     let mut height: usize = 512;
 
     match args.len() {
-        1 => {},
+        1 => {}
         4 => {
             output_path = Path::new(&args[1]);
             mote_count = args[2].parse::<u32>().unwrap();
             width = args[3].parse::<usize>().unwrap();
             height = width;
-        },
+        }
         _ => {
             help();
             process::exit(0);
@@ -49,22 +49,25 @@ fn main() {
     let fudge = std::u8::MAX / our_max;
     let balanced: Vec<u8> = field_raw.iter().map(|e| e * fudge).collect();
 
-    match image::save_buffer(output_path, & balanced, width as u32, height as u32,
-        ColorType::Gray(8)) {
+    match image::save_buffer(output_path,
+                             &balanced,
+                             width as u32,
+                             height as u32,
+                             ColorType::Gray(8)) {
         Err(e) => println!("Error writing output image:\n{}", e),
-        Ok(_) => println!("Output written to:\n{}", output_path.to_str().unwrap())
+        Ok(_) => println!("Output written to:\n{}", output_path.to_str().unwrap()),
     }
 }
 
 
-fn populate_structure (raw: &mut Vec<u8>, width: usize, height: usize, mc: u32) {
+fn populate_structure(raw: &mut Vec<u8>, width: usize, height: usize, mc: u32) {
     // Vector of 'width' elements slices
     let mut field_base: Vec<_> = raw.as_mut_slice().chunks_mut(width).collect();
     // Addressable 2d vector
     let mut field: &mut [&mut [u8]] = field_base.as_mut_slice();
 
     // Seed mote
-    field[width/2][height/2] = 1;
+    field[width / 2][height / 2] = 1;
 
     let walk_range = Range::new(-1i32, 2i32);
     let x_spawn_range = Range::new(1usize, width - 1);
@@ -87,9 +90,10 @@ fn populate_structure (raw: &mut Vec<u8>, width: usize, height: usize, mc: u32) 
         }
 
         loop {
-            let contacts = field[x-1][y-1] + field[x][y-1] + field[x+1][y-1] +
-                           field[x-1][y]                   + field[x+1][y] +
-                           field[x-1][y+1] + field[x][y+1] + field[x+1][y+1];
+            let contacts = field[x - 1][y - 1] + field[x][y - 1] + field[x + 1][y - 1] +
+                           field[x - 1][y] + field[x + 1][y] +
+                           field[x - 1][y + 1] + field[x][y + 1] +
+                           field[x + 1][y + 1];
 
             if contacts > 0 {
                 field[x][y] = min(field[x][y] as u32 + 1, std::u8::MAX as u32) as u8;
@@ -97,9 +101,8 @@ fn populate_structure (raw: &mut Vec<u8>, width: usize, height: usize, mc: u32) 
             } else {
                 let xw = walk_range.ind_sample(&mut rng) + x as i32;
                 let yw = walk_range.ind_sample(&mut rng) + y as i32;
-                if xw < 1 || xw >= (width as i32 - 1) ||
-                    yw < 1 || yw >= (height as i32 - 1) {
-                    //println!("wandered off");
+                if xw < 1 || xw >= (width as i32 - 1) || yw < 1 || yw >= (height as i32 - 1) {
+                    // println!("wandered off");
                     break;
                 }
                 x = xw as usize;
@@ -112,8 +115,8 @@ fn populate_structure (raw: &mut Vec<u8>, width: usize, height: usize, mc: u32) 
 
 #[cfg(test)]
 mod tests {
-    use super::{populate_structure};
-    use std::cmp::{max};
+    use super::populate_structure;
+    use std::cmp::max;
 
     #[test]
     fn test_brownian_tree() {
