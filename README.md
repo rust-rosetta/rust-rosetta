@@ -5,7 +5,7 @@
 
 A repository for completing [this issue on rust-lang/rust](https://github.com/rust-lang/rust/issues/10513). This repository contains minimal working code for many simple (and not so simple) tasks. New contributors and learners of the language are welcome. We will try to work with you to make the code more idiomatic if you'd like!
 
-Development is done on the `nightly` channel of Rust. You can get this using [`rustup`](rustup.rs).
+Development is done on the `nightly` channel of Rust. You can get this using [`rustup`](https://www.rustup.rs/).
 
 This is a project for learning. If you're working on a problem and need some help? Drop by #rust-rosetta on [irc.mozilla.org](https://kiwiirc.com/client/irc.mozilla.org). *(Note: It's an asynchronous protocol, responses may be slow!)*
 
@@ -38,7 +38,7 @@ Looking to help out? Great, thanks! We have a few guidelines:
 * Keep your code as simple as possible, please avoid dead code warnings.
 
 ### Requirements ###
-* Your code should build cleanly on latest nightly provided by [`rustup.sh`](http://doc.rust-lang.org/book/installing-rust.html)
+* Your code should build cleanly on latest nightly provided by [`rustup.sh`](https://www.rust-lang.org/downloads.html)
 * Please, use [rustfmt](https://github.com/rust-lang-nursery/rustfmt) tool on your code.
 If it's not possible, try to keep your contributions adherent to the official style guide which you can see at [this location](http://doc.rust-lang.org/nightly/style/). The style guide is still a work-in-progress, so there may be small differences.
 * Include a link to the Rosetta Code Problem at the top of the code sample like this:
