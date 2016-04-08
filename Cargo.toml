@@ -1670,6 +1670,11 @@ name = "sorting_algorithms_bubble_sort"
 path = "src/sorting_algorithms/bubble_sort.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/Sorting_algorithms/Comb_sort
+name = "sorting_algorithms_comb_sort"
+path = "src/sorting_algorithms/comb_sort.rs"
+
+[[bin]]
 # http://rosettacode.org/wiki/Sorting_algorithms/Counting_sort
 name = "sorting_algorithms_counting_sort"
 path = "src/sorting_algorithms/counting_sort.rs"
