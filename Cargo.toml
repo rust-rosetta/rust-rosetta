@@ -63,7 +63,8 @@ authors = [
     "Dillon Tracy, https://github.com/ibnopcit",
     "Orhan Balci, https://github.com/orhanbalci",
     "Jesús Espino, https://github.com/jespino",
-    "Allen Bui, https://github.com/allenbui94"
+    "Allen Bui, https://github.com/allenbui94",
+    "Andrey Tonkih, https://github.com/xosmig"
 ]
 
 [features]
@@ -1703,6 +1704,11 @@ path = "src/sorting_algorithms/pancake_sort.rs"
 # http://rosettacode.org/wiki/Sorting_algorithms/Quicksort
 name = "sorting_algorithms_quick_sort"
 path = "src/sorting_algorithms/quick_sort.rs"
+
+[[bin]]
+# http://rosettacode.org/wiki/Sorting_algorithms/Radix_sort
+name = "sorting_algorithms_radix_sort"
+path = "src/sorting_algorithms/radix_sort.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Sorting_algorithms/Selection_sort
