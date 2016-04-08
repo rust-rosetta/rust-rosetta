@@ -1681,6 +1681,11 @@ name = "sorting_algorithms_counting_sort"
 path = "src/sorting_algorithms/counting_sort.rs"
 
 [[bin]]
+# https://en.wikipedia.org/wiki/Gnome_sort
+name = "sorting_algorithms_gnome_sort"
+path = "src/sorting_algorithms/gnome_sort.rs"
+
+[[bin]]
 # http://rosettacode.org/wiki/Sorting_algorithms/Heapsort
 name = "sorting_algorithms_heap_sort"
 path = "src/sorting_algorithms/heap_sort.rs"
