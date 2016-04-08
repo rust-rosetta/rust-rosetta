@@ -1,6 +1,6 @@
 // http://rosettacode.org/wiki/Mouse_position
 
-#[cfg(target_os="linux")]
+#[cfg(all(target_os = "linux", feature = "x11"))]
 extern crate x11;
 
 #[cfg(windows)]
@@ -12,7 +12,7 @@ extern crate user32;
 use std::thread;
 use std::time::Duration;
 
-#[cfg(all(target_os="linux", feature="with-xlib"))]
+#[cfg(all(target_os = "linux", feature = "x11"))]
 fn get_mouse_position() -> (usize, usize) {
     use std::ffi::CString;
     use std::mem;
@@ -79,12 +79,12 @@ fn get_mouse_position() -> (usize, usize) {
     (x as usize, y as usize)
 }
 
-#[cfg(all(target_os="macos"))]
+#[cfg(all(target_os = "macos"))]
 fn get_mouse_position() -> (usize, usize) {
     panic!("unsupported platform!");
 }
 
-#[cfg(all(target_os="linux", not(feature="with-xlib")))]
+#[cfg(all(target_os = "linux", not(feature = "x11")))]
 fn get_mouse_position() -> (usize, usize) {
     panic!("requires xlib!");
 }
