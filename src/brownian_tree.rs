@@ -42,7 +42,7 @@ fn main() {
 
     // Base 1d array
     let mut field_raw = vec![0u8; width * height];
-    populate_structure(&mut field_raw, width, height, mote_count);
+    populate_tree(&mut field_raw, width, height, mote_count);
 
     // Balance image for 8-bit grayscale
     let our_max = field_raw.iter().fold(0u8, |champ, e| max(champ, *e));
@@ -60,7 +60,7 @@ fn main() {
 }
 
 
-fn populate_structure(raw: &mut Vec<u8>, width: usize, height: usize, mc: u32) {
+fn populate_tree(raw: &mut Vec<u8>, width: usize, height: usize, mc: u32) {
     // Vector of 'width' elements slices
     let mut field_base: Vec<_> = raw.as_mut_slice().chunks_mut(width).collect();
     // Addressable 2d vector
@@ -115,7 +115,7 @@ fn populate_structure(raw: &mut Vec<u8>, width: usize, height: usize, mc: u32) {
 
 #[cfg(test)]
 mod tests {
-    use super::populate_structure;
+    use super::populate_tree;
     use std::cmp::max;
 
     #[test]
@@ -124,7 +124,7 @@ mod tests {
         let height = 128;
         let mote_count = 1000;
         let mut field_raw = vec![0u8; width * height];
-        populate_structure(&mut field_raw, width, height, mote_count);
+        populate_tree(&mut field_raw, width, height, mote_count);
         let our_max = field_raw.iter().fold(0u8, |champ, e| max(champ, *e));
         assert!(our_max >= 1);
     }
