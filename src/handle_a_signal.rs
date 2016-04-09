@@ -5,15 +5,18 @@ extern crate time;
 
 #[cfg(unix)]
 fn main() {
-    use std::mem;
     use std::sync::atomic::{AtomicBool, ATOMIC_BOOL_INIT, Ordering};
     use std::thread;
     use std::time::Duration;
-    use libc::SIGINT;
+
+    use libc::{SIGINT, sighandler_t};
+
     // The time between ticks of our counter.
     let duration = Duration::from_secs(1) / 2;
+
     // "SIGINT received" global variable.
     static mut GOT_SIGINT: AtomicBool = ATOMIC_BOOL_INIT;
+
     unsafe {
         // Initially, "SIGINT received" is false.
         GOT_SIGINT.store(false, Ordering::Release);
@@ -24,27 +27,35 @@ fn main() {
             GOT_SIGINT.store(true, Ordering::Release);
         }
         // Make handle_sigint the signal handler for SIGINT.
-        libc::signal(SIGINT, mem::transmute(handle_sigint));
+        libc::signal(SIGINT, handle_sigint as sighandler_t);
     }
+
     // Get the start time...
     let start = time::precise_time_ns();
+
     // Integer counter
     let mut i = 0u32;
+
     // Every `duration`...
     loop {
         thread::sleep(duration);
+
         // Break if SIGINT was handled
         if unsafe { GOT_SIGINT.load(Ordering::Acquire) } {
             break;
         }
+
         // Otherwise, increment and display the integer and continue the loop.
         i += 1;
         println!("{}", i);
     }
+
     // Get the end time.
     let end = time::precise_time_ns();
+
     // Compute the difference
     let diff = Duration::from_millis((end - start) / 1000000);
+
     // Print the difference and exit
     println!("Program has run for {} seconds", diff.as_secs());
 }
