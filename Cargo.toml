@@ -76,6 +76,7 @@ with-xlib = ["x11/xlib"]
 docopt = "0.6"
 eventual = "0.1.6"
 hyper = "0.8"
+image = "0.8.0"
 libc = "0.2"
 num = "0.1"
 permutohedron = "0.2"
@@ -387,6 +388,11 @@ test = false
 # http://rosettacode.org/wiki/Boolean_values
 name = "boolean_values"
 path = "src/boolean_values.rs"
+
+[[bin]]
+# http://rosettacode.org/wiki/Brownian_tree
+name = "brownian_tree"
+path = "src/brownian_tree.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Bulls_and_cows
