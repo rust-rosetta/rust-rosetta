@@ -32,7 +32,11 @@ before_script:
 script:
     - travis-cargo -q build
     - travis-cargo -q test
+    - cd coverage
+    - travis-cargo -q build
+    - travis-cargo -q test
 
-# Generate Docs and coverage
+# Generate coverage
 after_success:
+    - cd $TRAVIS_BUILD_DIR
     - travis-cargo -q coveralls --no-sudo
