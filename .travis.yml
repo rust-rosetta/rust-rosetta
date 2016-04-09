@@ -24,9 +24,9 @@ before_script:
     - export PATH=$HOME/.local/bin:$PATH
 
 script:
-    - travis-cargo build
-    - travis-cargo test
+    - travis-cargo -q build
+    - travis-cargo -q test
 
 # Generate Docs and coverage
 after_success:
-    - travis-cargo coveralls --no-sudo
+    - travis-cargo -q coveralls --no-sudo
