@@ -343,6 +343,11 @@ name = "bernoulli_numbers"
 path = "src/bernoulli_numbers.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/Best_shuffle
+name = "best_shuffle"
+path = "src/best_shuffle.rs"
+
+[[bin]]
 # http://rosettacode.org/wiki/Binary_digits
 name = "binary_digits"
 path = "src/binary_digits.rs"
