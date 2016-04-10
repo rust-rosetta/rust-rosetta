@@ -568,6 +568,11 @@ path = "src/currying.rs"
 test = false
 
 [[bin]]
+# http://rosettacode.org/wiki/Day_of_the_week
+name = "day_of_the_week"
+path = "src/day_of_the_week.rs"
+
+[[bin]]
 # http://www.rosettacode.org/wiki/Deal_cards_for_FreeCell
 name = "deal_cards_for_freecell"
 path = "src/deal_cards_for_freecell.rs"
