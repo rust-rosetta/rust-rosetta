@@ -16,6 +16,7 @@ Not sure how to help?
 # Implementing a Solution #
 
 ## TL;DR ##
+* Pick a task to implement (see [rust-rosetta coverage](https://euclio.github.io/rosetta-coverage) for unimplemented tasks).
 * Add an entry for your task in `Cargo.toml`.
 * Add a link to the Rosetta code wiki page for your task at the top of your
   file.
