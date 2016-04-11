@@ -29,3 +29,7 @@ $ cargo run --release -- --help
 ## Tasks Complete ##
 
 All tasks that have been completed are listed (along with a link to the problem) in [`Cargo.toml`](./Cargo.toml)
+
+## Contributing ##
+
+Looking to contribute? Great! Take a look at [CONTRIBUTING.md](CONTRIBUTING.md) to get started.
