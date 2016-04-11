@@ -20,17 +20,19 @@ addons:
       - libelf-dev
       - libdw-dev
 
+cache:
+  directories:
+    - $HOME/.cargo
+
 # Load `travis-cargo`
 before_script:
     - pip install 'travis-cargo' --user
     - export PATH=$HOME/.local/bin:$PATH
 
 script:
-    - travis-cargo build
-    - travis-cargo test
-    - travis-cargo doc
+    - travis-cargo -q build
+    - travis-cargo -q test
 
 # Generate Docs and coverage
 after_success:
-    - travis-cargo doc-upload
-    - travis-cargo coveralls --no-sudo
+    - travis-cargo -q coveralls --no-sudo
