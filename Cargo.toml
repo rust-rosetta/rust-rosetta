@@ -73,6 +73,7 @@ with-ncurses = ["ncurses"]
 with-xlib = ["x11/xlib"]
 
 [dependencies]
+chrono = "0.2"
 docopt = "0.6"
 eventual = "0.1.6"
 hyper = "0.8"
@@ -567,6 +568,11 @@ path = "src/currying.rs"
 test = false
 
 [[bin]]
+# http://rosettacode.org/wiki/Day_of_the_week
+name = "day_of_the_week"
+path = "src/day_of_the_week.rs"
+
+[[bin]]
 # http://www.rosettacode.org/wiki/Deal_cards_for_FreeCell
 name = "deal_cards_for_freecell"
 path = "src/deal_cards_for_freecell.rs"
@@ -590,6 +596,11 @@ path = "src/dijkstras_algorithm.rs"
 # http://rosettacode.org/wiki/Dining_philosophers
 name = "dining_philosophers"
 path = "src/dining_philosophers.rs"
+
+[[bin]]
+# http://rosettacode.org/wiki/Discordian_date
+name = "discordian_date"
+path = "src/discordian_date.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/DNS_query
