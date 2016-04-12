@@ -112,3 +112,57 @@ fn main() {
     cint_3 | cint_2; // CustomInt { value: 3 }
     cint_3 ^ cint_2; // CustomInt { value: 1 }
 }
+
+#[cfg(test)]
+mod tests {
+    use custom_int::*;
+
+    #[test]
+    fn add_test() {
+        let cint_2 = custom_int(2);
+        let cint_4 = custom_int(4);
+        assert_eq!(custom_int(6), cint_2 + cint_4);
+    }
+
+    #[test]
+    fn sub_test() {
+        let cint_2 = custom_int(2);
+        let cint_4 = custom_int(4);
+        assert_eq!(custom_int(2), cint_4 - cint_2);
+    }
+
+    #[test]
+    fn mul_test() {
+        let cint_2 = custom_int(2);
+        let cint_4 = custom_int(4);
+        assert_eq!(custom_int(8), cint_4 * cint_2);
+    }
+
+    #[test]
+    fn div_test() {
+        let cint_2 = custom_int(2);
+        let cint_4 = custom_int(4);
+        assert_eq!(custom_int(2), cint_4 / cint_2);
+    }
+
+    #[test]
+    fn and_test() {
+        let cint_2 = custom_int(2);
+        let cint_3 = custom_int(3);
+        assert_eq!(custom_int(2), cint_3 & cint_2);
+    }
+
+    #[test]
+    fn or_test() {
+        let cint_2 = custom_int(2);
+        let cint_3 = custom_int(3);
+        assert_eq!(custom_int(3), cint_3 | cint_2);
+    }
+
+    #[test]
+    fn xor_test() {
+        let cint_2 = custom_int(2);
+        let cint_3 = custom_int(3);
+        assert_eq!(custom_int(1), cint_3 ^ cint_2);
+    }
+}
