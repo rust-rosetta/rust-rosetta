@@ -1,6 +1,6 @@
 // http://rosettacode.org/wiki/Hello_world/Graphical
 
-#[cfg(feature = "with-gtk")]
+#[cfg(feature = "gtk")]
 mod graphical {
     extern crate gtk;
 
@@ -26,10 +26,10 @@ mod graphical {
     }
 }
 
-#[cfg(feature = "with-gtk")]
+#[cfg(feature = "gtk")]
 fn main() {
     graphical::hello_world();
 }
 
-#[cfg(not(feature = "with-gtk"))]
+#[cfg(not(feature = "gtk"))]
 fn main() {}

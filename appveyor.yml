@@ -30,3 +30,5 @@ test_script:
   # build configurations.
   - ps: cp -path "C:\OpenSSL-Win${env:BITS}\*.dll" -destination (md -force "$env:APPVEYOR_BUILD_FOLDER\target\debug")
   - cargo test
+  - cd coverage
+  - cargo test
