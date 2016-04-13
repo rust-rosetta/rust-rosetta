@@ -952,6 +952,11 @@ name = "https"
 path = "src/https.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/HTTPS/Authenticated
+name = "https_authenticated"
+path = "src/https/authenticated.rs"
+
+[[bin]]
 # http://rosettacode.org/wiki/Huffman_coding
 name = "huffman_coding"
 path = "src/huffman_coding.rs"
