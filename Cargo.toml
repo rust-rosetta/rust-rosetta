@@ -947,6 +947,11 @@ name = "http"
 path = "src/http.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/HTTPS
+name = "https"
+path = "src/https.rs"
+
+[[bin]]
 # http://rosettacode.org/wiki/Huffman_coding
 name = "huffman_coding"
 path = "src/huffman_coding.rs"
