@@ -79,7 +79,7 @@ ncurses = { version = "5.80", optional = true }
 num = "0.1"
 permutohedron = "0.2"
 rand = "0.3"
-regex = "0.1"
+regex = { version = "0.1", features = ["pattern"] }
 rustc-serialize = "0.3"
 rust-crypto = "0.2"
 schedule_recv = "0.0.1"
@@ -1745,6 +1745,11 @@ path = "src/sorting_algorithms/sleep_sort.rs"
 # http://rosettacode.org/wiki/Sorting_algorithms/Stooge_sort
 name = "sorting_algorithms_stooge_sort"
 path = "src/sorting_algorithms/stooge_sort.rs"
+
+[[bin]]
+# http://rosettacode.org/wiki/Sparkline_in_unicode
+name = "sparkline_in_unicode"
+path = "src/sparkline_in_unicode.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Stack
