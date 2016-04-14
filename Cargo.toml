@@ -567,6 +567,11 @@ name = "deal_cards_for_freecell"
 path = "src/deal_cards_for_freecell.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/Define_a_primitive_data_type
+name = "define_a_primitive_data_type"
+path = "src/define_a_primitive_data_type.rs"
+
+[[bin]]
 # http://rosettacode.org/wiki/Delete_a_file
 name = "delete_a_file"
 path = "src/delete_a_file.rs"
