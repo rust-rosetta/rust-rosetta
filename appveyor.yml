@@ -30,5 +30,9 @@ test_script:
   # build configurations.
   - ps: cp -path "C:\OpenSSL-Win${env:BITS}\*.dll" -destination (md -force "$env:APPVEYOR_BUILD_FOLDER\target\debug")
   - cargo test
+  # Also copy the correct OpenSSL DLLs to the build target path of the coverage
+  # crate. They should be preferred by DLL resolution to prevent platform
+  # binary mismatch errors during runtime.
+  - ps: cp -path "C:\OpenSSL-Win${env:BITS}\*.dll" -destination (md -force "$env:APPVEYOR_BUILD_FOLDER\coverage\target\debug")
   - cd coverage
   - cargo test
