@@ -8,12 +8,17 @@ struct CustomInt {
     value: u8,
 }
 
-// constructor function
+enum CustomIntError {
+    OutOfBoundsAssn,
+}
+
 impl CustomInt {
-    fn custom_int(v: u8) -> CustomInt {
-        let rval = CustomInt { value: v };
-        rval.in_bounds();
-        rval
+    fn custom_int(v: u8) -> Result<CustomInt, CustomIntError> {
+        if v < 1 || v > 10 {
+            Err(CustomIntError::OutOfBoundsAssn)
+        } else {
+            Ok(CustomInt { value: v })
+        }
     }
 }
 // custom trait to specify bounds
@@ -98,9 +103,9 @@ impl ops::BitXor for CustomInt {
 }
 
 fn main() {
-    let cint_2: CustomInt = CustomInt::custom_int(2);
-    let cint_3: CustomInt = CustomInt::custom_int(3);
-    let cint_4: CustomInt = CustomInt::custom_int(4);
+    let cint_2: CustomInt = CustomInt::custom_int(2).ok().unwrap();
+    let cint_3: CustomInt = CustomInt::custom_int(3).ok().unwrap();
+    let cint_4: CustomInt = CustomInt::custom_int(4).ok().unwrap();
     cint_2 + cint_4; // CustomInt { value: 6 }
     cint_4 - cint_2; // CustomInt { value: 2 }
     cint_4 * cint_2; // CustomInt { value: 8 }
@@ -116,65 +121,71 @@ mod tests {
 
     #[test]
     fn add_test() {
-        let cint_2: CustomInt = CustomInt::custom_int(2);
-        let cint_4: CustomInt = CustomInt::custom_int(4);
-        assert_eq!(CustomInt::custom_int(6), cint_2 + cint_4);
+        let cint_2: CustomInt = CustomInt::custom_int(2).ok().unwrap();
+        let cint_4: CustomInt = CustomInt::custom_int(4).ok().unwrap();
+        assert_eq!(CustomInt::custom_int(6).ok().unwrap(), cint_2 + cint_4);
     }
 
     #[test]
     fn sub_test() {
-        let cint_2: CustomInt = CustomInt::custom_int(2);
-        let cint_4: CustomInt = CustomInt::custom_int(4);
-        assert_eq!(CustomInt::custom_int(2), cint_4 - cint_2);
+        let cint_2: CustomInt = CustomInt::custom_int(2).ok().unwrap();
+        let cint_4: CustomInt = CustomInt::custom_int(4).ok().unwrap();
+        assert_eq!(CustomInt::custom_int(2).ok().unwrap(), cint_4 - cint_2);
     }
 
     #[test]
     fn mul_test() {
-        let cint_2: CustomInt = CustomInt::custom_int(2);
-        let cint_4: CustomInt = CustomInt::custom_int(4);
-        assert_eq!(CustomInt::custom_int(8), cint_4 * cint_2);
+        let cint_2: CustomInt = CustomInt::custom_int(2).ok().unwrap();
+        let cint_4: CustomInt = CustomInt::custom_int(4).ok().unwrap();
+        assert_eq!(CustomInt::custom_int(8).ok().unwrap(), cint_4 * cint_2);
     }
 
     #[test]
     fn div_test() {
-        let cint_2: CustomInt = CustomInt::custom_int(2);
-        let cint_4: CustomInt = CustomInt::custom_int(4);
-        assert_eq!(CustomInt::custom_int(2), cint_4 / cint_2);
+        let cint_2: CustomInt = CustomInt::custom_int(2).ok().unwrap();
+        let cint_4: CustomInt = CustomInt::custom_int(4).ok().unwrap();
+        assert_eq!(CustomInt::custom_int(2).ok().unwrap(), cint_4 / cint_2);
     }
 
     #[test]
     fn and_test() {
-        let cint_2: CustomInt = CustomInt::custom_int(2);
-        let cint_3: CustomInt = CustomInt::custom_int(3);
-        assert_eq!(CustomInt::custom_int(2), cint_3 & cint_2);
+        let cint_2: CustomInt = CustomInt::custom_int(2).ok().unwrap();
+        let cint_3: CustomInt = CustomInt::custom_int(3).ok().unwrap();
+        assert_eq!(CustomInt::custom_int(2).ok().unwrap(), cint_3 & cint_2);
     }
 
     #[test]
     fn or_test() {
-        let cint_2: CustomInt = CustomInt::custom_int(2);
-        let cint_3: CustomInt = CustomInt::custom_int(3);
-        assert_eq!(CustomInt::custom_int(3), cint_3 | cint_2);
+        let cint_2: CustomInt = CustomInt::custom_int(2).ok().unwrap();
+        let cint_3: CustomInt = CustomInt::custom_int(3).ok().unwrap();
+        assert_eq!(CustomInt::custom_int(3).ok().unwrap(), cint_3 | cint_2);
     }
 
     #[test]
     fn xor_test() {
-        let cint_2: CustomInt = CustomInt::custom_int(2);
-        let cint_3: CustomInt = CustomInt::custom_int(3);
-        assert_eq!(CustomInt::custom_int(1), cint_3 ^ cint_2);
+        let cint_2: CustomInt = CustomInt::custom_int(2).ok().unwrap();
+        let cint_3: CustomInt = CustomInt::custom_int(3).ok().unwrap();
+        assert_eq!(CustomInt::custom_int(1).ok().unwrap(), cint_3 ^ cint_2);
+    }
+
+    #[test]
+    fn assn_out_of_bounds_test() {
+        let cint_error = CustomInt::custom_int(0);
+        assert!(cint_error.is_err());
     }
 
     #[test]
     #[should_panic(expected = "CustomInt is out of bounds! 11 was value")]
     fn above_out_of_bounds_test() {
-        let cint_10: CustomInt = CustomInt::custom_int(10);
-        let cint_1: CustomInt = CustomInt::custom_int(1);
+        let cint_10: CustomInt = CustomInt::custom_int(10).ok().unwrap();
+        let cint_1: CustomInt = CustomInt::custom_int(1).ok().unwrap();
         cint_10 + cint_1; // should panic here
     }
 
     #[test]
     #[should_panic(expected = "CustomInt is out of bounds! 0 was value")]
     fn below_out_of_bounds_test() {
-        let cint_1: CustomInt = CustomInt::custom_int(10);
+        let cint_1: CustomInt = CustomInt::custom_int(1).ok().unwrap();
         cint_1 - cint_1; // should panic here
     }
 }
