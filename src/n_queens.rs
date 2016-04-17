@@ -132,6 +132,7 @@ mod tests {
         }
     }
 
+    #[ignore]
     #[test]
     fn test_parallel_n_queens() {
         let real = vec![1, 1, 0, 0, 2, 10, 4, 40, 92];
@@ -140,6 +141,7 @@ mod tests {
         }
     }
 
+    #[ignore]
     #[bench]
     fn bench_n_queens(b: &mut Bencher) {
         b.iter(|| {
@@ -147,6 +149,7 @@ mod tests {
         });
     }
 
+    #[ignore]
     #[bench]
     fn bench_semi_parallel_n_queens(b: &mut Bencher) {
         b.iter(|| {
