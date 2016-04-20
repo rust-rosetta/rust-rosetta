@@ -184,29 +184,31 @@ fn generate_points(n: u32, rng: &mut StdRng) -> Vec<Point> {
 }
 
 
-// Plot clusters (2d only). Wrapper idiom allows prep_axes to mutate the Axes2D.
+// Plot clusters (2d only). Closure idiom allows us to borrow and mutate the Axes2D.
 fn viz(clusters: Vec<Cluster>, stats: Stats, k: usize, n: u32, e: f64) {
     let mut fg = Figure::new();
-    prep_axes(&mut fg, clusters, stats, k, n, e);
-    fg.show();
-}
-
-
-fn prep_axes(fg: &mut Figure, clusters: Vec<Cluster>, stats: Stats, k: usize, n: u32,
-    e: f64) {
-    let a: & mut Axes2D = fg.axes2d();
-    let title: String = format!("k = {}, n = {}, e = {:4}", k, n, e);
-    let centroids_x = stats.centroids.iter().map(|c| c[0]);
-    let centroids_y = stats.centroids.iter().map(|c| c[1]);
-
-    for cluster in clusters.iter() {
-        a.points(cluster.members.iter().map(|p| p[0]), cluster.members.iter().map(|p| p[1]),
-            &[PointSymbol('O'), PointSize(0.25)]);
+    {
+        let prep = |fg: &mut Figure| {
+            let axes: &mut Axes2D = fg.axes2d();
+            let title: String = format!("k = {}, n = {}, e = {:4}", k, n, e);
+            let centroids_x = stats.centroids.iter().map(|c| c[0]);
+            let centroids_y = stats.centroids.iter().map(|c| c[1]);
+            for cluster in clusters.iter() {
+                axes.points(cluster.members.iter().map(|p| p[0]),
+                            cluster.members
+                                   .iter()
+                                   .map(|p| p[1]),
+                            &[PointSymbol('O'), PointSize(0.25)]);
+            }
+            axes.set_aspect_ratio(Fix(1.0))
+                .points(centroids_x,
+                        centroids_y,
+                        &[PointSymbol('o'), PointSize(1.5), Color("black")])
+                .set_title(&title[..], &[]);
+        };
+        prep(&mut fg);
     }
-
-    a.set_aspect_ratio(Fix(1.0))
-        .points(centroids_x, centroids_y, &[PointSymbol('o'), PointSize(1.5), Color("black")])
-        .set_title(&title[..], &[]);
+    fg.show();
 }
 
 
@@ -234,10 +236,18 @@ fn main() {
 
     let mut opts = Options::new();
     opts.optflag("?", "help", "Print this help menu");
-    opts.optopt("k", "", "Number of clusters to assign (default: 7)", "<clusters>");
-    opts.optopt("n", "", "Operate on this many points on the unit disk (default: 30000)", "<pts>");
-    opts.optopt("e", "", "Min delta in norm of successive cluster centroids to continue (default: \
-        1e-3)", "<eps>");
+    opts.optopt("k",
+                "",
+                "Number of clusters to assign (default: 7)",
+                "<clusters>");
+    opts.optopt("n",
+                "",
+                "Operate on this many points on the unit disk (default: 30000)",
+                "<pts>");
+    opts.optopt("e",
+                "",
+                "Min delta in norm of successive cluster centroids to continue (default: 1e-3)",
+                "<eps>");
     opts.optopt("f", "", "Read points from file (overrides -n)", "<csv>");
 
     let program = args[0].clone();
@@ -290,9 +300,9 @@ fn main() {
     let (clusters, stats) = lloyd(&points, k, e, max_iterations, &mut rng);
 
     println!(" k       centroid{}mean dist    pop",
-        std::iter::repeat(" ").take((points[0].len() - 2) * 7 + 7).collect::<String>());
+             std::iter::repeat(" ").take((points[0].len() - 2) * 7 + 7).collect::<String>());
     println!("===  {}  ===========  =====",
-        std::iter::repeat("=").take(points[0].len()*7 + 2).collect::<String>());
+             std::iter::repeat("=").take(points[0].len() * 7 + 2).collect::<String>());
     for i in 0..clusters.len() {
         print!(" {:>1}    ", i);
         print_dvec(&stats.centroids[i]);
