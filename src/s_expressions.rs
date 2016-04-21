@@ -18,7 +18,6 @@
 //! decoding technique doesn't allocate extra space for strings.  Does support numbers, but only
 //! float types (supporting more types is possible but would complicate the code significantly).
 #![feature(rustc_private)]
-#![feature(str_char)]
 #![feature(test)]
 
 extern crate arena;
@@ -112,12 +111,14 @@ struct Tokens<'a> {
 impl<'a> Tokens<'a> {
     /// Initialize a token stream for a given string.
     fn new(string: &str) -> Tokens {
-        match string.slice_shift_char() {
-            Some((ch, s)) => {
+        let mut chars = string.chars();
+
+        match chars.next() {
+            Some(ch) => {
                 Tokens {
                     string: string,
                     first: Some(ch),
-                    rest: s,
+                    rest: chars.as_str(),
                 }
             }
             None => {
@@ -136,9 +137,11 @@ impl<'a> Tokens<'a> {
     /// With some unsafe code we could probably get rid of one of them (and maybe first, too).
     fn update(&mut self, string: &'a str) {
         self.string = string;
-        if let Some((ch, s)) = string.slice_shift_char() {
+        let mut chars = self.string.chars();
+
+        if let Some(ch) = chars.next() {
             self.first = Some(ch);
-            self.rest = s;
+            self.rest = chars.as_str();
         } else {
             self.first = None;
         };
@@ -220,7 +223,8 @@ impl<'a> Tokens<'a> {
 /// twice, but it avoids having to write our own number parsing logic.
 fn parse_literal(literal: &str) -> SExp {
     match literal.bytes().next() {
-        Some(b'0'...b'9') | Some(b'-') => {
+        Some(b'0'...b'9') |
+        Some(b'-') => {
             match f64::from_str(literal) {
                 Ok(f) => F64(f),
                 Err(_) => Str(literal),
@@ -303,7 +307,7 @@ impl<'a> SExp<'a> {
             Some(ref mut arena) => arena,
             None => unreachable!(),
         };
-        let ParseContext {string, ref mut stack, .. } = *ctx;
+        let ParseContext { string, ref mut stack, .. } = *ctx;
         // Make sure the stack is cleared--we keep it in the context to avoid unnecessary
         // reallocation between parses (if you need to remember old parse information for a new
         // list, you can pass in a new context).
