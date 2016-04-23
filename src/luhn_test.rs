@@ -32,7 +32,7 @@ fn digits(n: u64) -> Digits {
 
 fn luhn_test(n: u64) -> bool {
     let odd_even = [LuhnState::Odd, LuhnState::Even];
-    let numbers = digits(n).zip(odd_even.iter().cycle().map(|&s| s));
+    let numbers = digits(n).zip(odd_even.iter().cycle().cloned());
     let sum = numbers.fold(0u64, |s, n| {
         s +
         match n {

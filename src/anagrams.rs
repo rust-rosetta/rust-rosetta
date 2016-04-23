@@ -8,7 +8,7 @@ use std::io::prelude::*;
 fn sorted_characters(string: &str) -> String {
     let mut chars = string.chars().collect::<Vec<char>>();
     chars.sort();
-    chars.iter().map(|c| *c).collect()
+    chars.iter().cloned().collect()
 }
 
 /// Returns groups of anagrams where each group consists of a set
