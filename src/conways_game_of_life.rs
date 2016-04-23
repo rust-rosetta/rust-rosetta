@@ -106,7 +106,7 @@ fn test() {
 +-----------+
 "
                                    .chars()
-                                   .map(|c| Cell::from_char(c))
+                                   .map(Cell::from_char)
                                    .collect();
     let mut next: Vec<Cell> = world.clone();
 

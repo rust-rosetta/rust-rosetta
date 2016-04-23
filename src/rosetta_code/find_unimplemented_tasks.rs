@@ -89,7 +89,7 @@ fn query_api(category_name: &str,
     let mut body = String::new();
     response.read_to_string(&mut body).unwrap();
 
-    Json::from_str(&body).map_err(|err| From::from(err))
+    Ok(try!(Json::from_str(&body)))
 }
 
 /// Given a JSON object, parses the task information from the MediaWiki API response.

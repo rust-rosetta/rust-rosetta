@@ -28,7 +28,7 @@ fn main() {
     let count = (1..100_000_000).filter(|&n| last_in_chain(n) == 89).count();
     println!("{}", count);
 
-    let precomputed = (0..649).map(|n| last_in_chain(n)).collect::<Vec<_>>();
+    let precomputed = (0..649).map(last_in_chain).collect::<Vec<_>>();
     let count = (1..100_000_000).filter(|&n| precomputed[digit_square_sum(n)] == 89).count();
     println!("{}", count);
 }
@@ -48,7 +48,7 @@ mod tests {
     #[test]
     #[ignore]
     fn precomputation() {
-        let precomputed = (0..649).map(|n| last_in_chain(n)).collect::<Vec<_>>();
+        let precomputed = (0..649).map(last_in_chain).collect::<Vec<_>>();
         let count = (1..100_000_000).filter(|&n| precomputed[digit_square_sum(n)] == 89).count();
         assert_eq!(count, 85744333);
     }
