@@ -56,7 +56,7 @@ mod tests {
         let bins = get_toml_paths();
         let not_covered = get_not_covered(&sources, &bins);
 
-        if not_covered.len() > 0 {
+        if !not_covered.is_empty() {
             println!("Error, the following source files are not covered by Cargo.toml:");
 
             for source in &not_covered {

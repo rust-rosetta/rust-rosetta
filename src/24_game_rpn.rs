@@ -68,7 +68,7 @@ fn check_input(expr: &str, choices: &[u32]) -> Result<(), String> {
     }
 
     let ans = stack.pop();
-    if stack.len() > 0 {
+    if !stack.is_empty() {
         return Err("Not a valid RPN expression!".to_string());
     }
     match ans {

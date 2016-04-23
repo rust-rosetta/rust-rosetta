@@ -28,7 +28,7 @@ fn compress(original_str: &str) -> Vec<i32> {
         }
     }
 
-    if w.len() > 0 {
+    if !w.is_empty() {
         result.push(dictionary[&w]);
     }
 
