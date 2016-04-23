@@ -279,15 +279,12 @@ impl<'a> SExp<'a> {
                 // unnecessary spaces between parentheses in the zero or one element cases.
                 try!(write!(writer, "{}", '('));
                 let mut iter = l.iter();
-                match iter.next() {
-                    Some(sexp) => {
+                if let Some(sexp) = iter.next() {
+                    try!(sexp.encode(writer));
+                    for sexp in iter {
+                        try!(write!(writer, "{}", ' '));
                         try!(sexp.encode(writer));
-                        for sexp in iter {
-                            try!(write!(writer, "{}", ' '));
-                            try!(sexp.encode(writer));
-                        }
                     }
-                    None => (),
                 }
                 try!(write!(writer, "{}", ')'));
                 Ok(())

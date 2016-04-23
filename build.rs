@@ -63,11 +63,8 @@ fn main() {
         if fs::metadata(&entry.path()).unwrap().is_file() {
 
             // Only check Rust files
-            match entry.path().extension().and_then(|s| s.to_str()) {
-                Some("rs") => {
-                    check(&entry.path());
-                }
-                _ => (),
+            if let Some("rs") = entry.path().extension().and_then(|s| s.to_str()) {
+                check(&entry.path());
             }
         }
     }

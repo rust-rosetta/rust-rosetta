@@ -60,16 +60,13 @@ fn can_be_built_blocks_first(input: &str) -> bool {
                 c == letter && !matched.contains(&i)
             });
 
-            match needle {
-                Some((idx, _)) => {
-                    // letter with offset idx in the original word has been matched
-                    matched.insert(idx);
-                    // don't check the other letter in this block
-                    // (we can use one character per block)
-                    break;
-                }
-                _ => {}
-            };
+            if let Some((idx, _)) = needle {
+                // letter with offset idx in the original word has been matched
+                matched.insert(idx);
+                // don't check the other letter in this block
+                // (we can use one character per block)
+                break;
+            }
         }
 
         // The iterator will halt if/when this becomes true, so it will early
