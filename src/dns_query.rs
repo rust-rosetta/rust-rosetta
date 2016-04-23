@@ -46,7 +46,7 @@ mod tests {
     }
 
     #[test]
-    #[ignore(cfg(target_os = "win32"))]
+    #[ignore]
     fn ipv6() {
         let ip = Ip::V6(Ipv6Addr::from_str("2001:200:dff:fff1:216:3eff:feb1:44d7").unwrap());
         assert!(get_ips("www.kame.net").unwrap().contains(&ip));
