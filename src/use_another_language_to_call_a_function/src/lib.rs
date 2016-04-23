@@ -35,7 +35,8 @@ pub unsafe extern "C" fn Query(data: *mut c_char, length: *mut size_t) -> c_int 
     if *length + 1 < string.len() {
         0
     } else {
-        libc::strcpy(data, CString::new(string).unwrap().as_ptr());
+        let c_string = CString::new(string).unwrap();
+        libc::strcpy(data, c_string.as_ptr());
         *length = string.len();
         1
     }
