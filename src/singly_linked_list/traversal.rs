@@ -71,16 +71,21 @@ impl<'a, T> Iterator for IterMut<'a, T> {
 
 /// Methods implemented for List<T>
 impl<T> List<T> {
-    pub fn into_iter(self) -> IntoIter<T> {
-        IntoIter(self)
-    }
-
     pub fn iter<'a>(&'a self) -> Iter<'a, T> {
         Iter { next: self.head.as_ref().map(|node| &**node) }
     }
 
     pub fn iter_mut(&mut self) -> IterMut<T> {
         IterMut { next: self.head.as_mut().map(|node| &mut **node) }
+    }
+}
+
+impl<T> IntoIterator for List<T> {
+    type Item = T;
+    type IntoIter = IntoIter<T>;
+
+    fn into_iter(self) -> Self::IntoIter {
+        IntoIter(self)
     }
 }
 
