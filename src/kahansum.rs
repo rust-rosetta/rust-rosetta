@@ -37,9 +37,9 @@ fn all_sums(vec: &mut [f32]) -> Vec<f32> {
     loop {
         let v = perms.next();
         match v {
-            Some(_v) => {
+            Some(v) => {
                 let mut sum = 0.0f32;
-                for e in &_v {
+                for e in &v {
                     sum += with_bits(*e, 1);
                 }
                 res.push(with_bits(sum, 1));
