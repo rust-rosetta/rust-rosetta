@@ -29,21 +29,21 @@ macro_rules! continued_fraction {
 
 fn main() {
     // Sqrt(2)
-    let sqrt2a = (1..2).chain(iter::repeat(2));
-    let sqrt2b = iter::repeat(1);
-    println!("{}", continued_fraction!(sqrt2a, sqrt2b));
+    let sqrt2_a = (1..2).chain(iter::repeat(2));
+    let sqrt2_b = iter::repeat(1);
+    println!("{}", continued_fraction!(sqrt2_a, sqrt2_b));
 
 
     // Napier's Constant
-    let napiera = (2..3).chain(1..);
-    let napierb = (1..2).chain(1..);
-    println!("{}", continued_fraction!(napiera, napierb));
+    let napier_a = (2..3).chain(1..);
+    let napier_b = (1..2).chain(1..);
+    println!("{}", continued_fraction!(napier_a, napier_b));
 
 
     // Pi
-    let pia = (3..4).chain(iter::repeat(6));
-    let pib = (1i64..).map(|x| (2 * x - 1).pow(2));
-    println!("{}", continued_fraction!(pia, pib));
+    let pi_a = (3..4).chain(iter::repeat(6));
+    let pi_b = (1i64..).map(|x| (2 * x - 1).pow(2));
+    println!("{}", continued_fraction!(pi_a, pi_b));
 }
 
 #[cfg(test)]
@@ -52,17 +52,17 @@ mod tests {
 
     #[test]
     fn test_sqrt2() {
-        let sqrt2a = (1..2).chain(iter::repeat(2));
-        let sqrt2b = iter::repeat(1);
+        let sqrt2_a = (1..2).chain(iter::repeat(2));
+        let sqrt2_b = iter::repeat(1);
 
         // Note that we must clone the iterator here if we want to reuse
-        assert_eq!(continued_fraction!(sqrt2a.clone(), sqrt2b.clone() ; 10),
+        assert_eq!(continued_fraction!(sqrt2_a.clone(), sqrt2_b.clone() ; 10),
                    1.4142131979695431f64);
 
-        assert_eq!(continued_fraction!(sqrt2a.clone(), sqrt2b.clone()),
-                   continued_fraction!(sqrt2a.clone(), sqrt2b.clone() ; 1000));
+        assert_eq!(continued_fraction!(sqrt2_a.clone(), sqrt2_b.clone()),
+                   continued_fraction!(sqrt2_a.clone(), sqrt2_b.clone() ; 1000));
 
-        assert_eq!(continued_fraction!(sqrt2a, sqrt2b ; 73),
+        assert_eq!(continued_fraction!(sqrt2_a, sqrt2_b ; 73),
                    1.4142135623730951f64);
     }
 }
