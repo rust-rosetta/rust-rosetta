@@ -17,12 +17,11 @@ fn ethiopian_multiplication(mut x: i32, mut y: i32) -> i32 {
 
     while x >= 1 {
         print!("{} \t {}", x, y);
-        match is_even(x) {
-            true => println!("\t Not Kept"),
-            false => {
-                println!("\t Kept");
-                sum += y;
-            }
+        if is_even(x) {
+            println!("\t Not Kept");
+        } else {
+            println!("\t Kept");
+            sum += y;
         }
         x = halve(x);
         y = double(y);
