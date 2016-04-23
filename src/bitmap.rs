@@ -30,7 +30,7 @@ impl Image {
     }
 
     pub fn fill(&mut self, color: Color) {
-        for elem in self.data.iter_mut() {
+        for elem in &mut self.data {
             *elem = color;
         }
     }
@@ -50,7 +50,7 @@ impl Image {
 }
 
 impl Index<(usize, usize)> for Image {
-    type Output=Color;
+    type Output = Color;
 
     fn index<'a>(&'a self, (x, y): (usize, usize)) -> &'a Color {
         &self.data[x + y * self.width]

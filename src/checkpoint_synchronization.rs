@@ -20,7 +20,7 @@ pub fn checkpoint() {
     unsafe {
         // Unsafe because it's hard to initialize arrays whose type is not Clone.
         events = ::std::mem::uninitialized();
-        for e in events.iter_mut() {
+        for e in &mut events {
             // Events are initially off
             *e = AtomicBool::new(false);
         }

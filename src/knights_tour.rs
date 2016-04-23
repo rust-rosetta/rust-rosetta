@@ -39,7 +39,7 @@ impl Board {
     /// calculate the number of possible moves
     fn count_degree(&self, p: Point) -> i32 {
         let mut count = 0;
-        for dir in MOVES.iter() {
+        for dir in &MOVES {
             let next = p.mov(dir);
             if self.available(next) {
                 count += 1;
@@ -51,7 +51,7 @@ impl Board {
 
 impl fmt::Display for Board {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        for row in self.field.iter() {
+        for row in &self.field {
             for x in row.iter() {
                 try!(write!(f, "{:3} ", x));
             }
@@ -73,7 +73,7 @@ fn knights_tour(x: i32, y: i32) -> Option<Board> {
         // choose next square by Warnsdorf's rule
         let mut candidates = vec![];
 
-        for dir in MOVES.iter() {
+        for dir in &MOVES {
             let adj = p.mov(dir);
             if board.available(adj) {
                 let degree = board.count_degree(adj);

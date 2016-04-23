@@ -37,17 +37,17 @@ fn main() {
 
     // Iterate through the elements of a slice
     let array = [1, 2, 3, 4, 5];
-    for i in array.iter() {
+    for i in &array {
         print!("{}", i);
     }
     println!("");
 
-    // Iterate through the elements of a hasmap
+    // Iterate through the elements of a hashmap
     let mut hashmap = HashMap::new();
     hashmap.insert("a", 1u8);
     hashmap.insert("b", 2);
     hashmap.insert("c", 3);
-    for (c, i) in hashmap.iter() {
+    for (c, i) in &hashmap {
         println!("{}: '{}'", c, i)
     }
 }

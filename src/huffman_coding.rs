@@ -69,7 +69,7 @@ fn huffman_tree(input: &str) -> HNode {
     // 2. For each (character, frequency) pair in the HashMap, add a Leaf to a
     //    PriorityQueue
     let mut queue = BinaryHeap::<HNode>::new();
-    for (ch, freq) in freq.iter() {
+    for (ch, freq) in &freq {
         let new_node = HNode {
             weight: *freq,
             item: HItem::Leaf(*ch),
@@ -196,7 +196,7 @@ fn main() {
     let mut table = HashMap::<char, String>::new();
     build_encoding_table(&tree, &mut table, "");
 
-    for (ch, encoding) in table.iter() {
+    for (ch, encoding) in &table {
         println!("{}: {}", *ch, encoding);
     }
 }

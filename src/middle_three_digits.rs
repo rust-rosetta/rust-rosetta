@@ -23,10 +23,10 @@ fn print_result(x: i32) {
 fn main() {
     let passing = [123, 12345, 1234567, 987654321, 10001, -10001, -123, -100, 100, -12345];
     let failing = [1, 2, -1, -10, 2002, -2002, 0];
-    for i in passing.iter() {
+    for i in &passing {
         print_result(*i);
     }
-    for i in failing.iter() {
+    for i in &failing {
         print_result(*i);
     }
 }

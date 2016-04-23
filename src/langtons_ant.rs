@@ -71,7 +71,7 @@ fn main() {
     while ant.x < Wrapping(100) && ant.y < Wrapping(100) {
         ant.mv(&mut grid);
     }
-    for each in grid.iter() {
+    for each in &grid {
         // construct string
         // using iterator methods to quickly convert the vector
         // to a string

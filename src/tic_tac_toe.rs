@@ -53,9 +53,9 @@ fn check_win(board: [[char; 3]; 3]) -> GameState {
     }
 
     // check if it's not a draw
-    for row in board.iter() {
-        for &c in row.iter() {
-            if c != 'X' && c != 'O' {
+    for row in &board {
+        for c in row {
+            if *c != 'X' && *c != 'O' {
                 return Playing;
             }
         }
@@ -113,7 +113,7 @@ fn computer_turn(board: &mut [[char; 3]; 3]) {
 }
 
 fn draw_board(board: [[char; 3]; 3]) {
-    for row in board.iter() {
+    for row in &board {
         println!("{} {} {}", row[0], row[1], row[2]);
     }
 }

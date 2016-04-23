@@ -56,8 +56,8 @@ fn main() {
     let largest_groups = largest_groups(&anagram_groups);
 
     // Print the words in the largest groups of anagrams
-    for (_, group) in largest_groups.iter() {
-        for word in group.iter() {
+    for group in largest_groups.values() {
+        for word in group {
             print!("{} ", word)
         }
         println!("")

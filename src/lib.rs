@@ -59,7 +59,7 @@ mod tests {
         if not_covered.len() > 0 {
             println!("Error, the following source files are not covered by Cargo.toml:");
 
-            for source in not_covered.iter() {
+            for source in &not_covered {
                 println!("{}", source);
             }
 
