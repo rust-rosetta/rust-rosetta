@@ -63,7 +63,6 @@ fn main() {
         let mut input = String::new();
         io::stdin()
             .read_line(&mut input)
-            .ok()
             .expect("failed to read line");
         match input.to_lowercase().trim() {
             s if s.starts_with("r") => {

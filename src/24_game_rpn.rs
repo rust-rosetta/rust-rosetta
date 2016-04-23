@@ -26,7 +26,7 @@ fn main() {
                  choices[2],
                  choices[3]);
         buffer.clear();
-        stdin.read_line(&mut buffer).ok().expect("Failed to read line!");
+        stdin.read_line(&mut buffer).expect("Failed to read line!");
         match check_input(&buffer[..], &choices[..]) {
             Ok(()) => {
                 println!("Good job!");
@@ -37,7 +37,7 @@ fn main() {
         print!("Try again? (y/n): ");
         stdout.flush().unwrap();
         buffer.clear();
-        stdin.read_line(&mut buffer).ok().expect("Failed to read line!");
+        stdin.read_line(&mut buffer).expect("Failed to read line!");
         if buffer.trim() != "y" {
             break;
         }

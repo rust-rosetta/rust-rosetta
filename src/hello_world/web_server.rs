@@ -61,9 +61,7 @@ fn main() {
     let host = "127.0.0.1";
     let port = if let Some(os_port) = args.next() {
         let s_port = os_port.to_owned();
-        s_port.parse::<u16>()
-              .ok()
-              .expect(&*format!("Usage: {:?} <port>", app_name))
+        s_port.parse::<u16>().expect(&*format!("Usage: {:?} <port>", app_name))
     } else {
         80
     };

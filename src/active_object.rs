@@ -136,7 +136,7 @@ fn integrate() -> f64 {
         }))
         .expect("Failed to set input");
     thread::sleep(Duration::from_secs(2));
-    object.input(Box::new(|_| 0.)).ok().expect("Failed to set input");
+    object.input(Box::new(|_| 0.)).expect("Failed to set input");
     thread::sleep(Duration::from_millis(500));
     object.output()
 }
@@ -160,7 +160,7 @@ fn solution() {
         }))
         .expect("Failed to set input");
     thread::sleep(Duration::from_millis(200));
-    object.input(Box::new(|_| 0.)).ok().expect("Failed to set input");
+    object.input(Box::new(|_| 0.)).expect("Failed to set input");
     thread::sleep(Duration::from_millis(100));
     assert_eq!(object.output() as u32, 0)
 }
