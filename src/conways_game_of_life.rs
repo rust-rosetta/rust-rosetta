@@ -79,8 +79,8 @@ fn main() {
     let mut next: Vec<Cell> = world.clone();
 
     loop {
-        for i in 0..(w * h) {
-            print!("{}", world[i].to_char());
+        for cell in &world {
+            print!("{}", cell.to_char());
         }
         print!("\n");
         next_world(&world, &mut next, w, h);

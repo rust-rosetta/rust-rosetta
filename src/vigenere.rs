@@ -22,8 +22,8 @@ fn vigenere(plaintext: &str, key: &str, encrypt: bool) -> String {
     let key_len = key_bytes.len();
     let mut output = String::with_capacity(plaintext_bytes.len());
 
-    for i in 0..plaintext_bytes.len() {
-        let c = plaintext_bytes[i];
+    for (i, byte) in plaintext_bytes.iter().enumerate() {
+        let c = *byte;
         let b = key_bytes[i % key_len];
 
         let output_byte = if encrypt {

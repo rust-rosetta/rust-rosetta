@@ -92,22 +92,16 @@ impl KDTreeNode {
         // We should always examine the near side
         if self.point.coords[self.dim] < point.coords[self.dim] && self.right.is_some() {
             let (a, b) = self.right
-                             .as_ref()
-                             .unwrap()
-                             .find_nearest_neighbor_helper(point,
-                                                           my_best,
-                                                           my_best_dist_sq,
-                                                           my_n_visited);
+                .as_ref()
+                .unwrap()
+                .find_nearest_neighbor_helper(point, my_best, my_best_dist_sq, my_n_visited);
             my_best = a;
             my_n_visited = b;
         } else if self.left.is_some() {
             let (a, b) = self.left
-                             .as_ref()
-                             .unwrap()
-                             .find_nearest_neighbor_helper(point,
-                                                           my_best,
-                                                           my_best_dist_sq,
-                                                           my_n_visited);
+                .as_ref()
+                .unwrap()
+                .find_nearest_neighbor_helper(point, my_best, my_best_dist_sq, my_n_visited);
             my_best = a;
             my_n_visited = b;
         }
@@ -130,22 +124,16 @@ impl KDTreeNode {
             // same reasoning applies for the far side of the split
             if self.point.coords[self.dim] < point.coords[self.dim] && self.left.is_some() {
                 let (a, b) = self.left
-                                 .as_ref()
-                                 .unwrap()
-                                 .find_nearest_neighbor_helper(point,
-                                                               my_best,
-                                                               my_best_dist_sq,
-                                                               my_n_visited);
+                    .as_ref()
+                    .unwrap()
+                    .find_nearest_neighbor_helper(point, my_best, my_best_dist_sq, my_n_visited);
                 my_best = a;
                 my_n_visited = b;
             } else if self.right.is_some() {
                 let (a, b) = self.right
-                                 .as_ref()
-                                 .unwrap()
-                                 .find_nearest_neighbor_helper(point,
-                                                               my_best,
-                                                               my_best_dist_sq,
-                                                               my_n_visited);
+                    .as_ref()
+                    .unwrap()
+                    .find_nearest_neighbor_helper(point, my_best, my_best_dist_sq, my_n_visited);
                 my_best = a;
                 my_n_visited = b;
             }
@@ -163,9 +151,9 @@ pub fn main() {
                                      [4f32, 7f32],
                                      [8f32, 1f32],
                                      [7f32, 2f32]]
-                                        .iter()
-                                        .map(|x| Point { coords: x.to_vec() })
-                                        .collect();
+        .iter()
+        .map(|x| Point { coords: x.to_vec() })
+        .collect();
     let wp_tree = KDTreeNode::new(&mut wp_points[..], 0);
 
     let wp_target = Point { coords: vec![9f32, 2f32] };
@@ -181,13 +169,13 @@ pub fn main() {
     let make_random_point = || {
         Point {
             coords: (0..3)
-                        .map(|_| (rand::thread_rng().gen::<f32>() - 0.5f32) * 1000f32)
-                        .collect(),
+                .map(|_| (rand::thread_rng().gen::<f32>() - 0.5f32) * 1000f32)
+                .collect(),
         }
     };
     let mut random_points: Vec<Point> = (0..n_random)
-                                            .map(|_| make_random_point())
-                                            .collect();
+        .map(|_| make_random_point())
+        .collect();
 
     let start_cons_time = get_time();
     let random_tree = KDTreeNode::new(&mut random_points[..], 0);
@@ -207,8 +195,8 @@ pub fn main() {
     // benchmark search time
     let n_searches = 1000;
     let random_targets: Vec<Point> = (0..n_searches)
-                                         .map(|_| make_random_point())
-                                         .collect();
+        .map(|_| make_random_point())
+        .collect();
 
     let start_search_time = get_time();
     let mut total_n_visited = 0;
@@ -243,6 +231,7 @@ fn quickselect_by<T>(arr: &mut [T], position: usize, cmp: &Fn(&T, &T) -> Orderin
     }
 }
 
+#[cfg_attr(feature="clippy", allow(needless_range_loop))]
 fn partition_by<T>(arr: &mut [T], pivot_index: usize, cmp: &Fn(&T, &T) -> Ordering) -> usize {
     let array_len = arr.len();
     arr.swap(pivot_index, array_len - 1);
@@ -269,9 +258,9 @@ mod tests {
                                          [4f32, 7f32],
                                          [8f32, 1f32],
                                          [7f32, 2f32]]
-                                            .iter()
-                                            .map(|x| Point { coords: x.to_vec() })
-                                            .collect();
+            .iter()
+            .map(|x| Point { coords: x.to_vec() })
+            .collect();
         let wp_tree = KDTreeNode::new(&mut wp_points[..], 0);
 
         let wp_target = Point { coords: vec![9f32, 2f32] };

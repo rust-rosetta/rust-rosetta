@@ -22,6 +22,7 @@ fn quick_sort<T: Ord>(v: &mut [T]) {
 /// Reorders the slice with values lower than the pivot at the left side,
 /// and values bigger than it at the right side.
 /// Also returns the store index.
+#[cfg_attr(feature="clippy", allow(needless_range_loop))]
 fn partition<T: Ord>(v: &mut [T]) -> usize {
     let len = v.len();
     let pivot_index = len / 2;

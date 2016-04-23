@@ -66,9 +66,9 @@ fn parse_guess_string(guess: &str) -> Result<Vec<u32>, ParseError> {
 fn calculate_score(given_digits: &[u32], guessed_digits: &[u32]) -> (usize, usize) {
     let mut bulls = 0;
     let mut cows = 0;
-    for i in 0..NUMBER_OF_DIGITS {
+    for (i, given_digit) in given_digits.iter().enumerate().take(NUMBER_OF_DIGITS) {
         let pos = guessed_digits.iter()
-            .position(|&a| a == given_digits[i]);
+            .position(|&a| a == *given_digit);
 
         match pos {
             None => (),

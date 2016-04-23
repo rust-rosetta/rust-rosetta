@@ -56,8 +56,8 @@ impl Debug for MD5 {
 
 fn to_bytes(val: u64) -> [u8; 8] {
     let mut tmp: [u8; 8] = [0u8; 8];
-    for i in 0..8 {
-        tmp[i] = (val >> (8 * i)) as u8;
+    for (i, byte) in tmp.iter_mut().enumerate() {
+        *byte = (val >> (8 * i)) as u8;
     }
     tmp
 }

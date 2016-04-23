@@ -45,6 +45,7 @@ mod mod2048 {
                 _ => None,
             }
         }
+        #[cfg_attr(feature = "clippy", allow(needless_range_loop))]
         fn draw_grid(&self, grid: [[usize; 4]; 4]) {
             let x = 0;
             let y = 2;

@@ -48,8 +48,8 @@ fn benford_distrib(numbers: &[u64]) -> Vec<f32> {
 fn main() {
     // Calculate expected frequencies of all digits according to Benford's Law
     let mut expected_distrib = [0f32; 10];
-    for digit in 1..10 {
-        expected_distrib[digit] = benford_freq(digit as u64);
+    for digit in &mut expected_distrib {
+        *digit = benford_freq(*digit as u64);
     }
 
     // Load data from the Fibonacci sequence

@@ -1,6 +1,7 @@
 // http://rosettacode.org/wiki/Sorting_algorithms/Bubble_sort
 
 /// Progress through the slice and 'bubble' elements up until they are in order.
+#[cfg_attr(feature = "clippy", allow(needless_range_loop))]
 fn bubble_sort<T: PartialOrd>(v: &mut [T]) {
     (1..v.len() + 1).rev().all(|length| {
         let mut changes = 0;

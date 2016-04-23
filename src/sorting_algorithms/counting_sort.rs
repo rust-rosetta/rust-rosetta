@@ -1,7 +1,7 @@
 // http://rosettacode.org/wiki/Sorting_algorithms/Counting_sort
 
+#[cfg_attr(feature="clippy", allow(needless_range_loop))]
 fn counting_sort(array: &mut [i32], min: i32, max: i32) {
-
     // nothing to do for arrays shorter than 2
     if array.len() < 2 {
         return;
@@ -9,7 +9,7 @@ fn counting_sort(array: &mut [i32], min: i32, max: i32) {
 
     // we count occurences of values
     let size = (max - min + 1) as usize;
-    let mut count: Vec<i32> = std::iter::repeat(0).take(size).collect();
+    let mut count = vec![0; size];
 
     for e in array.iter() {
         count[(*e - min) as usize] += 1;
@@ -23,7 +23,6 @@ fn counting_sort(array: &mut [i32], min: i32, max: i32) {
             index += 1;
         }
     }
-
 }
 
 fn main() {

@@ -1,5 +1,6 @@
 // http://rosettacode.org/wiki/Sorting_algorithms/Comb_sort
 
+#[cfg_attr(feature="clippy", allow(needless_range_loop))]
 fn comb_sort<T: PartialOrd>(v: &mut [T]) {
     let len = v.len();
     let mut gap: usize = v.len();

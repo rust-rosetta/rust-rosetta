@@ -99,25 +99,25 @@ impl Isaac {
             // fill in mm[] with messy stuff
             if flag {
                 // use all the information in the seed
-                for j in 0..8 {
-                    a_v[j] = a_v[j] + self.rand_rsl[i + j];
+                for (j, value) in a_v.iter_mut().enumerate().take(8) {
+                    *value += self.rand_rsl[i + j];
                 }
             }
             mix_v!(a_v);
-            for j in 0..8 {
-                self.mm[i + j] = a_v[j];
+            for (j, value) in a_v.iter().enumerate().take(8) {
+                self.mm[i + j] = *value;
             }
         }
 
         if flag {
             // do a second pass to make all of the seed affect all of mm
             for i in (0..256).step_by(8) {
-                for j in 0..8 {
-                    a_v[j] = a_v[j] + self.mm[i + j];
+                for (j, value) in a_v.iter_mut().enumerate().take(8) {
+                    *value += self.mm[i + j];
                 }
                 mix_v!(a_v);
-                for j in 0..8 {
-                    self.mm[i + j] = a_v[j];
+                for (j, value) in a_v.iter().enumerate().take(8) {
+                    self.mm[i + j] = *value;
                 }
             }
         }

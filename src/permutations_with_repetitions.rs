@@ -46,8 +46,8 @@ impl<'a, T> Iterator for PermutationIterator<'a, T>
                 match indexes.iter().position(|&i| i + 1 < n) {
                     None => None,
                     Some(position) => {
-                        for i in 0..(position) {
-                            indexes[i] = 0;
+                        for index in indexes.iter_mut().take(position) {
+                            *index = 0;
                         }
                         indexes[position] += 1;
                         Some(map(self.universe, &indexes[..]))
