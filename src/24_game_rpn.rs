@@ -72,13 +72,9 @@ fn check_input(expr: &str, choices: &[u32]) -> Result<(), String> {
         return Err("Not a valid RPN expression!".to_string());
     }
     match ans {
-        Some(x) => {
-            if x == 24 {
-                return Ok(());
-            }
-            return Err(format!("Wrong answer. Result: {}", x));
-        }
-        None => return Err("Error encountered!".to_string()),
+        Some(x) if x == 24 => Ok(()),
+        Some(x) => Err(format!("Wrong answer. Result: {}", x)),
+        None => Err("Error encountered!".to_string()),
     }
 }
 

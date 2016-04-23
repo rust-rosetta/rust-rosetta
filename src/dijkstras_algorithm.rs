@@ -48,7 +48,7 @@ impl<'a> Graph<'a> {
                 return Some(idx);
             }
         }
-        return None;
+        None
     }
 
     /// Returns the index of the vertex. If vertex is not found, inserts the vertex.
@@ -148,7 +148,7 @@ impl<'a> Graph<'a> {
                 None => return Vec::new(),
             }
         }
-        return temp_path.into_iter().collect();
+        temp_path.into_iter().collect()
     }
 }
 

@@ -207,7 +207,7 @@ fn knap_01_dp<'a>(xs: &[Want<'a>], max_weight: usize) -> Vec<Want<'a>> {
         }
     }
 
-    return result;
+    result
 }
 
 fn main() {

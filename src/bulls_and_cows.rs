@@ -59,7 +59,7 @@ fn parse_guess_string(guess: &str) -> Result<Vec<u32>, ParseError> {
         }
     }
 
-    return Ok(ret);
+    Ok(ret)
 }
 
 /// returns a tuple with the count of Bulls and Cows in the guess
@@ -76,7 +76,7 @@ fn calculate_score(given_digits: &[u32], guessed_digits: &[u32]) -> (usize, usiz
             Some(_) => cows += 1,
         }
     }
-    return (bulls, cows);
+    (bulls, cows)
 }
 
 fn main() {

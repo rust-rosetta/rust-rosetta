@@ -76,7 +76,7 @@ fn levenshtein_distance(s1: &str, s2: &str) -> (usize, String, String) {
     let aligned2: String = res2.into_iter().collect();
     let lev_dist = mat[l1 - 1][l2 - 1];
 
-    return (lev_dist, aligned1, aligned2);
+    (lev_dist, aligned1, aligned2)
 }
 
 fn main() {

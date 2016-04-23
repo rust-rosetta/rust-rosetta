@@ -27,7 +27,7 @@ fn hash_join<'a>(s: LeftTable<'a>, r: RightTable<'a>) -> ResultTable<'a> {
             }
         }
     }
-    return result;
+    result
 }
 
 pub fn main() {

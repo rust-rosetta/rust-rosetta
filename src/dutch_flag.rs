@@ -20,7 +20,7 @@ fn check_sorted(color_array: &[u8]) -> bool {
         }
         test_color = *color;
     }
-    return true;
+    true
 }
 
 fn color_to_string(color_array: &[u8]) -> String {

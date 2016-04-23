@@ -27,13 +27,13 @@ struct Board {
 
 impl Board {
     fn new() -> Board {
-        return Board { field: [[0; SIZE]; SIZE] };
+        Board { field: [[0; SIZE]; SIZE] }
     }
 
     fn available(&self, p: Point) -> bool {
         let valid = 0 <= p.x && p.x < SIZE as i32 && 0 <= p.y && p.y < SIZE as i32;
 
-        return valid && self.field[p.x as usize][p.y as usize] == 0;
+        valid && self.field[p.x as usize][p.y as usize] == 0
     }
 
     /// calculate the number of possible moves
@@ -45,7 +45,7 @@ impl Board {
                 count += 1;
             }
         }
-        return count;
+        count
     }
 }
 
@@ -90,7 +90,7 @@ fn knights_tour(x: i32, y: i32) -> Option<Board> {
         step += 1;
     }
 
-    return Some(board);
+    Some(board)
 }
 
 fn main() {

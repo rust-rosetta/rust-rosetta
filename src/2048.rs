@@ -24,7 +24,7 @@ mod mod2048 {
         fn draw_won(&self);
         fn draw_score(&self, text: String);
         fn draw_instructions(&self, text: String);
-}
+    }
     struct TermboxUI<'a> {
         rustbox: &'a RustBox,
     }
@@ -158,7 +158,7 @@ mod mod2048 {
         } else {
             2
         };
-        return true;
+        true
     }
     #[derive(PartialEq, Debug)]
     enum State {
@@ -239,7 +239,7 @@ mod mod2048 {
                     };
                 }
             }
-            return false;
+            false
         }
         fn add_score(&mut self, score: usize) {
             self.total_score += score;
@@ -260,22 +260,21 @@ mod mod2048 {
         }
         fn combine_tile(&mut self, col: usize, row: usize, testcol: usize, testrow: usize) -> bool {
             if self.grid[testcol][testrow] == 0 {
-                return false;
-            }
-            if self.grid[col][row] == 0 {
+                false
+            } else if self.grid[col][row] == 0 {
                 self.grid[col][row] += self.grid[testcol][testrow];
                 self.grid[testcol][testrow] = 0;
                 self.moved = true;
-                return false;
+                false
             } else if self.grid[col][row] == self.grid[testcol][testrow] {
                 self.grid[col][row] += self.grid[testcol][testrow];
                 self.grid[testcol][testrow] = 0;
                 let score = self.grid[col][row];
                 self.add_score(score);
                 self.moved = true;
-                return true;
+                true
             } else {
-                return true;
+                true
             }
         }
         fn move_up(&mut self) {

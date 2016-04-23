@@ -11,7 +11,7 @@ fn is_ordered(s: &str) -> bool {
         prev = c;
     }
 
-    return true;
+    true
 }
 
 fn find_longest_ordered_words(dict: Vec<String>) -> Vec<String> {
@@ -31,14 +31,14 @@ fn find_longest_ordered_words(dict: Vec<String>) -> Vec<String> {
         }
     }
 
-    return result;
+    result
 }
 
 fn main() {
     let lines = BufReader::new(File::open("unixdict.txt").unwrap())
-                    .lines()
-                    .map(|l| l.unwrap())
-                    .collect();
+        .lines()
+        .map(|l| l.unwrap())
+        .collect();
 
     let longest_ordered = find_longest_ordered_words(lines);
 
