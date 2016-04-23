@@ -82,9 +82,6 @@ impl MarkovAlgorithm {
         // get a writable version of the input to work with
         let mut state = input.to_string();
 
-        // Don't allow input to be used after this
-        drop(input);
-
         // loop while operations are possible
         loop {
             // find the first rule that is applicable
