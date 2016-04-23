@@ -36,6 +36,12 @@ impl Sudoku {
     }
 }
 
+impl Default for Sudoku {
+    fn default() -> Self {
+        Self::new()
+    }
+}
+
 impl FromStr for Sudoku {
     type Err = ();
 
@@ -101,8 +107,7 @@ fn solve_sudoku(mut puzzle: Sudoku) -> Vec<Sudoku> {
                     continue;
                 }
 
-                let (x0, y0) = ((x / GROUP_WIDTH) * GROUP_WIDTH,
-                                (y / GROUP_HEIGHT) * GROUP_HEIGHT);
+                let (x0, y0) = ((x / GROUP_WIDTH) * GROUP_WIDTH, (y / GROUP_HEIGHT) * GROUP_HEIGHT);
 
                 let row = (0..BOARD_WIDTH).map(|x| (x, y));
                 let col = (0..BOARD_HEIGHT).map(|y| (x, y));

@@ -152,6 +152,12 @@ impl<'a> Graph<'a> {
     }
 }
 
+impl<'a> Default for Graph<'a> {
+    fn default() -> Self {
+        Self::new()
+    }
+}
+
 #[test]
 fn test_dijkstras() {
     let mut graph = Graph::new();

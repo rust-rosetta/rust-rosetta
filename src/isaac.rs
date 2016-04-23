@@ -166,6 +166,12 @@ impl Isaac {
     }
 }
 
+impl Default for Isaac {
+    fn default() -> Self {
+        Isaac::new()
+    }
+}
+
 #[cfg(test)]
 mod tests {
     use super::{Isaac, MSG, KEY};

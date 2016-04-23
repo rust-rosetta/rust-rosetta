@@ -18,6 +18,12 @@ impl HofstadterQ {
     }
 }
 
+impl Default for HofstadterQ {
+    fn default() -> Self {
+        Self::new()
+    }
+}
+
 /// Implement the hofstadter q iteration sequence.
 impl Iterator for HofstadterQ {
     type Item = usize;

@@ -39,6 +39,12 @@ impl Context {
     }
 }
 
+impl Default for Context {
+    fn default() -> Self {
+        Self::new()
+    }
+}
+
 impl Iterator for Context {
     type Item = Bn;
 

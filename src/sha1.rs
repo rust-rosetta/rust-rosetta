@@ -173,6 +173,12 @@ impl Digest {
     }
 }
 
+impl Default for Digest {
+    fn default() -> Self {
+        Self::new()
+    }
+}
+
 impl Write for Digest {
     fn write(&mut self, buf: &[u8]) -> Result<usize> {
         try!(self.write_all(buf));

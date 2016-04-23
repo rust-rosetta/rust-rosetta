@@ -17,6 +17,12 @@ impl Foo {
     }
 }
 
+impl Default for Foo {
+    fn default() -> Self {
+        Self::new()
+    }
+}
+
 fn main() {
     // create the instance object foo,
     // by calling the static method new of struct Foo
