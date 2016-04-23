@@ -37,6 +37,7 @@ fn discordian_date<T: Datelike>(date: T) -> String {
 }
 
 // implementation from https://en.wikipedia.org/wiki/Leap_year#Algorithm
+#[cfg_attr(feature="clippy", allow(if_same_then_else))]
 fn is_leap_year(year: i32) -> bool {
     if year % 4 != 0 {
         false
