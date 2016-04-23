@@ -41,7 +41,7 @@ pub const LN_5: f64 = 1.60943791243410037460075933322618763952560135426851772191
 /// result as a `BigUint` only when we need it.
 /// we also store the logarithm for quicker comparisons, using this property
 /// of logarithms: ln(2^i * 3^j * 5^k) = i*ln2 + j*ln3 + k*ln5
-#[derive(Debug, Copy)]
+#[derive(Debug, Copy, Clone)]
 pub struct HammingTriple {
     pow_2: usize,
     pow_3: usize,
@@ -109,14 +109,6 @@ impl HammingTriple {
             pow_5: pow_5,
             ln: (pow_2 as f64) * LN_2 + (pow_3 as f64) * LN_3 + (pow_5 as f64) * LN_5,
         }
-    }
-}
-
-impl Clone for HammingTriple {
-    /// Return a deep copy of the value.
-    #[inline]
-    fn clone(&self) -> HammingTriple {
-        *self
     }
 }
 
