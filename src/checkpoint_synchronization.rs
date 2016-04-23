@@ -36,7 +36,7 @@ pub fn checkpoint() {
         spawn(move || -> () {
             let (ref barrier, ref events) = *arc;
             // Assign an event to this task
-            let ref event = events[i];
+            let event = &events[i];
             // Start processing events
             for _ in 0..NUM_ITERATIONS {
                 // Between checkpoints 4 and 1, turn this task's event on.

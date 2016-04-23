@@ -397,14 +397,14 @@ fn try_decode<'a>(ctx: &'a mut ParseContext<'a>) -> Result<SExp<'a>, Error> {
 
 fn main() {
     println!("{:?}", try_encode());
-    let ref mut ctx = ParseContext::new(SEXP_STRING_IN);
+    let ctx = &mut ParseContext::new(SEXP_STRING_IN);
     println!("{:?}", try_decode(ctx));
 }
 
 #[bench]
 fn bench_decode(b: &mut test::Bencher) {
     b.iter(|| {
-        let ref mut ctx = ParseContext::new(SEXP_STRING_IN);
+        let ctx = &mut ParseContext::new(SEXP_STRING_IN);
         assert!(try_decode(ctx).is_ok());
     })
 }
@@ -425,6 +425,6 @@ fn test_sexp_encode() {
 
 #[test]
 fn test_sexp_decode() {
-    let ref mut ctx = ParseContext::new(SEXP_STRING_IN);
+    let ctx = &mut ParseContext::new(SEXP_STRING_IN);
     assert_eq!(Ok(SEXP_STRUCT), try_decode(ctx));
 }

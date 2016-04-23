@@ -127,8 +127,8 @@ mod buckets {
             // We know this won't fail, and the compiler seems to know as well.  However, if it
             // *did* fail, it wouldn't fail while we were holding mutexes (which can cause
             // problems since they may need to poison other tasks).
-            let ref b1 = self.buckets[from];
-            let ref b2 = self.buckets[to];
+            let b1 = &self.buckets[from];
+            let b2 = &self.buckets[to];
             // It's very important to lock our Mutexes in the same order everywhere to avoid
             // deadlock.  We arbitrarily choose the convention that we lock in ascending index
             // order.
@@ -203,12 +203,12 @@ fn equalize(bl: &buckets::Buckets, running: &AtomicBool, worker: usize) {
     // We preallocate the Range for improved performance.
     let between = Range::new(0, buckets::N_BUCKETS);
     // We use the weak random number generator for improved performance.
-    let ref mut r = weak_rng();
+    let mut r = weak_rng();
     // Running is read Relaxed because it's not important that the task stop right away as long as
     // it happens eventually.
     while running.load(Ordering::Relaxed) {
-        let b1 = between.ind_sample(r);
-        let b2 = between.ind_sample(r);
+        let b1 = between.ind_sample(&mut r);
+        let b2 = between.ind_sample(&mut r);
         let v1 = bl.get(b1).unwrap();
         let v2 = bl.get(b2).unwrap();
         if v1 > v2 {
@@ -224,12 +224,12 @@ fn randomize(bl: &buckets::Buckets, running: &AtomicBool, worker: usize) {
     // We preallocate the Range for improved performance.
     let between = Range::new(0, buckets::N_BUCKETS);
     // We use the weak random number generator for improved performance.
-    let ref mut r = weak_rng();
+    let mut r = weak_rng();
     // Running is read Relaxed because it's not important that the task stop right away as long as
     // it happens eventually.
     while running.load(Ordering::Relaxed) {
-        let b1 = between.ind_sample(r);
-        let b2 = between.ind_sample(r);
+        let b1 = between.ind_sample(&mut r);
+        let b2 = between.ind_sample(&mut r);
         bl.transfer(b1, b2, r.gen_range(0, bl.get(b1).unwrap() + 1), worker);
     }
 }
