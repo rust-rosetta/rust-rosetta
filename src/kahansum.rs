@@ -51,7 +51,7 @@ fn all_sums(vec: &mut [f32]) -> Vec<f32> {
 }
 
 fn main() {
-    let v = [10000.0f32, 3.14159, 2.71828];
+    let v = vec![10000.0f32, 3.14159, 2.71828];
     let sums = all_sums(&mut v.clone());
     let res = kahan_sum(&v).unwrap();
     let max = find_max(&sums[..]).unwrap();
@@ -60,7 +60,7 @@ fn main() {
 
 #[test]
 fn test_kahansum() {
-    let v = [10000.0f32, 3.14159, 2.71828];
+    let v = vec![10000.0f32, 3.14159, 2.71828];
     let sums = all_sums(&mut v.clone());
     let res = kahan_sum(&v).unwrap();
     let max = find_max(&sums[..]).unwrap();

@@ -52,14 +52,14 @@ fn decompress(compressed: &[i32]) -> String {
             Some(v) => v.clone(),
             None if k == dict_size => {
                 let mut new = w.clone();
-                new.push(w[0].clone());
+                new.push(w[0]);
                 new
             }
             None => panic!("Invalid compressed string"),
         };
 
         result.extend(entry.iter().map(|&x| x.clone()));
-        w.push(entry[0].clone());
+        w.push(entry[0]);
         dictionary.insert(dict_size, w);
         dict_size += 1;
         w = entry;

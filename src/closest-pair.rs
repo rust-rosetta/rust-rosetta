@@ -46,8 +46,8 @@ fn closest_pair(points: &mut [Point]) -> Option<(Point, Point)> {
 
     // the strip that we inspect for closest pairs as we sweep right
     let mut strip: BTreeSet<YSortedPoint> = BTreeSet::new();
-    strip.insert(YSortedPoint { point: points[0].clone() });
-    strip.insert(YSortedPoint { point: points[1].clone() });
+    strip.insert(YSortedPoint { point: points[0] });
+    strip.insert(YSortedPoint { point: points[1] });
 
     // index of the leftmost point on the strip (on points)
     let mut leftmost_idx = 0;
@@ -61,7 +61,7 @@ fn closest_pair(points: &mut [Point]) -> Option<(Point, Point)> {
             if (leftmost_point.re - point.re).powi(2) < closest_distance_sqr {
                 break;
             }
-            strip.remove(&YSortedPoint { point: leftmost_point.clone() });
+            strip.remove(&YSortedPoint { point: *leftmost_point });
             leftmost_idx += 1;
         }
 
@@ -93,7 +93,7 @@ fn closest_pair(points: &mut [Point]) -> Option<(Point, Point)> {
         }
 
         // Insert point into strip
-        strip.insert(YSortedPoint { point: point.clone() });
+        strip.insert(YSortedPoint { point: *point });
     }
 
     Some(closest_pair)

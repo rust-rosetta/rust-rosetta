@@ -177,18 +177,18 @@ fn knap_01_dp<'a>(xs: &[Want<'a>], max_weight: usize) -> Vec<Want<'a>> {
             if xs[i].weight > w {
                 // if we don't, then we'll say that the value doesn't change
                 // when considering this item
-                best_value[i + 1][w] = best_value[i][w].clone();
+                best_value[i + 1][w] = best_value[i][w];
             } else {
                 // if we do, then we have to see if the value we gain by adding
                 // the item, given the weight, is better than not adding the item
-                best_value[i + 1][w] = max(best_value[i][w].clone(),
+                best_value[i + 1][w] = max(best_value[i][w],
                                            best_value[i][w - xs[i].weight] + xs[i].value);
             }
         }
     }
 
     // a variable representing the weight left in the bag
-    let mut left_weight = max_weight.clone();
+    let mut left_weight = max_weight;
 
     // a possibly over-allocated dynamically sized vector to push results to
     let mut result = Vec::with_capacity(xs_len);

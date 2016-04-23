@@ -117,11 +117,11 @@ impl<S: Mul<f64, Output = T> + Float + Zero, T: 'static + Clone + Send + Float> 
 
     pub fn output(&self) -> T {
         // ...and to read the input, we simply acquire a lock on the output Mutex and return a
-        // clone.  Why do we have to clone it?  Because, as mentioned above, Rust won't let us
+        // copy. Why do we have to copy it?  Because, as mentioned above, Rust won't let us
         // retain access to the interior of the Mutex unless we have possession of its lock.  There
         // are ways and circumstances in which one can avoid this (e.g. by using atomic types) but
-        // clone() is a perfectly reasonable solution as well, and a lot easier to reason about :)
-        self.output.lock().unwrap().clone()
+        // a copy is a perfectly reasonable solution as well, and a lot easier to reason about :)
+        *self.output.lock().unwrap()
     }
 }
 
