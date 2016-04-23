@@ -51,10 +51,9 @@ fn factorial(n: u32) -> f64 {
 }
 
 fn analytical(n: u32) -> f64 {
-    let sum: f64 = (1..(n + 1))
-                       .map(|i| factorial(n) / (n as f64).powi(i as i32) / factorial(n - i))
-                       .fold(0f64, |a, v| a + v);
-    sum
+    (1..(n + 1))
+        .map(|i| factorial(n) / (n as f64).powi(i as i32) / factorial(n - i))
+        .fold(0f64, |a, v| a + v)
 }
 
 fn empirical(n: u32, trials: u32, rng: &mut ThreadRng) -> f64 {
@@ -81,7 +80,7 @@ fn empirical(n: u32, trials: u32, rng: &mut ThreadRng) -> f64 {
 #[cfg(test)]
 mod tests {
     use super::{factorial, analytical, empirical};
-    use rand::{thread_rng};
+    use rand::thread_rng;
 
     #[test]
     fn test_factorial() {
