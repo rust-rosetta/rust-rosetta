@@ -27,9 +27,9 @@ fn get_ips(host: &str) -> io::Result<Vec<Ips>> {
 
 fn main() {
     for ip in &(get_ips("www.kame.net").unwrap()) {
-        match ip {
-            &Ips::IpV4(ip) => println!("ip v4: {}", ip),
-            &Ips::IpV6(ip) => println!("ip v6: {}", ip),
+        match *ip {
+            Ips::IpV4(ip) => println!("ip v4: {}", ip),
+            Ips::IpV6(ip) => println!("ip v6: {}", ip),
         }
     }
 }
