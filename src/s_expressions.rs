@@ -5,7 +5,7 @@
 //! example here takes under a microsecond on my machine) and tries to avoid unnecessary allocation.
 //!
 //! In a real implementation, most of this would be private, with only a few visible functions, and
-//! there would be somewhat nicer signatures (in particular, the fact that ParseContext has to be
+//! there would be somewhat nicer signatures (in particular, the fact that `ParseContext` has to be
 //! mutable would get annoying in real code pretty quickly, so it would probably be split out).
 //!
 //! It supports the ability to read individual atoms, not just lists, although whether this is
@@ -13,10 +13,11 @@
 //!
 //! Caveats: Does not support symbols vs. non-symbols (it wouldn't be hard, but it would greatly
 //! complicate setting up our test structure since we'd have to force it to go through functions
-//! that checked to make sure Symbols couldn't have spaces, or slow down our parser by checking for
-//! this information each time, which is obnoxious).  Does not support string escaping, because the
-//! decoding technique doesn't allocate extra space for strings.  Does support numbers, but only
-//! float types (supporting more types is possible but would complicate the code significantly).
+//! that checked to make sure `Symbol`s couldn't have spaces, or slow down our parser by checking
+//! for this information each time, which is obnoxious).  Does not support string escaping, because
+//! the decoding technique doesn't allocate extra space for strings.  Does support numbers, but
+//! only float types (supporting more types is possible but would complicate the code
+//! significantly).
 #![feature(rustc_private)]
 #![feature(test)]
 
@@ -32,10 +33,10 @@ use self::SExp::*;
 use self::Error::*;
 use self::Token::*;
 
-/// The actual SExp structure.  Supports f64s, lists, and string literals.  Note that it takes
+/// The actual `SExp` structure.  Supports `f64`s, lists, and string literals.  Note that it takes
 /// everything by reference, rather than owning it--this is mostly done just so we can allocate
-/// SExps statically (since we don't have to call Vec).  It does complicate the code a bit,
-/// requiring us to have a ParseContext that holds an arena where lists are actually allocated.
+/// `SExp`s statically (since we don't have to call `Vec`).  It does complicate the code a bit,
+/// requiring us to have a `ParseContext` that holds an arena where lists are actually allocated.
 #[derive(PartialEq,Debug)]
 enum SExp<'a> {
     /// Float literal: 0.5
@@ -51,7 +52,7 @@ enum SExp<'a> {
 /// Errors that can be thrown by the parser.
 #[derive(PartialEq, Debug)]
 enum Error {
-    /// If the float is NaN, Infinity, etc.
+    /// If the float is `NaN`, `Infinity`, etc.
     NoReprForFloat,
 
     /// Missing an end double quote during string parsing

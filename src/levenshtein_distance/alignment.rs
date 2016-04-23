@@ -17,10 +17,10 @@ fn get_val(mat: &Vec<Vec<usize>>, r: usize, c: usize, default: usize) -> usize {
     }
 }
 
-/// Implementation of the Needleman–Wunsch algorithm, with modification
+/// Implementation of the [Needleman–Wunsch algorithm], with modification
 /// to the scoring method to only allow positive ints.
 ///
-/// http://en.wikipedia.org/wiki/Needleman%E2%80%93Wunsch_algorithm
+/// [Needleman-Wunsch algorithm]: http://en.wikipedia.org/wiki/Needleman%E2%80%93Wunsch_algorithm
 fn levenshtein_distance(s1: &str, s2: &str) -> (usize, String, String) {
     let l1 = s1.len() + 1;
     let l2 = s2.len() + 1;

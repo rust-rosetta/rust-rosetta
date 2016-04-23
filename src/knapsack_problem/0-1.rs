@@ -126,8 +126,11 @@ const ITEMS: &'static [Want<'static>] = &[Want {
                                           }];
 
 /// This is a bottom-up dynamic programming solution to the 0-1 knap-sack problem.
-///      maximize value
-///      subject to weights <= max_weight
+///
+/// ```
+/// maximize value
+/// subject to weights <= max_weight
+/// ```
 fn knap_01_dp<'a>(xs: &[Want<'a>], max_weight: usize) -> Vec<Want<'a>> {
 
     // Save this value, so we don't have to make repeated calls.
@@ -163,8 +166,8 @@ fn knap_01_dp<'a>(xs: &[Want<'a>], max_weight: usize) -> Vec<Want<'a>> {
 
     let zero_vec: Vec<usize> = repeat(0).take(max_weight + 1).collect();
     let mut best_value: Vec<Vec<usize>> = repeat(zero_vec)
-                                              .take(xs_len + 1)
-                                              .collect();
+        .take(xs_len + 1)
+        .collect();
 
     // loop over the items
     for i in 0..xs_len {

@@ -5,10 +5,10 @@
 use std::vec::Vec;
 use std::slice::Iter;
 
-/// If set == {}
-///   return {{}}
-/// else if set == {a} U rest
-///   return power_set(rest) U ({a} U each set in power_set(rest))
+// If set == {}
+//   return {{}}
+// else if set == {a} U rest
+//   return power_set(rest) U ({a} U each set in power_set(rest))
 fn power_set<'a, T: Clone + 'a>(items: &mut Iter<'a, T>) -> Vec<Vec<T>> {
     let mut power = Vec::new();
     match items.next() {

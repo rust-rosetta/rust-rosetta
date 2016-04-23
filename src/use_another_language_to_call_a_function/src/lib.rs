@@ -4,13 +4,23 @@
 //! above. The C program will need to be linked with the library produced by this file.
 //!
 //! 1. Compile this library:
-//!      $ cargo build --release
+//!
+//!     ```
+//!     $ cargo build --release
+//!     ```
+//!
 //! 2. Copy the C program into query.c.
 //! 3. Compile and link the C program with the produced library:
-//!      $ LD_LIBRARY_PATH=/path/to/library gcc query.c -o query -Wall -Werror libquery
+//!
+//!     ```
+//!     $ LD_LIBRARY_PATH=/path/to/library gcc query.c -o query -Wall -Werror libquery
+//!     ```
 //! 4. Run the resulting binary.
-//!      $ LD_LIBRARY_PATH=/path/to/library ./query
-//!      Here am I
+//!
+//!     ```
+//!     $ LD_LIBRARY_PATH=/path/to/library ./query
+//!     Here am I
+//!     ```
 #![crate_type = "dylib"]
 extern crate libc;
 

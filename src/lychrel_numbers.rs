@@ -23,7 +23,7 @@ fn is_palindrome(num: &BigInt) -> bool {
     num_string[0..comp_len] == rev_string[0..comp_len]
 }
 
-/// Perform a lychrel test on a number, stopping after max_tests
+/// Perform a lychrel test on a number, stopping after `max_tests`
 /// Returns the sequence of numbers if this number is a lychrel, None otherwise.
 fn test_lychrel(num: &BigInt, max_tests: usize) -> Option<Vec<BigInt>> {
     let mut sequence = Vec::<BigInt>::new();
@@ -50,7 +50,7 @@ fn is_related(seq: &Vec<BigInt>, lychrel_seq_numbers: &HashSet<BigInt>) -> bool 
     seq.iter().filter(|num| lychrel_seq_numbers.contains(num)).next().is_some()
 }
 
-/// Find the lychrel numbers up to max_num (inclusive).
+/// Find the lychrel numbers up to `max_num` (inclusive).
 /// Returns a tuple (lychrel numbers, related numbers, palindrome lychrel/related numbers)
 fn find_lychrels(max_num: u64, max_tests: usize) -> (Vec<BigInt>, Vec<BigInt>, Vec<BigInt>) {
     // storage for various outputs

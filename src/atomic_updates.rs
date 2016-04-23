@@ -6,8 +6,8 @@
 //! faster and this version seems to achieve parity with the benchmarks on the Rosetta Code site
 //! (at least on my machine).  I am pretty sure it could be made faster, though--for example, the
 //! Mutex type we're using here was the fourth type I tried but the first to produce acceptable
-//! performance (previously I tried, in order, std::sync::RwLock, std::sync::Mutex, and
-//! std::sync::Semaphore) and this type still appears to have quite a bit of overhead.
+//! performance (previously I tried, in order, `std::sync::RwLock`, `std::sync::Mutex`, and
+//! `std::sync::Semaphore`) and this type still appears to have quite a bit of overhead.
 
 extern crate rand;
 
@@ -29,30 +29,30 @@ mod buckets {
     /// We hardcode the number of buckets mostly for convenience.  Now that Rust has dynamically
     /// sized types, this is possibly no longer a problem.
     ///
-    /// To expand: in Rust, there are two special kinds, Sync and Send, used for concurrency.
+    /// To expand: in Rust, there are two special kinds, `Sync` and `Send`, used for concurrency.
     ///
-    /// If T is Sync, and you take an immutable reference of type &T, then it's safe to share
-    /// between threads.  Most types are Sync unless they contain non-threadsafe interior
-    /// mutability: for example, Cell and RefCell are not Sync, because they can be modified
-    /// through a & reference in a non-threadsafe way.  On the other hand, atomic types are Sync
-    /// even though they can be modified this way.  So are types accessible through a Mutex.
+    /// If `T` is `Sync`, and you take an immutable reference of type `&T`, then it's safe to share
+    /// between threads.  Most types are `Sync` unless they contain non-threadsafe interior
+    /// mutability: for example, `Cell` and `RefCell` are not Sync, because they can be modified
+    /// through a `&` reference in a non-threadsafe way.  On the other hand, atomic types are
+    /// `Sync` even though they can be modified this way.  So are types accessible through a
+    /// `Mutex`.
     ///
-    /// The other type is Send.  Send's semantic meanining is "a type that can be sent between
-    /// tasks."  For most practical purposes, this means "has no non-'static references" (with a
-    /// very few exceptions, like the Rc type, which are non-Send anyway).  The idea is that it is
-    /// not safe to send a type between tasks if it has any non-static references, because one
+    /// The other type is `Send`.  `Send`'s semantic meaning is "a type that can be sent between
+    /// tasks."  For most practical purposes, this means "has no non-`'static` references" (with a
+    /// very few exceptions, like the `Rc` type, which are non-`Send` anyway).  The idea is that it
+    /// is not safe to send a type between tasks if it has any non-static references, because one
     /// doesn't know when the data it's referencing will be deallocated if it's on some other
     /// task's stack.
     ///
     /// Usually, that's a reasonable assumption.  But it means that if we want to put a slice in a
-    /// structure and share it between tasks, it can't be a &[T]--it has to be a bare [T].  Arc has
-    /// Send + Sync bounds for this reason.  We could also use a Vec, but this would introduce
-    /// unnecessary indirection.  With dynamically sized types, this problem may be solved--we can
-    /// have a dynamically sized struct that doesn't contain explicit references.  But until that
-    /// is fully baked, this seems like the sanest solution.
+    /// structure and share it between tasks, it can't be a `&[T]`--it has to be a bare [T].  `Arc`
+    /// has `Send` + `Sync` bounds for this reason.  We could also use a `Vec`, but this would
+    /// introduce unnecessary indirection.  With dynamically sized types, this problem may be
+    /// solved--we can have a dynamically sized `struct` that doesn't contain explicit references.
+    /// But until that is fully baked, this seems like the sanest solution.
     ///
-    /// (Another way to solve this would be associated constants, something Rust does not have
-    /// yet).
+    /// Another way to solve this would be associated constants.
     pub const N_BUCKETS: usize = 20;
 
     /// We don't really have to hardcode the workers.  This is left over from the Go
@@ -61,13 +61,13 @@ mod buckets {
     pub const N_WORKERS: usize = 2;
 
     struct Bucket {
-        /// The actual data.  It is atomic because it is read (not written) outside the Mutex,
+        /// The actual data.  It is atomic because it is read (not written) outside the `Mutex`,
         /// unless a consistent snapshot is required.
         data: AtomicUsize,
 
         /// The mutex used to synchronize writes and snapshot reads of the
         /// bucket.
-        /// As the D solution says, using a per-bucket Mutex dramatically
+        /// As the D solution says, using a per-bucket `Mutex` dramatically
         /// improves scalability compared to the alternatives.
         mutex: Mutex<()>,
     }
@@ -186,7 +186,7 @@ mod buckets {
     }
 }
 
-/// Convenience method to create a distribution of buckets summing to initial_sum.
+/// Convenience method to create a distribution of buckets summing to `initial_sum`.
 fn make_buckets(initial_sum: usize) -> buckets::Buckets {
     let mut buckets = [0; buckets::N_BUCKETS];
     let mut dist = initial_sum;

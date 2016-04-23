@@ -1,7 +1,7 @@
 // http://rosettacode.org/wiki/Hamming_numbers
 
-//! alternate version: uses a more efficient representation of Hamming numbers:
-//! instead of storing them as BigUint directly, it stores the three exponents
+//! Alternate version: uses a more efficient representation of Hamming numbers:
+//! instead of storing them as `BigUint` directly, it stores the three exponents
 //! i, j and k for 2^i * 3^j * 5 ^k and the logarithm of the number for comparisons
 
 extern crate num;
@@ -36,9 +36,9 @@ pub const LN_5: f64 = 1.60943791243410037460075933322618763952560135426851772191
 
 /// more space-efficient representation of a Hamming number.
 /// A Hamming number is 2^i * 3^j * 5^k;
-/// instead of storing it directly as a BigUint
+/// instead of storing it directly as a `BigUint`
 /// we store the powers i, j and k and calculate the
-/// result as a BigUint only when we need it.
+/// result as a `BigUint` only when we need it.
 /// we also store the logarithm for quicker comparisons, using this property
 /// of logarithms: ln(2^i * 3^j * 5^k) = i*ln2 + j*ln3 + k*ln5
 #[derive(Debug, Copy)]
@@ -93,7 +93,7 @@ impl HammingNumber for HammingTriple {
 }
 
 impl ToBigUint for HammingTriple {
-    /// calculate the value as a BigUint
+    /// calculate the value as a `BigUint`
     fn to_biguint(&self) -> Option<BigUint> {
         Some(pow(2u8.to_biguint().unwrap(), self.pow_2) *
              pow(3u8.to_biguint().unwrap(), self.pow_3) *

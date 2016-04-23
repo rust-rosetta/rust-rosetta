@@ -1,9 +1,10 @@
 // http://rosettacode.org/wiki/24_game
 
-//! Implements with a recursive descent parser for a simple calculator (+ - * /) using the shunting
-//! yard algorithm as explained on http://www.engr.mun.ca/~theo/Misc/exp_parsing.htm. It follows
-//! operator precedence (i.e. 2 + 3 * 3 = 11), understands negation (-5 + 6 = 1), ignores
-//! whitespace and allows the use of parentheses
+//! Implements with a recursive descent parser for a simple calculator (+ - * /) using the
+//! [shunting yard algorithm]. It follows operator precedence (i.e. 2 + 3 * 3 = 11), understands
+//! negation (-5 + 6 = 1), ignores whitespace and allows the use of parentheses.
+//!
+//! [shunting yard algorithm]: http://www.engr.mun.ca/~theo/Misc/exp_parsing.htm.
 
 extern crate rand;
 use std::cmp::Ordering::{self, Greater};
@@ -44,7 +45,7 @@ fn main() {
 pub fn check_values(sample: &mut [u32], input: &str) -> bool {
     let lex = Lexer::new(input);
 
-    let mut numbers_used = lex.filter_map(|(_,a)| {
+    let mut numbers_used = lex.filter_map(|(_, a)| {
                                   match a {
                                       Token::Int(i) => Some(i),
                                       _ => None,
@@ -86,18 +87,17 @@ pub struct Lexer<'a> {
 
 impl<'a> Lexer<'a> {
     pub fn new(input: &str) -> Lexer {
-        Lexer {
-            input: input.char_indices().peekable(),
-        }
+        Lexer { input: input.char_indices().peekable() }
     }
 
     fn expect<I>(iter: &mut I, expected: &[Token]) -> Result<Token, String>
-                            where I: Iterator<Item = (usize, Token)> {
+        where I: Iterator<Item = (usize, Token)>
+    {
         match iter.next() {
             Some((_, a)) if expected.contains(&a) => Ok(a),
-            Some((n, other)) =>
-                Err(format!("Parsing error: {:?} was unexpected at offset {}",
-                other, n)),
+            Some((n, other)) => {
+                Err(format!("Parsing error: {:?} was unexpected at offset {}", other, n))
+            }
             None => Err("unexpected end of token list".into()),
         }
     }
@@ -107,8 +107,10 @@ impl<'a> Iterator for Lexer<'a> {
     type Item = (usize, Token);
 
     fn next(&mut self) -> Option<(usize, Token)> {
-        if let Some((idx, c)) = self.input.by_ref()
-                .skip_while(|&(_, c)| c.is_whitespace()).next() {
+        if let Some((idx, c)) = self.input
+                                    .by_ref()
+                                    .skip_while(|&(_, c)| c.is_whitespace())
+                                    .next() {
             let ret = match c {
                 '(' => Token::LParen,
                 ')' => Token::RParen,
@@ -117,14 +119,16 @@ impl<'a> Iterator for Lexer<'a> {
                 '/' => Token::Slash,
                 '*' => Token::Star,
                 d @ '0'...'9' => {
-                        let mut val = d.to_digit(10). unwrap();
-                        while let Some(dg) = self.input.by_ref().peek()
-                                .and_then(|&(_, di)| di.to_digit(10)) {
-                            val = val * 10 + dg;
-                            self.input.by_ref().next();
-                        }
-                        Token::Int(val)
-                    },
+                    let mut val = d.to_digit(10).unwrap();
+                    while let Some(dg) = self.input
+                                             .by_ref()
+                                             .peek()
+                                             .and_then(|&(_, di)| di.to_digit(10)) {
+                        val = val * 10 + dg;
+                        self.input.by_ref().next();
+                    }
+                    Token::Int(val)
+                }
                 _ => Token::Unknown,
             };
             Some((idx, ret))
@@ -173,9 +177,9 @@ impl PartialOrd for Operator {
     }
 }
 
-/// recursive descent parser with the shunting yard algorithm as explained on
-/// http://www.engr.mun.ca/~theo/Misc/exp_parsing.htm. I followed the names of the methods as
-/// closely as possible vs the pseudo-code that illustrates the algorithm
+/// Recursive descent parser with the shunting yard algorithm as explained in the crate
+/// documentation. I followed the names of the methods as closely as possible vs. the pseudo-code
+/// that illustrates the algorithm.
 pub struct Parser<'a> {
     operators: Vec<Operator>,
     operands: Vec<f32>,
@@ -203,7 +207,9 @@ impl<'a> Parser<'a> {
     fn e(&mut self) -> Result<(), String> {
         try!(self.p());
         while let Some(&(_, x)) = self.lexer.by_ref().peek() {
-            if ! x.is_binary() { break; }
+            if !x.is_binary() {
+                break;
+            }
 
             let op = match x {
                 Token::Plus => Operator::Add,
@@ -221,7 +227,9 @@ impl<'a> Parser<'a> {
         }
 
         while let Some(&op) = self.operators.last() {
-            if op == Operator::Sentinel { return Ok(()) }
+            if op == Operator::Sentinel {
+                return Ok(());
+            }
             self.pop_operator();
         }
         unreachable!() // algorithm fail: reached the end without finding
@@ -311,7 +319,7 @@ mod tests {
     fn lexer_iter() {
         // test read token and character's offset in the iterator
         let t = |lex: &mut Lexer, exp_tok: Token, exp_pos: usize| {
-            assert_eq!(lex.next(), Some((exp_pos,exp_tok)));
+            assert_eq!(lex.next(), Some((exp_pos, exp_tok)));
         };
 
         let tok = &mut Lexer::new("  15 + 4");

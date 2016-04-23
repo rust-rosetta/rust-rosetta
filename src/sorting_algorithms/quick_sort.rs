@@ -1,8 +1,9 @@
 // http://rosettacode.org/wiki/Sorting_algorithms/Quicksort
 extern crate rand;
 
-/// We use in place quick sort
-/// For details see http://en.wikipedia.org/wiki/Quicksort#In-place_version
+/// We use an [in-place quick sort].
+///
+/// [in-place quick sort]: http://en.wikipedia.org/wiki/Quicksort#In-place_version
 fn quick_sort<T: Ord>(v: &mut [T]) {
     let len = v.len();
     if len < 2 {
@@ -120,5 +121,4 @@ mod tests {
         quick_sort(&mut numbers[..]);
         check_sort(&mut numbers[..]);
     }
-
 }

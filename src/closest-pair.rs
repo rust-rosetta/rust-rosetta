@@ -1,10 +1,11 @@
 // http://rosettacode.org/wiki/Closest-pair_problem
 
 //! We interpret complex numbers as points in the Cartesian plane, here. We also use the
-//! sweepline/plane sweep closest pairs algorithm
-//! (http://www.cs.mcgill.ca/~cs251/ClosestPair/ClosestPairPS.html) instead of the
-//! divide-and-conquer algorithm, since it's (arguably) easier to implement, and an efficient
-//! implementation does not require use of unsafe.
+//! [sweepline/plane sweep closest pairs algorithm][algorithm] instead of the divide-and-conquer
+//! algorithm, since it's (arguably) easier to implement, and an efficient implementation does not
+//! require use of unsafe.
+//!
+//! [algorithm]: http://www.cs.mcgill.ca/~cs251/ClosestPair/ClosestPairPS.html
 extern crate num;
 
 use std::cmp::{PartialOrd, Ordering};
@@ -12,7 +13,7 @@ use num::complex::Complex;
 use std::collections::BTreeSet;
 type Point = Complex<f32>;
 
-/// Wrapper around Point (i.e. Complex<f32>) so that we can use a TreeSet
+/// Wrapper around `Point` (i.e. `Complex<f32>`) so that we can use a `TreeSet`
 #[derive(PartialEq)]
 struct YSortedPoint {
     point: Point,

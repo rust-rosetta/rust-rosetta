@@ -1,7 +1,8 @@
 // http://rosettacode.org/wiki/24_game/Solve
 
-//! modeled after the scala solution
-//! http://rosettacode.org/wiki/24_game/Solve#Scala
+//! Modeled after [the Scala solution]
+//!
+//! [the Scala solution]: http://rosettacode.org/wiki/24_game/Solve#Scala
 #![feature(slice_patterns)]
 
 extern crate num;
@@ -22,8 +23,8 @@ fn main() {
     println!("{}", sol);
 }
 
-/// for a vector of rationals r, find the combination of arithmentic
-/// operations that yield target_val as a result (if such combination exists)
+/// for a vector of rationals r, find the combination of arithmentic operations that yield
+/// `target_val` as a result (if such combination exists)
 fn solve(r: &mut [Rational], target_val: isize) -> Option<String> {
     // need to sort because next_permutation()
     // returns permutations in lexicographic order
@@ -49,7 +50,7 @@ fn compute_all_operations(l: &[Rational]) -> Vec<(Rational, String)> {
     match l {
         [] => vec![],
         [x] => vec![(x, (format!("{}", x)))],
-        [x,rest..] => {
+        [x, rest..] => {
             let mut rt = Vec::new();
             for &(y, ref exp) in &compute_all_operations(rest) {
                 let mut sub = vec![(x * y, "*"), (x + y, "+"), (x - y, "-")];

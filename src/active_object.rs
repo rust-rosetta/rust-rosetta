@@ -14,15 +14,15 @@ use std::sync::mpsc::{self, Sender, SendError};
 use std::ops::Mul;
 use schedule_recv::periodic_ms;
 
-/// Rust supports both shared-memory and actor models of concurrency, and the Integrator utilizes
-/// both.  We use a Sender (actor model) to send the Integrator new functions, while we use a Mutex
-/// (shared-memory concurrency) to hold the result of the integration.
+/// Rust supports both shared-memory and actor models of concurrency, and the `Integrator` utilizes
+/// both.  We use a `Sender` (actor model) to send the `Integrator` new functions, while we use a
+/// `Mutex` (shared-memory concurrency) to hold the result of the integration.
 ///
 /// Note that these are not the only options here--there are many, many ways you can deal with
-/// concurrent access.  But when in doubt, a plain old Mutex is often a good bet.  For example,
-/// this might look like a good situation for a RwLock--after all, there's no reason for a read in
-/// the main task to block writes.  Unfortunately, unless you have significantly more reads than
-/// writes (which is certainly not the case here), a Mutex will usually outperform a RwLock.
+/// concurrent access.  But when in doubt, a plain old `Mutex` is often a good bet.  For example,
+/// this might look like a good situation for a `RwLock`--after all, there's no reason for a read
+/// in the main task to block writes.  Unfortunately, unless you have significantly more reads than
+/// writes (which is certainly not the case here), a `Mutex` will usually outperform a `RwLock`.
 pub struct Integrator<S: 'static, T: Send> {
     input: Sender<Box<Fn(u32) -> S + Send>>,
     output: Arc<Mutex<T>>,
@@ -30,11 +30,11 @@ pub struct Integrator<S: 'static, T: Send> {
 
 /// In Rust, time durations are strongly typed.  This is usually exactly what you want, but for a
 /// problem like this--where the integrated value has unusual (unspecified?) units--it can actually
-/// be a bit tricky.  Right now, Durations can only be multiplied or divided by i32s, so in order
-/// to be able to actually do math with them we say that the type parameter S (the result of the
-/// function being integrated) must yield T (the type of the integrated value) when multiplied by
-/// f64.  We could possibly replace f64 with a generic as well, but it would make things a bit more
-/// complex.
+/// be a bit tricky.  Right now, `Duration`s can only be multiplied or divided by `i32`s, so in
+/// order to be able to actually do math with them we say that the type parameter `S` (the result
+/// of the function being integrated) must yield `T` (the type of the integrated value) when
+/// multiplied by `f64`.  We could possibly replace `f64` with a generic as well, but it would make
+/// things a bit more complex.
 impl<S: Mul<f64, Output = T> + Float + Zero, T: 'static + Clone + Send + Float> Integrator<S, T> {
     pub fn new(frequency: u32) -> Integrator<S, T> {
         // We create a pipe allowing functions to be sent from tx (the sending end) to input (the

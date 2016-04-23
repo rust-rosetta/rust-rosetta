@@ -1,8 +1,7 @@
 // http://rosettacode.org/wiki/Doubly-linked_list/Element_insertion
 
-//! This expands upon the implementation defined in [Doubly-linked list/Element
-//! definition#The_behind-the-scenes_implementation][element definition] and consists of the
-//! relevant lines from the `LinkedList` implementation in the Rust standard library.
+//! This expands upon the implementation defined on [Rosetta Code][element definition] and consists
+//! of the relevant lines from the `LinkedList` implementation in the Rust standard library.
 //!
 //! [element definition]: http://rosettacode.org/wiki/Doubly-linked_list/Element_definition
 
