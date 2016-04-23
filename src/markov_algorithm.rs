@@ -24,7 +24,7 @@ struct MarkovAlgorithm {
 
 impl MarkovAlgorithm {
     /// Parse an algorithm description to build a markov algorithm
-    pub fn from_str(s: &str) -> Result<MarkovAlgorithm, String> {
+    pub fn parse(s: &str) -> Result<MarkovAlgorithm, String> {
         let mut rules: Vec<MarkovRule> = vec![];
         for line in s.lines()
             .map(|l| l.trim())
@@ -133,8 +133,8 @@ struct RCSample<'a> {
     expected_result: &'a str,
 }
 
-// Sample markow algorithms from rosetta code
-// The extra whitespaces are trimmed when MarkovAlgorithm::from_str is called
+// Sample markov algorithms from Rosetta Code
+// The extra whitespaces are trimmed when MarkovAlgorithm::parse is called.
 fn get_samples<'a>() -> [RCSample<'a>; 5] {
     [RCSample {
          ruleset: r"# This rules file is extracted from Wikipedia:
@@ -232,7 +232,7 @@ fn get_samples<'a>() -> [RCSample<'a>; 5] {
 
 fn main() {
     for (index, sample) in get_samples().iter().enumerate() {
-        match MarkovAlgorithm::from_str(sample.ruleset) {
+        match MarkovAlgorithm::parse(sample.ruleset) {
             Ok(algorithm) => {
                 println!("Sample {}", (index + 1));
                 println!("Output: {}", algorithm.apply(sample.input));
@@ -246,7 +246,7 @@ fn main() {
 #[test]
 fn test_samples() {
     for sample in &get_samples() {
-        match MarkovAlgorithm::from_str(sample.ruleset) {
+        match MarkovAlgorithm::parse(sample.ruleset) {
             Ok(algorithm) => assert_eq!(sample.expected_result, algorithm.apply(sample.input)),
             Err(message) => panic!("{}", message),
         }

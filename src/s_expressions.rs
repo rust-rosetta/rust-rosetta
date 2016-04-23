@@ -149,7 +149,7 @@ impl<'a> Tokens<'a> {
     }
 
     /// This is where the lexing happens.  Note that it does not handle string escaping.
-    fn next(&mut self) -> Result<Token<'a>, Error> {
+    fn next_token(&mut self) -> Result<Token<'a>, Error> {
         loop {
             match self.first {
                 // List start
@@ -313,11 +313,11 @@ impl<'a> SExp<'a> {
         let mut tokens = Tokens::new(string);
         // First, we check the very first token to see if we're parsing a full list.  It
         // simplifies parsing a lot in the subsequent code if we can assume that.
-        let next = tokens.next();
+        let next = tokens.next_token();
         let mut list = match try!(next) {
             ListStart => Vec::new(),
             Literal(s) => {
-                return if try!(tokens.next()) == EOF {
+                return if try!(tokens.next_token()) == EOF {
                     Ok(s)
                 } else {
                     Err(ExpectedEOF)
@@ -329,7 +329,7 @@ impl<'a> SExp<'a> {
 
         // We know we're in a list if we got this far.
         loop {
-            let tok = tokens.next();
+            let tok = tokens.next_token();
             match try!(tok) {
                 ListStart => {
                     // We push the previous context onto our stack when we start reading a new list.
@@ -350,7 +350,7 @@ impl<'a> SExp<'a> {
                         // The check to make sure there are no more tokens is required for
                         // correctness.
                         None => {
-                            return match try!(tokens.next()) {
+                            return match try!(tokens.next_token()) {
                                 EOF => Ok(List(&*arena.alloc(list))),
                                 _ => Err(ExpectedEOF),
                             }
