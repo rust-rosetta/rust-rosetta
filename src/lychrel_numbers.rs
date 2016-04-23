@@ -46,7 +46,7 @@ fn test_lychrel(num: &BigInt, max_tests: usize) -> Option<Vec<BigInt>> {
 }
 
 /// Determine if the sequence for a lychrel number is related to a previously seen sequence
-fn is_related(seq: &Vec<BigInt>, lychrel_seq_numbers: &HashSet<BigInt>) -> bool {
+fn is_related(seq: &[BigInt], lychrel_seq_numbers: &HashSet<BigInt>) -> bool {
     seq.iter().filter(|num| lychrel_seq_numbers.contains(num)).next().is_some()
 }
 
@@ -91,7 +91,7 @@ fn find_lychrels(max_num: u64, max_tests: usize) -> (Vec<BigInt>, Vec<BigInt>, V
     (lychrels, relateds, palindrome_lychrels)
 }
 
-fn print_nums(before: &str, numbers: &Vec<BigInt>) {
+fn print_nums(before: &str, numbers: &[BigInt]) {
     print!("{}", before);
     for (i, current) in numbers.iter().enumerate() {
         print!("{}", current);

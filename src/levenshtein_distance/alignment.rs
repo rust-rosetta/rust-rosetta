@@ -5,7 +5,7 @@ use std::iter::repeat;
 
 /// Returns the value of a 2D vector given a pair of indexes.
 /// Returns the default value if indices are out of bounds.
-fn get_val(mat: &Vec<Vec<usize>>, r: usize, c: usize, default: usize) -> usize {
+fn get_val(mat: &[Vec<usize>], r: usize, c: usize, default: usize) -> usize {
     match mat.get(r) {
         Some(col) => {
             match col.get(c) {

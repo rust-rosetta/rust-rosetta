@@ -78,7 +78,9 @@ fn main() {
 }
 
 // Implementation iterating over all permutations
-fn _best_shuffle_perm(w: &String) -> Solution {
+fn _best_shuffle_perm(w: &str) -> Solution {
+    let w = String::from(w);
+
     let mut soln = Solution {
         original: w.clone(),
         shuffled: w.clone(),
@@ -104,7 +106,9 @@ fn _best_shuffle_perm(w: &String) -> Solution {
 }
 
 // Quadratic implementation
-fn best_shuffle(w: &String) -> Solution {
+fn best_shuffle(w: &str) -> Solution {
+    let w = String::from(w);
+
     let w_bytes: Vec<u8> = w.clone().into_bytes();
     let mut shuffled_bytes: Vec<u8> = w.clone().into_bytes();
 
@@ -142,45 +146,44 @@ mod tests {
 
     #[test]
     fn test_best_shuffle_perm() {
-        let mut s0 = _best_shuffle_perm(&String::from("seesaw"));
+        let mut s0 = _best_shuffle_perm("seesaw");
         assert_eq!(s0.score, 0);
 
-        s0 = _best_shuffle_perm(&String::from("elk"));
+        s0 = _best_shuffle_perm("elk");
         assert_eq!(s0.score, 0);
 
-        s0 = _best_shuffle_perm(&String::from("grrrrrr"));
+        s0 = _best_shuffle_perm("grrrrrr");
         assert_eq!(s0.score, 5);
 
-        s0 = _best_shuffle_perm(&String::from("up"));
+        s0 = _best_shuffle_perm("up");
         assert_eq!(s0.shuffled, "pu");
         assert_eq!(s0.score, 0);
 
-        s0 = _best_shuffle_perm(&String::from("a"));
+        s0 = _best_shuffle_perm("a");
         assert_eq!(s0.shuffled, "a");
         assert_eq!(s0.score, 1);
     }
 
     #[test]
     fn test_best_shuffle() {
-        let mut s0 = best_shuffle(&String::from("abracadabra"));
+        let mut s0 = best_shuffle("abracadabra");
         assert_eq!(s0.score, 0);
 
-        s0 = best_shuffle(&String::from("seesaw"));
+        s0 = best_shuffle("seesaw");
         assert_eq!(s0.score, 0);
 
-        s0 = best_shuffle(&String::from("elk"));
+        s0 = best_shuffle("elk");
         assert_eq!(s0.score, 0);
 
-        s0 = best_shuffle(&String::from("grrrrrr"));
+        s0 = best_shuffle("grrrrrr");
         assert_eq!(s0.score, 5);
 
-        s0 = best_shuffle(&String::from("up"));
+        s0 = best_shuffle("up");
         assert_eq!(s0.shuffled, "pu");
         assert_eq!(s0.score, 0);
 
-        s0 = best_shuffle(&String::from("a"));
+        s0 = best_shuffle("a");
         assert_eq!(s0.shuffled, "a");
         assert_eq!(s0.score, 1);
     }
-
 }

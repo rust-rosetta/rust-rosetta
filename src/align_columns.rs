@@ -35,7 +35,7 @@ fn align_columns(text: &str) -> (Vec<Vec<String>>, Vec<usize>) {
     (chunks, max_lengths)
 }
 
-fn print_aligned_columns(chunks: &Vec<Vec<String>>, max_lengths: &Vec<usize>) {
+fn print_aligned_columns(chunks: &[Vec<String>], max_lengths: &[usize]) {
     // left aligned
     for chunk in chunks {
         for (i, split) in chunk.iter().enumerate() {
