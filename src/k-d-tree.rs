@@ -90,30 +90,26 @@ impl KDTreeNode {
         let mut my_n_visited = n_visited;
 
         // We should always examine the near side
-        if self.point.coords[self.dim] < point.coords[self.dim] {
-            if self.right.is_some() {
-                let (a, b) = self.right
-                                 .as_ref()
-                                 .unwrap()
-                                 .find_nearest_neighbor_helper(point,
-                                                               my_best,
-                                                               my_best_dist_sq,
-                                                               my_n_visited);
-                my_best = a;
-                my_n_visited = b;
-            }
-        } else {
-            if self.left.is_some() {
-                let (a, b) = self.left
-                                 .as_ref()
-                                 .unwrap()
-                                 .find_nearest_neighbor_helper(point,
-                                                               my_best,
-                                                               my_best_dist_sq,
-                                                               my_n_visited);
-                my_best = a;
-                my_n_visited = b;
-            }
+        if self.point.coords[self.dim] < point.coords[self.dim] && self.right.is_some() {
+            let (a, b) = self.right
+                             .as_ref()
+                             .unwrap()
+                             .find_nearest_neighbor_helper(point,
+                                                           my_best,
+                                                           my_best_dist_sq,
+                                                           my_n_visited);
+            my_best = a;
+            my_n_visited = b;
+        } else if self.left.is_some() {
+            let (a, b) = self.left
+                             .as_ref()
+                             .unwrap()
+                             .find_nearest_neighbor_helper(point,
+                                                           my_best,
+                                                           my_best_dist_sq,
+                                                           my_n_visited);
+            my_best = a;
+            my_n_visited = b;
         }
 
         // distance along this node's axis
@@ -132,30 +128,26 @@ impl KDTreeNode {
             my_n_visited += 1;
 
             // same reasoning applies for the far side of the split
-            if self.point.coords[self.dim] < point.coords[self.dim] {
-                if self.left.is_some() {
-                    let (a, b) = self.left
-                                     .as_ref()
-                                     .unwrap()
-                                     .find_nearest_neighbor_helper(point,
-                                                                   my_best,
-                                                                   my_best_dist_sq,
-                                                                   my_n_visited);
-                    my_best = a;
-                    my_n_visited = b;
-                }
-            } else {
-                if self.right.is_some() {
-                    let (a, b) = self.right
-                                     .as_ref()
-                                     .unwrap()
-                                     .find_nearest_neighbor_helper(point,
-                                                                   my_best,
-                                                                   my_best_dist_sq,
-                                                                   my_n_visited);
-                    my_best = a;
-                    my_n_visited = b;
-                }
+            if self.point.coords[self.dim] < point.coords[self.dim] && self.left.is_some() {
+                let (a, b) = self.left
+                                 .as_ref()
+                                 .unwrap()
+                                 .find_nearest_neighbor_helper(point,
+                                                               my_best,
+                                                               my_best_dist_sq,
+                                                               my_n_visited);
+                my_best = a;
+                my_n_visited = b;
+            } else if self.right.is_some() {
+                let (a, b) = self.right
+                                 .as_ref()
+                                 .unwrap()
+                                 .find_nearest_neighbor_helper(point,
+                                                               my_best,
+                                                               my_best_dist_sq,
+                                                               my_n_visited);
+                my_best = a;
+                my_n_visited = b;
             }
         }
 

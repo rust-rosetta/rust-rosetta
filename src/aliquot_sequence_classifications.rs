@@ -31,12 +31,11 @@ fn classify_aliquot(num: i64) -> (AliquotType, Vec<i64>) {
                     2 => AliquotType::Amicable,
                     _ => AliquotType::Sociable,
                 }
+            } else if cycle_len == 1 {
+                AliquotType::Aspiring
             } else {
-                if cycle_len == 1 {
-                    AliquotType::Aspiring
-                } else {
-                    AliquotType::Cyclic
-                }
+                AliquotType::Cyclic
+
             })
         } else {
             None
