@@ -1,6 +1,6 @@
 // http://rosettacode.org/wiki/Levenshtein_distance/Alignment
 use std::usize;
-use std::collections::LinkedList;
+use std::collections::VecDeque;
 use std::iter::repeat;
 
 /// Returns the value of a 2D vector given a pair of indexes.
@@ -27,8 +27,8 @@ fn levenshtein_distance(s1: &str, s2: &str) -> (usize, String, String) {
     let l2 = s2.len() + 1;
 
     let mut mat: Vec<Vec<usize>> = repeat(repeat(0).take(l2).collect())
-                                       .take(l1)
-                                       .collect();
+        .take(l1)
+        .collect();
     for row in 0..l1 {
         mat[row][0] = row;
     }
@@ -48,8 +48,8 @@ fn levenshtein_distance(s1: &str, s2: &str) -> (usize, String, String) {
             }
         }
     }
-    let mut res1: LinkedList<char> = LinkedList::new();
-    let mut res2: LinkedList<char> = LinkedList::new();
+    let mut res1: VecDeque<char> = VecDeque::new();
+    let mut res2: VecDeque<char> = VecDeque::new();
     let mut cur_row = l1 - 1;
     let mut cur_col = l2 - 1;
     while cur_row > 0 || cur_col > 0 {

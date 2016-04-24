@@ -1,6 +1,6 @@
 // http://rosettacode.org/wiki/Dijkstra's_algorithm
 
-use std::collections::{HashMap, BinaryHeap, LinkedList};
+use std::collections::{HashMap, BinaryHeap, VecDeque};
 use std::collections::hash_map::Entry::{Occupied, Vacant};
 use std::iter::repeat;
 use std::cmp::Ordering;
@@ -133,7 +133,7 @@ impl<'a> Graph<'a> {
             };
         }
 
-        let mut temp_path: LinkedList<&str> = LinkedList::new();
+        let mut temp_path: VecDeque<&str> = VecDeque::new();
         let mut curr = target_idx;
         temp_path.push_front(self.vertices[curr]);
         loop {
