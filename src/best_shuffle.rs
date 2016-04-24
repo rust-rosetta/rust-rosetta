@@ -136,7 +136,7 @@ fn best_shuffle(w: &str) -> Solution {
     }
 }
 
-fn hamming(w0: &Vec<u8>, w1: &Vec<u8>) -> usize {
+fn hamming(w0: &[u8], w1: &[u8]) -> usize {
     w0.iter().zip(w1.iter()).filter(|z| z.0 == z.1).count()
 }
 
