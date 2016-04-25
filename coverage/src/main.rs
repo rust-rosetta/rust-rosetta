@@ -22,7 +22,8 @@ Detect unimplemented tasks.
 This script prints out the name of each task, followed by whether it is implemented online,
 locally, or both.
 
-If no tasks are specified, determines the status for all tasks.
+Tasks must be specified using normalized names, e.g. \"K-d tree\". If no tasks are specified,
+determines the status for all tasks.
 
 Optionally prints out a diff as well.
 

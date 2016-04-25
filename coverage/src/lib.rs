@@ -21,7 +21,7 @@ use std::path::PathBuf;
 use hyper::Client;
 use hyper::header::Connection;
 use regex::Regex;
-use url::Url;
+use url::{percent_encoding, Url};
 use walkdir::WalkDir;
 
 use rust_rosetta::rosetta_code::find_unimplemented_tasks;
@@ -82,7 +82,8 @@ impl Task {
 
 /// Transforms a task title to a URL task title.
 fn normalize(title: &str) -> String {
-    title.replace(" ", "_")
+    String::from_utf8(percent_encoding::percent_decode(&title.replace(" ", "_").into_bytes()))
+        .unwrap()
 }
 
 /// Returns the titles of every task on Rosetta Code.
@@ -120,7 +121,7 @@ impl TaskIterator {
                                            .expect(&format!("could not parse task name for {:?}",
                                                             path));
 
-            local_tasks.insert(task_name.to_owned(), path.to_owned());
+            local_tasks.insert(normalize(&task_name.to_owned()), path.to_owned());
         }
 
         TaskIterator {
@@ -197,6 +198,5 @@ pub fn fetch_tasks(tasks: &[String]) -> TaskIterator {
                                                       .cloned()
                                                       .collect();
     task_titles.sort();
-
     TaskIterator::new(&task_titles)
 }

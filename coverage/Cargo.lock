@@ -47,6 +47,11 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 
 [[package]]
 name = "byteorder"
+version = "0.3.13"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+
+[[package]]
+name = "byteorder"
 version = "0.4.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 
@@ -78,6 +83,15 @@ dependencies = [
  "rustc-serialize 0.3.19 (registry+https://github.com/rust-lang/crates.io-index)",
  "time 0.1.35 (registry+https://github.com/rust-lang/crates.io-index)",
  "url 0.5.8 (registry+https://github.com/rust-lang/crates.io-index)",
+]
+
+[[package]]
+name = "csv"
+version = "0.14.4"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+dependencies = [
+ "byteorder 0.3.13 (registry+https://github.com/rust-lang/crates.io-index)",
+ "rustc-serialize 0.3.19 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
 [[package]]
@@ -194,6 +208,11 @@ dependencies = [
 [[package]]
 name = "glob"
 version = "0.2.11"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+
+[[package]]
+name = "gnuplot"
+version = "0.0.20"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 
 [[package]]
@@ -340,6 +359,16 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 dependencies = [
  "gcc 0.3.26 (registry+https://github.com/rust-lang/crates.io-index)",
  "libc 0.2.9 (registry+https://github.com/rust-lang/crates.io-index)",
+]
+
+[[package]]
+name = "nalgebra"
+version = "0.6.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+dependencies = [
+ "num 0.1.31 (registry+https://github.com/rust-lang/crates.io-index)",
+ "rand 0.3.14 (registry+https://github.com/rust-lang/crates.io-index)",
+ "rustc-serialize 0.3.19 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
 [[package]]
@@ -497,13 +526,17 @@ name = "rust-rosetta"
 version = "0.0.1"
 dependencies = [
  "chrono 0.2.21 (registry+https://github.com/rust-lang/crates.io-index)",
+ "csv 0.14.4 (registry+https://github.com/rust-lang/crates.io-index)",
  "docopt 0.6.80 (registry+https://github.com/rust-lang/crates.io-index)",
  "eventual 0.1.6 (registry+https://github.com/rust-lang/crates.io-index)",
  "factorial-plugin 1.0.0",
+ "getopts 0.2.14 (registry+https://github.com/rust-lang/crates.io-index)",
+ "gnuplot 0.0.20 (registry+https://github.com/rust-lang/crates.io-index)",
  "hyper 0.8.0 (registry+https://github.com/rust-lang/crates.io-index)",
  "image 0.8.0 (registry+https://github.com/rust-lang/crates.io-index)",
  "lazy_static 0.1.15 (registry+https://github.com/rust-lang/crates.io-index)",
  "libc 0.2.9 (registry+https://github.com/rust-lang/crates.io-index)",
+ "nalgebra 0.6.0 (registry+https://github.com/rust-lang/crates.io-index)",
  "num 0.1.31 (registry+https://github.com/rust-lang/crates.io-index)",
  "permutohedron 0.2.1 (registry+https://github.com/rust-lang/crates.io-index)",
  "rand 0.3.14 (registry+https://github.com/rust-lang/crates.io-index)",
