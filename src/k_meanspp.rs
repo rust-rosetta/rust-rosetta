@@ -1,4 +1,4 @@
-// http://rosettacode.org/wiki/K-means%2B%2B_clustering
+// http://rosettacode.org/wiki/K-means++_clustering
 
 #![feature(test)]
 
@@ -19,29 +19,24 @@ use rand::distributions::{IndependentSample, Range};
 use std::f64::consts::PI;
 use std::env;
 
-
 type Point = DVec<f64>;
-
 
 struct Cluster<'a> {
     members: Vec<&'a Point>,
     center: Point,
 }
 
-
 struct Stats {
     centroids: Vec<Point>,
     mean_d_from_centroid: DVec<f64>,
 }
 
-
-// DVec doesn't implement BaseFloat, so I need my own distance fn
+/// DVec doesn't implement BaseFloat, so a custom distance function is required.
 fn sqdist(p1: &Point, p2: &Point) -> f64 {
     (p1.clone() - p2.clone()).iter().map(|x| x * x).fold(0f64, |a, b| a + b)
 }
 
-
-// Returns (distance^2, index) tuple of winning point
+/// Returns (distance^2, index) tuple of winning point.
 fn nearest(p: &Point, candidates: &Vec<Point>) -> (f64, usize) {
     let (dsquared, the_index) = candidates.iter()
                                           .enumerate()
@@ -57,8 +52,7 @@ fn nearest(p: &Point, candidates: &Vec<Point>) -> (f64, usize) {
     (dsquared, the_index)
 }
 
-
-// Computes starting centroids and makes initial assignments
+/// Computes starting centroids and makes initial assignments.
 fn kpp(points: &Vec<Point>, k: usize, rng: &mut StdRng) -> Stats {
     let mut centroids: Vec<Point> = Vec::new();
     // Random point for first centroid guess:
@@ -73,7 +67,7 @@ fn kpp(points: &Vec<Point>, k: usize, rng: &mut StdRng) -> Stats {
             sum += dsquared;
         }
 
-        // This bit chooses the next cluster center with a probability proportional to d^2
+        // This part chooses the next cluster center with a probability proportional to d^2
         sum *= rng.next_f64();
         for (j, d) in dists.iter().enumerate() {
             sum -= *d;
@@ -87,7 +81,6 @@ fn kpp(points: &Vec<Point>, k: usize, rng: &mut StdRng) -> Stats {
     let clusters = assign_clusters(points, &centroids);
     compute_stats(&clusters)
 }
-
 
 fn assign_clusters<'a>(points: &'a Vec<Point>, centroids: &Vec<Point>) -> Vec<Cluster<'a>> {
     let mut clusters: Vec<Cluster> = Vec::new();
@@ -112,8 +105,7 @@ fn assign_clusters<'a>(points: &'a Vec<Point>, centroids: &Vec<Point>) -> Vec<Cl
     clusters
 }
 
-
-// Computes centroids and mean-distance-from-centroid for each cluster
+/// Computes centroids and mean-distance-from-centroid for each cluster.
 fn compute_stats(clusters: &Vec<Cluster>) -> Stats {
     let mut centroids = Vec::new();
     let mut means_vec = Vec::new();
@@ -132,7 +124,6 @@ fn compute_stats(clusters: &Vec<Cluster>) -> Stats {
         mean_d_from_centroid: DVec::from_slice(means_vec.len(), means_vec.as_slice()),
     }
 }
-
 
 fn lloyd<'a>(points: &'a Vec<Point>,
              k: usize,
@@ -167,8 +158,7 @@ fn lloyd<'a>(points: &'a Vec<Point>,
     (clusters, stats)
 }
 
-
-// Uniform sampling on the unit disk
+/// Uniform sampling on the unit disk.
 fn generate_points(n: u32, rng: &mut StdRng) -> Vec<Point> {
     let r_range = Range::new(0f64, 1f64);
     let theta_range = Range::new(0f64, 2f64 * PI);
@@ -182,7 +172,6 @@ fn generate_points(n: u32, rng: &mut StdRng) -> Vec<Point> {
 
     points
 }
-
 
 // Plot clusters (2d only). Closure idiom allows us to borrow and mutate the Axes2D.
 fn viz(clusters: Vec<Cluster>, stats: Stats, k: usize, n: u32, e: f64) {
@@ -211,7 +200,6 @@ fn viz(clusters: Vec<Cluster>, stats: Stats, k: usize, n: u32, e: f64) {
     fg.show();
 }
 
-
 fn print_dvec(v: &DVec<f64>) {
     print!("(");
     for elem in v.at.iter().take(v.len() - 1) {
@@ -220,12 +208,10 @@ fn print_dvec(v: &DVec<f64>) {
     print!("{:+1.2})", v.at.iter().last().unwrap());
 }
 
-
 fn print_usage(program: &str, opts: Options) {
     let brief = format!("Usage: {} [options]", program);
     print!("{}", opts.usage(&brief));
 }
-
 
 fn main() {
     let args: Vec<String> = env::args().collect();
@@ -316,14 +302,11 @@ fn main() {
     }
 }
 
-
 #[cfg(test)]
 mod tests {
     use super::{generate_points, lloyd};
     use nalgebra::Iterable;
     use rand::{SeedableRng, StdRng};
-    // use test::Bencher;
-
 
     #[test]
     fn test_lloyd2d() {
