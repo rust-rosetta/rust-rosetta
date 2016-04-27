@@ -1,7 +1,5 @@
 // http://rosettacode.org/wiki/Execute_a_Markov_algorithm
 
-#![feature(str_char)]
-
 /// Individual markov rule
 struct MarkovRule {
     pattern: String,
@@ -30,7 +28,10 @@ impl MarkovAlgorithm {
         let mut rules: Vec<MarkovRule> = vec![];
         for line in s.lines()
                      .map(|l| l.trim())
-                     .filter(|l| l.chars().count() > 0 && l.char_at(0) != '#') {
+                     .filter(|l| match l.chars().next() {
+                         Some(c) if c != '#' => true,
+                         _ => false,
+                     }) {
             // Ignore comments
 
             // check for -> (must be preceded by whitespace)
@@ -51,7 +52,10 @@ impl MarkovAlgorithm {
                     let line_end = line[arrow + 3..].trim_left();
 
                     // check for . (stop)
-                    let stop = (line_end.chars().count() > 0) && (line_end.char_at(0) == '.');
+                    let stop = match line_end.chars().next() {
+                        Some('.') => true,
+                        _ => false,
+                    };
 
                     // extract replacement
                     let replacement = if stop {
