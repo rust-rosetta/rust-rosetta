@@ -108,13 +108,13 @@ fn main() {
     let cint_2: CustomInt = CustomInt::new(2).unwrap();
     let cint_3: CustomInt = CustomInt::new(3).unwrap();
     let cint_4: CustomInt = CustomInt::new(4).unwrap();
-    cint_2 + cint_4; // CustomInt { value: 6 }
-    cint_4 - cint_2; // CustomInt { value: 2 }
-    cint_4 * cint_2; // CustomInt { value: 8 }
-    cint_4 / cint_2; // CustomInt { value: 2 }
-    cint_3 & cint_2; // CustomInt { value: 2 }
-    cint_3 | cint_2; // CustomInt { value: 3 }
-    cint_3 ^ cint_2; // CustomInt { value: 1 }
+    assert_eq!(cint_2 + cint_4, CustomInt { value: 6 });
+    assert_eq!(cint_4 - cint_2, CustomInt { value: 2 });
+    assert_eq!(cint_4 * cint_2, CustomInt { value: 8 });
+    assert_eq!(cint_4 / cint_2, CustomInt { value: 2 });
+    assert_eq!(cint_3 & cint_2, CustomInt { value: 2 });
+    assert_eq!(cint_3 | cint_2, CustomInt { value: 3 });
+    assert_eq!(cint_3 ^ cint_2, CustomInt { value: 1 });
 }
 
 #[cfg(test)]
@@ -181,13 +181,13 @@ mod tests {
     fn above_out_of_bounds_test() {
         let cint_10: CustomInt = CustomInt::new(10).unwrap();
         let cint_1: CustomInt = CustomInt::new(1).unwrap();
-        cint_10 + cint_1; // should panic here
+        let _ = cint_10 + cint_1; // should panic here
     }
 
     #[test]
     #[should_panic(expected = "CustomInt is out of bounds! 0 was value")]
     fn below_out_of_bounds_test() {
         let cint_1: CustomInt = CustomInt::new(1).unwrap();
-        cint_1 - cint_1; // should panic here
+        let _ = cint_1 - cint_1; // should panic here
     }
 }
