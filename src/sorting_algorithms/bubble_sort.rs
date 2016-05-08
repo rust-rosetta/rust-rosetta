@@ -24,12 +24,16 @@ fn main() {
 
 #[cfg(test)]
 mod tests {
-    fn check_sort<T: PartialOrd>(v: &mut [T]) {
+    extern crate rust_rosetta;
+
+    use std::fmt::Debug;
+
+    fn check_sort<T>(v: &mut [T])
+        where T: Ord + Clone + Debug
+    {
         super::bubble_sort(v);
 
-        for i in 1..v.len() {
-            assert!(v[i - 1] <= v[i]);
-        }
+        rust_rosetta::check_sorted(v);
     }
 
     #[test]

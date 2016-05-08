@@ -33,12 +33,12 @@ fn main() {
 
 #[cfg(test)]
 mod tests {
+    extern crate rust_rosetta;
+
     fn check_sort(array: &mut [i32], min: i32, max: i32) {
         super::counting_sort(array, min, max);
 
-        for i in 1..array.len() {
-            assert!(array[i - 1] <= array[i]);
-        }
+        rust_rosetta::check_sorted(array);
     }
 
     #[test]

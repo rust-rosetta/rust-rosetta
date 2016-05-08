@@ -57,16 +57,18 @@ fn main() {
 
 #[cfg(test)]
 mod tests {
+    extern crate rust_rosetta;
+
     use rand::{thread_rng, Rng};
+
+    use std::fmt::Debug;
 
     use super::quick_sort;
 
-    fn check_sort<T: Ord>(v: &[T]) {
-        if v.len() > 1 {
-            for i in 0..(v.len() - 1) {
-                assert!(v[i] <= v[i + 1]);
-            }
-        }
+    fn check_sort<T>(v: &[T])
+        where T: Ord + Clone + Debug
+    {
+        rust_rosetta::check_sorted(v);
     }
 
     #[test]
