@@ -5,7 +5,7 @@ use std::ops;
 
 #[derive(Eq, PartialEq, Ord, PartialOrd, Debug, Copy, Clone)]
 struct CustomInt {
-    value: u8,
+    value: i8,
 }
 
 #[derive(Debug)]
@@ -18,7 +18,7 @@ impl CustomInt {
         if v < 1 || v > 10 {
             Err(CustomIntError::OutOfBoundsAssn)
         } else {
-            Ok(CustomInt { value: v })
+            Ok(CustomInt { value: v as i8 })
         }
     }
 }
@@ -35,7 +35,7 @@ impl Bounded for CustomInt {
         }
         #[cold]
         #[inline(never)]
-        fn panic(v: u8) -> ! {
+        fn panic(v: i8) -> ! {
             panic!("CustomInt is out of bounds! {} was value", v);
         }
     }
@@ -185,9 +185,10 @@ mod tests {
     }
 
     #[test]
-    #[should_panic(expected = "CustomInt is out of bounds! 0 was value")]
+    #[should_panic(expected = "CustomInt is out of bounds! -9 was value")]
     fn below_out_of_bounds_test() {
         let cint_1: CustomInt = CustomInt::new(1).unwrap();
-        let _ = cint_1 - cint_1; // should panic here
+        let cint_10: CustomInt = CustomInt::new(10).unwrap();
+        let _ = cint_1 - cint_10; // should panic here
     }
 }
