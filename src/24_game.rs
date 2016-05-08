@@ -7,6 +7,8 @@
 //! [shunting yard algorithm]: http://www.engr.mun.ca/~theo/Misc/exp_parsing.htm.
 
 extern crate rand;
+
+use std::f32;
 use std::cmp::Ordering::{self, Greater};
 use std::iter::Peekable;
 use std::str::CharIndices;
@@ -29,8 +31,13 @@ fn main() {
             input => {
                 if check_values(&mut sample[..], input) {
                     match Parser::new(input).parse() {
-                        Ok(i) if i == 24. => println!("you made it!"),
-                        Ok(i) => println!("you entered {}, try again!", i),
+                        Ok(i) => {
+                            if (i - 24.).abs() < f32::EPSILON {
+                                println!("you made it!");
+                            } else {
+                                println!("you entered {}, try again!", i);
+                            }
+                        }
                         Err(s) => println!("{}", s),
                     };
                 } else {

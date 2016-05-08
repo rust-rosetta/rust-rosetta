@@ -17,10 +17,13 @@ fn main() {
     println!("{:?}", median(&nums))
 }
 
+#[cfg(test)]
 mod tests {
+    use std::f64;
+
     #[test]
     fn median() {
         let nums = vec![2., 3., 5., 0., 9., 82., 353., 32., 12.];
-        assert_eq!(super::median(&nums), 9_f64);
+        assert!((super::median(&nums) - 9_f64).abs() < f64::EPSILON);
     }
 }

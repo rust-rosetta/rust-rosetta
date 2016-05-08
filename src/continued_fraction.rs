@@ -46,6 +46,7 @@ fn main() {
     println!("{}", continued_fraction!(pi_a, pi_b));
 }
 
+#[cfg_attr(feature="clippy", allow(float_cmp, approx_constant))]
 #[cfg(test)]
 mod tests {
     use std::iter;

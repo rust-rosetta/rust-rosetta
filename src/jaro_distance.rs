@@ -97,7 +97,9 @@ fn main() {
 
 #[test]
 fn test_jaro() {
-    assert_eq!(jaro("MARTHA", "MARHTA"), 0.9444444444444445);
-    assert_eq!(jaro("DIXON", "DICKSONX"), 0.7666666666666666);
-    assert_eq!(jaro("JELLYFISH", "SMELLYFISH"), 0.8962962962962964);
+    use std::f64;
+
+    assert!((jaro("MARTHA", "MARHTA") - 0.9444444444444445).abs() < f64::EPSILON);
+    assert!((jaro("DIXON", "DICKSONX") - 0.7666666666666666).abs() < f64::EPSILON);
+    assert!((jaro("JELLYFISH", "SMELLYFISH") - 0.8962962962962964).abs() < f64::EPSILON);
 }

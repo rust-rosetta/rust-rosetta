@@ -2,6 +2,7 @@
 
 use std::f64::consts::*;
 
+#[cfg_attr(feature = "clippy", allow(float_cmp))]
 fn main() {
     // e (base of the natural logarithm)
     let mut x = E;
