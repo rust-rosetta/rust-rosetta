@@ -111,6 +111,11 @@ path = "src/use_another_language_to_call_a_function"
 [dependencies.factorial-plugin]
 path = "src/factorial_plugin"
 
+[features]
+# Introduce a dummy feature so that clippy lints don't appear as unused when
+# building without clippy
+clippy = []
+
 [[bin]]
 # http://rosettacode.org/wiki/100_doors
 name = "100_doors"
