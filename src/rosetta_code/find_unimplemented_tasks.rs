@@ -81,11 +81,11 @@ fn query_api(category_name: &str,
         api_parameters.push((key, value));
     }
 
-    url.set_query_from_pairs(api_parameters.into_iter());
+    url.query_pairs_mut().extend_pairs(api_parameters.into_iter());
     let mut response = try!(Client::new()
-                                .get(&url.serialize())
-                                .header(Connection::close())
-                                .send());
+        .get(url.as_str())
+        .header(Connection::close())
+        .send());
     let mut body = String::new();
     response.read_to_string(&mut body).unwrap();
 
@@ -95,25 +95,25 @@ fn query_api(category_name: &str,
 /// Given a JSON object, parses the task information from the MediaWiki API response.
 fn parse_tasks(json: &Json) -> Result<Vec<Task>, TaskParseError> {
     let tasks_json = try!(json.find_path(&["query", "categorymembers"])
-                              .and_then(|tasks| tasks.as_array())
-                              .ok_or(TaskParseError::UnexpectedFormat));
+        .and_then(|tasks| tasks.as_array())
+        .ok_or(TaskParseError::UnexpectedFormat));
 
     tasks_json.iter()
-              .map(|task_json| {
-                  let id = try!(task_json.find("pageid")
-                                         .and_then(|id| id.as_u64())
-                                         .ok_or(TaskParseError::UnexpectedFormat));
-                  let title = try!(task_json.find("title")
-                                            .and_then(|title| title.as_string())
-                                            .ok_or(TaskParseError::UnexpectedFormat));
-                  let task = Task {
-                      id: id,
-                      title: title.to_owned(),
-                  };
+        .map(|task_json| {
+            let id = try!(task_json.find("pageid")
+                .and_then(|id| id.as_u64())
+                .ok_or(TaskParseError::UnexpectedFormat));
+            let title = try!(task_json.find("title")
+                .and_then(|title| title.as_string())
+                .ok_or(TaskParseError::UnexpectedFormat));
+            let task = Task {
+                id: id,
+                title: title.to_owned(),
+            };
 
-                  Ok(task)
-              })
-              .collect()
+            Ok(task)
+        })
+        .collect()
 }
 
 impl Iterator for Category {
@@ -128,19 +128,17 @@ impl Iterator for Category {
             .and_then(|result| {
                 // If there are more pages of results to request, save them for the next iteration.
                 self.continue_params = result.find("continue")
-                                             .and_then(|continue_params| {
-                                                 continue_params.as_object()
-                                             })
-                                             .map(|continue_params| {
-                                                 continue_params.iter()
-                                                                .map(|(key, value)| {
-                                                                    (key.to_owned(),
-                                                                     value.as_string()
-                                                                          .unwrap()
-                                                                          .to_owned())
-                                                                })
-                                                                .collect()
-                                             });
+                    .and_then(|continue_params| continue_params.as_object())
+                    .map(|continue_params| {
+                        continue_params.iter()
+                            .map(|(key, value)| {
+                                (key.to_owned(),
+                                 value.as_string()
+                                    .unwrap()
+                                    .to_owned())
+                            })
+                            .collect()
+                    });
 
                 parse_tasks(&result)
             })
@@ -158,11 +156,11 @@ pub fn all_tasks() -> Vec<Task> {
 pub fn unimplemented_tasks(lang: &str) -> Vec<Task> {
     let all_tasks = all_tasks().iter().cloned().collect::<HashSet<_>>();
     let implemented_tasks = Category::new(lang)
-                                .flat_map(|tasks| tasks)
-                                .collect::<HashSet<_>>();
+        .flat_map(|tasks| tasks)
+        .collect::<HashSet<_>>();
     let mut unimplemented_tasks = all_tasks.difference(&implemented_tasks)
-                                           .cloned()
-                                           .collect::<Vec<Task>>();
+        .cloned()
+        .collect::<Vec<Task>>();
     unimplemented_tasks.sort_by(|a, b| a.title.cmp(&b.title));
     unimplemented_tasks
 }
