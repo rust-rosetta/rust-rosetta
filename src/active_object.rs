@@ -130,12 +130,11 @@ impl<S: Mul<f64, Output = T> + Float + Zero, T: 'static + Clone + Send + Float> 
 fn integrate() -> f64 {
     let object = Integrator::new(10);
     object.input(Box::new(|t: u32| {
-              let two_seconds_ms = 2 * 1000;
-              let f = 1. / two_seconds_ms as f64;
-              (2. * PI * f * t as f64).sin()
-          }))
-          .ok()
-          .expect("Failed to set input");
+            let two_seconds_ms = 2 * 1000;
+            let f = 1. / two_seconds_ms as f64;
+            (2. * PI * f * t as f64).sin()
+        }))
+        .expect("Failed to set input");
     thread::sleep(Duration::from_secs(2));
     object.input(Box::new(|_| 0.)).ok().expect("Failed to set input");
     thread::sleep(Duration::from_millis(500));
@@ -155,12 +154,11 @@ fn solution() {
     // FIXME(pythonesque): When unboxed closures are fixed, fix integrate() to take two arguments.
     let object = Integrator::new(10);
     object.input(Box::new(|t: u32| {
-              let two_seconds_ms = 2 * 1000;
-              let f = 1. / (two_seconds_ms / 10) as f64;
-              (2. * PI * f * t as f64).sin()
-          }))
-          .ok()
-          .expect("Failed to set input");
+            let two_seconds_ms = 2 * 1000;
+            let f = 1. / (two_seconds_ms / 10) as f64;
+            (2. * PI * f * t as f64).sin()
+        }))
+        .expect("Failed to set input");
     thread::sleep(Duration::from_millis(200));
     object.input(Box::new(|_| 0.)).ok().expect("Failed to set input");
     thread::sleep(Duration::from_millis(100));

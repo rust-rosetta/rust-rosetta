@@ -13,8 +13,8 @@ fn main() {
 
     // generating 4 numbers
     let choices: Vec<u32> = (0u32..4)
-                                .map(|_| rng.gen_range(1u32, 10))
-                                .collect();
+        .map(|_| rng.gen_range(1u32, 10))
+        .collect();
     println!("Make 24 with the following numbers");
 
     // start the game loop

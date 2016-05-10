@@ -36,8 +36,8 @@ impl<'a, T> Iterator for PermutationIterator<'a, T> where T: Clone
 
             None => {
                 let zeroes: Vec<usize> = std::iter::repeat(0)
-                                             .take(self.size)
-                                             .collect();
+                    .take(self.size)
+                    .collect();
                 let result = Some(map(self.universe, &zeroes[..]));
                 self.prev = Some(zeroes);
                 return result;

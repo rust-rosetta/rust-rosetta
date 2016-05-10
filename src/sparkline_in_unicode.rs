@@ -21,9 +21,9 @@ fn sparkline(samples: &[f64]) -> String {
     let diff = (max - min) / ((BARS.chars().count() - 1) as f64);
 
     samples.iter()
-           .map(|sample| (sample - min) / diff)
-           .map(|idx| BARS.chars().nth(idx as usize).unwrap())
-           .collect()
+        .map(|sample| (sample - min) / diff)
+        .map(|idx| BARS.chars().nth(idx as usize).unwrap())
+        .collect()
 }
 
 fn main() {

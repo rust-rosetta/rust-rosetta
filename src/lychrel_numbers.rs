@@ -29,14 +29,14 @@ fn test_lychrel(num: &BigInt, max_tests: usize) -> Option<Vec<BigInt>> {
     let mut sequence = Vec::<BigInt>::new();
 
     let is_lychrel = (0..max_tests)
-                         .scan(num.clone(), |current, _| {
-                             *current = rev_add(current);
-                             Some(current.clone())
-                         })
-                         .inspect(|current| sequence.push(current.clone()))
-                         .filter(|curent| is_palindrome(curent))
-                         .next()
-                         .is_none();
+        .scan(num.clone(), |current, _| {
+            *current = rev_add(current);
+            Some(current.clone())
+        })
+        .inspect(|current| sequence.push(current.clone()))
+        .filter(|curent| is_palindrome(curent))
+        .next()
+        .is_none();
 
     if is_lychrel {
         Some(sequence)
@@ -126,16 +126,16 @@ fn test_lychrel_numbers() {
     let (lychrels, relateds, palindrome_lychrels) = find_lychrels(10_000, 500);
 
     let expected_lychrels = [196, 879, 1997, 7059, 9999]
-                                .iter()
-                                .map(|&num| FromPrimitive::from_u64(num).unwrap())
-                                .collect::<Vec<_>>();
+        .iter()
+        .map(|&num| FromPrimitive::from_u64(num).unwrap())
+        .collect::<Vec<_>>();
     assert_eq!(lychrels, expected_lychrels);
 
     assert_eq!(relateds.len(), 244);
 
     let expected_palindromes = [4994, 8778, 9999]
-                                   .iter()
-                                   .map(|&num| FromPrimitive::from_u64(num).unwrap())
-                                   .collect::<Vec<_>>();
+        .iter()
+        .map(|&num| FromPrimitive::from_u64(num).unwrap())
+        .collect::<Vec<_>>();
     assert_eq!(palindrome_lychrels, expected_palindromes);
 }

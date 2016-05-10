@@ -109,8 +109,8 @@ fn solve_sudoku(mut puzzle: Sudoku) -> Vec<Sudoku> {
                 let grp = idx_in_grp.iter().map(|&(dx, dy)| (x0 + dx, y0 + dy));
 
                 let it = row.chain(col)
-                            .chain(grp)
-                            .filter(|&pos: &(usize, usize)| pos != (x, y));
+                    .chain(grp)
+                    .filter(|&pos: &(usize, usize)| pos != (x, y));
 
                 let mask = !puzzle.map[y][x] & MASK_ALL;
                 for (x, y) in it {
@@ -155,8 +155,8 @@ fn solve_sudoku(mut puzzle: Sudoku) -> Vec<Sudoku> {
                 for x0 in (0..BOARD_WIDTH).step_by(GROUP_HEIGHT) {
                     let next = {
                         let mut it = idx_in_grp.iter()
-                                               .map(|&(dx, dy)| (x0 + dx, y0 + dy))
-                                               .filter(|&(x, y)| puzzle.map[y][x] & bit != 0);
+                            .map(|&(dx, dy)| (x0 + dx, y0 + dy))
+                            .filter(|&(x, y)| puzzle.map[y][x] & bit != 0);
                         let next = it.next();
                         if next.is_none() || it.next().is_some() {
                             continue;
@@ -176,9 +176,9 @@ fn solve_sudoku(mut puzzle: Sudoku) -> Vec<Sudoku> {
     }
 
     let it = (0..BOARD_HEIGHT * BOARD_WIDTH)
-                 .map(|i| (i % BOARD_WIDTH, i / BOARD_WIDTH))
-                 .map(|(x, y)| (x, y, puzzle.map[y][x].count_ones() as BITS))
-                 .collect::<Vec<_>>();
+        .map(|i| (i % BOARD_WIDTH, i / BOARD_WIDTH))
+        .map(|(x, y)| (x, y, puzzle.map[y][x].count_ones() as BITS))
+        .collect::<Vec<_>>();
 
     // If some cells have no possible number, there is no answer.
     if it.iter().any(|&(_x, _y, cnt)| cnt == 0) {
@@ -192,9 +192,9 @@ fn solve_sudoku(mut puzzle: Sudoku) -> Vec<Sudoku> {
 
     // Find the first undetermined cell.
     let (x, y, _cnt) = *it.iter()
-                          .filter(|&&(_x, _y, cnt)| cnt > 1)
-                          .min_by_key(|&&(_x, _y, cnt)| cnt)
-                          .unwrap();
+        .filter(|&&(_x, _y, cnt)| cnt > 1)
+        .min_by_key(|&&(_x, _y, cnt)| cnt)
+        .unwrap();
 
     let mut answers = vec![];
     for n in 0..MAX_NUMBER {

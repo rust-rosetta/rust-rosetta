@@ -13,9 +13,9 @@ use std::io::Write;
 fn main() {
     // opens file for writing replaced lines
     let out_fd = OpenOptions::new()
-                     .write(true)
-                     .create(true)
-                     .open("resources/output.txt");
+        .write(true)
+        .create(true)
+        .open("resources/output.txt");
 
     // defining a closure write_line
     let write_line = |line: &str| {

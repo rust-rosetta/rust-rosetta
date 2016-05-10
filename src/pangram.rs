@@ -5,10 +5,10 @@ use std::collections::HashSet;
 /// alphabet at least once.
 fn is_pangram(sentence: &str) -> bool {
     sentence.chars()
-            .map(|c| c.to_lowercase().next().unwrap())
-            .filter(|&c| c >= 'a' && c <= 'z')
-            .collect::<HashSet<char>>()
-            .len() == 26
+        .map(|c| c.to_lowercase().next().unwrap())
+        .filter(|&c| c >= 'a' && c <= 'z')
+        .collect::<HashSet<char>>()
+        .len() == 26
 }
 
 fn main() {

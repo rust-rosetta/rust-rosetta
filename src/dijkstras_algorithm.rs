@@ -88,8 +88,8 @@ impl<'a> Graph<'a> {
     fn dijkstra(&'a self, source: &str, target: &str) -> Vec<&str> {
         let num_vert = self.vertices.len();
         let mut dist: Vec<usize> = repeat(usize::MAX)
-                                       .take(num_vert)
-                                       .collect(); //Close enough to infinity
+            .take(num_vert)
+            .collect(); //Close enough to infinity
         let mut prev: HashMap<Node, Node> = HashMap::new();
         let mut queue: BinaryHeap<DistPair> = BinaryHeap::new();
 

@@ -24,8 +24,8 @@ impl Image {
             width: width,
             height: height,
             data: ::std::iter::repeat(Default::default())
-                      .take(width * height)
-                      .collect(),
+                .take(width * height)
+                .collect(),
         }
     }
 

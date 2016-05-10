@@ -23,11 +23,11 @@ fn min_factor(x: usize) -> usize {
 pub fn largest_min_factor_fut(numbers: &[usize]) -> usize {
     // We will save the future values of the minimal factor in the results vec
     let results: Vec<Future<usize, ()>> = (0..numbers.len())
-                                              .map(|i| {
-                                                  let number = numbers[i];
-                                                  Future::spawn(move || min_factor(number))
-                                              })
-                                              .collect();
+        .map(|i| {
+            let number = numbers[i];
+            Future::spawn(move || min_factor(number))
+        })
+        .collect();
     // Get the largest minimal factor of all results
     results.into_iter().map(|f| f.await().ok().unwrap()).max().unwrap()
 }

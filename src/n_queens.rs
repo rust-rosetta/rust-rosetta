@@ -108,10 +108,10 @@ fn semi_parallel_n_queens(n: i32) -> usize {
 
         spawn(move || -> () {
             tx.send(n_queens_helper(all_ones,
-                                    (left_diags | spot) << 1,
-                                    (columns | spot),
-                                    (right_diags | spot) >> 1))
-              .unwrap();
+                                      (left_diags | spot) << 1,
+                                      (columns | spot),
+                                      (right_diags | spot) >> 1))
+                .unwrap();
         });
     }
 

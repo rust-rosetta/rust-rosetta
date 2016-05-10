@@ -74,8 +74,8 @@ fn country_length(country_code: &str) -> Option<usize> {
                      ("TR", 26), ("AE", 23), ("GB", 22), ("VG", 24)];
 
     countries.iter()
-             .find(|&&(country, _)| country == country_code)
-             .map(|&(_, length)| length)
+        .find(|&&(country, _)| country == country_code)
+        .map(|&(_, length)| length)
 }
 
 #[test]

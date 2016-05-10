@@ -173,5 +173,5 @@ fn hamming_iter_1million() {
     // one-million-th hamming number has index 999_999 because indexes are zero-based
     assert_eq!(hamming.nth(999_999).unwrap().to_biguint(),
                millionth_hamming_number.parse::<BigUint>()
-                                       .ok());
+                   .ok());
 }

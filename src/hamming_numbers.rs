@@ -158,5 +158,5 @@ fn hamming_iter_1million() {
                                     0000000000000000000000";
     assert_eq!(hamming.nth(999_999).unwrap().to_biguint(),
                millionth_hamming_number.parse::<BigUint>()
-                                       .ok());
+                   .ok());
 }

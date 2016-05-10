@@ -15,13 +15,13 @@ fn get_ips(host: &str) -> io::Result<Vec<Ips>> {
 
     let hosts = try!(net::lookup_host(host));
     let ips: Vec<_> = hosts.filter_map(|h| {
-                               match h {
-                                   Ok(SocketAddr::V4(s_v4)) => Some(IpV4(s_v4.ip().clone())),
-                                   Ok(SocketAddr::V6(s_v6)) => Some(IpV6(s_v6.ip().clone())),
-                                   _ => None,
-                               }
-                           })
-                           .collect();
+            match h {
+                Ok(SocketAddr::V4(s_v4)) => Some(Ip::V4(*s_v4.ip())),
+                Ok(SocketAddr::V6(s_v6)) => Some(Ip::V6(*s_v6.ip())),
+                _ => None,
+            }
+        })
+        .collect();
     Ok(ips)
 }
 

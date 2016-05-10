@@ -73,7 +73,7 @@ fn test_rationals_macro() {
                 Ratio::from_integer(2),
                 Ratio::from_integer(3),
                 Ratio::from_integer(4)],
-               // with the rationals! macro
+    // with the rationals! macro
                (rationals![1, 2, 3, 4]));
 }
 

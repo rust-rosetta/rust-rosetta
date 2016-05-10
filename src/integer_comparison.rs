@@ -6,7 +6,7 @@ fn main() {
     let reader = io::stdin();
     let lines = reader.lock().lines().take(2);
     let nums = lines.map(|string| string.unwrap().trim().parse().unwrap())
-                    .collect::<Vec<i32>>();
+        .collect::<Vec<i32>>();
     let a = nums[0];
     let b = nums[1];
     if a < b {

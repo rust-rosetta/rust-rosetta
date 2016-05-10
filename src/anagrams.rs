@@ -34,18 +34,18 @@ fn anagrams<T: Iterator<Item = String>>(lines: T) -> HashMap<String, HashSet<Str
 /// Returns the groups of anagrams that contain the most words in them
 fn largest_groups(groups: &HashMap<String, HashSet<String>>) -> HashMap<String, HashSet<String>> {
     let max_length = groups.iter()
-                           .map(|(_, group)| group.len())
-                           .max()
-                           .unwrap();
+        .map(|(_, group)| group.len())
+        .max()
+        .unwrap();
     groups.iter()
-          .filter_map(|(key, group)| {
-              if group.len() == max_length {
-                  Some((key.clone(), group.clone()))
-              } else {
-                  None
-              }
-          })
-          .collect()
+        .filter_map(|(key, group)| {
+            if group.len() == max_length {
+                Some((key.clone(), group.clone()))
+            } else {
+                None
+            }
+        })
+        .collect()
 }
 
 fn main() {

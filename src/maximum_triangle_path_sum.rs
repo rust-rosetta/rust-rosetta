@@ -39,13 +39,13 @@ fn max_path(vector: &mut Vec<Vec<u32>>) -> u32 {
 }
 
 fn main() {
-    let mut vector = TRIANGLE.split("\n")
-                             .map(|x| {
-                                 x.split(" ")
-                                  .map(|s: &str| s.parse::<u32>().unwrap())
-                                  .collect::<Vec<u32>>()
-                             })
-                             .collect::<Vec<Vec<u32>>>();
+    let mut vector = TRIANGLE.split('\n')
+        .map(|x| {
+            x.split(' ')
+                .map(|s: &str| s.parse::<u32>().unwrap())
+                .collect::<Vec<u32>>()
+        })
+        .collect::<Vec<Vec<u32>>>();
 
     let max_value = max_path(&mut vector);
 
@@ -54,13 +54,13 @@ fn main() {
 
 #[test]
 fn test_maximum_triangle_path_sum() {
-    let mut vector = TRIANGLE.split("\n")
-                             .map(|x| {
-                                 x.split(" ")
-                                  .map(|s: &str| s.parse::<u32>().unwrap())
-                                  .collect::<Vec<u32>>()
-                             })
-                             .collect::<Vec<Vec<u32>>>();
+    let mut vector = TRIANGLE.split('\n')
+        .map(|x| {
+            x.split(' ')
+                .map(|s: &str| s.parse::<u32>().unwrap())
+                .collect::<Vec<u32>>()
+        })
+        .collect::<Vec<Vec<u32>>>();
 
     let max_value = max_path(&mut vector);
 

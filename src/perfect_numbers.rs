@@ -12,8 +12,8 @@ fn main() {
 #[test]
 fn test_first_four() {
     let nums = (2..10_000)
-                   .filter(|&n| perfect_number(n))
-                   .collect::<Vec<usize>>();
+        .filter(|&n| perfect_number(n))
+        .collect::<Vec<usize>>();
     assert_eq!(nums, [6, 28, 496, 8128]);
 }
 

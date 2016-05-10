@@ -27,11 +27,11 @@ impl MarkovAlgorithm {
     pub fn from_str(s: &str) -> Result<MarkovAlgorithm, String> {
         let mut rules: Vec<MarkovRule> = vec![];
         for line in s.lines()
-                     .map(|l| l.trim())
-                     .filter(|l| match l.chars().next() {
-                         Some(c) if c != '#' => true,
-                         _ => false,
-                     }) {
+            .map(|l| l.trim())
+            .filter(|l| match l.chars().next() {
+                Some(c) if c != '#' => true,
+                _ => false,
+            }) {
             // Ignore comments
 
             // check for -> (must be preceded by whitespace)
@@ -90,8 +90,8 @@ impl MarkovAlgorithm {
             // find the first rule that is applicable
             // (pattern string is in state)
             let possible_rule = self.rules
-                                    .iter()
-                                    .find(|rule| state.find(&rule.pattern[..]).is_some());
+                .iter()
+                .find(|rule| state.find(&rule.pattern[..]).is_some());
 
             match possible_rule {
                 // stop if no rule found

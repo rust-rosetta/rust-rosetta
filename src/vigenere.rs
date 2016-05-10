@@ -39,9 +39,9 @@ fn vigenere(plaintext: &str, key: &str, encrypt: bool) -> String {
 
 fn to_sanitized_bytes(string: &str) -> Vec<u8> {
     string.chars()
-          .filter(|&c| c.is_alphabetic())
-          .map(|c| c.to_ascii_uppercase() as u8)
-          .collect::<Vec<u8>>()
+        .filter(|&c| c.is_alphabetic())
+        .map(|c| c.to_ascii_uppercase() as u8)
+        .collect::<Vec<u8>>()
 }
 
 fn enc_byte(m: u8, k: u8) -> u8 {

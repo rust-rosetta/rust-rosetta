@@ -161,8 +161,8 @@ impl Isaac {
     /// XOR message
     fn vernam(&mut self, msg: &[u8]) -> Vec<u8> {
         msg.iter()
-           .map(|&b| (self.i_rand_ascii() ^ b))
-           .collect::<Vec<u8>>()
+            .map(|&b| (self.i_rand_ascii() ^ b))
+            .collect::<Vec<u8>>()
     }
 }
 

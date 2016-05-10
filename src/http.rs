@@ -27,9 +27,9 @@ fn main() {
     const PORT: u16 = 80;
 
     let target = std::env::args()
-                     .next()
-                     .unwrap()
-                     .to_owned();
+        .next()
+        .unwrap()
+        .to_owned();
     println!("Making the request... This might take a minute.");
     match get_index(&target[..], PORT) {
         Ok(out) => println!("{}", out),
@@ -50,9 +50,9 @@ mod tests {
         const PORT: u16 = 12321;
 
         let (port, _acceptor) = (PORT..::std::u16::MAX)
-                                    .map(|port| (port, web_server::handle_server(HOST, port)))
-                                    .find(|&(_, ref acceptor)| acceptor.is_ok())
-                                    .unwrap();
+            .map(|port| (port, web_server::handle_server(HOST, port)))
+            .find(|&(_, ref acceptor)| acceptor.is_ok())
+            .unwrap();
 
         let res = get_index(HOST, port);
         res.unwrap();
