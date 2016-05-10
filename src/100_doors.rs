@@ -1,8 +1,6 @@
 // http://rosettacode.org/wiki/100_doors
 extern crate num;
 
-use num::Float;
-
 use std::f64;
 use std::iter::Map;
 use std::ops::Range;

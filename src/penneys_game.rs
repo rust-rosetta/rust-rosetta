@@ -2,7 +2,7 @@
 
 extern crate rand;
 
-use std::io::{stdout, stdin, Read, Write};
+use std::io::{stdout, stdin, Write};
 use std::thread;
 use std::time::Duration;
 use rand::{Rng, thread_rng};
