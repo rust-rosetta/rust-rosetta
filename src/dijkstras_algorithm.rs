@@ -1,6 +1,6 @@
 // http://rosettacode.org/wiki/Dijkstra's_algorithm
 
-use std::collections::{HashMap, BinaryHeap, LinkedList};
+use std::collections::{HashMap, BinaryHeap, VecDeque};
 use std::collections::hash_map::Entry::{Occupied, Vacant};
 use std::iter::repeat;
 use std::cmp::Ordering;
@@ -10,7 +10,7 @@ type Node = usize;
 type Cost = usize;
 type Edge = (Node, Node);
 
-/// The DistPair struct is for the Priority Queue.
+/// The `DistPair` struct is for the priority queue.
 #[derive(Eq, PartialEq, PartialOrd)]
 struct DistPair(Node, Cost);
 impl Ord for DistPair {
@@ -21,7 +21,7 @@ impl Ord for DistPair {
     }
 }
 
-/// Graph structure, represented as an Adjancency List.
+/// Graph structure, represented as an adjacency List.
 struct Graph<'a> {
     vertices: Vec<&'a str>,
     adj_list: Vec<Vec<Node>>,
@@ -41,19 +41,17 @@ impl<'a> Graph<'a> {
         }
     }
 
-    /// Returns the index of the vertex, or None if vertex
-    /// not found.
+    /// Returns the index of the vertex, or `None` if vertex not found.
     fn vertex_index(&self, vertex: &str) -> Option<Node> {
         for (idx, &v) in self.vertices.iter().enumerate() {
             if v == vertex {
                 return Some(idx);
             }
         }
-        return None;
+        None
     }
 
-    /// Returns the index of the vertex. If vertex is not found, inserts
-    /// the vertex.
+    /// Returns the index of the vertex. If vertex is not found, inserts the vertex.
     fn get_or_insert_vertex(&mut self, vertex: &'a str) -> Node {
         self.vertex_index(vertex)
             .unwrap_or_else(|| {
@@ -79,17 +77,16 @@ impl<'a> Graph<'a> {
         };
     }
 
-    /// Implements Dijkstra's Algorithm. This uses a Priority Queue to
-    /// determine which vertex to visit first. Terminates on discovering
-    /// the target vertex.
+    /// Implements Dijkstra's algorithm. This uses a priority queue to determine which vertex to
+    /// visit first. Terminates on discovering the target vertex.
     ///
-    /// Returns vector of vertices representing the path, or an empty vector
-    /// if there's no path, or if the source or target is not in the graph.
+    /// Returns vector of vertices representing the path, or an empty vector if there's no path, or
+    /// if the source or target is not in the graph.
     fn dijkstra(&'a self, source: &str, target: &str) -> Vec<&str> {
         let num_vert = self.vertices.len();
         let mut dist: Vec<usize> = repeat(usize::MAX)
-                                       .take(num_vert)
-                                       .collect(); //Close enough to infinity
+            .take(num_vert)
+            .collect(); //Close enough to infinity
         let mut prev: HashMap<Node, Node> = HashMap::new();
         let mut queue: BinaryHeap<DistPair> = BinaryHeap::new();
 
@@ -136,7 +133,7 @@ impl<'a> Graph<'a> {
             };
         }
 
-        let mut temp_path: LinkedList<&str> = LinkedList::new();
+        let mut temp_path: VecDeque<&str> = VecDeque::new();
         let mut curr = target_idx;
         temp_path.push_front(self.vertices[curr]);
         loop {
@@ -151,7 +148,13 @@ impl<'a> Graph<'a> {
                 None => return Vec::new(),
             }
         }
-        return temp_path.into_iter().collect();
+        temp_path.into_iter().collect()
+    }
+}
+
+impl<'a> Default for Graph<'a> {
+    fn default() -> Self {
+        Self::new()
     }
 }
 

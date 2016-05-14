@@ -5,14 +5,14 @@ fn main() {
     // Expressions inside `if` and `while` statements must result in type `bool`. There is no
     // automatic conversion to the boolean type.
 
-    let foo = true;
-    if foo {
-        println!("foo is {}.", foo);
+    let true_value = true;
+    if true_value {
+        println!("foo is {}.", true_value);
     }
 
-    let bar = false;
-    if !bar {
-        println!("bar is {}.", bar);
+    let false_value = false;
+    if !false_value {
+        println!("bar is {}.", false_value);
     }
 
 }

@@ -83,9 +83,8 @@ mod tests {
     fn ms() {
         let values = [38u32, 7719, 21238, 2437, 8855, 11797, 8365, 32285, 10450, 30612];
         let mut lcg = MSLinearCongruentialGenerator::new(0);
-        for val in values.iter() {
+        for val in &values {
             assert_eq!(lcg.next(), *val);
         }
-
     }
 }

@@ -72,8 +72,8 @@ chrono = "0.2"
 docopt = "0.6"
 eventual = "0.1.6"
 gtk = { version = "0.0.7", optional = true }
-hyper = "0.8"
-image = "0.8.0"
+hyper = "0.9.3"
+image = "0.10.0"
 libc = "0.2"
 ncurses = { version = "5.80", optional = true }
 num = "0.1"
@@ -85,20 +85,20 @@ rust-crypto = "0.2"
 schedule_recv = "0.0.1"
 time = "0.1"
 unicode-segmentation = "0.1"
-url = "0.5"
+url = "1.1.0"
 
 [target.'cfg(unix)'.dependencies]
 rustbox = "0.8"
 
 [target.'cfg(target_os="linux")'.dependencies]
-x11 = { version = "2.4", features = ["xlib"], optional = true }
+x11 = { version = "2.5.1", features = ["xlib"], optional = true }
 
 [target.'cfg(windows)'.dependencies]
 winapi = "0.2.6"
 user32-sys = "0.1.2"
 
 [build-dependencies]
-lazy_static = "0.1"
+lazy_static = "0.2.1"
 regex = "0.1"
 toml = "0.1"
 unicode-segmentation = "0.1.2"
@@ -110,6 +110,11 @@ path = "src/use_another_language_to_call_a_function"
 
 [dependencies.factorial-plugin]
 path = "src/factorial_plugin"
+
+[features]
+# Introduce a dummy feature so that clippy lints don't appear as unused when
+# building without clippy
+clippy = []
 
 [[bin]]
 # http://rosettacode.org/wiki/100_doors

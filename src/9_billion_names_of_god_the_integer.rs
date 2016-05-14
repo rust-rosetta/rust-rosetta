@@ -54,6 +54,12 @@ impl Solver {
     }
 }
 
+impl Default for Solver {
+    fn default() -> Self {
+        Self::new()
+    }
+}
+
 fn main() {
     let mut solver = Solver::new();
 

@@ -13,13 +13,14 @@ fn main() {
             print!(" ");
         }
 
-        for j in 0..i + 1 {
-            print!(" {}",
-                   if state[j] {
-                       "*"
-                   } else {
-                       " "
-                   });
+        for filled in state.iter().take(i + 1) {
+            let fill = if *filled {
+                "*"
+            } else {
+                " "
+            };
+
+            print!(" {}", fill);
         }
 
         // Compute the next line

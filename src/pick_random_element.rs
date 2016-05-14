@@ -10,7 +10,7 @@ fn pick_random_e(a: &[u8]) -> u8 {
 
     let ri = rng.gen_range(0, a.len());
 
-    return a[ri];
+    a[ri]
 }
 
 fn main() {

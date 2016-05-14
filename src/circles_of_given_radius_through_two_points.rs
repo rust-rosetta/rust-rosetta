@@ -2,6 +2,7 @@
 
 //! Translation of C.
 
+use std::f64;
 use std::fmt;
 
 #[derive(Clone,Copy)]
@@ -23,19 +24,19 @@ impl fmt::Display for Point {
 fn describe_circle(p1: Point, p2: Point, r: f64) {
     let sep = distance(p1, p2);
 
-    if sep == 0. {
+    if (sep - 0.).abs() < f64::EPSILON {
         if r == 0. {
             println!("No circles can be drawn through {}", p1);
         } else {
             println!("Infinitely many circles can be drawn through {}", p1);
         }
-    } else if sep == 2.0 * r {
+    } else if (sep - 2.0 * r).abs() < f64::EPSILON {
         println!("Given points are opposite ends of a diameter of the circle with center \
                   ({:.4},{:.4}) and r {:.4}",
                  (p1.x + p2.x) / 2.0,
                  (p1.y + p2.y) / 2.0,
                  r);
-    } else if sep > 2.0 * r {
+    } else if (sep - 2.0 * r).abs() < f64::EPSILON {
         println!("Given points are farther away from each other than a diameter of a circle with \
                   r {:.4}",
                  r);

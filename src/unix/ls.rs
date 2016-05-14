@@ -21,9 +21,9 @@ fn main() {
 
 fn print_files(path: &Path) {
     let mut entries: Vec<_> = fs::read_dir(path)
-                                  .unwrap()
-                                  .map(|x| x.unwrap().file_name())
-                                  .collect();
+        .unwrap()
+        .map(|x| x.unwrap().file_name())
+        .collect();
     entries.sort();
     for x in entries {
         println!("{}", x.to_string_lossy());

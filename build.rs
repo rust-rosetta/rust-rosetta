@@ -63,11 +63,8 @@ fn main() {
         if fs::metadata(&entry.path()).unwrap().is_file() {
 
             // Only check Rust files
-            match entry.path().extension().and_then(|s| s.to_str()) {
-                Some("rs") => {
-                    check(&entry.path());
-                }
-                _ => (),
+            if let Some("rs") = entry.path().extension().and_then(|s| s.to_str()) {
+                check(&entry.path());
             }
         }
     }
@@ -91,11 +88,9 @@ fn check(path: &Path) {
     File::open(&path).unwrap().read_to_string(&mut content).unwrap();
 
     for (i, mut line) in content.lines().enumerate() {
-        if i == 0 {
-            // Ignore lib and mod files.
-            if !LIB_OR_MOD_RE.is_match(path.file_stem().unwrap().to_str().unwrap()) {
-                check_task_name(&path, &line);
-            }
+        // Ignore lib and mod files.
+        if i == 0 && !LIB_OR_MOD_RE.is_match(path.file_stem().unwrap().to_str().unwrap()) {
+            check_task_name(&path, &line);
         }
 
         // Ignore '\r'

@@ -23,10 +23,16 @@ impl StDev {
     }
 }
 
+impl Default for StDev {
+    fn default() -> Self {
+        Self::new()
+    }
+}
+
 fn main() {
     let test_data: [i32; 8] = [2, 4, 4, 4, 5, 5, 7, 9];
     let mut sd = StDev::new();
-    for i in test_data.iter() {
+    for i in &test_data {
         println!("{}", &sd.stdev(*i as f32));
     }
 }

@@ -48,19 +48,19 @@ fn benford_distrib(numbers: &[u64]) -> Vec<f32> {
 fn main() {
     // Calculate expected frequencies of all digits according to Benford's Law
     let mut expected_distrib = [0f32; 10];
-    for digit in 1..10 {
-        expected_distrib[digit] = benford_freq(digit as u64);
+    for digit in &mut expected_distrib {
+        *digit = benford_freq(*digit as u64);
     }
 
     // Load data from the Fibonacci sequence
     let file = BufReader::new(File::open("resources/fib1000.txt").unwrap());
 
     let fibs: Vec<u64> = file.lines()
-                             .map(|x| {
-                                 let s = x.unwrap();
-                                 s[0..1].parse::<u64>().unwrap()
-                             })
-                             .collect();
+        .map(|x| {
+            let s = x.unwrap();
+            s[0..1].parse::<u64>().unwrap()
+        })
+        .collect();
 
     // Calculate freuencies of first digits in test data
     let found_distrib = benford_distrib(&fibs[..]);

@@ -1,7 +1,7 @@
 // http://rosettacode.org/wiki/Sorting_algorithms/Selection_sort
 
+#[cfg_attr(feature="clippy", allow(needless_range_loop))]
 fn selection_sort<T: Ord>(v: &mut [T]) {
-
     let len = v.len();
 
     for j in 0..len - 1 {

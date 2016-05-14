@@ -60,7 +60,7 @@ const NUMERALS: [RomanNumeral; 13] = [RomanNumeral {
 
 fn to_roman(mut number: u32) -> String {
     let mut min_numeral = String::new();
-    for numeral in NUMERALS.iter() {
+    for numeral in &NUMERALS {
         while numeral.value <= number {
             min_numeral = min_numeral + numeral.symbol;
             number -= numeral.value;
@@ -71,8 +71,8 @@ fn to_roman(mut number: u32) -> String {
 
 fn main() {
     let nums = [2014, 1999, 25, 1666, 3888];
-    for &n in nums.iter() {
+    for n in &nums {
         // 4 is minimum printing width, for alignment
-        println!("{:2$} = {}", n, to_roman(n), 4);
+        println!("{:2$} = {}", n, to_roman(*n), 4);
     }
 }

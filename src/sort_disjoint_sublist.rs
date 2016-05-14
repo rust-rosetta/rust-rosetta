@@ -3,7 +3,7 @@
 pub fn sort_disjoint(values: &mut [i32], indices: &[usize]) {
     let mut sublist_indices = indices.to_owned();
     sublist_indices.sort();
-    let mut sublist : Vec<i32> = sublist_indices.iter().map(|&i| values[i]).collect();
+    let mut sublist: Vec<i32> = sublist_indices.iter().map(|&i| values[i]).collect();
     sublist.sort();
     for i in 0..sublist.len() {
         values[sublist_indices[i]] = sublist[i];

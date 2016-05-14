@@ -13,11 +13,11 @@ fn fft(arr: &[Complex<f32>]) -> Vec<Complex<f32>> {
     let mut even = Vec::with_capacity(arr.len() / 2);
     let mut odd = Vec::with_capacity(arr.len() / 2);
 
-    for i in 0..arr.len() {
+    for (i, val) in arr.iter().enumerate() {
         if i % 2 == 0 {
-            even.push(arr[i].clone());
+            even.push(*val);
         } else {
-            odd.push(arr[i].clone());
+            odd.push(*val);
         }
     }
 

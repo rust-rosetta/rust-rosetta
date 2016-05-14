@@ -28,16 +28,16 @@ fn jaro(str1: &str, str2: &str) -> f64 {
     let mut transpositions: f64 = 0.0;
 
     // find the matches
-    for i in 0_usize..str1_len {
+    for (i, str1_match) in str1_matches.iter_mut().enumerate() {
         // cast new variable i_isize for clarity
         let i_isize = i as isize;
         // start and end take into account the match distance
         let start: usize = cmp::max(0, i_isize - match_distance) as usize;
         let end: usize = cmp::min(i_isize + match_distance + 1, str2_len as isize) as usize;
 
-        for k in start..end {
+        for (k, str2_match) in str2_matches.iter_mut().enumerate().take(end).skip(start) {
             // if str2 already has a match continue
-            if str2_matches[k] {
+            if *str2_match {
                 continue;
             }
             // if str1 at i and str2 at k are not equal
@@ -45,8 +45,8 @@ fn jaro(str1: &str, str2: &str) -> f64 {
                 continue;
             }
             // otherwise assume there is a match
-            str1_matches[i] = true;
-            str2_matches[k] = true;
+            *str1_match = true;
+            *str2_match = true;
             matches += 1.0;
             break;
         }
@@ -59,9 +59,9 @@ fn jaro(str1: &str, str2: &str) -> f64 {
 
     // count transpositions
     let mut k = 0;
-    for i in 0_usize..str1_len {
+    for (i, str1_match) in str1_matches.iter().enumerate() {
         // if there are no matches in str1 continue
-        if !str1_matches[i] {
+        if !str1_match {
             continue;
         }
         // while there is no match in str2 increment k
@@ -97,7 +97,9 @@ fn main() {
 
 #[test]
 fn test_jaro() {
-    assert_eq!(jaro("MARTHA", "MARHTA"), 0.9444444444444445);
-    assert_eq!(jaro("DIXON", "DICKSONX"), 0.7666666666666666);
-    assert_eq!(jaro("JELLYFISH", "SMELLYFISH"), 0.8962962962962964);
+    use std::f64;
+
+    assert!((jaro("MARTHA", "MARHTA") - 0.9444444444444445).abs() < f64::EPSILON);
+    assert!((jaro("DIXON", "DICKSONX") - 0.7666666666666666).abs() < f64::EPSILON);
+    assert!((jaro("JELLYFISH", "SMELLYFISH") - 0.8962962962962964).abs() < f64::EPSILON);
 }

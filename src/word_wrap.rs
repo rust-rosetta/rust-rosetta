@@ -1,9 +1,10 @@
 // http://rosettacode.org/wiki/Word_wrap
 
-//! Using the minimum length greedy algorithm
-//! http://en.wikipedia.org/wiki/Word_wrap#Minimum_length
+//! Using the [minimum length greedy algorithm].
 //!
-//! Implemented as a lazy String iterator, returning a wrapped line each time
+//! Implemented as a lazy `String` iterator, returning a wrapped line each time.
+//!
+//! [minimum length greedy algorithm]: http://en.wikipedia.org/wiki/Word_wrap#Minimum_length
 use std::mem::swap;
 use std::str::SplitWhitespace;
 
@@ -26,6 +27,7 @@ impl<'a> WordWrap<'a> {
 impl<'a> Iterator for WordWrap<'a> {
     type Item = String;
 
+    #[cfg_attr(feature="clippy", allow(while_let_on_iterator))]
     fn next(&mut self) -> Option<String> {
         // Move anything left over from last run to this_line
         let mut this_line = String::new();

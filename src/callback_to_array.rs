@@ -6,8 +6,8 @@ fn main() {
 
     println!("{:?}",
              array.iter()
-                  .map(callback)
-                  .collect::<Vec<i32>>());
+                 .map(callback)
+                 .collect::<Vec<i32>>());
 }
 
 fn callback(val: &i32) -> i32 {

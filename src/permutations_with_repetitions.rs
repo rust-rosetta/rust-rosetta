@@ -7,20 +7,21 @@ struct PermutationIterator<'a, T: 'a> {
 }
 
 fn permutations<T>(universe: &[T], size: usize) -> PermutationIterator<T> {
-    return PermutationIterator {
+    PermutationIterator {
         universe: universe,
         size: size,
         prev: None,
-    };
+    }
 }
 
 fn map<T>(values: &[T], ixs: &[usize]) -> Vec<T>
     where T: Clone
 {
-    return ixs.iter().map(|&i| values[i].clone()).collect();
+    ixs.iter().map(|&i| values[i].clone()).collect()
 }
 
-impl<'a, T> Iterator for PermutationIterator<'a, T> where T: Clone
+impl<'a, T> Iterator for PermutationIterator<'a, T>
+    where T: Clone
 {
     type Item = Vec<T>;
 
@@ -33,25 +34,23 @@ impl<'a, T> Iterator for PermutationIterator<'a, T> where T: Clone
         }
 
         match self.prev {
-
             None => {
                 let zeroes: Vec<usize> = std::iter::repeat(0)
-                                             .take(self.size)
-                                             .collect();
+                    .take(self.size)
+                    .collect();
                 let result = Some(map(self.universe, &zeroes[..]));
                 self.prev = Some(zeroes);
-                return result;
+                result
             }
-
             Some(ref mut indexes) => {
                 match indexes.iter().position(|&i| i + 1 < n) {
-                    None => return None,
+                    None => None,
                     Some(position) => {
-                        for i in 0..(position) {
-                            indexes[i] = 0;
+                        for index in indexes.iter_mut().take(position) {
+                            *index = 0;
                         }
                         indexes[position] += 1;
-                        return Some(map(self.universe, &indexes[..]));
+                        Some(map(self.universe, &indexes[..]))
                     }
                 }
             }

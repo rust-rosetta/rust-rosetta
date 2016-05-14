@@ -18,11 +18,10 @@ fn align_columns(text: &str) -> (Vec<Vec<String>>, Vec<usize>) {
     let mut max_lengths: Vec<usize> = Vec::new();
     let mut chunks: Vec<Vec<String>> = Vec::new();
 
-    for i in 0..lines.len() {
-        let ref input = lines[i];
-        let split_input: Vec<String> = input[..].split('$').map(|s| s.to_string()).collect();
-        chunks.push(split_input.clone());
-        let v: Vec<usize> = split_input.iter().map(|chunk| chunk.len()).collect();
+    for line in &lines {
+        let split_line: Vec<String> = line.split('$').map(|s| s.to_string()).collect();
+        chunks.push(split_line.clone());
+        let v: Vec<usize> = split_line.iter().map(|chunk| chunk.len()).collect();
 
         for i in 0..v.len() {
             if i < max_lengths.len() {
@@ -36,32 +35,31 @@ fn align_columns(text: &str) -> (Vec<Vec<String>>, Vec<usize>) {
     (chunks, max_lengths)
 }
 
-fn print_aligned_columns(chunks: &Vec<Vec<String>>, max_lengths: &Vec<usize>) {
+fn print_aligned_columns(chunks: &[Vec<String>], max_lengths: &[usize]) {
     // left aligned
-    for i in 0..chunks.len() {
-        for j in 0..chunks[i].len() {
-            print!("{0:<1$}", chunks[i][j], 1 + max_lengths[j]);
+    for chunk in chunks {
+        for (i, split) in chunk.iter().enumerate() {
+            print!("{0:<1$}", split, 1 + max_lengths[i]);
         }
         println!("");
     }
     println!("");
     // right aligned
-    for i in 0..chunks.len() {
-        for j in 0..chunks[i].len() {
-            print!("{0:>1$}", chunks[i][j], 1 + max_lengths[j]);
+    for chunk in chunks {
+        for (i, split) in chunk.iter().enumerate() {
+            print!("{0:>1$}", split, 1 + max_lengths[i]);
         }
         println!("");
     }
     println!("");
     // center aligned
-    for i in 0..chunks.len() {
-        for j in 0..chunks[i].len() {
-            let ref string: String = chunks[i][j];
-            let spaces: usize = 1 + max_lengths[j] - string.len();
+    for chunk in chunks {
+        for (i, split) in chunk.iter().enumerate() {
+            let spaces: usize = 1 + max_lengths[i] - split.len();
             for _ in 0..spaces >> 1 {
                 print!(" ");
             }
-            print!("{}", string);
+            print!("{}", split);
             for _ in 0..(spaces - (spaces >> 1)) {
                 print!(" ");
             }

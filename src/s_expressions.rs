@@ -5,7 +5,7 @@
 //! example here takes under a microsecond on my machine) and tries to avoid unnecessary allocation.
 //!
 //! In a real implementation, most of this would be private, with only a few visible functions, and
-//! there would be somewhat nicer signatures (in particular, the fact that ParseContext has to be
+//! there would be somewhat nicer signatures (in particular, the fact that `ParseContext` has to be
 //! mutable would get annoying in real code pretty quickly, so it would probably be split out).
 //!
 //! It supports the ability to read individual atoms, not just lists, although whether this is
@@ -13,10 +13,11 @@
 //!
 //! Caveats: Does not support symbols vs. non-symbols (it wouldn't be hard, but it would greatly
 //! complicate setting up our test structure since we'd have to force it to go through functions
-//! that checked to make sure Symbols couldn't have spaces, or slow down our parser by checking for
-//! this information each time, which is obnoxious).  Does not support string escaping, because the
-//! decoding technique doesn't allocate extra space for strings.  Does support numbers, but only
-//! float types (supporting more types is possible but would complicate the code significantly).
+//! that checked to make sure `Symbol`s couldn't have spaces, or slow down our parser by checking
+//! for this information each time, which is obnoxious).  Does not support string escaping, because
+//! the decoding technique doesn't allocate extra space for strings.  Does support numbers, but
+//! only float types (supporting more types is possible but would complicate the code
+//! significantly).
 #![feature(rustc_private)]
 #![feature(test)]
 
@@ -32,10 +33,10 @@ use self::SExp::*;
 use self::Error::*;
 use self::Token::*;
 
-/// The actual SExp structure.  Supports f64s, lists, and string literals.  Note that it takes
+/// The actual `SExp` structure.  Supports `f64`s, lists, and string literals.  Note that it takes
 /// everything by reference, rather than owning it--this is mostly done just so we can allocate
-/// SExps statically (since we don't have to call Vec).  It does complicate the code a bit,
-/// requiring us to have a ParseContext that holds an arena where lists are actually allocated.
+/// `SExp`s statically (since we don't have to call `Vec`).  It does complicate the code a bit,
+/// requiring us to have a `ParseContext` that holds an arena where lists are actually allocated.
 #[derive(PartialEq,Debug)]
 enum SExp<'a> {
     /// Float literal: 0.5
@@ -51,7 +52,7 @@ enum SExp<'a> {
 /// Errors that can be thrown by the parser.
 #[derive(PartialEq, Debug)]
 enum Error {
-    /// If the float is NaN, Infinity, etc.
+    /// If the float is `NaN`, `Infinity`, etc.
     NoReprForFloat,
 
     /// Missing an end double quote during string parsing
@@ -148,7 +149,7 @@ impl<'a> Tokens<'a> {
     }
 
     /// This is where the lexing happens.  Note that it does not handle string escaping.
-    fn next(&mut self) -> Result<Token<'a>, Error> {
+    fn next_token(&mut self) -> Result<Token<'a>, Error> {
         loop {
             match self.first {
                 // List start
@@ -278,15 +279,12 @@ impl<'a> SExp<'a> {
                 // unnecessary spaces between parentheses in the zero or one element cases.
                 try!(write!(writer, "{}", '('));
                 let mut iter = l.iter();
-                match iter.next() {
-                    Some(sexp) => {
+                if let Some(sexp) = iter.next() {
+                    try!(sexp.encode(writer));
+                    for sexp in iter {
+                        try!(write!(writer, "{}", ' '));
                         try!(sexp.encode(writer));
-                        for sexp in iter {
-                            try!(write!(writer, "{}", ' '));
-                            try!(sexp.encode(writer));
-                        }
                     }
-                    None => (),
                 }
                 try!(write!(writer, "{}", ')'));
                 Ok(())
@@ -315,11 +313,11 @@ impl<'a> SExp<'a> {
         let mut tokens = Tokens::new(string);
         // First, we check the very first token to see if we're parsing a full list.  It
         // simplifies parsing a lot in the subsequent code if we can assume that.
-        let next = tokens.next();
+        let next = tokens.next_token();
         let mut list = match try!(next) {
             ListStart => Vec::new(),
             Literal(s) => {
-                return if try!(tokens.next()) == EOF {
+                return if try!(tokens.next_token()) == EOF {
                     Ok(s)
                 } else {
                     Err(ExpectedEOF)
@@ -331,7 +329,7 @@ impl<'a> SExp<'a> {
 
         // We know we're in a list if we got this far.
         loop {
-            let tok = tokens.next();
+            let tok = tokens.next_token();
             match try!(tok) {
                 ListStart => {
                     // We push the previous context onto our stack when we start reading a new list.
@@ -352,7 +350,7 @@ impl<'a> SExp<'a> {
                         // The check to make sure there are no more tokens is required for
                         // correctness.
                         None => {
-                            return match try!(tokens.next()) {
+                            return match try!(tokens.next_token()) {
                                 EOF => Ok(List(&*arena.alloc(list))),
                                 _ => Err(ExpectedEOF),
                             }
@@ -399,14 +397,14 @@ fn try_decode<'a>(ctx: &'a mut ParseContext<'a>) -> Result<SExp<'a>, Error> {
 
 fn main() {
     println!("{:?}", try_encode());
-    let ref mut ctx = ParseContext::new(SEXP_STRING_IN);
+    let ctx = &mut ParseContext::new(SEXP_STRING_IN);
     println!("{:?}", try_decode(ctx));
 }
 
 #[bench]
 fn bench_decode(b: &mut test::Bencher) {
     b.iter(|| {
-        let ref mut ctx = ParseContext::new(SEXP_STRING_IN);
+        let ctx = &mut ParseContext::new(SEXP_STRING_IN);
         assert!(try_decode(ctx).is_ok());
     })
 }
@@ -427,6 +425,6 @@ fn test_sexp_encode() {
 
 #[test]
 fn test_sexp_decode() {
-    let ref mut ctx = ParseContext::new(SEXP_STRING_IN);
+    let ctx = &mut ParseContext::new(SEXP_STRING_IN);
     assert_eq!(Ok(SEXP_STRUCT), try_decode(ctx));
 }

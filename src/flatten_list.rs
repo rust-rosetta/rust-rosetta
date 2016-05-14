@@ -14,8 +14,8 @@ fn flatten<T>(tree: Tree<T>) -> Vec<T> {
         Leaf(val) => vec![val],
         Node(vec) => {
             vec.into_iter()
-               .flat_map(|t| flatten(t).into_iter())
-               .collect()
+                .flat_map(|t| flatten(t).into_iter())
+                .collect()
         }
     }
 }

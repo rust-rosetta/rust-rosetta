@@ -1,5 +1,7 @@
 // http://rosettacode.org/wiki/SHA-1
 
+#![cfg_attr(feature = "clippy", allow(many_single_char_names))]
+
 //! Straight port from golang crypto/sha1 library implementation
 use std::num::Wrapping as wr;
 use std::io::{Write, Result};
@@ -56,10 +58,10 @@ impl Digest {
             self.write_all(&tmp[0..64 + 56 - m]).unwrap();
         }
 
-        // Length in bits (=lengh in bytes*8=shift 3 bits to the right).
+        // Length in bits (=length in bytes*8=shift 3 bits to the right).
         len = len << 3;
-        for i in 0..8 {
-            tmp[i] = (len >> (56 - 8 * i)) as u8;
+        for (i, byte) in tmp.iter_mut().take(8).enumerate() {
+            *byte = (len >> (56 - 8 * i)) as u8;
         }
         self.write_all(&tmp[0..8]).unwrap();
 
@@ -75,6 +77,7 @@ impl Digest {
         digest
     }
 
+    #[cfg_attr(feature="clippy", allow(needless_range_loop))]
     fn process_block(&self, data: &[u8]) -> [wr<u32>; 5] {
         let k: [u32; 4] = [0x5A827999, 0x6ED9EBA1, 0x8F1BBCDC, 0xCA62C1D6];
 
@@ -169,6 +172,12 @@ impl Digest {
             p = &p[CHUNK..];
         }
         [h0, h1, h2, h3, h4]
+    }
+}
+
+impl Default for Digest {
+    fn default() -> Self {
+        Self::new()
     }
 }
 

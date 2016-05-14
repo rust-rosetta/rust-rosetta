@@ -1,7 +1,7 @@
 // http://rosettacode.org/wiki/Vigenère_cipher
 use std::ascii::AsciiExt;
 
-const ASCII_A: u8 = 'A' as u8;
+const ASCII_A: u8 = b'A';
 
 fn main() {
     let msg = "Beware the Jabberwock, my son! The jaws that bite, the claws that catch!";
@@ -22,8 +22,8 @@ fn vigenere(plaintext: &str, key: &str, encrypt: bool) -> String {
     let key_len = key_bytes.len();
     let mut output = String::with_capacity(plaintext_bytes.len());
 
-    for i in 0..plaintext_bytes.len() {
-        let c = plaintext_bytes[i];
+    for (i, byte) in plaintext_bytes.iter().enumerate() {
+        let c = *byte;
         let b = key_bytes[i % key_len];
 
         let output_byte = if encrypt {
@@ -39,9 +39,9 @@ fn vigenere(plaintext: &str, key: &str, encrypt: bool) -> String {
 
 fn to_sanitized_bytes(string: &str) -> Vec<u8> {
     string.chars()
-          .filter(|&c| c.is_alphabetic())
-          .map(|c| c.to_ascii_uppercase() as u8)
-          .collect::<Vec<u8>>()
+        .filter(|&c| c.is_alphabetic())
+        .map(|c| c.to_ascii_uppercase() as u8)
+        .collect::<Vec<u8>>()
 }
 
 fn enc_byte(m: u8, k: u8) -> u8 {

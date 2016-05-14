@@ -10,6 +10,7 @@ fn bogo_sort<T: Ord>(mut v: &mut [T]) {
 }
 
 // helper function that checks for ascending order
+#[cfg_attr(feature = "clippy", allow(needless_range_loop))]
 fn is_sorted<T: Ord>(v: &[T]) -> bool {
     if v.len() > 1 {
         for i in 0..(v.len() - 1) {
@@ -32,8 +33,14 @@ fn main() {
 mod tests {
     use super::bogo_sort;
 
-    fn check_sort<T: Ord>(v: &[T]) {
-        assert!(super::is_sorted(v));
+    use std::fmt::Debug;
+
+    fn check_sort<T>(v: &[T])
+        where T: Ord + Clone + Debug
+    {
+        let mut sorted = v.iter().cloned().collect::<Vec<_>>();
+        sorted.sort();
+        assert_eq!(sorted, v);
     }
 
     #[test]
@@ -47,7 +54,7 @@ mod tests {
     fn test_empty_vector() {
         let mut numbers: Vec<i32> = Vec::new();
         bogo_sort(&mut numbers[..]);
-        check_sort(&mut numbers[..]);
+        check_sort(&numbers[..]);
     }
 
     #[test]

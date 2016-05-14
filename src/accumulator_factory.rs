@@ -1,4 +1,5 @@
 // http://rosettacode.org/wiki/Accumulator_factory
+
 use std::ops::Add;
 
 pub fn accum<'a, T>(mut n: T) -> Box<FnMut(T) -> T + 'a>
@@ -16,7 +17,9 @@ pub fn main() {
 
 #[test]
 pub fn test() {
-    assert_eq!(8.3, accumulate());
+    use std::f32;
+
+    assert!((8.3 - accumulate()).abs() < f32::EPSILON);
 }
 
 /// Deviation: works with all types implementing addition, but not a mixture

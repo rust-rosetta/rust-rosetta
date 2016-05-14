@@ -16,9 +16,7 @@ impl Element {
 }
 
 pub fn sort_by_name(elements: &mut Vec<Element>) {
-    elements.sort_by(|a, b| {
-        a.name.cmp(&b.name)
-    });
+    elements.sort_by(|a, b| a.name.cmp(&b.name));
 }
 
 fn main() {
@@ -46,7 +44,8 @@ mod tests {
             Element::new("Zinc", "Zn"),
         ];
         sort_by_name(&mut values);
-        assert_eq!(values, vec![
+        assert_eq!(values,
+                   vec![
             Element::new("Cobalt", "Co"),
             Element::new("Copper", "Cu"),
             Element::new("Iron", "Fe"),

@@ -5,7 +5,7 @@ use std::fmt::{self, Display};
 
 const NUMBER_OF_DIGITS: usize = 4;
 
-/// generates a random NUMBER_OF_DIGITS
+/// generates a random `NUMBER_OF_DIGITS`
 fn generate_digits() -> Vec<u32> {
     use rand;
 
@@ -20,7 +20,7 @@ enum ParseError {
     NoDuplicates,
 }
 
-/// printable description for each ParseError
+/// printable description for each `ParseError`
 impl fmt::Display for ParseError {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         match *self {
@@ -33,15 +33,12 @@ impl fmt::Display for ParseError {
     }
 }
 
-/// a well-formed guess string should be like
-/// "1543", with NUMBER_OF_DIGITS digits, no repetitions,
-/// no separators or other characters. Parse the guess string as a
-/// Vec<usize> or return a ParseError.
-/// This could trivially return a [usize, ..NUMBER_OF_DIGITS] instead of
-/// a Vec<usize> and avoid dynamic allocations. However, in the more
-/// general case, NUMBER_OF_DIGITS would not be a constant, but a runtime
-/// configuration (which would make using a stack-allocated array more
-/// difficult)
+/// a well-formed guess string should be like "1543", with `NUMBER_OF_DIGITS` digits, no
+/// repetitions, no separators or other characters. Parse the guess string as a `Vec<usize>` or
+/// return a `ParseError`. This could trivially return a `[usize; NUMBER_OF_DIGITS]` instead of a
+/// `Vec<usize>` and avoid dynamic allocations. However, in the more general case,
+/// `NUMBER_OF_DIGITS` would not be a constant, but a runtime configuration (which would make using
+/// a stack-allocated array more difficult)
 fn parse_guess_string(guess: &str) -> Result<Vec<u32>, ParseError> {
     let mut ret = Vec::with_capacity(NUMBER_OF_DIGITS);
 
@@ -62,16 +59,16 @@ fn parse_guess_string(guess: &str) -> Result<Vec<u32>, ParseError> {
         }
     }
 
-    return Ok(ret);
+    Ok(ret)
 }
 
 /// returns a tuple with the count of Bulls and Cows in the guess
 fn calculate_score(given_digits: &[u32], guessed_digits: &[u32]) -> (usize, usize) {
     let mut bulls = 0;
     let mut cows = 0;
-    for i in 0..NUMBER_OF_DIGITS {
+    for (i, given_digit) in given_digits.iter().enumerate().take(NUMBER_OF_DIGITS) {
         let pos = guessed_digits.iter()
-                                .position(|&a| a == given_digits[i]);
+            .position(|&a| a == *given_digit);
 
         match pos {
             None => (),
@@ -79,7 +76,7 @@ fn calculate_score(given_digits: &[u32], guessed_digits: &[u32]) -> (usize, usiz
             Some(_) => cows += 1,
         }
     }
-    return (bulls, cows);
+    (bulls, cows)
 }
 
 fn main() {
@@ -114,8 +111,7 @@ fn main() {
 mod tests {
     use super::ParseError;
 
-    /// test we generate NUMBER_OF_DIGITS unique
-    /// digits between 1 and 9
+    /// test we generate `NUMBER_OF_DIGITS` unique digits between 1 and 9
     #[test]
     fn generate_digits() {
         let mut digits = super::generate_digits();

@@ -32,7 +32,7 @@ fn heapify<T: Ord>(a: &mut [T], count: usize) {
     }
 
     // start is assigned the index in 'a' of the last parent node
-    let mut start: i32 = count as i32 - 2 / 2; // binary heap
+    let mut start: i32 = (count as i32 - 2) / 2; // binary heap
 
     while start >= 0 {
         // sift down the node at index 'start' to the proper place

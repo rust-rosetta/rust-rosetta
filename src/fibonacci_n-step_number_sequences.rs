@@ -48,8 +48,8 @@ mod tests {
     /// test equivalence between tgt and sequence generated from buf
     fn test(mut buf: Vec<u64>, tgt: Vec<u64>) {
         let mut sum = 0;
-        for &elt in buf.iter() {
-            sum += elt;
+        for elt in &buf {
+            sum += *elt;
         }
         let mut iter = GenFibonacci {
             buf: buf.clone(),

@@ -1,8 +1,9 @@
 // http://rosettacode.org/wiki/Sorting_algorithms/Quicksort
 extern crate rand;
 
-/// We use in place quick sort
-/// For details see http://en.wikipedia.org/wiki/Quicksort#In-place_version
+/// We use an [in-place quick sort].
+///
+/// [in-place quick sort]: http://en.wikipedia.org/wiki/Quicksort#In-place_version
 fn quick_sort<T: Ord>(v: &mut [T]) {
     let len = v.len();
     if len < 2 {
@@ -21,6 +22,7 @@ fn quick_sort<T: Ord>(v: &mut [T]) {
 /// Reorders the slice with values lower than the pivot at the left side,
 /// and values bigger than it at the right side.
 /// Also returns the store index.
+#[cfg_attr(feature="clippy", allow(needless_range_loop))]
 fn partition<T: Ord>(v: &mut [T]) -> usize {
     let len = v.len();
     let pivot_index = len / 2;
@@ -57,16 +59,18 @@ fn main() {
 
 #[cfg(test)]
 mod tests {
+    extern crate rust_rosetta;
+
     use rand::{thread_rng, Rng};
+
+    use std::fmt::Debug;
 
     use super::quick_sort;
 
-    fn check_sort<T: Ord>(v: &[T]) {
-        if v.len() > 1 {
-            for i in 0..(v.len() - 1) {
-                assert!(v[i] <= v[i + 1]);
-            }
-        }
+    fn check_sort<T>(v: &[T])
+        where T: Ord + Clone + Debug
+    {
+        rust_rosetta::check_sorted(v);
     }
 
     #[test]
@@ -80,7 +84,7 @@ mod tests {
     fn test_empty_vector() {
         let mut numbers: Vec<i32> = Vec::new();
         quick_sort(&mut numbers[..]);
-        check_sort(&mut numbers[..]);
+        check_sort(&numbers);
     }
 
     #[test]
@@ -116,7 +120,6 @@ mod tests {
         let mut rng = thread_rng();
         let mut numbers: Vec<i32> = rng.gen_iter::<i32>().take(500).collect();
         quick_sort(&mut numbers[..]);
-        check_sort(&mut numbers[..]);
+        check_sort(&numbers);
     }
-
 }
