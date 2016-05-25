@@ -1782,6 +1782,11 @@ name = "stack"
 path = "src/stack.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/Statistics/Basic
+name = "statistics_basic"
+path = "src/statistics_basic.rs"
+
+[[bin]]
 # http://rosettacode.org/wiki/Standard_deviation
 name = "stdev"
 path = "src/stdev.rs"
