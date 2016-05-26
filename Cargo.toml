@@ -1973,6 +1973,12 @@ path = "src/walk_a_directory/recursively.rs"
 test = false
 
 [[bin]]
+# http://rosettacode.org/wiki/Window_creation
+name = "window_creation"
+path = "src/window_creation.rs"
+test = false
+
+[[bin]]
 # http://rosettacode.org/wiki/Wireworld
 name = "wireworld"
 path = "src/wireworld.rs"
