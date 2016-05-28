@@ -42,12 +42,12 @@ fn test_stdev() {
     let eps = 0.000001;
     let mut sd = StDev::new();
     // must be equal with up to eps precision
-    assert!(sd.stdev(2.0).abs_sub(0.0) < eps);
-    assert!(sd.stdev(4.0).abs_sub(1.0) < eps);
-    assert!(sd.stdev(4.0).abs_sub(0.942809) < eps);
-    assert!(sd.stdev(4.0).abs_sub(0.866025) < eps);
-    assert!(sd.stdev(5.0).abs_sub(0.979796) < eps);
-    assert!(sd.stdev(5.0).abs_sub(1.0) < eps);
-    assert!(sd.stdev(7.0).abs_sub(1.399708) < eps);
-    assert!(sd.stdev(9.0).abs_sub(2.0) < eps);
+    assert!((sd.stdev(2.0) - 0.0).abs() < eps);
+    assert!((sd.stdev(4.0) - 1.0).abs() < eps);
+    assert!((sd.stdev(4.0) - 0.942809).abs() < eps);
+    assert!((sd.stdev(4.0) - 0.866025).abs() < eps);
+    assert!((sd.stdev(5.0) - 0.979796).abs() < eps);
+    assert!((sd.stdev(5.0) - 1.0).abs() < eps);
+    assert!((sd.stdev(7.0) - 1.399708).abs() < eps);
+    assert!((sd.stdev(9.0) - 2.0).abs() < eps);
 }
