@@ -82,7 +82,7 @@ rand = "0.3"
 regex = { version = "0.1", features = ["pattern"] }
 rustc-serialize = "0.3"
 rust-crypto = "0.2"
-schedule_recv = "0.0.1"
+schedule_recv = "0.1.0"
 term-painter = "0.2"
 time = "0.1"
 unicode-segmentation = "0.1"
@@ -96,7 +96,7 @@ x11 = { version = "2.5.1", features = ["xlib"], optional = true }
 
 [target.'cfg(windows)'.dependencies]
 winapi = "0.2.6"
-user32-sys = "0.1.2"
+user32-sys = "0.2.0"
 
 [build-dependencies]
 lazy_static = "0.2.1"
