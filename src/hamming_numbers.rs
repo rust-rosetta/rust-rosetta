@@ -22,20 +22,18 @@ fn main() {
     }
 }
 
-/// representing a Hamming number as a BigUint
+/// representing a Hamming number as a `BigUint`
 impl HammingNumber for BigUint {
     // returns the multipliers 2, 3 and 5 in the representation for the HammingNumber
     fn multipliers() -> (BigUint, BigUint, BigUint) {
-        (2u8.to_biguint().unwrap(),
-         3u8.to_biguint().unwrap(),
-         5u8.to_biguint().unwrap())
+        (2u8.to_biguint().unwrap(), 3u8.to_biguint().unwrap(), 5u8.to_biguint().unwrap())
     }
 }
 
 /// representation of a Hamming number
 /// allows to abstract on how the hamming number is stored
-/// i.e. as BigUint directly or just as the powers of 2, 3 and 5 used to build it
-pub trait HammingNumber : Eq + Ord + ToBigUint + Mul<Output=Self> + One + Clone {
+/// i.e. as `BigUint` directly or just as the powers of 2, 3 and 5 used to build it
+pub trait HammingNumber: Eq + Ord + ToBigUint + Mul<Output = Self> + One + Clone {
     fn multipliers() -> (Self, Self, Self);
 }
 
@@ -158,5 +156,5 @@ fn hamming_iter_1million() {
                                     0000000000000000000000";
     assert_eq!(hamming.nth(999_999).unwrap().to_biguint(),
                millionth_hamming_number.parse::<BigUint>()
-                                       .ok());
+                   .ok());
 }

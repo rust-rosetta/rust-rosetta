@@ -14,28 +14,34 @@ use std::sync::mpsc::{self, Sender, SendError};
 use std::ops::Mul;
 use schedule_recv::periodic_ms;
 
-/// Rust supports both shared-memory and actor models of concurrency, and the Integrator utilizes
-/// both.  We use a Sender (actor model) to send the Integrator new functions, while we use a Mutex
+pub type Actor<S> = Sender<Box<Fn(u32) -> S + Send>>;
+pub type ActorResult<S> = Result<(), SendError<Box<Fn(u32) -> S + Send>>>;
+
+/// Rust supports both shared-memory and actor models of concurrency, and the `Integrator` utilizes
+/// both.  We use an `Actor` to send the `Integrator` new functions, while we use a `Mutex`
 /// (shared-memory concurrency) to hold the result of the integration.
 ///
 /// Note that these are not the only options here--there are many, many ways you can deal with
-/// concurrent access.  But when in doubt, a plain old Mutex is often a good bet.  For example,
-/// this might look like a good situation for a RwLock--after all, there's no reason for a read in
-/// the main task to block writes.  Unfortunately, unless you have significantly more reads than
-/// writes (which is certainly not the case here), a Mutex will usually outperform a RwLock.
+/// concurrent access.  But when in doubt, a plain old `Mutex` is often a good bet.  For example,
+/// this might look like a good situation for a `RwLock`--after all, there's no reason for a read
+/// in the main task to block writes.  Unfortunately, unless you have significantly more reads than
+/// writes (which is certainly not the case here), a `Mutex` will usually outperform a `RwLock`.
 pub struct Integrator<S: 'static, T: Send> {
-    input: Sender<Box<Fn(u32) -> S + Send>>,
+    input: Actor<S>,
     output: Arc<Mutex<T>>,
 }
 
 /// In Rust, time durations are strongly typed.  This is usually exactly what you want, but for a
 /// problem like this--where the integrated value has unusual (unspecified?) units--it can actually
-/// be a bit tricky.  Right now, Durations can only be multiplied or divided by i32s, so in order
-/// to be able to actually do math with them we say that the type parameter S (the result of the
-/// function being integrated) must yield T (the type of the integrated value) when multiplied by
-/// f64.  We could possibly replace f64 with a generic as well, but it would make things a bit more
-/// complex.
-impl<S: Mul<f64, Output = T> + Float + Zero, T: 'static + Clone + Send + Float> Integrator<S, T> {
+/// be a bit tricky.  Right now, `Duration`s can only be multiplied or divided by `i32`s, so in
+/// order to be able to actually do math with them we say that the type parameter `S` (the result
+/// of the function being integrated) must yield `T` (the type of the integrated value) when
+/// multiplied by `f64`.  We could possibly replace `f64` with a generic as well, but it would make
+/// things a bit more complex.
+impl<S, T> Integrator<S, T>
+    where S: Mul<f64, Output = T> + Float + Zero,
+          T: 'static + Clone + Send + Float
+{
     pub fn new(frequency: u32) -> Integrator<S, T> {
         // We create a pipe allowing functions to be sent from tx (the sending end) to input (the
         // receiving end).  In order to change the function we are integrating from the task in
@@ -107,9 +113,7 @@ impl<S: Mul<f64, Output = T> + Float + Zero, T: 'static + Clone + Send + Float> 
         integrator
     }
 
-    pub fn input(&self,
-                 k: Box<Fn(u32) -> S + Send>)
-                 -> Result<(), SendError<Box<Fn(u32) -> S + Send>>> {
+    pub fn input(&self, k: Box<Fn(u32) -> S + Send>) -> ActorResult<S> {
         // The meat of the work is done in the other thread, so to set the
         // input we just send along the Sender we set earlier...
         self.input.send(k)
@@ -117,11 +121,11 @@ impl<S: Mul<f64, Output = T> + Float + Zero, T: 'static + Clone + Send + Float> 
 
     pub fn output(&self) -> T {
         // ...and to read the input, we simply acquire a lock on the output Mutex and return a
-        // clone.  Why do we have to clone it?  Because, as mentioned above, Rust won't let us
+        // copy. Why do we have to copy it?  Because, as mentioned above, Rust won't let us
         // retain access to the interior of the Mutex unless we have possession of its lock.  There
         // are ways and circumstances in which one can avoid this (e.g. by using atomic types) but
-        // clone() is a perfectly reasonable solution as well, and a lot easier to reason about :)
-        self.output.lock().unwrap().clone()
+        // a copy is a perfectly reasonable solution as well, and a lot easier to reason about :)
+        *self.output.lock().unwrap()
     }
 }
 
@@ -130,14 +134,13 @@ impl<S: Mul<f64, Output = T> + Float + Zero, T: 'static + Clone + Send + Float> 
 fn integrate() -> f64 {
     let object = Integrator::new(10);
     object.input(Box::new(|t: u32| {
-              let two_seconds_ms = 2 * 1000;
-              let f = 1. / two_seconds_ms as f64;
-              (2. * PI * f * t as f64).sin()
-          }))
-          .ok()
-          .expect("Failed to set input");
+            let two_seconds_ms = 2 * 1000;
+            let f = 1. / two_seconds_ms as f64;
+            (2. * PI * f * t as f64).sin()
+        }))
+        .expect("Failed to set input");
     thread::sleep(Duration::from_secs(2));
-    object.input(Box::new(|_| 0.)).ok().expect("Failed to set input");
+    object.input(Box::new(|_| 0.)).expect("Failed to set input");
     thread::sleep(Duration::from_millis(500));
     object.output()
 }
@@ -155,14 +158,13 @@ fn solution() {
     // FIXME(pythonesque): When unboxed closures are fixed, fix integrate() to take two arguments.
     let object = Integrator::new(10);
     object.input(Box::new(|t: u32| {
-              let two_seconds_ms = 2 * 1000;
-              let f = 1. / (two_seconds_ms / 10) as f64;
-              (2. * PI * f * t as f64).sin()
-          }))
-          .ok()
-          .expect("Failed to set input");
+            let two_seconds_ms = 2 * 1000;
+            let f = 1. / (two_seconds_ms / 10) as f64;
+            (2. * PI * f * t as f64).sin()
+        }))
+        .expect("Failed to set input");
     thread::sleep(Duration::from_millis(200));
-    object.input(Box::new(|_| 0.)).ok().expect("Failed to set input");
+    object.input(Box::new(|_| 0.)).expect("Failed to set input");
     thread::sleep(Duration::from_millis(100));
     assert_eq!(object.output() as u32, 0)
 }

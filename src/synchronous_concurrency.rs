@@ -17,16 +17,10 @@ enum Message {
 
 fn printer(i_snd: Sender<i32>, msg_rcv: Receiver<Message>) {
     let mut count = 0;
-    loop {
-        match msg_rcv.recv().unwrap() {
-            Message::Line(line) => {
-                println!("{}", line);
-                count += 1;
-            }
-            Message::End => {
-                break;
-            }
-        }
+    while let Message::Line(line) = msg_rcv.recv().unwrap() {
+        println!("{}", line);
+        count += 1;
+
     }
     i_snd.send(count).unwrap();
 }

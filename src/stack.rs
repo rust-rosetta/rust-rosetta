@@ -27,7 +27,7 @@ impl<T> Stack<T> {
 
     /// Returns true if the stack is empty
     fn empty(&self) -> bool {
-        self.vec.len() == 0
+        self.vec.is_empty()
     }
 }
 

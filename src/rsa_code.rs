@@ -91,7 +91,7 @@ mod tests {
     #[test]
     fn test_enc_zero_modulus() {
         let (_, e, _) = rsa_numbers();
-        let msg_int = BigUint::from_bytes_be("msg".as_bytes());
+        let msg_int = BigUint::from_bytes_be(b"msg");
         let result = mod_exp(&msg_int, &e, &BigUint::zero());
         assert_eq!(Err("modulus is zero"), result);
     }

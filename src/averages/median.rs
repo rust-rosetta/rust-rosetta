@@ -13,14 +13,17 @@ fn median(samples: &[f64]) -> f64 {
 }
 
 fn main() {
-    let mut nums = vec![2., 3., 5., 0., 9., 82., 353., 32., 12.];
-    println!("{:?}", median(&mut nums))
+    let nums = vec![2., 3., 5., 0., 9., 82., 353., 32., 12.];
+    println!("{:?}", median(&nums))
 }
 
+#[cfg(test)]
 mod tests {
+    use std::f64;
+
     #[test]
     fn median() {
-        let mut nums = vec![2., 3., 5., 0., 9., 82., 353., 32., 12.];
-        assert_eq!(super::median(&mut nums), 9_f64);
+        let nums = vec![2., 3., 5., 0., 9., 82., 353., 32., 12.];
+        assert!((super::median(&nums) - 9_f64).abs() < f64::EPSILON);
     }
 }

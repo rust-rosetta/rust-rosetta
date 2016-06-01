@@ -61,19 +61,19 @@ impl fmt::Display for Nibble {
                "{}",
                self.iter()
                    .map(|&b| {
-                       if b {
-                           '1'
-                       } else {
-                           '0'
-                       }
-                   })
+                if b {
+                    '1'
+                } else {
+                    '0'
+                }
+            })
                    .collect::<String>())
     }
 }
 
 /// We implement Deref so we can index the Nibble easily
 impl<'a> Deref for Nibble {
-    type Target= [bool; 4];
+    type Target = [bool; 4];
 
     fn deref(&self) -> &[bool; 4] {
         let Nibble(ref inner) = *self;

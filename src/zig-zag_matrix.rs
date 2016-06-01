@@ -1,8 +1,8 @@
 // http://rosettacode.org/wiki/Zig-zag_matrix
 
-//! Implements with the sorting indexes algorithm
-//! explained in the discussion page
-//! http://rosettacode.org/wiki/Talk:Zig-zag_matrix
+//! Implements with the sorting indexes algorithm explained in the [discussion page].
+//!
+//! [discussion page]:http://rosettacode.org/wiki/Talk:Zig-zag_matrix
 use std::iter::repeat;
 use std::cmp::Ordering;
 use std::cmp::Ordering::{Less, Equal, Greater};
@@ -53,7 +53,7 @@ fn zigzag(n: usize) -> Vec<Vec<usize>> {
 
     let init_vec = vec![0; n];
     let mut result: Vec<Vec<usize>> = repeat(init_vec).take(n).collect();
-    for (i, &SortIndex{x,y}) in l.iter().enumerate() {
+    for (i, &SortIndex { x, y }) in l.iter().enumerate() {
         result[y][x] = i
     }
     result

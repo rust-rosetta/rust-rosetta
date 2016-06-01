@@ -14,7 +14,7 @@ fn jortsort<T: Ord + Eq + Clone>(array: &[T]) -> bool {
         }
     }
 
-    return true;
+    true
 }
 
 fn main() {

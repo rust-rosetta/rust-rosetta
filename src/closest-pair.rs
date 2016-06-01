@@ -1,10 +1,11 @@
 // http://rosettacode.org/wiki/Closest-pair_problem
 
 //! We interpret complex numbers as points in the Cartesian plane, here. We also use the
-//! sweepline/plane sweep closest pairs algorithm
-//! (http://www.cs.mcgill.ca/~cs251/ClosestPair/ClosestPairPS.html) instead of the
-//! divide-and-conquer algorithm, since it's (arguably) easier to implement, and an efficient
-//! implementation does not require use of unsafe.
+//! [sweepline/plane sweep closest pairs algorithm][algorithm] instead of the divide-and-conquer
+//! algorithm, since it's (arguably) easier to implement, and an efficient implementation does not
+//! require use of unsafe.
+//!
+//! [algorithm]: http://www.cs.mcgill.ca/~cs251/ClosestPair/ClosestPairPS.html
 extern crate num;
 
 use std::cmp::{PartialOrd, Ordering};
@@ -12,7 +13,7 @@ use num::complex::Complex;
 use std::collections::BTreeSet;
 type Point = Complex<f32>;
 
-/// Wrapper around Point (i.e. Complex<f32>) so that we can use a TreeSet
+/// Wrapper around `Point` (i.e. `Complex<f32>`) so that we can use a `TreeSet`
 #[derive(PartialEq)]
 struct YSortedPoint {
     point: Point,
@@ -45,8 +46,8 @@ fn closest_pair(points: &mut [Point]) -> Option<(Point, Point)> {
 
     // the strip that we inspect for closest pairs as we sweep right
     let mut strip: BTreeSet<YSortedPoint> = BTreeSet::new();
-    strip.insert(YSortedPoint { point: points[0].clone() });
-    strip.insert(YSortedPoint { point: points[1].clone() });
+    strip.insert(YSortedPoint { point: points[0] });
+    strip.insert(YSortedPoint { point: points[1] });
 
     // index of the leftmost point on the strip (on points)
     let mut leftmost_idx = 0;
@@ -60,7 +61,7 @@ fn closest_pair(points: &mut [Point]) -> Option<(Point, Point)> {
             if (leftmost_point.re - point.re).powi(2) < closest_distance_sqr {
                 break;
             }
-            strip.remove(&YSortedPoint { point: leftmost_point.clone() });
+            strip.remove(&YSortedPoint { point: *leftmost_point });
             leftmost_idx += 1;
         }
 
@@ -92,7 +93,7 @@ fn closest_pair(points: &mut [Point]) -> Option<(Point, Point)> {
         }
 
         // Insert point into strip
-        strip.insert(YSortedPoint { point: point.clone() });
+        strip.insert(YSortedPoint { point: *point });
     }
 
     Some(closest_pair)

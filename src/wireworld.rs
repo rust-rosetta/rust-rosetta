@@ -46,14 +46,14 @@ fn next_world(input: &[Cell], output: &mut [Cell], w: usize, h: usize) {
                               input.get(i + w - 1),
                               input.get(i + w),
                               input.get(i + w + 1)]
-                             .iter()
-                             .fold(0, |sum, &o| {
-                                 if let Some(&Cell::Head) = o {
-                                     sum + 1
-                                 } else {
-                                     sum
-                                 }
-                             });
+                    .iter()
+                    .fold(0, |sum, &o| {
+                        if let Some(&Cell::Head) = o {
+                            sum + 1
+                        } else {
+                            sum
+                        }
+                    });
                 output[i] = if nc == 1 || nc == 2 {
                     Cell::Head
                 } else {
@@ -75,17 +75,17 @@ fn main() {
 |Ht.. ......|
 +-----------+
 "
-                                   .chars()
-                                   .map(|c| Cell::from_char(c))
-                                   .collect();
+        .chars()
+        .map(Cell::from_char)
+        .collect();
     let mut next: Vec<Cell> = world.clone();
 
     loop {
-        for i in 0..(w * h) {
-            print!("{}", world[i].to_char());
+        for cell in &world {
+            print!("{}", cell.to_char());
         }
         print!("\n");
-        next_world(&world, &mut next, 14, 7);
+        next_world(&world, &mut next, w, h);
         mem::swap(&mut world, &mut next);
 
         // Use VT100 cursor control sequences to animate in-place
@@ -107,9 +107,9 @@ fn test() {
 |Ht.. ......|
 +-----------+
 "
-                                   .chars()
-                                   .map(|c| Cell::from_char(c))
-                                   .collect();
+        .chars()
+        .map(Cell::from_char)
+        .collect();
     let mut next: Vec<Cell> = world.clone();
 
     for _ in 0..10 {

@@ -20,8 +20,8 @@ struct Args {
 
 fn main() {
     let args: Args = Docopt::new(USAGE)
-                         .and_then(|d| d.decode())
-                         .unwrap_or_else(|e| e.exit());
+        .and_then(|d| d.decode())
+        .unwrap_or_else(|e| e.exit());
 
     let re = Regex::new(&args.arg_pattern).unwrap();
     let paths = std::fs::read_dir(".").unwrap();

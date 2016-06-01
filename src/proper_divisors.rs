@@ -37,9 +37,9 @@ fn find_divisors(primes: &mut Vec<usize>, num: usize) -> Vec<usize> {
     add_more_prime_numbers(primes, ceiling);
     // Filter all primes num % p == 0
     let prime_factors: Vec<usize> = primes.iter()
-                                          .filter(|&p| num % *p == 0)
-                                          .map(|&n| n)
-                                          .collect();
+        .filter(|&p| num % *p == 0)
+        .cloned()
+        .collect();
     // Check all k*p p..ceiling
     // Following code is ineffective (due to duplicates) but simple
     for p in prime_factors {
@@ -54,7 +54,7 @@ fn find_divisors(primes: &mut Vec<usize>, num: usize) -> Vec<usize> {
     }
     kprime_factors.sort();
     kprime_factors.dedup();
-    return kprime_factors;
+    kprime_factors
 }
 
 fn main() {
@@ -89,7 +89,7 @@ fn main() {
 fn test_divisors() {
     fn proper_divisors(num: usize) -> Vec<usize> {
         let mut primes: Vec<usize> = vec![2, 3];
-        return find_divisors(&mut primes, num);
+        find_divisors(&mut primes, num)
     }
 
     assert!(proper_divisors(6) == vec![1, 2, 3]);

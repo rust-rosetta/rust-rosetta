@@ -50,6 +50,12 @@ impl TaxicabNumbers {
     }
 }
 
+impl Default for TaxicabNumbers {
+    fn default() -> Self {
+        Self::new()
+    }
+}
+
 impl Iterator for TaxicabNumbers {
     type Item = Vec<SumCubes>;
 
@@ -86,10 +92,10 @@ impl Iterator for TaxicabNumbers {
 fn main() {
     let numbers = TaxicabNumbers::new();
     for (at, ways) in numbers.take(2006)
-                             .enumerate()
-                             .filter(|&(at, _)| at + 1 <= 25 || at + 1 >= 2000) {
+        .enumerate()
+        .filter(|&(at, _)| at + 1 <= 25 || at + 1 >= 2000) {
         print!("{:>4}:{:>10}", at + 1, ways[0].value);
-        for &SumCubes{ a, b, .. } in &ways {
+        for &SumCubes { a, b, .. } in &ways {
             print!(" = {:>4}^3 + {:>4}^3", a, b);
         }
         print!("\n");
@@ -106,7 +112,7 @@ fn test_taxicab_numbers() {
 
     for (&expected, ways) in seq.iter().zip(TaxicabNumbers::new()) {
         assert!(ways.len() > 1);
-        for &SumCubes{value, ..} in &ways {
+        for &SumCubes { value, .. } in &ways {
             assert_eq!(value, expected);
         }
     }

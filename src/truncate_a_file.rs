@@ -13,8 +13,8 @@ fn main() {
             Ok(integer_size) => {
                 let file = OpenOptions::new().write(true).open(filename).unwrap();
                 let _ = file.set_len(integer_size);
-            },
-            Err(_) => println!("Invalid size")
+            }
+            Err(_) => println!("Invalid size"),
         }
     }
 }

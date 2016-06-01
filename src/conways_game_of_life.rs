@@ -27,6 +27,7 @@ impl Cell {
     }
 }
 
+#[cfg_attr(feature="clippy", allow(match_same_arms))]
 fn next_world(input: &[Cell], output: &mut [Cell], w: usize, h: usize) {
     for i in 0..(w * h) {
         match input[i] {
@@ -40,14 +41,14 @@ fn next_world(input: &[Cell], output: &mut [Cell], w: usize, h: usize) {
                                 input.get(i + w - 1),
                                 input.get(i + w),
                                 input.get(i + w + 1)]
-                               .iter()
-                               .fold(0, |sum, &o| {
-                                   if let Some(&Cell::Alive) = o {
-                                       sum + 1
-                                   } else {
-                                       sum
-                                   }
-                               });
+                    .iter()
+                    .fold(0, |sum, &o| {
+                        if let Some(&Cell::Alive) = o {
+                            sum + 1
+                        } else {
+                            sum
+                        }
+                    });
                 output[i] = match (cell, live) {
                     (Cell::Alive, 0...1) => Cell::Dead,  // Lonely
                     (Cell::Alive, 4...8) => Cell::Dead,  // Overcrowded
@@ -73,14 +74,14 @@ fn main() {
 |                                                                                                 |
 +-------------------------------------------------------------------------------------------------+
 "
-                                   .chars()
-                                   .map(Cell::from_char)
-                                   .collect();
+        .chars()
+        .map(Cell::from_char)
+        .collect();
     let mut next: Vec<Cell> = world.clone();
 
     loop {
-        for i in 0..(w * h) {
-            print!("{}", world[i].to_char());
+        for cell in &world {
+            print!("{}", cell.to_char());
         }
         print!("\n");
         next_world(&world, &mut next, w, h);
@@ -105,9 +106,9 @@ fn test() {
 |           |
 +-----------+
 "
-                                   .chars()
-                                   .map(|c| Cell::from_char(c))
-                                   .collect();
+        .chars()
+        .map(Cell::from_char)
+        .collect();
     let mut next: Vec<Cell> = world.clone();
 
     next_world(&world, &mut next, w, h);

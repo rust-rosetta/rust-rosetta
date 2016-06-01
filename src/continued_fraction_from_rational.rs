@@ -2,7 +2,7 @@
 
 struct R2cf {
     n1: i64,
-    n2: i64
+    n2: i64,
 }
 
 // This iterator generates the continued fraction representation from the
@@ -13,8 +13,7 @@ impl Iterator for R2cf {
     fn next(&mut self) -> Option<i64> {
         if self.n2 == 0 {
             None
-        }
-        else {
+        } else {
             let t1 = self.n1 / self.n2;
             let t2 = self.n2;
             self.n2 = self.n1 - t1 * t2;
@@ -69,10 +68,9 @@ mod tests {
 
     #[test]
     fn test_sqrt2() {
-        assert!(Iterator::eq(r2cf(14_142, 10_000),
-                vec![1, 2, 2, 2, 2, 2, 1, 1, 29]));
+        assert!(Iterator::eq(r2cf(14_142, 10_000), vec![1, 2, 2, 2, 2, 2, 1, 1, 29]));
         assert!(Iterator::eq(r2cf(14_142_136, 10_000_000),
-                vec![1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 6, 1, 2, 4, 1, 1, 2]));
+                             vec![1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 6, 1, 2, 4, 1, 1, 2]));
     }
 
     #[test]

@@ -6,9 +6,8 @@ use std::collections::BinaryHeap;
 use std::cmp::Ordering;
 use std::cmp::Ordering::{Less, Equal, Greater};
 
-/// Each HNode has a weight, representing the sum of the frequencies for all its
-/// children. It is either a leaf (containing a character), or a HTree
-/// (containing two children)
+/// Each `HNode` has a weight, representing the sum of the frequencies for all its
+/// children. It is either a leaf (containing a character), or an `HTree` (containing two children)
 struct HNode {
     weight: usize,
     item: HItem,
@@ -24,9 +23,9 @@ struct HTreeData {
     right: Box<HNode>,
 }
 
-/// Implementing comparison traits (Ord and all its dependencies) such that
-/// the HNode with the greatest weight is the smallest in a comparison. Basically
-/// reversing all the comparison operators.
+/// Implementing comparison traits (`Ord` and all its dependencies) such that the `HNode` with the
+/// greatest weight is the smallest in a comparison. Basically reversing all the comparison
+/// operators.
 impl Ord for HNode {
     fn cmp(&self, other: &HNode) -> Ordering {
         match self.weight.cmp(&other.weight) {
@@ -50,8 +49,8 @@ impl PartialEq for HNode {
     }
 }
 
-/// Takes a non-empty string (function will fail if string is empty) and computes
-/// the Huffman encoding tree for that string.
+/// Takes a non-empty string (function will fail if string is empty) and computes the Huffman
+/// encoding tree for that string.
 fn huffman_tree(input: &str) -> HNode {
     // 1. Loop through all the characters in that string, adding them to a HashMap
     //    of character to frequency.
@@ -70,7 +69,7 @@ fn huffman_tree(input: &str) -> HNode {
     // 2. For each (character, frequency) pair in the HashMap, add a Leaf to a
     //    PriorityQueue
     let mut queue = BinaryHeap::<HNode>::new();
-    for (ch, freq) in freq.iter() {
+    for (ch, freq) in &freq {
         let new_node = HNode {
             weight: *freq,
             item: HItem::Leaf(*ch),
@@ -112,13 +111,16 @@ fn build_encoding_table(tree: &HNode, table: &mut HashMap<char, String>, start_s
 }
 
 /// Attempts to construct a tree, and test that the construction is successful
-///    7
-///   ----
-///  /    \
-/// 4:'4'  3
-///      -----
-///     /     \
-///    2:'2'  1:'1'
+///
+/// ```
+///     7
+///    ----
+///   /    \
+///  4:'4'  3
+///       -----
+///      /     \
+///     2:'2'  1:'1'
+/// ```
 #[test]
 fn test_tree_construction() {
     let to_encode = "4444221";
@@ -167,9 +169,13 @@ fn test_tree_construction() {
 }
 
 /// Constructs a table:
+///
+/// ```
 ///  '4': 1
 ///  '2': 01 OR 00
 ///  '1': 00    01
+///  ```
+///
 /// And tests that the table was correctly constructed
 #[test]
 fn test_table_construction() {
@@ -190,7 +196,7 @@ fn main() {
     let mut table = HashMap::<char, String>::new();
     build_encoding_table(&tree, &mut table, "");
 
-    for (ch, encoding) in table.iter() {
+    for (ch, encoding) in &table {
         println!("{}: {}", *ch, encoding);
     }
 }

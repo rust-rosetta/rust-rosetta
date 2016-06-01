@@ -24,13 +24,13 @@ impl Image {
             width: width,
             height: height,
             data: ::std::iter::repeat(Default::default())
-                      .take(width * height)
-                      .collect(),
+                .take(width * height)
+                .collect(),
         }
     }
 
     pub fn fill(&mut self, color: Color) {
-        for elem in self.data.iter_mut() {
+        for elem in &mut self.data {
             *elem = color;
         }
     }
@@ -50,15 +50,15 @@ impl Image {
 }
 
 impl Index<(usize, usize)> for Image {
-    type Output=Color;
+    type Output = Color;
 
-    fn index<'a>(&'a self, (x, y): (usize, usize)) -> &'a Color {
+    fn index(&self, (x, y): (usize, usize)) -> &Color {
         &self.data[x + y * self.width]
     }
 }
 
 impl IndexMut<(usize, usize)> for Image {
-    fn index_mut<'a>(&'a mut self, (x, y): (usize, usize)) -> &'a mut Color {
+    fn index_mut(&mut self, (x, y): (usize, usize)) -> &mut Color {
         &mut self.data[x + y * self.width]
     }
 }

@@ -37,9 +37,9 @@ fn all_sums(vec: &mut [f32]) -> Vec<f32> {
     loop {
         let v = perms.next();
         match v {
-            Some(_v) => {
+            Some(v) => {
                 let mut sum = 0.0f32;
-                for e in &_v {
+                for e in &v {
                     sum += with_bits(*e, 1);
                 }
                 res.push(with_bits(sum, 1));
@@ -50,8 +50,9 @@ fn all_sums(vec: &mut [f32]) -> Vec<f32> {
     res
 }
 
+#[cfg_attr(feature="clippy", allow(approx_constant))]
 fn main() {
-    let v = [10000.0f32, 3.14159, 2.71828];
+    let v = vec![10000.0f32, 3.14159, 2.71828];
     let sums = all_sums(&mut v.clone());
     let res = kahan_sum(&v).unwrap();
     let max = find_max(&sums[..]).unwrap();
@@ -59,8 +60,9 @@ fn main() {
 }
 
 #[test]
+#[cfg_attr(feature="clippy", allow(approx_constant))]
 fn test_kahansum() {
-    let v = [10000.0f32, 3.14159, 2.71828];
+    let v = vec![10000.0f32, 3.14159, 2.71828];
     let sums = all_sums(&mut v.clone());
     let res = kahan_sum(&v).unwrap();
     let max = find_max(&sums[..]).unwrap();
@@ -71,5 +73,5 @@ fn test_kahansum() {
 fn test_withbits() {
     let v = 3.123345f32;
     let res = with_bits(v, 3);
-    assert!(res == 3.123f32);
+    assert!((res - 3.123f32).abs() < f32::EPSILON);
 }

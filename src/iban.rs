@@ -12,7 +12,9 @@ fn main() {
 }
 
 /// Returns true if the IBAN is valid
-/// See http://en.wikipedia.org/wiki/International_Bank_Account_Number#Validating_the_IBAN
+/// See [Validating the IBAN][iban].
+///
+/// [iban]: http://en.wikipedia.org/wiki/International_Bank_Account_Number#Validating_the_IBAN
 fn is_valid(iban: &str) -> bool {
     // Discard whitespace
     let mut iban_chars: Vec<char> = iban.chars().filter(|c| !c.is_whitespace()).collect();
@@ -43,7 +45,7 @@ fn is_valid(iban: &str) -> bool {
     }
 }
 
-/// Returns a BigInt made from the digits and letters of the IBAN
+/// Returns a `BigInt` made from the digits and letters of the IBAN
 fn parse_digits(chars: &[char]) -> Option<BigInt> {
     let mut vec: Vec<u8> = Vec::with_capacity(chars.len() + 10);
 
@@ -74,8 +76,8 @@ fn country_length(country_code: &str) -> Option<usize> {
                      ("TR", 26), ("AE", 23), ("GB", 22), ("VG", 24)];
 
     countries.iter()
-             .find(|&&(country, _)| country == country_code)
-             .map(|&(_, length)| length)
+        .find(|&&(country, _)| country == country_code)
+        .map(|&(_, length)| length)
 }
 
 #[test]

@@ -60,14 +60,14 @@ fn main() {
     ];
 
     let handles: Vec<_> = philosophers.into_iter()
-                                      .map(|p| {
-                                          let table = table.clone();
+        .map(|p| {
+            let table = table.clone();
 
-                                          thread::spawn(move || {
-                                              p.eat(&table);
-                                          })
-                                      })
-                                      .collect();
+            thread::spawn(move || {
+                p.eat(&table);
+            })
+        })
+        .collect();
 
     for h in handles {
         h.join().unwrap();

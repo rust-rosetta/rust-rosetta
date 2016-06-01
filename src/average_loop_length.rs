@@ -51,29 +51,28 @@ fn factorial(n: u32) -> f64 {
 }
 
 fn analytical(n: u32) -> f64 {
-    let sum: f64 = (1..(n + 1))
-                       .map(|i| factorial(n) / (n as f64).powi(i as i32) / factorial(n - i))
-                       .fold(0f64, |a, v| a + v);
-    sum
+    (1..(n + 1))
+        .map(|i| factorial(n) / (n as f64).powi(i as i32) / factorial(n - i))
+        .fold(0f64, |a, v| a + v)
 }
 
 fn empirical(n: u32, trials: u32, rng: &mut ThreadRng) -> f64 {
     let sum: f64 = (0..trials)
-                       .map(|_t| {
-                           let mut item = 1u32;
-                           let mut seen = HashSet::new();
-                           let range = Range::new(1u32, n + 1);
+        .map(|_t| {
+            let mut item = 1u32;
+            let mut seen = HashSet::new();
+            let range = Range::new(1u32, n + 1);
 
-                           for step in 0..n {
-                               if seen.contains(&item) {
-                                   return step as f64;
-                               }
-                               seen.insert(item);
-                               item = range.ind_sample(rng);
-                           }
-                           n as f64
-                       })
-                       .fold(0f64, |a, v| a + v);
+            for step in 0..n {
+                if seen.contains(&item) {
+                    return step as f64;
+                }
+                seen.insert(item);
+                item = range.ind_sample(rng);
+            }
+            n as f64
+        })
+        .fold(0f64, |a, v| a + v);
     sum / trials as f64
 }
 
@@ -81,11 +80,14 @@ fn empirical(n: u32, trials: u32, rng: &mut ThreadRng) -> f64 {
 #[cfg(test)]
 mod tests {
     use super::{factorial, analytical, empirical};
-    use rand::{thread_rng};
+
+    use rand::thread_rng;
+
+    use std::f64;
 
     #[test]
     fn test_factorial() {
-        assert_eq!(factorial(10), 3628800f64);
+        assert!((factorial(10) - 3628800f64).abs() < f64::EPSILON);
     }
 
     #[test]

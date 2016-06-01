@@ -1,7 +1,5 @@
 // http://rosettacode.org/wiki/Execute_a_Markov_algorithm
 
-#![feature(str_char)]
-
 /// Individual markov rule
 struct MarkovRule {
     pattern: String,
@@ -26,11 +24,14 @@ struct MarkovAlgorithm {
 
 impl MarkovAlgorithm {
     /// Parse an algorithm description to build a markov algorithm
-    pub fn from_str(s: &str) -> Result<MarkovAlgorithm, String> {
+    pub fn parse(s: &str) -> Result<MarkovAlgorithm, String> {
         let mut rules: Vec<MarkovRule> = vec![];
         for line in s.lines()
-                     .map(|l| l.trim())
-                     .filter(|l| l.chars().count() > 0 && l.char_at(0) != '#') {
+            .map(|l| l.trim())
+            .filter(|l| match l.chars().next() {
+                Some(c) if c != '#' => true,
+                _ => false,
+            }) {
             // Ignore comments
 
             // check for -> (must be preceded by whitespace)
@@ -51,7 +52,10 @@ impl MarkovAlgorithm {
                     let line_end = line[arrow + 3..].trim_left();
 
                     // check for . (stop)
-                    let stop = (line_end.chars().count() > 0) && (line_end.char_at(0) == '.');
+                    let stop = match line_end.chars().next() {
+                        Some('.') => true,
+                        _ => false,
+                    };
 
                     // extract replacement
                     let replacement = if stop {
@@ -78,16 +82,13 @@ impl MarkovAlgorithm {
         // get a writable version of the input to work with
         let mut state = input.to_string();
 
-        // Don't allow input to be used after this
-        drop(input);
-
         // loop while operations are possible
         loop {
             // find the first rule that is applicable
             // (pattern string is in state)
             let possible_rule = self.rules
-                                    .iter()
-                                    .find(|rule| state.find(&rule.pattern[..]).is_some());
+                .iter()
+                .find(|rule| state.find(&rule.pattern[..]).is_some());
 
             match possible_rule {
                 // stop if no rule found
@@ -129,8 +130,8 @@ struct RCSample<'a> {
     expected_result: &'a str,
 }
 
-// Sample markow algorithms from rosetta code
-// The extra whitespaces are trimmed when MarkovAlgorithm::from_str is called
+// Sample markov algorithms from Rosetta Code
+// The extra whitespaces are trimmed when MarkovAlgorithm::parse is called.
 fn get_samples<'a>() -> [RCSample<'a>; 5] {
     [RCSample {
          ruleset: r"# This rules file is extracted from Wikipedia:
@@ -228,7 +229,7 @@ fn get_samples<'a>() -> [RCSample<'a>; 5] {
 
 fn main() {
     for (index, sample) in get_samples().iter().enumerate() {
-        match MarkovAlgorithm::from_str(sample.ruleset) {
+        match MarkovAlgorithm::parse(sample.ruleset) {
             Ok(algorithm) => {
                 println!("Sample {}", (index + 1));
                 println!("Output: {}", algorithm.apply(sample.input));
@@ -242,7 +243,7 @@ fn main() {
 #[test]
 fn test_samples() {
     for sample in &get_samples() {
-        match MarkovAlgorithm::from_str(sample.ruleset) {
+        match MarkovAlgorithm::parse(sample.ruleset) {
             Ok(algorithm) => assert_eq!(sample.expected_result, algorithm.apply(sample.input)),
             Err(message) => panic!("{}", message),
         }

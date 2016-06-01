@@ -71,19 +71,19 @@ fn main() {
     while ant.x < Wrapping(100) && ant.y < Wrapping(100) {
         ant.mv(&mut grid);
     }
-    for each in grid.iter() {
+    for each in &grid {
         // construct string
         // using iterator methods to quickly convert the vector
         // to a string
         let string = each.iter()
-                         .map(|&x| {
-                             if x == 0 {
-                                 " "
-                             } else {
-                                 "#"
-                             }
-                         })
-                         .fold(String::new(), |x, y| x + y);
+            .map(|&x| {
+                if x == 0 {
+                    " "
+                } else {
+                    "#"
+                }
+            })
+            .fold(String::new(), |x, y| x + y);
         println!("{}", string);
     }
 }

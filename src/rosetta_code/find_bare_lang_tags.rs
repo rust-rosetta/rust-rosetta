@@ -40,7 +40,7 @@ fn main() {
     let total_bare = results.iter().map(|r| r.1).sum::<i32>();
 
     println!("{} bare language tags.\n", total_bare);
-    for result in results.iter() {
+    for result in &results {
         let num_bare = result.1;
 
         if num_bare > 0 {
