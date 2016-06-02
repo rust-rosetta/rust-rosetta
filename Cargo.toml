@@ -318,6 +318,11 @@ name = "averages_median"
 path = "src/averages/median.rs"
 
 [[bin]]
+# http://www.rosettacode.org/wiki/Averages/Mode
+name = "averages_mode"
+path = "src/averages/mode.rs"
+
+[[bin]]
 # http://rosettacode.org/wiki/Averages/Root_mean_square
 name = "averages_root_mean_square"
 path = "src/averages/root_mean_square.rs"
