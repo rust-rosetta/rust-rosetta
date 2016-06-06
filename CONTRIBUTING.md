@@ -116,8 +116,10 @@ clippy`](https://github.com/Manishearth/rust-clippy) on your code. `clippy`
 provides many additional lints that can help prevent unidiomatic and inefficient
 code. Install the subcommand with `cargo install clippy`.
 
-Certain lints are allowed or denied based on the presence of the `clippy`
-feature. So, you should invoke `cargo clippy` like so:
+Certain `clippy` lints may lead to false positives, or may not make sense in the
+context of your task. In this repository, lints are allowed or denied based on
+the presence of the `clippy` feature. So, you should invoke `cargo clippy` like
+so:
 
 ```bash
 $ cargo clippy --bin fizzbuzz --feature clippy
@@ -125,6 +127,16 @@ $ cargo clippy --bin fizzbuzz --feature clippy
 
 If you'd like to run `clippy` over all of the targets in the tree, awesome! Just
 omit the `--bin` flag.
+
+You may control lint warnings within your file by using `#[cfg_attr]`:
+
+```rust
+#[cfg_attr(feature = "clippy", allow(blacklisted_name))]
+fn main() {
+  // Normally, clippy warns when naming a variable "foo".
+  let foo = "bar";
+}
+```
 
 ## Testing ##
 
