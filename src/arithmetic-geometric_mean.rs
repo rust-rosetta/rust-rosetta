@@ -3,9 +3,7 @@
 //! Accepts two command line arguments
 //! cargo run --name agm arg1 arg2
 
-extern crate num;
-
-use num::abs;
+use std::f32;
 
 fn main() {
     let mut args = std::env::args();
@@ -18,7 +16,6 @@ fn main() {
 }
 
 fn agm(x: f32, y: f32) -> f32 {
-    let e: f32 = 0.000001;
     let mut a = x;
     let mut g = y;
     let mut a1: f32;
@@ -32,7 +29,7 @@ fn agm(x: f32, y: f32) -> f32 {
             g1 = (a * g).sqrt();
             a = a1;
             g = g1;
-            if abs(a - g) < e {
+            if (a - g).abs() < f32::EPSILON {
                 return a;
             }
         }
