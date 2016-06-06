@@ -7,7 +7,7 @@ fn insertion_sort<T>(arr: &mut [T])
         let mut j = i;
         while j > 0 && arr[j] < arr[j - 1] {
             arr.swap(j, j - 1);
-            j = j - 1;
+            j -= 1;
         }
     }
 }

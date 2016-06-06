@@ -17,7 +17,7 @@ fn benford_freq(d: u64) -> f32 {
 fn first_digit_of(n: u64) -> usize {
     let mut d = n;
     while d > 9 {
-        d = d / 10;
+        d /= 10;
     }
     d as usize
 }

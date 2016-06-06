@@ -45,7 +45,7 @@ impl CountingSemaphore {
             if count == 0 || self.count.compare_and_swap(count, count - 1, SeqCst) != count {
                 // Linear backoff a la Servo's spinlock contention.
                 thread::sleep(backoff);
-                backoff = backoff + self.backoff;
+                backoff += self.backoff;
             } else {
                 // We successfully acquired the resource.
                 break;

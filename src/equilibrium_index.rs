@@ -8,12 +8,11 @@ fn equilibrium_indices(v: &[i32]) -> Vec<usize> {
     let mut left = i32::zero();
 
     v.iter().enumerate().fold(vec![], |mut out, (i, &el)| {
-        // NOTE: -= and += doesn't work on left/right and el for some reason.
-        right = right - el;
+        right -= el;
         if left == right {
             out.push(i);
         }
-        left = left + el;
+        left += el;
 
         out
     })

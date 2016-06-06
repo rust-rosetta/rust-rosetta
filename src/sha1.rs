@@ -11,11 +11,8 @@ const SIZE: usize = 20;
 
 /// The blocksize of SHA1 in bytes.
 const CHUNK: usize = 64;
-const INIT: [wr<u32>; 5] = [wr(0x67452301),
-                            wr(0xEFCDAB89),
-                            wr(0x98BADCFE),
-                            wr(0x10325476),
-                            wr(0xC3D2E1F0)];
+const INIT: [wr<u32>; 5] =
+    [wr(0x67452301), wr(0xEFCDAB89), wr(0x98BADCFE), wr(0x10325476), wr(0xC3D2E1F0)];
 
 fn main() {
     let mut d = Digest::new();
@@ -59,7 +56,7 @@ impl Digest {
         }
 
         // Length in bits (=length in bytes*8=shift 3 bits to the right).
-        len = len << 3;
+        len <<= 3;
         for (i, byte) in tmp.iter_mut().take(8).enumerate() {
             *byte = (len >> (56 - 8 * i)) as u8;
         }
@@ -88,11 +85,8 @@ impl Digest {
 
         let mut w: [u32; 16] = [0u32; 16];
 
-        let (mut h0, mut h1, mut h2, mut h3, mut h4) = (self.h[0],
-                                                        self.h[1],
-                                                        self.h[2],
-                                                        self.h[3],
-                                                        self.h[4]);
+        let (mut h0, mut h1, mut h2, mut h3, mut h4) =
+            (self.h[0], self.h[1], self.h[2], self.h[3], self.h[4]);
 
         let mut p = data;
 
