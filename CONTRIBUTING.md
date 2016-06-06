@@ -112,12 +112,9 @@ If this is unclear or you're having difficulties, just open an issue, we'd love 
 #### Extra Credit ####
 
 In addition to preventing warnings, you can try running [`cargo
-clippy`](https://github.com/arcnmx/cargo-clippy) on your code. `clippy` provides
-many additional lints that can help prevent unidiomatic and inefficient code.
-
-Note that currently `cargo clippy` does not support running on multiple targets.
-You will have to provide the `--bin` option to `cargo` to run the lints on your
-specific task.
+clippy`](https://github.com/Manishearth/rust-clippy) on your code. `clippy`
+provides many additional lints that can help prevent unidiomatic and inefficient
+code. Install the subcommand with `cargo install clippy`.
 
 Certain lints are allowed or denied based on the presence of the `clippy`
 feature. So, you should invoke `cargo clippy` like so:
@@ -126,15 +123,8 @@ feature. So, you should invoke `cargo clippy` like so:
 $ cargo clippy --bin fizzbuzz --feature clippy
 ```
 
-If you'd like to run `clippy` over all of the targets in the tree, awesome!
-However, it's currently a bit of a pain. You can do so by compiling clippy
-outside of the tree (make sure you use the same compiler!) and invoking the
-following command:
-
-```bash
-$ env RUSTFLAGS="-L /path/to/rust-clippy/target/debug -Z extra-plugins=clippy" cargo build --features clippy
-$ env RUSTFLAGS="-L /path/to/rust-clippy/target/debug -Z extra-plugins=clippy" cargo test --features clippy
-```
+If you'd like to run `clippy` over all of the targets in the tree, awesome! Just
+omit the `--bin` flag.
 
 ## Testing ##
 
