@@ -1,4 +1,4 @@
-// http://rosettacode.org/wiki/Benford%27s_law
+// http://rosettacode.org/wiki/Benford's_law
 
 //! Contributed by Gavin Baker <gavinb@antonym.org>
 

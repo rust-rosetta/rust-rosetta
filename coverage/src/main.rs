@@ -144,11 +144,7 @@ fn main() {
     let mut t = term::stdout().unwrap();
 
     let tasks = if args.arg_tasks.len() > 0 {
-        coverage::fetch_tasks(&args.arg_tasks
-            .clone()
-            .iter()
-            .map(|title| title.to_owned())
-            .collect::<Vec<_>>())
+        coverage::fetch_tasks(&args.arg_tasks.as_slice())
     } else {
         coverage::fetch_all_tasks()
     };

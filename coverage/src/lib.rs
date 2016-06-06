@@ -16,10 +16,11 @@ use std::fs::File;
 use std::io::BufReader;
 use std::io::prelude::*;
 use std::iter::FromIterator;
+use std::ops::Sub;
 use std::path::PathBuf;
 
 use hyper::Client;
-use hyper::header::Connection;
+use hyper::status::StatusCode;
 use regex::Regex;
 use url::{percent_encoding, Url};
 use walkdir::WalkDir;
@@ -83,7 +84,7 @@ impl Task {
 /// Transforms a task title to a URL task title.
 fn normalize(title: &str) -> String {
     String::from_utf8(percent_encoding::percent_decode(&title.replace(" ", "_").into_bytes())
-                          .collect())
+            .collect())
         .unwrap()
 }
 
@@ -100,7 +101,22 @@ pub struct TaskIterator {
 }
 
 impl TaskIterator {
-    pub fn new(titles: &[String]) -> Self {
+    /// Creates an iterator that retrieves information about the given task titles. If no titles
+    /// are supplied, fetches information about all tasks.
+    fn new(titles: &[String]) -> Self {
+        let all_task_titles: HashSet<String> = HashSet::from_iter(all_task_titles());
+
+        let requested_task_titles = if titles.is_empty() {
+            all_task_titles.clone()
+        } else {
+            HashSet::from_iter(titles.iter().cloned())
+        };
+
+        let mut task_titles: Vec<String> = all_task_titles.intersection(&requested_task_titles)
+            .cloned()
+            .collect();
+        task_titles.sort();
+
         // Determine which tasks are implemented locally by walking the src folder and reading the
         // comment at the top of the file.
         let mut local_tasks = HashMap::new();
@@ -118,16 +134,48 @@ impl TaskIterator {
             let file = File::open(path).unwrap();
             let first_line = BufReader::new(file).lines().next().unwrap().unwrap();
             let task_name = TASK_COMMENT_RE.captures(&first_line)
-                                           .and_then(|c| c.at(1))
-                                           .expect(&format!("could not parse task name for {:?}",
-                                                            path));
+                .and_then(|c| c.at(1))
+                .expect(&format!("could not parse task name for {:?}", path));
 
             local_tasks.insert(normalize(&task_name.to_owned()), path.to_owned());
         }
 
+        // Make sure that we can map local tasks to remote tasks.
+        let all_normalized_titles = all_task_titles.iter()
+            .map(|title| normalize(title.as_str()))
+            .collect::<HashSet<_>>();
+        let all_local_titles = local_tasks.keys().cloned().collect::<HashSet<_>>();
+
+        let client = Client::new();
+        if !all_local_titles.is_subset(&all_normalized_titles) {
+            // If there are tasks that can't be matched on the wiki, it's possible that they are
+            // just draft tasks at the moment. Check them by seeing if the server responds with 404
+            // or not.
+            let possible_bad_local_titles = all_local_titles.sub(&all_normalized_titles);
+
+            let mut bad_titles = vec![];
+            for title in &possible_bad_local_titles {
+                let mut task_url = Url::parse(&format!("http://rosettacode.org/wiki/{}", title))
+                    .unwrap();
+                task_url.query_pairs_mut().append_pair("action", "raw");
+                let res = client.get(task_url.as_str())
+                    .send()
+                    .unwrap();
+
+                if res.status == StatusCode::NotFound {
+                    bad_titles.push(title);
+                }
+            }
+
+            if !bad_titles.is_empty() {
+                panic!("Could not match some local tasks to tasks on the wiki: {:?}",
+                       bad_titles);
+            }
+        }
+
         TaskIterator {
-            client: Client::new(),
-            task_titles: titles.iter().cloned().collect(),
+            client: client,
+            task_titles: task_titles.iter().cloned().collect(),
             local_tasks: local_tasks,
         }
     }
@@ -140,9 +188,8 @@ impl Iterator for TaskIterator {
         self.task_titles.pop_front().map(|title| {
             let normalized_title = normalize(&title);
 
-            let mut task_url = Url::parse(&format!("http://rosettacode.org/wiki/{}",
-                                                   normalized_title))
-                                   .unwrap();
+            let mut task_url =
+                Url::parse(&format!("http://rosettacode.org/wiki/{}", normalized_title)).unwrap();
             task_url.query_pairs_mut().append_pair("action", "raw");
 
             let path = self.local_tasks.remove(&normalized_title);
@@ -155,16 +202,15 @@ impl Iterator for TaskIterator {
             });
 
             let mut res = self.client
-                              .get(task_url.as_str())
-                              .header(Connection::close())
-                              .send()
-                              .unwrap();
+                .get(task_url.as_str())
+                .send()
+                .unwrap();
 
             let mut body = String::new();
             res.read_to_string(&mut body).unwrap();
             let remote_code = RUST_WIKI_SECTION_RE.captures(&body)
-                                                  .map(|captures| captures.at(1).unwrap())
-                                                  .map(|code| code.to_owned());
+                .map(|captures| captures.at(1).unwrap())
+                .map(|code| code.to_owned());
 
             let mut wiki_url = task_url.clone();
             wiki_url.set_query(None);
@@ -186,17 +232,11 @@ impl Iterator for TaskIterator {
 
 /// Retrieves data for every task on Rosetta Code.
 pub fn fetch_all_tasks() -> TaskIterator {
-    fetch_tasks(&all_task_titles())
+    TaskIterator::new(&vec![])
 }
 
 /// Parses both local (implemented in this repository) and remote (implemented on the wiki) tasks,
 /// and returns the code of each.
 pub fn fetch_tasks(tasks: &[String]) -> TaskIterator {
-    let all_task_titles: HashSet<String> = HashSet::from_iter(all_task_titles());
-    let requested_task_titles = HashSet::from_iter(tasks.iter().cloned());
-    let mut task_titles: Vec<String> = all_task_titles.intersection(&requested_task_titles)
-                                                      .cloned()
-                                                      .collect();
-    task_titles.sort();
-    TaskIterator::new(&task_titles)
+    TaskIterator::new(&tasks)
 }

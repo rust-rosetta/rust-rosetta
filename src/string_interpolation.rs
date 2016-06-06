@@ -1,4 +1,4 @@
-// http://rosettacode.org/wiki/String_interpolation
+// http://rosettacode.org/wiki/String_interpolation_(included)
 
 fn main() {
     let original = "Mary had a X lamb";
