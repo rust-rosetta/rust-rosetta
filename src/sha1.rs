@@ -212,7 +212,7 @@ impl Write for Digest {
         let ln = buf_m.len();
         if ln > 0 {
             assert!(self.x.len() >= ln);
-            self.x.as_mut().write_all(&buf_m).unwrap();
+            self.x.as_mut().write_all(buf_m).unwrap();
             self.nx = ln;
         }
         Ok(())

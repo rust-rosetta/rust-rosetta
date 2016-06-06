@@ -36,7 +36,7 @@ fn decode_base58(address: &str) -> Result<Vec<u8>, &'static str> {
 fn double_sha256(bytes: &[u8]) -> Vec<u8> {
     let mut hasher = Sha256::new();
 
-    hasher.input(&bytes);
+    hasher.input(bytes);
     let mut digest_1 = vec![0; 32];
     hasher.result(&mut digest_1);
     hasher.reset();

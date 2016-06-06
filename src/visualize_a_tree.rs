@@ -286,7 +286,7 @@ fn _main_for_rosetta() {
         "left":null,"right":11,"up":8},{"key":-2,"value":0.75,"left":null,"right":null,
         "up":10},{"key":8,"value":-0.48,"left":null,"right":null,"up":9},{"key":-9,
         "value":0.53,"left":null,"right":null,"up":7}]}"#;
-    let tree: Tree<i32, f32> = json::decode(&encoded).unwrap();
+    let tree: Tree<i32, f32> = json::decode(encoded).unwrap();
     println!("{}", tree);
 }
 
