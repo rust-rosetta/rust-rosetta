@@ -44,11 +44,11 @@ fn check_toml() {
     for (bin, correct_bin) in binaries.iter().zip(sorted_binaries) {
         let bin_name = bin.as_table().unwrap().get("name").unwrap().as_str().unwrap();
         let correct_bin_name = correct_bin.as_table()
-                                          .unwrap()
-                                          .get("name")
-                                          .unwrap()
-                                          .as_str()
-                                          .unwrap();
+            .unwrap()
+            .get("name")
+            .unwrap()
+            .as_str()
+            .unwrap();
         if bin_name != correct_bin_name {
             panic!("{} is not in the correct order in Cargo.toml!", bin_name);
         }
@@ -72,7 +72,9 @@ fn main() {
 
 /// Checks that all tasks contain a comment with a link to the Rosetta Code task they are
 /// implementing as the first line of the file.
-fn check_task_name(path: &Path, line: &str) {
+fn check_task_name<P>(path: &P, line: &str)
+    where P: AsRef<Path>
+{
     // Ensure the first line has a URL of the proper form
     if !TASK_COMMENT_RE.is_match(line) {
         line_error(1,
@@ -83,14 +85,16 @@ fn check_task_name(path: &Path, line: &str) {
 }
 
 /// Performs all checks on a particular file.
-fn check(path: &Path) {
+fn check<P>(path: &P)
+    where P: AsRef<Path>
+{
     let mut content = String::new();
     File::open(&path).unwrap().read_to_string(&mut content).unwrap();
 
     for (i, mut line) in content.lines().enumerate() {
         // Ignore lib and mod files.
-        if i == 0 && !LIB_OR_MOD_RE.is_match(path.file_stem().unwrap().to_str().unwrap()) {
-            check_task_name(&path, &line);
+        if i == 0 && !LIB_OR_MOD_RE.is_match(path.as_ref().file_stem().unwrap().to_str().unwrap()) {
+            check_task_name(&path, line);
         }
 
         // Ignore '\r'
@@ -112,9 +116,11 @@ fn check(path: &Path) {
     }
 }
 
-fn line_error(line: usize, path: &Path, msg: &str) {
+fn line_error<P>(line: usize, path: &P, msg: &str)
+    where P: AsRef<Path>
+{
     panic!("Formatting error, {} (line {} of file \"{}\")",
            msg,
            line,
-           path.to_str().unwrap())
+           path.as_ref().to_str().unwrap())
 }
