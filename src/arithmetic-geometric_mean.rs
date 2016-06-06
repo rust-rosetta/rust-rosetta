@@ -1,12 +1,17 @@
 // http://rosettacode.org/wiki/Arithmetic-geometric_mean
 
-//! Accepts two command-line arguments
+//! Accepts two command line arguments
+//! cargo run --name agm arg1 arg2
+
+extern crate num;
+
+use num::abs;
 
 fn main() {
     let mut args = std::env::args();
 
-    let x = args.nth(1).expect("First argument not specified.").parse::<f32>().unwrap();
-    let y = args.next().expect("Second argument not specified.").parse::<f32>().unwrap();
+    let x = args.next().unwrap().to_owned().parse::<f32>().unwrap();
+    let y = args.next().unwrap().to_owned().parse::<f32>().unwrap();
 
     let result = agm(x, y);
     println!("The arithmetic-geometric mean is {}", result);
@@ -23,13 +28,20 @@ fn agm(x: f32, y: f32) -> f32 {
         panic!("The arithmetric-geometric mean is undefined for numbers less than zero!");
     } else {
         loop {
-            a1 = (a + g) / 2.;
+            a1 = (a + g) / 2f32;
             g1 = (a * g).sqrt();
             a = a1;
             g = g1;
-            if (a - g).abs() < e {
+            if abs(a - g) < e {
                 return a;
             }
         }
     }
+}
+
+#[test]
+fn test_agm_12_6() {
+    use std::f32;
+
+    assert!((agm(12f32, 6f32) - 8.740746f32).abs() < f32::EPSILON);
 }
