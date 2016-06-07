@@ -39,11 +39,11 @@ impl<T> TreeNode<T> {
     }
 
     pub fn traverse(&self, tr: &TraversalMethod) -> Vec<&TreeNode<T>> {
-        match tr {
-            &TraversalMethod::PreOrder => self.iterative_preorder(),
-            &TraversalMethod::InOrder => self.iterative_inorder(),
-            &TraversalMethod::PostOrder => self.iterative_postorder(),
-            &TraversalMethod::LevelOrder => self.iterative_levelorder(),
+        match *tr {
+            TraversalMethod::PreOrder => self.iterative_preorder(),
+            TraversalMethod::InOrder => self.iterative_inorder(),
+            TraversalMethod::PostOrder => self.iterative_postorder(),
+            TraversalMethod::LevelOrder => self.iterative_levelorder(),
         }
     }
 
