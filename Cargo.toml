@@ -75,10 +75,10 @@ eventual = "0.1.6"
 getopts = "0.2"
 gnuplot = "0.0.20"
 gtk = { version = "0.0.7", optional = true }
-hyper = "0.8"
-image = "0.8.0"
+hyper = "0.9.3"
+image = "0.10.0"
 libc = "0.2"
-nalgebra = "0.6.0"
+nalgebra = "0.8.0"
 ncurses = { version = "5.80", optional = true }
 num = "0.1"
 permutohedron = "0.2"
@@ -86,23 +86,24 @@ rand = "0.3"
 regex = { version = "0.1", features = ["pattern"] }
 rustc-serialize = "0.3"
 rust-crypto = "0.2"
-schedule_recv = "0.0.1"
+schedule_recv = "0.1.0"
+term-painter = "0.2"
 time = "0.1"
 unicode-segmentation = "0.1"
-url = "0.5"
+url = "1.1.0"
 
 [target.'cfg(unix)'.dependencies]
 rustbox = "0.8"
 
 [target.'cfg(target_os="linux")'.dependencies]
-x11 = { version = "2.4", features = ["xlib"], optional = true }
+x11 = { version = "2.5.1", features = ["xlib"], optional = true }
 
 [target.'cfg(windows)'.dependencies]
 winapi = "0.2.6"
-user32-sys = "0.1.2"
+user32-sys = "0.2.0"
 
 [build-dependencies]
-lazy_static = "0.1"
+lazy_static = "0.2.1"
 regex = "0.1"
 toml = "0.1"
 unicode-segmentation = "0.1.2"
@@ -114,6 +115,11 @@ path = "src/use_another_language_to_call_a_function"
 
 [dependencies.factorial-plugin]
 path = "src/factorial_plugin"
+
+[features]
+# Introduce a dummy feature so that clippy lints don't appear as unused when
+# building without clippy
+clippy = []
 
 [[bin]]
 # http://rosettacode.org/wiki/100_doors
@@ -1786,6 +1792,11 @@ name = "stack"
 path = "src/stack.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/Statistics/Basic
+name = "statistics_basic"
+path = "src/statistics_basic.rs"
+
+[[bin]]
 # http://rosettacode.org/wiki/Standard_deviation
 name = "stdev"
 path = "src/stdev.rs"
@@ -1907,6 +1918,11 @@ path = "src/towers_of_hanoi.rs"
 test = false
 
 [[bin]]
+# http://rosettacode.org/wiki/Tree_traversal
+name = "tree_traversal"
+path = "src/tree_traversal.rs"
+
+[[bin]]
 # http://rosettacode.org/wiki/Truncate_a_file
 name = "truncate-a-file"
 path = "src/truncate_a_file.rs"
@@ -1950,6 +1966,11 @@ name = "vigenere"
 path = "src/vigenere.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/Visualize_a_tree
+name = "visualize_a_tree"
+path = "src/visualize_a_tree.rs"
+
+[[bin]]
 # http://rosettacode.org/wiki/Walk_a_directory/Non-recursively
 name = "walk_a_directory_non_recursively"
 path = "src/walk_a_directory/non_recursively.rs"
@@ -1958,6 +1979,12 @@ path = "src/walk_a_directory/non_recursively.rs"
 # http://rosettacode.org/wiki/Walk_a_directory/Recursively
 name = "walk_a_directory_recursively"
 path = "src/walk_a_directory/recursively.rs"
+test = false
+
+[[bin]]
+# http://rosettacode.org/wiki/Window_creation
+name = "window_creation"
+path = "src/window_creation.rs"
 test = false
 
 [[bin]]

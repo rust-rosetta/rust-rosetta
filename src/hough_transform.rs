@@ -62,10 +62,8 @@ fn save_pgm(img: &ImageGray8, filename: &str) {
     let mut file = BufWriter::new(File::create(filename).unwrap());
 
     // Write header
-
-    match writeln!(&mut file, "P5\n{}\n{}\n255", img.width, img.height) {
-        Err(e) => println!("Failed to write header: {}", e),
-        _ => {}
+    if let Err(e) = writeln!(&mut file, "P5\n{}\n{}\n255", img.width, img.height) {
+        println!("Failed to write header: {}", e);
     }
 
     println!("Writing pgm file {}: {} x {}",
@@ -74,9 +72,8 @@ fn save_pgm(img: &ImageGray8, filename: &str) {
              img.height);
 
     // Write binary image data
-    match file.write_all(&(img.data[..])) {
-        Err(e) => println!("Failed to image data: {}", e),
-        _ => {}
+    if let Err(e) = file.write_all(&(img.data[..])) {
+        println!("Failed to image data: {}", e);
     }
 }
 

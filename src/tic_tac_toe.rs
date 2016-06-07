@@ -39,9 +39,9 @@ fn main() {
 
 fn check_win(board: [[char; 3]; 3]) -> GameState {
     // check for win
-    for i in 0..3 {
-        if board[i][0] == board[i][1] && board[i][0] == board[i][2] {
-            return which_win(board[i][0]);
+    for (i, row) in board.iter().enumerate() {
+        if row[0] == row[1] && row[0] == row[2] {
+            return which_win(row[0]);
         } else if board[0][i] == board[1][i] && board[0][i] == board[2][i] {
             return which_win(board[0][i]);
         }
@@ -53,9 +53,9 @@ fn check_win(board: [[char; 3]; 3]) -> GameState {
     }
 
     // check if it's not a draw
-    for row in board.iter() {
-        for &c in row.iter() {
-            if c != 'X' && c != 'O' {
+    for row in &board {
+        for c in row {
+            if *c != 'X' && *c != 'O' {
                 return Playing;
             }
         }
@@ -96,10 +96,10 @@ fn computer_turn(board: &mut [[char; 3]; 3]) {
     let mut rng = thread_rng();
 
     let mut possible_choices: Vec<char> = vec![];
-    for row_i in 0..3 {
-        for col_i in 0..3 {
-            if board[row_i][col_i] != 'X' && board[row_i][col_i] != 'O' {
-                possible_choices.push(board[row_i][col_i]);
+    for row in board.iter() {
+        for space in row {
+            if *space != 'X' && *space != 'O' {
+                possible_choices.push(*space);
             }
         }
     }
@@ -113,7 +113,7 @@ fn computer_turn(board: &mut [[char; 3]; 3]) {
 }
 
 fn draw_board(board: [[char; 3]; 3]) {
-    for row in board.iter() {
+    for row in &board {
         println!("{} {} {}", row[0], row[1], row[2]);
     }
 }

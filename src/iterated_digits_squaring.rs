@@ -2,7 +2,7 @@
 
 //! These are two naive solutions, one with lots of redundant calculations (memoizationless
 //! recursion) and one with a few precomputed values. All digit square sums are no greater than 648
-//! for numbers < 100_000_000.
+//! for numbers < 100,000,000.
 //!
 //! Both are slow algorithms, however, Rust is among faster languages, so this doesn't take minutes
 //! or hours.
@@ -28,7 +28,7 @@ fn main() {
     let count = (1..100_000_000).filter(|&n| last_in_chain(n) == 89).count();
     println!("{}", count);
 
-    let precomputed = (0..649).map(|n| last_in_chain(n)).collect::<Vec<_>>();
+    let precomputed = (0..649).map(last_in_chain).collect::<Vec<_>>();
     let count = (1..100_000_000).filter(|&n| precomputed[digit_square_sum(n)] == 89).count();
     println!("{}", count);
 }
@@ -48,7 +48,7 @@ mod tests {
     #[test]
     #[ignore]
     fn precomputation() {
-        let precomputed = (0..649).map(|n| last_in_chain(n)).collect::<Vec<_>>();
+        let precomputed = (0..649).map(last_in_chain).collect::<Vec<_>>();
         let count = (1..100_000_000).filter(|&n| precomputed[digit_square_sum(n)] == 89).count();
         assert_eq!(count, 85744333);
     }

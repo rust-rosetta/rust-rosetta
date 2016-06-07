@@ -1,7 +1,7 @@
 // http://rosettacode.org/wiki/Man_or_boy_test
 
-//! as originally posted by Kimundi on Reddit
-//! http://www.reddit.com/r/rust/comments/2t80mw/the_man_or_boy_test_in_rust/
+//! As originally [posted] by Kimundi on Reddit
+//! [posted]: http://www.reddit.com/r/rust/comments/2t80mw/the_man_or_boy_test_in_rust/
 use std::cell::Cell;
 
 fn a(k: i32,

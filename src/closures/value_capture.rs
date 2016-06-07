@@ -39,16 +39,18 @@ fn main() {
 mod tests {
     use super::{closure_gen, closures_iterator};
 
+    use std::f64;
+
     #[test]
     fn closure_generator() {
         let five_squarer = closure_gen(5);
-        assert!(five_squarer() == 25f64);
+        assert!((five_squarer() - 25f64).abs() < f64::EPSILON);
     }
 
     #[test]
     fn closure_iterator() {
         for (idx, f) in closures_iterator().take(9).enumerate() {
-            assert!(f() == (idx as f64).powi(2));
+            assert!((f() - (idx as f64).powi(2)).abs() < f64::EPSILON);
         }
     }
 }

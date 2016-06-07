@@ -8,7 +8,7 @@ use std::io::prelude::*;
 fn sorted_characters(string: &str) -> String {
     let mut chars = string.chars().collect::<Vec<char>>();
     chars.sort();
-    chars.iter().map(|c| *c).collect()
+    chars.iter().cloned().collect()
 }
 
 /// Returns groups of anagrams where each group consists of a set
@@ -34,18 +34,18 @@ fn anagrams<T: Iterator<Item = String>>(lines: T) -> HashMap<String, HashSet<Str
 /// Returns the groups of anagrams that contain the most words in them
 fn largest_groups(groups: &HashMap<String, HashSet<String>>) -> HashMap<String, HashSet<String>> {
     let max_length = groups.iter()
-                           .map(|(_, group)| group.len())
-                           .max()
-                           .unwrap();
+        .map(|(_, group)| group.len())
+        .max()
+        .unwrap();
     groups.iter()
-          .filter_map(|(key, group)| {
-              if group.len() == max_length {
-                  Some((key.clone(), group.clone()))
-              } else {
-                  None
-              }
-          })
-          .collect()
+        .filter_map(|(key, group)| {
+            if group.len() == max_length {
+                Some((key.clone(), group.clone()))
+            } else {
+                None
+            }
+        })
+        .collect()
 }
 
 fn main() {
@@ -56,8 +56,8 @@ fn main() {
     let largest_groups = largest_groups(&anagram_groups);
 
     // Print the words in the largest groups of anagrams
-    for (_, group) in largest_groups.iter() {
-        for word in group.iter() {
+    for group in largest_groups.values() {
+        for word in group {
             print!("{} ", word)
         }
         println!("")

@@ -63,22 +63,21 @@ fn main() {
         let mut input = String::new();
         io::stdin()
             .read_line(&mut input)
-            .ok()
             .expect("failed to read line");
         match input.to_lowercase().trim() {
-            s if s.starts_with("r") => {
+            s if s.starts_with('r') => {
                 uchoice = Rock;
                 ucf[0] += 1
             }
-            s if s.starts_with("p") => {
+            s if s.starts_with('p') => {
                 uchoice = Paper;
                 ucf[1] += 1
             }
-            s if s.starts_with("s") => {
+            s if s.starts_with('s') => {
                 uchoice = Scissors;
                 ucf[2] += 1
             }
-            s if s.starts_with("q") => break,
+            s if s.starts_with('q') => break,
             _ => {
                 println!("Please enter correct choice!");
                 continue;

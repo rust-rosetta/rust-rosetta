@@ -26,7 +26,7 @@ fn binary_search<T: Ord>(haystack: &[T], needle: T) -> Option<usize> {
             return Some(mid);
         }
     }
-    return None;
+    None
 }
 
 /// recursive version

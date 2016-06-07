@@ -18,6 +18,12 @@ impl HofstadterQ {
     }
 }
 
+impl Default for HofstadterQ {
+    fn default() -> Self {
+        Self::new()
+    }
+}
+
 /// Implement the hofstadter q iteration sequence.
 impl Iterator for HofstadterQ {
     type Item = usize;
@@ -57,16 +63,11 @@ fn main() {
 
 #[test]
 fn test_first_ten() {
-    // Set up the iterable.
-    let hof: HofstadterQ = HofstadterQ::new();
-    // Create the iterator.
-    let mut it = hof.take(10);
+    let hofstadter_q = HofstadterQ::new().take(10).collect::<Vec<_>>();
     // Test that the first ten values are as expected
     // The first two values are hardcoded, so no need to test those.
-    let hofstadter_q_expected = vec![2, 3, 3, 4, 5, 5, 6, 6];
-    for i in 0..8 {
-        assert_eq!(hofstadter_q_expected[i], it.next().unwrap());
-    }
+    let hofstadter_q_expected = vec![2, 3, 3, 4, 5, 5, 6, 6, 6, 8];
+    assert_eq!(hofstadter_q_expected, hofstadter_q);
 }
 
 #[test]

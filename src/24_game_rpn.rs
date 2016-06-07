@@ -13,8 +13,8 @@ fn main() {
 
     // generating 4 numbers
     let choices: Vec<u32> = (0u32..4)
-                                .map(|_| rng.gen_range(1u32, 10))
-                                .collect();
+        .map(|_| rng.gen_range(1u32, 10))
+        .collect();
     println!("Make 24 with the following numbers");
 
     // start the game loop
@@ -26,7 +26,7 @@ fn main() {
                  choices[2],
                  choices[3]);
         buffer.clear();
-        stdin.read_line(&mut buffer).ok().expect("Failed to read line!");
+        stdin.read_line(&mut buffer).expect("Failed to read line!");
         match check_input(&buffer[..], &choices[..]) {
             Ok(()) => {
                 println!("Good job!");
@@ -37,7 +37,7 @@ fn main() {
         print!("Try again? (y/n): ");
         stdout.flush().unwrap();
         buffer.clear();
-        stdin.read_line(&mut buffer).ok().expect("Failed to read line!");
+        stdin.read_line(&mut buffer).expect("Failed to read line!");
         if buffer.trim() != "y" {
             break;
         }
@@ -68,17 +68,13 @@ fn check_input(expr: &str, choices: &[u32]) -> Result<(), String> {
     }
 
     let ans = stack.pop();
-    if stack.len() > 0 {
+    if !stack.is_empty() {
         return Err("Not a valid RPN expression!".to_string());
     }
     match ans {
-        Some(x) => {
-            if x == 24 {
-                return Ok(());
-            }
-            return Err(format!("Wrong answer. Result: {}", x));
-        }
-        None => return Err("Error encountered!".to_string()),
+        Some(x) if x == 24 => Ok(()),
+        Some(x) => Err(format!("Wrong answer. Result: {}", x)),
+        None => Err("Error encountered!".to_string()),
     }
 }
 

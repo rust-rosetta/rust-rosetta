@@ -13,31 +13,21 @@ fn count_pythagorean_triples(below: u64) -> (u64, u64) {
     // Initiate the BFS with the root of the tree: (3, 4, 5)
     queue.push_back((3i64, 4i64, 5i64));
 
-    loop {
-        match queue.pop_back() {
-            Some((a, b, c)) => {
-                // We found a new primitive Pythagorean triplet: (a, b, c).
-                // (k*a, k*b, k*c) is a (not necessarily primitive) Pythagorean triplet
-                // for any positive integer k.
-                // We're interested in those with k*a + k*b + k*c <= below,
-                // and the number of them are exactly below / (a + b + c)
-                let cur = below / (a + b + c) as u64;
-                if cur > 0 {
-                    tot_cnt += cur;
-                    prim_cnt += 1;
+    while let Some((a, b, c)) = queue.pop_back() {
+        // We found a new primitive Pythagorean triplet: (a, b, c).
+        // (k*a, k*b, k*c) is a (not necessarily primitive) Pythagorean triplet for any positive
+        // integer k.
+        // We're interested in those with k*a + k*b + k*c <= below, and the number of them are
+        // exactly below / (a + b + c)
+        let cur = below / (a + b + c) as u64;
+        if cur > 0 {
+            tot_cnt += cur;
+            prim_cnt += 1;
 
-                    // Explore the children of the current node
-                    queue.push_back((a - 2 * b + 2 * c, 2 * a - b + 2 * c, 2 * a - 2 * b + 3 * c));
-                    queue.push_back((a + 2 * b + 2 * c, 2 * a + b + 2 * c, 2 * a + 2 * b + 3 * c));
-                    queue.push_back((-a + 2 * b + 2 * c,
-                                     -2 * a + b + 2 * c,
-                                     -2 * a + 2 * b + 3 * c));
-                }
-            }
-            None => {
-                // We're done, no more nodes to search
-                break;
-            }
+            // Explore the children of the current node
+            queue.push_back((a - 2 * b + 2 * c, 2 * a - b + 2 * c, 2 * a - 2 * b + 3 * c));
+            queue.push_back((a + 2 * b + 2 * c, 2 * a + b + 2 * c, 2 * a + 2 * b + 3 * c));
+            queue.push_back((-a + 2 * b + 2 * c, -2 * a + b + 2 * c, -2 * a + 2 * b + 3 * c));
         }
     }
 

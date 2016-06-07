@@ -80,10 +80,6 @@ impl<T> Queue<T> {
         self.head.as_mut().map(|item| &mut item.elem)
     }
 
-    pub fn into_iter(self) -> IntoIter<T> {
-        IntoIter(self)
-    }
-
     pub fn iter(&self) -> Iter<T> {
         Iter { next: self.head.as_ref().map(|item| &**item) }
     }
@@ -102,8 +98,18 @@ impl<T> Drop for Queue<T> {
     }
 }
 
+impl<T> IntoIterator for Queue<T> {
+    type Item = T;
+    type IntoIter = IntoIter<T>;
+
+    fn into_iter(self) -> Self::IntoIter {
+        IntoIter(self)
+    }
+}
+
 impl<T> Iterator for IntoIter<T> {
     type Item = T;
+
     fn next(&mut self) -> Option<Self::Item> {
         self.0.dequeue()
     }

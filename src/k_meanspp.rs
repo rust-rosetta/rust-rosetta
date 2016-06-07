@@ -13,13 +13,13 @@ extern crate test;
 
 use getopts::Options;
 use gnuplot::{Axes2D, AxesCommon, Color, Figure, Fix, PointSize, PointSymbol};
-use nalgebra::{DVec, Iterable};
+use nalgebra::{DVector, Iterable};
 use rand::{Rng, SeedableRng, StdRng};
 use rand::distributions::{IndependentSample, Range};
 use std::f64::consts::PI;
 use std::env;
 
-type Point = DVec<f64>;
+type Point = DVector<f64>;
 
 struct Cluster<'a> {
     members: Vec<&'a Point>,
@@ -28,10 +28,10 @@ struct Cluster<'a> {
 
 struct Stats {
     centroids: Vec<Point>,
-    mean_d_from_centroid: DVec<f64>,
+    mean_d_from_centroid: DVector<f64>,
 }
 
-/// DVec doesn't implement BaseFloat, so a custom distance function is required.
+/// DVector doesn't implement BaseFloat, so a custom distance function is required.
 fn sqdist(p1: &Point, p2: &Point) -> f64 {
     (p1.clone() - p2.clone()).iter().map(|x| x * x).fold(0f64, |a, b| a + b)
 }
@@ -88,7 +88,7 @@ fn assign_clusters<'a>(points: &'a Vec<Point>, centroids: &Vec<Point>) -> Vec<Cl
     for _ in 0..centroids.len() {
         clusters.push(Cluster {
             members: Vec::new(),
-            center: DVec::new_zeros(points[0].len()),
+            center: DVector::new_zeros(points[0].len()),
         });
     }
 
@@ -112,7 +112,7 @@ fn compute_stats(clusters: &Vec<Cluster>) -> Stats {
 
     for c in clusters.iter() {
         let pts = &c.members;
-        let seed: DVec<f64> = DVec::new_zeros(pts[0].len());
+        let seed: DVector<f64> = DVector::new_zeros(pts[0].len());
         let centroid = pts.iter().fold(seed, |a, &b| a + b.clone()) / pts.len() as f64;
         means_vec.push(pts.iter().fold(0f64, |acc, pt| acc + sqdist(pt, &centroid).sqrt()) /
                        pts.len() as f64);
@@ -121,7 +121,7 @@ fn compute_stats(clusters: &Vec<Cluster>) -> Stats {
 
     Stats {
         centroids: centroids,
-        mean_d_from_centroid: DVec::from_slice(means_vec.len(), means_vec.as_slice()),
+        mean_d_from_centroid: DVector::from_slice(means_vec.len(), means_vec.as_slice()),
     }
 }
 
@@ -137,7 +137,7 @@ fn lloyd<'a>(points: &'a Vec<Point>,
     let mut stats = kpp(points, k, rng);
 
     for i in 1..max_iter {
-        let last_means: DVec<f64> = stats.mean_d_from_centroid.clone();
+        let last_means: DVector<f64> = stats.mean_d_from_centroid.clone();
         clusters = assign_clusters(points, &stats.centroids);
         stats = compute_stats(&clusters);
         let err = sqdist(&stats.mean_d_from_centroid, &last_means).sqrt();
@@ -167,7 +167,7 @@ fn generate_points(n: u32, rng: &mut StdRng) -> Vec<Point> {
     for _ in 0..n {
         let root_r = r_range.ind_sample(rng).sqrt();
         let theta = theta_range.ind_sample(rng);
-        points.push(DVec::<f64>::from_slice(2, &[root_r * theta.cos(), root_r * theta.sin()]));
+        points.push(DVector::<f64>::from_slice(2, &[root_r * theta.cos(), root_r * theta.sin()]));
     }
 
     points
@@ -200,7 +200,7 @@ fn viz(clusters: Vec<Cluster>, stats: Stats, k: usize, n: u32, e: f64) {
     fg.show();
 }
 
-fn print_dvec(v: &DVec<f64>) {
+fn print_dvec(v: &DVector<f64>) {
     print!("(");
     for elem in v.at.iter().take(v.len() - 1) {
         print!("{:+1.2}, ", elem)
@@ -274,7 +274,7 @@ fn main() {
             for row in rdr.records().map(|r| r.unwrap()) {
                 // row is Vec<String>
                 let floats: Vec<f64> = row.iter().map(|s| s.parse::<f64>().unwrap()).collect();
-                points.push(DVec::<f64>::from_slice(floats.len(), floats.as_slice()));
+                points.push(DVector::<f64>::from_slice(floats.len(), floats.as_slice()));
             }
             assert!(points.iter().all(|v| v.len() == points[0].len()));
             n = points.len() as u32;

@@ -1,5 +1,7 @@
 // http://rosettacode.org/wiki/Call_an_object_method
 
+#![cfg_attr(feature="clippy", allow(blacklisted_name))]
+
 struct Foo;
 
 impl Foo {
@@ -14,6 +16,12 @@ impl Foo {
     fn new() -> Foo {
         println!("Hello, world!");
         Foo // returning the new Foo object
+    }
+}
+
+impl Default for Foo {
+    fn default() -> Self {
+        Self::new()
     }
 }
 

@@ -5,7 +5,7 @@ fn main() {
     println!("parent");
 
     let _ = Command::new("echo")
-                .arg("child")
-                .spawn()
-                .unwrap();
+        .arg("child")
+        .spawn()
+        .unwrap();
 }

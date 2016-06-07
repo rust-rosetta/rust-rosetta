@@ -10,7 +10,7 @@ extern crate num;
 extern crate test;
 
 use num::bigint::{BigInt, ToBigInt};
-use num::rational::{BigRational};
+use num::rational::BigRational;
 use std::cmp::max;
 use std::env;
 use std::ops::{Mul, Sub};
@@ -18,13 +18,13 @@ use std::process;
 
 struct Bn {
     value: BigRational,
-    index: i32
+    index: i32,
 }
 
 struct Context {
     bigone_const: BigInt,
     a: Vec<BigRational>,
-    index: i32              // Counter for iterator implementation
+    index: i32, // Counter for iterator implementation
 }
 
 impl Context {
@@ -34,8 +34,14 @@ impl Context {
         Context {
             bigone_const: bigone,
             a: a_vec,
-            index: -1
+            index: -1,
         }
+    }
+}
+
+impl Default for Context {
+    fn default() -> Self {
+        Self::new()
     }
 }
 
@@ -44,7 +50,10 @@ impl Iterator for Context {
 
     fn next(&mut self) -> Option<Bn> {
         self.index += 1;
-        Some(Bn { value: bernoulli(self.index as usize, self), index: self.index })
+        Some(Bn {
+            value: bernoulli(self.index as usize, self),
+            index: self.index,
+        })
     }
 }
 
@@ -57,10 +66,10 @@ fn main() {
     let mut up_to: usize = 60;
 
     match args.len() {
-        1 => {},
+        1 => {}
         2 => {
             up_to = args[1].parse::<usize>().unwrap();
-        },
+        }
         _ => {
             help();
             process::exit(0);
@@ -74,8 +83,11 @@ fn main() {
     let width = res.iter().fold(0, |a, r| max(a, r.value.numer().to_string().len()));
 
     for r in res.iter().filter(|r| r.index % 2 == 0) {
-        println!("B({:>2}) = {:>2$} / {denom}", r.index, r.value.numer(), width,
-            denom = r.value.denom());
+        println!("B({:>2}) = {:>2$} / {denom}",
+                 r.index,
+                 r.value.numer(),
+                 width,
+                 denom = r.value.denom());
     }
 }
 
@@ -84,9 +96,8 @@ fn _bernoulli_naive(n: usize, c: &mut Context) -> BigRational {
     for m in 0..n + 1 {
         c.a.push(BigRational::new(c.bigone_const.clone(), (m + 1).to_bigint().unwrap()));
         for j in (1..m + 1).rev() {
-            c.a[j - 1] = (c.a[j - 1].clone().sub(c.a[j].clone())).mul(
-                BigRational::new(j.to_bigint().unwrap(), c.bigone_const.clone())
-            );
+            c.a[j - 1] = (c.a[j - 1].clone().sub(c.a[j].clone()))
+                .mul(BigRational::new(j.to_bigint().unwrap(), c.bigone_const.clone()));
         }
     }
     c.a[0].reduced()
@@ -98,9 +109,8 @@ fn bernoulli(n: usize, c: &mut Context) -> BigRational {
         if i >= c.a.len() {
             c.a.push(BigRational::new(c.bigone_const.clone(), (i + 1).to_bigint().unwrap()));
             for j in (1..i + 1).rev() {
-                c.a[j - 1] = (c.a[j - 1].clone().sub(c.a[j].clone())).mul(
-                    BigRational::new(j.to_bigint().unwrap(), c.bigone_const.clone())
-                );
+                c.a[j - 1] = (c.a[j - 1].clone().sub(c.a[j].clone()))
+                    .mul(BigRational::new(j.to_bigint().unwrap(), c.bigone_const.clone()));
             }
         }
     }
@@ -111,7 +121,7 @@ fn bernoulli(n: usize, c: &mut Context) -> BigRational {
 #[cfg(test)]
 mod tests {
     use super::{Bn, Context, bernoulli, _bernoulli_naive};
-    use num::rational::{BigRational};
+    use num::rational::BigRational;
     use std::str::FromStr;
     use test::Bencher;
 
@@ -153,7 +163,10 @@ mod tests {
             let mut res: Vec<Bn> = vec![];
             for n in 0..30 + 1 {
                 let b = _bernoulli_naive(n, &mut context);
-                res.push(Bn { value:b.clone(), index: n as i32});
+                res.push(Bn {
+                    value: b.clone(),
+                    index: n as i32,
+                });
             }
         });
     }
@@ -165,7 +178,10 @@ mod tests {
             let mut res: Vec<Bn> = vec![];
             for n in 0..30 + 1 {
                 let b = bernoulli(n, &mut context);
-                res.push(Bn { value:b.clone(), index: n as i32});
+                res.push(Bn {
+                    value: b.clone(),
+                    index: n as i32,
+                });
             }
         });
     }

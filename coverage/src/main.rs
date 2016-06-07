@@ -8,7 +8,6 @@ extern crate rust_rosetta;
 extern crate rustc_serialize;
 extern crate term;
 
-use std::io::prelude::*;
 use std::io;
 
 use difference::Difference;
@@ -22,7 +21,8 @@ Detect unimplemented tasks.
 This script prints out the name of each task, followed by whether it is implemented online,
 locally, or both.
 
-If no tasks are specified, determines the status for all tasks.
+Tasks must be specified using normalized names, e.g. \"K-d tree\". If no tasks are specified,
+determines the status for all tasks.
 
 Optionally prints out a diff as well.
 
@@ -138,17 +138,17 @@ fn write_status<T: ?Sized>(t: &mut T, boolean: bool) -> io::Result<()>
 
 fn main() {
     let args: Args = Args::docopt()
-                         .decode()
-                         .unwrap_or_else(|e| e.exit());
+        .decode()
+        .unwrap_or_else(|e| e.exit());
 
     let mut t = term::stdout().unwrap();
 
     let tasks = if args.arg_tasks.len() > 0 {
         coverage::fetch_tasks(&args.arg_tasks
-                                   .clone()
-                                   .iter()
-                                   .map(|title| title.to_owned())
-                                   .collect::<Vec<_>>())
+            .clone()
+            .iter()
+            .map(|title| title.to_owned())
+            .collect::<Vec<_>>())
     } else {
         coverage::fetch_all_tasks()
     };

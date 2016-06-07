@@ -41,8 +41,8 @@ fn deal_ms_fc_board(seed: u32) -> String {
 
     deck.reverse();
 
-    for i in 0..52 {
-        columns[i % num_cols].push(deck[i]);
+    for (i, card) in deck.iter().enumerate() {
+        columns[i % num_cols].push(*card);
     }
 
     let render_card = |card: usize| -> String {

@@ -20,7 +20,7 @@ fn check_sorted(color_array: &[u8]) -> bool {
         }
         test_color = *color;
     }
-    return true;
+    true
 }
 
 fn color_to_string(color_array: &[u8]) -> String {
@@ -32,7 +32,7 @@ fn main() {
     let mut rng = rand::thread_rng();
     let mut color_array = [0u8; 20];
 
-    for color in color_array.iter_mut() {
+    for color in &mut color_array {
         *color = rng.gen_range(0, 3);
     }
 

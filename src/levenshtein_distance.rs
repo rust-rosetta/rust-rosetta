@@ -1,5 +1,6 @@
 // http://rosettacode.org/wiki/Levenshtein_distance
 
+#[cfg_attr(feature="clippy", allow(needless_range_loop))]
 fn levenshtein_distance(word1: &str, word2: &str) -> usize {
     let word1_length = word1.len() + 1;
     let word2_length = word2.len() + 1;

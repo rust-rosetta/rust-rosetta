@@ -18,9 +18,8 @@ fn main() {
     let line_number = {
         if let Some(o_s) = args.next() {
             o_s.to_owned()
-               .parse::<usize>()
-               .ok()
-               .expect("You must enter an integer as the line number")
+                .parse::<usize>()
+                .expect("You must enter an integer as the line number")
         } else {
             panic!("You must enter a filename to read line by line")
         }

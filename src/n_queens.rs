@@ -20,7 +20,7 @@ fn main() {
 /// a given n.
 fn n_queens(n: i32) -> usize {
     // Pass off to our helper function.
-    return n_queens_helper((1 << n as usize) - 1, 0, 0, 0);
+    n_queens_helper((1 << n as usize) - 1, 0, 0, 0)
 }
 
 /// The meat of the algorithm is in here, a recursive helper function that actually computes the
@@ -108,10 +108,10 @@ fn semi_parallel_n_queens(n: i32) -> usize {
 
         spawn(move || -> () {
             tx.send(n_queens_helper(all_ones,
-                                    (left_diags | spot) << 1,
-                                    (columns | spot),
-                                    (right_diags | spot) >> 1))
-              .unwrap();
+                                      (left_diags | spot) << 1,
+                                      (columns | spot),
+                                      (right_diags | spot) >> 1))
+                .unwrap();
         });
     }
 

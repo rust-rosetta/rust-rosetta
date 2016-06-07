@@ -1,5 +1,7 @@
 // http://rosettacode.org/wiki/Jensen's_Device
 
+use std::f32;
+
 fn harmonic_sum<F>(lo: usize, hi: usize, term: F) -> f32
     where F: Fn(f32) -> f32
 {
@@ -13,8 +15,8 @@ fn main() {
 #[test]
 fn test_harm_sum() {
     let term = |i| 1.0 / i;
-    assert_eq!(harmonic_sum(1, 100, &term), 5.187378);
-    assert_eq!(harmonic_sum(1, 50, &term), 4.4992056);
-    assert_eq!(harmonic_sum(1, 1000, &term), 7.4854784);
-    assert_eq!(harmonic_sum(1, 2, &term), 1.5);
+    assert!((harmonic_sum(1, 100, &term).abs() - 5.187378) < f32::EPSILON);
+    assert!((harmonic_sum(1, 50, &term).abs() - 4.4992056) < f32::EPSILON);
+    assert!((harmonic_sum(1, 1000, &term).abs() - 7.4854784) < f32::EPSILON);
+    assert!((harmonic_sum(1, 2, &term).abs() - 1.5) < f32::EPSILON);
 }

@@ -6,7 +6,7 @@ fn main() {
                    (fib_iterative as fn(u64) -> u64, "iterative")];
 
     for (f, desc) in fns {
-        let r = (0u64..10).map(|i| f(i)).collect::<Vec<u64>>();
+        let r = (0u64..10).map(f).collect::<Vec<u64>>();
         println!("{} implementation:\n{:?}\n", desc, r);
     }
 }

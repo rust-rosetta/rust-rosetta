@@ -37,16 +37,14 @@ fn main() {
         let mut m = HashMap::new();
         let mut scope_stack = Vec::new();
         for (idx, ch) in src.iter().enumerate() {
-            match ch {
-                &'[' => {
+            match *ch {
+                '[' => {
                     scope_stack.push(idx);
                 }
-                &']' => {
+                ']' => {
                     m.insert(scope_stack.pop().unwrap(), idx);
                 }
-                _ => {
-                    // ignore
-                }
+                _ => (),
             }
         }
 

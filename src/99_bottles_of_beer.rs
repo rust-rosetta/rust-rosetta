@@ -12,9 +12,10 @@ fn main() {
 }
 
 fn bottles_line(num_bottles: u32, on_the_wall: bool) -> String {
-    let tail = match on_the_wall {
-        true => "of beer on the wall!\n",
-        false => "of beer\n",
+    let tail = if on_the_wall {
+        "of beer on the wall!\n"
+    } else {
+        "of beer\n"
     };
 
     match num_bottles {

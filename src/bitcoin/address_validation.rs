@@ -18,7 +18,7 @@ fn decode_base58(address: &str) -> Result<Vec<u8>, &'static str> {
             None => return Err("invalid character"),
         };
 
-        for byte in result.iter_mut() {
+        for byte in &mut result {
             value += BASE * (*byte as usize);
             *byte = (value % 256) as u8;
             value /= 256;

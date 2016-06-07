@@ -58,7 +58,7 @@ impl Frac {
         let (n, d) = match (num, den) {
             (0, _) => (0, 0),
             (n, d) if d < 0 => (-n, -d),
-            a @ _ => a,
+            a => a,
         };
 
         Frac { num: n, den: d }
@@ -81,7 +81,7 @@ impl Frac {
     /// reduces the fraction to lowest terms
     fn reduce(mut self) -> Frac {
         match self {
-            z @ Frac{num:0, den:0} => z,
+            z @ Frac { num: 0, den: 0 } => z,
             _ => {
                 let gcd = gcd(self.num, self.den);
                 self.num /= gcd;

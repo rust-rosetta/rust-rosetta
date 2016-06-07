@@ -15,7 +15,7 @@ struct RangeFinder<'a, T: 'a> {
 impl<'a, T> Iterator for RangeFinder<'a, T>
     where T: PartialEq + Add<T, Output = T> + Copy + One
 {
-    type Item = (T,  Option<T>);
+    type Item = (T, Option<T>);
     fn next(&mut self) -> Option<Self::Item> {
         if self.index == self.length {
             return None;

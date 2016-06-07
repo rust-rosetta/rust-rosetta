@@ -2,7 +2,7 @@
 
 extern crate rand;
 
-use std::io::{stdout, stdin, Read, Write};
+use std::io::{stdout, stdin, Write};
 use std::thread;
 use std::time::Duration;
 use rand::{Rng, thread_rng};
@@ -16,7 +16,7 @@ fn toss_coin(print: bool) -> char {
     }
     if print {
         print!("{}", c);
-        stdout().flush().ok().expect("Could not flush stdout");
+        stdout().flush().expect("Could not flush stdout");
     }
     c
 }
@@ -48,7 +48,7 @@ fn read_sequence(used_seq: Option<&str>) -> String {
     loop {
         seq.clear();
         println!("Please, enter sequence of 3 coins: H (heads) or T (tails): ");
-        stdin().read_line(&mut seq).ok().expect("failed to read line");
+        stdin().read_line(&mut seq).expect("failed to read line");
         seq = seq.trim().to_uppercase();
         if !(seq.chars().all(|c| c == 'H' || c == 'T') && seq.len() == 3 &&
              seq != used_seq.unwrap_or("")) {
@@ -99,7 +99,7 @@ fn main() {
 
         println!(" Play again? Y to play, Q to exit.");
         let mut input = String::new();
-        stdin().read_line(&mut input).ok().expect("failed to read line");
+        stdin().read_line(&mut input).expect("failed to read line");
         match input.chars().next().unwrap() {
             'Y' | 'y' => continue,
             _ => break,

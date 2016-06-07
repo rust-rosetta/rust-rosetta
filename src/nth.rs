@@ -16,7 +16,7 @@ fn nth(num: i32) -> String {
 
 fn main() {
     let ranges = vec![(0, 26), (250, 266), (1000, 1026)];
-    for &(s, e) in ranges.iter() {
+    for &(s, e) in &ranges {
         println!("[{}, {}) :", s, e);
         for i in s..e {
             print!("{}, ", nth(i));

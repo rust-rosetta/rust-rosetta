@@ -1,7 +1,7 @@
 // http://rosettacode.org/wiki/Generate_lower_case_ASCII_alphabet
 
 fn lower_case_alphabet() -> Box<Iterator<Item = char>> {
-    let ascii_iter = (0..26).map(|x| (x + 'a' as u8) as char);
+    let ascii_iter = (0..26).map(|x| (x + b'a') as char);
     Box::new(ascii_iter)
 }
 

@@ -23,20 +23,20 @@ fn is_palindrome(num: &BigInt) -> bool {
     num_string[0..comp_len] == rev_string[0..comp_len]
 }
 
-/// Perform a lychrel test on a number, stopping after max_tests
+/// Perform a lychrel test on a number, stopping after `max_tests`
 /// Returns the sequence of numbers if this number is a lychrel, None otherwise.
 fn test_lychrel(num: &BigInt, max_tests: usize) -> Option<Vec<BigInt>> {
     let mut sequence = Vec::<BigInt>::new();
 
     let is_lychrel = (0..max_tests)
-                         .scan(num.clone(), |current, _| {
-                             *current = rev_add(current);
-                             Some(current.clone())
-                         })
-                         .inspect(|current| sequence.push(current.clone()))
-                         .filter(|curent| is_palindrome(curent))
-                         .next()
-                         .is_none();
+        .scan(num.clone(), |current, _| {
+            *current = rev_add(current);
+            Some(current.clone())
+        })
+        .inspect(|current| sequence.push(current.clone()))
+        .filter(|curent| is_palindrome(curent))
+        .next()
+        .is_none();
 
     if is_lychrel {
         Some(sequence)
@@ -46,11 +46,11 @@ fn test_lychrel(num: &BigInt, max_tests: usize) -> Option<Vec<BigInt>> {
 }
 
 /// Determine if the sequence for a lychrel number is related to a previously seen sequence
-fn is_related(seq: &Vec<BigInt>, lychrel_seq_numbers: &HashSet<BigInt>) -> bool {
+fn is_related(seq: &[BigInt], lychrel_seq_numbers: &HashSet<BigInt>) -> bool {
     seq.iter().filter(|num| lychrel_seq_numbers.contains(num)).next().is_some()
 }
 
-/// Find the lychrel numbers up to max_num (inclusive).
+/// Find the lychrel numbers up to `max_num` (inclusive).
 /// Returns a tuple (lychrel numbers, related numbers, palindrome lychrel/related numbers)
 fn find_lychrels(max_num: u64, max_tests: usize) -> (Vec<BigInt>, Vec<BigInt>, Vec<BigInt>) {
     // storage for various outputs
@@ -91,7 +91,7 @@ fn find_lychrels(max_num: u64, max_tests: usize) -> (Vec<BigInt>, Vec<BigInt>, V
     (lychrels, relateds, palindrome_lychrels)
 }
 
-fn print_nums(before: &str, numbers: &Vec<BigInt>) {
+fn print_nums(before: &str, numbers: &[BigInt]) {
     print!("{}", before);
     for (i, current) in numbers.iter().enumerate() {
         print!("{}", current);
@@ -126,16 +126,16 @@ fn test_lychrel_numbers() {
     let (lychrels, relateds, palindrome_lychrels) = find_lychrels(10_000, 500);
 
     let expected_lychrels = [196, 879, 1997, 7059, 9999]
-                                .iter()
-                                .map(|&num| FromPrimitive::from_u64(num).unwrap())
-                                .collect::<Vec<_>>();
+        .iter()
+        .map(|&num| FromPrimitive::from_u64(num).unwrap())
+        .collect::<Vec<_>>();
     assert_eq!(lychrels, expected_lychrels);
 
     assert_eq!(relateds.len(), 244);
 
     let expected_palindromes = [4994, 8778, 9999]
-                                   .iter()
-                                   .map(|&num| FromPrimitive::from_u64(num).unwrap())
-                                   .collect::<Vec<_>>();
+        .iter()
+        .map(|&num| FromPrimitive::from_u64(num).unwrap())
+        .collect::<Vec<_>>();
     assert_eq!(palindrome_lychrels, expected_palindromes);
 }

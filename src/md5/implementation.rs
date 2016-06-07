@@ -56,12 +56,13 @@ impl Debug for MD5 {
 
 fn to_bytes(val: u64) -> [u8; 8] {
     let mut tmp: [u8; 8] = [0u8; 8];
-    for i in 0..8 {
-        tmp[i] = (val >> (8 * i)) as u8;
+    for (i, byte) in tmp.iter_mut().enumerate() {
+        *byte = (val >> (8 * i)) as u8;
     }
     tmp
 }
 
+#[cfg_attr(feature="clippy", allow(many_single_char_names))]
 fn md5(initial_msg: &[u8]) -> MD5 {
     let initial_len = initial_msg.len() as u64;
 
@@ -85,7 +86,7 @@ fn md5(initial_msg: &[u8]) -> MD5 {
     }
 
     // append the len in bits at the end of the buffer.
-    msg.extend(&to_bytes(initial_len << 3));
+    msg.extend_from_slice(&to_bytes(initial_len << 3));
 
     assert_eq!(msg.len() % 64, 0);
 
@@ -153,8 +154,7 @@ fn known_hashes() {
          (&b"a"[..], "0cc175b9c0f1b6a831c399e269772661"),
          (&b"abc"[..], "900150983cd24fb0d6963f7d28e17f72"),
          (&b"message digest"[..], "f96b697d7cb7938d525a2f31aaf161d0"),
-         (&b"abcdefghijklmnopqrstuvwxyz"[..],
-          "c3fcd3d76192e4007dfb496cca67e13b"),
+         (&b"abcdefghijklmnopqrstuvwxyz"[..], "c3fcd3d76192e4007dfb496cca67e13b"),
          (&b"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"[..],
           "d174ab98d277d9f5a5611c2c9f419d9f"),
          (&b"12345678901234567890123456789012345678901234567890123456789012345678901234567890"[..],

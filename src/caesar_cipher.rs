@@ -6,10 +6,10 @@ use std::{env, process};
 
 fn main() {
     let shift = env::args()
-                    .nth(1)
-                    .unwrap_or_else(|| exit_err("No shift provided", 2))
-                    .parse::<u8>()
-                    .unwrap_or_else(|e| exit_err(e, 3));
+        .nth(1)
+        .unwrap_or_else(|| exit_err("No shift provided", 2))
+        .parse::<u8>()
+        .unwrap_or_else(|e| exit_err(e, 3));
 
     let plain = get_input().unwrap_or_else(|e| exit_err(&e, e.raw_os_error().unwrap_or(-1)));
 
@@ -20,21 +20,21 @@ fn main() {
 
 fn cipher(input: &str, shift: u8) -> String {
     input.chars()
-         .map(|c| {
-             let case = if c.is_uppercase() {
-                 b'A'
-             } else {
-                 b'a'
-             };
+        .map(|c| {
+            let case = if c.is_uppercase() {
+                b'A'
+            } else {
+                b'a'
+            };
 
-             if c.is_alphabetic() {
-                 (((c as u8 - case + shift) % 26) + case) as char
-             } else {
-                 c
-             }
+            if c.is_alphabetic() {
+                (((c as u8 - case + shift) % 26) + case) as char
+            } else {
+                c
+            }
 
-         })
-         .collect()
+        })
+        .collect()
 }
 
 fn get_input() -> io::Result<String> {

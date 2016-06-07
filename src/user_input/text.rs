@@ -22,15 +22,15 @@ fn exit_err<T: Display>(msg: T, code: i32) -> ! {
 
 fn main() {
     let s = grab_input("Give me a string")
-                .unwrap_or_else(|e| exit_err(&e, e.raw_os_error().unwrap_or(-1)));
+        .unwrap_or_else(|e| exit_err(&e, e.raw_os_error().unwrap_or(-1)));
 
     println!("You entered: {}", s.trim());
 
     let n: i32 = grab_input("Give me an integer")
-                     .unwrap_or_else(|e| exit_err(&e, e.raw_os_error().unwrap_or(-1)))
-                     .trim()
-                     .parse()
-                     .unwrap_or_else(|e| exit_err(&e, 2));
+        .unwrap_or_else(|e| exit_err(&e, e.raw_os_error().unwrap_or(-1)))
+        .trim()
+        .parse()
+        .unwrap_or_else(|e| exit_err(&e, 2));
 
     println!("You entered: {}", n);
 }

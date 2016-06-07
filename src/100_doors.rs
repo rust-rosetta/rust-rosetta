@@ -1,7 +1,7 @@
 // http://rosettacode.org/wiki/100_doors
 extern crate num;
 
-use num::Float;
+use std::f64;
 use std::iter::Map;
 use std::ops::Range;
 
@@ -18,7 +18,7 @@ enum DoorState {
 fn calculate_doors() -> DoorIter {
     fn door_status(door_number: u32) -> DoorState {
         let x = (door_number as f64).sqrt();
-        if x == x.round() {
+        if (x - x.round()).abs() < f64::EPSILON {
             DoorState::Open
         } else {
             DoorState::Closed

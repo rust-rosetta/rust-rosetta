@@ -25,7 +25,7 @@ const LANGUAGES: &'static str = "_div abap actionscript actionscript3 ada apache
 fn fix_tags(languages: Vec<&str>, text: &str) -> String {
     let mut replaced_text = text.to_owned();
 
-    for lang in languages.iter() {
+    for lang in &languages {
         let bad_open = Regex::new(&format!("<{lang}>|<code {lang}>", lang = lang)).unwrap();
         let bad_close = Regex::new(&format!("</{lang}>|</code>", lang = lang)).unwrap();
         let open = format!("<lang {}>", lang);

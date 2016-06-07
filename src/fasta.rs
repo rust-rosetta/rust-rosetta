@@ -12,7 +12,7 @@ fn format_fasta<T: BufRead>(reader: &mut T) -> String {
         // Lines that begin with '>' require special treatment
         match &ln[..1] {
             ">" => {
-                if out.len() > 0 {
+                if !out.is_empty() {
                     out.push('\n');
                 }
 

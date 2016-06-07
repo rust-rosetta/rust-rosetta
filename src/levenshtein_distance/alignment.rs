@@ -1,11 +1,11 @@
 // http://rosettacode.org/wiki/Levenshtein_distance/Alignment
 use std::usize;
-use std::collections::LinkedList;
+use std::collections::VecDeque;
 use std::iter::repeat;
 
 /// Returns the value of a 2D vector given a pair of indexes.
 /// Returns the default value if indices are out of bounds.
-fn get_val(mat: &Vec<Vec<usize>>, r: usize, c: usize, default: usize) -> usize {
+fn get_val(mat: &[Vec<usize>], r: usize, c: usize, default: usize) -> usize {
     match mat.get(r) {
         Some(col) => {
             match col.get(c) {
@@ -17,17 +17,18 @@ fn get_val(mat: &Vec<Vec<usize>>, r: usize, c: usize, default: usize) -> usize {
     }
 }
 
-/// Implementation of the Needleman–Wunsch algorithm, with modification
+/// Implementation of the [Needleman–Wunsch algorithm], with modification
 /// to the scoring method to only allow positive ints.
 ///
-/// http://en.wikipedia.org/wiki/Needleman%E2%80%93Wunsch_algorithm
+/// [Needleman-Wunsch algorithm]: http://en.wikipedia.org/wiki/Needleman%E2%80%93Wunsch_algorithm
+#[cfg_attr(feature="clippy", allow(needless_range_loop))]
 fn levenshtein_distance(s1: &str, s2: &str) -> (usize, String, String) {
     let l1 = s1.len() + 1;
     let l2 = s2.len() + 1;
 
     let mut mat: Vec<Vec<usize>> = repeat(repeat(0).take(l2).collect())
-                                       .take(l1)
-                                       .collect();
+        .take(l1)
+        .collect();
     for row in 0..l1 {
         mat[row][0] = row;
     }
@@ -47,8 +48,8 @@ fn levenshtein_distance(s1: &str, s2: &str) -> (usize, String, String) {
             }
         }
     }
-    let mut res1: LinkedList<char> = LinkedList::new();
-    let mut res2: LinkedList<char> = LinkedList::new();
+    let mut res1: VecDeque<char> = VecDeque::new();
+    let mut res2: VecDeque<char> = VecDeque::new();
     let mut cur_row = l1 - 1;
     let mut cur_col = l2 - 1;
     while cur_row > 0 || cur_col > 0 {
@@ -76,7 +77,7 @@ fn levenshtein_distance(s1: &str, s2: &str) -> (usize, String, String) {
     let aligned2: String = res2.into_iter().collect();
     let lev_dist = mat[l1 - 1][l2 - 1];
 
-    return (lev_dist, aligned1, aligned2);
+    (lev_dist, aligned1, aligned2)
 }
 
 fn main() {

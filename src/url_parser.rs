@@ -5,23 +5,18 @@ extern crate url;
 use url::Url;
 
 fn print_url(url: Url) {
-    println!("scheme:      {:?}", url.scheme);
-    if let Some(host) = url.host() {
+    println!("scheme:      {:?}", url.scheme());
+    if let Some(ref host) = url.host() {
         println!("domain:      {:?}", host);
     }
-    if let Some(port) = url.port() {
+    if let Some(ref port) = url.port() {
         println!("port:        {:?}", port);
     }
-    if let Some(path) = url.path() {
-        println!("path:        {:?}", path);
-    }
-    if let Some(..) = url.non_relative_scheme_data() {
-        println!("scheme_data: {:?}", url.scheme_data);
-    }
-    if let Some(query) = url.query {
+    println!("path:        {:?}", url.path());
+    if let Some(ref query) = url.query() {
         println!("query:       {:?}", query);
     }
-    if let Some(fragment) = url.fragment {
+    if let Some(ref fragment) = url.fragment() {
         println!("fragment:    {:?}", fragment);
     }
 }
