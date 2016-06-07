@@ -64,7 +64,8 @@ authors = [
     "Orhan Balci, https://github.com/orhanbalci",
     "Jesús Espino, https://github.com/jespino",
     "Allen Bui, https://github.com/allenbui94",
-    "Andrey Tonkih, https://github.com/xosmig"
+    "Andrey Tonkih, https://github.com/xosmig",
+    "Thibault Barbie, https://github.com/thibaultbarbie"
 ]
 
 [dependencies]
@@ -691,6 +692,12 @@ path = "src/even_or_odd.rs"
 # http://rosettacode.org/wiki/Events
 name = "events"
 path = "src/events.rs"
+
+[[bin]]
+# http://rosettacode.org/wiki/Evolutionary_algorithm
+name = "evolutionary_algorithm"
+path = "src/evolutionary_algorithm.rs"
+
 
 [[bin]]
 # http://rosettacode.org/wiki/Execute_a_system_command
