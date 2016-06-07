@@ -24,11 +24,11 @@ impl<T> TreeNode<T> {
 
         let l = match arr[0][1] {
             -1 => None,
-            i @ _ => Some(Box::new(TreeNode::<i8>::new(&arr[(i - arr[0][0]) as usize..]))),
+            i => Some(Box::new(TreeNode::<i8>::new(&arr[(i - arr[0][0]) as usize..]))),
         };
         let r = match arr[0][2] {
             -1 => None,
-            i @ _ => Some(Box::new(TreeNode::<i8>::new(&arr[(i - arr[0][0]) as usize..]))),
+            i => Some(Box::new(TreeNode::<i8>::new(&arr[(i - arr[0][0]) as usize..]))),
         };
 
         TreeNode {
