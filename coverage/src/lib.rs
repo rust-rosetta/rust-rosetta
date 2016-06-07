@@ -82,8 +82,8 @@ impl Task {
 
 /// Transforms a task title to a URL task title.
 fn normalize(title: &str) -> String {
-    String::from_utf8(percent_encoding::percent_decode(
-        &title.replace(" ", "_").into_bytes()).collect())
+    String::from_utf8(percent_encoding::percent_decode(&title.replace(" ", "_").into_bytes())
+                          .collect())
         .unwrap()
 }
 
@@ -118,8 +118,9 @@ impl TaskIterator {
             let file = File::open(path).unwrap();
             let first_line = BufReader::new(file).lines().next().unwrap().unwrap();
             let task_name = TASK_COMMENT_RE.captures(&first_line)
-                .and_then(|c| c.at(1))
-                .expect(&format!("could not parse task name for {:?}", path));
+                                           .and_then(|c| c.at(1))
+                                           .expect(&format!("could not parse task name for {:?}",
+                                                            path));
 
             local_tasks.insert(normalize(&task_name.to_owned()), path.to_owned());
         }
@@ -141,7 +142,7 @@ impl Iterator for TaskIterator {
 
             let mut task_url = Url::parse(&format!("http://rosettacode.org/wiki/{}",
                                                    normalized_title))
-                .unwrap();
+                                   .unwrap();
             task_url.query_pairs_mut().append_pair("action", "raw");
 
             let path = self.local_tasks.remove(&normalized_title);
@@ -154,16 +155,16 @@ impl Iterator for TaskIterator {
             });
 
             let mut res = self.client
-                .get(task_url.as_str())
-                .header(Connection::close())
-                .send()
-                .unwrap();
+                              .get(task_url.as_str())
+                              .header(Connection::close())
+                              .send()
+                              .unwrap();
 
             let mut body = String::new();
             res.read_to_string(&mut body).unwrap();
             let remote_code = RUST_WIKI_SECTION_RE.captures(&body)
-                .map(|captures| captures.at(1).unwrap())
-                .map(|code| code.to_owned());
+                                                  .map(|captures| captures.at(1).unwrap())
+                                                  .map(|code| code.to_owned());
 
             let mut wiki_url = task_url.clone();
             wiki_url.set_query(None);
@@ -194,8 +195,8 @@ pub fn fetch_tasks(tasks: &[String]) -> TaskIterator {
     let all_task_titles: HashSet<String> = HashSet::from_iter(all_task_titles());
     let requested_task_titles = HashSet::from_iter(tasks.iter().cloned());
     let mut task_titles: Vec<String> = all_task_titles.intersection(&requested_task_titles)
-        .cloned()
-        .collect();
+                                                      .cloned()
+                                                      .collect();
     task_titles.sort();
     TaskIterator::new(&task_titles)
 }
