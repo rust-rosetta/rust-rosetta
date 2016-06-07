@@ -11,6 +11,7 @@ struct TreeNode<T> {
     right: Option<Box<TreeNode<T>>>,
 }
 
+#[cfg_attr(feature = "clippy", allow(enum_variant_names))]
 enum TraversalMethod {
     PreOrder,
     InOrder,
