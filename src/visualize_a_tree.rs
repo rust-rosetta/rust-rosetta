@@ -165,12 +165,12 @@ impl<K: Ord + Copy + Debug + Display, V: Debug + Copy + Display> Tree<K, V> {
     // of the display element vector e, which is grown with either whitespace or
     // a trunk element, then modified in its last and possibly second-to-last
     // characters in context.
-    fn display(&self, p: NodePtr, side: Side, e: &Vec<DisplayElement>, f: &mut Formatter) {
+    fn display(&self, p: NodePtr, side: Side, e: &[DisplayElement], f: &mut Formatter) {
         if p.is_none() {
             return;
         }
 
-        let mut elems = e.clone();
+        let mut elems = e.to_vec();
         let node = self.get_node(p);
         let mut tail = DisplayElement::SpaceSpace;
         if node.up != self.root {
@@ -228,7 +228,7 @@ impl<K: Ord + Copy + Debug + Display, V: Debug + Copy + Display> Display for Tre
         if self.root.is_none() {
             write!(f, "[empty]")
         } else {
-            let mut v: Vec<DisplayElement> = Vec::new();
+            let v: Vec<DisplayElement> = vec![];
             self.display(self.root, Side::Up, &v, f);
             Ok(())
         }
