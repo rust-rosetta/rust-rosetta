@@ -229,7 +229,7 @@ impl<K: Ord + Copy + Debug + Display, V: Debug + Copy + Display> Display for Tre
             write!(f, "[empty]")
         } else {
             let mut v: Vec<DisplayElement> = Vec::new();
-            self.display(self.root, Side::Up, &mut v, f);
+            self.display(self.root, Side::Up, &v, f);
             Ok(())
         }
     }
