@@ -163,11 +163,12 @@ fn main() {
 
     let root = TreeNode::<i8>::new(&arr_tree);
 
-    for method_label in [(TraversalMethod::PreOrder, "pre-order:"),
+    let method_labels = [(TraversalMethod::PreOrder, "pre-order:"),
                          (TraversalMethod::InOrder, "in-order:"),
                          (TraversalMethod::PostOrder, "post-order:"),
-                         (TraversalMethod::LevelOrder, "level-order:")]
-                            .iter() {
+                         (TraversalMethod::LevelOrder, "level-order:")];
+
+    for method_label in &method_labels {
         print!("{}\t", method_label.1);
         for n in root.traverse(&method_label.0) {
             print!(" {}", n.value);
