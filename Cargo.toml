@@ -74,6 +74,7 @@ csv = "0.14"
 docopt = "0.6"
 eventual = "0.1.6"
 getopts = "0.2"
+glium = "0.14.0"
 gnuplot = "0.0.20"
 gtk = { version = "0.0.7", optional = true }
 hyper = "0.9.3"
@@ -1348,6 +1349,12 @@ path = "src/numerical_integration.rs"
 # http://rosettacode.org/wiki/One_of_n_lines_in_a_file
 name = "one_of_n_lines_in_a_file"
 path = "src/one_of_n_lines_in_a_file.rs"
+
+[[bin]]
+# http://rosettacode.org/wiki/OpenGL
+name = "opengl"
+path = "src/opengl.rs"
+test = false
 
 [[bin]]
 # http://rosettacode.org/wiki/Ordered_words
