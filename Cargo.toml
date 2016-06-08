@@ -198,11 +198,6 @@ name = "address_of_a_variable"
 path = "src/address_of_a_variable.rs"
 
 [[bin]]
-# http://rosettacode.org/wiki/Arithmetic-geometric_mean
-name = "agm"
-path = "src/agm.rs"
-
-[[bin]]
 # http://rosettacode.org/wiki/AKS_test_for_primes
 name = "aks_test_for_primes"
 path = "src/aks_test_for_primes.rs"

@@ -57,7 +57,7 @@ fn print_num_ludics_upto(x: &[usize], max_num: usize) {
     let mut num: i32 = 0;
     for i in x.iter() {
         if *i < max_num {
-            num = num + 1;
+            num += 1;
         }
     }
     println!("{}", num);
@@ -85,6 +85,6 @@ fn print_tiples_until(x: &[usize], limit: usize) {
         if res_triplet2.is_ok() && res_triplet3.is_ok() {
             println!("{} {} {}", x[counter], triplet2, triplet3);
         }
-        counter = counter + 1;
+        counter += 1;
     }
 }

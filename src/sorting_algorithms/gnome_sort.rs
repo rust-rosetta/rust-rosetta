@@ -7,13 +7,13 @@ fn gnome_sort<T: PartialOrd>(v: &mut [T]) {
     while i < len {
         if v[i - 1] <= v[i] {
             i = j;
-            j = j + 1;
+            j += 1;
         } else {
             v.swap(i - 1, i);
-            i = i - 1;
+            i -= 1;
             if i == 0 {
                 i = j;
-                j = j + 1;
+                j += 1;
             }
         }
     }

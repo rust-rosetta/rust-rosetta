@@ -21,7 +21,7 @@ impl MSVCRandGen {
             while i > 0 {
                 let j = self.max_rand(i + 1);
                 deck.swap(i as usize, j as usize);
-                i = i - 1;
+                i -= 1;
             }
         }
     }

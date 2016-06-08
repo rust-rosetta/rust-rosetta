@@ -25,7 +25,7 @@ fn half_adder(a: bool, b: bool) -> (bool, bool) {
     (xor(a, b), and(a, b))
 }
 
-/// full adder [2x half_adder, 1x or]
+/// full adder [2x half adder, 1x or]
 /// t = (C0 + A), t2 = t.S + B
 /// S = t2.S, C = t.C | t2.C
 fn full_adder(a: bool, b: bool, carry: bool) -> (bool, bool) {
@@ -71,7 +71,7 @@ impl fmt::Display for Nibble {
     }
 }
 
-/// We implement Deref so we can index the Nibble easily
+/// We implement `Deref` so we can index the Nibble easily
 impl<'a> Deref for Nibble {
     type Target = [bool; 4];
 
@@ -81,8 +81,8 @@ impl<'a> Deref for Nibble {
     }
 }
 
-/// 4bit adder [4x full_adder]
-/// calculate each bit of the sum, propogate the carry
+/// 4bit adder [4x full adder]
+/// calculate each bit of the sum, propagate the carry
 fn four_bit_adder(a: Nibble, b: Nibble, carry: bool) -> (Nibble, bool) {
     let (s0, carry) = full_adder(a[3], b[3], carry);
     let (s1, carry) = full_adder(a[2], b[2], carry);

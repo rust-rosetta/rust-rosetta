@@ -15,7 +15,7 @@ fn find_bare_lang_tags(input: &str) -> Vec<(Option<String>, i32)> {
     let header_re = Regex::new(r"==\{\{header\|(?P<lang>[:alpha:]+)\}\}==").unwrap();
 
     for line in input.lines() {
-        if let Some(captures) = header_re.captures(&line) {
+        if let Some(captures) = header_re.captures(line) {
             if let Some(header_lang) = captures.name("lang") {
                 language_pairs.push((language, counter));
                 language = Some(header_lang.to_owned());

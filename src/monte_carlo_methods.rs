@@ -16,7 +16,7 @@ fn simulate(time: i64) -> f64 {
     let mut rng = rand::thread_rng();
     let mut cnt = 0;
     for _ in 0..time {
-        cnt = cnt + inside_circle(rng.gen());
+        cnt += inside_circle(rng.gen());
     }
     (cnt as f64) / (time as f64)
 }

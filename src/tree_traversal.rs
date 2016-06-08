@@ -11,6 +11,7 @@ struct TreeNode<T> {
     right: Option<Box<TreeNode<T>>>,
 }
 
+#[cfg_attr(feature = "clippy", allow(enum_variant_names))]
 enum TraversalMethod {
     PreOrder,
     InOrder,
@@ -23,11 +24,11 @@ impl<T> TreeNode<T> {
 
         let l = match arr[0][1] {
             -1 => None,
-            i @ _ => Some(Box::new(TreeNode::<i8>::new(&arr[(i - arr[0][0]) as usize..]))),
+            i => Some(Box::new(TreeNode::<i8>::new(&arr[(i - arr[0][0]) as usize..]))),
         };
         let r = match arr[0][2] {
             -1 => None,
-            i @ _ => Some(Box::new(TreeNode::<i8>::new(&arr[(i - arr[0][0]) as usize..]))),
+            i => Some(Box::new(TreeNode::<i8>::new(&arr[(i - arr[0][0]) as usize..]))),
         };
 
         TreeNode {
@@ -38,11 +39,11 @@ impl<T> TreeNode<T> {
     }
 
     pub fn traverse(&self, tr: &TraversalMethod) -> Vec<&TreeNode<T>> {
-        match tr {
-            &TraversalMethod::PreOrder => self.iterative_preorder(),
-            &TraversalMethod::InOrder => self.iterative_inorder(),
-            &TraversalMethod::PostOrder => self.iterative_postorder(),
-            &TraversalMethod::LevelOrder => self.iterative_levelorder(),
+        match *tr {
+            TraversalMethod::PreOrder => self.iterative_preorder(),
+            TraversalMethod::InOrder => self.iterative_inorder(),
+            TraversalMethod::PostOrder => self.iterative_postorder(),
+            TraversalMethod::LevelOrder => self.iterative_levelorder(),
         }
     }
 
@@ -163,11 +164,12 @@ fn main() {
 
     let root = TreeNode::<i8>::new(&arr_tree);
 
-    for method_label in [(TraversalMethod::PreOrder, "pre-order:"),
+    let method_labels = [(TraversalMethod::PreOrder, "pre-order:"),
                          (TraversalMethod::InOrder, "in-order:"),
                          (TraversalMethod::PostOrder, "post-order:"),
-                         (TraversalMethod::LevelOrder, "level-order:")]
-                            .iter() {
+                         (TraversalMethod::LevelOrder, "level-order:")];
+
+    for method_label in &method_labels {
         print!("{}\t", method_label.1);
         for n in root.traverse(&method_label.0) {
             print!(" {}", n.value);

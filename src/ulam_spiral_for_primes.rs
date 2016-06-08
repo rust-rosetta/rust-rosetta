@@ -44,6 +44,7 @@ impl fmt::Display for Ulam {
     }
 }
 
+#[cfg_attr(feature = "clippy", allow(many_single_char_names))]
 fn generate(n: u32, s: u32, c: char) -> Ulam {
     let mut spiral = vec![vec!["".to_string(); n as usize]; n as usize];
     let mut dir = RIGHT;

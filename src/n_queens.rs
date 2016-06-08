@@ -66,7 +66,7 @@ fn n_queens_helper(all_ones: i32, left_diags: i32, columns: i32, right_diags: i3
 
         // We then XOR that integer with the validSpots to flip it to 0
         // in valid_spots.
-        valid_spots = valid_spots ^ spot;
+        valid_spots ^= spot;
 
         // Make a recursive call. This is where we infer the conflicts
         // for the next row.
@@ -103,7 +103,7 @@ fn semi_parallel_n_queens(n: i32) -> usize {
     while valid_spots != 0 {
         let (tx, rx) = channel();
         let spot = -valid_spots & valid_spots;
-        valid_spots = valid_spots ^ spot;
+        valid_spots ^= spot;
         receivers.push(rx);
 
         spawn(move || -> () {

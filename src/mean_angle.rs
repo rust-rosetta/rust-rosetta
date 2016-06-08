@@ -1,4 +1,5 @@
-// http://rosettacode.org/wiki/Averages/mean_angle
+// http://rosettacode.org/wiki/Averages/Mean_angle
+
 use std::f64;
 // the macro is from
 // http://stackoverflow.com/questions/30856285/assert-eq-with-floating-

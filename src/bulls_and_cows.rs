@@ -88,7 +88,7 @@ fn main() {
         loop {
             let mut guess_string = String::new();
             let _ = reader.read_line(&mut guess_string).unwrap();
-            let digits_maybe = parse_guess_string(&guess_string.trim());
+            let digits_maybe = parse_guess_string(guess_string.trim());
             match digits_maybe {
                 Err(msg) => {
                     println!("{}", msg);

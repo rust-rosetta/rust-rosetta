@@ -14,7 +14,7 @@ fn crc(bytes: &[u8]) -> u32 {
             if word & 1 == 1 {
                 word = (word >> 1) ^ 0xedb88320
             } else {
-                word = word >> 1;
+                word >>= 1;
             }
         }
         *value = word;

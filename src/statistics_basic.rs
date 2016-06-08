@@ -56,7 +56,7 @@ fn main() {
     let range = Range::new(0f32, 1f32);
     let mut rng = rand::thread_rng();
 
-    for &number_of_samples in [1000, 10_000, 1_000_000].iter() {
+    for &number_of_samples in &[1000, 10_000, 1_000_000] {
         let mut data = vec![];
         for _ in 0..number_of_samples {
             let x = range.ind_sample(&mut rng);

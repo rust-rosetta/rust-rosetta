@@ -30,7 +30,7 @@ fn main() {
         let mut line = String::new();
         for &(divisor, ref word) in &entries {
             if i % divisor == 0 {
-                line = line + &word;
+                line = line + word;
             }
         }
         if line == "" {
