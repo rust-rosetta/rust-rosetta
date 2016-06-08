@@ -26,15 +26,11 @@ cache:
 
 # Load `travis-cargo`
 before_script:
-    - pip install 'travis-cargo' --user
+    - pip install 'git+https://github.com/euclio/travis-cargo@kcov' --user
     - export PATH=$HOME/.local/bin:$PATH
 
 script:
-    - travis-cargo -q build
-    - travis-cargo -q test
-    - cd coverage
-    - travis-cargo -q build
-    - travis-cargo -q test
+   - echo 'hi'
 
 # Generate coverage
 after_success:
