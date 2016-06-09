@@ -6,8 +6,6 @@ env:
   global:
     - RUST_BACKTRACE=1
     - TRAVIS_CARGO_NIGHTLY_FEATURE=""
-    - RUSTFLAGS="-C link-dead-code"
-    - LD_LIBRARY_PATH="$TRAVIS_BUILD_DIR/target/debug/deps"
 
 # `sudo`-less apt install.
 addons:
@@ -20,9 +18,7 @@ addons:
       - libelf-dev
       - libdw-dev
 
-cache:
-  directories:
-    - $HOME/.cargo
+cache: cargo
 
 # Load `travis-cargo`
 before_script:
