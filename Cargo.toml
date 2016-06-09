@@ -1517,6 +1517,11 @@ path = "src/recursion_depth.rs"
 test = false
 
 [[bin]]
+# http://rosettacode.org/wiki/Remove_duplicate_elements
+name = "remove_duplicate_elements"
+path = "src/remove_duplicate_elements.rs"
+
+[[bin]]
 # http://rosettacode.org/wiki/Remove_lines_from_a_file
 name = "remove_lines_from_a_file"
 path = "src/remove_lines_from_a_file.rs"
