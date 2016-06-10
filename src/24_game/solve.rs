@@ -48,9 +48,9 @@ fn solve(r: &mut [Rational], target_val: isize) -> Option<String> {
 /// expression in string form) results in a vector
 fn compute_all_operations(l: &[Rational]) -> Vec<(Rational, String)> {
     match l {
-        [] => vec![],
-        [x] => vec![(x, (format!("{}", x)))],
-        [x, rest..] => {
+        &[] => vec![],
+        &[x] => vec![(x, (format!("{}", x)))],
+        &[x, ref rest..] => {
             let mut rt = Vec::new();
             for &(y, ref exp) in &compute_all_operations(rest) {
                 let mut sub = vec![(x * y, "*"), (x + y, "+"), (x - y, "-")];
