@@ -8,32 +8,40 @@ use std::fmt;
 // For I/O (stdin, stdout, etc)
 use std::io::prelude::*;
 
-// A simple struct for our board
+/// A simple struct for a board
 struct Board {
+    /// The cells of the board
     cells: Vec<bool>,
+    /// The size of the board
     size: usize,
 }
 
 // Functions for the Board struct
 impl Board {
-    // Generate a new, empty board
+    /// Generate a new, empty board, of size >= 1
+    ///
+    /// Returns a Board in the "off" state, where all cells are 0.
+    /// If a size of 0 is given, a Board of size 1 will be created instead.
     fn new(size: usize) -> Board {
         // Ensure we make a board with a non-zero size
-        if size == 0 {
-            // Don't make a board of size 0
-            Board {
-                cells: vec![false; 1],
-                size: 1,
-            }
-        } else {
+        if size > 0 {
             Board {
                 cells: vec![false; size*size],
                 size: size,
             }
+        } else {
+            Board::new(1)
         }
     }
 
-    // Flip the specified row
+    /// Flip the specified row
+    ///
+    /// Returns true if the row is within the size, false otherwise.
+    ///
+    /// ```
+    /// let mut board: Board = Board::new();
+    /// board.fliprow(1);
+    /// ```
     fn fliprow(&mut self, row: usize) -> bool {
         // Check constraints
         if row > self.size {
@@ -48,7 +56,14 @@ impl Board {
         true
     }
 
-    // Flip the specified column
+    /// Flip the specified column
+    ///
+    /// Returns true if the column is within the size, false otherwise.
+    ///
+    /// ```
+    /// let mut board: Board = Board::new();
+    /// board.flipcol(0);
+    /// ```
     fn flipcol(&mut self, col: usize) -> bool {
         // Check constraints
         if col > self.size {
@@ -61,23 +76,33 @@ impl Board {
         true
     }
 
-    // Generate a random board
+    /// Generate a random board
+    ///
+    /// Returns a Board in a random state.
+    /// If a size of 0 is given, a Board of size 1 will be created instead.
     fn random(size: usize) -> Board {
-        // Make a vector of the board size
-        let mut r: Vec<bool> = vec![false; size*size];
-        // Loop through all the cells
-        for i in 0..size * size {
-            // Give it a random state
-            r[i] = rand::random::<bool>();
-        }
-        // Return the random board
-        Board {
-            cells: r.clone(),
-            size: size,
+        // Ensure we make a board with a non-zero size
+        if size > 0 {
+            // Make a vector of the board size
+            let mut r: Vec<bool> = vec![false; size*size];
+            // Loop through all the cells
+            for i in 0..size * size {
+                // Give it a random state
+                r[i] = rand::random::<bool>();
+            }
+            // Return the random board
+            Board {
+                cells: r.clone(),
+                size: size,
+            }
+        } else {
+            Board::random(1)
         }
     }
 
-    // Check if a board is equal to another
+    /// Check if a board is equal to another
+    ///
+    /// Returns true if boards are of equal size and contents, false otherwise.
     fn eq(&self, rhs: &Board) -> bool {
         // Has to be a board of the same size
         if self.size != rhs.size {
