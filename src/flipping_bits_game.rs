@@ -148,7 +148,7 @@ fn main() {
     // Loop until win or quit
     'mainloop: loop {
         // User input
-        let mut input: String = String::new();
+        let mut input: String;
         // Write the boards
         println!("Target:\n{}\nBoard:\n{}", &target, &board);
         // User input loop
@@ -163,9 +163,12 @@ fn main() {
                     break 'mainloop;
                 }
             };
+            // Reset input for each loop
+            input = String::new();
             // Read user input
             match std::io::stdin().read_line(&mut input) {
                 Ok(_) => {
+                    input = input.trim().to_string();
                     // Get the first character
                     let rc: char = match input.chars().nth(0) {
                         Some(c) => c,
@@ -185,7 +188,7 @@ fn main() {
                         break 'mainloop;
                     }
                     // If input is r or c, get the number after
-                    let n: usize = match input[1..].to_string().trim().parse() {
+                    let n: usize = match input[1..].to_string().parse() {
                         Ok(x) => {
                             // If we're within bounds, return the parsed number
                             if x < size {
