@@ -22,6 +22,11 @@ impl Board {
     ///
     /// Returns a Board in the "off" state, where all cells are 0.
     /// If a size of 0 is given, a Board of size 1 will be created instead.
+    /// A mutable board is required for using Board::fliprow and Board::flipcol functions.
+    ///
+    /// ```
+    /// let mut board: Board = Board::new(3);
+    /// ```
     fn new(size: usize) -> Board {
         // Ensure we make a board with a non-zero size
         if size > 0 {
@@ -39,7 +44,7 @@ impl Board {
     /// Returns true if the row is within the size, false otherwise.
     ///
     /// ```
-    /// let mut board: Board = Board::new();
+    /// let mut board: Board = Board::new(3);
     /// board.fliprow(1);
     /// ```
     fn fliprow(&mut self, row: usize) -> bool {
@@ -61,7 +66,7 @@ impl Board {
     /// Returns true if the column is within the size, false otherwise.
     ///
     /// ```
-    /// let mut board: Board = Board::new();
+    /// let mut board: Board = Board::new(3);
     /// board.flipcol(0);
     /// ```
     fn flipcol(&mut self, col: usize) -> bool {
@@ -80,6 +85,10 @@ impl Board {
     ///
     /// Returns a Board in a random state.
     /// If a size of 0 is given, a Board of size 1 will be created instead.
+    ///
+    /// ```
+    /// let target: Board = Board::random(3);
+    /// ```
     fn random(size: usize) -> Board {
         // Ensure we make a board with a non-zero size
         if size > 0 {
@@ -103,6 +112,15 @@ impl Board {
     /// Check if a board is equal to another
     ///
     /// Returns true if boards are of equal size and contents, false otherwise.
+    ///
+    /// ```
+    /// let mut board: Board = Board::new(3);
+    /// let target: Board = Board::random(3);
+    /// if board.eq(&target) {
+    ///     // randomness won and set to empty board
+    /// } else {
+    ///     // not equal
+    /// ```
     fn eq(&self, rhs: &Board) -> bool {
         // Has to be a board of the same size
         if self.size != rhs.size {
