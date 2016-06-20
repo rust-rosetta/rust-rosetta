@@ -1,4 +1,4 @@
-// http://rosettacode.org/wiki/Date_format 
+// http://rosettacode.org/wiki/Date_format
 
 extern crate chrono;
 use chrono::*;
