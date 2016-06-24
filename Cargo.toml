@@ -569,6 +569,11 @@ path = "src/currying.rs"
 test = false
 
 [[bin]]
+# http://rosettacode.org/wiki/Date_format
+name="date_format"
+path="src/date_format.rs"
+
+[[bin]]
 # http://rosettacode.org/wiki/Day_of_the_week
 name = "day_of_the_week"
 path = "src/day_of_the_week.rs"
