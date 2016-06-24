@@ -569,6 +569,11 @@ name = "create_file"
 path = "src/create_file.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/CSV_data_manipulation
+name = "csv_data_manipulation"
+path = "src/csv_data_manipulation.rs"
+
+[[bin]]
 # http://rosettacode.org/wiki/Currying
 name = "currying"
 path = "src/currying.rs"
