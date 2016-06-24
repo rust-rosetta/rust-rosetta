@@ -576,8 +576,8 @@ test = false
 
 [[bin]]
 # http://rosettacode.org/wiki/Date_format
-name="date_format"
-path="src/date_format.rs"
+name = "date_format"
+path = "src/date_format.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Day_of_the_week
