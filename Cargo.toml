@@ -792,6 +792,11 @@ name = "flatten_list"
 path = "src/flatten_list.rs"
 
 [[bin]]
+# http://rosettacode.org/wiki/Flipping_bits_game
+name = "flipping_bits_game"
+path = "src/flipping_bits_game.rs"
+
+[[bin]]
 # http://rosettacode.org/wiki/Fork
 name = "fork"
 path = "src/fork.rs"
