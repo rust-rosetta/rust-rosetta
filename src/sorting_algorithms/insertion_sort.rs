@@ -1,5 +1,8 @@
 // http://rosettacode.org/wiki/Sorting_algorithms/Insertion_sort
 
+#[macro_use]
+extern crate rust_rosetta;
+
 fn insertion_sort<T>(arr: &mut [T])
     where T: Ord
 {
@@ -16,4 +19,9 @@ fn main() {
     let mut arr = vec![6, 8, 5, 9, 3, 2, 1, 4, 7];
     insertion_sort(&mut arr);
     println!("{:?}", arr);
+}
+
+#[cfg(test)]
+mod tests {
+    test_sort!(super::insertion_sort);
 }

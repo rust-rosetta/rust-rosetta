@@ -1,7 +1,15 @@
 // http://rosettacode.org/wiki/Sorting_algorithms/Stooge_sort
+
+#[macro_use]
+extern crate rust_rosetta;
+
 fn stoogesort<E>(a: &mut [E])
     where E: PartialOrd
 {
+    if a.is_empty() {
+        return;
+    }
+
     let len = a.len();
 
     if a.first().unwrap() > a.last().unwrap() {
@@ -22,10 +30,7 @@ fn main() {
     println!("After: {:?}", &numbers);
 }
 
-#[test]
-fn test_sort() {
-    let mut numbers = vec![1_i32, 9, 4, 7, 6, 5, 3, 2, 8];
-    stoogesort(&mut numbers);
-
-    assert_eq!(numbers, vec![1_i32, 2, 3, 4, 5, 6, 7, 8, 9]);
+#[cfg(test)]
+mod tests {
+    test_sort!(super::stoogesort);
 }
