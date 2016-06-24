@@ -330,6 +330,12 @@ path = "src/averages/root_mean_square.rs"
 test = true
 
 [[bin]]
+# http://rosettacode.org/wiki/AVL_tree
+name = "avl_tree"
+path = "src/avl_tree.rs"
+test = true
+
+[[bin]]
 # http://rosettacode.org/wiki/Balanced_brackets
 name = "balanced_brackets"
 path = "src/balanced_brackets.rs"
