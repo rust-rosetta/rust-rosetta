@@ -162,7 +162,6 @@ impl<K: Ord + Copy + Debug + Display, V: Debug + Copy + Display> AVLTree<K, V> {
         }
     }
 
-    #[test]
     /// Insert key-value
     pub fn insert(&mut self, k: K, v: V) -> Option<Node<K, V>> {
         let (n, _) = self.insert_node(Node::new(k, v));
@@ -517,7 +516,6 @@ impl<K: Ord + Copy + Debug + Display, V: Debug + Copy + Display> AVLTree<K, V> {
     }
 
     /// Returns node value
-    #[test]
     pub fn lookup(&self, k: K) -> Option<V> {
         if let Some(n) = self.search(k) {
             Some(n.value)
@@ -527,7 +525,6 @@ impl<K: Ord + Copy + Debug + Display, V: Debug + Copy + Display> AVLTree<K, V> {
     }
 
     /// Returns node (not pointer)
-    #[test]
     pub fn search(&self, k: K) -> Option<Node<K, V>> {
         let mut p = self.root;
         let mut res = None;
@@ -634,12 +631,10 @@ impl<K: Ord + Copy + Debug + Display, V: Debug + Copy + Display> AVLTree<K, V> {
         self.gather_balances_impl(l, k, b)
     }
 
-    #[test]
     pub fn compute_balances(&mut self, p: NodePtr) -> i8 {
         self.compute_balances_impl(p, 0)
     }
 
-    #[test]
     fn compute_balances_impl(&mut self, p: NodePtr, level: i8) -> i8 {
         if p.is_none() {
             return level - 1;
