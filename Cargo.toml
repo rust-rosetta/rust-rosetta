@@ -76,7 +76,7 @@ eventual = "0.1.6"
 getopts = "0.2"
 glium = "0.14.0"
 gnuplot = "0.0.20"
-gtk = { version = "0.0.7", optional = true }
+gtk = { version = "0.1.0", optional = true }
 hyper = "0.9.3"
 image = "0.10.0"
 libc = "0.2"
@@ -581,8 +581,8 @@ test = false
 
 [[bin]]
 # http://rosettacode.org/wiki/Date_format
-name="date_format"
-path="src/date_format.rs"
+name = "date_format"
+path = "src/date_format.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Day_of_the_week

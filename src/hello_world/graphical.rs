@@ -5,7 +5,7 @@ mod graphical {
     extern crate gtk;
 
     use self::gtk::traits::*;
-    use self::gtk::{Inhibit, WidgetSignals, Window, WindowType, WindowPosition};
+    use self::gtk::{Inhibit, Window, WindowType, WindowPosition};
 
     pub fn hello_world() {
         gtk::init().unwrap();
