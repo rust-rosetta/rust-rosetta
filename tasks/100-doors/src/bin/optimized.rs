@@ -1,4 +1,3 @@
-// http://rosettacode.org/wiki/100_doors
 extern crate num;
 
 use std::f64;

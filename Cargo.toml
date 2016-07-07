@@ -120,19 +120,12 @@ path = "src/factorial_plugin"
 # building without clippy
 clippy = []
 
-[[bin]]
-# http://rosettacode.org/wiki/100_doors
-name = "100_doors"
-path = "src/100_doors.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/100_doors
-name = "100_doors_unoptimized"
-path = "src/100_doors_unoptimized.rs"
-
 [workspace]
 members = [
     "meta",
+
+    # http://rosettacode.org/wiki/100_doors
+    "tasks/100-doors",
 ]
 
 [[bin]]

@@ -6,6 +6,13 @@ dependencies = [
 ]
 
 [[package]]
+name = "100-doors"
+version = "0.1.0"
+dependencies = [
+ "num 0.1.32 (registry+https://github.com/rust-lang/crates.io-index)",
+]
+
+[[package]]
 name = "aho-corasick"
 version = "0.5.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
