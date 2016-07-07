@@ -1,5 +1,5 @@
 // http://rosettacode.org/wiki/Rosetta_Code/Find_bare_lang_tags
-#![feature(iter_arith)]
+
 extern crate regex;
 
 use std::io;
