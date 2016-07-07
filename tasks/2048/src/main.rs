@@ -1,5 +1,5 @@
-// http://rosettacode.org/wiki/2048
-// Uses rustbox (termbox) to draw the board.
+//! Uses rustbox (termbox) to draw the board.
+
 #[cfg(unix)]
 mod mod2048 {
     extern crate rustbox;

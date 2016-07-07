@@ -1,0 +1,12 @@
+[package]
+name = "2048"
+version = "0.1.0"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/2048"
+
+[dependencies]
+rand = "0.3"
+
+[target."cfg(unix)".dependencies]
+rustbox = "0.8"
