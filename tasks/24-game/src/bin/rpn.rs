@@ -1,6 +1,5 @@
-// http://rosettacode.org/wiki/24_game
-
 //! Uses RPN expression
+
 extern crate rand;
 
 fn main() {

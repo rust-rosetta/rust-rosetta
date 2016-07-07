@@ -1,0 +1,9 @@
+[package]
+name = "24-game"
+version = "0.1.0"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/24_game"
+
+[dependencies]
+rand = "0.3"

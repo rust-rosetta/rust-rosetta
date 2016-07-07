@@ -21,6 +21,13 @@ dependencies = [
 ]
 
 [[package]]
+name = "24-game"
+version = "0.1.0"
+dependencies = [
+ "rand 0.3.14 (registry+https://github.com/rust-lang/crates.io-index)",
+]
+
+[[package]]
 name = "aho-corasick"
 version = "0.5.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"

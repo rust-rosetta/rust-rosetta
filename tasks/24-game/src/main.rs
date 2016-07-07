@@ -1,5 +1,3 @@
-// http://rosettacode.org/wiki/24_game
-
 //! Implements with a recursive descent parser for a simple calculator (+ - * /) using the
 //! [shunting yard algorithm]. It follows operator precedence (i.e. 2 + 3 * 3 = 11), understands
 //! negation (-5 + 6 = 1), ignores whitespace and allows the use of parentheses.

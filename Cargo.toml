@@ -126,17 +126,10 @@ members = [
 
     # http://rosettacode.org/wiki/2048
     "tasks/2048",
+
+    # http://rosettacode.org/wiki/24_game
+    "tasks/24-game",
 ]
-
-[[bin]]
-# http://rosettacode.org/wiki/24_game
-name = "24_game"
-path = "src/24_game.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/24_game
-name = "24_game_rpn"
-path = "src/24_game_rpn.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/24_game/Solve
