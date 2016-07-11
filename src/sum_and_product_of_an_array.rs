@@ -1,5 +1,4 @@
 // http://rosettacode.org/wiki/Sum_and_product_of_an_array
-#![feature(iter_arith)]
 
 fn main() {
     let arr: [i32; 9] = [1i32, 2, 3, 4, 5, 6, 7, 8, 9];

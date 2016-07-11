@@ -9,9 +9,9 @@ extern crate rustc_plugin;
 use syntax::ast;
 use syntax::codemap::Span;
 use syntax::parse;
-use syntax::ast::TokenTree;
 use syntax::ext::base::{ExtCtxt, MacResult, DummyResult, MacEager};
 use syntax::ext::build::AstBuilder;  // trait for expr_usize
+use syntax::tokenstream::TokenTree;
 use rustc_plugin::Registry;
 
 fn exp_factorial(cx: &mut ExtCtxt, sp: Span, tts: &[TokenTree]) -> Box<MacResult + 'static> {

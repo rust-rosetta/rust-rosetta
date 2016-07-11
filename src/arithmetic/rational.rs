@@ -1,11 +1,12 @@
 // http://rosettacode.org/wiki/Arithmetic/Rational
 
-#![feature(zero_one)]
+extern crate num;
 
-use std::num::{Zero, One};
-use std::fmt;
 use std::cmp::Ordering;
+use std::fmt;
 use std::ops::{Add, Mul, Neg, Sub, Div};
+
+use num::{Zero, One};
 
 fn main() {
     for p in perfect_numbers(1 << 19) {
@@ -169,6 +170,10 @@ impl Div for Frac {
 impl Zero for Frac {
     fn zero() -> Frac {
         Frac::new(0, 1)
+    }
+
+    fn is_zero(&self) -> bool {
+        self.num == 0 && self.den != 0
     }
 }
 

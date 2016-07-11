@@ -1,5 +1,5 @@
 // http://rosettacode.org/wiki/Statistics/Basic
-#![feature(iter_arith)]
+
 extern crate rand;
 
 use rand::distributions::{IndependentSample, Range};

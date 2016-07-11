@@ -1,8 +1,8 @@
 // http://rosettacode.org/wiki/Range_extraction
 
-#![feature(zero_one)]
+extern crate num;
 
-use std::num::One;
+use num::One;
 
 use std::ops::Add;
 
