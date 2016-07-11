@@ -1,12 +1,12 @@
-// http://rosettacode.org/wiki/24_game/Solve
-
 //! Modeled after [the Scala solution]
 //!
 //! [the Scala solution]: http://rosettacode.org/wiki/24_game/Solve#Scala
+
 #![feature(slice_patterns)]
 
 extern crate num;
 extern crate permutohedron;
+
 use num::rational::{Ratio, Rational};
 use num::traits::Zero;
 use permutohedron::Heap;
