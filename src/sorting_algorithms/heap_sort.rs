@@ -1,5 +1,8 @@
 // http://rosettacode.org/wiki/Sorting_algorithms/Heapsort
 
+#[macro_use]
+extern crate rust_rosetta;
+
 /// This is ported from the Dart heap sort implementation
 fn heap_sort<T: Ord>(a: &mut [T]) {
     let count = a.len();
@@ -85,40 +88,5 @@ pub fn main() {
 
 #[cfg(test)]
 mod tests {
-    use super::heap_sort;
-
-    #[test]
-    fn sorted() {
-        let mut arr = [1i32, 2, 3, 4, 6, 8];
-        heap_sort(&mut arr);
-        assert_eq!(arr, [1i32, 2, 3, 4, 6, 8]);
-    }
-
-    #[test]
-    fn reverse() {
-        let mut arr = [8i32, 6, 4, 3, 2, 1];
-        heap_sort(&mut arr);
-        assert_eq!(arr, [1i32, 2, 3, 4, 6, 8]);
-    }
-
-    #[test]
-    fn random() {
-        let mut arr = [12i32, 54, 2, 93, 13, 43, 15, 299, 234];
-        heap_sort(&mut arr);
-        assert_eq!(arr, [2i32, 12, 13, 15, 43, 54, 93, 234, 299]);
-    }
-
-    #[test]
-    fn one() {
-        let mut arr = [9i32];
-        heap_sort(&mut arr);
-        assert_eq!(arr, [9i32]);
-    }
-
-    #[test]
-    fn empty() {
-        let mut arr: [i32; 0] = [];
-        heap_sort(&mut arr);
-        assert!(arr.is_empty());
-    }
+    test_sort!(super::heap_sort);
 }

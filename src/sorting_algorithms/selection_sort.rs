@@ -1,7 +1,14 @@
 // http://rosettacode.org/wiki/Sorting_algorithms/Selection_sort
 
+#[macro_use]
+extern crate rust_rosetta;
+
 #[cfg_attr(feature="clippy", allow(needless_range_loop))]
 fn selection_sort<T: Ord>(v: &mut [T]) {
+    if v.is_empty() {
+        return;
+    }
+
     let len = v.len();
 
     for j in 0..len - 1 {
@@ -29,4 +36,9 @@ fn main() {
 
     selection_sort(&mut strings);
     println!("After: {:?}", strings);
+}
+
+#[cfg(test)]
+mod tests {
+    test_sort!(super::selection_sort);
 }

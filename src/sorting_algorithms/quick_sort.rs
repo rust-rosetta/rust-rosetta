@@ -1,4 +1,8 @@
 // http://rosettacode.org/wiki/Sorting_algorithms/Quicksort
+
+#[macro_use]
+extern crate rust_rosetta;
+
 extern crate rand;
 
 /// We use an [in-place quick sort].
@@ -59,67 +63,5 @@ fn main() {
 
 #[cfg(test)]
 mod tests {
-    extern crate rust_rosetta;
-
-    use rand::{thread_rng, Rng};
-
-    use std::fmt::Debug;
-
-    use super::quick_sort;
-
-    fn check_sort<T>(v: &[T])
-        where T: Ord + Clone + Debug
-    {
-        rust_rosetta::check_sorted(v);
-    }
-
-    #[test]
-    fn test_rosetta_vector() {
-        let numbers = &mut [4i32, 65, 2, -31, 0, 99, 2, 83, 782, 1];
-        quick_sort(numbers);
-        check_sort(numbers);
-    }
-
-    #[test]
-    fn test_empty_vector() {
-        let mut numbers: Vec<i32> = Vec::new();
-        quick_sort(&mut numbers[..]);
-        check_sort(&numbers);
-    }
-
-    #[test]
-    fn test_one_element_vector() {
-        let numbers = &mut [0i32];
-        quick_sort(numbers);
-        check_sort(numbers);
-    }
-
-    #[test]
-    fn test_repeat_vector() {
-        let numbers = &mut [1i32, 1, 1, 1, 1];
-        quick_sort(numbers);
-        check_sort(numbers);
-    }
-
-    #[test]
-    fn test_worst_case_vector() {
-        let numbers = &mut [20i32, 10, 0, -1, -5];
-        quick_sort(numbers);
-        check_sort(numbers);
-    }
-
-    #[test]
-    fn test_already_sorted_vector() {
-        let numbers = &mut [-1i32, 0, 3, 6, 99];
-        quick_sort(numbers);
-        check_sort(numbers);
-    }
-
-    #[test]
-    fn test_random_numbers() {
-        let mut rng = thread_rng();
-        let mut numbers: Vec<i32> = rng.gen_iter::<i32>().take(500).collect();
-        quick_sort(&mut numbers[..]);
-        check_sort(&numbers);
-    }
+    test_sort!(super::quick_sort);
 }
