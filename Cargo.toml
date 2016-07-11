@@ -132,12 +132,10 @@ members = [
 
     # http://rosettacode.org/wiki/24_game/Solve
     "tasks/24-game/solve",
-]
 
-[[bin]]
-# http://rosettacode.org/wiki/99_Bottles_of_Beer
-name = "99_bottles_of_beer"
-path = "src/99_bottles_of_beer.rs"
+    # http://rosettacode.org/wiki/99_Bottles_of_Beer
+    "tasks/99-bottles-of-beer",
+]
 
 [[bin]]
 # http://rosettacode.org/wiki/9_billion_names_of_God_the_integer

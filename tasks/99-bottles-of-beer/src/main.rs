@@ -1,4 +1,3 @@
-// http://rosettacode.org/wiki/99_Bottles_of_Beer
 use std::string::String;
 
 fn main() {
