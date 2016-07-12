@@ -80,9 +80,6 @@ pub fn check_sorted<E>(candidate: &[E])
     assert_eq!(sorted.as_slice(), candidate);
 }
 
-#[allow(dead_code)]
-fn main() {}
-
 #[cfg(test)]
 mod tests {
 
