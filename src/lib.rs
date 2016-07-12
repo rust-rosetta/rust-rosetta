@@ -1,11 +1,5 @@
 //! Library that contains utility functions for tests.
 
-extern crate hyper;
-extern crate regex;
-extern crate rustc_serialize;
-
-pub mod rosetta_code;
-
 use std::fmt::Debug;
 
 /// Implementation detail of the `test_sort` macro.

@@ -1,4 +1,3 @@
-// http://rosettacode.org/wiki/Rosetta_Code/Find_unimplemented_tasks
 extern crate hyper;
 extern crate rustc_serialize;
 extern crate url;
@@ -163,10 +162,4 @@ pub fn unimplemented_tasks(lang: &str) -> Vec<Task> {
         .collect::<Vec<Task>>();
     unimplemented_tasks.sort_by(|a, b| a.title.cmp(&b.title));
     unimplemented_tasks
-}
-
-pub fn main() {
-    for task in unimplemented_tasks("Rust") {
-        println!("{:6} {}", task.id, task.title);
-    }
 }

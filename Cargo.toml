@@ -135,6 +135,9 @@ members = [
 
     # http://rosettacode.org/wiki/99_Bottles_of_Beer
     "tasks/99-bottles-of-beer",
+
+    # http://rosettacode.org/wiki/Rosetta_Code/Find_unimplemented_tasks
+    "tasks/rosetta-code/find-unimplemented-tasks",
 ]
 
 [[bin]]
@@ -1582,11 +1585,6 @@ path = "src/roots_of_unity.rs"
 # http://rosettacode.org/wiki/Rosetta_Code/Find_bare_lang_tags
 name = "rosetta_code_find_bare_lang_tags"
 path = "src/rosetta_code/find_bare_lang_tags.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Rosetta_Code/Find_unimplemented_tasks
-name = "rosetta_code_find_unimplemented_tasks"
-path = "src/rosetta_code/find_unimplemented_tasks.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Rosetta_Code/Fix_code_tags

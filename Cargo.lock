@@ -297,6 +297,15 @@ name = "factorial-plugin"
 version = "1.0.0"
 
 [[package]]
+name = "find-unimplemented-tasks"
+version = "0.1.0"
+dependencies = [
+ "hyper 0.9.9 (registry+https://github.com/rust-lang/crates.io-index)",
+ "rustc-serialize 0.3.19 (registry+https://github.com/rust-lang/crates.io-index)",
+ "url 1.1.1 (registry+https://github.com/rust-lang/crates.io-index)",
+]
+
+[[package]]
 name = "flate2"
 version = "0.2.14"
 source = "registry+https://github.com/rust-lang/crates.io-index"
