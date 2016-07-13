@@ -70,7 +70,9 @@ authors = [
 
 [dependencies]
 chrono = "0.2"
+difference = "0.4.1"
 docopt = "0.6"
+docopt_macros = "0.6.81"
 eventual = "0.1.6"
 getopts = "0.2"
 gtk = { version = "0.1.0", optional = true }
@@ -81,13 +83,17 @@ num = "0.1"
 permutohedron = "0.2"
 rand = "0.3"
 regex = { version = "0.1", features = ["pattern"] }
-rustc-serialize = "0.3"
 rust-crypto = "0.2"
+rustc-serialize = "0.3"
 schedule_recv = "0.1.0"
+term = "0.4"
 term-painter = "0.2"
 time = "0.1"
 unicode-segmentation = "0.1"
 url = "1.1.0"
+
+[dependencies.meta]
+path = "meta"
 
 [target.'cfg(target_os="linux")'.dependencies]
 x11 = { version = "2.6.0", features = ["xlib"], optional = true }
@@ -107,8 +113,6 @@ clippy = []
 
 [workspace]
 members = [
-    "meta",
-
     # http://rosettacode.org/wiki/100_doors
     "tasks/100-doors",
 
@@ -145,6 +149,10 @@ members = [
     # http://rosettacode.org/wiki/Use_another_language_to_call_a_function
     "tasks/use-another-language-to-call-a-function",
 ]
+
+[[bin]]
+name = "coverage"
+path = "src/bin/coverage.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/9_billion_names_of_God_the_integer

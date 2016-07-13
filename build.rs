@@ -15,10 +15,10 @@ use std::path::Path;
 
 use unicode_segmentation::UnicodeSegmentation;
 
-use meta::TaskParseError;
+use meta::local::{self, TaskParseError};
 
 fn main() {
-    let tasks = meta::parse_tasks("Cargo.toml");
+    let tasks = local::parse_tasks("Cargo.toml");
 
     // Verify that all workspace members are in lexicographic order.
     let sorted_tasks = {
@@ -41,13 +41,13 @@ fn main() {
             match *err {
                 TaskParseError::InvalidURL(ref url) => {
                     println!("cargo:warning={}",
-                             format!("invalid URL '{}' found for task {}", url, task.name()));
+                             format!("invalid URL '{}' found for task {}", url, task.crate_name()));
                 }
                 TaskParseError::MissingMetadata => {
                     println!("cargo:warning={}",
                              format!("missing URL metadata for {}. See CONTRIBUTING.md for \
                                       details.",
-                                     task.name()));
+                                     task.crate_name()));
                 }
 
             }

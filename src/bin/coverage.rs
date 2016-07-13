@@ -1,19 +1,20 @@
 #![feature(plugin)]
 #![plugin(docopt_macros)]
 
-extern crate coverage;
 extern crate difference;
 extern crate docopt;
 extern crate rust_rosetta;
 extern crate rustc_serialize;
 extern crate term;
 
+extern crate meta;
+
 use std::io;
 
 use difference::Difference;
 use term::Terminal;
 
-use coverage::Task;
+use meta::Task;
 
 docopt!(Args derive Debug, "
 Detect unimplemented tasks.
@@ -32,7 +33,7 @@ Usage:
 Options:
     -h --help           Show this screen.
 
-    --nodiff            Don't print diffs.
+    --diff              Print diffs.
 
     --filter=<type>     Filter tasks printed by the program. Accepted values:
 
@@ -98,18 +99,17 @@ fn print_task<T: ?Sized>(t: &mut T, task: &Task, diff: bool) -> io::Result<()>
     where T: Terminal
 {
     try!(t.attr(term::Attr::Bold));
-    try!(writeln!(t, "{}", task.title));
+    try!(writeln!(t, "{}", task.title()));
     try!(t.reset());
 
     try!(write!(t, "Local:"));
-    try!(write_status(t, task.local_code.is_some()));
+    try!(write_status(t, task.local_code().is_some()));
 
     try!(write!(t, "Remote:"));
-    try!(write_status(t, task.remote_code.is_some()));
+    try!(write_status(t, task.remote_code().is_some()));
     try!(writeln!(t, ""));
 
-    if let (Some(ref local_code), Some(ref remote_code)) = (task.local_code.clone(),
-                                                            task.remote_code.clone()) {
+    if let (Some(ref local_code), Some(ref remote_code)) = (task.local_code(), task.remote_code()) {
         if diff {
             try!(print_diff(t, remote_code, local_code));
         }
@@ -144,9 +144,9 @@ fn main() {
     let mut t = term::stdout().unwrap();
 
     let tasks = if args.arg_tasks.len() > 0 {
-        coverage::fetch_tasks(&args.arg_tasks.as_slice())
+        meta::fetch_tasks(&args.arg_tasks.as_slice())
     } else {
-        coverage::fetch_all_tasks()
+        meta::fetch_all_tasks()
     };
 
     let task_filter = args.flag_filter.unwrap_or_default().to_owned();
@@ -156,7 +156,7 @@ fn main() {
             TaskFilter::LocalOnly if !task.is_local_only() => continue,
             TaskFilter::RemoteOnly if !task.is_remote_only() => continue,
             TaskFilter::Unimplemented if !task.is_unimplemented() => continue,
-            TaskFilter::All | _ => print_task(&mut *t, &task, !args.flag_nodiff).unwrap(),
+            TaskFilter::All | _ => print_task(&mut *t, &task, args.flag_diff).unwrap(),
         }
     }
 }
