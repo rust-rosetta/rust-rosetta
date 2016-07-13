@@ -17,9 +17,9 @@ Not sure how to help?
 
 ## TL;DR ##
 * Pick a task to implement (see [rust-rosetta coverage](https://euclio.github.io/rosetta-coverage) for unimplemented tasks).
-* Add an entry for your task in `Cargo.toml`.
-* Add a link to the Rosetta code wiki page for your task at the top of your
-  file.
+* Create a new crate for your task in the `tasks` subdirectory.
+* Add an entry for your task in the `workspace.members` key in [`Cargo.toml`].
+* Add a link to the Rosetta code wiki page for your task in the `package.metadata.rosettacode.url` key in your subcrate's [`Cargo.toml`].
 * Implement your task.
 * Add tests.
 
@@ -44,30 +44,41 @@ Not sure how to help?
   $ git checkout -b hoverbear-fizzbuzz
   ```
 
-* Create a file in the repository that matches the name of the task.
+* Create a subcrate in the `tasks` directory that matches the name of the task.
 
-    For example, `src/fizzbuzz.rs` for [FizzBuzz](http://rosettacode.org/wiki/FizzBuzz) or `src/hello_world/text.rs` for [Hello world/Text](http://rosettacode.org/wiki/Hello_world/Text).
+    For example, `tasks/fizzbuzz` for [FizzBuzz](http://rosettacode.org/wiki/FizzBuzz) or `tasks/hello-world/text` for [Hello world/Text](http://rosettacode.org/wiki/Hello_world/Text).
 
-    Any resources needed by the task should be added to the [`resources`](./resources) folder.
+    Any resources needed by the task should be added to a [`resources`](./resources) folder in the subcrate's directory.
 
-* Add your file to [`Cargo.toml`](Cargo.toml) (it's alphabetical!): If you'd like, you're welcome to add your contact details, name, or other information first to the `authors` array. Then add the entry in *lexicographical* ordering into [`Cargo.toml`](Cargo.toml) like this:
+    ```sh
+    $ cd tasks
+    $ cargo new --bin fizzbuzz
+    ```
+
+    Note: if your task is meant to be used as a library by other tasks, you
+    might want to use the `--lib` flag instead.
+
+* Add your subcrate to the `workspace.members` array in [`Cargo.toml`](Cargo.toml) (it's alphabetical!): If you'd like, you're welcome to add your contact details, name, or other information first to the `authors` array. Then add the entry in *lexicographical* ordering into [`Cargo.toml`](Cargo.toml) like this:
 
   ```toml
-  [[bin]]
-  # http://rosettacode.org/wiki/FizzBuzz
-  name = "fizzbuzz"
-  path = "src/fizzbuzz.rs"
+  [workspace]
+  members = [
+      # http://rosettacode.org/wiki/FizzBuzz
+      "tasks/fizzbuzz",
+  ]
   ```
 
-* Include a link to the Rosetta Code Problem you are solving at the top of your file like this:
+* Include a link to the Rosetta Code Problem you are solving in the `package.metadata.rosettacode.url` field in your subcrate's `Cargo.toml`.
 
-  ```rust
-  // http://rosettacode.org/wiki/FizzBuzz
+  ```toml
+  [package.metadata.rosettacode]
+  url = "http://rosettacode.org/wiki/FizzBuzz"
   ```
 
-* Implement your task! You should add a `main()` function that demonstrates the solution. If your task is testable, please add tests to the bottom of the file. See below for more in-depth testing guidelines.
+* Implement your task! If you generated your crate using `cargo new` you can add your code to the `main()` function in `src/main.rs`. If your task is testable, please add tests to the bottom of the file. See below for more in-depth testing guidelines.
 
-* Your code should build without warnings on latest nightly provided by [`rustup.sh`](https://www.rust-lang.org/downloads.html).
+* Your code should build without warnings on latest nightly provided by [`rustup.rs`](https://rustup.rs).
+
 * Please, use [`rustfmt`](https://github.com/rust-lang-nursery/rustfmt) on your code.
 
     You can install the tool with `cargo install rustfmt`. See `rustfmt --help` for more information. If you're having trouble getting `rustfmt` to work, try to keep your contributions adherent to the official style guide which you can see at [this location](http://doc.rust-lang.org/nightly/style/). Note the style guide is still a work-in-progress.
@@ -75,8 +86,9 @@ Not sure how to help?
 * Stage your changes for commit, adding new and modified files to it:
 
   ```sh
-  $ git add src/fizzbuzz.rs
+  $ git add tasks/fizzbuzz
   $ git add Cargo.toml
+  $ git add Cargo.lock
   ```
 * Check `git status` to make sure you don't mangle anything else.
 * Commit your changes.
@@ -114,29 +126,8 @@ If this is unclear or you're having difficulties, just open an issue, we'd love 
 In addition to preventing warnings, you can try running [`cargo
 clippy`](https://github.com/Manishearth/rust-clippy) on your code. `clippy`
 provides many additional lints that can help prevent unidiomatic and inefficient
-code. Install the subcommand with `cargo install clippy`.
-
-Certain `clippy` lints may lead to false positives, or may not make sense in the
-context of your task. In this repository, lints are allowed or denied based on
-the presence of the `clippy` feature. So, you should invoke `cargo clippy` like
-so:
-
-```bash
-$ cargo clippy --bin fizzbuzz --feature clippy
-```
-
-If you'd like to run `clippy` over all of the targets in the tree, awesome! Just
-omit the `--bin` flag.
-
-You may control lint warnings within your file by using `#[cfg_attr]`:
-
-```rust
-#[cfg_attr(feature = "clippy", allow(blacklisted_name))]
-fn main() {
-  // Normally, clippy warns when naming a variable "foo".
-  let foo = "bar";
-}
-```
+code. Install the subcommand with `cargo install clippy`, and then simply run
+`cargo clippy` on your subcrate.
 
 ## Testing ##
 
