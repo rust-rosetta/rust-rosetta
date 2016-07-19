@@ -132,6 +132,9 @@ members = [
     # http://rosettacode.org/wiki/Compile-time_calculation
     "tasks/compile-time-calculation",
 
+    # http://rosettacode.org/wiki/Quine
+    "tasks/quine",
+
     # http://rosettacode.org/wiki/Rosetta_Code/Find_unimplemented_tasks
     "tasks/rosetta-code/find-unimplemented-tasks",
 
@@ -1465,11 +1468,6 @@ path = "src/pythagorean_triples.rs"
 # http://rosettacode.org/wiki/Queue/Definition
 name = "queue_definition"
 path = "src/queue/definition.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Quine
-name = "quine"
-path = "src/quine.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Random_numbers
