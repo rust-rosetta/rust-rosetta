@@ -106,11 +106,6 @@ user32-sys = "0.2.0"
 meta = { path = "meta" }
 unicode-segmentation = "0.1.2"
 
-[features]
-# Introduce a dummy feature so that clippy lints don't appear as unused when
-# building without clippy
-clippy = []
-
 [workspace]
 members = [
     # http://rosettacode.org/wiki/100_doors
@@ -392,11 +387,6 @@ test = false
 # http://rosettacode.org/wiki/Boolean_values
 name = "boolean_values"
 path = "src/boolean_values.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Brownian_tree
-name = "brownian_tree"
-path = "src/brownian_tree.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Bulls_and_cows
