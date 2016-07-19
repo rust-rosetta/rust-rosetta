@@ -105,10 +105,6 @@ user32-sys = "0.2.0"
 meta = { path = "meta" }
 unicode-segmentation = "0.1.2"
 
-# subcrates
-[dependencies.factorial-plugin]
-path = "src/factorial_plugin"
-
 [features]
 # Introduce a dummy feature so that clippy lints don't appear as unused when
 # building without clippy
@@ -132,6 +128,9 @@ members = [
 
     # http://rosettacode.org/wiki/99_Bottles_of_Beer
     "tasks/99-bottles-of-beer",
+
+    # http://rosettacode.org/wiki/Compile-time_calculation
+    "tasks/compile-time-calculation",
 
     # http://rosettacode.org/wiki/Rosetta_Code/Find_unimplemented_tasks
     "tasks/rosetta-code/find-unimplemented-tasks",
@@ -492,11 +491,6 @@ test = false
 # http://rosettacode.org/wiki/Comments
 name = "comments"
 path = "src/comments.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Compile-time_calculation
-name = "compile_time_calculation"
-path = "src/compile_time_calculation.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Compound_data_type

@@ -1,5 +1,3 @@
-// http://rosettacode.org/wiki/Compile-time_calculation
-
 // syntax extension are not yet stable, so we need to opt-in
 // explicitly to the phase feature gate
 #![feature(plugin)]

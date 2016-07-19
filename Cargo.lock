@@ -179,6 +179,13 @@ version = "1.0.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 
 [[package]]
+name = "compile-time-calculation"
+version = "0.1.0"
+dependencies = [
+ "factorial-plugin 1.0.0",
+]
+
+[[package]]
 name = "cookie"
 version = "0.2.5"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1055,7 +1062,6 @@ dependencies = [
  "csv 0.14.4 (registry+https://github.com/rust-lang/crates.io-index)",
  "docopt 0.6.81 (registry+https://github.com/rust-lang/crates.io-index)",
  "eventual 0.1.7 (registry+https://github.com/rust-lang/crates.io-index)",
- "factorial-plugin 1.0.0",
  "getopts 0.2.14 (registry+https://github.com/rust-lang/crates.io-index)",
  "glium 0.15.0 (registry+https://github.com/rust-lang/crates.io-index)",
  "gnuplot 0.0.20 (registry+https://github.com/rust-lang/crates.io-index)",
