@@ -1,0 +1,9 @@
+[package]
+name = "use-another-language-to-call-a-function"
+version = "0.1.0"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Use_another_language_to_call_a_function"
+
+[dependencies]
+libc = "0.2"

@@ -106,9 +106,6 @@ meta = { path = "meta" }
 unicode-segmentation = "0.1.2"
 
 # subcrates
-[dependencies.use-another-language-to-call-a-function]
-path = "src/use_another_language_to_call_a_function"
-
 [dependencies.factorial-plugin]
 path = "src/factorial_plugin"
 
@@ -138,6 +135,9 @@ members = [
 
     # http://rosettacode.org/wiki/Rosetta_Code/Find_unimplemented_tasks
     "tasks/rosetta-code/find-unimplemented-tasks",
+
+    # http://rosettacode.org/wiki/Use_another_language_to_call_a_function
+    "tasks/use-another-language-to-call-a-function",
 ]
 
 [[bin]]
@@ -1962,11 +1962,6 @@ test = false
 name = "url_parser"
 path = "src/url_parser.rs"
 test = false
-
-[[bin]]
-# http://rosettacode.org/wiki/Use_another_language_to_call_a_function
-name = "use_another_language_to_call_a_function"
-path = "src/use_another_language_to_call_a_function.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/User_input/Text
