@@ -1,5 +1,3 @@
-// http://rosettacode.org/wiki/OpenGL
-
 //! This example uses the `glium` library, a high level, safe wrapper for OpenGL.
 //!
 //! It is based off the example in the [official tutorial].

@@ -905,6 +905,13 @@ dependencies = [
 ]
 
 [[package]]
+name = "opengl"
+version = "0.1.0"
+dependencies = [
+ "glium 0.15.0 (registry+https://github.com/rust-lang/crates.io-index)",
+]
+
+[[package]]
 name = "openssl"
 version = "0.7.14"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1067,7 +1074,6 @@ dependencies = [
  "docopt 0.6.81 (registry+https://github.com/rust-lang/crates.io-index)",
  "eventual 0.1.7 (registry+https://github.com/rust-lang/crates.io-index)",
  "getopts 0.2.14 (registry+https://github.com/rust-lang/crates.io-index)",
- "glium 0.15.0 (registry+https://github.com/rust-lang/crates.io-index)",
  "gnuplot 0.0.20 (registry+https://github.com/rust-lang/crates.io-index)",
  "gtk 0.1.0 (registry+https://github.com/rust-lang/crates.io-index)",
  "hyper 0.9.9 (registry+https://github.com/rust-lang/crates.io-index)",
