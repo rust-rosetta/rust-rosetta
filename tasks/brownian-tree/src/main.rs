@@ -1,8 +1,3 @@
-// http://rosettacode.org/wiki/Brownian_tree
-
-
-// #![feature(test)]
-
 extern crate image;
 extern crate rand;
 

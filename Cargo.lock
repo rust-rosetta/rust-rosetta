@@ -105,6 +105,14 @@ version = "0.7.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 
 [[package]]
+name = "brownian-tree"
+version = "0.1.0"
+dependencies = [
+ "image 0.10.1 (registry+https://github.com/rust-lang/crates.io-index)",
+ "rand 0.3.14 (registry+https://github.com/rust-lang/crates.io-index)",
+]
+
+[[package]]
 name = "byteorder"
 version = "0.3.13"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1077,7 +1085,6 @@ dependencies = [
  "gnuplot 0.0.20 (registry+https://github.com/rust-lang/crates.io-index)",
  "gtk 0.1.0 (registry+https://github.com/rust-lang/crates.io-index)",
  "hyper 0.9.9 (registry+https://github.com/rust-lang/crates.io-index)",
- "image 0.10.1 (registry+https://github.com/rust-lang/crates.io-index)",
  "libc 0.2.13 (registry+https://github.com/rust-lang/crates.io-index)",
  "meta 0.1.0",
  "nalgebra 0.8.2 (registry+https://github.com/rust-lang/crates.io-index)",
