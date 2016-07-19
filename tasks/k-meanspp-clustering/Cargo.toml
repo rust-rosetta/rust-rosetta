@@ -1,0 +1,15 @@
+[package]
+name = "k-meanspp-clustering"
+version = "0.1.0"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/K-means%2B%2B_clustering"
+
+[dependencies]
+csv = "0.14"
+getopts = "0.2"
+gnuplot = "0.0.20"
+nalgebra = "0.8.0"
+num = "0.1"
+rand = "0.3"
+rustc-serialize = "0.3"

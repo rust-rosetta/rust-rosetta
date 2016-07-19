@@ -1,5 +1,3 @@
-// http://rosettacode.org/wiki/K-means++_clustering
-
 #![feature(test)]
 
 extern crate csv;
@@ -39,16 +37,15 @@ fn sqdist(p1: &Point, p2: &Point) -> f64 {
 /// Returns (distance^2, index) tuple of winning point.
 fn nearest(p: &Point, candidates: &Vec<Point>) -> (f64, usize) {
     let (dsquared, the_index) = candidates.iter()
-                                          .enumerate()
-                                          .fold((sqdist(p, &candidates[0]), 0),
-                                                |(d, index), next| {
-                                                    let dprime = sqdist(p, &candidates[next.0]);
-                                                    if dprime < d {
-                                                        (dprime, next.0)
-                                                    } else {
-                                                        (d, index)
-                                                    }
-                                                });
+        .enumerate()
+        .fold((sqdist(p, &candidates[0]), 0), |(d, index), next| {
+            let dprime = sqdist(p, &candidates[next.0]);
+            if dprime < d {
+                (dprime, next.0)
+            } else {
+                (d, index)
+            }
+        });
     (dsquared, the_index)
 }
 
@@ -185,8 +182,8 @@ fn viz(clusters: Vec<Cluster>, stats: Stats, k: usize, n: u32, e: f64) {
             for cluster in clusters.iter() {
                 axes.points(cluster.members.iter().map(|p| p[0]),
                             cluster.members
-                                   .iter()
-                                   .map(|p| p[1]),
+                                .iter()
+                                .map(|p| p[1]),
                             &[PointSymbol('O'), PointSize(0.25)]);
             }
             axes.set_aspect_ratio(Fix(1.0))
