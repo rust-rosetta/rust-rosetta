@@ -123,6 +123,9 @@ members = [
     # http://rosettacode.org/wiki/99_Bottles_of_Beer
     "tasks/99-bottles-of-beer",
 
+    # http://rosettacode.org/wiki/Bitmap
+    "tasks/bitmap",
+
     # http://rosettacode.org/wiki/Brownian_tree
     "tasks/brownian-tree",
 
@@ -366,11 +369,6 @@ path = "src/binomial_coefficients.rs"
 # https://rosettacode.org/wiki/Bitcoin/address_validation
 name = "bitcoin_address_validation"
 path = "src/bitcoin/address_validation.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Basic_bitmap_storage
-name = "bitmap"
-path = "src/bitmap.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Bitmap/Write_a_PPM_file
