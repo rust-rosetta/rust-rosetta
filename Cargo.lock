@@ -290,6 +290,13 @@ dependencies = [
 ]
 
 [[package]]
+name = "discordian-date"
+version = "0.1.0"
+dependencies = [
+ "chrono 0.2.22 (registry+https://github.com/rust-lang/crates.io-index)",
+]
+
+[[package]]
 name = "dlib"
 version = "0.3.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1139,7 +1146,6 @@ dependencies = [
 name = "rust-rosetta"
 version = "0.0.1"
 dependencies = [
- "chrono 0.2.22 (registry+https://github.com/rust-lang/crates.io-index)",
  "difference 0.4.1 (registry+https://github.com/rust-lang/crates.io-index)",
  "docopt 0.6.81 (registry+https://github.com/rust-lang/crates.io-index)",
  "docopt_macros 0.6.85 (registry+https://github.com/rust-lang/crates.io-index)",

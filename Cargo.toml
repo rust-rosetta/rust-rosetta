@@ -69,7 +69,6 @@ authors = [
 ]
 
 [dependencies]
-chrono = "0.2"
 difference = "0.4.1"
 docopt = "0.6"
 docopt_macros = "0.6.81"
@@ -139,6 +138,9 @@ members = [
 
     # http://rosettacode.org/wiki/Day_of_the_week
     "tasks/day-of-the-week",
+
+    # http://rosettacode.org/wiki/Discordian_date
+    "tasks/discordian-date",
 
     # http://rosettacode.org/wiki/K-means%2B%2B_clustering
     "tasks/k-meanspp-clustering",
@@ -596,11 +598,6 @@ path = "src/dijkstras_algorithm.rs"
 # http://rosettacode.org/wiki/Dining_philosophers
 name = "dining_philosophers"
 path = "src/dining_philosophers.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Discordian_date
-name = "discordian_date"
-path = "src/discordian_date.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/DNS_query

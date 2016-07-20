@@ -1,0 +1,9 @@
+[package]
+name = "discordian-date"
+version = "0.1.0"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Discordian_date"
+
+[dependencies]
+chrono = "0.2"
