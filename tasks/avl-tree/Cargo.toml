@@ -1,0 +1,11 @@
+[package]
+name = "avl-tree"
+version = "0.1.0"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/AVL_tree"
+
+[dependencies]
+getopts = "0.2"
+rand = "0.3"
+term-painter = "0.2"
