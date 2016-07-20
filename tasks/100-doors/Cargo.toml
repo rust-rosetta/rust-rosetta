@@ -1,0 +1,9 @@
+[package]
+name = "100-doors"
+version = "0.1.0"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/100_doors"
+
+[dependencies]
+num = "0.1.32"

@@ -1,0 +1,9 @@
+[package]
+name = "compile-time-calculation"
+version = "0.1.0"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Compile-time_calculation"
+
+[dependencies]
+factorial-plugin = { path = "factorial-plugin" }

@@ -17,13 +17,12 @@ This is a project for learning. If you're working on a problem and need some hel
 
 ### Coverage ###
 
-The `coverage` subcrate contains commands that are useful for discovering
+The main crate contains a `coverage` binary that is useful for discovering
 incomplete solutions, or finding solutions that are different from the version
 posted to the Rosetta Code wiki. To see what commands are available:
 
 ```sh
-$ cd coverage
-$ cargo run --release -- --help
+$ cargo run --release --bin coverage -- --help
 ```
 
 ## Tasks Complete ##

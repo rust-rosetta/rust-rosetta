@@ -19,7 +19,7 @@ install:
   - ps: Start-FileDownload "https://static.rust-lang.org/dist/rust-nightly-${env:TARGET}.msi"
   - msiexec /i rust-nightly-%TARGET%.msi /quiet /passive /qn /norestart INSTALLDIR=%RUST_DIR%
   - SET PATH=%PATH%;%RUST_DIR%\bin
-  - SET PATH=%PATH%;C:\MinGW\bin
+  - SET PATH=%PATH%;C:\msys64\mingw%BITS%\bin;C:\msys64\usr\bin
   - SET OPENSSL_INCLUDE_DIR=C:\OpenSSL-Win%BITS%\include
   - SET OPENSSL_LIB_DIR=C:\OpenSSL-Win%BITS%\lib
   - rustc -V
@@ -33,10 +33,4 @@ test_script:
   # environment preferring to load DLLs that would be incompatible with 64-bit
   # build configurations.
   - ps: cp -path "C:\OpenSSL-Win${env:BITS}\*.dll" -destination (md -force "$env:APPVEYOR_BUILD_FOLDER\target\debug")
-  - cargo test
-  # Also copy the correct OpenSSL DLLs to the build target path of the coverage
-  # crate. They should be preferred by DLL resolution to prevent platform
-  # binary mismatch errors during runtime.
-  - ps: cp -path "C:\OpenSSL-Win${env:BITS}\*.dll" -destination (md -force "$env:APPVEYOR_BUILD_FOLDER\coverage\target\debug")
-  - cd coverage
   - cargo test

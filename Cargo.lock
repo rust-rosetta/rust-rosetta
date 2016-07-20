@@ -1,41 +1,35 @@
 [root]
-name = "rust-rosetta"
-version = "0.0.1"
+name = "use-another-language-to-call-a-function"
+version = "0.1.0"
 dependencies = [
- "chrono 0.2.22 (registry+https://github.com/rust-lang/crates.io-index)",
- "csv 0.14.4 (registry+https://github.com/rust-lang/crates.io-index)",
- "docopt 0.6.81 (registry+https://github.com/rust-lang/crates.io-index)",
- "eventual 0.1.7 (registry+https://github.com/rust-lang/crates.io-index)",
- "factorial-plugin 1.0.0",
- "getopts 0.2.14 (registry+https://github.com/rust-lang/crates.io-index)",
- "glium 0.15.0 (registry+https://github.com/rust-lang/crates.io-index)",
- "gnuplot 0.0.20 (registry+https://github.com/rust-lang/crates.io-index)",
- "gtk 0.1.0 (registry+https://github.com/rust-lang/crates.io-index)",
- "hyper 0.9.9 (registry+https://github.com/rust-lang/crates.io-index)",
- "image 0.10.1 (registry+https://github.com/rust-lang/crates.io-index)",
- "lazy_static 0.2.1 (registry+https://github.com/rust-lang/crates.io-index)",
  "libc 0.2.13 (registry+https://github.com/rust-lang/crates.io-index)",
- "nalgebra 0.8.2 (registry+https://github.com/rust-lang/crates.io-index)",
- "ncurses 5.80.0 (registry+https://github.com/rust-lang/crates.io-index)",
- "num 0.1.32 (registry+https://github.com/rust-lang/crates.io-index)",
- "permutohedron 0.2.1 (registry+https://github.com/rust-lang/crates.io-index)",
- "rand 0.3.14 (registry+https://github.com/rust-lang/crates.io-index)",
- "regex 0.1.73 (registry+https://github.com/rust-lang/crates.io-index)",
- "rust-crypto 0.2.36 (registry+https://github.com/rust-lang/crates.io-index)",
- "rustbox 0.8.1 (registry+https://github.com/rust-lang/crates.io-index)",
- "rustc-serialize 0.3.19 (registry+https://github.com/rust-lang/crates.io-index)",
- "schedule_recv 0.1.0 (registry+https://github.com/rust-lang/crates.io-index)",
- "term-painter 0.2.2 (registry+https://github.com/rust-lang/crates.io-index)",
- "time 0.1.35 (registry+https://github.com/rust-lang/crates.io-index)",
- "toml 0.1.30 (registry+https://github.com/rust-lang/crates.io-index)",
- "unicode-segmentation 0.1.2 (registry+https://github.com/rust-lang/crates.io-index)",
- "url 1.1.1 (registry+https://github.com/rust-lang/crates.io-index)",
- "use-another-language-to-call-a-function 1.0.0",
- "user32-sys 0.2.0 (registry+https://github.com/rust-lang/crates.io-index)",
- "walkdir 0.1.5 (registry+https://github.com/rust-lang/crates.io-index)",
- "winapi 0.2.7 (registry+https://github.com/rust-lang/crates.io-index)",
- "x11 2.6.1 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
+
+[[package]]
+name = "100-doors"
+version = "0.1.0"
+dependencies = [
+ "num 0.1.32 (registry+https://github.com/rust-lang/crates.io-index)",
+]
+
+[[package]]
+name = "2048"
+version = "0.1.0"
+dependencies = [
+ "rand 0.3.14 (registry+https://github.com/rust-lang/crates.io-index)",
+ "rustbox 0.8.1 (registry+https://github.com/rust-lang/crates.io-index)",
+]
+
+[[package]]
+name = "24-game"
+version = "0.1.0"
+dependencies = [
+ "rand 0.3.14 (registry+https://github.com/rust-lang/crates.io-index)",
+]
+
+[[package]]
+name = "99-bottles-of-beer"
+version = "0.1.0"
 
 [[package]]
 name = "aho-corasick"
@@ -109,6 +103,14 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 name = "bitflags"
 version = "0.7.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
+
+[[package]]
+name = "brownian-tree"
+version = "0.1.0"
+dependencies = [
+ "image 0.10.1 (registry+https://github.com/rust-lang/crates.io-index)",
+ "rand 0.3.14 (registry+https://github.com/rust-lang/crates.io-index)",
+]
 
 [[package]]
 name = "byteorder"
@@ -185,6 +187,13 @@ version = "1.0.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 
 [[package]]
+name = "compile-time-calculation"
+version = "0.1.0"
+dependencies = [
+ "factorial-plugin 1.0.0",
+]
+
+[[package]]
 name = "cookie"
 version = "0.2.5"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -254,6 +263,14 @@ dependencies = [
 ]
 
 [[package]]
+name = "difference"
+version = "0.4.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+dependencies = [
+ "getopts 0.2.14 (registry+https://github.com/rust-lang/crates.io-index)",
+]
+
+[[package]]
 name = "dlib"
 version = "0.3.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -269,6 +286,14 @@ dependencies = [
  "regex 0.1.73 (registry+https://github.com/rust-lang/crates.io-index)",
  "rustc-serialize 0.3.19 (registry+https://github.com/rust-lang/crates.io-index)",
  "strsim 0.3.0 (registry+https://github.com/rust-lang/crates.io-index)",
+]
+
+[[package]]
+name = "docopt_macros"
+version = "0.6.85"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+dependencies = [
+ "docopt 0.6.81 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
 [[package]]
@@ -301,6 +326,15 @@ dependencies = [
 [[package]]
 name = "factorial-plugin"
 version = "1.0.0"
+
+[[package]]
+name = "find-unimplemented-tasks"
+version = "0.1.0"
+dependencies = [
+ "hyper 0.9.9 (registry+https://github.com/rust-lang/crates.io-index)",
+ "rustc-serialize 0.3.19 (registry+https://github.com/rust-lang/crates.io-index)",
+ "url 1.1.1 (registry+https://github.com/rust-lang/crates.io-index)",
+]
 
 [[package]]
 name = "flate2"
@@ -667,6 +701,19 @@ dependencies = [
 ]
 
 [[package]]
+name = "k-meanspp-clustering"
+version = "0.1.0"
+dependencies = [
+ "csv 0.14.4 (registry+https://github.com/rust-lang/crates.io-index)",
+ "getopts 0.2.14 (registry+https://github.com/rust-lang/crates.io-index)",
+ "gnuplot 0.0.20 (registry+https://github.com/rust-lang/crates.io-index)",
+ "nalgebra 0.8.2 (registry+https://github.com/rust-lang/crates.io-index)",
+ "num 0.1.32 (registry+https://github.com/rust-lang/crates.io-index)",
+ "rand 0.3.14 (registry+https://github.com/rust-lang/crates.io-index)",
+ "rustc-serialize 0.3.19 (registry+https://github.com/rust-lang/crates.io-index)",
+]
+
+[[package]]
 name = "kernel32-sys"
 version = "0.2.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -764,6 +811,19 @@ dependencies = [
  "kernel32-sys 0.2.2 (registry+https://github.com/rust-lang/crates.io-index)",
  "libc 0.2.13 (registry+https://github.com/rust-lang/crates.io-index)",
  "winapi 0.2.7 (registry+https://github.com/rust-lang/crates.io-index)",
+]
+
+[[package]]
+name = "meta"
+version = "0.1.0"
+dependencies = [
+ "find-unimplemented-tasks 0.1.0",
+ "hyper 0.9.9 (registry+https://github.com/rust-lang/crates.io-index)",
+ "lazy_static 0.2.1 (registry+https://github.com/rust-lang/crates.io-index)",
+ "regex 0.1.73 (registry+https://github.com/rust-lang/crates.io-index)",
+ "toml 0.1.30 (registry+https://github.com/rust-lang/crates.io-index)",
+ "url 1.1.1 (registry+https://github.com/rust-lang/crates.io-index)",
+ "walkdir 0.1.5 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
 [[package]]
@@ -884,6 +944,13 @@ dependencies = [
 ]
 
 [[package]]
+name = "opengl"
+version = "0.1.0"
+dependencies = [
+ "glium 0.15.0 (registry+https://github.com/rust-lang/crates.io-index)",
+]
+
+[[package]]
 name = "openssl"
 version = "0.7.14"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -987,6 +1054,10 @@ dependencies = [
 ]
 
 [[package]]
+name = "quine"
+version = "0.1.0"
+
+[[package]]
 name = "rand"
 version = "0.3.14"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1031,6 +1102,38 @@ dependencies = [
  "rand 0.3.14 (registry+https://github.com/rust-lang/crates.io-index)",
  "rustc-serialize 0.3.19 (registry+https://github.com/rust-lang/crates.io-index)",
  "time 0.1.35 (registry+https://github.com/rust-lang/crates.io-index)",
+]
+
+[[package]]
+name = "rust-rosetta"
+version = "0.0.1"
+dependencies = [
+ "chrono 0.2.22 (registry+https://github.com/rust-lang/crates.io-index)",
+ "difference 0.4.1 (registry+https://github.com/rust-lang/crates.io-index)",
+ "docopt 0.6.81 (registry+https://github.com/rust-lang/crates.io-index)",
+ "docopt_macros 0.6.85 (registry+https://github.com/rust-lang/crates.io-index)",
+ "eventual 0.1.7 (registry+https://github.com/rust-lang/crates.io-index)",
+ "getopts 0.2.14 (registry+https://github.com/rust-lang/crates.io-index)",
+ "gtk 0.1.0 (registry+https://github.com/rust-lang/crates.io-index)",
+ "hyper 0.9.9 (registry+https://github.com/rust-lang/crates.io-index)",
+ "libc 0.2.13 (registry+https://github.com/rust-lang/crates.io-index)",
+ "meta 0.1.0",
+ "ncurses 5.80.0 (registry+https://github.com/rust-lang/crates.io-index)",
+ "num 0.1.32 (registry+https://github.com/rust-lang/crates.io-index)",
+ "permutohedron 0.2.1 (registry+https://github.com/rust-lang/crates.io-index)",
+ "rand 0.3.14 (registry+https://github.com/rust-lang/crates.io-index)",
+ "regex 0.1.73 (registry+https://github.com/rust-lang/crates.io-index)",
+ "rust-crypto 0.2.36 (registry+https://github.com/rust-lang/crates.io-index)",
+ "rustc-serialize 0.3.19 (registry+https://github.com/rust-lang/crates.io-index)",
+ "schedule_recv 0.1.0 (registry+https://github.com/rust-lang/crates.io-index)",
+ "term 0.4.4 (registry+https://github.com/rust-lang/crates.io-index)",
+ "term-painter 0.2.2 (registry+https://github.com/rust-lang/crates.io-index)",
+ "time 0.1.35 (registry+https://github.com/rust-lang/crates.io-index)",
+ "unicode-segmentation 0.1.2 (registry+https://github.com/rust-lang/crates.io-index)",
+ "url 1.1.1 (registry+https://github.com/rust-lang/crates.io-index)",
+ "user32-sys 0.2.0 (registry+https://github.com/rust-lang/crates.io-index)",
+ "winapi 0.2.7 (registry+https://github.com/rust-lang/crates.io-index)",
+ "x11 2.6.1 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
 [[package]]
@@ -1121,6 +1224,14 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 dependencies = [
  "hpack 0.2.0 (registry+https://github.com/rust-lang/crates.io-index)",
  "log 0.3.6 (registry+https://github.com/rust-lang/crates.io-index)",
+]
+
+[[package]]
+name = "solve"
+version = "0.1.0"
+dependencies = [
+ "num 0.1.32 (registry+https://github.com/rust-lang/crates.io-index)",
+ "permutohedron 0.2.1 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
 [[package]]
@@ -1265,13 +1376,6 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 dependencies = [
  "idna 0.1.0 (registry+https://github.com/rust-lang/crates.io-index)",
  "matches 0.1.2 (registry+https://github.com/rust-lang/crates.io-index)",
-]
-
-[[package]]
-name = "use-another-language-to-call-a-function"
-version = "1.0.0"
-dependencies = [
- "libc 0.2.13 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
 [[package]]

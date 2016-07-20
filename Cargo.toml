@@ -70,32 +70,30 @@ authors = [
 
 [dependencies]
 chrono = "0.2"
-csv = "0.14"
+difference = "0.4.1"
 docopt = "0.6"
+docopt_macros = "0.6.81"
 eventual = "0.1.6"
 getopts = "0.2"
-glium = "0.15.0"
-gnuplot = "0.0.20"
 gtk = { version = "0.1.0", optional = true }
 hyper = "0.9.3"
-image = "0.10.0"
 libc = "0.2"
-nalgebra = "0.8.0"
 ncurses = { version = "5.80", optional = true }
 num = "0.1"
 permutohedron = "0.2"
 rand = "0.3"
 regex = { version = "0.1", features = ["pattern"] }
-rustc-serialize = "0.3"
 rust-crypto = "0.2"
+rustc-serialize = "0.3"
 schedule_recv = "0.1.0"
+term = "0.4"
 term-painter = "0.2"
 time = "0.1"
 unicode-segmentation = "0.1"
 url = "1.1.0"
 
-[target.'cfg(unix)'.dependencies]
-rustbox = "0.8"
+[dependencies.meta]
+path = "meta"
 
 [target.'cfg(target_os="linux")'.dependencies]
 x11 = { version = "2.6.0", features = ["xlib"], optional = true }
@@ -105,58 +103,51 @@ winapi = "0.2.6"
 user32-sys = "0.2.0"
 
 [build-dependencies]
-lazy_static = "0.2.1"
-regex = "0.1"
-toml = "0.1"
+meta = { path = "meta" }
 unicode-segmentation = "0.1.2"
-walkdir = "0.1"
 
-# subcrates
-[dependencies.use-another-language-to-call-a-function]
-path = "src/use_another_language_to_call_a_function"
+[workspace]
+members = [
+    # http://rosettacode.org/wiki/100_doors
+    "tasks/100-doors",
 
-[dependencies.factorial-plugin]
-path = "src/factorial_plugin"
+    # http://rosettacode.org/wiki/2048
+    "tasks/2048",
 
-[features]
-# Introduce a dummy feature so that clippy lints don't appear as unused when
-# building without clippy
-clippy = []
+    # http://rosettacode.org/wiki/24_game
+    "tasks/24-game",
 
-[[bin]]
-# http://rosettacode.org/wiki/100_doors
-name = "100_doors"
-path = "src/100_doors.rs"
+    # http://rosettacode.org/wiki/24_game/Solve
+    "tasks/24-game/solve",
 
-[[bin]]
-# http://rosettacode.org/wiki/100_doors
-name = "100_doors_unoptimized"
-path = "src/100_doors_unoptimized.rs"
+    # http://rosettacode.org/wiki/99_Bottles_of_Beer
+    "tasks/99-bottles-of-beer",
 
-[[bin]]
-# http://rosettacode.org/wiki/2048
-name = "2048"
-path = "src/2048.rs"
+    # http://rosettacode.org/wiki/Brownian_tree
+    "tasks/brownian-tree",
 
-[[bin]]
-# http://rosettacode.org/wiki/24_game
-name = "24_game"
-path = "src/24_game.rs"
+    # http://rosettacode.org/wiki/Compile-time_calculation
+    "tasks/compile-time-calculation",
 
-[[bin]]
-# http://rosettacode.org/wiki/24_game
-name = "24_game_rpn"
-path = "src/24_game_rpn.rs"
+    # http://rosettacode.org/wiki/K-means%2B%2B_clustering
+    "tasks/k-meanspp-clustering",
 
-[[bin]]
-# http://rosettacode.org/wiki/24_game/Solve
-name = "24_game_solve"
-path = "src/24_game/solve.rs"
+    # http://rosettacode.org/wiki/OpenGL
+    "tasks/opengl",
+
+    # http://rosettacode.org/wiki/Quine
+    "tasks/quine",
+
+    # http://rosettacode.org/wiki/Rosetta_Code/Find_unimplemented_tasks
+    "tasks/rosetta-code/find-unimplemented-tasks",
+
+    # http://rosettacode.org/wiki/Use_another_language_to_call_a_function
+    "tasks/use-another-language-to-call-a-function",
+]
 
 [[bin]]
-# http://rosettacode.org/wiki/99_Bottles_of_Beer
-name = "99_bottles_of_beer"
-path = "src/99_bottles_of_beer.rs"
+name = "coverage"
+path = "src/bin/coverage.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/9_billion_names_of_God_the_integer
@@ -398,11 +389,6 @@ name = "boolean_values"
 path = "src/boolean_values.rs"
 
 [[bin]]
-# http://rosettacode.org/wiki/Brownian_tree
-name = "brownian_tree"
-path = "src/brownian_tree.rs"
-
-[[bin]]
 # http://rosettacode.org/wiki/Bulls_and_cows
 name = "bulls_and_cows"
 path = "src/bulls_and_cows.rs"
@@ -510,11 +496,6 @@ test = false
 # http://rosettacode.org/wiki/Comments
 name = "comments"
 path = "src/comments.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Compile-time_calculation
-name = "compile_time_calculation"
-path = "src/compile_time_calculation.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Compound_data_type
@@ -1095,11 +1076,6 @@ name = "k-d-tree"
 path = "src/k-d-tree.rs"
 
 [[bin]]
-# http://rosettacode.org/wiki/K-means%2B%2B_clustering
-name = "k-meanspp"
-path = "src/k_meanspp.rs"
-
-[[bin]]
 # http://rosettacode.org/wiki/Kahan_summation
 name = "kahansum"
 path = "src/kahansum.rs"
@@ -1148,10 +1124,6 @@ path = "src/levenshtein_distance.rs"
 # http://rosettacode.org/wiki/Levenshtein_distance/Alignment
 name = "levenshtein_distance_alignment"
 path = "src/levenshtein_distance/alignment.rs"
-
-[[bin]]
-name = "lib"
-path = "src/lib.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Linear_congruential_generator
@@ -1377,12 +1349,6 @@ name = "one_of_n_lines_in_a_file"
 path = "src/one_of_n_lines_in_a_file.rs"
 
 [[bin]]
-# http://rosettacode.org/wiki/OpenGL
-name = "opengl"
-path = "src/opengl.rs"
-test = false
-
-[[bin]]
 # http://rosettacode.org/wiki/Ordered_words
 name = "ordered_words"
 path = "src/ordered_words.rs"
@@ -1495,11 +1461,6 @@ name = "queue_definition"
 path = "src/queue/definition.rs"
 
 [[bin]]
-# http://rosettacode.org/wiki/Quine
-name = "quine"
-path = "src/quine.rs"
-
-[[bin]]
 # http://rosettacode.org/wiki/Random_numbers
 name = "random_numbers"
 path = "src/random_numbers.rs"
@@ -1607,11 +1568,6 @@ path = "src/roots_of_unity.rs"
 # http://rosettacode.org/wiki/Rosetta_Code/Find_bare_lang_tags
 name = "rosetta_code_find_bare_lang_tags"
 path = "src/rosetta_code/find_bare_lang_tags.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Rosetta_Code/Find_unimplemented_tasks
-name = "rosetta_code_find_unimplemented_tasks"
-path = "src/rosetta_code/find_unimplemented_tasks.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Rosetta_Code/Fix_code_tags
@@ -1989,11 +1945,6 @@ test = false
 name = "url_parser"
 path = "src/url_parser.rs"
 test = false
-
-[[bin]]
-# http://rosettacode.org/wiki/Use_another_language_to_call_a_function
-name = "use_another_language_to_call_a_function"
-path = "src/use_another_language_to_call_a_function.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/User_input/Text

@@ -1,0 +1,10 @@
+[package]
+name = "solve"
+version = "0.1.0"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/24_game/Solve"
+
+[dependencies]
+num = "0.1"
+permutohedron = "0.2"

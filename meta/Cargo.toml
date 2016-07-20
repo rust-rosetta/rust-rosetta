@@ -1,0 +1,13 @@
+[package]
+name = "meta"
+version = "0.1.0"
+
+[dependencies]
+hyper = "0.9"
+lazy_static = "0.2.1"
+regex = "0.1"
+toml = "0.1"
+url = "1.1.1"
+walkdir = "0.1"
+
+find-unimplemented-tasks = { path = "../tasks/rosetta-code/find-unimplemented-tasks" }

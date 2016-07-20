@@ -1,0 +1,6 @@
+[package]
+name = "99-bottles-of-beer"
+version = "0.1.0"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/99_Bottles_of_Beer"
