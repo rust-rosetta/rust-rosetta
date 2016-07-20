@@ -73,7 +73,6 @@ chrono = "0.2"
 difference = "0.4.1"
 docopt = "0.6"
 docopt_macros = "0.6.81"
-eventual = "0.1.6"
 getopts = "0.2"
 gtk = { version = "0.1.0", optional = true }
 hyper = "0.9.3"
@@ -140,6 +139,9 @@ members = [
 
     # http://rosettacode.org/wiki/OpenGL
     "tasks/opengl",
+
+    # http://rosettacode.org/wiki/Parallel_calculations
+    "tasks/parallel-calculations",
 
     # http://rosettacode.org/wiki/Prime_decomposition
     "tasks/prime-decomposition",
@@ -1367,11 +1369,6 @@ path = "src/palindrome.rs"
 # http://rosettacode.org/wiki/Pangram_checker
 name = "pangram"
 path = "src/pangram.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Parallel_calculations
-name = "parallel_calculations"
-path = "src/parallel_calculations.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Parametric_polymorphism

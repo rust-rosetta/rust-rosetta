@@ -1035,6 +1035,14 @@ dependencies = [
 ]
 
 [[package]]
+name = "parallel-calculations"
+version = "0.1.0"
+dependencies = [
+ "eventual 0.1.7 (registry+https://github.com/rust-lang/crates.io-index)",
+ "prime-decomposition 0.1.0",
+]
+
+[[package]]
 name = "permutohedron"
 version = "0.2.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1127,7 +1135,6 @@ dependencies = [
  "difference 0.4.1 (registry+https://github.com/rust-lang/crates.io-index)",
  "docopt 0.6.81 (registry+https://github.com/rust-lang/crates.io-index)",
  "docopt_macros 0.6.85 (registry+https://github.com/rust-lang/crates.io-index)",
- "eventual 0.1.7 (registry+https://github.com/rust-lang/crates.io-index)",
  "getopts 0.2.14 (registry+https://github.com/rust-lang/crates.io-index)",
  "gtk 0.1.0 (registry+https://github.com/rust-lang/crates.io-index)",
  "hyper 0.9.9 (registry+https://github.com/rust-lang/crates.io-index)",
