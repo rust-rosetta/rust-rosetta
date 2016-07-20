@@ -1,10 +1,9 @@
-// http://rosettacode.org/wiki/Write_ppm_file
+extern crate bitmap;
 extern crate rand;
 
 use std::fs::File;
 use std::io::{Error, Write};
 use bitmap::Image;
-mod bitmap;
 
 trait PPMWritable {
     fn write_ppm(&self, filename: &str) -> Result<(), Error>;

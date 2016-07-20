@@ -1,0 +1,10 @@
+[package]
+name = "write-a-ppm-file"
+version = "0.1.0"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Bitmap/Write_a_PPM_file"
+
+[dependencies]
+rand = "0.3"
+bitmap = { path = ".." }

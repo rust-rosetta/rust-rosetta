@@ -1,8 +1,9 @@
 [root]
-name = "use-another-language-to-call-a-function"
+name = "write-a-ppm-file"
 version = "0.1.0"
 dependencies = [
- "libc 0.2.13 (registry+https://github.com/rust-lang/crates.io-index)",
+ "bitmap 0.1.0",
+ "rand 0.3.14 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
 [[package]]
@@ -80,10 +81,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "basic-bitmap-storage"
-version = "0.1.0"
-
-[[package]]
 name = "bitflags"
 version = "0.2.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -107,6 +104,10 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 name = "bitflags"
 version = "0.7.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
+
+[[package]]
+name = "bitmap"
+version = "0.1.0"
 
 [[package]]
 name = "brownian-tree"
@@ -1398,6 +1399,13 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 dependencies = [
  "idna 0.1.0 (registry+https://github.com/rust-lang/crates.io-index)",
  "matches 0.1.2 (registry+https://github.com/rust-lang/crates.io-index)",
+]
+
+[[package]]
+name = "use-another-language-to-call-a-function"
+version = "0.1.0"
+dependencies = [
+ "libc 0.2.13 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
 [[package]]

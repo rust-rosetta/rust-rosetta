@@ -125,6 +125,9 @@ members = [
     # http://rosettacode.org/wiki/Bitmap
     "tasks/bitmap",
 
+    # http://rosettacode.org/wiki/Bitmap/Write_a_PPM_file
+    "tasks/bitmap/write-a-ppm-file",
+
     # http://rosettacode.org/wiki/Brownian_tree
     "tasks/brownian-tree",
 
@@ -377,11 +380,6 @@ path = "src/binomial_coefficients.rs"
 # https://rosettacode.org/wiki/Bitcoin/address_validation
 name = "bitcoin_address_validation"
 path = "src/bitcoin/address_validation.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Bitmap/Write_a_PPM_file
-name = "bitmap_write_a_ppm_file"
-path = "src/bitmap/write_a_ppm_file.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Bitwise_operations
@@ -1983,11 +1981,6 @@ path = "src/word_wrap.rs"
 # http://rosettacode.org/wiki/Write_entire_file
 name = "write_entire_file"
 path = "src/write_entire_file.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Write_ppm_file
-name = "write_ppm"
-path = "src/write_ppm.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Zero_to_the_zero_power
