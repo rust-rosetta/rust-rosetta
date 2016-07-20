@@ -132,6 +132,9 @@ members = [
     # http://rosettacode.org/wiki/Compile-time_calculation
     "tasks/compile-time-calculation",
 
+    # http://rosettacode.org/wiki/Date_format
+    "tasks/date-format",
+
     # http://rosettacode.org/wiki/K-means%2B%2B_clustering
     "tasks/k-meanspp-clustering",
 
@@ -557,11 +560,6 @@ path = "src/csv_data_manipulation.rs"
 name = "currying"
 path = "src/currying.rs"
 test = false
-
-[[bin]]
-# http://rosettacode.org/wiki/Date_format
-name = "date_format"
-path = "src/date_format.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Day_of_the_week
