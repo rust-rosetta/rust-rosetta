@@ -141,6 +141,9 @@ members = [
     # http://rosettacode.org/wiki/OpenGL
     "tasks/opengl",
 
+    # http://rosettacode.org/wiki/Prime_decomposition
+    "tasks/prime-decomposition",
+
     # http://rosettacode.org/wiki/Quine
     "tasks/quine",
 
@@ -1430,11 +1433,6 @@ path = "src/price_fraction.rs"
 # http://rosettacode.org/wiki/Primality_by_trial_division
 name = "primality_by_trial_division"
 path = "src/primality_by_trial_division.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Prime_decomposition
-name = "prime_decomposition"
-path = "src/prime_decomposition.rs"
 
 [[bin]]
 # https://rosettacode.org/wiki/Program_name

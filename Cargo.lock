@@ -1065,6 +1065,10 @@ dependencies = [
 ]
 
 [[package]]
+name = "prime-decomposition"
+version = "0.1.0"
+
+[[package]]
 name = "quine"
 version = "0.1.0"
 
