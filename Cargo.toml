@@ -84,7 +84,6 @@ rust-crypto = "0.2"
 rustc-serialize = "0.3"
 schedule_recv = "0.1.0"
 term = "0.4"
-term-painter = "0.2"
 time = "0.1"
 unicode-segmentation = "0.1"
 url = "1.1.0"
@@ -164,6 +163,9 @@ members = [
 
     # http://rosettacode.org/wiki/Use_another_language_to_call_a_function
     "tasks/use-another-language-to-call-a-function",
+
+    # http://rosettacode.org/wiki/Visualize_a_tree
+    "tasks/visualize-a-tree",
 ]
 
 [[bin]]
@@ -1935,11 +1937,6 @@ path = "src/user_input/text.rs"
 # http://rosettacode.org/wiki/Vigen%C3%A8re_cipher
 name = "vigenere"
 path = "src/vigenere.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Visualize_a_tree
-name = "visualize_a_tree"
-path = "src/visualize_a_tree.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Walk_a_directory/Non-recursively
