@@ -137,6 +137,9 @@ members = [
     # http://rosettacode.org/wiki/Date_format
     "tasks/date-format",
 
+    # http://rosettacode.org/wiki/Day_of_the_week
+    "tasks/day-of-the-week",
+
     # http://rosettacode.org/wiki/K-means%2B%2B_clustering
     "tasks/k-meanspp-clustering",
 
@@ -563,11 +566,6 @@ path = "src/csv_data_manipulation.rs"
 name = "currying"
 path = "src/currying.rs"
 test = false
-
-[[bin]]
-# http://rosettacode.org/wiki/Day_of_the_week
-name = "day_of_the_week"
-path = "src/day_of_the_week.rs"
 
 [[bin]]
 # http://www.rosettacode.org/wiki/Deal_cards_for_FreeCell
