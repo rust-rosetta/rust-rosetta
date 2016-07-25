@@ -18,8 +18,6 @@ addons:
       - libelf-dev
       - libdw-dev
 
-cache: cargo
-
 # Load `travis-cargo`
 before_script:
     - pip install 'travis-cargo' --user
