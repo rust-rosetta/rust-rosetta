@@ -1,6 +1,3 @@
-// http://rosettacode.org/wiki/Prime_decomposition
-
-/// We need this to be public because it is used from another file
 pub fn factor(mut nb: usize) -> Vec<usize> {
     let mut result = vec![];
 
@@ -29,17 +26,6 @@ pub fn factor(mut nb: usize) -> Vec<usize> {
 
     result
 }
-
-// Needed so parallel_calculations compiles cleanly, because it
-// uses this code as a library
-#[allow(dead_code)]
-fn main() {
-    println!("Factors of 5: {:?}", factor(5));
-    println!("Factors of 15: {:?}", factor(15));
-    println!("Factors of 16: {:?}", factor(16));
-    println!("Factors of 10287: {:?}", factor(10287));
-}
-
 #[test]
 fn test_basic() {
     assert!(factor(5) == vec![5]);

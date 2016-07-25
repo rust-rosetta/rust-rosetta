@@ -69,12 +69,9 @@ authors = [
 ]
 
 [dependencies]
-chrono = "0.2"
 difference = "0.4.1"
 docopt = "0.6"
 docopt_macros = "0.6.81"
-eventual = "0.1.6"
-getopts = "0.2"
 gtk = { version = "0.1.0", optional = true }
 hyper = "0.9.3"
 libc = "0.2"
@@ -87,7 +84,6 @@ rust-crypto = "0.2"
 rustc-serialize = "0.3"
 schedule_recv = "0.1.0"
 term = "0.4"
-term-painter = "0.2"
 time = "0.1"
 unicode-segmentation = "0.1"
 url = "1.1.0"
@@ -123,17 +119,41 @@ members = [
     # http://rosettacode.org/wiki/99_Bottles_of_Beer
     "tasks/99-bottles-of-beer",
 
+    # http://rosettacode.org/wiki/AVL_tree
+    "tasks/avl-tree",
+
+    # http://rosettacode.org/wiki/Bitmap
+    "tasks/bitmap",
+
+    # http://rosettacode.org/wiki/Bitmap/Write_a_PPM_file
+    "tasks/bitmap/write-a-ppm-file",
+
     # http://rosettacode.org/wiki/Brownian_tree
     "tasks/brownian-tree",
 
     # http://rosettacode.org/wiki/Compile-time_calculation
     "tasks/compile-time-calculation",
 
+    # http://rosettacode.org/wiki/Date_format
+    "tasks/date-format",
+
+    # http://rosettacode.org/wiki/Day_of_the_week
+    "tasks/day-of-the-week",
+
+    # http://rosettacode.org/wiki/Discordian_date
+    "tasks/discordian-date",
+
     # http://rosettacode.org/wiki/K-means%2B%2B_clustering
     "tasks/k-meanspp-clustering",
 
     # http://rosettacode.org/wiki/OpenGL
     "tasks/opengl",
+
+    # http://rosettacode.org/wiki/Parallel_calculations
+    "tasks/parallel-calculations",
+
+    # http://rosettacode.org/wiki/Prime_decomposition
+    "tasks/prime-decomposition",
 
     # http://rosettacode.org/wiki/Quine
     "tasks/quine",
@@ -143,6 +163,9 @@ members = [
 
     # http://rosettacode.org/wiki/Use_another_language_to_call_a_function
     "tasks/use-another-language-to-call-a-function",
+
+    # http://rosettacode.org/wiki/Visualize_a_tree
+    "tasks/visualize-a-tree",
 ]
 
 [[bin]]
@@ -321,12 +344,6 @@ path = "src/averages/root_mean_square.rs"
 test = true
 
 [[bin]]
-# http://rosettacode.org/wiki/AVL_tree
-name = "avl_tree"
-path = "src/avl_tree.rs"
-test = true
-
-[[bin]]
 # http://rosettacode.org/wiki/Balanced_brackets
 name = "balanced_brackets"
 path = "src/balanced_brackets.rs"
@@ -366,16 +383,6 @@ path = "src/binomial_coefficients.rs"
 # https://rosettacode.org/wiki/Bitcoin/address_validation
 name = "bitcoin_address_validation"
 path = "src/bitcoin/address_validation.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Basic_bitmap_storage
-name = "bitmap"
-path = "src/bitmap.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Bitmap/Write_a_PPM_file
-name = "bitmap_write_a_ppm_file"
-path = "src/bitmap/write_a_ppm_file.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Bitwise_operations
@@ -561,16 +568,6 @@ path = "src/currying.rs"
 test = false
 
 [[bin]]
-# http://rosettacode.org/wiki/Date_format
-name = "date_format"
-path = "src/date_format.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Day_of_the_week
-name = "day_of_the_week"
-path = "src/day_of_the_week.rs"
-
-[[bin]]
 # http://www.rosettacode.org/wiki/Deal_cards_for_FreeCell
 name = "deal_cards_for_freecell"
 path = "src/deal_cards_for_freecell.rs"
@@ -599,11 +596,6 @@ path = "src/dijkstras_algorithm.rs"
 # http://rosettacode.org/wiki/Dining_philosophers
 name = "dining_philosophers"
 path = "src/dining_philosophers.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Discordian_date
-name = "discordian_date"
-path = "src/discordian_date.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/DNS_query
@@ -1370,11 +1362,6 @@ name = "pangram"
 path = "src/pangram.rs"
 
 [[bin]]
-# http://rosettacode.org/wiki/Parallel_calculations
-name = "parallel_calculations"
-path = "src/parallel_calculations.rs"
-
-[[bin]]
 # http://rosettacode.org/wiki/Parametric_polymorphism
 name = "parametric_polymorphism"
 path = "src/parametric_polymorphism.rs"
@@ -1434,11 +1421,6 @@ path = "src/price_fraction.rs"
 # http://rosettacode.org/wiki/Primality_by_trial_division
 name = "primality_by_trial_division"
 path = "src/primality_by_trial_division.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Prime_decomposition
-name = "prime_decomposition"
-path = "src/prime_decomposition.rs"
 
 [[bin]]
 # https://rosettacode.org/wiki/Program_name
@@ -1957,11 +1939,6 @@ name = "vigenere"
 path = "src/vigenere.rs"
 
 [[bin]]
-# http://rosettacode.org/wiki/Visualize_a_tree
-name = "visualize_a_tree"
-path = "src/visualize_a_tree.rs"
-
-[[bin]]
 # http://rosettacode.org/wiki/Walk_a_directory/Non-recursively
 name = "walk_a_directory_non_recursively"
 path = "src/walk_a_directory/non_recursively.rs"
@@ -1992,11 +1969,6 @@ path = "src/word_wrap.rs"
 # http://rosettacode.org/wiki/Write_entire_file
 name = "write_entire_file"
 path = "src/write_entire_file.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Write_ppm_file
-name = "write_ppm"
-path = "src/write_ppm.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Zero_to_the_zero_power

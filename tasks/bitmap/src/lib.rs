@@ -1,5 +1,3 @@
-// http://rosettacode.org/wiki/Basic_bitmap_storage
-
 use std::default::Default;
 use std::io::{Write, BufWriter, Error};
 use std::fs::File;

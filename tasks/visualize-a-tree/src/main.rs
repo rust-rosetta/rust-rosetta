@@ -1,5 +1,3 @@
-// http://rosettacode.org/wiki/Visualize_a_tree
-
 extern crate rand;
 extern crate rustc_serialize;
 extern crate term_painter;

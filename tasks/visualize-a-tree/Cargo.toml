@@ -1,0 +1,11 @@
+[package]
+name = "visualize-a-tree"
+version = "0.1.0"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Visualize_a_tree"
+
+[dependencies]
+rand = "0.3"
+rustc-serialize = "0.3"
+term-painter = "0.2"

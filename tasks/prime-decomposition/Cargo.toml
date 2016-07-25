@@ -1,0 +1,6 @@
+[package]
+name = "prime-decomposition"
+version = "0.1.0"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Prime_decomposition"

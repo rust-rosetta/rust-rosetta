@@ -1,16 +1,15 @@
-// http://rosettacode.org/wiki/Parallel_calculations
-
 //! See http://static.rust-lang.org/doc/master/guide-tasks.html for information
 //! about tasks, channels, future, etc.
+
 extern crate eventual;
+
+extern crate prime_decomposition;
 
 use std::thread::spawn;
 use std::sync::mpsc;
 
 use eventual::{Future, Async};
 use prime_decomposition::factor;
-
-mod prime_decomposition;
 
 /// Returns the minimal prime factor of a number
 fn min_factor(x: usize) -> usize {
@@ -59,7 +58,7 @@ fn main() {
 mod tests {
     use super::{largest_min_factor_chan, largest_min_factor_fut};
 
-    /// We dont have benchmarks because the Bencher doesn't work good with tasks
+    /// We don't have benchmarks because the Bencher doesn't work good with tasks
     #[test]
     fn test_basic() {
         let numbers = &[25, 80, 256, 55, 18, 19];

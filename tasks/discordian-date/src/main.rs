@@ -1,17 +1,11 @@
-// http://rosettacode.org/wiki/Discordian_date
 extern crate chrono;
+
 use chrono::*;
 
-const SEASONS: [&'static str; 5] = ["Chaos",
-                                    "Discord",
-                                    "Confusion",
-                                    "Bureaucracy",
-                                    "The Aftermath"];
-const WEEKDAYS: [&'static str; 5] = ["Sweetmorn",
-                                     "Boomtime",
-                                     "Pungenday",
-                                     "Prickle-Prickle",
-                                     "Setting Orange"];
+const SEASONS: [&'static str; 5] =
+    ["Chaos", "Discord", "Confusion", "Bureaucracy", "The Aftermath"];
+const WEEKDAYS: [&'static str; 5] =
+    ["Sweetmorn", "Boomtime", "Pungenday", "Prickle-Prickle", "Setting Orange"];
 const YEAR_OFFSET: i32 = 1166;
 
 fn discordian_day(day: usize, leap: bool) -> String {

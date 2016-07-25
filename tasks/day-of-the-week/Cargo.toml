@@ -1,0 +1,9 @@
+[package]
+name = "day-of-the-week"
+version = "0.1.0"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Day_of_the_week"
+
+[dependencies]
+chrono = "0.2"

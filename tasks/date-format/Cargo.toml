@@ -1,0 +1,9 @@
+[package]
+name = "date-format"
+version = "0.1.0"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Date_format"
+
+[dependencies]
+chrono = "0.2"
