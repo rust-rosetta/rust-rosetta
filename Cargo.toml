@@ -130,6 +130,9 @@ members = [
     # http://rosettacode.org/wiki/AVL_tree
     "tasks/avl-tree",
 
+    # http://rosettacode.org/wiki/Best_shuffle
+    "tasks/best-shuffle",
+
     # http://rosettacode.org/wiki/Bitmap
     "tasks/bitmap",
 
@@ -378,11 +381,6 @@ test = false
 # http://rosettacode.org/wiki/Bernoulli_numbers
 name = "bernoulli_numbers"
 path = "src/bernoulli_numbers.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Best_shuffle
-name = "best_shuffle"
-path = "src/best_shuffle.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Binary_digits
