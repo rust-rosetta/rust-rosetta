@@ -1,7 +1,6 @@
-// http://rosettacode.org/wiki/Fibonacci_word
+extern crate entropy;
 
 use entropy::shannon_entropy;
-mod entropy;
 
 /// Returns "amount" fibonacci words as a vector of tuples
 /// The first value of the tuple is the length of the word

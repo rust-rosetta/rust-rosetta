@@ -378,6 +378,13 @@ name = "factorial-plugin"
 version = "1.0.0"
 
 [[package]]
+name = "fibonacci-word"
+version = "0.1.0"
+dependencies = [
+ "entropy 0.1.0",
+]
+
+[[package]]
 name = "find-unimplemented-tasks"
 version = "0.1.0"
 dependencies = [

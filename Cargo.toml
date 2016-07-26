@@ -152,6 +152,9 @@ members = [
     # http://rosettacode.org/wiki/Entropy
     "tasks/entropy",
 
+    # http://rosettacode.org/wiki/Fibonacci_word
+    "tasks/fibonacci-word",
+
     # http://rosettacode.org/wiki/K-means%2B%2B_clustering
     "tasks/k-meanspp-clustering",
 
@@ -734,11 +737,6 @@ path = "src/fibonacci.rs"
 # http://rosettacode.org/wiki/Fibonacci_n-step_number_sequences
 name = "fibonacci_n-step_number_sequences"
 path = "src/fibonacci_n-step_number_sequences.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Fibonacci_word
-name = "fibonacci_word"
-path = "src/fibonacci_word.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/File_input/output
