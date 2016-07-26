@@ -210,6 +210,13 @@ dependencies = [
 ]
 
 [[package]]
+name = "check-input-device-is-a-terminal"
+version = "0.1.0"
+dependencies = [
+ "libc 0.2.13 (registry+https://github.com/rust-lang/crates.io-index)",
+]
+
+[[package]]
 name = "check-output-device-is-a-terminal"
 version = "0.1.0"
 dependencies = [
@@ -1267,7 +1274,6 @@ dependencies = [
  "docopt_macros 0.6.85 (registry+https://github.com/rust-lang/crates.io-index)",
  "gtk 0.1.0 (registry+https://github.com/rust-lang/crates.io-index)",
  "hyper 0.9.9 (registry+https://github.com/rust-lang/crates.io-index)",
- "libc 0.2.13 (registry+https://github.com/rust-lang/crates.io-index)",
  "meta 0.1.0",
  "ncurses 5.80.0 (registry+https://github.com/rust-lang/crates.io-index)",
  "num 0.1.32 (registry+https://github.com/rust-lang/crates.io-index)",

@@ -74,7 +74,6 @@ docopt = "0.6"
 docopt_macros = "0.6.81"
 gtk = { version = "0.1.0", optional = true }
 hyper = "0.9.3"
-libc = "0.2"
 ncurses = { version = "5.80", optional = true }
 num = "0.1"
 rand = "0.3"
@@ -143,6 +142,9 @@ members = [
 
     # http://rosettacode.org/wiki/Call_a_foreign-language_function
     "tasks/call-a-foreign-language-function",
+
+    # http://rosettacode.org/wiki/Check_input_device_is_a_terminal
+    "tasks/check-input-device-is-a-terminal",
 
     # http://rosettacode.org/wiki/Check_output_device_is_a_terminal
     "tasks/check-output-device-is-a-terminal",
@@ -984,12 +986,6 @@ path = "src/increment_a_numerical_string.rs"
 # http://rosettacode.org/wiki/Infinity
 name = "infinity"
 path = "src/infinity.rs"
-test = false
-
-[[bin]]
-# http://rosettacode.org/wiki/Check_input_device_is_a_terminal
-name = "input_is_terminal"
-path = "src/input_is_terminal.rs"
 test = false
 
 [[bin]]
