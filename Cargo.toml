@@ -144,6 +144,9 @@ members = [
     # http://rosettacode.org/wiki/Call_a_foreign-language_function
     "tasks/call-a-foreign-language-function",
 
+    # http://rosettacode.org/wiki/Check_output_device_is_a_terminal
+    "tasks/check-output-device-is-a-terminal",
+
     # http://rosettacode.org/wiki/Compile-time_calculation
     "tasks/compile-time-calculation",
 
@@ -1313,12 +1316,6 @@ path = "src/one_of_n_lines_in_a_file.rs"
 # http://rosettacode.org/wiki/Ordered_words
 name = "ordered_words"
 path = "src/ordered_words.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Check_output_device_is_a_terminal
-name = "output_is_terminal"
-path = "src/output_is_terminal.rs"
-test = false
 
 [[bin]]
 # http://rosettacode.org/wiki/Palindrome_detection

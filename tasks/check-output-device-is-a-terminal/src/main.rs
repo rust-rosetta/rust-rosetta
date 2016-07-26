@@ -1,4 +1,3 @@
-// http://rosettacode.org/wiki/Check_output_device_is_a_terminal
 extern crate libc;
 
 #[cfg(unix)]
