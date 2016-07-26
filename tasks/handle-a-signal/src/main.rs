@@ -1,5 +1,3 @@
-// http://rosettacode.org/wiki/Handle_a_signal
-
 extern crate libc;
 extern crate time;
 

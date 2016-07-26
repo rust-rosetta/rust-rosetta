@@ -165,6 +165,9 @@ members = [
     # http://rosettacode.org/wiki/Hamming_numbers
     "tasks/hamming-numbers",
 
+    # http://rosettacode.org/wiki/Handle_a_signal
+    "tasks/handle-a-signal",
+
     # http://rosettacode.org/wiki/Hello_world/Web_server
     "tasks/hello-world/web-server",
 
@@ -858,12 +861,6 @@ path = "src/guess_the_number/with_feedback_player.rs"
 # http://rosettacode.org/wiki/Hailstone_sequence
 name = "hailstone"
 path = "src/hailstone.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Handle_a_signal
-name = "handle_a_signal"
-path = "src/handle_a_signal.rs"
-test = false
 
 [[bin]]
 # http://rosettacode.org/wiki/Happy_numbers

@@ -1,0 +1,10 @@
+[package]
+name = "handle-a-signal"
+version = "0.1.0"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Handle_a_signal"
+
+[dependencies]
+libc = "0.2"
+time = "0.1"
