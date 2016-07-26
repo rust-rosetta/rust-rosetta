@@ -188,6 +188,9 @@ members = [
     # http://rosettacode.org/wiki/Rosetta_Code/Find_unimplemented_tasks
     "tasks/rosetta-code/find-unimplemented-tasks",
 
+    # http://rosettacode.org/wiki/Run-length_encoding
+    "tasks/run-length-encoding",
+
     # http://rosettacode.org/wiki/Use_another_language_to_call_a_function
     "tasks/use-another-language-to-call-a-function",
 
@@ -1546,11 +1549,6 @@ path = "src/rock_paper_scissors.rs"
 # http://rosettacode.org/wiki/RSA_code
 name = "rsa_code"
 path = "src/rsa_code.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Run-length_encoding
-name = "run_length_encoding"
-path = "src/run_length_encoding.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/S-Expressions

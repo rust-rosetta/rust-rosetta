@@ -1,18 +1,7 @@
-// http://rosettacode.org/wiki/Run-length_encoding
 use std::iter::repeat;
 
-const INPUT: &'static str = "WWWWWWWWWWWWBWWWWWWWWWWWWBBBWWWWWWWWWWWWWWWWWWWWWWWWBWWWWWWWWWWWWWW";
-
-// Needed so look-and-say_sequence compiles cleanly, because it
-// uses this code as a library
-#[allow(dead_code)]
-fn main() {
-    let enc = encode(INPUT);
-    println!("encoded {}", enc);
-
-    let dec = decode(&enc[..]);
-    println!("decoded {}", dec.unwrap());
-}
+pub const INPUT: &'static str =
+    r"WWWWWWWWWWWWBWWWWWWWWWWWWBBBWWWWWWWWWWWWWWWWWWWWWWWWBWWWWWWWWWWWWWW";
 
 pub fn encode(value: &str) -> String {
     let mut ret = String::new();
