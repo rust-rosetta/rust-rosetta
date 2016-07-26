@@ -118,6 +118,9 @@ members = [
     # http://rosettacode.org/wiki/99_Bottles_of_Beer
     "tasks/99-bottles-of-beer",
 
+    # http://rosettacode.org/wiki/A%2BB
+    "tasks/a-plus-b",
+
     # http://rosettacode.org/wiki/Active_object
     "tasks/active-object",
 
@@ -224,12 +227,6 @@ members = [
 [[bin]]
 name = "coverage"
 path = "src/bin/coverage.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/A+B
-name = "a_plus_b"
-path = "src/a_plus_b.rs"
-test = false
 
 [[bin]]
 # http://rosettacode.org/wiki/ABC_Problem
