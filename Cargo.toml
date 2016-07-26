@@ -124,6 +124,9 @@ members = [
     # http://rosettacode.org/wiki/ABC_Problem
     "tasks/abc-problem",
 
+    # http://rosettacode.org/wiki/Abstract_type
+    "tasks/abstract-type",
+
     # http://rosettacode.org/wiki/Active_object
     "tasks/active-object",
 
@@ -230,11 +233,6 @@ members = [
 [[bin]]
 name = "coverage"
 path = "src/bin/coverage.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Abstract_type
-name = "abstract_type"
-path = "src/abstract_type.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Accumulator_factory

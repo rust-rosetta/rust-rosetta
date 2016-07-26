@@ -1,5 +1,3 @@
-// http://rosettacode.org/wiki/Abstract_type
-
 trait Shape {
     fn area(&self) -> i32;
 
