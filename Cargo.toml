@@ -155,6 +155,9 @@ members = [
     # http://rosettacode.org/wiki/Fibonacci_word
     "tasks/fibonacci-word",
 
+    # http://rosettacode.org/wiki/Hamming_numbers
+    "tasks/hamming-numbers",
+
     # http://rosettacode.org/wiki/Hello_world/Web_server
     "tasks/hello-world/web-server",
 
@@ -854,16 +857,6 @@ path = "src/guess_the_number/with_feedback_player.rs"
 # http://rosettacode.org/wiki/Hailstone_sequence
 name = "hailstone"
 path = "src/hailstone.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Hamming_numbers
-name = "hamming_numbers"
-path = "src/hamming_numbers.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Hamming_numbers
-name = "hamming_numbers_alt"
-path = "src/hamming_numbers_alt.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Handle_a_signal

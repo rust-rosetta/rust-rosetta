@@ -1,20 +1,20 @@
-// http://rosettacode.org/wiki/Hamming_numbers
-
 //! Alternate version: uses a more efficient representation of Hamming numbers:
 //! instead of storing them as `BigUint` directly, it stores the three exponents
 //! i, j and k for 2^i * 3^j * 5 ^k and the logarithm of the number for comparisons
 
 extern crate num;
 
-use hamming_numbers::{Hamming, HammingNumber};
-use num::pow;
-use num::traits::One;
-use num::bigint::{BigUint, ToBigUint};
+extern crate hamming_numbers;
+
 use std::ops::Mul;
 use std::cmp::Ordering;
 use std::cmp::Ordering::{Less, Equal, Greater};
 
-mod hamming_numbers;
+use num::pow;
+use num::traits::One;
+use num::bigint::{BigUint, ToBigUint};
+
+use hamming_numbers::{Hamming, HammingNumber};
 
 fn main() {
     // capacity of the queue currently needs to be a power of 2 because of a bug with VecDeque
