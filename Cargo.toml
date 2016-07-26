@@ -77,7 +77,6 @@ hyper = "0.9.3"
 libc = "0.2"
 ncurses = { version = "5.80", optional = true }
 num = "0.1"
-permutohedron = "0.2"
 rand = "0.3"
 regex = { version = "0.1", features = ["pattern"] }
 rust-crypto = "0.2"
@@ -174,6 +173,9 @@ members = [
 
     # http://rosettacode.org/wiki/K-means%2B%2B_clustering
     "tasks/k-meanspp-clustering",
+
+    # http://rosettacode.org/wiki/Kahan_summation
+    "tasks/kahan-summation",
 
     # http://rosettacode.org/wiki/Look-and-say_sequence
     "tasks/look-and-say-sequence",
@@ -1048,11 +1050,6 @@ path = "src/json.rs"
 # http://rosettacode.org/wiki/K-d_tree
 name = "k-d-tree"
 path = "src/k-d-tree.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Kahan_summation
-name = "kahansum"
-path = "src/kahansum.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Keyboard_input/Obtain_a_Y_or_N_response
