@@ -855,6 +855,13 @@ version = "0.3.6"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 
 [[package]]
+name = "look-and-say-sequence"
+version = "0.1.0"
+dependencies = [
+ "run-length-encoding 0.1.0",
+]
+
+[[package]]
 name = "lzw"
 version = "0.10.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"

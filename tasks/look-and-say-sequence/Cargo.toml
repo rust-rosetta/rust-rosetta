@@ -1,0 +1,9 @@
+[package]
+name = "look-and-say-sequence"
+version = "0.1.0"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Look-and-say_sequence"
+
+[dependencies]
+run-length-encoding = { path = "../run-length-encoding" }

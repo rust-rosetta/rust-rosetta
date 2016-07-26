@@ -1,7 +1,6 @@
-// http://rosettacode.org/wiki/Look-and-say_sequence
-use run_length_encoding::encode;
+extern crate run_length_encoding;
 
-mod run_length_encoding;
+use run_length_encoding::encode;
 
 fn main() {
     let mut s = look_and_say("1");
