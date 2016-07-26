@@ -352,6 +352,10 @@ dependencies = [
 ]
 
 [[package]]
+name = "entropy"
+version = "0.1.0"
+
+[[package]]
 name = "enum_primitive"
 version = "0.1.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"

@@ -149,6 +149,9 @@ members = [
     # http://rosettacode.org/wiki/Discordian_date
     "tasks/discordian-date",
 
+    # http://rosettacode.org/wiki/Entropy
+    "tasks/entropy",
+
     # http://rosettacode.org/wiki/K-means%2B%2B_clustering
     "tasks/k-meanspp-clustering",
 
@@ -644,11 +647,6 @@ test = false
 # http://rosettacode.org/wiki/Enforced_mutability
 name = "enforced_immutability"
 path = "src/enforced_immutability.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Entropy
-name = "entropy"
-path = "src/entropy.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Enumerations

@@ -1,4 +1,3 @@
-// http://rosettacode.org/wiki/Entropy
 use std::collections::HashMap;
 use std::collections::hash_map::Entry::{Occupied, Vacant};
 
@@ -23,13 +22,6 @@ pub fn shannon_entropy(s: &str) -> f64 {
         let p = nb as f64 / len;
         acc - p * p.log2()
     })
-}
-
-// Needed so fibonacci_word compiles cleanly, because fibonacci_word
-// uses this code as a library
-#[allow(dead_code)]
-fn main() {
-    println!("{}", shannon_entropy("1223334444"));
 }
 
 #[test]
