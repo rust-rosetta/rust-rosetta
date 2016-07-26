@@ -1,5 +1,3 @@
-// http://rosettacode.org/wiki/AKS_test_for_primes
-
 pub fn is_prime(p: u32) -> bool {
     if p < 2 {
         false
@@ -15,20 +13,7 @@ pub fn is_prime(p: u32) -> bool {
     }
 }
 
-// need to allow dead code because this is used as a library
-// by pernicious numbers
-#[allow(dead_code)]
-fn main() {
-    for p in 0..8 {
-        println!("{}: {:?}", p, coefficients(p));
-    }
-
-    for p in (1..51).filter(|&x| is_prime(x)) {
-        print!("{} ", p);
-    }
-}
-
-fn coefficients(p: usize) -> Vec<i64> {
+pub fn coefficients(p: usize) -> Vec<i64> {
     if p == 0 {
         vec![1]
     } else {

@@ -119,6 +119,9 @@ members = [
     # http://rosettacode.org/wiki/99_Bottles_of_Beer
     "tasks/99-bottles-of-beer",
 
+    # http://rosettacode.org/wiki/AKS_test_for_primes
+    "tasks/aks-test-for-primes",
+
     # http://rosettacode.org/wiki/AVL_tree
     "tasks/avl-tree",
 
@@ -212,11 +215,6 @@ path = "src/active_object.rs"
 # http://rosettacode.org/wiki/Address_of_a_variable
 name = "address_of_a_variable"
 path = "src/address_of_a_variable.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/AKS_test_for_primes
-name = "aks_test_for_primes"
-path = "src/aks_test_for_primes.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Align_columns

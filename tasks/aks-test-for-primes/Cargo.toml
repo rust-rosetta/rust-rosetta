@@ -1,0 +1,6 @@
+[package]
+name = "aks-test-for-primes"
+version = "0.1.0"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/AKS_test_for_primes"
