@@ -1,0 +1,9 @@
+[package]
+name = "include-a-file"
+version = "0.1.0"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Include_a_file"
+
+[dependencies]
+url = "1.0.0"

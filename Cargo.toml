@@ -161,6 +161,9 @@ members = [
     # http://rosettacode.org/wiki/HTTP
     "tasks/http",
 
+    # http://rosettacode.org/wiki/Include_a_file
+    "tasks/include-a-file",
+
     # http://rosettacode.org/wiki/K-means%2B%2B_clustering
     "tasks/k-meanspp-clustering",
 
@@ -977,11 +980,6 @@ path = "src/i_before_e_except_after_c.rs"
 # http://rosettacode.org/wiki/IBAN
 name = "iban"
 path = "src/iban.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Include_a_file
-name = "include_a_file"
-path = "src/include_a_file.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Increment_a_numerical_string
