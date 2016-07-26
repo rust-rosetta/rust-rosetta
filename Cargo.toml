@@ -74,7 +74,6 @@ docopt = "0.6"
 docopt_macros = "0.6.81"
 gtk = { version = "0.1.0", optional = true }
 hyper = "0.9.3"
-ncurses = { version = "5.80", optional = true }
 num = "0.1"
 rand = "0.3"
 regex = { version = "0.1", features = ["pattern"] }
@@ -187,6 +186,9 @@ members = [
 
     # http://rosettacode.org/wiki/Kahan_summation
     "tasks/kahan-summation",
+
+    # http://rosettacode.org/wiki/Keyboard_input/Obtain_a_Y_or_N_response
+    "tasks/keyboard-input/obtain-a-y-or-n-response",
 
     # http://rosettacode.org/wiki/Look-and-say_sequence
     "tasks/look-and-say-sequence",
@@ -1044,11 +1046,6 @@ path = "src/json.rs"
 # http://rosettacode.org/wiki/K-d_tree
 name = "k-d-tree"
 path = "src/k-d-tree.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Keyboard_input/Obtain_a_Y_or_N_response
-name = "keyboard_input_obtain_a_y_or_n_response"
-path = "src/keyboard_input/obtain_a_y_or_n_response.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Knapsack_problem/0-1

@@ -1,5 +1,3 @@
-// http://rosettacode.org/wiki/Keyboard_input/Obtain_a_Y_or_N_response
-
 #[cfg(feature = "ncurses")]
 extern crate ncurses;
 
