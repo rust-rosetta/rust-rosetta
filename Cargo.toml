@@ -121,6 +121,9 @@ members = [
     # http://rosettacode.org/wiki/A%2BB
     "tasks/a-plus-b",
 
+    # http://rosettacode.org/wiki/ABC_Problem
+    "tasks/abc-problem",
+
     # http://rosettacode.org/wiki/Active_object
     "tasks/active-object",
 
@@ -227,11 +230,6 @@ members = [
 [[bin]]
 name = "coverage"
 path = "src/bin/coverage.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/ABC_Problem
-name = "abc_problem"
-path = "src/abc_problem.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Abstract_type

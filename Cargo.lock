@@ -44,6 +44,10 @@ name = "a-plus-b"
 version = "0.1.0"
 
 [[package]]
+name = "abc-problem"
+version = "0.1.0"
+
+[[package]]
 name = "active-object"
 version = "0.1.0"
 dependencies = [
