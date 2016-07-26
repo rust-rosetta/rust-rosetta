@@ -1076,6 +1076,13 @@ version = "0.2.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 
 [[package]]
+name = "pernicious-numbers"
+version = "0.1.0"
+dependencies = [
+ "aks-test-for-primes 0.1.0",
+]
+
+[[package]]
 name = "pkg-config"
 version = "0.3.8"
 source = "registry+https://github.com/rust-lang/crates.io-index"

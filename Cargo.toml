@@ -155,6 +155,9 @@ members = [
     # http://rosettacode.org/wiki/Parallel_calculations
     "tasks/parallel-calculations",
 
+    # http://rosettacode.org/wiki/Pernicious_numbers
+    "tasks/pernicious-numbers",
+
     # http://rosettacode.org/wiki/Prime_decomposition
     "tasks/prime-decomposition",
 
@@ -1384,11 +1387,6 @@ path = "src/perfect_numbers.rs"
 # http://rosettacode.org/wiki/Permutations_with_repetitions
 name = "permutations_with_repetitions"
 path = "src/permutations_with_repetitions.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Pernicious_numbers
-name = "pernicious_numbers"
-path = "src/pernicious_numbers.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Pick_random_element

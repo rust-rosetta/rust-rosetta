@@ -1,0 +1,9 @@
+[package]
+name = "pernicious-numbers"
+version = "0.1.0"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Pernicious_numbers"
+
+[dependencies]
+aks-test-for-primes = { path = "../aks-test-for-primes" }

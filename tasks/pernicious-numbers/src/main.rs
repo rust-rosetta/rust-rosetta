@@ -1,8 +1,9 @@
-// http://rosettacode.org/wiki/Pernicious_numbers
+extern crate aks_test_for_primes;
+
 use std::iter::Filter;
 use std::ops::RangeFrom;
+
 use aks_test_for_primes::is_prime;
-mod aks_test_for_primes;
 
 fn main() {
     for i in pernicious().take(25) {
