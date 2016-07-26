@@ -1,8 +1,6 @@
-// http://rosettacode.org/wiki/Accumulator_factory
-
 use std::ops::Add;
 
-pub fn accum<'a, T>(mut n: T) -> Box<FnMut(T) -> T + 'a>
+fn accum<'a, T>(mut n: T) -> Box<FnMut(T) -> T + 'a>
     where T: 'a + Add<T, Output = T> + Copy
 {
     Box::new(move |i: T| {
@@ -11,12 +9,12 @@ pub fn accum<'a, T>(mut n: T) -> Box<FnMut(T) -> T + 'a>
     })
 }
 
-pub fn main() {
+fn main() {
     println!("{}", accumulate());
 }
 
 #[test]
-pub fn test() {
+fn test() {
     use std::f32;
 
     assert!((8.3 - accumulate()).abs() < f32::EPSILON);

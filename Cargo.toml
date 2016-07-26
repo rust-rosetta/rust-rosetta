@@ -127,6 +127,9 @@ members = [
     # http://rosettacode.org/wiki/Abstract_type
     "tasks/abstract-type",
 
+    # http://rosettacode.org/wiki/Accumulator_factory
+    "tasks/accumulator-factory",
+
     # http://rosettacode.org/wiki/Active_object
     "tasks/active-object",
 
@@ -233,11 +236,6 @@ members = [
 [[bin]]
 name = "coverage"
 path = "src/bin/coverage.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Accumulator_factory
-name = "accumulator_factory"
-path = "src/accumulator_factory.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Ackermann_function
