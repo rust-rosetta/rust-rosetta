@@ -155,6 +155,9 @@ members = [
     # http://rosettacode.org/wiki/Fibonacci_word
     "tasks/fibonacci-word",
 
+    # http://rosettacode.org/wiki/HTTP
+    "tasks/http",
+
     # http://rosettacode.org/wiki/K-means%2B%2B_clustering
     "tasks/k-meanspp-clustering",
 
@@ -952,11 +955,6 @@ test = false
 name = "hough_transform"
 path = "src/hough_transform.rs"
 test = false
-
-[[bin]]
-# http://rosettacode.org/wiki/HTTP
-name = "http"
-path = "src/http.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/HTTPS
