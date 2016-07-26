@@ -29,6 +29,13 @@ dependencies = [
 ]
 
 [[package]]
+name = "9-billion-names-of-god-the-integer"
+version = "0.1.0"
+dependencies = [
+ "num 0.1.32 (registry+https://github.com/rust-lang/crates.io-index)",
+]
+
+[[package]]
 name = "99-bottles-of-beer"
 version = "0.1.0"
 

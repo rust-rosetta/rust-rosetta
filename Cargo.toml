@@ -116,6 +116,9 @@ members = [
     # http://rosettacode.org/wiki/24_game/Solve
     "tasks/24-game/solve",
 
+    # http://rosettacode.org/wiki/9_billion_names_of_God_the_integer
+    "tasks/9-billion-names-of-god-the-integer",
+
     # http://rosettacode.org/wiki/99_Bottles_of_Beer
     "tasks/99-bottles-of-beer",
 
@@ -177,11 +180,6 @@ members = [
 [[bin]]
 name = "coverage"
 path = "src/bin/coverage.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/9_billion_names_of_God_the_integer
-name = "9_billion_names_of_god_the_integer"
-path = "src/9_billion_names_of_god_the_integer.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/A+B
