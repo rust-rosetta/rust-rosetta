@@ -141,6 +141,9 @@ members = [
     # http://rosettacode.org/wiki/Brownian_tree
     "tasks/brownian-tree",
 
+    # http://rosettacode.org/wiki/Call_a_foreign-language_function
+    "tasks/call-a-foreign-language-function",
+
     # http://rosettacode.org/wiki/Compile-time_calculation
     "tasks/compile-time-calculation",
 
@@ -430,11 +433,6 @@ path = "src/caesar_cipher.rs"
 name = "call_an_object_method"
 path = "src/call_an_object_method.rs"
 test = false
-
-[[bin]]
-# http://rosettacode.org/wiki/Call_a_foreign-language_function
-name = "call_foreign_function"
-path = "src/call_foreign_function.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Apply_a_callback_to_an_array
