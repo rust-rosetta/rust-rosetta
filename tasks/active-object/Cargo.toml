@@ -1,0 +1,10 @@
+[package]
+name = "active-object"
+version = "0.1.0"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Active_object"
+
+[dependencies]
+num = "0.1"
+schedule_recv = "0.1.0"

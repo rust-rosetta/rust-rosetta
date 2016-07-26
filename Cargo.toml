@@ -82,7 +82,6 @@ rand = "0.3"
 regex = { version = "0.1", features = ["pattern"] }
 rust-crypto = "0.2"
 rustc-serialize = "0.3"
-schedule_recv = "0.1.0"
 term = "0.4"
 time = "0.1"
 unicode-segmentation = "0.1"
@@ -121,6 +120,9 @@ members = [
 
     # http://rosettacode.org/wiki/99_Bottles_of_Beer
     "tasks/99-bottles-of-beer",
+
+    # http://rosettacode.org/wiki/Active_object
+    "tasks/active-object",
 
     # http://rosettacode.org/wiki/AKS_test_for_primes
     "tasks/aks-test-for-primes",
@@ -230,11 +232,6 @@ path = "src/accumulator_factory.rs"
 # http://rosettacode.org/wiki/Ackermann_function
 name = "ackermann_function"
 path = "src/ackermann_function.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Active_object
-name = "active_object"
-path = "src/active_object.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Address_of_a_variable

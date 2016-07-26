@@ -1,4 +1,3 @@
-// http://rosettacode.org/wiki/Active_object
 #![feature(mpsc_select)]
 
 extern crate num;

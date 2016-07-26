@@ -40,6 +40,14 @@ name = "99-bottles-of-beer"
 version = "0.1.0"
 
 [[package]]
+name = "active-object"
+version = "0.1.0"
+dependencies = [
+ "num 0.1.32 (registry+https://github.com/rust-lang/crates.io-index)",
+ "schedule_recv 0.1.0 (registry+https://github.com/rust-lang/crates.io-index)",
+]
+
+[[package]]
 name = "aho-corasick"
 version = "0.5.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1230,7 +1238,6 @@ dependencies = [
  "regex 0.1.73 (registry+https://github.com/rust-lang/crates.io-index)",
  "rust-crypto 0.2.36 (registry+https://github.com/rust-lang/crates.io-index)",
  "rustc-serialize 0.3.19 (registry+https://github.com/rust-lang/crates.io-index)",
- "schedule_recv 0.1.0 (registry+https://github.com/rust-lang/crates.io-index)",
  "term 0.4.4 (registry+https://github.com/rust-lang/crates.io-index)",
  "time 0.1.35 (registry+https://github.com/rust-lang/crates.io-index)",
  "unicode-segmentation 0.1.2 (registry+https://github.com/rust-lang/crates.io-index)",
