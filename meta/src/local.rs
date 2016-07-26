@@ -41,7 +41,8 @@ impl LocalTask {
     pub fn normalized_title(&self) -> String {
         remote::normalize(&TASK_URL_RE.captures(self.url().unwrap().as_str())
             .and_then(|c| c.at(1))
-            .unwrap()
+            .expect(&format!("Found task URL that does not match rosettacode regex: {}",
+                             self.url().unwrap()))
             .to_owned())
     }
 
