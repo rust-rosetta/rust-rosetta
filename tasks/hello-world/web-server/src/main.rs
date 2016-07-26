@@ -1,4 +1,3 @@
-// http://rosettacode.org/wiki/Hello_world/Web_server
 use std::env;
 use std::net::{TcpStream, TcpListener, Shutdown};
 use std::io::{Write, Result};
@@ -8,7 +7,7 @@ fn handle_client(mut stream: TcpStream) -> Result<()> {
 Content-Type: text/html;
 charset=UTF-8
 
-<doctype !html>
+<!doctype html>
 <html>
     <head>
         <title>Bye-bye baby bye-bye</title>
@@ -26,7 +25,7 @@ charset=UTF-8
     stream.shutdown(Shutdown::Write)
 }
 
-pub fn handle_server(ip: &str, port: u16) -> Result<TcpListener> {
+fn handle_server(ip: &str, port: u16) -> Result<TcpListener> {
     use std::thread::spawn;
     let listener = try!(TcpListener::bind((ip, port)));
     println!("Listening for connections on port {}", port);
@@ -52,7 +51,6 @@ pub fn handle_server(ip: &str, port: u16) -> Result<TcpListener> {
     Ok(handle)
 }
 
-#[allow(dead_code)]
 fn main() {
     let mut args = env::args();
     let app_name = args.next()
@@ -63,7 +61,7 @@ fn main() {
         let s_port = os_port.to_owned();
         s_port.parse::<u16>().expect(&*format!("Usage: {:?} <port>", app_name))
     } else {
-        80
+        8080
     };
 
     handle_server(host, port).unwrap();

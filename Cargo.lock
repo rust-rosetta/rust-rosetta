@@ -1558,6 +1558,10 @@ dependencies = [
 ]
 
 [[package]]
+name = "web-server"
+version = "0.1.0"
+
+[[package]]
 name = "winapi"
 version = "0.2.7"
 source = "registry+https://github.com/rust-lang/crates.io-index"
