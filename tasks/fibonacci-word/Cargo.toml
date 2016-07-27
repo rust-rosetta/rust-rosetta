@@ -1,0 +1,9 @@
+[package]
+name = "fibonacci-word"
+version = "0.1.0"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Fibonacci_word"
+
+[dependencies]
+entropy = { path = "../entropy" }

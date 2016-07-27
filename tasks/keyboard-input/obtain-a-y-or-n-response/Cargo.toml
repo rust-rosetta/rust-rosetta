@@ -1,0 +1,9 @@
+[package]
+name = "obtain-a-y-or-n-response"
+version = "0.1.0"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Keyboard_input/Obtain_a_Y_or_N_response"
+
+[dependencies]
+ncurses = { version = "5.80", optional = true }

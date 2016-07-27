@@ -1,0 +1,9 @@
+[package]
+name = "check-input-device-is-a-terminal"
+version = "0.1.0"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Check_input_device_is_a_terminal"
+
+[dependencies]
+libc = "0.2"

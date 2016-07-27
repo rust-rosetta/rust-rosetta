@@ -29,8 +29,43 @@ dependencies = [
 ]
 
 [[package]]
+name = "9-billion-names-of-god-the-integer"
+version = "0.1.0"
+dependencies = [
+ "num 0.1.32 (registry+https://github.com/rust-lang/crates.io-index)",
+]
+
+[[package]]
 name = "99-bottles-of-beer"
 version = "0.1.0"
+
+[[package]]
+name = "a-plus-b"
+version = "0.1.0"
+
+[[package]]
+name = "abc-problem"
+version = "0.1.0"
+
+[[package]]
+name = "abstract-type"
+version = "0.1.0"
+
+[[package]]
+name = "accumulator-factory"
+version = "0.1.0"
+
+[[package]]
+name = "ackermann-function"
+version = "0.1.0"
+
+[[package]]
+name = "active-object"
+version = "0.1.0"
+dependencies = [
+ "num 0.1.32 (registry+https://github.com/rust-lang/crates.io-index)",
+ "schedule_recv 0.1.0 (registry+https://github.com/rust-lang/crates.io-index)",
+]
 
 [[package]]
 name = "aho-corasick"
@@ -39,6 +74,10 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 dependencies = [
  "memchr 0.1.11 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
+
+[[package]]
+name = "aks-test-for-primes"
+version = "0.1.0"
 
 [[package]]
 name = "android_glue"
@@ -87,6 +126,14 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 dependencies = [
  "gcc 0.3.28 (registry+https://github.com/rust-lang/crates.io-index)",
  "libc 0.2.13 (registry+https://github.com/rust-lang/crates.io-index)",
+]
+
+[[package]]
+name = "best-shuffle"
+version = "0.1.0"
+dependencies = [
+ "permutohedron 0.2.1 (registry+https://github.com/rust-lang/crates.io-index)",
+ "rand 0.3.14 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
 [[package]]
@@ -162,6 +209,13 @@ dependencies = [
 ]
 
 [[package]]
+name = "call-a-foreign-language-function"
+version = "0.1.0"
+dependencies = [
+ "libc 0.2.13 (registry+https://github.com/rust-lang/crates.io-index)",
+]
+
+[[package]]
 name = "cfg-if"
 version = "0.1.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -172,6 +226,20 @@ version = "0.1.5"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 dependencies = [
  "gleam 0.2.20 (registry+https://github.com/rust-lang/crates.io-index)",
+ "libc 0.2.13 (registry+https://github.com/rust-lang/crates.io-index)",
+]
+
+[[package]]
+name = "check-input-device-is-a-terminal"
+version = "0.1.0"
+dependencies = [
+ "libc 0.2.13 (registry+https://github.com/rust-lang/crates.io-index)",
+]
+
+[[package]]
+name = "check-output-device-is-a-terminal"
+version = "0.1.0"
+dependencies = [
  "libc 0.2.13 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
@@ -341,6 +409,10 @@ dependencies = [
 ]
 
 [[package]]
+name = "entropy"
+version = "0.1.0"
+
+[[package]]
 name = "enum_primitive"
 version = "0.1.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -361,6 +433,13 @@ dependencies = [
 [[package]]
 name = "factorial-plugin"
 version = "1.0.0"
+
+[[package]]
+name = "fibonacci-word"
+version = "0.1.0"
+dependencies = [
+ "entropy 0.1.0",
+]
 
 [[package]]
 name = "find-unimplemented-tasks"
@@ -656,11 +735,33 @@ dependencies = [
 ]
 
 [[package]]
+name = "hamming-numbers"
+version = "0.1.0"
+dependencies = [
+ "num 0.1.32 (registry+https://github.com/rust-lang/crates.io-index)",
+]
+
+[[package]]
+name = "handle-a-signal"
+version = "0.1.0"
+dependencies = [
+ "libc 0.2.13 (registry+https://github.com/rust-lang/crates.io-index)",
+ "time 0.1.35 (registry+https://github.com/rust-lang/crates.io-index)",
+]
+
+[[package]]
 name = "hpack"
 version = "0.2.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 dependencies = [
  "log 0.3.6 (registry+https://github.com/rust-lang/crates.io-index)",
+]
+
+[[package]]
+name = "http"
+version = "0.1.0"
+dependencies = [
+ "hyper 0.9.9 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
 [[package]]
@@ -717,6 +818,13 @@ dependencies = [
 ]
 
 [[package]]
+name = "include-a-file"
+version = "0.1.0"
+dependencies = [
+ "url 1.1.1 (registry+https://github.com/rust-lang/crates.io-index)",
+]
+
+[[package]]
 name = "inflate"
 version = "0.1.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -746,6 +854,14 @@ dependencies = [
  "num 0.1.32 (registry+https://github.com/rust-lang/crates.io-index)",
  "rand 0.3.14 (registry+https://github.com/rust-lang/crates.io-index)",
  "rustc-serialize 0.3.19 (registry+https://github.com/rust-lang/crates.io-index)",
+]
+
+[[package]]
+name = "kahan-summation"
+version = "0.1.0"
+dependencies = [
+ "num 0.1.32 (registry+https://github.com/rust-lang/crates.io-index)",
+ "permutohedron 0.2.1 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
 [[package]]
@@ -810,6 +926,13 @@ dependencies = [
 name = "log"
 version = "0.3.6"
 source = "registry+https://github.com/rust-lang/crates.io-index"
+
+[[package]]
+name = "look-and-say-sequence"
+version = "0.1.0"
+dependencies = [
+ "run-length-encoding 0.1.0",
+]
 
 [[package]]
 name = "lzw"
@@ -979,6 +1102,13 @@ dependencies = [
 ]
 
 [[package]]
+name = "obtain-a-y-or-n-response"
+version = "0.1.0"
+dependencies = [
+ "ncurses 5.80.0 (registry+https://github.com/rust-lang/crates.io-index)",
+]
+
+[[package]]
 name = "opengl"
 version = "0.1.0"
 dependencies = [
@@ -1072,6 +1202,13 @@ version = "0.2.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 
 [[package]]
+name = "pernicious-numbers"
+version = "0.1.0"
+dependencies = [
+ "aks-test-for-primes 0.1.0",
+]
+
+[[package]]
 name = "pkg-config"
 version = "0.3.8"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1140,6 +1277,10 @@ version = "0.3.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 
 [[package]]
+name = "run-length-encoding"
+version = "0.1.0"
+
+[[package]]
 name = "rust-crypto"
 version = "0.2.36"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1160,16 +1301,12 @@ dependencies = [
  "docopt_macros 0.6.85 (registry+https://github.com/rust-lang/crates.io-index)",
  "gtk 0.1.0 (registry+https://github.com/rust-lang/crates.io-index)",
  "hyper 0.9.9 (registry+https://github.com/rust-lang/crates.io-index)",
- "libc 0.2.13 (registry+https://github.com/rust-lang/crates.io-index)",
  "meta 0.1.0",
- "ncurses 5.80.0 (registry+https://github.com/rust-lang/crates.io-index)",
  "num 0.1.32 (registry+https://github.com/rust-lang/crates.io-index)",
- "permutohedron 0.2.1 (registry+https://github.com/rust-lang/crates.io-index)",
  "rand 0.3.14 (registry+https://github.com/rust-lang/crates.io-index)",
  "regex 0.1.73 (registry+https://github.com/rust-lang/crates.io-index)",
  "rust-crypto 0.2.36 (registry+https://github.com/rust-lang/crates.io-index)",
  "rustc-serialize 0.3.19 (registry+https://github.com/rust-lang/crates.io-index)",
- "schedule_recv 0.1.0 (registry+https://github.com/rust-lang/crates.io-index)",
  "term 0.4.4 (registry+https://github.com/rust-lang/crates.io-index)",
  "time 0.1.35 (registry+https://github.com/rust-lang/crates.io-index)",
  "unicode-segmentation 0.1.2 (registry+https://github.com/rust-lang/crates.io-index)",
@@ -1520,6 +1657,10 @@ dependencies = [
  "tempfile 2.1.4 (registry+https://github.com/rust-lang/crates.io-index)",
  "wayland-client 0.5.12 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
+
+[[package]]
+name = "web-server"
+version = "0.1.0"
 
 [[package]]
 name = "winapi"

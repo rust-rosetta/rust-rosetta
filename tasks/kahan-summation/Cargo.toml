@@ -1,0 +1,10 @@
+[package]
+name = "kahan-summation"
+version = "0.1.0"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Kahan_summation"
+
+[dependencies]
+num = "0.1"
+permutohedron = "0.2"

@@ -1,0 +1,6 @@
+[package]
+name = "a-plus-b"
+version = "0.1.0"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/A%2BB"

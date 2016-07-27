@@ -74,15 +74,11 @@ docopt = "0.6"
 docopt_macros = "0.6.81"
 gtk = { version = "0.1.0", optional = true }
 hyper = "0.9.3"
-libc = "0.2"
-ncurses = { version = "5.80", optional = true }
 num = "0.1"
-permutohedron = "0.2"
 rand = "0.3"
 regex = { version = "0.1", features = ["pattern"] }
 rust-crypto = "0.2"
 rustc-serialize = "0.3"
-schedule_recv = "0.1.0"
 term = "0.4"
 time = "0.1"
 unicode-segmentation = "0.1"
@@ -116,11 +112,38 @@ members = [
     # http://rosettacode.org/wiki/24_game/Solve
     "tasks/24-game/solve",
 
+    # http://rosettacode.org/wiki/9_billion_names_of_God_the_integer
+    "tasks/9-billion-names-of-god-the-integer",
+
     # http://rosettacode.org/wiki/99_Bottles_of_Beer
     "tasks/99-bottles-of-beer",
 
+    # http://rosettacode.org/wiki/A%2BB
+    "tasks/a-plus-b",
+
+    # http://rosettacode.org/wiki/ABC_Problem
+    "tasks/abc-problem",
+
+    # http://rosettacode.org/wiki/Abstract_type
+    "tasks/abstract-type",
+
+    # http://rosettacode.org/wiki/Accumulator_factory
+    "tasks/accumulator-factory",
+
+    # http://rosettacode.org/wiki/Ackermann_function
+    "tasks/ackermann-function",
+
+    # http://rosettacode.org/wiki/Active_object
+    "tasks/active-object",
+
+    # http://rosettacode.org/wiki/AKS_test_for_primes
+    "tasks/aks-test-for-primes",
+
     # http://rosettacode.org/wiki/AVL_tree
     "tasks/avl-tree",
+
+    # http://rosettacode.org/wiki/Best_shuffle
+    "tasks/best-shuffle",
 
     # http://rosettacode.org/wiki/Bitmap
     "tasks/bitmap",
@@ -130,6 +153,15 @@ members = [
 
     # http://rosettacode.org/wiki/Brownian_tree
     "tasks/brownian-tree",
+
+    # http://rosettacode.org/wiki/Call_a_foreign-language_function
+    "tasks/call-a-foreign-language-function",
+
+    # http://rosettacode.org/wiki/Check_input_device_is_a_terminal
+    "tasks/check-input-device-is-a-terminal",
+
+    # http://rosettacode.org/wiki/Check_output_device_is_a_terminal
+    "tasks/check-output-device-is-a-terminal",
 
     # http://rosettacode.org/wiki/Compile-time_calculation
     "tasks/compile-time-calculation",
@@ -143,14 +175,47 @@ members = [
     # http://rosettacode.org/wiki/Discordian_date
     "tasks/discordian-date",
 
+    # http://rosettacode.org/wiki/Entropy
+    "tasks/entropy",
+
+    # http://rosettacode.org/wiki/Fibonacci_word
+    "tasks/fibonacci-word",
+
+    # http://rosettacode.org/wiki/Hamming_numbers
+    "tasks/hamming-numbers",
+
+    # http://rosettacode.org/wiki/Handle_a_signal
+    "tasks/handle-a-signal",
+
+    # http://rosettacode.org/wiki/Hello_world/Web_server
+    "tasks/hello-world/web-server",
+
+    # http://rosettacode.org/wiki/HTTP
+    "tasks/http",
+
+    # http://rosettacode.org/wiki/Include_a_file
+    "tasks/include-a-file",
+
     # http://rosettacode.org/wiki/K-means%2B%2B_clustering
     "tasks/k-meanspp-clustering",
+
+    # http://rosettacode.org/wiki/Kahan_summation
+    "tasks/kahan-summation",
+
+    # http://rosettacode.org/wiki/Keyboard_input/Obtain_a_Y_or_N_response
+    "tasks/keyboard-input/obtain-a-y-or-n-response",
+
+    # http://rosettacode.org/wiki/Look-and-say_sequence
+    "tasks/look-and-say-sequence",
 
     # http://rosettacode.org/wiki/OpenGL
     "tasks/opengl",
 
     # http://rosettacode.org/wiki/Parallel_calculations
     "tasks/parallel-calculations",
+
+    # http://rosettacode.org/wiki/Pernicious_numbers
+    "tasks/pernicious-numbers",
 
     # http://rosettacode.org/wiki/Prime_decomposition
     "tasks/prime-decomposition",
@@ -160,6 +225,9 @@ members = [
 
     # http://rosettacode.org/wiki/Rosetta_Code/Find_unimplemented_tasks
     "tasks/rosetta-code/find-unimplemented-tasks",
+
+    # http://rosettacode.org/wiki/Run-length_encoding
+    "tasks/run-length-encoding",
 
     # http://rosettacode.org/wiki/Use_another_language_to_call_a_function
     "tasks/use-another-language-to-call-a-function",
@@ -173,50 +241,9 @@ name = "coverage"
 path = "src/bin/coverage.rs"
 
 [[bin]]
-# http://rosettacode.org/wiki/9_billion_names_of_God_the_integer
-name = "9_billion_names_of_god_the_integer"
-path = "src/9_billion_names_of_god_the_integer.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/A+B
-name = "a_plus_b"
-path = "src/a_plus_b.rs"
-test = false
-
-[[bin]]
-# http://rosettacode.org/wiki/ABC_Problem
-name = "abc_problem"
-path = "src/abc_problem.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Abstract_type
-name = "abstract_type"
-path = "src/abstract_type.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Accumulator_factory
-name = "accumulator_factory"
-path = "src/accumulator_factory.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Ackermann_function
-name = "ackermann_function"
-path = "src/ackermann_function.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Active_object
-name = "active_object"
-path = "src/active_object.rs"
-
-[[bin]]
 # http://rosettacode.org/wiki/Address_of_a_variable
 name = "address_of_a_variable"
 path = "src/address_of_a_variable.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/AKS_test_for_primes
-name = "aks_test_for_primes"
-path = "src/aks_test_for_primes.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Align_columns
@@ -360,11 +387,6 @@ name = "bernoulli_numbers"
 path = "src/bernoulli_numbers.rs"
 
 [[bin]]
-# http://rosettacode.org/wiki/Best_shuffle
-name = "best_shuffle"
-path = "src/best_shuffle.rs"
-
-[[bin]]
 # http://rosettacode.org/wiki/Binary_digits
 name = "binary_digits"
 path = "src/binary_digits.rs"
@@ -410,11 +432,6 @@ path = "src/caesar_cipher.rs"
 name = "call_an_object_method"
 path = "src/call_an_object_method.rs"
 test = false
-
-[[bin]]
-# http://rosettacode.org/wiki/Call_a_foreign-language_function
-name = "call_foreign_function"
-path = "src/call_foreign_function.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Apply_a_callback_to_an_array
@@ -647,11 +664,6 @@ name = "enforced_immutability"
 path = "src/enforced_immutability.rs"
 
 [[bin]]
-# http://rosettacode.org/wiki/Entropy
-name = "entropy"
-path = "src/entropy.rs"
-
-[[bin]]
 # http://rosettacode.org/wiki/Enumerations
 name = "enumerations"
 path = "src/enumerations.rs"
@@ -737,11 +749,6 @@ path = "src/fibonacci.rs"
 # http://rosettacode.org/wiki/Fibonacci_n-step_number_sequences
 name = "fibonacci_n-step_number_sequences"
 path = "src/fibonacci_n-step_number_sequences.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Fibonacci_word
-name = "fibonacci_word"
-path = "src/fibonacci_word.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/File_input/output
@@ -852,22 +859,6 @@ name = "hailstone"
 path = "src/hailstone.rs"
 
 [[bin]]
-# http://rosettacode.org/wiki/Hamming_numbers
-name = "hamming_numbers"
-path = "src/hamming_numbers.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Hamming_numbers
-name = "hamming_numbers_alt"
-path = "src/hamming_numbers_alt.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Handle_a_signal
-name = "handle_a_signal"
-path = "src/handle_a_signal.rs"
-test = false
-
-[[bin]]
 # http://rosettacode.org/wiki/Happy_numbers
 name = "happy_numbers"
 path = "src/happy_numbers.rs"
@@ -920,12 +911,6 @@ name = "hello_world_text"
 path = "src/hello_world/text.rs"
 
 [[bin]]
-# http://rosettacode.org/wiki/Hello_world/Web_server
-name = "hello_world_web_server"
-path = "src/hello_world/web_server.rs"
-test = false
-
-[[bin]]
 # http://rosettacode.org/wiki/Here_document
 name = "here_document"
 path = "src/here_document.rs"
@@ -959,11 +944,6 @@ path = "src/hough_transform.rs"
 test = false
 
 [[bin]]
-# http://rosettacode.org/wiki/HTTP
-name = "http"
-path = "src/http.rs"
-
-[[bin]]
 # http://rosettacode.org/wiki/HTTPS
 name = "https"
 path = "src/https.rs"
@@ -989,11 +969,6 @@ name = "iban"
 path = "src/iban.rs"
 
 [[bin]]
-# http://rosettacode.org/wiki/Include_a_file
-name = "include_a_file"
-path = "src/include_a_file.rs"
-
-[[bin]]
 # http://rosettacode.org/wiki/Increment_a_numerical_string
 name = "increment_a_numerical_string"
 path = "src/increment_a_numerical_string.rs"
@@ -1002,12 +977,6 @@ path = "src/increment_a_numerical_string.rs"
 # http://rosettacode.org/wiki/Infinity
 name = "infinity"
 path = "src/infinity.rs"
-test = false
-
-[[bin]]
-# http://rosettacode.org/wiki/Check_input_device_is_a_terminal
-name = "input_is_terminal"
-path = "src/input_is_terminal.rs"
 test = false
 
 [[bin]]
@@ -1068,16 +1037,6 @@ name = "k-d-tree"
 path = "src/k-d-tree.rs"
 
 [[bin]]
-# http://rosettacode.org/wiki/Kahan_summation
-name = "kahansum"
-path = "src/kahansum.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Keyboard_input/Obtain_a_Y_or_N_response
-name = "keyboard_input_obtain_a_y_or_n_response"
-path = "src/keyboard_input/obtain_a_y_or_n_response.rs"
-
-[[bin]]
 # http://rosettacode.org/wiki/Knapsack_problem/0-1
 name = "knapsack_problem_0-1"
 path = "src/knapsack_problem/0-1.rs"
@@ -1126,11 +1085,6 @@ path = "src/linear_congruential_generator.rs"
 # http://rosettacode.org/wiki/Longest_increasing_subsequence
 name = "longest_common_subsequence"
 path = "src/longest_common_subsequence.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Look-and-say_sequence
-name = "look-and-say_sequence"
-path = "src/look-and-say_sequence.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Loop_over_multiple_arrays_simultaneously
@@ -1346,12 +1300,6 @@ name = "ordered_words"
 path = "src/ordered_words.rs"
 
 [[bin]]
-# http://rosettacode.org/wiki/Check_output_device_is_a_terminal
-name = "output_is_terminal"
-path = "src/output_is_terminal.rs"
-test = false
-
-[[bin]]
 # http://rosettacode.org/wiki/Palindrome_detection
 name = "palindrome"
 path = "src/palindrome.rs"
@@ -1386,11 +1334,6 @@ path = "src/perfect_numbers.rs"
 # http://rosettacode.org/wiki/Permutations_with_repetitions
 name = "permutations_with_repetitions"
 path = "src/permutations_with_repetitions.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Pernicious_numbers
-name = "pernicious_numbers"
-path = "src/pernicious_numbers.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Pick_random_element
@@ -1570,11 +1513,6 @@ path = "src/rock_paper_scissors.rs"
 # http://rosettacode.org/wiki/RSA_code
 name = "rsa_code"
 path = "src/rsa_code.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Run-length_encoding
-name = "run_length_encoding"
-path = "src/run_length_encoding.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/S-Expressions

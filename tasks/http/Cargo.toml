@@ -1,0 +1,9 @@
+[package]
+name = "http"
+version = "0.1.0"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/HTTP"
+
+[dependencies]
+hyper = "0.9"

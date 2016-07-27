@@ -1,0 +1,10 @@
+[package]
+name = "best-shuffle"
+version = "0.1.0"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Best_shuffle"
+
+[dependencies]
+permutohedron = "0.2"
+rand = "0.3"

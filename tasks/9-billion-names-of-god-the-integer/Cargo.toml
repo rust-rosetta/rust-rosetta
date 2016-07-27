@@ -1,0 +1,9 @@
+[package]
+name = "9-billion-names-of-god-the-integer"
+version = "0.1.0"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/9_billion_names_of_God_the_integer"
+
+[dependencies]
+num = "0.1"
