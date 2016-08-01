@@ -1,5 +1,3 @@
-// http://rosettacode.org/wiki/Address_of_a_variable
-
 fn main() {
     // Get the memory address of a variable
     let var = 1_i32;

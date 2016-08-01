@@ -129,6 +129,9 @@ members = [
     # http://rosettacode.org/wiki/Active_object
     "tasks/active-object",
 
+    # http://rosettacode.org/wiki/Address_of_a_variable
+    "tasks/address-of-a-variable",
+
     # http://rosettacode.org/wiki/AKS_test_for_primes
     "tasks/aks-test-for-primes",
 
@@ -238,11 +241,6 @@ members = [
 [[bin]]
 name = "coverage"
 path = "src/bin/coverage.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Address_of_a_variable
-name = "address_of_a_variable"
-path = "src/address_of_a_variable.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Align_columns
