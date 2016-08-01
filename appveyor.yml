@@ -11,6 +11,10 @@ environment:
 
 shallow_clone: true
 
+cache:
+  - target
+  - '%USERPROFILE%\.cargo'
+
 install:
   - ps: Start-FileDownload "https://static.rust-lang.org/dist/rust-nightly-${env:TARGET}.msi"
   - msiexec /i rust-nightly-%TARGET%.msi /quiet /passive /qn /norestart INSTALLDIR=%RUST_DIR%
