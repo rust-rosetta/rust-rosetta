@@ -1,5 +1,3 @@
-// http://rosettacode.org/wiki/Mouse_position
-
 #[cfg(all(target_os = "linux", feature = "x11"))]
 extern crate x11;
 

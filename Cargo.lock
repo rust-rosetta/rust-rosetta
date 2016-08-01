@@ -1009,6 +1009,15 @@ dependencies = [
 ]
 
 [[package]]
+name = "mouse-position"
+version = "0.1.0"
+dependencies = [
+ "user32-sys 0.2.0 (registry+https://github.com/rust-lang/crates.io-index)",
+ "winapi 0.2.7 (registry+https://github.com/rust-lang/crates.io-index)",
+ "x11 2.8.0 (registry+https://github.com/rust-lang/crates.io-index)",
+]
+
+[[package]]
 name = "nalgebra"
 version = "0.8.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1318,9 +1327,6 @@ dependencies = [
  "time 0.1.35 (registry+https://github.com/rust-lang/crates.io-index)",
  "unicode-segmentation 0.1.2 (registry+https://github.com/rust-lang/crates.io-index)",
  "url 1.1.1 (registry+https://github.com/rust-lang/crates.io-index)",
- "user32-sys 0.2.0 (registry+https://github.com/rust-lang/crates.io-index)",
- "winapi 0.2.7 (registry+https://github.com/rust-lang/crates.io-index)",
- "x11 2.6.1 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
 [[package]]
@@ -1681,7 +1687,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 
 [[package]]
 name = "x11"
-version = "2.6.1"
+version = "2.8.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 dependencies = [
  "libc 0.2.13 (registry+https://github.com/rust-lang/crates.io-index)",
