@@ -135,6 +135,9 @@ members = [
     # http://rosettacode.org/wiki/AKS_test_for_primes
     "tasks/aks-test-for-primes",
 
+    # http://rosettacode.org/wiki/Align_columns
+    "tasks/align-columns",
+
     # http://rosettacode.org/wiki/Arbitrary-precision_integers_(included)
     "tasks/arbitrary-precision-integers-included",
 
@@ -241,11 +244,6 @@ members = [
 [[bin]]
 name = "coverage"
 path = "src/bin/coverage.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Align_columns
-name = "align_columns"
-path = "src/align_columns.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Aliquot_sequence_classifications
