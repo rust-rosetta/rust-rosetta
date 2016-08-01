@@ -4,11 +4,13 @@
 
 #[macro_use]
 extern crate lazy_static;
+#[macro_use]
+extern crate url;
+
 extern crate hyper;
 extern crate regex;
 extern crate toml;
 extern crate walkdir;
-extern crate url;
 
 extern crate find_unimplemented_tasks;
 
@@ -100,18 +102,18 @@ impl TaskIterator {
 
         let all_task_titles = remote::all_task_titles().into_iter().collect::<HashSet<_>>();
 
-        let all_normalized_task_titles = all_task_titles.iter()
-            .map(|title| remote::normalize(title))
+        let all_decoded_task_titles = all_task_titles.iter()
+            .map(|title| remote::decode_title(title))
             .collect::<HashSet<_>>();
 
         let all_local_task_titles =
-            local_tasks.iter().map(|task| task.normalized_title()).collect::<HashSet<_>>();
+            local_tasks.iter().map(|task| task.title()).collect::<HashSet<_>>();
 
-        if !all_local_task_titles.is_subset(&all_normalized_task_titles) {
+        if !all_local_task_titles.is_subset(&all_decoded_task_titles) {
             // If there are tasks that can't be matched on the wiki, it's possible that they are
             // just draft tasks at the moment. Check them by seeing if the server response with
             // 404.
-            let possible_bad_local_titles = all_local_task_titles.sub(&all_normalized_task_titles);
+            let possible_bad_local_titles = all_local_task_titles.sub(&all_decoded_task_titles);
 
             let mut bad_titles = vec![];
             for title in &possible_bad_local_titles {
@@ -150,12 +152,10 @@ impl Iterator for TaskIterator {
 
     fn next(&mut self) -> Option<Self::Item> {
         if let Some(ref title) = self.requested_task_titles.pop_front() {
-            let normalized_title = remote::normalize(title);
-
             let local_task = self.local_tasks
                 .iter()
                 .cloned()
-                .find(|task| task.normalized_title() == normalized_title);
+                .find(|task| task.title() == title.as_str());
             let remote_task = remote::request_task(&title).unwrap();
 
             let task = Task {
