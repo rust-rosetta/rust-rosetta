@@ -1,5 +1,3 @@
-// http://rosettacode.org/wiki/Aliquot_sequence_classifications
-
 #[derive(Debug)]
 enum AliquotType {
     Terminating,

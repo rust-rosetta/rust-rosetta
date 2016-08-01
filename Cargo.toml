@@ -138,6 +138,9 @@ members = [
     # http://rosettacode.org/wiki/Align_columns
     "tasks/align-columns",
 
+    # http://rosettacode.org/wiki/Aliquot_sequence_classifications
+    "tasks/aliquot-sequence-classifications",
+
     # http://rosettacode.org/wiki/Arbitrary-precision_integers_(included)
     "tasks/arbitrary-precision-integers-included",
 
@@ -244,11 +247,6 @@ members = [
 [[bin]]
 name = "coverage"
 path = "src/bin/coverage.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Aliquot_sequence_classifications
-name = "aliquot_sequence_classifications"
-path = "src/aliquot_sequence_classifications.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Almost_prime
