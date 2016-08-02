@@ -314,6 +314,9 @@ members = [
     # http://rosettacode.org/wiki/Roots_of_a_function
     "tasks/roots-of-a-function",
 
+    # http://rosettacode.org/wiki/Roots_of_unity
+    "tasks/roots-of-unity",
+
     # http://rosettacode.org/wiki/Rosetta_Code/Find_bare_lang_tags
     "tasks/rosetta-code/find-bare-lang-tags",
 
@@ -1432,11 +1435,6 @@ path = "src/roman_numerals/decode.rs"
 # http://rosettacode.org/wiki/Roman_numerals/Encode
 name = "roman_numerals_encode"
 path = "src/roman_numerals/encode.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Roots_of_unity
-name = "roots_of_unity"
-path = "src/roots_of_unity.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Rot-13

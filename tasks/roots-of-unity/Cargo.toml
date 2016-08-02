@@ -1,0 +1,9 @@
+[package]
+name = "roots-of-unity"
+version = "0.1.0"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Roots_of_unity"
+
+[dependencies]
+num = "0.1"
