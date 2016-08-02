@@ -1,0 +1,9 @@
+[package]
+name = "reverse-a-string"
+version = "0.1.0"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Reverse_a_string"
+
+[dependencies]
+unicode-segmentation = "0.1"

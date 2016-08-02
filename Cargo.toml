@@ -80,7 +80,6 @@ rust-crypto = "0.2"
 rustc-serialize = "0.3"
 term = "0.4"
 time = "0.1"
-unicode-segmentation = "0.1"
 
 [dependencies.meta]
 path = "meta"
@@ -246,6 +245,9 @@ members = [
 
     # http://rosettacode.org/wiki/Remove_lines_from_a_file
     "tasks/remove-lines-from-a-file",
+
+    # http://rosettacode.org/wiki/Reverse_a_string
+    "tasks/reverse-a-string",
 
     # http://rosettacode.org/wiki/Rosetta_Code/Find_unimplemented_tasks
     "tasks/rosetta-code/find-unimplemented-tasks",
@@ -1438,11 +1440,6 @@ path = "src/replace_word.rs"
 # http://rosettacode.org/wiki/Return_multiple_values
 name = "return_multiple_values"
 path = "src/return_multiple_values.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Reverse_a_string
-name = "reverse_a_string"
-path = "src/reverse_a_string.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Reverse_words_in_a_string

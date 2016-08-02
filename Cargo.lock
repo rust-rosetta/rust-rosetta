@@ -1351,6 +1351,13 @@ dependencies = [
 ]
 
 [[package]]
+name = "reverse-a-string"
+version = "0.1.0"
+dependencies = [
+ "unicode-segmentation 0.1.2 (registry+https://github.com/rust-lang/crates.io-index)",
+]
+
+[[package]]
 name = "run-length-encoding"
 version = "0.1.0"
 

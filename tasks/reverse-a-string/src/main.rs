@@ -1,4 +1,3 @@
-// http://rosettacode.org/wiki/Reverse_a_string
 extern crate unicode_segmentation;
 
 use unicode_segmentation::UnicodeSegmentation;
