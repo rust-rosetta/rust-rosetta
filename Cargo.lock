@@ -797,6 +797,13 @@ version = "1.1.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 
 [[package]]
+name = "https"
+version = "0.1.0"
+dependencies = [
+ "hyper 0.9.9 (registry+https://github.com/rust-lang/crates.io-index)",
+]
+
+[[package]]
 name = "hyper"
 version = "0.9.9"
 source = "registry+https://github.com/rust-lang/crates.io-index"

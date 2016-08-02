@@ -204,6 +204,9 @@ members = [
     # http://rosettacode.org/wiki/HTTP
     "tasks/http",
 
+    # http://rosettacode.org/wiki/HTTPS
+    "tasks/https",
+
     # http://rosettacode.org/wiki/Include_a_file
     "tasks/include-a-file",
 
@@ -940,11 +943,6 @@ test = false
 name = "hough_transform"
 path = "src/hough_transform.rs"
 test = false
-
-[[bin]]
-# http://rosettacode.org/wiki/HTTPS
-name = "https"
-path = "src/https.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/HTTPS/Authenticated

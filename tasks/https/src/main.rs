@@ -1,5 +1,3 @@
-// http://rosettacode.org/wiki/HTTPS
-
 extern crate hyper;
 
 use std::io::Read;
