@@ -1,5 +1,3 @@
-// http://rosettacode.org/wiki/MD5
-
 extern crate crypto;
 
 use crypto::digest::Digest;

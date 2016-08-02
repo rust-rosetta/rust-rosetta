@@ -1,0 +1,9 @@
+[package]
+name = "md5"
+version = "0.1.0"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/MD5"
+
+[dependencies]
+rust-crypto = "0.2"
