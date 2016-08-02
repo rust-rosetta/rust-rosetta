@@ -179,6 +179,9 @@ members = [
     # http://rosettacode.org/wiki/Check_output_device_is_a_terminal
     "tasks/check-output-device-is-a-terminal",
 
+    # http://rosettacode.org/wiki/Closest-pair_problem
+    "tasks/closest-pair-problem",
+
     # http://rosettacode.org/wiki/Compile-time_calculation
     "tasks/compile-time-calculation",
 
@@ -518,11 +521,6 @@ path = "src/chinese_remainder.rs"
 # http://rosettacode.org/wiki/Circles_of_given_radius_through_two_points
 name = "circles_of_given_radius_through_two_points"
 path = "src/circles_of_given_radius_through_two_points.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Closest-pair_problem
-name = "closest-pair"
-path = "src/closest-pair.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Closures/Value_capture
