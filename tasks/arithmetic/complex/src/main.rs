@@ -1,5 +1,3 @@
-// http://rosettacode.org/wiki/Arithmetic/Complex
-
 extern crate num;
 
 use num::complex::Complex;

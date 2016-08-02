@@ -146,6 +146,9 @@ members = [
     # http://rosettacode.org/wiki/Arbitrary-precision_integers_(included)
     "tasks/arbitrary-precision-integers-included",
 
+    # http://rosettacode.org/wiki/Arithmetic/Complex
+    "tasks/arithmetic/complex",
+
     # http://rosettacode.org/wiki/AVL_tree
     "tasks/avl-tree",
 
@@ -300,12 +303,6 @@ test = false
 # http://rosettacode.org/wiki/Arithmetic-geometric_mean
 name = "arithmetic-geometric_mean"
 path = "src/arithmetic-geometric_mean.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Arithmetic/Complex
-name = "arithmetic_complex"
-path = "src/arithmetic/complex.rs"
-test = false
 
 [[bin]]
 # http://rosettacode.org/wiki/Arithmetic/Integer
