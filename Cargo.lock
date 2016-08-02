@@ -1531,6 +1531,13 @@ dependencies = [
 ]
 
 [[package]]
+name = "roots-of-a-function"
+version = "0.1.0"
+dependencies = [
+ "num 0.1.32 (registry+https://github.com/rust-lang/crates.io-index)",
+]
+
+[[package]]
 name = "run-length-encoding"
 version = "0.1.0"
 
