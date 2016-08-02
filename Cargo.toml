@@ -240,6 +240,9 @@ members = [
     # http://rosettacode.org/wiki/Quine
     "tasks/quine",
 
+    # http://rosettacode.org/wiki/Remove_lines_from_a_file
+    "tasks/remove-lines-from-a-file",
+
     # http://rosettacode.org/wiki/Rosetta_Code/Find_unimplemented_tasks
     "tasks/rosetta-code/find-unimplemented-tasks",
 
@@ -1414,11 +1417,6 @@ test = false
 # http://rosettacode.org/wiki/Remove_duplicate_elements
 name = "remove_duplicate_elements"
 path = "src/remove_duplicate_elements.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Remove_lines_from_a_file
-name = "remove_lines_from_a_file"
-path = "src/remove_lines_from_a_file.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Rename_a_file
