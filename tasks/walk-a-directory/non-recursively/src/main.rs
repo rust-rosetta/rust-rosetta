@@ -1,4 +1,3 @@
-// http://rosettacode.org/wiki/Walk_a_directory/Non-recursively
 extern crate docopt;
 extern crate regex;
 extern crate rustc_serialize;

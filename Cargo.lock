@@ -1063,6 +1063,15 @@ dependencies = [
 ]
 
 [[package]]
+name = "non-recursively"
+version = "0.1.0"
+dependencies = [
+ "docopt 0.6.81 (registry+https://github.com/rust-lang/crates.io-index)",
+ "regex 0.1.73 (registry+https://github.com/rust-lang/crates.io-index)",
+ "rustc-serialize 0.3.19 (registry+https://github.com/rust-lang/crates.io-index)",
+]
+
+[[package]]
 name = "num"
 version = "0.1.32"
 source = "registry+https://github.com/rust-lang/crates.io-index"
