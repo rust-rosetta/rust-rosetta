@@ -76,7 +76,6 @@ gtk = { version = "0.1.0", optional = true }
 num = "0.1"
 rand = "0.3"
 regex = { version = "0.1", features = ["pattern"] }
-rust-crypto = "0.2"
 rustc-serialize = "0.3"
 term = "0.4"
 time = "0.1"
@@ -260,6 +259,9 @@ members = [
 
     # http://rosettacode.org/wiki/Run-length_encoding
     "tasks/run-length-encoding",
+
+    # http://rosettacode.org/wiki/SHA-256
+    "tasks/sha-256",
 
     # http://rosettacode.org/wiki/URL_parser
     "tasks/url-parser",
@@ -1517,11 +1519,6 @@ test = false
 # http://rosettacode.org/wiki/SHA-1
 name = "sha1"
 path = "src/sha1.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/SHA-256
-name = "sha256"
-path = "src/sha256.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Short-circuit_evaluation
