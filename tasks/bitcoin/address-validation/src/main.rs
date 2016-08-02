@@ -1,5 +1,3 @@
-// http://rosettacode.org/wiki/Bitcoin/address_validation
-
 extern crate crypto;
 
 use crypto::digest::Digest;

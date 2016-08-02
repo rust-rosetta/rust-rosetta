@@ -153,6 +153,9 @@ members = [
     # http://rosettacode.org/wiki/Best_shuffle
     "tasks/best-shuffle",
 
+    # http://rosettacode.org/wiki/Bitcoin/address_validation
+    "tasks/bitcoin/address-validation",
+
     # http://rosettacode.org/wiki/Bitmap
     "tasks/bitmap",
 
@@ -407,11 +410,6 @@ path = "src/binary_search.rs"
 # http://rosettacode.org/wiki/Evaluate_binomial_coefficients
 name = "binomial_coefficients"
 path = "src/binomial_coefficients.rs"
-
-[[bin]]
-# https://rosettacode.org/wiki/Bitcoin/address_validation
-name = "bitcoin_address_validation"
-path = "src/bitcoin/address_validation.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Bitwise_operations

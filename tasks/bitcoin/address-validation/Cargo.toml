@@ -1,0 +1,9 @@
+[package]
+name = "address-validation"
+version = "0.1.0"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Bitcoin/address_validation"
+
+[dependencies]
+rust-crypto = "0.2"
