@@ -278,6 +278,9 @@ members = [
     # http://rosettacode.org/wiki/MD5
     "tasks/md5",
 
+    # http://rosettacode.org/wiki/Modular_exponentiation
+    "tasks/modular-exponentiation",
+
     # http://rosettacode.org/wiki/Mouse_position
     "tasks/mouse-position",
 
@@ -1207,11 +1210,6 @@ path = "src/metered_concurrency.rs"
 # http://rosettacode.org/wiki/Middle_three_digits
 name = "middle_three_digits"
 path = "src/middle_three_digits.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Modular_exponentiation
-name = "modular_exponentiation"
-path = "src/modular_exponentiation.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Modular_inverse

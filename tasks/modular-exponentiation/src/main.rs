@@ -1,6 +1,5 @@
-// http://rosettacode.org/wiki/Modular_exponentiation
-
 extern crate num;
+
 use num::{BigUint, One};
 use num::bigint::ToBigUint;
 use num::integer::Integer;

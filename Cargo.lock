@@ -1188,6 +1188,13 @@ dependencies = [
 ]
 
 [[package]]
+name = "modular-exponentiation"
+version = "0.1.0"
+dependencies = [
+ "num 0.1.32 (registry+https://github.com/rust-lang/crates.io-index)",
+]
+
+[[package]]
 name = "mouse-position"
 version = "0.1.0"
 dependencies = [
