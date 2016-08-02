@@ -81,7 +81,6 @@ rustc-serialize = "0.3"
 term = "0.4"
 time = "0.1"
 unicode-segmentation = "0.1"
-url = "1.1.0"
 
 [dependencies.meta]
 path = "meta"
@@ -253,6 +252,9 @@ members = [
 
     # http://rosettacode.org/wiki/Run-length_encoding
     "tasks/run-length-encoding",
+
+    # http://rosettacode.org/wiki/URL_parser
+    "tasks/url-parser",
 
     # http://rosettacode.org/wiki/Use_another_language_to_call_a_function
     "tasks/use-another-language-to-call-a-function",
@@ -1836,12 +1838,6 @@ path = "src/unicode_variable_names.rs"
 # http://rosettacode.org/wiki/Unix/ls
 name = "unix_ls"
 path = "src/unix/ls.rs"
-test = false
-
-[[bin]]
-# http://rosettacode.org/wiki/URL_parser
-name = "url_parser"
-path = "src/url_parser.rs"
 test = false
 
 [[bin]]

@@ -1,5 +1,3 @@
-// http://rosettacode.org/wiki/URL_parser
-
 extern crate url;
 
 use url::Url;
