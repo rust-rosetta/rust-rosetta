@@ -1,13 +1,12 @@
-// http://rosettacode.org/wiki/K-d_tree
-
 extern crate time;
 extern crate rand;
 
-use rand::Rng;
 use std::cmp::Ordering;
-use time::get_time;
 use std::ops::Sub;
 use std::cmp::Ordering::Less;
+
+use rand::Rng;
+use time::get_time;
 
 #[derive(Clone, PartialEq, Debug)]
 struct Point {
@@ -145,15 +144,11 @@ impl KDTreeNode {
 
 pub fn main() {
     // wordpress
-    let mut wp_points: Vec<Point> = [[2f32, 3f32],
-                                     [5f32, 4f32],
-                                     [9f32, 6f32],
-                                     [4f32, 7f32],
-                                     [8f32, 1f32],
-                                     [7f32, 2f32]]
-        .iter()
-        .map(|x| Point { coords: x.to_vec() })
-        .collect();
+    let mut wp_points: Vec<Point> =
+        [[2f32, 3f32], [5f32, 4f32], [9f32, 6f32], [4f32, 7f32], [8f32, 1f32], [7f32, 2f32]]
+            .iter()
+            .map(|x| Point { coords: x.to_vec() })
+            .collect();
     let wp_tree = KDTreeNode::new(&mut wp_points[..], 0);
 
     let wp_target = Point { coords: vec![9f32, 2f32] };
@@ -252,15 +247,11 @@ mod tests {
 
     #[test]
     fn wp() {
-        let mut wp_points: Vec<Point> = [[2f32, 3f32],
-                                         [5f32, 4f32],
-                                         [9f32, 6f32],
-                                         [4f32, 7f32],
-                                         [8f32, 1f32],
-                                         [7f32, 2f32]]
-            .iter()
-            .map(|x| Point { coords: x.to_vec() })
-            .collect();
+        let mut wp_points: Vec<Point> =
+            [[2f32, 3f32], [5f32, 4f32], [9f32, 6f32], [4f32, 7f32], [8f32, 1f32], [7f32, 2f32]]
+                .iter()
+                .map(|x| Point { coords: x.to_vec() })
+                .collect();
         let wp_tree = KDTreeNode::new(&mut wp_points[..], 0);
 
         let wp_target = Point { coords: vec![9f32, 2f32] };

@@ -931,6 +931,14 @@ dependencies = [
 ]
 
 [[package]]
+name = "k-d-tree"
+version = "0.1.0"
+dependencies = [
+ "rand 0.3.14 (registry+https://github.com/rust-lang/crates.io-index)",
+ "time 0.1.35 (registry+https://github.com/rust-lang/crates.io-index)",
+]
+
+[[package]]
 name = "k-meanspp-clustering"
 version = "0.1.0"
 dependencies = [
