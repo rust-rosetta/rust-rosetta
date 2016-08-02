@@ -197,6 +197,9 @@ members = [
     # http://rosettacode.org/wiki/Entropy
     "tasks/entropy",
 
+    # http://rosettacode.org/wiki/Evaluate_binomial_coefficients
+    "tasks/evaluate-binomial-coefficients",
+
     # http://rosettacode.org/wiki/Events
     "tasks/events",
 
@@ -436,11 +439,6 @@ path = "src/binary_digits.rs"
 # http://rosettacode.org/wiki/Binary_search
 name = "binary_search"
 path = "src/binary_search.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Evaluate_binomial_coefficients
-name = "binomial_coefficients"
-path = "src/binomial_coefficients.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Bitwise_operations

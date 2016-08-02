@@ -1,0 +1,9 @@
+[package]
+name = "evaluate-binomial-coefficients"
+version = "0.1.0"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Evaluate_binomial_coefficients"
+
+[dependencies]
+num = "0.1"

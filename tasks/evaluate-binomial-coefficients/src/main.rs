@@ -1,5 +1,3 @@
-// http://rosettacode.org/wiki/Evaluate_binomial_coefficients
-
 extern crate num;
 
 use num::One;

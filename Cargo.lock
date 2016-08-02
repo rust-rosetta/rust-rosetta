@@ -480,6 +480,13 @@ dependencies = [
 ]
 
 [[package]]
+name = "evaluate-binomial-coefficients"
+version = "0.1.0"
+dependencies = [
+ "num 0.1.32 (registry+https://github.com/rust-lang/crates.io-index)",
+]
+
+[[package]]
 name = "events"
 version = "0.1.0"
 dependencies = [
