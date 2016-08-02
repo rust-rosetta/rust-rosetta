@@ -302,6 +302,9 @@ members = [
     # http://rosettacode.org/wiki/Range_expansion
     "tasks/range-expansion",
 
+    # http://rosettacode.org/wiki/Range_extraction
+    "tasks/range-extraction",
+
     # http://rosettacode.org/wiki/Remove_lines_from_a_file
     "tasks/remove-lines-from-a-file",
 
@@ -1357,11 +1360,6 @@ path = "src/queue/definition.rs"
 # http://rosettacode.org/wiki/Random_numbers
 name = "random_numbers"
 path = "src/random_numbers.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Range_extraction
-name = "range_extraction"
-path = "src/range_extraction.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Read_entire_file

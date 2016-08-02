@@ -1,5 +1,3 @@
-// http://rosettacode.org/wiki/Range_extraction
-
 extern crate num;
 
 use num::One;
