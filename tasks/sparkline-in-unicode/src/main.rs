@@ -1,5 +1,3 @@
-// http://rosettacode.org/wiki/Sparkline_in_unicode
-
 extern crate regex;
 
 use std::f64;

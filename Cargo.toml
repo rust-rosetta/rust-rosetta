@@ -275,6 +275,9 @@ members = [
     # http://rosettacode.org/wiki/SHA-256
     "tasks/sha-256",
 
+    # http://rosettacode.org/wiki/Sparkline_in_unicode
+    "tasks/sparkline-in-unicode",
+
     # http://rosettacode.org/wiki/URL_parser
     "tasks/url-parser",
 
@@ -1657,11 +1660,6 @@ path = "src/sorting_algorithms/sleep_sort.rs"
 # http://rosettacode.org/wiki/Sorting_algorithms/Stooge_sort
 name = "sorting_algorithms_stooge_sort"
 path = "src/sorting_algorithms/stooge_sort.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Sparkline_in_unicode
-name = "sparkline_in_unicode"
-path = "src/sparkline_in_unicode.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Stack
