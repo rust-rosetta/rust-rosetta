@@ -203,6 +203,9 @@ members = [
     # http://rosettacode.org/wiki/Entropy
     "tasks/entropy",
 
+    # http://rosettacode.org/wiki/Equilibrium_index
+    "tasks/equilibrium-index",
+
     # http://rosettacode.org/wiki/Evaluate_binomial_coefficients
     "tasks/evaluate-binomial-coefficients",
 
@@ -698,11 +701,6 @@ test = false
 # http://rosettacode.org/wiki/Environment_variables
 name = "environment_variables"
 path = "src/environment_variables.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Equilibrium_index
-name = "equilibrium_index"
-path = "src/equilibrium_index.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Ethiopian_multiplication

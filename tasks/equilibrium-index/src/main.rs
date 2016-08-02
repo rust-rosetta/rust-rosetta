@@ -1,4 +1,3 @@
-// http://rosettacode.org/wiki/Equilibrium_index
 extern crate num;
 
 use num::traits::Zero;
