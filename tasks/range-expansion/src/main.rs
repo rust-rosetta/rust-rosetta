@@ -1,5 +1,6 @@
-// http://rosettacode.org/wiki/Range_expansion
 extern crate regex;
+
+use regex::Regex;
 
 fn main() {
     let range = "-6,-3-1,3-5,7-11,14,15,17-20";
@@ -19,7 +20,6 @@ fn expand_range(range: &str) -> Vec<isize> {
 
 /// Expand a single element, which can be a number or a range.
 fn expand_item(item: &str) -> Vec<isize> {
-    use regex::Regex;
     // Handle the case of a single number
     for cap in Regex::new(r"^(-?\d+)$").unwrap().captures_iter(item) {
         return vec![cap.at(0).and_then(|s| s.parse().ok()).unwrap()];

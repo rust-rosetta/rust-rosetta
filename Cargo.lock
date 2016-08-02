@@ -1337,6 +1337,13 @@ dependencies = [
 ]
 
 [[package]]
+name = "range-expansion"
+version = "0.1.0"
+dependencies = [
+ "regex 0.1.73 (registry+https://github.com/rust-lang/crates.io-index)",
+]
+
+[[package]]
 name = "rayon"
 version = "0.4.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
