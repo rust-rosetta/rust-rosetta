@@ -3,7 +3,6 @@
 
 extern crate difference;
 extern crate docopt;
-extern crate rust_rosetta;
 extern crate rustc_serialize;
 extern crate term;
 
