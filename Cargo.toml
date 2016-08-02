@@ -212,6 +212,9 @@ members = [
     # http://rosettacode.org/wiki/Events
     "tasks/events",
 
+    # http://rosettacode.org/wiki/Fast_Fourier_transform
+    "tasks/fast-fourier-transform",
+
     # http://rosettacode.org/wiki/Fibonacci_word
     "tasks/fibonacci-word",
 
@@ -747,11 +750,6 @@ path = "src/factor_int.rs"
 # http://rosettacode.org/wiki/Factorial
 name = "factorial"
 path = "src/factorial.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Fast_Fourier_transform
-name = "fast_fourier_transform"
-path = "src/fast_fourier_transform.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/FASTA_format
