@@ -204,6 +204,9 @@ members = [
     # http://rosettacode.org/wiki/Handle_a_signal
     "tasks/handle-a-signal",
 
+    # http://rosettacode.org/wiki/Hello_world/Graphical
+    "tasks/hello-world/graphical",
+
     # http://rosettacode.org/wiki/Hello_world/Web_server
     "tasks/hello-world/web-server",
 
@@ -903,11 +906,6 @@ path = "src/hash_from_two_arrays.rs"
 # http://rosettacode.org/wiki/Hash_join
 name = "hash_join"
 path = "src/hash_join.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Hello_world/Graphical
-name = "hello_world_graphical"
-path = "src/hello_world/graphical.rs"
 
 [[bin]]
 # http://www.rosettacode.org/wiki/Hello_world/Line_printer

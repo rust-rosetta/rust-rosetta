@@ -1,5 +1,3 @@
-// http://rosettacode.org/wiki/Hello_world/Graphical
-
 #[cfg(feature = "gtk")]
 mod graphical {
     extern crate gtk;
