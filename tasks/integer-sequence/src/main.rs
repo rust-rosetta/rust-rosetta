@@ -1,5 +1,3 @@
-// http://rosettacode.org/wiki/Integer_sequence
-
 extern crate num;
 
 use num::{BigUint, One};

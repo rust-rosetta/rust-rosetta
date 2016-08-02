@@ -251,6 +251,9 @@ members = [
     # http://rosettacode.org/wiki/Include_a_file
     "tasks/include-a-file",
 
+    # http://rosettacode.org/wiki/Integer_sequence
+    "tasks/integer-sequence",
+
     # http://rosettacode.org/wiki/JSON
     "tasks/json",
 
@@ -984,12 +987,6 @@ test = false
 # http://rosettacode.org/wiki/Integer_comparison
 name = "integer_comparison"
 path = "src/integer_comparison.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Integer_sequence
-name = "integer_sequence"
-path = "src/integer_sequence.rs"
-test = false
 
 [[bin]]
 # http://rosettacode.org/wiki/The_ISAAC_Cipher
