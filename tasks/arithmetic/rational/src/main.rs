@@ -1,5 +1,3 @@
-// http://rosettacode.org/wiki/Arithmetic/Rational
-
 extern crate num;
 
 use std::cmp::Ordering;

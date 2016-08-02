@@ -146,6 +146,9 @@ members = [
     # http://rosettacode.org/wiki/Arithmetic/Complex
     "tasks/arithmetic/complex",
 
+    # http://rosettacode.org/wiki/Arithmetic/Rational
+    "tasks/arithmetic/rational",
+
     # http://rosettacode.org/wiki/AVL_tree
     "tasks/avl-tree",
 
@@ -342,11 +345,6 @@ path = "src/arithmetic-geometric_mean.rs"
 name = "arithmetic_integer"
 path = "src/arithmetic/integer.rs"
 test = false
-
-[[bin]]
-# http://rosettacode.org/wiki/Arithmetic/Rational
-name = "arithmetic_rational"
-path = "src/arithmetic/rational.rs"
 
 [[bin]]
 # http://www.rosettacode.org/wiki/Array_concatenation

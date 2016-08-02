@@ -1,0 +1,9 @@
+[package]
+name = "rational"
+version = "0.1.0"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Arithmetic/Rational"
+
+[dependencies]
+num = "0.1"
