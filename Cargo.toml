@@ -207,6 +207,9 @@ members = [
     # http://rosettacode.org/wiki/Include_a_file
     "tasks/include-a-file",
 
+    # http://rosettacode.org/wiki/JSON
+    "tasks/json",
+
     # http://rosettacode.org/wiki/K-means%2B%2B_clustering
     "tasks/k-meanspp-clustering",
 
@@ -1014,11 +1017,6 @@ path = "src/jortsort.rs"
 # http://rosettacode.org/wiki/Josephus_problem
 name = "josephus_problem"
 path = "src/josephus_problem.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/JSON
-name = "json"
-path = "src/json.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/K-d_tree

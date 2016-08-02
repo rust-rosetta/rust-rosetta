@@ -1,5 +1,5 @@
-// http://rosettacode.org/wiki/JSON
 extern crate rustc_serialize;
+
 use rustc_serialize::json;
 
 #[derive(Debug, RustcEncodable, RustcDecodable, PartialEq, Eq)]

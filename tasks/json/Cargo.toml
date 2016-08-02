@@ -1,0 +1,9 @@
+[package]
+name = "json"
+version = "0.1.0"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/JSON"
+
+[dependencies]
+rustc-serialize = "0.3"
