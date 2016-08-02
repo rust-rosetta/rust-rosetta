@@ -1,0 +1,9 @@
+[package]
+name = "horners-rule-for-polynomial-evaluation"
+version = "0.1.0"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Horner%27s_rule_for_polynomial_evaluation"
+
+[dependencies]
+num = "0.1"

@@ -233,6 +233,9 @@ members = [
     # http://rosettacode.org/wiki/Hello_world/Web_server
     "tasks/hello-world/web-server",
 
+    # http://rosettacode.org/wiki/Horner%27s_rule_for_polynomial_evaluation
+    "tasks/horners-rule-for-polynomial-evaluation",
+
     # http://rosettacode.org/wiki/HTTP
     "tasks/http",
 
@@ -934,11 +937,6 @@ test = false
 # http://rosettacode.org/wiki/Hofstadter_Q_sequence
 name = "hofstadter_q"
 path = "src/hofstadter_q.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Horner's_rule_for_polynomial_evaluation
-name = "horners_rule_for_polynomial_evaluation"
-path = "src/horners_rule_for_polynomial_evaluation.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Host_introspection

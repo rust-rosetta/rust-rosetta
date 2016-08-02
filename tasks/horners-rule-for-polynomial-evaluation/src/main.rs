@@ -1,4 +1,3 @@
-// http://rosettacode.org/wiki/Horner's_rule_for_polynomial_evaluation
 extern crate num;
 
 use num::traits::{PrimInt, Zero};
