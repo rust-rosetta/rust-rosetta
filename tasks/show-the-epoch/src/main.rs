@@ -1,4 +1,3 @@
-// http://rosettacode.org/wiki/Show_the_epoch
 extern crate time;
 
 use time::{at_utc, Timespec};

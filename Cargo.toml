@@ -283,6 +283,9 @@ members = [
     # http://rosettacode.org/wiki/SHA-256
     "tasks/sha-256",
 
+    # http://rosettacode.org/wiki/Show_the_epoch
+    "tasks/show-the-epoch",
+
     # http://rosettacode.org/wiki/Sparkline_in_unicode
     "tasks/sparkline-in-unicode",
 
@@ -1515,11 +1518,6 @@ path = "src/sha1.rs"
 name = "short_circuit_evaluation"
 path = "src/short_circuit_evaluation.rs"
 test = false
-
-[[bin]]
-# http://rosettacode.org/wiki/Show_the_epoch
-name = "show_the_epoch"
-path = "src/show_the_epoch.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Sierpinski_triangle
