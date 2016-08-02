@@ -1,5 +1,3 @@
-// http://rosettacode.org/wiki/Rosetta_Code/Find_bare_lang_tags
-
 extern crate regex;
 
 use std::io;
@@ -53,17 +51,15 @@ fn main() {
 
 #[test]
 fn test_bare_tags() {
-    let input = "
+    let input = r#"
     Description
     <lang>Pseudocode</lang>
 
     =={{header|C}}==
-    <lang \
-                 C>printf(\"Hello world!\n\");</lang>
+    <lang C>printf("Hello world!\n");</lang>
 
     =={{header|Perl}}==
-    <lang>print \
-                 \"Hello world!\n\"</lang>";
+    <lang>print "Hello world!\n"</lang>"#;
 
     let expected = vec![
         (None, 1),

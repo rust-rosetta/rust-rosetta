@@ -260,6 +260,9 @@ members = [
     # http://rosettacode.org/wiki/Reverse_a_string
     "tasks/reverse-a-string",
 
+    # http://rosettacode.org/wiki/Rosetta_Code/Find_bare_lang_tags
+    "tasks/rosetta-code/find-bare-lang-tags",
+
     # http://rosettacode.org/wiki/Rosetta_Code/Find_unimplemented_tasks
     "tasks/rosetta-code/find-unimplemented-tasks",
 
@@ -1458,11 +1461,6 @@ path = "src/roots_of_a_function.rs"
 # http://rosettacode.org/wiki/Roots_of_unity
 name = "roots_of_unity"
 path = "src/roots_of_unity.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Rosetta_Code/Find_bare_lang_tags
-name = "rosetta_code_find_bare_lang_tags"
-path = "src/rosetta_code/find_bare_lang_tags.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Rosetta_Code/Fix_code_tags

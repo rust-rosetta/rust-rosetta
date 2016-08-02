@@ -490,6 +490,13 @@ dependencies = [
 ]
 
 [[package]]
+name = "find-bare-lang-tags"
+version = "0.1.0"
+dependencies = [
+ "regex 0.1.73 (registry+https://github.com/rust-lang/crates.io-index)",
+]
+
+[[package]]
 name = "find-unimplemented-tasks"
 version = "0.1.0"
 dependencies = [
