@@ -124,6 +124,13 @@ dependencies = [
 ]
 
 [[package]]
+name = "authenticated"
+version = "0.1.0"
+dependencies = [
+ "hyper 0.9.9 (registry+https://github.com/rust-lang/crates.io-index)",
+]
+
+[[package]]
 name = "avl-tree"
 version = "0.1.0"
 dependencies = [
@@ -1367,7 +1374,6 @@ dependencies = [
  "docopt 0.6.81 (registry+https://github.com/rust-lang/crates.io-index)",
  "docopt_macros 0.6.85 (registry+https://github.com/rust-lang/crates.io-index)",
  "gtk 0.1.0 (registry+https://github.com/rust-lang/crates.io-index)",
- "hyper 0.9.9 (registry+https://github.com/rust-lang/crates.io-index)",
  "meta 0.1.0",
  "num 0.1.32 (registry+https://github.com/rust-lang/crates.io-index)",
  "rand 0.3.14 (registry+https://github.com/rust-lang/crates.io-index)",

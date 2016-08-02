@@ -1,0 +1,9 @@
+[package]
+name = "authenticated"
+version = "0.1.0"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/HTTPS/Authenticated"
+
+[dependencies]
+hyper = "0.9.3"

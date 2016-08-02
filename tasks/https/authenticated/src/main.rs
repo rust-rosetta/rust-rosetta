@@ -1,5 +1,3 @@
-// http://rosettacode.org/wiki/HTTPS/Authenticated
-
 extern crate hyper;
 
 use std::io::Read;
