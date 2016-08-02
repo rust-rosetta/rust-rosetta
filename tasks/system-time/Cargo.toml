@@ -1,0 +1,9 @@
+[package]
+name = "system-time"
+version = "0.1.0"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/System_time"
+
+[dependencies]
+time = "0.1"

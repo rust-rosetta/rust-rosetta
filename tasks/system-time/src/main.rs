@@ -1,5 +1,3 @@
-// http://rosettacode.org/wiki/System_time
-
 extern crate time;
 use time::{at, get_time, strftime};
 

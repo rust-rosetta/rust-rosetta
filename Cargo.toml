@@ -77,7 +77,6 @@ num = "0.1"
 rand = "0.3"
 rustc-serialize = "0.3"
 term = "0.4"
-time = "0.1"
 
 [dependencies.meta]
 path = "meta"
@@ -288,6 +287,9 @@ members = [
 
     # http://rosettacode.org/wiki/Sparkline_in_unicode
     "tasks/sparkline-in-unicode",
+
+    # http://rosettacode.org/wiki/System_time
+    "tasks/system-time",
 
     # http://rosettacode.org/wiki/URL_parser
     "tasks/url-parser",
@@ -1751,12 +1753,6 @@ test = false
 # http://rosettacode.org/wiki/Synchronous_concurrency
 name = "synchronous_concurrency"
 path = "src/synchronous_concurrency.rs"
-test = false
-
-[[bin]]
-# http://rosettacode.org/wiki/System_time
-name = "system_time"
-path = "src/system_time.rs"
 test = false
 
 [[bin]]
