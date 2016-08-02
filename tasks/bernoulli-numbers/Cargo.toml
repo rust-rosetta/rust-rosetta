@@ -1,0 +1,9 @@
+[package]
+name = "bernoulli-numbers"
+version = "0.1.0"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Bernoulli_numbers"
+
+[dependencies]
+num = "0.1"

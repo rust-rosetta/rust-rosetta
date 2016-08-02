@@ -152,6 +152,9 @@ members = [
     # http://rosettacode.org/wiki/AVL_tree
     "tasks/avl-tree",
 
+    # http://rosettacode.org/wiki/Bernoulli_numbers
+    "tasks/bernoulli-numbers",
+
     # http://rosettacode.org/wiki/Best_shuffle
     "tasks/best-shuffle",
 
@@ -423,11 +426,6 @@ path = "src/balanced_brackets.rs"
 name = "benford"
 path = "src/benford.rs"
 test = false
-
-[[bin]]
-# http://rosettacode.org/wiki/Bernoulli_numbers
-name = "bernoulli_numbers"
-path = "src/bernoulli_numbers.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Binary_digits
