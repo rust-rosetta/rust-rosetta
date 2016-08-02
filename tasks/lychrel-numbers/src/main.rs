@@ -1,5 +1,3 @@
-// http://rosettacode.org/wiki/Lychrel_numbers
-
 extern crate num;
 
 use num::FromPrimitive;
