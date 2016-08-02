@@ -473,6 +473,13 @@ dependencies = [
 ]
 
 [[package]]
+name = "events"
+version = "0.1.0"
+dependencies = [
+ "time 0.1.35 (registry+https://github.com/rust-lang/crates.io-index)",
+]
+
+[[package]]
 name = "eventual"
 version = "0.1.7"
 source = "registry+https://github.com/rust-lang/crates.io-index"

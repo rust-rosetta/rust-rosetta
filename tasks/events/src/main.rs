@@ -1,5 +1,3 @@
-// http://rosettacode.org/wiki/Events
-
 //! Rust uses condition variables (Condvars) for asynchronous event processing.  Each Mutex has a
 //! list of zero or more Condvars, which are essentially events that the task may wait on or signal
 //! when it holds the mutex.  When a task begins to wait on a condvar, it enters a waiting state

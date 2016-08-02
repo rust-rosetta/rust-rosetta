@@ -193,6 +193,9 @@ members = [
     # http://rosettacode.org/wiki/Entropy
     "tasks/entropy",
 
+    # http://rosettacode.org/wiki/Events
+    "tasks/events",
+
     # http://rosettacode.org/wiki/Fibonacci_word
     "tasks/fibonacci-word",
 
@@ -712,11 +715,6 @@ path = "src/eulers_sum_of_powers_conjecture.rs"
 # http://rosettacode.org/wiki/Even_or_odd
 name = "even_or_odd"
 path = "src/even_or_odd.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Events
-name = "events"
-path = "src/events.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Evolutionary_algorithm
