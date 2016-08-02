@@ -218,6 +218,9 @@ members = [
     # http://rosettacode.org/wiki/Fibonacci_word
     "tasks/fibonacci-word",
 
+    # http://rosettacode.org/wiki/Greatest_common_divisor
+    "tasks/greatest-common-divisor",
+
     # http://rosettacode.org/wiki/Hamming_numbers
     "tasks/hamming-numbers",
 
@@ -842,11 +845,6 @@ path = "src/gray_code.rs"
 name = "greater_element_list"
 path = "src/greater_element_list.rs"
 test = false
-
-[[bin]]
-# http://rosettacode.org/wiki/Greatest_common_divisor
-name = "greatest_common_divisor"
-path = "src/greatest_common_divisor.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Greatest_subsequential_sum

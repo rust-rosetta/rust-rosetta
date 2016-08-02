@@ -1,9 +1,7 @@
-// http://rosettacode.org/wiki/Greatest_common_divisor
-
 //! This task demonstrates three possible implementation strategies.
 
-/// The num crate.
 extern crate num;
+
 use num::integer::gcd;
 
 /// Iterative Euclid algorithm

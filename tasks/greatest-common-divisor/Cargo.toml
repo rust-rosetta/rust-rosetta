@@ -1,0 +1,9 @@
+[package]
+name = "greatest-common-divisor"
+version = "0.1.0"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Greatest_common_divisor"
+
+[dependencies]
+num = "0.1"
