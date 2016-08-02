@@ -1,0 +1,9 @@
+[package]
+name = "rsa-code"
+version = "0.1.0"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/RSA_code"
+
+[dependencies]
+num = "0.1"

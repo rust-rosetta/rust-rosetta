@@ -72,7 +72,6 @@ authors = [
 difference = "0.4.1"
 docopt = "0.6"
 docopt_macros = "0.6.81"
-num = "0.1"
 rand = "0.3"
 rustc-serialize = "0.3"
 term = "0.4"
@@ -325,6 +324,9 @@ members = [
 
     # http://rosettacode.org/wiki/Rosetta_Code/Fix_code_tags
     "tasks/rosetta-code/fix-code-tags",
+
+    # http://rosettacode.org/wiki/RSA_code
+    "tasks/rsa-code",
 
     # http://rosettacode.org/wiki/Run-length_encoding
     "tasks/run-length-encoding",
@@ -1445,11 +1447,6 @@ path = "src/rot13.rs"
 # http://rosettacode.org/wiki/Rock-paper-scissors
 name = "rps_game"
 path = "src/rock_paper_scissors.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/RSA_code
-name = "rsa_code"
-path = "src/rsa_code.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/S-Expressions
