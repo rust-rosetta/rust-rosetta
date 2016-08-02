@@ -266,6 +266,9 @@ members = [
     # http://rosettacode.org/wiki/Rosetta_Code/Find_unimplemented_tasks
     "tasks/rosetta-code/find-unimplemented-tasks",
 
+    # http://rosettacode.org/wiki/Rosetta_Code/Fix_code_tags
+    "tasks/rosetta-code/fix-code-tags",
+
     # http://rosettacode.org/wiki/Run-length_encoding
     "tasks/run-length-encoding",
 
@@ -1461,11 +1464,6 @@ path = "src/roots_of_a_function.rs"
 # http://rosettacode.org/wiki/Roots_of_unity
 name = "roots_of_unity"
 path = "src/roots_of_unity.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Rosetta_Code/Fix_code_tags
-name = "rosetta_code_fix_code_tags"
-path = "src/rosetta_code/fix_code_tags.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Rot-13
