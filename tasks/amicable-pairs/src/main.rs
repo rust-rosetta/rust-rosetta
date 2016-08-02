@@ -1,5 +1,3 @@
-// http://rosettacode.org/wiki/Amicable_pairs
-
 fn sum_of_divisors(val: u32) -> u32 {
     (1..val / 2 + 1)
         .filter(|n| val % n == 0)
