@@ -1856,6 +1856,13 @@ version = "0.1.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 
 [[package]]
+name = "window-creation"
+version = "0.1.0"
+dependencies = [
+ "gtk 0.1.0 (registry+https://github.com/rust-lang/crates.io-index)",
+]
+
+[[package]]
 name = "x11"
 version = "2.8.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"

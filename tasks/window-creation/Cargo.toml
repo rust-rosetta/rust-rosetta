@@ -1,0 +1,10 @@
+[package]
+name = "window-creation"
+version = "0.1.0"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Window_creation"
+
+[dependencies.gtk]
+version = "0.1.0"
+optional = true

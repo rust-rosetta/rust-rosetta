@@ -72,7 +72,6 @@ authors = [
 difference = "0.4.1"
 docopt = "0.6"
 docopt_macros = "0.6.81"
-gtk = { version = "0.1.0", optional = true }
 num = "0.1"
 rand = "0.3"
 rustc-serialize = "0.3"
@@ -308,6 +307,9 @@ members = [
 
     # http://rosettacode.org/wiki/Walk_a_directory/Recursively
     "tasks/walk-a-directory/recursively",
+
+    # http://rosettacode.org/wiki/Window_creation
+    "tasks/window-creation",
 ]
 
 [[bin]]
@@ -1816,12 +1818,6 @@ path = "src/user_input/text.rs"
 # http://rosettacode.org/wiki/Vigen%C3%A8re_cipher
 name = "vigenere"
 path = "src/vigenere.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Window_creation
-name = "window_creation"
-path = "src/window_creation.rs"
-test = false
 
 [[bin]]
 # http://rosettacode.org/wiki/Wireworld

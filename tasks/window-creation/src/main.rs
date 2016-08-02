@@ -5,7 +5,7 @@ mod graphical {
     extern crate gtk;
 
     use self::gtk::traits::*;
-    use self::gtk::{Inhibit, WidgetSignals, Window, WindowType};
+    use self::gtk::{Inhibit, Window, WindowType};
 
     pub fn create_window() {
         gtk::init().expect("Failed to initialize GTK");
