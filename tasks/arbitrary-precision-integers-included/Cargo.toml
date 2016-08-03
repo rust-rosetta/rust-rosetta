@@ -1,0 +1,9 @@
+[package]
+name = "arbitrary-precision-integers-included"
+version = "0.1.0"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Arbitrary-precision_integers_(included)"
+
+[dependencies]
+num = "0.1"
