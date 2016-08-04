@@ -1,4 +1,3 @@
-// http://rosettacode.org/wiki/Guess_the_number/With_feedback
 extern crate rand;
 
 use std::io::stdin;
