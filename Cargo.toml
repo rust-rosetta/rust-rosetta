@@ -304,6 +304,9 @@ members = [
     # http://rosettacode.org/wiki/Look-and-say_sequence
     "tasks/look-and-say-sequence",
 
+    # http://rosettacode.org/wiki/Loops/Break
+    "tasks/loops/break",
+
     # http://rosettacode.org/wiki/Lychrel_numbers
     "tasks/lychrel-numbers",
 
@@ -1063,11 +1066,6 @@ path = "src/longest_common_subsequence.rs"
 # http://rosettacode.org/wiki/Loop_over_multiple_arrays_simultaneously
 name = "loop_over_multiple_arrays_simultaneously"
 path = "src/loop_over_multiple_arrays_simulataneously.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Loops/Break
-name = "loops_break"
-path = "src/loops/break.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Loops/Continue

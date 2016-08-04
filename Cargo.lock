@@ -235,6 +235,13 @@ name = "bitmap"
 version = "0.1.0"
 
 [[package]]
+name = "break"
+version = "0.1.0"
+dependencies = [
+ "rand 0.3.14 (registry+https://github.com/rust-lang/crates.io-index)",
+]
+
+[[package]]
 name = "brownian-tree"
 version = "0.1.0"
 dependencies = [
