@@ -298,6 +298,9 @@ members = [
     # http://rosettacode.org/wiki/Keyboard_input/Obtain_a_Y_or_N_response
     "tasks/keyboard-input/obtain-a-y-or-n-response",
 
+    # http://rosettacode.org/wiki/Knuth_shuffle
+    "tasks/knuth-shuffle",
+
     # http://rosettacode.org/wiki/Look-and-say_sequence
     "tasks/look-and-say-sequence",
 
@@ -1020,11 +1023,6 @@ path = "src/knapsack_problem/0-1.rs"
 # http://rosettacode.org/wiki/Knight's_tour
 name = "knights_tour"
 path = "src/knights_tour.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Knuth_shuffle
-name = "knuth_shuffle"
-path = "src/knuth_shuffle.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Langton's_ant

@@ -1,4 +1,3 @@
-// http://rosettacode.org/wiki/Knuth_shuffle
 extern crate rand;
 
 use rand::Rng;
