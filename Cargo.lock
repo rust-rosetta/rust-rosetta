@@ -366,6 +366,13 @@ dependencies = [
 ]
 
 [[package]]
+name = "concurrent-computing"
+version = "0.1.0"
+dependencies = [
+ "rand 0.3.14 (registry+https://github.com/rust-lang/crates.io-index)",
+]
+
+[[package]]
 name = "cookie"
 version = "0.2.5"
 source = "registry+https://github.com/rust-lang/crates.io-index"

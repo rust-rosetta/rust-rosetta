@@ -1,4 +1,3 @@
-// http://rosettacode.org/wiki/Concurrent_computing
 extern crate rand;
 
 use std::thread;
