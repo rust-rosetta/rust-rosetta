@@ -367,6 +367,9 @@ members = [
     # http://rosettacode.org/wiki/Reverse_a_string
     "tasks/reverse-a-string",
 
+    # http://rosettacode.org/wiki/Rock-paper-scissors
+    "tasks/rock-paper-scissors",
+
     # http://rosettacode.org/wiki/Roots_of_a_function
     "tasks/roots-of-a-function",
 
@@ -1398,11 +1401,6 @@ path = "src/roman_numerals/encode.rs"
 # http://rosettacode.org/wiki/Rot-13
 name = "rot13"
 path = "src/rot13.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Rock-paper-scissors
-name = "rps_game"
-path = "src/rock_paper_scissors.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/S-Expressions
