@@ -1,6 +1,5 @@
-// http://rosettacode.org/wiki/Monte_Carlo_methods
-
 extern crate rand;
+
 use rand::Rng;
 
 #[inline]

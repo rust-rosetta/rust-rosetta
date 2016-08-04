@@ -319,6 +319,9 @@ members = [
     # http://rosettacode.org/wiki/Modular_exponentiation
     "tasks/modular-exponentiation",
 
+    # http://rosettacode.org/wiki/Monte_Carlo_methods
+    "tasks/monte-carlo-methods",
+
     # http://rosettacode.org/wiki/Mouse_position
     "tasks/mouse-position",
 
@@ -1196,12 +1199,6 @@ path = "src/middle_three_digits.rs"
 # http://rosettacode.org/wiki/Modular_inverse
 name = "modular_inverse"
 path = "src/modular_inverse.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Monte_Carlo_methods
-name = "monte_carlo_methods"
-path = "src/monte_carlo_methods.rs"
-test = false
 
 [[bin]]
 # https://rosettacode.org/wiki/Multiplication_tables
