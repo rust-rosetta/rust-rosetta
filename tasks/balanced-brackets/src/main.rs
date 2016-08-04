@@ -1,5 +1,3 @@
-// http://rosettacode.org/wiki/Balanced_brackets
-
 extern crate rand;
 
 trait Balanced {

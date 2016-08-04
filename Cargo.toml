@@ -157,6 +157,9 @@ members = [
     # http://rosettacode.org/wiki/AVL_tree
     "tasks/avl-tree",
 
+    # http://rosettacode.org/wiki/Balanced_brackets
+    "tasks/balanced-brackets",
+
     # http://rosettacode.org/wiki/Bernoulli_numbers
     "tasks/bernoulli-numbers",
 
@@ -455,11 +458,6 @@ path = "src/averages/mode.rs"
 name = "averages_root_mean_square"
 path = "src/averages/root_mean_square.rs"
 test = true
-
-[[bin]]
-# http://rosettacode.org/wiki/Balanced_brackets
-name = "balanced_brackets"
-path = "src/balanced_brackets.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Benford%27s_law

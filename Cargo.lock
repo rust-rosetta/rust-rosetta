@@ -184,6 +184,13 @@ dependencies = [
 ]
 
 [[package]]
+name = "balanced-brackets"
+version = "0.1.0"
+dependencies = [
+ "rand 0.3.14 (registry+https://github.com/rust-lang/crates.io-index)",
+]
+
+[[package]]
 name = "bernoulli-numbers"
 version = "0.1.0"
 dependencies = [
