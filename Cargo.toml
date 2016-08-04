@@ -340,6 +340,9 @@ members = [
     # http://rosettacode.org/wiki/Pernicious_numbers
     "tasks/pernicious-numbers",
 
+    # http://rosettacode.org/wiki/Pick_random_element
+    "tasks/pick-random-element",
+
     # http://rosettacode.org/wiki/Prime_decomposition
     "tasks/prime-decomposition",
 
@@ -1275,11 +1278,6 @@ path = "src/perfect_numbers.rs"
 # http://rosettacode.org/wiki/Permutations_with_repetitions
 name = "permutations_with_repetitions"
 path = "src/permutations_with_repetitions.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Pick_random_element
-name = "pick_random_element"
-path = "src/pick_random_element.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Playing_cards

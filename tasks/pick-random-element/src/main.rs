@@ -1,5 +1,3 @@
-// http://rosettacode.org/wiki/Pick_random_element
-
 extern crate rand;
 
 use rand::{thread_rng, Rng};
