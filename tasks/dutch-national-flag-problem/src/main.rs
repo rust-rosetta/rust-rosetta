@@ -1,6 +1,5 @@
-// http://rosettacode.org/wiki/Dutch_national_flag_problem
-
 extern crate rand;
+
 use rand::Rng;
 
 // if you use an enum you will have to implement a lot of traits for it before you can

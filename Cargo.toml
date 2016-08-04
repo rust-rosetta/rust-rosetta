@@ -214,6 +214,9 @@ members = [
     # http://rosettacode.org/wiki/Dot_product
     "tasks/dot-product",
 
+    # http://rosettacode.org/wiki/Dutch_national_flag_problem
+    "tasks/dutch-national-flag-problem",
+
     # http://rosettacode.org/wiki/Entropy
     "tasks/entropy",
 
@@ -682,12 +685,6 @@ path = "src/doubly_linked_list/element_definition.rs"
 # http://www.rosettacode.org/wiki/Doubly-linked_list/Element_insertion
 name = "doubly_linked_list_element_insertion"
 path = "src/doubly_linked_list/element_insertion.rs"
-
-[[bin]]
-# https://www.rosettacode.org/wiki/Dutch_national_flag_problem
-name = "dutch_flag"
-path = "src/dutch_flag.rs"
-test = false
 
 [[bin]]
 # http://rosettacode.org/wiki/Echo_server
