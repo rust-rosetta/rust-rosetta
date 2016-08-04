@@ -400,6 +400,9 @@ members = [
     # http://rosettacode.org/wiki/Sparkline_in_unicode
     "tasks/sparkline-in-unicode",
 
+    # http://rosettacode.org/wiki/Statistics/Basic
+    "tasks/statistics/basic",
+
     # http://rosettacode.org/wiki/System_time
     "tasks/system-time",
 
@@ -1579,11 +1582,6 @@ path = "src/sorting_algorithms/stooge_sort.rs"
 # http://rosettacode.org/wiki/Stack
 name = "stack"
 path = "src/stack.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Statistics/Basic
-name = "statistics_basic"
-path = "src/statistics_basic.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Standard_deviation

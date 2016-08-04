@@ -1,5 +1,3 @@
-// http://rosettacode.org/wiki/Statistics/Basic
-
 extern crate rand;
 
 use rand::distributions::{IndependentSample, Range};
