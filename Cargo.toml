@@ -334,6 +334,9 @@ members = [
     # http://rosettacode.org/wiki/Parallel_calculations
     "tasks/parallel-calculations",
 
+    # http://rosettacode.org/wiki/Penney%27s_game
+    "tasks/penneys-game",
+
     # http://rosettacode.org/wiki/Pernicious_numbers
     "tasks/pernicious-numbers",
 
@@ -1262,12 +1265,6 @@ path = "src/parametric_polymorphism.rs"
 # http://rosettacode.org/wiki/Pascal%27s_triangle
 name = "pascals_triangle"
 path = "src/pascals_triangle.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Penney's_game
-name = "penneys_game"
-path = "src/penneys_game.rs"
-test = false
 
 [[bin]]
 # http://rosettacode.org/wiki/Perfect_numbers

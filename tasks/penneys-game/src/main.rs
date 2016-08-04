@@ -1,5 +1,3 @@
-// http://rosettacode.org/wiki/Penney's_game
-
 extern crate rand;
 
 use std::io::{stdout, stdin, Write};
