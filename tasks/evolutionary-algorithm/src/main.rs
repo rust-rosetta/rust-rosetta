@@ -1,12 +1,6 @@
-// http://rosettacode.org/wiki/Evolutionary_algorithm
-
 //! Author : Thibault Barbie
 //!
 //! A simple evolutionary algorithm written in Rust.
-
-
-
-
 
 extern crate rand;
 

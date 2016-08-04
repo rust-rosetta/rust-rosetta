@@ -229,6 +229,9 @@ members = [
     # http://rosettacode.org/wiki/Events
     "tasks/events",
 
+    # http://rosettacode.org/wiki/Evolutionary_algorithm
+    "tasks/evolutionary-algorithm",
+
     # http://rosettacode.org/wiki/Fast_Fourier_transform
     "tasks/fast-fourier-transform",
 
@@ -734,12 +737,6 @@ path = "src/eulers_sum_of_powers_conjecture.rs"
 # http://rosettacode.org/wiki/Even_or_odd
 name = "even_or_odd"
 path = "src/even_or_odd.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Evolutionary_algorithm
-name = "evolutionary_algorithm"
-path = "src/evolutionary_algorithm.rs"
-
 
 [[bin]]
 # http://rosettacode.org/wiki/Execute_a_system_command

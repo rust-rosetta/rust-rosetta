@@ -567,6 +567,13 @@ dependencies = [
 ]
 
 [[package]]
+name = "evolutionary-algorithm"
+version = "0.1.0"
+dependencies = [
+ "rand 0.3.14 (registry+https://github.com/rust-lang/crates.io-index)",
+]
+
+[[package]]
 name = "factorial-plugin"
 version = "1.0.0"
 
@@ -1503,6 +1510,13 @@ dependencies = [
 ]
 
 [[package]]
+name = "random-numbers"
+version = "0.1.0"
+dependencies = [
+ "rand 0.3.14 (registry+https://github.com/rust-lang/crates.io-index)",
+]
+
+[[package]]
 name = "range-expansion"
 version = "0.1.0"
 dependencies = [
@@ -1570,6 +1584,13 @@ name = "reverse-a-string"
 version = "0.1.0"
 dependencies = [
  "unicode-segmentation 0.1.2 (registry+https://github.com/rust-lang/crates.io-index)",
+]
+
+[[package]]
+name = "rock-paper-scissors"
+version = "0.1.0"
+dependencies = [
+ "rand 0.3.14 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
 [[package]]
