@@ -1,7 +1,6 @@
-// http://rosettacode.org/wiki/Sorting_algorithms/Stooge_sort
-
+#[cfg(test)]
 #[macro_use]
-extern crate rust_rosetta;
+extern crate meta;
 
 fn stoogesort<E>(a: &mut [E])
     where E: PartialOrd

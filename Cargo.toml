@@ -399,6 +399,9 @@ members = [
     # http://rosettacode.org/wiki/Sorting_algorithms/Bubble_sort
     "tasks/sorting-algorithms/bubble-sort",
 
+    # http://rosettacode.org/wiki/Sorting_algorithms/Stooge_sort
+    "tasks/sorting-algorithms/stooge-sort",
+
     # http://rosettacode.org/wiki/Sparkline_in_unicode
     "tasks/sparkline-in-unicode",
 
@@ -1572,11 +1575,6 @@ path = "src/sorting_algorithms/shell_sort.rs"
 # http://rosettacode.org/wiki/Sorting_algorithms/Sleep_sort
 name = "sorting_algorithms_sleep_sort"
 path = "src/sorting_algorithms/sleep_sort.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Sorting_algorithms/Stooge_sort
-name = "sorting_algorithms_stooge_sort"
-path = "src/sorting_algorithms/stooge_sort.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Stack
