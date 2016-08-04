@@ -1,5 +1,3 @@
-// http://rosettacode.org/wiki/Flipping_bits_game
-
 // For random generation
 extern crate rand;
 
