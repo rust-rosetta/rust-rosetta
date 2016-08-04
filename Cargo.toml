@@ -399,6 +399,9 @@ members = [
     # http://rosettacode.org/wiki/Sorting_algorithms/Bubble_sort
     "tasks/sorting-algorithms/bubble-sort",
 
+    # http://rosettacode.org/wiki/Sorting_algorithms/Cocktail_sort
+    "tasks/sorting-algorithms/cocktail-sort",
+
     # http://rosettacode.org/wiki/Sorting_algorithms/Stooge_sort
     "tasks/sorting-algorithms/stooge-sort",
 
@@ -1510,11 +1513,6 @@ path = "src/sort_using_custom_comparator.rs"
 # http://rosettacode.org/wiki/Sorting_algorithms/Bogosort
 name = "sorting_algorithms_bogo_sort"
 path = "src/sorting_algorithms/bogo_sort.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Sorting_algorithms/Cocktail_sort
-name = "sorting_algorithms_cocktail_sort"
-path = "src/sorting_algorithms/cocktail_sort.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Sorting_algorithms/Comb_sort

@@ -1,7 +1,6 @@
-// http://rosettacode.org/wiki/Sorting_algorithms/Cocktail_sort
-
+#[cfg(test)]
 #[macro_use]
-extern crate rust_rosetta;
+extern crate meta;
 
 // Progress through the slice and 'bubble' elements up and down until they are in order.
 #[cfg_attr(feature = "clippy", allow(needless_range_loop))]

@@ -357,6 +357,13 @@ dependencies = [
 ]
 
 [[package]]
+name = "cocktail-sort"
+version = "0.1.0"
+dependencies = [
+ "meta 0.1.0",
+]
+
+[[package]]
 name = "cocoa"
 version = "0.3.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
