@@ -343,6 +343,9 @@ members = [
     # http://rosettacode.org/wiki/Pick_random_element
     "tasks/pick-random-element",
 
+    # http://rosettacode.org/wiki/Playing_cards
+    "tasks/playing-cards",
+
     # http://rosettacode.org/wiki/Prime_decomposition
     "tasks/prime-decomposition",
 
@@ -1278,11 +1281,6 @@ path = "src/perfect_numbers.rs"
 # http://rosettacode.org/wiki/Permutations_with_repetitions
 name = "permutations_with_repetitions"
 path = "src/permutations_with_repetitions.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Playing_cards
-name = "playing_cards"
-path = "src/playing_cards.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Population_count

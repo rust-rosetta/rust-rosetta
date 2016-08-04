@@ -1,0 +1,9 @@
+[package]
+name = "playing-cards"
+version = "0.1.0"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Playing_cards"
+
+[dependencies]
+rand = "0.3"

@@ -1537,6 +1537,13 @@ version = "0.3.8"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 
 [[package]]
+name = "playing-cards"
+version = "0.1.0"
+dependencies = [
+ "rand 0.3.14 (registry+https://github.com/rust-lang/crates.io-index)",
+]
+
+[[package]]
 name = "pnacl-build-helper"
 version = "1.4.10"
 source = "registry+https://github.com/rust-lang/crates.io-index"

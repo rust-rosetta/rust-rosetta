@@ -1,4 +1,3 @@
-// http://rosettacode.org/wiki/Playing_cards
 extern crate rand;
 
 use std::fmt;
