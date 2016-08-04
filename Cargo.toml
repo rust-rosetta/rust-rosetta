@@ -402,6 +402,9 @@ members = [
     # http://rosettacode.org/wiki/Sorting_algorithms/Cocktail_sort
     "tasks/sorting-algorithms/cocktail-sort",
 
+    # http://rosettacode.org/wiki/Sorting_algorithms/Shell_sort
+    "tasks/sorting-algorithms/shell-sort",
+
     # http://rosettacode.org/wiki/Sorting_algorithms/Stooge_sort
     "tasks/sorting-algorithms/stooge-sort",
 
@@ -1563,11 +1566,6 @@ path = "src/sorting_algorithms/radix_sort.rs"
 # http://rosettacode.org/wiki/Sorting_algorithms/Selection_sort
 name = "sorting_algorithms_selection_sort"
 path = "src/sorting_algorithms/selection_sort.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Sorting_algorithms/Shell_sort
-name = "sorting_algorithms_shell_sort"
-path = "src/sorting_algorithms/shell_sort.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Sorting_algorithms/Sleep_sort
