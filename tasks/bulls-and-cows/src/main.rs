@@ -1,6 +1,5 @@
-// http://rosettacode.org/wiki/Bulls_and_cows
-
 extern crate rand;
+
 use std::fmt::{self, Display};
 
 const NUMBER_OF_DIGITS: usize = 4;

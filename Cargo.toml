@@ -178,6 +178,9 @@ members = [
     # http://rosettacode.org/wiki/Brownian_tree
     "tasks/brownian-tree",
 
+    # http://rosettacode.org/wiki/Bulls_and_cows
+    "tasks/bulls-and-cows",
+
     # http://rosettacode.org/wiki/Call_a_foreign-language_function
     "tasks/call-a-foreign-language-function",
 
@@ -485,11 +488,6 @@ test = false
 # http://rosettacode.org/wiki/Boolean_values
 name = "boolean_values"
 path = "src/boolean_values.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Bulls_and_cows
-name = "bulls_and_cows"
-path = "src/bulls_and_cows.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Caesar_cipher
