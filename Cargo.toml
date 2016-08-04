@@ -325,6 +325,9 @@ members = [
     # http://rosettacode.org/wiki/Mouse_position
     "tasks/mouse-position",
 
+    # http://rosettacode.org/wiki/One_of_n_lines_in_a_file
+    "tasks/one-of-n-lines-in-a-file",
+
     # http://rosettacode.org/wiki/OpenGL
     "tasks/opengl",
 
@@ -1234,11 +1237,6 @@ path = "src/number_classifications.rs"
 # http://rosettacode.org/wiki/Numerical_integration
 name = "numerical_integration"
 path = "src/numerical_integration.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/One_of_n_lines_in_a_file
-name = "one_of_n_lines_in_a_file"
-path = "src/one_of_n_lines_in_a_file.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Ordered_words

@@ -1,5 +1,3 @@
-// http://rosettacode.org/wiki/One_of_n_lines_in_a_file
-
 extern crate rand;
 
 use rand::Rng;
