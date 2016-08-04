@@ -307,6 +307,9 @@ members = [
     # http://rosettacode.org/wiki/Loops/Break
     "tasks/loops/break",
 
+    # http://rosettacode.org/wiki/Loops/Nested
+    "tasks/loops/nested",
+
     # http://rosettacode.org/wiki/Lychrel_numbers
     "tasks/lychrel-numbers",
 
@@ -1110,11 +1113,6 @@ test = false
 name = "loops_n_plus_one_half"
 path = "src/loops/n_plus_one_half.rs"
 test = false
-
-[[bin]]
-# http://rosettacode.org/wiki/Loops/Nested
-name = "loops_nested"
-path = "src/loops/nested.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Loops/While

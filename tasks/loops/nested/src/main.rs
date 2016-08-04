@@ -1,4 +1,3 @@
-// http://rosettacode.org/wiki/Loops/Nested
 extern crate rand;
 
 use rand::Rng;
