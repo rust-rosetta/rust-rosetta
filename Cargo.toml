@@ -352,6 +352,9 @@ members = [
     # http://rosettacode.org/wiki/Quine
     "tasks/quine",
 
+    # http://rosettacode.org/wiki/Random_numbers
+    "tasks/random-numbers",
+
     # http://rosettacode.org/wiki/Range_expansion
     "tasks/range-expansion",
 
@@ -1321,11 +1324,6 @@ path = "src/pythagorean_triples.rs"
 # http://rosettacode.org/wiki/Queue/Definition
 name = "queue_definition"
 path = "src/queue/definition.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Random_numbers
-name = "random_numbers"
-path = "src/random_numbers.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Read_entire_file

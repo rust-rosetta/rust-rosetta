@@ -1,5 +1,3 @@
-// http://rosettacode.org/wiki/Random_numbers
-
 extern crate rand;
 
 use rand::distributions::{Normal, IndependentSample};
