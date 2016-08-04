@@ -257,6 +257,13 @@ dependencies = [
 ]
 
 [[package]]
+name = "bubble-sort"
+version = "0.1.0"
+dependencies = [
+ "meta 0.1.0",
+]
+
+[[package]]
 name = "bulls-and-cows"
 version = "0.1.0"
 dependencies = [
