@@ -1,4 +1,6 @@
-//! A crate for analyzing the contents of the rust-rosetta repository.
+//! A crate for analyzing the contents of the [rust-rosetta] repository.
+//!
+//! [rust-rosetta]: https://github.com/Hoverbear/rust-rosetta
 
 #![warn(missing_docs)]
 
@@ -14,6 +16,10 @@ extern crate walkdir;
 
 extern crate find_unimplemented_tasks;
 
+// Used by the test_sort macro.
+#[doc(hidden)]
+pub extern crate rand;
+
 use std::collections::{HashSet, VecDeque};
 use std::fs::File;
 use std::io::prelude::*;
@@ -26,12 +32,15 @@ use regex::Regex;
 pub mod local;
 pub mod remote;
 
+#[macro_use]
+pub mod test_utils;
+
 use local::LocalTask;
 use remote::RemoteTask;
 
 lazy_static! {
     /// A Regex that matches valid RosettaCode URLs.
-    pub static ref TASK_URL_RE: Regex =
+    static ref TASK_URL_RE: Regex =
         Regex::new(r"^http://rosettacode\.org/wiki/([^#]+)$").unwrap();
 }
 
