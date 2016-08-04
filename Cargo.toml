@@ -148,6 +148,9 @@ members = [
     # http://rosettacode.org/wiki/Arithmetic/Rational
     "tasks/arithmetic/rational",
 
+    # http://rosettacode.org/wiki/Average_loop_length
+    "tasks/average-loop-length",
+
     # http://rosettacode.org/wiki/AVL_tree
     "tasks/avl-tree",
 
@@ -428,11 +431,6 @@ path = "src/associative_array/iteration.rs"
 # http://rosettacode.org/wiki/Atomic_updates
 name = "atomic_updates"
 path = "src/atomic_updates.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Average_loop_length
-name = "average_loop_length"
-path = "src/average_loop_length.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Averages/Arithmetic_mean

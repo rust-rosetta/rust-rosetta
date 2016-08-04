@@ -1,5 +1,3 @@
-// http://rosettacode.org/wiki/Average_loop_length
-
 //! Accepts two command-line arguments
 
 extern crate rand;
