@@ -1,8 +1,8 @@
-// http://rosettacode.org/wiki/Guess_the_number
-
 extern crate rand;
-use rand::{thread_rng, Rng};
+
 use std::io::stdin;
+
+use rand::{thread_rng, Rng};
 
 fn main() {
     let mystery_number = thread_rng().gen_range(0u8, 10) + 1;
