@@ -1,0 +1,9 @@
+[package]
+name = "atomic-updates"
+version = "0.1.0"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Atomic_updates"
+
+[dependencies]
+rand = "0.3"
