@@ -1,4 +1,3 @@
-// http://rosettacode.org/wiki/Tic-tac-toe
 extern crate rand;
 
 use GameState::{PlayerWin, ComputerWin, Draw, Playing};
