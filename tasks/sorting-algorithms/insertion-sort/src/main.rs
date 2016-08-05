@@ -1,7 +1,6 @@
-// http://rosettacode.org/wiki/Sorting_algorithms/Insertion_sort
-
+#[cfg(test)]
 #[macro_use]
-extern crate rust_rosetta;
+extern crate meta;
 
 fn insertion_sort<T>(arr: &mut [T])
     where T: Ord
