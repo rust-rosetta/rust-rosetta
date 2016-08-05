@@ -1,5 +1,3 @@
-// http://rosettacode.org/wiki/Sorting_algorithms/Counting_sort
-
 #[cfg_attr(feature="clippy", allow(needless_range_loop))]
 fn counting_sort(array: &mut [i32], min: i32, max: i32) {
     // nothing to do for arrays shorter than 2
@@ -32,12 +30,12 @@ fn main() {
 
 #[cfg(test)]
 mod tests {
-    extern crate rust_rosetta;
+    extern crate meta;
 
     fn check_sort(array: &mut [i32], min: i32, max: i32) {
         super::counting_sort(array, min, max);
 
-        rust_rosetta::check_sorted(array);
+        meta::test_utils::check_sorted(array);
     }
 
     #[test]

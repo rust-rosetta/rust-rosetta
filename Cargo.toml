@@ -408,6 +408,9 @@ members = [
     # http://rosettacode.org/wiki/Sorting_algorithms/Comb_sort
     "tasks/sorting-algorithms/comb-sort",
 
+    # http://rosettacode.org/wiki/Sorting_algorithms/Counting_sort
+    "tasks/sorting-algorithms/counting-sort",
+
     # http://rosettacode.org/wiki/Sorting_algorithms/Gnome_sort
     "tasks/sorting-algorithms/gnome-sort",
 
@@ -1535,11 +1538,6 @@ path = "src/sort_disjoint_sublist.rs"
 # http://rosettacode.org/wiki/Sort_using_a_custom_comparator
 name = "sort_using_custom_comparator"
 path = "src/sort_using_custom_comparator.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Sorting_algorithms/Counting_sort
-name = "sorting_algorithms_counting_sort"
-path = "src/sorting_algorithms/counting_sort.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Sorting_algorithms/Merge_sort
