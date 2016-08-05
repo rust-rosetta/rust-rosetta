@@ -388,6 +388,13 @@ version = "1.0.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 
 [[package]]
+name = "comb-sort"
+version = "0.1.0"
+dependencies = [
+ "meta 0.1.0",
+]
+
+[[package]]
 name = "compile-time-calculation"
 version = "0.1.0"
 dependencies = [
@@ -1814,6 +1821,13 @@ version = "0.1.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 dependencies = [
  "lazy_static 0.2.1 (registry+https://github.com/rust-lang/crates.io-index)",
+]
+
+[[package]]
+name = "selection-sort"
+version = "0.1.0"
+dependencies = [
+ "meta 0.1.0",
 ]
 
 [[package]]
