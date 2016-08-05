@@ -242,6 +242,14 @@ name = "bitmap"
 version = "0.1.0"
 
 [[package]]
+name = "bogosort"
+version = "0.1.0"
+dependencies = [
+ "meta 0.1.0",
+ "rand 0.3.14 (registry+https://github.com/rust-lang/crates.io-index)",
+]
+
+[[package]]
 name = "break"
 version = "0.1.0"
 dependencies = [

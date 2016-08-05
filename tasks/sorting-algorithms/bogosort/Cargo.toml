@@ -1,0 +1,12 @@
+[package]
+name = "bogosort"
+version = "0.1.0"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Sorting_algorithms/Bogosort"
+
+[dependencies]
+rand = "0.3"
+
+[dev-dependencies]
+meta = { path = "../../../meta" }

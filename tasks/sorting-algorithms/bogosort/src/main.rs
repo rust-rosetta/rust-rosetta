@@ -1,9 +1,9 @@
-// http://rosettacode.org/wiki/Sorting_algorithms/Bogosort
-
+#[cfg(test)]
 #[macro_use]
-extern crate rust_rosetta;
+extern crate meta;
 
 extern crate rand;
+
 use rand::{thread_rng, Rng};
 
 fn bogo_sort<T: Ord>(mut v: &mut [T]) {
