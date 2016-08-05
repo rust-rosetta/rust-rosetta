@@ -85,6 +85,13 @@ version = "0.2.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 
 [[package]]
+name = "arbitrary-precision-integers-included"
+version = "0.1.0"
+dependencies = [
+ "num 0.1.32 (registry+https://github.com/rust-lang/crates.io-index)",
+]
+
+[[package]]
 name = "atk-sys"
 version = "0.3.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
