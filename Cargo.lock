@@ -1605,6 +1605,13 @@ name = "prime-decomposition"
 version = "0.1.0"
 
 [[package]]
+name = "quicksort"
+version = "0.1.0"
+dependencies = [
+ "meta 0.1.0",
+]
+
+[[package]]
 name = "quine"
 version = "0.1.0"
 

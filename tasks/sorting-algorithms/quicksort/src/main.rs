@@ -1,9 +1,6 @@
-// http://rosettacode.org/wiki/Sorting_algorithms/Quicksort
-
+#[cfg(test)]
 #[macro_use]
-extern crate rust_rosetta;
-
-extern crate rand;
+extern crate meta;
 
 /// We use an [in-place quick sort].
 ///
