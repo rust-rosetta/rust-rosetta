@@ -21,11 +21,12 @@ use std::fmt::Debug;
 /// ```
 #[macro_export]
 macro_rules! test_sort {
-    ( $function:path ) => {
+    ( $function:path $(, #[$attr:meta])* ) => {
         use $crate::rand::Rng;
 
         macro_rules! test_case {
            ($name:ident => $values:expr) => {
+                $(#[$attr])*
                 #[test]
                 fn $name() {
                     let mut values = $values;

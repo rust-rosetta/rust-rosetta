@@ -36,5 +36,5 @@ fn main() {
 #[cfg(test)]
 mod tests {
     // The sort is random, so it could take a very long time!
-    test_sort!(super::bogo_sort);
+    test_sort!(super::bogo_sort, #[ignore]);
 }
