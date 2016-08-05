@@ -1513,6 +1513,13 @@ dependencies = [
 ]
 
 [[package]]
+name = "pancake-sort"
+version = "0.1.0"
+dependencies = [
+ "meta 0.1.0",
+]
+
+[[package]]
 name = "pango"
 version = "0.1.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"

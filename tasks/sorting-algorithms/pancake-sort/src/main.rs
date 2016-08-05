@@ -1,7 +1,6 @@
-// http://rosettacode.org/wiki/Sorting_algorithms/Pancake_sort
-
+#[cfg(test)]
 #[macro_use]
-extern crate rust_rosetta;
+extern crate meta;
 
 #[cfg_attr(feature="clippy", allow(needless_range_loop))]
 fn pancake_sort<T: Ord>(mut v: &mut [T]) {
