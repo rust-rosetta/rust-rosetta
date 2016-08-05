@@ -1651,6 +1651,13 @@ name = "quine"
 version = "0.1.0"
 
 [[package]]
+name = "radix-sort"
+version = "0.1.0"
+dependencies = [
+ "rand 0.3.14 (registry+https://github.com/rust-lang/crates.io-index)",
+]
+
+[[package]]
 name = "rand"
 version = "0.3.14"
 source = "registry+https://github.com/rust-lang/crates.io-index"

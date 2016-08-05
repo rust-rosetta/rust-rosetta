@@ -1,0 +1,9 @@
+[package]
+name = "radix-sort"
+version = "0.1.0"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Sorting_algorithms/Radix_sort"
+
+[dev-dependencies]
+rand = "0.3"

@@ -1,5 +1,3 @@
-// http://rosettacode.org/wiki/Sorting_algorithms/Radix_sort
-
 fn merge(in1: Vec<i32>, in2: Vec<i32>, out: &mut [i32]) {
     let (left, right) = out.split_at_mut(in1.len());
     left.clone_from_slice(in1.as_slice());
