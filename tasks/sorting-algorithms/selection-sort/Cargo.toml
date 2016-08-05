@@ -1,0 +1,9 @@
+[package]
+name = "selection-sort"
+version = "0.1.0"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Sorting_algorithms/Selection_sort"
+
+[dev-dependencies]
+meta = { path = "../../../meta" }

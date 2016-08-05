@@ -1,7 +1,6 @@
-// http://rosettacode.org/wiki/Sorting_algorithms/Selection_sort
-
+#[cfg(test)]
 #[macro_use]
-extern crate rust_rosetta;
+extern crate meta;
 
 #[cfg_attr(feature="clippy", allow(needless_range_loop))]
 fn selection_sort<T: Ord>(v: &mut [T]) {
