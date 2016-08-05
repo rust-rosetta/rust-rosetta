@@ -1,7 +1,6 @@
-// http://rosettacode.org/wiki/Sorting_algorithms/Heapsort
-
+#[cfg(test)]
 #[macro_use]
-extern crate rust_rosetta;
+extern crate meta;
 
 /// This is ported from the Dart heap sort implementation
 fn heap_sort<T: Ord>(a: &mut [T]) {

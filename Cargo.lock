@@ -985,6 +985,13 @@ dependencies = [
 ]
 
 [[package]]
+name = "heapsort"
+version = "0.1.0"
+dependencies = [
+ "meta 0.1.0",
+]
+
+[[package]]
 name = "horners-rule-for-polynomial-evaluation"
 version = "0.1.0"
 dependencies = [
