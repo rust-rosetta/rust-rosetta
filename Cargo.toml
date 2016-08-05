@@ -405,6 +405,9 @@ members = [
     # http://rosettacode.org/wiki/Sorting_algorithms/Cocktail_sort
     "tasks/sorting-algorithms/cocktail-sort",
 
+    # http://rosettacode.org/wiki/Sorting_algorithms/Gnome_sort
+    "tasks/sorting-algorithms/gnome-sort",
+
     # http://rosettacode.org/wiki/Sorting_algorithms/Insertion_sort
     "tasks/sorting-algorithms/insertion-sort",
 
@@ -1533,11 +1536,6 @@ path = "src/sorting_algorithms/comb_sort.rs"
 # http://rosettacode.org/wiki/Sorting_algorithms/Counting_sort
 name = "sorting_algorithms_counting_sort"
 path = "src/sorting_algorithms/counting_sort.rs"
-
-[[bin]]
-# https://en.wikipedia.org/wiki/Gnome_sort
-name = "sorting_algorithms_gnome_sort"
-path = "src/sorting_algorithms/gnome_sort.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Sorting_algorithms/Heapsort

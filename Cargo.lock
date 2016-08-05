@@ -886,6 +886,13 @@ dependencies = [
 ]
 
 [[package]]
+name = "gnome-sort"
+version = "0.1.0"
+dependencies = [
+ "meta 0.1.0",
+]
+
+[[package]]
 name = "gnuplot"
 version = "0.0.20"
 source = "registry+https://github.com/rust-lang/crates.io-index"

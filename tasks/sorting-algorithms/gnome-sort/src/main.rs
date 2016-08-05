@@ -1,7 +1,6 @@
-// http://rosettacode.org/wiki/Sorting_algorithms/Gnome_sort
-
+#[cfg(test)]
 #[macro_use]
-extern crate rust_rosetta;
+extern crate meta;
 
 fn gnome_sort<T: PartialOrd>(v: &mut [T]) {
     let len = v.len();
