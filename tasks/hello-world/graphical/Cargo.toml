@@ -1,0 +1,10 @@
+[package]
+name = "graphical"
+version = "0.1.0"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Hello_world/Graphical"
+
+[dependencies.gtk]
+version = "0.1.0"
+optional = true

@@ -35,11 +35,11 @@ impl LocalTask {
         self.local_url.clone()
     }
 
-    /// The "normalized" title of the task on RosettaCode.
+    /// The title of the task on RosettaCode.
     ///
-    /// This is the title used to identify the task in the RosettaCode URL.
-    pub fn normalized_title(&self) -> String {
-        remote::normalize(&TASK_URL_RE.captures(self.url().unwrap().as_str())
+    /// This is the title used to identify the task on the RosettaCode wiki.
+    pub fn title(&self) -> String {
+        remote::decode_title(&TASK_URL_RE.captures(self.url().unwrap().as_str())
             .and_then(|c| c.at(1))
             .expect(&format!("Found task URL that does not match rosettacode regex: {}",
                              self.url().unwrap()))
@@ -106,9 +106,26 @@ fn parse_toml<P>(path: P) -> io::Result<Table>
 fn parse_task<P>(path: P) -> LocalTask
     where P: AsRef<Path>
 {
-    let path = path.as_ref();
+    let path = path.as_ref().canonicalize().unwrap();
 
-    let crate_name = path.to_str().unwrap().trim_left_matches("tasks/");
+    // Determine the path to the crate relative from the "tasks" folder. This path will serve as
+    // the unique identifier of the task.
+    let crate_name = path.components()
+        .skip_while(|component| String::from("tasks") != component.as_os_str().to_str().unwrap())
+        .filter_map(|component| {
+            let component = component.as_os_str();
+
+            if component.to_str().unwrap() == "tasks" {
+                None
+            } else {
+                Some(Path::new(component))
+            }
+        })
+        .collect::<PathBuf>()
+        .into_os_string()
+        .into_string()
+        .unwrap();
+
     let member_toml = Value::Table(parse_toml(path.join("Cargo.toml")).unwrap());
 
     let url = member_toml.lookup("package.metadata.rosettacode.url")
@@ -120,7 +137,7 @@ fn parse_task<P>(path: P) -> LocalTask
 
     let mut sources = vec![];
 
-    for entry in WalkDir::new(path) {
+    for entry in WalkDir::new(&path) {
         let entry = entry.unwrap();
 
         if let Some("rs") = entry.path().extension().and_then(|s| s.to_str()) {
@@ -133,5 +150,32 @@ fn parse_task<P>(path: P) -> LocalTask
         path: path.to_owned(),
         source: sources,
         local_url: url,
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use std::path::PathBuf;
+
+    use url::Url;
+
+    #[test]
+    fn parse_local_task() {
+        let parsed_task = super::parse_task(PathBuf::from(env!("CARGO_MANIFEST_DIR"))
+            .join("../tasks/a-plus-b"));
+
+        assert_eq!(parsed_task.title(), "A+B");
+        assert_eq!(parsed_task.url().unwrap(),
+                   Url::parse("http://rosettacode.org/wiki/A%2BB").unwrap());
+        assert_eq!(parsed_task.crate_name(), "a-plus-b");
+    }
+
+    #[test]
+    fn parse_nested_local_task() {
+        let parsed_task = super::parse_task(PathBuf::from(env!("CARGO_MANIFEST_DIR"))
+            .join("../tasks/rosetta-code/find-unimplemented-tasks"));
+
+        assert_eq!(parsed_task.crate_name(),
+                   "rosetta-code/find-unimplemented-tasks");
     }
 }

@@ -1,0 +1,9 @@
+[package]
+name = "closest-pair-problem"
+version = "0.1.0"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Closest-pair_problem"
+
+[dependencies]
+num = "0.1"

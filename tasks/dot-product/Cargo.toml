@@ -1,0 +1,9 @@
+[package]
+name = "dot-product"
+version = "0.1.0"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Dot_product"
+
+[dependencies]
+num = "0.1"

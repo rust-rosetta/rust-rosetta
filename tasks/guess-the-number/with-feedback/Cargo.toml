@@ -1,0 +1,9 @@
+[package]
+name = "with-feedback"
+version = "0.1.0"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Guess_the_number/With_feedback"
+
+[dependencies]
+rand = "0.3"

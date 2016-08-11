@@ -1,0 +1,9 @@
+[package]
+name = "range-expansion"
+version = "0.1.0"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Range_expansion"
+
+[dependencies]
+regex = "0.1"

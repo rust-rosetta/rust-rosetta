@@ -1,0 +1,9 @@
+[package]
+name = "average-loop-length"
+version = "0.1.0"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Average_loop_length"
+
+[dependencies]
+rand = "0.3"

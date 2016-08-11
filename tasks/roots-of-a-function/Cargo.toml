@@ -1,0 +1,9 @@
+[package]
+name = "roots-of-a-function"
+version = "0.1.0"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Roots_of_a_function"
+
+[dependencies]
+num = "0.1"

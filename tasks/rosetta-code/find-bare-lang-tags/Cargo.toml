@@ -1,0 +1,9 @@
+[package]
+name = "find-bare-lang-tags"
+version = "0.1.0"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Rosetta_Code/Find_bare_lang_tags"
+
+[dependencies]
+regex = "0.1"

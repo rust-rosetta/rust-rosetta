@@ -1,0 +1,9 @@
+[package]
+name = "modular-exponentiation"
+version = "0.1.0"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Modular_exponentiation"
+
+[dependencies]
+num = "0.1"

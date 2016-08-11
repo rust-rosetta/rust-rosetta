@@ -1,0 +1,9 @@
+[package]
+name = "integer-sequence"
+version = "0.1.0"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Integer_sequence"
+
+[dependencies]
+num = "0.1"

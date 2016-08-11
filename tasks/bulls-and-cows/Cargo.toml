@@ -1,0 +1,9 @@
+[package]
+name = "bulls-and-cows"
+version = "0.1.0"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Bulls_and_cows"
+
+[dependencies]
+rand = "0.3"

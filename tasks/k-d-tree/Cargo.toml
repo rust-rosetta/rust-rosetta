@@ -1,0 +1,10 @@
+[package]
+name = "k-d-tree"
+version = "0.1.0"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/K-d_tree"
+
+[dependencies]
+time = "0.1"
+rand = "0.3"

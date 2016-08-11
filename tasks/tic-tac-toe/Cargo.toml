@@ -1,0 +1,9 @@
+[package]
+name = "tic-tac-toe"
+version = "0.1.0"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Tic-tac-toe"
+
+[dependencies]
+rand = "0.3"

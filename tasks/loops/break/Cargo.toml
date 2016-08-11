@@ -1,0 +1,9 @@
+[package]
+name = "break"
+version = "0.1.0"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Loops/Break"
+
+[dependencies]
+rand = "0.3"

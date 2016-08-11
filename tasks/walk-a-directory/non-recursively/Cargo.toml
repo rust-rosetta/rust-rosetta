@@ -1,0 +1,11 @@
+[package]
+name = "non-recursively"
+version = "0.1.0"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Walk_a_directory/Non-recursively"
+
+[dependencies]
+docopt = "0.6"
+regex = "0.1"
+rustc-serialize = "0.3"

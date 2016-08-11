@@ -1,0 +1,9 @@
+[package]
+name = "lychrel-numbers"
+version = "0.1.0"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Lychrel_numbers"
+
+[dependencies]
+num = "0.1"

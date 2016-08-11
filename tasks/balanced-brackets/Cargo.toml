@@ -1,0 +1,9 @@
+[package]
+name = "balanced-brackets"
+version = "0.1.0"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Balanced_brackets"
+
+[dependencies]
+rand = "0.3"

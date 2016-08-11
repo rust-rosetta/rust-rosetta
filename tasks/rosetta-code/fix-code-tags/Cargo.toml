@@ -1,0 +1,9 @@
+[package]
+name = "fix-code-tags"
+version = "0.1.0"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Rosetta_Code/Fix_code_tags"
+
+[dependencies]
+regex = "0.1"

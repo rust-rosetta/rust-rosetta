@@ -1,0 +1,9 @@
+[package]
+name = "shell-sort"
+version = "0.1.0"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Sorting_algorithms/Shell_sort"
+
+[dev-dependencies]
+meta = { path = "../../../meta" }

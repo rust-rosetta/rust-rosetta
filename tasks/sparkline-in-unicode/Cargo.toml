@@ -1,0 +1,10 @@
+[package]
+name = "sparkline-in-unicode"
+version = "0.1.0"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Sparkline_in_unicode"
+
+[dependencies.regex]
+version = "0.1"
+features = ["pattern"]

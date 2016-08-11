@@ -1,0 +1,9 @@
+[package]
+name = "dutch-national-flag-problem"
+version = "0.1.0"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Dutch_national_flag_problem"
+
+[dependencies]
+rand = "0.3"

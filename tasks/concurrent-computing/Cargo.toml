@@ -1,0 +1,9 @@
+[package]
+name = "concurrent-computing"
+version = "0.1.0"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Concurrent_computing"
+
+[dependencies]
+rand = "0.3"

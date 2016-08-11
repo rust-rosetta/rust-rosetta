@@ -1,0 +1,9 @@
+[package]
+name = "complex"
+version = "0.1.0"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Arithmetic/Complex"
+
+[dependencies]
+num = "0.1"

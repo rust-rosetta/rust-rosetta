@@ -1,0 +1,9 @@
+[package]
+name = "https"
+version = "0.1.0"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/HTTPS"
+
+[dependencies]
+hyper = "0.9.3"

@@ -1,0 +1,9 @@
+[package]
+name = "evolutionary-algorithm"
+version = "0.1.0"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Evolutionary_algorithm"
+
+[dependencies]
+rand = "0.3"

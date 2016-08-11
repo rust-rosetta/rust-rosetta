@@ -1,0 +1,6 @@
+[package]
+name = "aliquot-sequence-classifications"
+version = "0.1.0"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Aliquot_sequence_classifications"

@@ -1,0 +1,9 @@
+[package]
+name = "penneys-game"
+version = "0.1.0"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Penney%27s_game"
+
+[dependencies]
+rand = "0.3"
