@@ -139,6 +139,9 @@ members = [
     # http://rosettacode.org/wiki/Amicable_pairs
     "tasks/amicable-pairs",
 
+    # http://rosettacode.org/wiki/Anagrams
+    "tasks/anagrams",
+
     # http://rosettacode.org/wiki/Arbitrary-precision_integers_(included)
     "tasks/arbitrary-precision-integers-included",
 
@@ -485,11 +488,6 @@ members = [
 [[bin]]
 name = "coverage"
 path = "src/bin/coverage.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Anagrams
-name = "anagrams"
-path = "src/anagrams.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Anonymous_recursion
