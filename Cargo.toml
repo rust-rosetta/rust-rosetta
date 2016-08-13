@@ -406,6 +406,9 @@ members = [
     # http://rosettacode.org/wiki/Run-length_encoding
     "tasks/run-length-encoding",
 
+    # http://rosettacode.org/wiki/S-Expressions
+    "tasks/s-expressions",
+
     # http://rosettacode.org/wiki/SHA-256
     "tasks/sha-256",
 
@@ -1456,11 +1459,6 @@ path = "src/roman_numerals/encode.rs"
 # http://rosettacode.org/wiki/Rot-13
 name = "rot13"
 path = "src/rot13.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/S-Expressions
-name = "s_expressions"
-path = "src/s_expressions.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Search_a_list

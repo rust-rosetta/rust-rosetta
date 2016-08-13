@@ -1,5 +1,3 @@
-// http://rosettacode.org/wiki/S-Expressions
-
 //! This implementation isn't based on anything in particular, although it's probably informed by a
 //! lot of Rust's JSON encoding code.  It should be very fast (both encoding and decoding the toy
 //! example here takes under a microsecond on my machine) and tries to avoid unnecessary allocation.
@@ -374,15 +372,10 @@ impl<'a> SExp<'a> {
     }
 }
 
-const SEXP_STRUCT: SExp<'static> = List(&[List(&[Str("data"),
-                                                 Str("quoted data"),
-                                                 F64(123.),
-                                                 F64(4.5)]),
-                                          List(&[Str("data"),
-                                                 List(&[Str("!@#"),
-                                                        List(&[F64(4.5)]),
-                                                        Str("(more"),
-                                                        Str("data)")])])]);
+const SEXP_STRUCT: SExp<'static> =
+    List(&[List(&[Str("data"), Str("quoted data"), F64(123.), F64(4.5)]),
+           List(&[Str("data"),
+                  List(&[Str("!@#"), List(&[F64(4.5)]), Str("(more"), Str("data)")])])]);
 
 fn try_encode() -> Result<String, Error> {
     SEXP_STRUCT.buffer_encode()
