@@ -366,6 +366,9 @@ members = [
     # http://rosettacode.org/wiki/Reverse_a_string
     "tasks/reverse-a-string",
 
+    # http://rosettacode.org/wiki/RIPEMD-160
+    "tasks/ripemd-160",
+
     # http://rosettacode.org/wiki/Rock-paper-scissors
     "tasks/rock-paper-scissors",
 
