@@ -65,7 +65,8 @@ authors = [
     "Jesús Espino, https://github.com/jespino",
     "Allen Bui, https://github.com/allenbui94",
     "Andrey Tonkih, https://github.com/xosmig",
-    "Thibault Barbie, https://github.com/thibaultbarbie"
+    "Thibault Barbie, https://github.com/thibaultbarbie",
+    "Corentin Henry, https://github.com/little-dude"
 ]
 
 [dependencies]
@@ -74,6 +75,7 @@ docopt = "0.6"
 docopt_macros = "0.6.81"
 rustc-serialize = "0.3"
 term = "0.4"
+ftp = "1.0"
 
 [dependencies.meta]
 path = "meta"
@@ -1731,3 +1733,8 @@ path = "src/zero_to_the_zero_power.rs"
 # http://rosettacode.org/wiki/Zig-zag_matrix
 name = "zig-zag_matrix"
 path = "src/zig-zag_matrix.rs"
+
+[[bin]]
+# http://rosettacode.org/wiki/FTP
+name = "ftp"
+path = "src/ftp.rs"
