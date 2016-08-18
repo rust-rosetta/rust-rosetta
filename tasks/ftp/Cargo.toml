@@ -1,0 +1,9 @@
+[package]
+name = "ftp"
+version = "0.1.0"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/FTP"
+
+[dependencies]
+ftp = "1.0.0"

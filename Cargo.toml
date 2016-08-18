@@ -75,7 +75,6 @@ docopt = "0.6"
 docopt_macros = "0.6.81"
 rustc-serialize = "0.3"
 term = "0.4"
-ftp = "1.0"
 
 [dependencies.meta]
 path = "meta"
@@ -241,6 +240,9 @@ members = [
 
     # http://rosettacode.org/wiki/Flipping_bits_game
     "tasks/flipping-bits-game",
+
+    # http://rosettacode.org/wiki/FTP
+    "tasks/ftp",
 
     # http://rosettacode.org/wiki/Greatest_common_divisor
     "tasks/greatest-common-divisor",
@@ -1733,8 +1735,3 @@ path = "src/zero_to_the_zero_power.rs"
 # http://rosettacode.org/wiki/Zig-zag_matrix
 name = "zig-zag_matrix"
 path = "src/zig-zag_matrix.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/FTP
-name = "ftp"
-path = "src/ftp.rs"
