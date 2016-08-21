@@ -1,9 +1,27 @@
+#![feature(conservative_impl_trait)]
+
 extern crate ftp;
 
 use ftp::FtpStream;
-use ftp::types::FileType;
+use ftp::types::{Result,FileType};
 use std::fs::File;
-use std::io::Write;
+use std::io::{Read,Write};
+
+fn write_file(filename: &str) -> impl Fn(&mut Read) -> Result<()> {
+    let filename = filename.to_string();
+    move |stream| {
+        let mut file = File::create(&filename).unwrap();
+        let mut buf = [0; 2048];
+        loop {
+            match stream.read(&mut buf) {
+                Ok(0) => break,
+                Ok(n) => file.write_all(&buf[0..n]).unwrap(),
+                Err(err) => panic!(err)
+            };
+        }
+        Ok(())
+    }
+}
 
 fn main() {
     // connect to the server
@@ -21,18 +39,7 @@ fn main() {
 
     // download a file a write it on the disk
     ftp.transfer_type(FileType::Binary).unwrap();
-    ftp.retr("README", |stream| {
-        let mut file = File::create("README").unwrap();
-        let mut buf = [0; 2048];
-        loop {
-            match stream.read(&mut buf) {
-                Ok(0) => break,
-                Ok(n) => file.write_all(&buf[0..n]).unwrap(),
-                Err(err) => panic!(err)
-            };
-        }
-        Ok(())
-    }).unwrap();
+    ftp.retr("README", write_file("README")).unwrap();
 }
 
 #[cfg(test)]
