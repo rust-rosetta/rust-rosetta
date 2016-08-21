@@ -34,3 +34,33 @@ fn main() {
         Ok(())
     }).unwrap();
 }
+
+#[cfg(test)]
+mod test {
+    use ftp::FtpStream;
+
+    fn connect() -> FtpStream {
+        let mut ftp = FtpStream::connect("kernel.org:21").unwrap();
+        ftp.login("anonymous", "").unwrap();
+        return ftp;
+    }
+
+    #[ignore]
+    #[test]
+    fn test_cwd() {
+        let mut ftp = connect();
+        // make sure the current directory is /
+        assert_eq!(ftp.pwd().unwrap(), "/");
+        ftp.cwd("/pub/linux/kernel").unwrap();
+        assert_eq!(ftp.pwd().unwrap(), "/pub/linux/kernel");
+    }
+
+    #[ignore]
+    #[test]
+    fn test_list_dir() {
+        let mut ftp = connect();
+        assert_eq!(
+            ftp.list(Some("/")).unwrap().join(""),
+            "drwxr-xr-x    9 ftp      ftp          4096 Dec 01  2011 pub");
+    }
+}
