@@ -1,5 +1,3 @@
-// http://rosettacode.org/wiki/Anonymous_recursion
-
 fn fib(n: i64) -> Option<i64> {
     // A function declared inside another function does not pollute the outer namespace.
     fn actual_fib(n: i64) -> i64 {

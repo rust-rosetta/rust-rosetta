@@ -142,6 +142,9 @@ members = [
     # http://rosettacode.org/wiki/Anagrams
     "tasks/anagrams",
 
+    # http://rosettacode.org/wiki/Anonymous_recursion
+    "tasks/anonymous-recursion",
+
     # http://rosettacode.org/wiki/Arbitrary-precision_integers_(included)
     "tasks/arbitrary-precision-integers-included",
 
@@ -656,11 +659,6 @@ members = [
 [[bin]]
 name = "coverage"
 path = "src/bin/coverage.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Anonymous_recursion
-name = "anonymous_recursion"
-path = "src/anonymous_recursion.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Arithmetic-geometric_mean

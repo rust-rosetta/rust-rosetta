@@ -1,0 +1,6 @@
+[package]
+name = "anonymous-recursion"
+version = "0.1.0"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Anonymous_recursion"

@@ -116,6 +116,10 @@ version = "0.2.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 
 [[package]]
+name = "anonymous-recursion"
+version = "0.1.0"
+
+[[package]]
 name = "arbitrary-precision-integers-included"
 version = "0.1.0"
 dependencies = [
