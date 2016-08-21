@@ -4,7 +4,7 @@ extern crate ftp;
 
 use ftp::FtpStream;
 use ftp::types::{Result,FileType};
-use std::fs::File;
+use std::fs::{File};
 use std::io::{Read,Write};
 
 fn write_file(filename: &str) -> impl Fn(&mut Read) -> Result<()> {
@@ -45,6 +45,9 @@ fn main() {
 #[cfg(test)]
 mod test {
     use ftp::FtpStream;
+    use std::fs;
+    use ftp::types::{FileType};
+    use super::{write_file};
 
     fn connect() -> FtpStream {
         let mut ftp = FtpStream::connect("kernel.org:21").unwrap();
@@ -69,5 +72,28 @@ mod test {
         assert_eq!(
             ftp.list(Some("/")).unwrap().join(""),
             "drwxr-xr-x    9 ftp      ftp          4096 Dec 01  2011 pub");
+    }
+
+    #[ignore]
+    #[test]
+    fn test_download_file() {
+        let filename = ".test_download_file";
+        let mut ftp = connect();
+        ftp.cwd("/pub/linux/kernel").unwrap();
+        // make sure the file does not already exist
+        match fs::metadata(filename) {
+            Ok(_) => fs::remove_file(filename).unwrap(),
+            Err(_) => {}
+        }
+        ftp.transfer_type(FileType::Binary).unwrap();
+        ftp.retr("README", write_file(filename)).unwrap();
+        match fs::metadata(filename) {
+            Ok(metadata) => {
+                assert_eq!(metadata.is_file(), true);
+                assert_eq!(metadata.len(), 12056);
+                fs::remove_file(filename).unwrap();
+            }
+            Err(_) => panic!("file not downloaded")
+        }
     }
 }
