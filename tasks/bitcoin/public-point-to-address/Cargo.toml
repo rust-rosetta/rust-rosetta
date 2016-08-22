@@ -1,0 +1,10 @@
+[package]
+name = "public-point-to-address"
+version = "0.1.0"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Bitcoin/public_point_to_address"
+
+[dependencies]
+rust-crypto = "^0.2"
+rustc-serialize = "0.3"

@@ -167,6 +167,9 @@ members = [
 
     # http://rosettacode.org/wiki/Bitcoin/address_validation
     "tasks/bitcoin/address-validation",
+    
+    # http://rosettacode.org/wiki/Bitcoin/public_point_to_address
+    "tasks/bitcoin/public-point-to-address",
 
     # http://rosettacode.org/wiki/Bitmap
     "tasks/bitmap",
