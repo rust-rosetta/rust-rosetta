@@ -459,6 +459,9 @@ members = [
     # http://rosettacode.org/wiki/Use_another_language_to_call_a_function
     "tasks/use-another-language-to-call-a-function",
 
+    # http://rosettacode.org/wiki/Vector_products
+    "tasks/vector-products",
+
     # http://rosettacode.org/wiki/Visualize_a_tree
     "tasks/visualize-a-tree",
 

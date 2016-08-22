@@ -1,0 +1,6 @@
+[package]
+name = "vector-products"
+version = "0.1.0"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Vector_products"
