@@ -65,7 +65,8 @@ authors = [
     "Jesús Espino, https://github.com/jespino",
     "Allen Bui, https://github.com/allenbui94",
     "Andrey Tonkih, https://github.com/xosmig",
-    "Thibault Barbie, https://github.com/thibaultbarbie"
+    "Thibault Barbie, https://github.com/thibaultbarbie",
+    "Corentin Henry, https://github.com/little-dude"
 ]
 
 [dependencies]
@@ -242,6 +243,9 @@ members = [
 
     # http://rosettacode.org/wiki/Flipping_bits_game
     "tasks/flipping-bits-game",
+
+    # http://rosettacode.org/wiki/FTP
+    "tasks/ftp",
 
     # http://rosettacode.org/wiki/Greatest_common_divisor
     "tasks/greatest-common-divisor",
