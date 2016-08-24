@@ -1,0 +1,6 @@
+[package]
+name = "zig-zag-matrix"
+version = "0.1.0"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Zig-zag_matrix"

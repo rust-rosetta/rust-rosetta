@@ -1,10 +1,6 @@
 [root]
-name = "write-a-ppm-file"
+name = "zig-zag-matrix"
 version = "0.1.0"
-dependencies = [
- "bitmap 0.1.0",
- "rand 0.3.14 (registry+https://github.com/rust-lang/crates.io-index)",
-]
 
 [[package]]
 name = "100-doors"
@@ -1665,6 +1661,14 @@ name = "prime-decomposition"
 version = "0.1.0"
 
 [[package]]
+name = "public-point-to-address"
+version = "0.1.0"
+dependencies = [
+ "rust-crypto 0.2.36 (registry+https://github.com/rust-lang/crates.io-index)",
+ "rustc-serialize 0.3.19 (registry+https://github.com/rust-lang/crates.io-index)",
+]
+
+[[package]]
 name = "quicksort"
 version = "0.1.0"
 dependencies = [
@@ -2171,6 +2175,10 @@ version = "0.1.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 
 [[package]]
+name = "vector-products"
+version = "0.1.0"
+
+[[package]]
 name = "visualize-a-tree"
 version = "0.1.0"
 dependencies = [
@@ -2265,6 +2273,14 @@ dependencies = [
 name = "with-feedback"
 version = "0.1.0"
 dependencies = [
+ "rand 0.3.14 (registry+https://github.com/rust-lang/crates.io-index)",
+]
+
+[[package]]
+name = "write-a-ppm-file"
+version = "0.1.0"
+dependencies = [
+ "bitmap 0.1.0",
  "rand 0.3.14 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 

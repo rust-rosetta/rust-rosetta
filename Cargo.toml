@@ -489,6 +489,9 @@ members = [
 
     # http://rosettacode.org/wiki/Window_creation
     "tasks/window-creation",
+
+    # http://rosettacode.org/wiki/Zig-zag_matrix
+    "tasks/zig-zag-matrix",
 ]
 
 [[bin]]
@@ -1729,8 +1732,3 @@ path = "src/write_entire_file.rs"
 # http://rosettacode.org/wiki/Zero_to_the_zero_power
 name = "zero_to_the_zero_power"
 path = "src/zero_to_the_zero_power.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Zig-zag_matrix
-name = "zig-zag_matrix"
-path = "src/zig-zag_matrix.rs"
