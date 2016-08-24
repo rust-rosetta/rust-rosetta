@@ -2310,6 +2310,10 @@ dependencies = [
  "bitflags 0.7.0 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
+[[package]]
+name = "zero-to-the-zero-power"
+version = "0.1.0"
+
 [metadata]
 "checksum aho-corasick 0.5.2 (registry+https://github.com/rust-lang/crates.io-index)" = "2b3fb52b09c1710b961acb35390d514be82e4ac96a9969a8e38565a29b878dc9"
 "checksum android_glue 0.2.0 (registry+https://github.com/rust-lang/crates.io-index)" = "155b8329ec4be0063f1b581350514969fb3560a73e8e6b1b8150ce28bb1db6b4"
