@@ -2277,6 +2277,10 @@ dependencies = [
 ]
 
 [[package]]
+name = "word-wrap"
+version = "0.1.0"
+
+[[package]]
 name = "write-a-ppm-file"
 version = "0.1.0"
 dependencies = [

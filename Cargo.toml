@@ -490,6 +490,9 @@ members = [
     # http://rosettacode.org/wiki/Window_creation
     "tasks/window-creation",
 
+    # http://rosettacode.org/wiki/Word_wrap
+    "tasks/word-wrap",
+
     # http://rosettacode.org/wiki/Write_entire_file
     "tasks/write-entire-file",
 
@@ -1723,8 +1726,3 @@ path = "src/vigenere.rs"
 # http://rosettacode.org/wiki/Wireworld
 name = "wireworld"
 path = "src/wireworld.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Word_wrap
-name = "word_wrap"
-path = "src/word_wrap.rs"
