@@ -1,0 +1,6 @@
+[package]
+name = "write-entire-file"
+version = "0.1.0"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Write_entire_file"

@@ -1,4 +1,3 @@
-// http://rosettacode.org/wiki/Write_entire_file
 use std::io::prelude::*;
 use std::fs::OpenOptions;
 
