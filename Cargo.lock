@@ -2179,6 +2179,10 @@ name = "vector-products"
 version = "0.1.0"
 
 [[package]]
+name = "vigenere-cipher"
+version = "0.1.0"
+
+[[package]]
 name = "visualize-a-tree"
 version = "0.1.0"
 dependencies = [
