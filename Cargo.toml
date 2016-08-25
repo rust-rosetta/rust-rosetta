@@ -139,8 +139,14 @@ members = [
     # http://rosettacode.org/wiki/Amicable_pairs
     "tasks/amicable-pairs",
 
+    # http://rosettacode.org/wiki/Anagrams
+    "tasks/anagrams",
+
     # http://rosettacode.org/wiki/Arbitrary-precision_integers_(included)
     "tasks/arbitrary-precision-integers-included",
+
+    # http://rosettacode.org/wiki/Arena_storage_pool
+    "tasks/arena-storage-pool",
 
     # http://rosettacode.org/wiki/Arithmetic/Complex
     "tasks/arithmetic/complex",
@@ -400,6 +406,9 @@ members = [
     # http://rosettacode.org/wiki/Run-length_encoding
     "tasks/run-length-encoding",
 
+    # http://rosettacode.org/wiki/S-Expressions
+    "tasks/s-expressions",
+
     # http://rosettacode.org/wiki/SHA-256
     "tasks/sha-256",
 
@@ -469,6 +478,9 @@ members = [
     # http://rosettacode.org/wiki/Vector_products
     "tasks/vector-products",
 
+    # http://rosettacode.org/wiki/Vigen%C3%A8re_cipher
+    "tasks/vigenere-cipher",
+
     # http://rosettacode.org/wiki/Visualize_a_tree
     "tasks/visualize-a-tree",
 
@@ -480,6 +492,21 @@ members = [
 
     # http://rosettacode.org/wiki/Window_creation
     "tasks/window-creation",
+
+    # http://rosettacode.org/wiki/Wireworld
+    "tasks/wireworld",
+
+    # http://rosettacode.org/wiki/Word_wrap
+    "tasks/word-wrap",
+
+    # http://rosettacode.org/wiki/Write_entire_file
+    "tasks/write-entire-file",
+
+    # http://rosettacode.org/wiki/Zero_to_the_zero_power
+    "tasks/zero-to-the-zero-power",
+
+    # http://rosettacode.org/wiki/Zig-zag_matrix
+    "tasks/zig-zag-matrix",
 ]
 
 [[bin]]
@@ -487,20 +514,9 @@ name = "coverage"
 path = "src/bin/coverage.rs"
 
 [[bin]]
-# http://rosettacode.org/wiki/Anagrams
-name = "anagrams"
-path = "src/anagrams.rs"
-
-[[bin]]
 # http://rosettacode.org/wiki/Anonymous_recursion
 name = "anonymous_recursion"
 path = "src/anonymous_recursion.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Arena_storage_pool
-name = "arena_storage_pool"
-path = "src/arena_storage_pool.rs"
-test = false
 
 [[bin]]
 # http://rosettacode.org/wiki/Arithmetic-geometric_mean
@@ -1463,11 +1479,6 @@ name = "rot13"
 path = "src/rot13.rs"
 
 [[bin]]
-# http://rosettacode.org/wiki/S-Expressions
-name = "s_expressions"
-path = "src/s_expressions.rs"
-
-[[bin]]
 # http://rosettacode.org/wiki/Search_a_list
 name = "search_a_list"
 path = "src/search_a_list.rs"
@@ -1711,33 +1722,3 @@ test = false
 # http://rosettacode.org/wiki/User_input/Text
 name = "user_input_text"
 path = "src/user_input/text.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Vigen%C3%A8re_cipher
-name = "vigenere"
-path = "src/vigenere.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Wireworld
-name = "wireworld"
-path = "src/wireworld.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Word_wrap
-name = "word_wrap"
-path = "src/word_wrap.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Write_entire_file
-name = "write_entire_file"
-path = "src/write_entire_file.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Zero_to_the_zero_power
-name = "zero_to_the_zero_power"
-path = "src/zero_to_the_zero_power.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Zig-zag_matrix
-name = "zig-zag_matrix"
-path = "src/zig-zag_matrix.rs"

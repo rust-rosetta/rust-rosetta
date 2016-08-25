@@ -1,10 +1,6 @@
 [root]
-name = "write-a-ppm-file"
+name = "zig-zag-matrix"
 version = "0.1.0"
-dependencies = [
- "bitmap 0.1.0",
- "rand 0.3.14 (registry+https://github.com/rust-lang/crates.io-index)",
-]
 
 [[package]]
 name = "100-doors"
@@ -107,6 +103,10 @@ name = "amicable-pairs"
 version = "0.1.0"
 
 [[package]]
+name = "anagrams"
+version = "0.1.0"
+
+[[package]]
 name = "android_glue"
 version = "0.2.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -117,6 +117,10 @@ version = "0.1.0"
 dependencies = [
  "num 0.1.32 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
+
+[[package]]
+name = "arena-storage-pool"
+version = "0.1.0"
 
 [[package]]
 name = "atk-sys"
@@ -1657,6 +1661,14 @@ name = "prime-decomposition"
 version = "0.1.0"
 
 [[package]]
+name = "public-point-to-address"
+version = "0.1.0"
+dependencies = [
+ "rust-crypto 0.2.36 (registry+https://github.com/rust-lang/crates.io-index)",
+ "rustc-serialize 0.3.19 (registry+https://github.com/rust-lang/crates.io-index)",
+]
+
+[[package]]
 name = "quicksort"
 version = "0.1.0"
 dependencies = [
@@ -1852,6 +1864,10 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 dependencies = [
  "semver 0.1.20 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
+
+[[package]]
+name = "s-expressions"
+version = "0.1.0"
 
 [[package]]
 name = "schedule_recv"
@@ -2159,6 +2175,14 @@ version = "0.1.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 
 [[package]]
+name = "vector-products"
+version = "0.1.0"
+
+[[package]]
+name = "vigenere-cipher"
+version = "0.1.0"
+
+[[package]]
 name = "visualize-a-tree"
 version = "0.1.0"
 dependencies = [
@@ -2250,11 +2274,31 @@ dependencies = [
 ]
 
 [[package]]
+name = "wireworld"
+version = "0.1.0"
+
+[[package]]
 name = "with-feedback"
 version = "0.1.0"
 dependencies = [
  "rand 0.3.14 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
+
+[[package]]
+name = "word-wrap"
+version = "0.1.0"
+
+[[package]]
+name = "write-a-ppm-file"
+version = "0.1.0"
+dependencies = [
+ "bitmap 0.1.0",
+ "rand 0.3.14 (registry+https://github.com/rust-lang/crates.io-index)",
+]
+
+[[package]]
+name = "write-entire-file"
+version = "0.1.0"
 
 [[package]]
 name = "x11"
@@ -2281,6 +2325,10 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 dependencies = [
  "bitflags 0.7.0 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
+
+[[package]]
+name = "zero-to-the-zero-power"
+version = "0.1.0"
 
 [metadata]
 "checksum aho-corasick 0.5.2 (registry+https://github.com/rust-lang/crates.io-index)" = "2b3fb52b09c1710b961acb35390d514be82e4ac96a9969a8e38565a29b878dc9"

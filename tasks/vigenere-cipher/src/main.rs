@@ -1,4 +1,3 @@
-// http://rosettacode.org/wiki/Vigenère_cipher
 use std::ascii::AsciiExt;
 
 const ASCII_A: u8 = b'A';

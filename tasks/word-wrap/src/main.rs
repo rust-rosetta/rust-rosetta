@@ -1,5 +1,3 @@
-// http://rosettacode.org/wiki/Word_wrap
-
 //! Using the [minimum length greedy algorithm].
 //!
 //! Implemented as a lazy `String` iterator, returning a wrapped line each time.

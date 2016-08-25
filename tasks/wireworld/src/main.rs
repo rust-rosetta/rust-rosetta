@@ -1,5 +1,3 @@
-// http://rosettacode.org/wiki/Wireworld
-
 use std::mem;
 use std::thread;
 use std::time::Duration;

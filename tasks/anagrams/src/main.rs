@@ -1,4 +1,3 @@
-// http://rosettacode.org/wiki/Anagrams
 use std::collections::{HashMap, HashSet};
 use std::collections::hash_map::Entry::{Occupied, Vacant};
 use std::fs::File;
