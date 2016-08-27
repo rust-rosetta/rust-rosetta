@@ -3,6 +3,10 @@ name = "zig-zag-matrix"
 version = "0.1.0"
 
 [[package]]
+name = "0-1"
+version = "0.1.0"
+
+[[package]]
 name = "100-doors"
 version = "0.1.0"
 dependencies = [
