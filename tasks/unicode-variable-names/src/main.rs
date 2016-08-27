@@ -1,5 +1,3 @@
-// http://rosettacode.org/wiki/Unicode_variable_names
-
 #![feature(non_ascii_idents)]
 
 // Rust warns about non-snake-case variable names by default, and will suggest `δ` as the variable

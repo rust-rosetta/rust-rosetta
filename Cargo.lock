@@ -2137,6 +2137,10 @@ version = "0.1.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 
 [[package]]
+name = "unicode-variable-names"
+version = "0.1.0"
+
+[[package]]
 name = "url"
 version = "1.1.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
