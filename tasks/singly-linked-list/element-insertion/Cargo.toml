@@ -1,0 +1,6 @@
+[package]
+name = "element-insertion"
+version = "0.1.0"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Singly-linked_list/Element_insertion"

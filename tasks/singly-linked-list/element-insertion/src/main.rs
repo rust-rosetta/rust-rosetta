@@ -1,5 +1,3 @@
-// http://rosettacode.org/wiki/Singly-linked_list/Element_insertion
-
 #![allow(dead_code)]
 
 type Link<T> = Option<Box<Node<T>>>;

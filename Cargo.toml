@@ -427,6 +427,9 @@ members = [
     # http://rosettacode.org/wiki/Singly-linked_list/Element_definition
     "tasks/singly-linked-list/element-definition",
 
+    # http://rosettacode.org/wiki/Singly-linked_list/Element_insertion
+    "tasks/singly-linked-list/element-insertion",
+
     # http://rosettacode.org/wiki/Sleep
     "tasks/sleep",
 
@@ -1626,11 +1629,6 @@ test = false
 # http://rosettacode.org/wiki/Sieve_of_Eratosthenes
 name = "sieve_eratosthenes"
 path = "src/sieve_eratosthenes.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Singly-linked_list/Element_insertion
-name = "singly_linked_list_element_insertion"
-path = "src/singly_linked_list/element_insertion.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Singly-linked_list/Traversal
