@@ -1,6 +1,4 @@
-// http://rosettacode.org/wiki/String_comparison
-
-/// For case-insensitive compare only.
+// For case-insensitive compare only.
 use std::ascii::AsciiExt;
 
 fn main() {

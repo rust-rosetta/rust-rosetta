@@ -174,7 +174,7 @@ members = [
 
     # http://rosettacode.org/wiki/Bitcoin/address_validation
     "tasks/bitcoin/address-validation",
-    
+
     # http://rosettacode.org/wiki/Bitcoin/public_point_to_address
     "tasks/bitcoin/public-point-to-address",
 
@@ -471,6 +471,9 @@ members = [
 
     # http://rosettacode.org/wiki/Statistics/Basic
     "tasks/statistics/basic",
+
+    # http://rosettacode.org/wiki/String_comparison
+    "tasks/string-comparison",
 
     # http://rosettacode.org/wiki/String_concatenation
     "tasks/string-concatenation",
@@ -1657,8 +1660,3 @@ path = "src/stdev.rs"
 # http://rosettacode.org/wiki/String_case
 name = "string_case"
 path = "src/string_case.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/String_comparison
-name = "string_comparison"
-path = "src/string_comparison.rs"
