@@ -1,5 +1,3 @@
-// http://rosettacode.org/wiki/Determine_if_a_string_is_numeric
-
 fn is_numeric(s: &str) -> bool {
     s.parse::<f64>().is_ok()
 }
@@ -15,9 +13,8 @@ fn test_isize() {
 }
 
 #[test]
-#[should_panic]
 fn test_str() {
-    assert!(is_numeric("j"));
+    assert!(!is_numeric("j"));
 }
 
 #[test]

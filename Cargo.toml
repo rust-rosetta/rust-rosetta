@@ -217,6 +217,9 @@ members = [
     # http://rosettacode.org/wiki/Day_of_the_week
     "tasks/day-of-the-week",
 
+    # http://rosettacode.org/wiki/Determine_if_a_string_is_numeric
+    "tasks/determine-if-a-string-is-numeric",
+
     # http://rosettacode.org/wiki/Discordian_date
     "tasks/discordian-date",
 
@@ -1669,8 +1672,3 @@ test = false
 # http://rosettacode.org/wiki/String_interpolation_(included)
 name = "string_interpolation_included"
 path = "src/string_interpolation_included.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Determine_if_a_string_is_numeric
-name = "string_is_numeric"
-path = "src/string_is_numeric.rs"

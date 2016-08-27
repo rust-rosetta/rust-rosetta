@@ -1,0 +1,6 @@
+[package]
+name = "determine-if-a-string-is-numeric"
+version = "0.1.0"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Determine_if_a_string_is_numeric"
