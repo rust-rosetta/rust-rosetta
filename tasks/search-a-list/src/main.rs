@@ -1,5 +1,3 @@
-// http://rosettacode.org/wiki/Search_a_list
-
 fn main() {
     let haystack = vec!["Zig", "Zag", "Wally", "Ronald", "Bush", "Krusty", "Charlie", "Bush",
                         "Boz", "Zag"];

@@ -1906,6 +1906,10 @@ dependencies = [
 ]
 
 [[package]]
+name = "search-a-list"
+version = "0.1.0"
+
+[[package]]
 name = "selection-sort"
 version = "0.1.0"
 dependencies = [
