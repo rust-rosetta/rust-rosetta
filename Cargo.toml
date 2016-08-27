@@ -469,6 +469,9 @@ members = [
     # http://rosettacode.org/wiki/Statistics/Basic
     "tasks/statistics/basic",
 
+    # http://rosettacode.org/wiki/Sum_and_product_of_an_array
+    "tasks/sum-and-product-of-an-array",
+
     # http://rosettacode.org/wiki/Sum_digits_of_an_integer
     "tasks/sum-digits-of-an-integer",
 
@@ -1679,8 +1682,3 @@ path = "src/strip_whitespace_from_a_string/top_and_tail.rs"
 # http://rosettacode.org/wiki/Sudoku
 name = "sudoku"
 path = "src/sudoku.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Sum_and_product_of_an_array
-name = "sum_and_product_of_an_array"
-path = "src/sum_and_product_of_an_array.rs"

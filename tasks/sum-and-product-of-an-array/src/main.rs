@@ -1,5 +1,3 @@
-// http://rosettacode.org/wiki/Sum_and_product_of_an_array
-
 fn main() {
     let arr: [i32; 9] = [1i32, 2, 3, 4, 5, 6, 7, 8, 9];
 
@@ -9,7 +7,6 @@ fn main() {
     println!("the sum is {} and the product is {}", sum, product);
 
     // or using sum and product
-    // these are NOT YET STABLE (hence the #![feature(..)] line
     let sum = arr.iter().sum::<i32>();
     let product = arr.iter().product::<i32>();
     println!("the sum is {} and the product is {}", sum, product);
