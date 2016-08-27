@@ -418,6 +418,9 @@ members = [
     # http://rosettacode.org/wiki/S-Expressions
     "tasks/s-expressions",
 
+    # http://rosettacode.org/wiki/SHA-1
+    "tasks/sha-1",
+
     # http://rosettacode.org/wiki/SHA-256
     "tasks/sha-256",
 
@@ -1619,8 +1622,3 @@ path = "src/sequence_of_non-squares.rs"
 name = "set"
 path = "src/set.rs"
 test = false
-
-[[bin]]
-# http://rosettacode.org/wiki/SHA-1
-name = "sha1"
-path = "src/sha1.rs"

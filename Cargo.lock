@@ -1933,6 +1933,10 @@ dependencies = [
 ]
 
 [[package]]
+name = "sha-1"
+version = "0.1.0"
+
+[[package]]
 name = "sha-256"
 version = "0.1.0"
 dependencies = [

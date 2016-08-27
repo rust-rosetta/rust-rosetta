@@ -1,5 +1,3 @@
-// http://rosettacode.org/wiki/SHA-1
-
 #![cfg_attr(feature = "clippy", allow(many_single_char_names))]
 
 //! Straight port from golang crypto/sha1 library implementation
