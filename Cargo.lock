@@ -1989,6 +1989,10 @@ dependencies = [
 ]
 
 [[package]]
+name = "standard-deviation"
+version = "0.1.0"
+
+[[package]]
 name = "stooge-sort"
 version = "0.1.0"
 dependencies = [
