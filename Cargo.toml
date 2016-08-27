@@ -424,6 +424,9 @@ members = [
     # http://rosettacode.org/wiki/Show_the_epoch
     "tasks/show-the-epoch",
 
+    # http://rosettacode.org/wiki/Sleep
+    "tasks/sleep",
+
     # http://rosettacode.org/wiki/Sockets
     "tasks/sockets",
 
@@ -1635,8 +1638,3 @@ path = "src/singly_linked_list/element_insertion.rs"
 # http://rosettacode.org/wiki/Singly-linked_list/Traversal
 name = "singly_linked_list_traversal"
 path = "src/singly_linked_list/traversal.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Sleep
-name = "sleep"
-path = "src/sleep.rs"

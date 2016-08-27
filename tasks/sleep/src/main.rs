@@ -1,5 +1,4 @@
-// http://rosettacode.org/wiki/Sleep
-/// Sleeps for the number of seconds specified on the command line.
+//! Sleeps for the number of seconds specified on the command line.
 
 use std::env;
 use std::time::Duration;
