@@ -418,6 +418,9 @@ members = [
     # http://rosettacode.org/wiki/S-Expressions
     "tasks/s-expressions",
 
+    # http://rosettacode.org/wiki/Set
+    "tasks/set",
+
     # http://rosettacode.org/wiki/SHA-1
     "tasks/sha-1",
 
@@ -1616,9 +1619,3 @@ path = "src/self-describing_numbers.rs"
 # http://rosettacode.org/wiki/Sequence_of_non-squares
 name = "sequence_of_non-squares"
 path = "src/sequence_of_non-squares.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Set
-name = "set"
-path = "src/set.rs"
-test = false

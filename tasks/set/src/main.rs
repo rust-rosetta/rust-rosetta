@@ -1,5 +1,3 @@
-// http://rosettacode.org/wiki/Set
-
 use std::collections::HashSet;
 
 fn main() {
