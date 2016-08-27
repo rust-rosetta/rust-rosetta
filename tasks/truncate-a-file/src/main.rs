@@ -1,4 +1,3 @@
-// http://rosettacode.org/wiki/Truncate_a_file
 use std::fs::OpenOptions;
 use std::env;
 use std::str::FromStr;
