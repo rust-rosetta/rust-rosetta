@@ -469,6 +469,9 @@ members = [
     # http://rosettacode.org/wiki/Statistics/Basic
     "tasks/statistics/basic",
 
+    # http://rosettacode.org/wiki/Sum_of_a_series
+    "tasks/sum-of-a-series",
+
     # http://rosettacode.org/wiki/Sum_of_squares
     "tasks/sum-of-squares",
 
@@ -1683,8 +1686,3 @@ path = "src/sum_and_product_of_an_array.rs"
 # http://rosettacode.org/wiki/Sum_digits_of_an_integer
 name = "sum_digits"
 path = "src/sum_digits.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Sum_of_a_series
-name = "sum_of_a_series"
-path = "src/sum_of_a_series.rs"

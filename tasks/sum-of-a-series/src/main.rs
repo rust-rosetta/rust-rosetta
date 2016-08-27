@@ -1,5 +1,3 @@
-// http://rosettacode.org/wiki/Sum_of_a_series
-
 #![feature(inclusive_range_syntax)]
 
 fn main() {

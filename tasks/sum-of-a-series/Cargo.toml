@@ -1,0 +1,6 @@
+[package]
+name = "sum-of-a-series"
+version = "0.1.0"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Sum_of_a_series"
