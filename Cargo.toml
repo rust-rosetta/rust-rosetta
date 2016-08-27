@@ -424,6 +424,9 @@ members = [
     # http://rosettacode.org/wiki/Show_the_epoch
     "tasks/show-the-epoch",
 
+    # http://rosettacode.org/wiki/Sieve_of_Eratosthenes
+    "tasks/sieve-of-eratosthenes",
+
     # http://rosettacode.org/wiki/Singly-linked_list/Element_definition
     "tasks/singly-linked-list/element-definition",
 
@@ -1627,8 +1630,3 @@ test = false
 name = "sierpinski_triangle"
 path = "src/sierpinski_triangle.rs"
 test = false
-
-[[bin]]
-# http://rosettacode.org/wiki/Sieve_of_Eratosthenes
-name = "sieve_eratosthenes"
-path = "src/sieve_eratosthenes.rs"

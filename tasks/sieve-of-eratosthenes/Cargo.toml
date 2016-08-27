@@ -1,0 +1,6 @@
+[package]
+name = "sieve-of-eratosthenes"
+version = "0.1.0"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Sieve_of_Eratosthenes"

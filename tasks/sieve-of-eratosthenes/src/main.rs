@@ -1,4 +1,3 @@
-// http://rosettacode.org/wiki/Sieve_of_Eratosthenes
 #![feature(step_by)]
 
 use std::iter::repeat;
