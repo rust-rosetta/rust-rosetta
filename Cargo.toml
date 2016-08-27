@@ -469,6 +469,9 @@ members = [
     # http://rosettacode.org/wiki/Statistics/Basic
     "tasks/statistics/basic",
 
+    # http://rosettacode.org/wiki/String_matching
+    "tasks/string-matching",
+
     # http://rosettacode.org/wiki/Strip_comments_from_a_string
     "tasks/strip-comments-from-a-string",
 
@@ -1671,8 +1674,3 @@ path = "src/string_interpolation_included.rs"
 # http://rosettacode.org/wiki/Determine_if_a_string_is_numeric
 name = "string_is_numeric"
 path = "src/string_is_numeric.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/String_matching
-name = "string_matching"
-path = "src/string_matching.rs"
