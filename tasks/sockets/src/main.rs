@@ -1,5 +1,3 @@
-// http://rosettacode.org/wiki/Sockets
-
 use std::io::prelude::*;
 use std::net::TcpStream;
 

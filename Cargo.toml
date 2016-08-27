@@ -424,6 +424,9 @@ members = [
     # http://rosettacode.org/wiki/Show_the_epoch
     "tasks/show-the-epoch",
 
+    # http://rosettacode.org/wiki/Sockets
+    "tasks/sockets",
+
     # http://rosettacode.org/wiki/Sort_an_array_of_composite_structures
     "tasks/sort-an-array-of-composite-structures",
 
@@ -1637,8 +1640,3 @@ path = "src/singly_linked_list/traversal.rs"
 # http://rosettacode.org/wiki/Sleep
 name = "sleep"
 path = "src/sleep.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Sockets
-name = "sockets"
-path = "src/sockets.rs"
