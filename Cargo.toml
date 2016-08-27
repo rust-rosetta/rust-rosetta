@@ -469,6 +469,9 @@ members = [
     # http://rosettacode.org/wiki/Statistics/Basic
     "tasks/statistics/basic",
 
+    # http://rosettacode.org/wiki/Strip_comments_from_a_string
+    "tasks/strip-comments-from-a-string",
+
     # http://rosettacode.org/wiki/Strip_whitespace_from_a_string/Top_and_tail
     "tasks/strip-whitespace-from-a-string/top-and-tail",
 
@@ -1673,8 +1676,3 @@ path = "src/string_is_numeric.rs"
 # http://rosettacode.org/wiki/String_matching
 name = "string_matching"
 path = "src/string_matching.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Strip_comments_from_a_string
-name = "strip_comments_from_a_string"
-path = "src/strip_comments_from_a_string.rs"

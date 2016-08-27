@@ -1,5 +1,3 @@
-// http://rosettacode.org/wiki/Strip_comments_from_a_string
-
 fn strip_comments(str: &str) -> &str {
     let markers = ['#', ';'];
     str.find(&markers[..]).map_or(str, |i| &str[..i]).trim()
