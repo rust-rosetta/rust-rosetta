@@ -1,5 +1,3 @@
-// http://rosettacode.org/wiki/Tree_traversal
-
 #![feature(box_syntax, box_patterns)]
 
 use std::collections::VecDeque;

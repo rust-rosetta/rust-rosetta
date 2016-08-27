@@ -469,6 +469,9 @@ members = [
     # http://rosettacode.org/wiki/Tic-tac-toe
     "tasks/tic-tac-toe",
 
+    # http://rosettacode.org/wiki/Tree_traversal
+    "tasks/tree-traversal",
+
     # http://rosettacode.org/wiki/Truncate_a_file
     "tasks/truncate-a-file",
 
@@ -1705,8 +1708,3 @@ test = false
 name = "towers_of_hanoi"
 path = "src/towers_of_hanoi.rs"
 test = false
-
-[[bin]]
-# http://rosettacode.org/wiki/Tree_traversal
-name = "tree_traversal"
-path = "src/tree_traversal.rs"
