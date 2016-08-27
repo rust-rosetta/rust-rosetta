@@ -1,5 +1,3 @@
-// http://rosettacode.org/wiki/Singly-linked_list/Element_definition
-
 #![allow(dead_code)]
 
 //! Rust's `Option<T>` type makes the definition of a singly-linked list trivial. The use of
