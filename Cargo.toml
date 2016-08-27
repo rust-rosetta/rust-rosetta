@@ -424,6 +424,9 @@ members = [
     # http://rosettacode.org/wiki/Show_the_epoch
     "tasks/show-the-epoch",
 
+    # http://rosettacode.org/wiki/Sierpinski_triangle
+    "tasks/sierpinski-triangle",
+
     # http://rosettacode.org/wiki/Sieve_of_Eratosthenes
     "tasks/sieve-of-eratosthenes",
 
@@ -1623,10 +1626,4 @@ path = "src/sha1.rs"
 # http://rosettacode.org/wiki/Short-circuit_evaluation
 name = "short_circuit_evaluation"
 path = "src/short_circuit_evaluation.rs"
-test = false
-
-[[bin]]
-# http://rosettacode.org/wiki/Sierpinski_triangle
-name = "sierpinski_triangle"
-path = "src/sierpinski_triangle.rs"
 test = false

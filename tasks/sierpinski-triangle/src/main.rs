@@ -1,5 +1,5 @@
-// http://rosettacode.org/wiki/Sierpinski_triangle
 #![feature(step_by)]
+
 use std::iter::repeat;
 
 fn main() {
