@@ -1,5 +1,3 @@
-// http://rosettacode.org/wiki/Sort_an_array_of_composite_structures
-
 #[derive(Debug, PartialEq)]
 pub struct Element {
     name: String,

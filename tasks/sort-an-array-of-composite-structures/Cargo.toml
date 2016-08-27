@@ -1,0 +1,6 @@
+[package]
+name = "sort-an-array-of-composite-structures"
+version = "0.1.0"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Sort_an_array_of_composite_structures"
