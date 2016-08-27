@@ -253,6 +253,9 @@ members = [
     # http://rosettacode.org/wiki/FTP
     "tasks/ftp",
 
+    # http://rosettacode.org/wiki/Generic_swap
+    "tasks/generic-swap",
+
     # http://rosettacode.org/wiki/Greatest_common_divisor
     "tasks/greatest-common-divisor",
 
@@ -1689,9 +1692,3 @@ path = "src/sum_of_a_series.rs"
 # http://rosettacode.org/wiki/Sum_of_squares
 name = "sum_of_squares"
 path = "src/sum_of_squares.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Generic_swap
-name = "swap"
-path = "src/swap.rs"
-test = false
