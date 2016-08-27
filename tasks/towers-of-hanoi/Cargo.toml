@@ -1,0 +1,6 @@
+[package]
+name = "towers-of-hanoi"
+version = "0.1.0"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Towers_of_Hanoi"

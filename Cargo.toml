@@ -469,6 +469,9 @@ members = [
     # http://rosettacode.org/wiki/Tic-tac-toe
     "tasks/tic-tac-toe",
 
+    # http://rosettacode.org/wiki/Towers_of_Hanoi
+    "tasks/towers-of-hanoi",
+
     # http://rosettacode.org/wiki/Tree_traversal
     "tasks/tree-traversal",
 
@@ -1701,10 +1704,4 @@ path = "src/the_twelve_days_of_christmas.rs"
 # http://rosettacode.org/wiki/Tokenize_a_string
 name = "tokenize_a_string"
 path = "src/tokenize_a_string.rs"
-test = false
-
-[[bin]]
-# http://rosettacode.org/wiki/Towers_of_Hanoi
-name = "towers_of_hanoi"
-path = "src/towers_of_hanoi.rs"
 test = false
