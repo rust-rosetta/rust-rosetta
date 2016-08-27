@@ -1982,6 +1982,10 @@ dependencies = [
 ]
 
 [[package]]
+name = "sort-using-a-custom-comparator"
+version = "0.1.0"
+
+[[package]]
 name = "sparkline-in-unicode"
 version = "0.1.0"
 dependencies = [

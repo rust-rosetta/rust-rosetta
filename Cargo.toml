@@ -424,6 +424,9 @@ members = [
     # http://rosettacode.org/wiki/Show_the_epoch
     "tasks/show-the-epoch",
 
+    # http://rosettacode.org/wiki/Sort_using_a_custom_comparator
+    "tasks/sort-using-a-custom-comparator",
+
     # http://rosettacode.org/wiki/Sorting_algorithms/Bogosort
     "tasks/sorting-algorithms/bogosort",
 
@@ -1639,11 +1642,6 @@ path = "src/sort_an_int_array.rs"
 # http://rosettacode.org/wiki/Sort_disjoint_sublist
 name = "sort_disjoint_sublist"
 path = "src/sort_disjoint_sublist.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Sort_using_a_custom_comparator
-name = "sort_using_custom_comparator"
-path = "src/sort_using_custom_comparator.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Sorting_algorithms/Merge_sort

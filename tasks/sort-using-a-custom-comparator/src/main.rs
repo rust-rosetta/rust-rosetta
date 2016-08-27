@@ -1,5 +1,3 @@
-// http://rosettacode.org/wiki/Sort_using_a_custom_comparator
-
 fn sort_custom(strings: &mut Vec<&str>) {
     use std::cmp::Ordering;
     strings.sort_by(|a, b| {
