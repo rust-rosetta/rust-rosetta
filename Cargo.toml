@@ -466,6 +466,9 @@ members = [
     # http://rosettacode.org/wiki/System_time
     "tasks/system-time",
 
+    # http://rosettacode.org/wiki/The_Twelve_Days_of_Christmas
+    "tasks/the-twelve-days-of-christmas",
+
     # http://rosettacode.org/wiki/Tic-tac-toe
     "tasks/tic-tac-toe",
 
@@ -1697,8 +1700,3 @@ test = false
 # http://rosettacode.org/wiki/Taxicab_numbers
 name = "taxicab_numbers"
 path = "src/taxicab_numbers.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/The_Twelve_Days_of_Christmas
-name = "the_twelve_days_of_christmas"
-path = "src/the_twelve_days_of_christmas.rs"

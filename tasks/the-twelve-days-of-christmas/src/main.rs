@@ -1,5 +1,3 @@
-// http://rosettacode.org/wiki/The_Twelve_Days_of_Christmas
-
 fn showpresents(count: usize) {
     let days = ["second", "third", "fourth", "fifth", "sixth", "seventh", "eighth", "ninth",
                 "tenth", "eleventh", "twelfth"];
