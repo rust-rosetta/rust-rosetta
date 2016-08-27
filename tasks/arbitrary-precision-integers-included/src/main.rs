@@ -1,9 +1,6 @@
 extern crate num;
 
-use num::num_bigint::BigInt;
-use num::num_traits::sign::Signed;
-use num::num_iter::range;
-use num::pow;
+use num::{BigInt, Signed};
 
 // Dumbest iterative approach
 fn big_pow(base: &BigInt, exp: BigInt) -> BigInt {
@@ -11,7 +8,7 @@ fn big_pow(base: &BigInt, exp: BigInt) -> BigInt {
         panic!("Negative exponent won't compute!")
     }
     let mut tmp = base.clone();
-    for _ in range(BigInt::from(1), exp) {
+    for _ in num::range(BigInt::from(1), exp) {
         tmp = tmp * base;
     }
     tmp
@@ -20,7 +17,7 @@ fn big_pow(base: &BigInt, exp: BigInt) -> BigInt {
 // 5^4^3^2
 fn main() {
     // Exponent is small enough to not use BigInt
-    let exp = BigInt::from(pow(4, pow(3, 2)));
+    let exp = BigInt::from(num::pow(4, num::pow(3, 2)));
 
     let result = big_pow(&BigInt::from(5), exp).to_string();
     let num_length = result.len();
@@ -34,7 +31,7 @@ fn main() {
 #[cfg(test)]
 mod tests {
     use super::big_pow;
-    use num::num_bigint::BigInt;
+    use num::BigInt;
 
     #[test]
     #[should_panic]
