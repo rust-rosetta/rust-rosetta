@@ -1918,6 +1918,10 @@ version = "0.1.20"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 
 [[package]]
+name = "sequence-of-non-squares"
+version = "0.1.0"
+
+[[package]]
 name = "serde"
 version = "0.7.14"
 source = "registry+https://github.com/rust-lang/crates.io-index"
