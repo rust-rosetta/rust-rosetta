@@ -421,6 +421,9 @@ members = [
     # http://rosettacode.org/wiki/SHA-256
     "tasks/sha-256",
 
+    # http://rosettacode.org/wiki/Short-circuit_evaluation
+    "tasks/short-circuit-evaluation",
+
     # http://rosettacode.org/wiki/Show_the_epoch
     "tasks/show-the-epoch",
 
@@ -1621,9 +1624,3 @@ test = false
 # http://rosettacode.org/wiki/SHA-1
 name = "sha1"
 path = "src/sha1.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Short-circuit_evaluation
-name = "short_circuit_evaluation"
-path = "src/short_circuit_evaluation.rs"
-test = false

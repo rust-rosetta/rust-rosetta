@@ -1965,6 +1965,10 @@ dependencies = [
 ]
 
 [[package]]
+name = "short-circuit-evaluation"
+version = "0.1.0"
+
+[[package]]
 name = "show-the-epoch"
 version = "0.1.0"
 dependencies = [
