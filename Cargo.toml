@@ -424,6 +424,9 @@ members = [
     # http://rosettacode.org/wiki/Show_the_epoch
     "tasks/show-the-epoch",
 
+    # http://rosettacode.org/wiki/Sort_an_integer_array
+    "tasks/sort-an-integer-array",
+
     # http://rosettacode.org/wiki/Sort_disjoint_sublist
     "tasks/sort-disjoint-sublist",
 
@@ -1641,8 +1644,3 @@ path = "src/sockets.rs"
 # http://rosettacode.org/wiki/Sort_an_array_of_composite_structures
 name = "sort_an_array_of_composites"
 path = "src/sort_an_array_of_composites.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Sort_an_integer_array
-name = "sort_an_int_array"
-path = "src/sort_an_int_array.rs"
