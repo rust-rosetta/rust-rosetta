@@ -1,5 +1,3 @@
-// http://rosettacode.org/wiki/String_interpolation_(included)
-
 //! Rust has very powerful string interpolation. [Documentation here][doc]
 //!
 //! [doc]: https://doc.rust-lang.org/stable/std/fmt/
