@@ -472,6 +472,9 @@ members = [
     # http://rosettacode.org/wiki/Statistics/Basic
     "tasks/statistics/basic",
 
+    # http://rosettacode.org/wiki/String_concatenation
+    "tasks/string-concatenation",
+
     # http://rosettacode.org/wiki/String_interpolation_(included)
     "tasks/string-interpolation-included",
 
@@ -1659,8 +1662,3 @@ path = "src/string_case.rs"
 # http://rosettacode.org/wiki/String_comparison
 name = "string_comparison"
 path = "src/string_comparison.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/String_concatenation
-name = "string_concatenation"
-path = "src/string_concatenation.rs"

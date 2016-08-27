@@ -1996,6 +1996,10 @@ dependencies = [
 ]
 
 [[package]]
+name = "string-concatenation"
+version = "0.1.0"
+
+[[package]]
 name = "string-interpolation-included"
 version = "0.1.0"
 
