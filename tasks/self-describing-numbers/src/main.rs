@@ -1,5 +1,3 @@
-// http://rosettacode.org/wiki/Self-describing_numbers
-
 fn is_self_describing(mut n: u64) -> bool {
     // Compute the length of the number (the number of digits)
     let mut tmp = n;

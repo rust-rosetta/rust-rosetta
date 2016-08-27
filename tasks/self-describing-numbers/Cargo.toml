@@ -1,0 +1,6 @@
+[package]
+name = "self-describing_numbers"
+version = "0.1.0"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Self-describing_numbers"

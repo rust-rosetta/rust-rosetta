@@ -418,6 +418,9 @@ members = [
     # http://rosettacode.org/wiki/S-Expressions
     "tasks/s-expressions",
 
+    # http://rosettacode.org/wiki/Self-describing_numbers
+    "tasks/self-describing-numbers",
+
     # http://rosettacode.org/wiki/Sequence_of_non-squares
     "tasks/sequence-of-non-squares",
 
@@ -1612,8 +1615,3 @@ path = "src/rot13.rs"
 # http://rosettacode.org/wiki/Search_a_list
 name = "search_a_list"
 path = "src/search_a_list.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Self-describing_numbers
-name = "self-describing_numbers"
-path = "src/self-describing_numbers.rs"
