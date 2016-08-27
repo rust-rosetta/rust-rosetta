@@ -1,5 +1,3 @@
-// http://rosettacode.org/wiki/Unix/ls
-
 //! Works only with correct paths or no arguments at all
 
 use std::env;

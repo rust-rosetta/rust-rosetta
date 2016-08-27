@@ -469,6 +469,9 @@ members = [
     # http://rosettacode.org/wiki/Tic-tac-toe
     "tasks/tic-tac-toe",
 
+    # http://rosettacode.org/wiki/Unix/ls
+    "tasks/unix/ls",
+
     # http://rosettacode.org/wiki/URL_parser
     "tasks/url-parser",
 
@@ -1714,9 +1717,3 @@ path = "src/ulam_spiral_for_primes.rs"
 # http://rosettacode.org/wiki/Unicode_variable_names
 name = "unicode_variable_names"
 path = "src/unicode_variable_names.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Unix/ls
-name = "unix_ls"
-path = "src/unix/ls.rs"
-test = false

@@ -1269,6 +1269,10 @@ dependencies = [
 ]
 
 [[package]]
+name = "ls"
+version = "0.1.0"
+
+[[package]]
 name = "lychrel-numbers"
 version = "0.1.0"
 dependencies = [
