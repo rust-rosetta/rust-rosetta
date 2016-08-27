@@ -1,0 +1,6 @@
+[package]
+name = "sum-digits-of-an-integer"
+version = "0.1.0"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Sum_digits_of_an_integer"
