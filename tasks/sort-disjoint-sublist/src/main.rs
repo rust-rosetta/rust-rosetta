@@ -1,5 +1,3 @@
-// http://rosettacode.org/wiki/Sort_disjoint_sublist
-
 pub fn sort_disjoint(values: &mut [i32], indices: &[usize]) {
     let mut sublist_indices = indices.to_owned();
     sublist_indices.sort();

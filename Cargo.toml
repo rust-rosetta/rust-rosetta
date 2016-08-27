@@ -424,6 +424,9 @@ members = [
     # http://rosettacode.org/wiki/Show_the_epoch
     "tasks/show-the-epoch",
 
+    # http://rosettacode.org/wiki/Sort_disjoint_sublist
+    "tasks/sort-disjoint-sublist",
+
     # http://rosettacode.org/wiki/Sort_using_a_custom_comparator
     "tasks/sort-using-a-custom-comparator",
 
@@ -1643,8 +1646,3 @@ path = "src/sort_an_array_of_composites.rs"
 # http://rosettacode.org/wiki/Sort_an_integer_array
 name = "sort_an_int_array"
 path = "src/sort_an_int_array.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Sort_disjoint_sublist
-name = "sort_disjoint_sublist"
-path = "src/sort_disjoint_sublist.rs"
