@@ -1,5 +1,3 @@
-// http://rosettacode.org/wiki/Sum_of_squares
-
 fn sq_sum(v: &[f64]) -> f64 {
     v.iter().fold(0., |sum, &num| sum + num * num)
 }

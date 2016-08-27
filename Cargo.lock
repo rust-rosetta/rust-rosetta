@@ -1997,6 +1997,10 @@ version = "0.3.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 
 [[package]]
+name = "sum-of-squares"
+version = "0.1.0"
+
+[[package]]
 name = "syncbox"
 version = "0.2.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"

@@ -469,6 +469,9 @@ members = [
     # http://rosettacode.org/wiki/Statistics/Basic
     "tasks/statistics/basic",
 
+    # http://rosettacode.org/wiki/Sum_of_squares
+    "tasks/sum-of-squares",
+
     # http://rosettacode.org/wiki/Synchronous_concurrency
     "tasks/synchronous-concurrency",
 
@@ -1685,8 +1688,3 @@ path = "src/sum_digits.rs"
 # http://rosettacode.org/wiki/Sum_of_a_series
 name = "sum_of_a_series"
 path = "src/sum_of_a_series.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Sum_of_squares
-name = "sum_of_squares"
-path = "src/sum_of_squares.rs"
