@@ -1,5 +1,3 @@
-// http://rosettacode.org/wiki/Singly-linked_list/Traversal
-
 type Link<T> = Option<Box<Node<T>>>;
 
 pub struct List<T> {
