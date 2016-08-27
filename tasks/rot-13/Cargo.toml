@@ -1,0 +1,6 @@
+[package]
+name = "rot-13"
+version = "0.1.0"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Rot-13"

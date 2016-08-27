@@ -409,6 +409,9 @@ members = [
     # http://rosettacode.org/wiki/Rosetta_Code/Fix_code_tags
     "tasks/rosetta-code/fix-code-tags",
 
+    # http://rosettacode.org/wiki/Rot-13
+    "tasks/rot-13",
+
     # http://rosettacode.org/wiki/RSA_code
     "tasks/rsa-code",
 
@@ -1608,8 +1611,3 @@ path = "src/roman_numerals/decode.rs"
 # http://rosettacode.org/wiki/Roman_numerals/Encode
 name = "roman_numerals_encode"
 path = "src/roman_numerals/encode.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Rot-13
-name = "rot13"
-path = "src/rot13.rs"

@@ -1828,6 +1828,10 @@ dependencies = [
 ]
 
 [[package]]
+name = "rot-13"
+version = "0.1.0"
+
+[[package]]
 name = "rsa-code"
 version = "0.1.0"
 dependencies = [
