@@ -1,5 +1,3 @@
-// http://rosettacode.org/wiki/User_input/Text
-
 //! This program demonstrates proper error handling.
 
 use std::io::{self, Write};

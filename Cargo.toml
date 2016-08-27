@@ -475,6 +475,9 @@ members = [
     # http://rosettacode.org/wiki/Use_another_language_to_call_a_function
     "tasks/use-another-language-to-call-a-function",
 
+    # http://rosettacode.org/wiki/User_input/Text
+    "tasks/user-input/text",
+
     # http://rosettacode.org/wiki/Vector_products
     "tasks/vector-products",
 
@@ -1717,8 +1720,3 @@ path = "src/unicode_variable_names.rs"
 name = "unix_ls"
 path = "src/unix/ls.rs"
 test = false
-
-[[bin]]
-# http://rosettacode.org/wiki/User_input/Text
-name = "user_input_text"
-path = "src/user_input/text.rs"
