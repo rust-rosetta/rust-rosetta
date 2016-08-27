@@ -1,8 +1,7 @@
-// http://rosettacode.org/wiki/Synchronous_concurrency
-
 //! Reader unit reads lines from input.txt, send lines one at a time to printer unit, which then
 //! prints lines, keeping track of lines printed. At the end of the file, the reader unit requests
 //! number of lines printed from the printer unit, and then prints them.
+
 use std::fs::File;
 use std::io::{BufReader, BufRead};
 use std::sync::mpsc::{channel, Sender, Receiver};

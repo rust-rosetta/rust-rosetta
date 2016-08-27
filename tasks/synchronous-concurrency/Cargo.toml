@@ -1,0 +1,6 @@
+[package]
+name = "synchronous-concurrency"
+version = "0.1.0"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Synchronous_concurrency"

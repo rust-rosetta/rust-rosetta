@@ -463,6 +463,9 @@ members = [
     # http://rosettacode.org/wiki/Statistics/Basic
     "tasks/statistics/basic",
 
+    # http://rosettacode.org/wiki/Synchronous_concurrency
+    "tasks/synchronous-concurrency",
+
     # http://rosettacode.org/wiki/System_time
     "tasks/system-time",
 
@@ -1691,10 +1694,4 @@ path = "src/sum_of_squares.rs"
 # http://rosettacode.org/wiki/Generic_swap
 name = "swap"
 path = "src/swap.rs"
-test = false
-
-[[bin]]
-# http://rosettacode.org/wiki/Synchronous_concurrency
-name = "synchronous_concurrency"
-path = "src/synchronous_concurrency.rs"
 test = false

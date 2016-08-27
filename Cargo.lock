@@ -1998,6 +1998,10 @@ dependencies = [
 ]
 
 [[package]]
+name = "synchronous-concurrency"
+version = "0.1.0"
+
+[[package]]
 name = "system-time"
 version = "0.1.0"
 dependencies = [
