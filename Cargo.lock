@@ -1336,6 +1336,10 @@ dependencies = [
 ]
 
 [[package]]
+name = "merge-sort"
+version = "0.1.0"
+
+[[package]]
 name = "meta"
 version = "0.1.0"
 dependencies = [

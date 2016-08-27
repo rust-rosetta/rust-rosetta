@@ -1,5 +1,3 @@
-// http://rosettacode.org/wiki/Sorting_algorithms/Merge_sort
-
 //! This is an idiomatic-but-slow implementation. A more efficient implementation
 //! would use `unsafe` to avoid allocating so many temporary vectors.
 

@@ -451,6 +451,9 @@ members = [
     # http://rosettacode.org/wiki/Sorting_algorithms/Insertion_sort
     "tasks/sorting-algorithms/insertion-sort",
 
+    # http://rosettacode.org/wiki/Sorting_algorithms/Merge_sort
+    "tasks/sorting-algorithms/merge-sort",
+
     # http://rosettacode.org/wiki/Sorting_algorithms/Pancake_sort
     "tasks/sorting-algorithms/pancake-sort",
 
@@ -1645,8 +1648,3 @@ path = "src/sort_an_int_array.rs"
 # http://rosettacode.org/wiki/Sort_disjoint_sublist
 name = "sort_disjoint_sublist"
 path = "src/sort_disjoint_sublist.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Sorting_algorithms/Merge_sort
-name = "sorting_algorithms_merge_sort"
-path = "src/sorting_algorithms/merge_sort.rs"
