@@ -1996,6 +1996,10 @@ dependencies = [
 ]
 
 [[package]]
+name = "string-case"
+version = "0.1.0"
+
+[[package]]
 name = "string-comparison"
 version = "0.1.0"
 
