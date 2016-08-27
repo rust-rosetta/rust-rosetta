@@ -466,6 +466,9 @@ members = [
     # http://rosettacode.org/wiki/System_time
     "tasks/system-time",
 
+    # http://rosettacode.org/wiki/Taxicab_numbers
+    "tasks/taxicab-numbers",
+
     # http://rosettacode.org/wiki/The_Twelve_Days_of_Christmas
     "tasks/the-twelve-days-of-christmas",
 
@@ -1695,8 +1698,3 @@ test = false
 name = "synchronous_concurrency"
 path = "src/synchronous_concurrency.rs"
 test = false
-
-[[bin]]
-# http://rosettacode.org/wiki/Taxicab_numbers
-name = "taxicab_numbers"
-path = "src/taxicab_numbers.rs"

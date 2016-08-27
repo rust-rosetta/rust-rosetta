@@ -2013,6 +2013,10 @@ dependencies = [
 ]
 
 [[package]]
+name = "taxicab-numbers"
+version = "0.1.0"
+
+[[package]]
 name = "tempdir"
 version = "0.3.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
