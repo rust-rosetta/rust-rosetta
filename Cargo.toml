@@ -469,6 +469,9 @@ members = [
     # http://rosettacode.org/wiki/Tic-tac-toe
     "tasks/tic-tac-toe",
 
+    # http://rosettacode.org/wiki/Ulam_spiral_(for_primes)
+    "tasks/ulam-spiral-for-primes",
+
     # http://rosettacode.org/wiki/Unicode_variable_names
     "tasks/unicode-variable-names",
 
@@ -1710,8 +1713,3 @@ path = "src/tree_traversal.rs"
 name = "truncate-a-file"
 path = "src/truncate_a_file.rs"
 test = false
-
-[[bin]]
-# http://rosettacode.org/wiki/Ulam_spiral_(for_primes)
-name = "ulam_spiral_for_primes"
-path = "src/ulam_spiral_for_primes.rs"

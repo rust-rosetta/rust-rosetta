@@ -2111,6 +2111,10 @@ version = "0.1.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 
 [[package]]
+name = "ulam-spiral-for-primes"
+version = "0.1.0"
+
+[[package]]
 name = "unicase"
 version = "1.4.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
