@@ -1,4 +1,3 @@
-// http://rosettacode.org/wiki/Sorting_algorithms/Sleep_sort
 use std::thread;
 use std::time::Duration;
 
