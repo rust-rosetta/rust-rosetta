@@ -1,5 +1,3 @@
-// http://rosettacode.org/wiki/Strip_whitespace_from_a_string/Top_and_tail
-
 fn main() {
     let string = "String without spaces";
     let spaces = " \x0B\t\r\n \u{A0} \u{2000} \u{3000} ";
