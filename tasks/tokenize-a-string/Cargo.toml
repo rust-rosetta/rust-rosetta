@@ -1,0 +1,6 @@
+[package]
+name = "tokenize-a-string"
+version = "0.1.0"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Tokenize_a_string"

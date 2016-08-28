@@ -1,0 +1,6 @@
+[package]
+name = "short-circuit-evaluation"
+version = "0.1.0"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Short-circuit_evaluation"

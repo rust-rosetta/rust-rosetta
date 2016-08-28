@@ -1,0 +1,6 @@
+[package]
+name = "0-1"
+version = "0.1.0"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Knapsack_problem/0-1"

@@ -1,0 +1,6 @@
+[package]
+name = "unicode-variable-names"
+version = "0.1.0"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Unicode_variable_names"

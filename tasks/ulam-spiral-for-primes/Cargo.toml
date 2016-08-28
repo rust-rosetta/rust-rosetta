@@ -1,0 +1,6 @@
+[package]
+name = "ulam-spiral-for-primes"
+version = "0.1.0"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Ulam_spiral_(for_primes)"

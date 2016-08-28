@@ -1,0 +1,6 @@
+[package]
+name = "merge-sort"
+version = "0.1.0"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Sorting_algorithms/Merge_sort"

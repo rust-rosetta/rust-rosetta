@@ -1,0 +1,6 @@
+[package]
+name = "strip-comments-from-a-string"
+version = "0.1.0"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Strip_comments_from_a_string"

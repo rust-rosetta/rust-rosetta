@@ -1,0 +1,6 @@
+[package]
+name = "sort-using-a-custom-comparator"
+version = "0.1.0"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Sort_using_a_custom_comparator"

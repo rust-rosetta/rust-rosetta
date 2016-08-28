@@ -1,0 +1,6 @@
+[package]
+name = "the-twelve-days-of-christmas"
+version = "0.1.0"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/The_Twelve_Days_of_Christmas"

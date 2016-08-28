@@ -1,0 +1,6 @@
+[package]
+name = "top-and-tail"
+version = "0.1.0"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Strip_whitespace_from_a_string/Top_and_tail"

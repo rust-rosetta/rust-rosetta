@@ -1,0 +1,6 @@
+[package]
+name = "sum-and-product-of-an-array"
+version = "0.1.0"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Sum_and_product_of_an_array"
