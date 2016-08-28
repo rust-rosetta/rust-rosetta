@@ -1,5 +1,3 @@
-// http://rosettacode.org/wiki/Mutual_recursion
-
 fn f(n: usize) -> usize {
     match n {
         0 => 1,
