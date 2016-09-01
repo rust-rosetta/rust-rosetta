@@ -1,0 +1,6 @@
+[package]
+name = "recursion-depth"
+version = "0.1.0"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Find_limit_of_recursion"

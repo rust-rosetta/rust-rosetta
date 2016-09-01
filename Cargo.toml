@@ -142,6 +142,9 @@ members = [
     # http://rosettacode.org/wiki/Anagrams
     "tasks/anagrams",
 
+    # http://rosettacode.org/wiki/Anonymous_recursion
+    "tasks/anonymous-recursion",
+
     # http://rosettacode.org/wiki/Arbitrary-precision_integers_(included)
     "tasks/arbitrary-precision-integers-included",
 
@@ -346,6 +349,9 @@ members = [
     # http://rosettacode.org/wiki/Mouse_position
     "tasks/mouse-position",
 
+    # http://rosettacode.org/wiki/Mutual_recursion
+    "tasks/mutual-recursion",
+
     # http://rosettacode.org/wiki/One_of_n_lines_in_a_file
     "tasks/one-of-n-lines-in-a-file",
 
@@ -381,6 +387,9 @@ members = [
 
     # http://rosettacode.org/wiki/Range_extraction
     "tasks/range-extraction",
+
+    # http://rosettacode.org/wiki/Find_limit_of_recursion
+    "tasks/recursion-depth",
 
     # http://rosettacode.org/wiki/Remove_lines_from_a_file
     "tasks/remove-lines-from-a-file",
@@ -656,11 +665,6 @@ members = [
 [[bin]]
 name = "coverage"
 path = "src/bin/coverage.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Anonymous_recursion
-name = "anonymous_recursion"
-path = "src/anonymous_recursion.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Arithmetic-geometric_mean
@@ -1439,11 +1443,6 @@ name = "multiplication_tables"
 path = "src/multiplication_tables.rs"
 
 [[bin]]
-# http://rosettacode.org/wiki/Mutual_recursion
-name = "mutual_recursion"
-path = "src/mutual_recursion.rs"
-
-[[bin]]
 # http://rosettacode.org/wiki/N-queens_problem
 name = "n_queens"
 path = "src/n_queens.rs"
@@ -1564,12 +1563,6 @@ test = false
 # http://rosettacode.org/wiki/Real_constants_and_functions
 name = "real_constants_and_functions"
 path = "src/real_constants_and_functions.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Find_limit_of_recursion
-name = "recursion_depth"
-path = "src/recursion_depth.rs"
-test = false
 
 [[bin]]
 # http://rosettacode.org/wiki/Remove_duplicate_elements
