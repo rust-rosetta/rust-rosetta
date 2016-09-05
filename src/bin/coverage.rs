@@ -1,6 +1,3 @@
-#![feature(plugin)]
-#![plugin(docopt_macros)]
-
 extern crate difference;
 extern crate docopt;
 extern crate rustc_serialize;
@@ -10,21 +7,20 @@ extern crate meta;
 
 use std::io;
 
+use docopt::Docopt;
 use difference::Difference;
 use term::Terminal;
 
 use meta::Task;
 
-docopt!(Args derive Debug, "
+const USAGE: &'static str = r#"
 Detect unimplemented tasks.
 
 This script prints out the name of each task, followed by whether it is implemented online,
 locally, or both.
 
-Tasks must be specified using normalized names, e.g. \"K-d tree\". If no tasks are specified,
-determines the status for all tasks.
-
-Optionally prints out a diff as well.
+Tasks must be specified using the names of their articles on the wiki, e.g., "K-d tree". If no
+tasks are specified, determines the status for all tasks.
 
 Usage:
     coverage [options] [<tasks>...]
@@ -32,7 +28,7 @@ Usage:
 Options:
     -h --help           Show this screen.
 
-    --diff              Print diffs.
+    --diff              Print diffs of tasks between the local and remote version.
 
     --filter=<type>     Filter tasks printed by the program. Accepted values:
 
@@ -46,7 +42,14 @@ Options:
 
                             unimplemented       Only print tasks that neither implemented locally
                                                 nor remotely.
-", flag_filter: Option<TaskFilter>);
+"#;
+
+#[derive(Debug, RustcDecodable)]
+struct Args {
+    arg_tasks: Vec<String>,
+    flag_diff: bool,
+    flag_filter: Option<TaskFilter>,
+}
 
 #[derive(Debug, Clone, RustcDecodable)]
 enum TaskFilter {
@@ -136,9 +139,7 @@ fn write_status<T: ?Sized>(t: &mut T, boolean: bool) -> io::Result<()>
 }
 
 fn main() {
-    let args: Args = Args::docopt()
-        .decode()
-        .unwrap_or_else(|e| e.exit());
+    let args: Args = Docopt::new(USAGE).and_then(|d| d.decode()).unwrap_or_else(|e| e.exit());
 
     let mut t = term::stdout().unwrap();
 

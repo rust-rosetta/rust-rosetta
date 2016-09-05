@@ -72,7 +72,6 @@ authors = [
 [dependencies]
 difference = "0.4.1"
 docopt = "0.6"
-docopt_macros = "0.6.81"
 rustc-serialize = "0.3"
 term = "0.4"
 
