@@ -1,5 +1,3 @@
-// http://rosettacode.org/wiki/Roman_numerals/Decode
-
 struct RomanNumeral {
     symbol: &'static str,
     value: u32,

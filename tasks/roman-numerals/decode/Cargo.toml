@@ -1,0 +1,6 @@
+[package]
+name = "decode"
+version = "0.1.0"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Roman_numerals/Decode"
