@@ -402,6 +402,9 @@ members = [
     # http://rosettacode.org/wiki/Rock-paper-scissors
     "tasks/rock-paper-scissors",
 
+    # http://rosettacode.org/wiki/Roman_numerals/Encode
+    "tasks/roman-numerals/encode",
+
     # http://rosettacode.org/wiki/Roots_of_a_function
     "tasks/roots-of-a-function",
 
@@ -1598,8 +1601,3 @@ path = "src/reverse_words_str.rs"
 # http://rosettacode.org/wiki/Roman_numerals/Decode
 name = "roman_numerals_decode"
 path = "src/roman_numerals/decode.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Roman_numerals/Encode
-name = "roman_numerals_encode"
-path = "src/roman_numerals/encode.rs"
