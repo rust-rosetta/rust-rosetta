@@ -393,6 +393,9 @@ members = [
     # http://rosettacode.org/wiki/Find_limit_of_recursion
     "tasks/recursion-depth",
 
+    # http://rosettacode.org/wiki/Remove_duplicate_elements
+    "tasks/remove-duplicate-elements",
+
     # http://rosettacode.org/wiki/Remove_lines_from_a_file
     "tasks/remove-lines-from-a-file",
 
@@ -1583,8 +1586,3 @@ test = false
 # http://rosettacode.org/wiki/Real_constants_and_functions
 name = "real_constants_and_functions"
 path = "src/real_constants_and_functions.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Remove_duplicate_elements
-name = "remove_duplicate_elements"
-path = "src/remove_duplicate_elements.rs"

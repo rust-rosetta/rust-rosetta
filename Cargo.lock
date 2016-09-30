@@ -1802,6 +1802,10 @@ version = "0.3.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 
 [[package]]
+name = "remove-duplicate-elements"
+version = "0.1.0"
+
+[[package]]
 name = "remove-lines-from-a-file"
 version = "0.1.0"
 dependencies = [
