@@ -1,5 +1,3 @@
-// http://rosettacode.org/wiki/Repeat_a_string
-
 use std::iter::repeat;
 
 fn main() {
