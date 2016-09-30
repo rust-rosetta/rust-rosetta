@@ -396,11 +396,14 @@ members = [
     # http://rosettacode.org/wiki/Read_a_specific_line_from_a_file
     "tasks/read-a-specific-line-from-a-file",
 
-    # http://rosettacode.org/wiki/Real_constants_and_functions
-    "tasks/real-constants-and-functions",
+    # http://rosettacode.org/wiki/Read_entire_file
+    "tasks/read-entire-file",
 
     # http://rosettacode.org/wiki/Find_limit_of_recursion
     "tasks/recursion-depth",
+
+    # http://rosettacode.org/wiki/Real_constants_and_functions
+    "tasks/real-constants-and-functions",
 
     # http://rosettacode.org/wiki/Remove_duplicate_elements
     "tasks/remove-duplicate-elements",
@@ -1573,8 +1576,3 @@ path = "src/pythagorean_triples.rs"
 # http://rosettacode.org/wiki/Queue/Definition
 name = "queue_definition"
 path = "src/queue/definition.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Read_entire_file
-name = "read_entire_file"
-path = "src/read_entire_file.rs"

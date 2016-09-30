@@ -1,5 +1,3 @@
-// http://rosettacode.org/wiki/Read_entire_file
-
 use std::fs::File;
 use std::io::Read;
 
