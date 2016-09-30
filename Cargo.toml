@@ -261,6 +261,9 @@ members = [
     # http://rosettacode.org/wiki/Generic_swap
     "tasks/generic-swap",
 
+    # http://rosettacode.org/wiki/Globally_replace_text_in_several_files
+    "tasks/globally-replace-text-in-several-files",
+
     # http://rosettacode.org/wiki/Greatest_common_divisor
     "tasks/greatest-common-divisor",
 
@@ -1590,8 +1593,3 @@ test = false
 # http://rosettacode.org/wiki/Repeat_a_string
 name = "repeat_str"
 path = "src/repeat_str.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Globally_replace_text_in_several_files
-name = "replace_word"
-path = "src/replace_word.rs"

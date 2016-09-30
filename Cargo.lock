@@ -918,6 +918,10 @@ version = "0.2.11"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 
 [[package]]
+name = "globally-replace-text-in-several-files"
+version = "0.1.0"
+
+[[package]]
 name = "glutin"
 version = "0.6.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"

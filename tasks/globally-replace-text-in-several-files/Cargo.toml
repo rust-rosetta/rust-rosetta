@@ -1,0 +1,6 @@
+[package]
+name = "globally-replace-text-in-several-files"
+version = "0.1.0"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Globally_replace_text_in_several_files"
