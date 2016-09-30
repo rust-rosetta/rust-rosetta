@@ -1,0 +1,6 @@
+[package]
+name = "reverse-words-in-a-string"
+version = "0.1.0"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Reverse_words_in_a_string"

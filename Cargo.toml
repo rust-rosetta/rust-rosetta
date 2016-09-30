@@ -396,6 +396,9 @@ members = [
     # http://rosettacode.org/wiki/Reverse_a_string
     "tasks/reverse-a-string",
 
+    # http://rosettacode.org/wiki/Reverse_words_in_a_string
+    "tasks/reverse-words-in-a-string",
+
     # http://rosettacode.org/wiki/RIPEMD-160
     "tasks/ripemd-160",
 
@@ -1594,8 +1597,3 @@ path = "src/replace_word.rs"
 # http://rosettacode.org/wiki/Return_multiple_values
 name = "return_multiple_values"
 path = "src/return_multiple_values.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Reverse_words_in_a_string
-name = "reverse_words_str"
-path = "src/reverse_words_str.rs"
