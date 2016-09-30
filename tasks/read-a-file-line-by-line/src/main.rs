@@ -1,4 +1,3 @@
-// http://rosettacode.org/wiki/Read_a_file_line_by_line
 use std::fs::File;
 use std::io::{BufReader, BufRead};
 use std::env::args;

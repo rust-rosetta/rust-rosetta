@@ -1,0 +1,6 @@
+[package]
+name = "read-a-file-line-by-line"
+version = "0.1.0"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Read_a_file_line_by_line"
