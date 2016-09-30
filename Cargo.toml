@@ -390,6 +390,9 @@ members = [
     # http://rosettacode.org/wiki/Range_extraction
     "tasks/range-extraction",
 
+    # http://rosettacode.org/wiki/Read_a_specific_line_from_a_file
+    "tasks/read-a-specific-line-from-a-file",
+
     # http://rosettacode.org/wiki/Real_constants_and_functions
     "tasks/real-constants-and-functions",
 
@@ -1577,10 +1580,4 @@ path = "src/read_entire_file.rs"
 # http://rosettacode.org/wiki/Read_a_file_line_by_line
 name = "read_file_line"
 path = "src/read_file_line.rs"
-test = false
-
-[[bin]]
-# http://rosettacode.org/wiki/Read_a_specific_line_from_a_file
-name = "read_file_specific_line"
-path = "src/read_file_specific_line.rs"
 test = false
