@@ -1,5 +1,5 @@
 [package]
-name = "recursion-depth"
+name = "find-limit-of-recursion"
 version = "0.1.0"
 
 [package.metadata.rosettacode]

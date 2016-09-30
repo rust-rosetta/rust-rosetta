@@ -252,6 +252,9 @@ members = [
     # http://rosettacode.org/wiki/Fibonacci_word
     "tasks/fibonacci-word",
 
+    # http://rosettacode.org/wiki/Find_limit_of_recursion
+    "tasks/find-limit-of-recursion",
+
     # http://rosettacode.org/wiki/Flipping_bits_game
     "tasks/flipping-bits-game",
 
@@ -398,9 +401,6 @@ members = [
 
     # http://rosettacode.org/wiki/Read_entire_file
     "tasks/read-entire-file",
-
-    # http://rosettacode.org/wiki/Find_limit_of_recursion
-    "tasks/recursion-depth",
 
     # http://rosettacode.org/wiki/Real_constants_and_functions
     "tasks/real-constants-and-functions",
