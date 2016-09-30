@@ -393,6 +393,9 @@ members = [
     # http://rosettacode.org/wiki/Remove_lines_from_a_file
     "tasks/remove-lines-from-a-file",
 
+    # http://rosettacode.org/wiki/Return_multiple_values
+    "tasks/return-multiple-values",
+
     # http://rosettacode.org/wiki/Reverse_a_string
     "tasks/reverse-a-string",
 
@@ -1592,8 +1595,3 @@ path = "src/repeat_str.rs"
 # http://rosettacode.org/wiki/Globally_replace_text_in_several_files
 name = "replace_word"
 path = "src/replace_word.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Return_multiple_values
-name = "return_multiple_values"
-path = "src/return_multiple_values.rs"

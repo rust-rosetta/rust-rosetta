@@ -1806,6 +1806,10 @@ dependencies = [
 ]
 
 [[package]]
+name = "return-multiple-values"
+version = "0.1.0"
+
+[[package]]
 name = "reverse-a-string"
 version = "0.1.0"
 dependencies = [
