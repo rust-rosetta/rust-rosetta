@@ -396,6 +396,9 @@ members = [
     # http://rosettacode.org/wiki/Remove_lines_from_a_file
     "tasks/remove-lines-from-a-file",
 
+    # http://rosettacode.org/wiki/Rename_a_file
+    "tasks/rename-a-file",
+
     # http://rosettacode.org/wiki/Repeat_a_string
     "tasks/repeat-a-string",
 
@@ -1585,9 +1588,3 @@ path = "src/real_constants_and_functions.rs"
 # http://rosettacode.org/wiki/Remove_duplicate_elements
 name = "remove_duplicate_elements"
 path = "src/remove_duplicate_elements.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Rename_a_file
-name = "rename_a_file"
-path = "src/rename_a_file.rs"
-test = false
