@@ -1,5 +1,3 @@
-// http://rosettacode.org/wiki/Return_multiple_values
-
 fn multi_hello() -> (&'static str, i32) {
     ("Hello", 42)
 }

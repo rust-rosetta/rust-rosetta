@@ -1,0 +1,6 @@
+[package]
+name = "read-a-specific-line-from-a-file"
+version = "0.1.0"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Read_a_specific_line_from_a_file"

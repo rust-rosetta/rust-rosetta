@@ -1,0 +1,6 @@
+[package]
+name = "real-constants-and-functions"
+version = "0.1.0"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Real_constants_and_functions"

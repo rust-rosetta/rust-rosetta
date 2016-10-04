@@ -1,0 +1,6 @@
+[package]
+name = "read-entire-file"
+version = "0.1.0"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Read_entire_file"

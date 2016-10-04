@@ -72,7 +72,6 @@ authors = [
 [dependencies]
 difference = "0.4.1"
 docopt = "0.6"
-docopt_macros = "0.6.81"
 rustc-serialize = "0.3"
 term = "0.4"
 
@@ -253,6 +252,9 @@ members = [
     # http://rosettacode.org/wiki/Fibonacci_word
     "tasks/fibonacci-word",
 
+    # http://rosettacode.org/wiki/Find_limit_of_recursion
+    "tasks/find-limit-of-recursion",
+
     # http://rosettacode.org/wiki/Flipping_bits_game
     "tasks/flipping-bits-game",
 
@@ -261,6 +263,9 @@ members = [
 
     # http://rosettacode.org/wiki/Generic_swap
     "tasks/generic-swap",
+
+    # http://rosettacode.org/wiki/Globally_replace_text_in_several_files
+    "tasks/globally-replace-text-in-several-files",
 
     # http://rosettacode.org/wiki/Greatest_common_divisor
     "tasks/greatest-common-divisor",
@@ -388,20 +393,50 @@ members = [
     # http://rosettacode.org/wiki/Range_extraction
     "tasks/range-extraction",
 
-    # http://rosettacode.org/wiki/Find_limit_of_recursion
-    "tasks/recursion-depth",
+    # http://rosettacode.org/wiki/Read_a_file_line_by_line
+    "tasks/read-a-file-line-by-line",
+
+    # http://rosettacode.org/wiki/Read_a_specific_line_from_a_file
+    "tasks/read-a-specific-line-from-a-file",
+
+    # http://rosettacode.org/wiki/Read_entire_file
+    "tasks/read-entire-file",
+
+    # http://rosettacode.org/wiki/Real_constants_and_functions
+    "tasks/real-constants-and-functions",
+
+    # http://rosettacode.org/wiki/Remove_duplicate_elements
+    "tasks/remove-duplicate-elements",
 
     # http://rosettacode.org/wiki/Remove_lines_from_a_file
     "tasks/remove-lines-from-a-file",
 
+    # http://rosettacode.org/wiki/Rename_a_file
+    "tasks/rename-a-file",
+
+    # http://rosettacode.org/wiki/Repeat_a_string
+    "tasks/repeat-a-string",
+
+    # http://rosettacode.org/wiki/Return_multiple_values
+    "tasks/return-multiple-values",
+
     # http://rosettacode.org/wiki/Reverse_a_string
     "tasks/reverse-a-string",
+
+    # http://rosettacode.org/wiki/Reverse_words_in_a_string
+    "tasks/reverse-words-in-a-string",
 
     # http://rosettacode.org/wiki/RIPEMD-160
     "tasks/ripemd-160",
 
     # http://rosettacode.org/wiki/Rock-paper-scissors
     "tasks/rock-paper-scissors",
+
+    # http://rosettacode.org/wiki/Roman_numerals/Decode
+    "tasks/roman-numerals/decode",
+
+    # http://rosettacode.org/wiki/Roman_numerals/Encode
+    "tasks/roman-numerals/encode",
 
     # http://rosettacode.org/wiki/Roots_of_a_function
     "tasks/roots-of-a-function",
@@ -1541,66 +1576,3 @@ path = "src/pythagorean_triples.rs"
 # http://rosettacode.org/wiki/Queue/Definition
 name = "queue_definition"
 path = "src/queue/definition.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Read_entire_file
-name = "read_entire_file"
-path = "src/read_entire_file.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Read_a_file_line_by_line
-name = "read_file_line"
-path = "src/read_file_line.rs"
-test = false
-
-[[bin]]
-# http://rosettacode.org/wiki/Read_a_specific_line_from_a_file
-name = "read_file_specific_line"
-path = "src/read_file_specific_line.rs"
-test = false
-
-[[bin]]
-# http://rosettacode.org/wiki/Real_constants_and_functions
-name = "real_constants_and_functions"
-path = "src/real_constants_and_functions.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Remove_duplicate_elements
-name = "remove_duplicate_elements"
-path = "src/remove_duplicate_elements.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Rename_a_file
-name = "rename_a_file"
-path = "src/rename_a_file.rs"
-test = false
-
-[[bin]]
-# http://rosettacode.org/wiki/Repeat_a_string
-name = "repeat_str"
-path = "src/repeat_str.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Globally_replace_text_in_several_files
-name = "replace_word"
-path = "src/replace_word.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Return_multiple_values
-name = "return_multiple_values"
-path = "src/return_multiple_values.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Reverse_words_in_a_string
-name = "reverse_words_str"
-path = "src/reverse_words_str.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Roman_numerals/Decode
-name = "roman_numerals_decode"
-path = "src/roman_numerals/decode.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Roman_numerals/Encode
-name = "roman_numerals_encode"
-path = "src/roman_numerals/encode.rs"

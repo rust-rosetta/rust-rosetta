@@ -1,5 +1,3 @@
-// http://rosettacode.org/wiki/Roman_numerals/Encode
-
 struct RomanNumeral {
     symbol: &'static str,
     value: u32,
@@ -58,21 +56,17 @@ const NUMERALS: [RomanNumeral; 13] = [RomanNumeral {
                                           value: 1,
                                       }];
 
-fn to_roman(mut number: u32) -> String {
-    let mut min_numeral = String::new();
-    for numeral in &NUMERALS {
-        while numeral.value <= number {
-            min_numeral = min_numeral + numeral.symbol;
-            number -= numeral.value;
-        }
+fn to_hindu(roman: &str) -> u32 {
+    match NUMERALS.iter().find(|num| roman.starts_with(num.symbol)) {
+        Some(num) => num.value + to_hindu(&roman[num.symbol.len()..]),
+        None => 0, // if string empty, add nothing
     }
-    min_numeral
 }
 
 fn main() {
-    let nums = [2014, 1999, 25, 1666, 3888];
-    for n in &nums {
-        // 4 is minimum printing width, for alignment
-        println!("{:2$} = {}", n, to_roman(*n), 4);
+    let roms = ["MMXIV", "MCMXCIX", "XXV", "MDCLXVI", "MMMDCCCLXXXVIII"];
+    for &r in &roms {
+        // 15 is minimum formatting width of the first argument, there for alignment
+        println!("{:2$} = {}", r, to_hindu(r), 15);
     }
 }

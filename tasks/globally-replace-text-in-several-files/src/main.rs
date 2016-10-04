@@ -1,5 +1,3 @@
-// http://rosettacode.org/wiki/Globally_replace_text_in_several_files
-
 //! Author: Rahul Sharma
 //! Github: https://github.com/creativcoder
 

@@ -1,5 +1,3 @@
-// http://rosettacode.org/wiki/Real_constants_and_functions
-
 use std::f64::consts::*;
 
 #[cfg_attr(feature = "clippy", allow(float_cmp))]
