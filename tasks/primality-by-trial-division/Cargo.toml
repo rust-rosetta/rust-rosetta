@@ -1,0 +1,6 @@
+[package]
+name = "primality-by-trial-division"
+version = "0.1.0"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Primality_by_trial_division"
