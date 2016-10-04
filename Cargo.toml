@@ -384,6 +384,9 @@ members = [
     # http://rosettacode.org/wiki/Playing_cards
     "tasks/playing-cards",
 
+    # http://rosettacode.org/wiki/Price_fraction
+    "tasks/price-fraction",
+
     # http://rosettacode.org/wiki/Primality_by_trial_division
     "tasks/primality-by-trial-division",
 
@@ -1567,8 +1570,3 @@ path = "src/population_count.rs"
 # http://rosettacode.org/wiki/Power_set
 name = "power_set"
 path = "src/power_set.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Price_fraction
-name = "price_fraction"
-path = "src/price_fraction.rs"
