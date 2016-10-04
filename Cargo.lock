@@ -1734,6 +1734,10 @@ name = "prime-decomposition"
 version = "0.1.0"
 
 [[package]]
+name = "proper-divisors"
+version = "0.1.0"
+
+[[package]]
 name = "public-point-to-address"
 version = "0.1.0"
 dependencies = [

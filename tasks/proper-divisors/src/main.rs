@@ -1,5 +1,3 @@
-// http://rosettacode.org/wiki/Proper_divisors
-
 /// Populate input vector with prime numbers < maxvalue
 fn add_more_prime_numbers(v: &mut Vec<usize>, maxvalue: usize) {
     let mut prime: usize = v[v.len() - 1];
