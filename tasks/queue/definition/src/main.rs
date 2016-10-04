@@ -1,5 +1,3 @@
-// http://rosettacode.org/wiki/Queue/Definition
-
 //! This shows the implementation of a singly-linked queue with dequeue and enqueue. There are two
 //! peek implementations, one returns an immutable reference, the other returns a mutable one. This
 //! implementation also shows iteration over the Queue by value (consumes queue), immutable
