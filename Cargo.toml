@@ -384,6 +384,9 @@ members = [
     # http://rosettacode.org/wiki/Playing_cards
     "tasks/playing-cards",
 
+    # http://rosettacode.org/wiki/Power_set
+    "tasks/power-set",
+
     # http://rosettacode.org/wiki/Price_fraction
     "tasks/price-fraction",
 
@@ -1565,8 +1568,3 @@ path = "src/permutations_with_repetitions.rs"
 # http://rosettacode.org/wiki/Population_count
 name = "population_count"
 path = "src/population_count.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Power_set
-name = "power_set"
-path = "src/power_set.rs"

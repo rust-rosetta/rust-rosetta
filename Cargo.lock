@@ -1730,6 +1730,18 @@ dependencies = [
 ]
 
 [[package]]
+name = "power-set"
+version = "0.1.0"
+
+[[package]]
+name = "price-fraction"
+version = "0.1.0"
+
+[[package]]
+name = "primality-by-trial-division"
+version = "0.1.0"
+
+[[package]]
 name = "prime-decomposition"
 version = "0.1.0"
 
