@@ -387,6 +387,9 @@ members = [
     # http://rosettacode.org/wiki/Prime_decomposition
     "tasks/prime-decomposition",
 
+    # https://rosettacode.org/wiki/Program_name
+    "tasks/program-name",
+
     # http://rosettacode.org/wiki/Proper_divisors
     "tasks/proper-divisors",
 
@@ -1571,8 +1574,3 @@ path = "src/price_fraction.rs"
 # http://rosettacode.org/wiki/Primality_by_trial_division
 name = "primality_by_trial_division"
 path = "src/primality_by_trial_division.rs"
-
-[[bin]]
-# https://rosettacode.org/wiki/Program_name
-name = "program_name"
-path = "src/program_name.rs"
