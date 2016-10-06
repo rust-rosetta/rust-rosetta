@@ -533,6 +533,10 @@ dependencies = [
 ]
 
 [[package]]
+name = "digital-root"
+version = "0.1.0"
+
+[[package]]
 name = "discordian-date"
 version = "0.1.0"
 dependencies = [

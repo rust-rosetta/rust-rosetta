@@ -222,6 +222,9 @@ members = [
     # http://rosettacode.org/wiki/Determine_if_a_string_is_numeric
     "tasks/determine-if-a-string-is-numeric",
 
+    # http://rosettacode.org/wiki/Digital_root
+    "tasks/digital-root",
+    
     # http://rosettacode.org/wiki/Discordian_date
     "tasks/discordian-date",
 
@@ -961,6 +964,11 @@ path = "src/delete_a_file.rs"
 # http://rosettacode.org/wiki/Determine_if_only_one_instance_is_running
 name = "determine_if_only_one_instance_is_running"
 path = "src/determine_if_only_one_instance_is_running.rs"
+
+[[bin]]
+# http://rosettacode.org/wiki/Digital_root
+name = "digital_root"
+path = "src/digital_root.rs"
 
 [[bin]]
 # http://rosettacode.org/wiki/Dijkstra's_algorithm
