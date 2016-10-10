@@ -966,11 +966,6 @@ name = "determine_if_only_one_instance_is_running"
 path = "src/determine_if_only_one_instance_is_running.rs"
 
 [[bin]]
-# http://rosettacode.org/wiki/Digital_root
-name = "digital_root"
-path = "src/digital_root.rs"
-
-[[bin]]
 # http://rosettacode.org/wiki/Dijkstra's_algorithm
 name = "dijkstras_algorithm"
 path = "src/dijkstras_algorithm.rs"
