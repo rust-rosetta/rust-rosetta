@@ -1,0 +1,8 @@
+[package]
+name = "digital-root"
+version = "0.1.0"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Digital_root"
+
+[dependencies]

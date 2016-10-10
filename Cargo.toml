@@ -222,6 +222,9 @@ members = [
     # http://rosettacode.org/wiki/Determine_if_a_string_is_numeric
     "tasks/determine-if-a-string-is-numeric",
 
+    # http://rosettacode.org/wiki/Digital_root
+    "tasks/digital-root",
+    
     # http://rosettacode.org/wiki/Discordian_date
     "tasks/discordian-date",
 
