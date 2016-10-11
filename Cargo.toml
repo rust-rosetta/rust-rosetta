@@ -147,6 +147,9 @@ members = [
     # http://rosettacode.org/wiki/Arbitrary-precision_integers_(included)
     "tasks/arbitrary-precision-integers-included",
 
+    # http://rosettacode.org/wiki/Archimedean_spiral
+    "tasks/archimedean-spiral",
+    
     # http://rosettacode.org/wiki/Arena_storage_pool
     "tasks/arena-storage-pool",
 

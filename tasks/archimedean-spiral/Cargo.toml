@@ -1,0 +1,9 @@
+[package]
+name = "archimedean-spiral"
+version = "0.1.0"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Archimedean_spiral"
+
+[dependencies]
+bmp = "*"

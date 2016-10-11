@@ -127,6 +127,13 @@ dependencies = [
 ]
 
 [[package]]
+name = "archimedean-spiral"
+version = "0.1.0"
+dependencies = [
+ "bmp 0.1.4 (registry+https://github.com/rust-lang/crates.io-index)",
+]
+
+[[package]]
 name = "arena-storage-pool"
 version = "0.1.0"
 
@@ -254,6 +261,14 @@ name = "bitmap"
 version = "0.1.0"
 
 [[package]]
+name = "bmp"
+version = "0.1.4"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+dependencies = [
+ "byteorder 0.3.13 (registry+https://github.com/rust-lang/crates.io-index)",
+]
+
+[[package]]
 name = "bogosort"
 version = "0.1.0"
 dependencies = [
@@ -289,6 +304,11 @@ version = "0.1.0"
 dependencies = [
  "rand 0.3.14 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
+
+[[package]]
+name = "byteorder"
+version = "0.3.13"
+source = "registry+https://github.com/rust-lang/crates.io-index"
 
 [[package]]
 name = "byteorder"
@@ -2601,6 +2621,8 @@ version = "0.1.0"
 "checksum bitflags 0.4.0 (registry+https://github.com/rust-lang/crates.io-index)" = "8dead7461c1127cf637931a1e50934eb6eee8bff2f74433ac7909e9afcee04a3"
 "checksum bitflags 0.5.0 (registry+https://github.com/rust-lang/crates.io-index)" = "4f67931368edf3a9a51d29886d245f1c3db2f1ef0dcc9e35ff70341b78c10d23"
 "checksum bitflags 0.7.0 (registry+https://github.com/rust-lang/crates.io-index)" = "aad18937a628ec6abcd26d1489012cc0e18c21798210f491af69ded9b881106d"
+"checksum bmp 0.1.4 (registry+https://github.com/rust-lang/crates.io-index)" = "33a6bb5a923248ce5f5234aecf6eca50f1f594282e846074986bd08bcb019509"
+"checksum byteorder 0.3.13 (registry+https://github.com/rust-lang/crates.io-index)" = "29b2aa490a8f546381308d68fc79e6bd753cd3ad839f7a7172897f1feedfa175"
 "checksum byteorder 0.5.3 (registry+https://github.com/rust-lang/crates.io-index)" = "0fc10e8cc6b2580fda3f36eb6dc5316657f812a3df879a44a66fc9f0fdbc4855"
 "checksum c_vec 1.0.12 (registry+https://github.com/rust-lang/crates.io-index)" = "aa9e1d9f7d49e289f36f19effbf3d5a5e30163ecf9c7a3c9be94d5374dec5b9a"
 "checksum cairo-rs 0.1.0 (registry+https://github.com/rust-lang/crates.io-index)" = "7897ceda29077c3d87f2d46a0f23ed6c552e48e8d1943ac755f8956f81a8a20d"
