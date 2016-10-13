@@ -1661,6 +1661,10 @@ dependencies = [
 ]
 
 [[package]]
+name = "pangram-checker"
+version = "0.1.0"
+
+[[package]]
 name = "parallel-calculations"
 version = "0.1.0"
 dependencies = [
