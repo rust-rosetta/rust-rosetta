@@ -1356,6 +1356,10 @@ version = "0.1.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 
 [[package]]
+name = "md4"
+version = "0.1.0"
+
+[[package]]
 name = "md5"
 version = "0.1.0"
 dependencies = [
