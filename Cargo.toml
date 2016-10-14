@@ -369,6 +369,9 @@ members = [
     # http://rosettacode.org/wiki/OpenGL
     "tasks/opengl",
 
+    # http://rosettacode.org/wiki/Pangram_checker
+    "tasks/pangram-checker",
+    
     # http://rosettacode.org/wiki/Parallel_calculations
     "tasks/parallel-calculations",
 
