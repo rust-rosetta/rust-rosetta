@@ -348,6 +348,9 @@ members = [
     # http://rosettacode.org/wiki/Lychrel_numbers
     "tasks/lychrel-numbers",
 
+    # http://rosettacode.org/wiki/MD4
+    "tasks/md4",
+    
     # http://rosettacode.org/wiki/MD5
     "tasks/md5",
 
