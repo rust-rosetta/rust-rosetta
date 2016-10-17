@@ -426,6 +426,9 @@ members = [
     # http://rosettacode.org/wiki/Rename_a_file
     "tasks/rename-a-file",
 
+    # http://rosettacode.org/wiki/Repeat
+    "tasks/repeat",
+    
     # http://rosettacode.org/wiki/Repeat_a_string
     "tasks/repeat-a-string",
 
