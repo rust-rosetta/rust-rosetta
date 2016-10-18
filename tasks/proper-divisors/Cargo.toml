@@ -1,0 +1,6 @@
+[package]
+name = "proper-divisors"
+version = "0.1.0"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Proper_divisors"

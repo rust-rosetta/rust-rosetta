@@ -390,8 +390,29 @@ members = [
     # http://rosettacode.org/wiki/Playing_cards
     "tasks/playing-cards",
 
+    # http://rosettacode.org/wiki/Power_set
+    "tasks/power-set",
+
+    # http://rosettacode.org/wiki/Price_fraction
+    "tasks/price-fraction",
+
+    # http://rosettacode.org/wiki/Primality_by_trial_division
+    "tasks/primality-by-trial-division",
+
     # http://rosettacode.org/wiki/Prime_decomposition
     "tasks/prime-decomposition",
+
+    # https://rosettacode.org/wiki/Program_name
+    "tasks/program-name",
+
+    # http://rosettacode.org/wiki/Proper_divisors
+    "tasks/proper-divisors",
+
+    # http://rosettacode.org/wiki/Pythagorean_triples
+    "tasks/pythagorean-triples",
+
+    # http://rosettacode.org/wiki/Queue/Definition
+    "tasks/queue/definition",
 
     # http://rosettacode.org/wiki/Quine
     "tasks/quine",
@@ -1553,38 +1574,3 @@ path = "src/permutations_with_repetitions.rs"
 # http://rosettacode.org/wiki/Population_count
 name = "population_count"
 path = "src/population_count.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Power_set
-name = "power_set"
-path = "src/power_set.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Price_fraction
-name = "price_fraction"
-path = "src/price_fraction.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Primality_by_trial_division
-name = "primality_by_trial_division"
-path = "src/primality_by_trial_division.rs"
-
-[[bin]]
-# https://rosettacode.org/wiki/Program_name
-name = "program_name"
-path = "src/program_name.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Proper_divisors
-name = "proper_divisors"
-path = "src/proper_divisors.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Pythagorean_triples
-name = "pythagorean_triples"
-path = "src/pythagorean_triples.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Queue/Definition
-name = "queue_definition"
-path = "src/queue/definition.rs"

@@ -533,6 +533,10 @@ name = "decode"
 version = "0.1.0"
 
 [[package]]
+name = "definition"
+version = "0.1.0"
+
+[[package]]
 name = "deque"
 version = "0.3.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1734,7 +1738,27 @@ dependencies = [
 ]
 
 [[package]]
+name = "power-set"
+version = "0.1.0"
+
+[[package]]
+name = "price-fraction"
+version = "0.1.0"
+
+[[package]]
+name = "primality-by-trial-division"
+version = "0.1.0"
+
+[[package]]
 name = "prime-decomposition"
+version = "0.1.0"
+
+[[package]]
+name = "program-name"
+version = "0.1.0"
+
+[[package]]
+name = "proper-divisors"
 version = "0.1.0"
 
 [[package]]
@@ -1744,6 +1768,10 @@ dependencies = [
  "rust-crypto 0.2.36 (registry+https://github.com/rust-lang/crates.io-index)",
  "rustc-serialize 0.3.19 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
+
+[[package]]
+name = "pythagorean-triples"
+version = "0.1.0"
 
 [[package]]
 name = "quicksort"

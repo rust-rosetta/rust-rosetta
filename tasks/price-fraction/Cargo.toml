@@ -1,0 +1,6 @@
+[package]
+name = "price-fraction"
+version = "0.1.0"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Price_fraction"

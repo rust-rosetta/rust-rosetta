@@ -1,5 +1,3 @@
-// http://rosettacode.org/wiki/Price_fraction
-
 fn fix_price(num: f64) -> f64 {
     match num {
         0.96...1.00 => 1.00,

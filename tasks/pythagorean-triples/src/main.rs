@@ -1,4 +1,3 @@
-// http://rosettacode.org/wiki/Pythagorean_triples
 use std::collections::LinkedList;
 
 /// Count the number of Pythagorean triples whose sum are below the specified limit (inclusive).

@@ -1,0 +1,6 @@
+[package]
+name = "power-set"
+version = "0.1.0"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Power_set"

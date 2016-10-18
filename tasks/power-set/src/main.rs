@@ -1,5 +1,3 @@
-// http://rosettacode.org/wiki/Power_set
-
 //! Given a set, generate its power set, which is the set of all subsets of that set.
 
 use std::vec::Vec;
