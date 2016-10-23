@@ -1,20 +1,16 @@
-extern crate hyper;
+extern crate reqwest;
 
 use std::io::Read;
 
-use hyper::Client;
-use hyper::header::Connection;
-
 fn main() {
-    let client = Client::new();
-
-    let mut res = client.get("https://sourceforge.net")
-        .header(Connection::close())
-        .send()
-        .unwrap();
-
+    let mut response = match reqwest::get("https://sourceforge.net") {
+        Ok(response) => response,
+        Err(e) => {
+            panic!("error encountered while making request: {:?}", e);
+        }
+    };
     let mut body = String::new();
-    res.read_to_string(&mut body).unwrap();
+    response.read_to_string(&mut body).unwrap();
 
     println!("{}", &body);
 }
