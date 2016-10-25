@@ -78,6 +78,14 @@ term = "0.4"
 [dependencies.meta]
 path = "meta"
 
+[replace]
+"schannel:0.1.0" = { git = "https://github.com/steffengy/schannel-rs" }
+"security-framework:0.1.8" = { git = "https://github.com/sfackler/rust-security-framework" }
+"security-framework-sys:0.1.8" = { git = "https://github.com/sfackler/rust-security-framework" }
+"openssl:0.8.3" = { git = "https://github.com/sfackler/rust-openssl" }
+"openssl-sys:0.7.17" = { git = "https://github.com/sfackler/rust-openssl" }
+"openssl-verify:0.2.0" = { git = "https://github.com/sfackler/rust-openssl-verify" }
+
 [build-dependencies]
 meta = { path = "meta" }
 unicode-segmentation = "0.1.2"
