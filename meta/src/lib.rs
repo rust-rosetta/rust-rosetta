@@ -9,8 +9,8 @@ extern crate lazy_static;
 #[macro_use]
 extern crate url;
 
-extern crate hyper;
 extern crate regex;
+extern crate reqwest;
 extern crate toml;
 extern crate walkdir;
 

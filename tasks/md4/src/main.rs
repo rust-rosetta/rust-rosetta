@@ -45,7 +45,10 @@ macro_rules! md4round1 {
 macro_rules! md4round2 {
     ( $a:expr, $b:expr, $c:expr, $d:expr, $i:expr, $s:expr, $x:expr) => {
         {
-            $a = ($a.wrapping_add( g($b, $c, $d)).wrapping_add($x[$i]).wrapping_add(0x5a827999_u32)).rotate_left($s);
+            $a = ($a.wrapping_add( g($b, $c, $d))
+                        .wrapping_add($x[$i])
+                        .wrapping_add(0x5a827999_u32))
+                    .rotate_left($s);
         }
     };
 }
@@ -56,7 +59,10 @@ macro_rules! md4round2 {
 macro_rules! md4round3 {
     ( $a:expr, $b:expr, $c:expr, $d:expr, $i:expr, $s:expr, $x:expr) => {
         {
-            $a = ($a.wrapping_add(h($b, $c, $d)).wrapping_add($x[$i]).wrapping_add(0x6ed9eba1_u32)).rotate_left($s);
+            $a = ($a.wrapping_add(h($b, $c, $d))
+                        .wrapping_add($x[$i])
+                        .wrapping_add(0x6ed9eba1_u32))
+                    .rotate_left($s);
         }
     };
 }
@@ -215,10 +221,12 @@ fn test_rfc1320() {
                digest_to_str(&md4("abcdefghijklmnopqrstuvwxyz")));
 
     assert_eq!("043f8582f241db351ce627e153e7f0e4",
-               digest_to_str(&md4("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789")));
+               digest_to_str(&md4("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz\
+                                   0123456789")));
 
     assert_eq!("e33b4ddc9c38f2199c3e7b164fcc0536",
-               digest_to_str(&md4("12345678901234567890123456789012345678901234567890123456789012345678901234567890")));
+               digest_to_str(&md4("12345678901234567890123456789012345678901234567890123456789\
+                                   012345678901234567890")));
 
 
 }

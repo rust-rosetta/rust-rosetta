@@ -1,12 +1,10 @@
-extern crate hyper;
+extern crate reqwest;
 extern crate rustc_serialize;
 extern crate url;
 
 use std::collections::{BTreeMap, HashSet};
 use std::io::prelude::*;
 
-use hyper::Client;
-use hyper::header::Connection;
 use rustc_serialize::json::{self, Json};
 use self::url::Url;
 
@@ -24,7 +22,7 @@ pub struct Task {
 #[derive(Debug)]
 enum TaskParseError {
     /// Something went wrong with the HTTP request to the API.
-    Http(hyper::Error),
+    Http(reqwest::Error),
 
     /// There was a problem parsing the API response into JSON.
     Json(json::ParserError),
@@ -39,8 +37,8 @@ impl From<json::ParserError> for TaskParseError {
     }
 }
 
-impl From<hyper::Error> for TaskParseError {
-    fn from(err: hyper::Error) -> Self {
+impl From<reqwest::Error> for TaskParseError {
+    fn from(err: reqwest::Error) -> Self {
         TaskParseError::Http(err)
     }
 }
@@ -81,10 +79,7 @@ fn query_api(category_name: &str,
     }
 
     url.query_pairs_mut().extend_pairs(api_parameters.into_iter());
-    let mut response = try!(Client::new()
-        .get(url.as_str())
-        .header(Connection::close())
-        .send());
+    let mut response = try!(reqwest::get(url.as_str()));
     let mut body = String::new();
     response.read_to_string(&mut body).unwrap();
 

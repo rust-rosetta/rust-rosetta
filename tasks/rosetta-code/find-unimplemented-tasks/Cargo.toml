@@ -6,6 +6,10 @@ version = "0.1.0"
 url = "http://rosettacode.org/wiki/Rosetta_Code/Find_unimplemented_tasks"
 
 [dependencies]
-hyper = "0.9.3"
 rustc-serialize = "0.3"
 url = "1.1.0"
+
+[dependencies.reqwest]
+git = "https://github.com/seanmonstar/reqwest"
+default-features = false
+features = ["tls"]

@@ -2,9 +2,8 @@
 
 use std::io::prelude::*;
 
-use hyper::Client;
-use hyper::status::StatusCode;
 use regex::Regex;
+use reqwest::{self, StatusCode};
 use url::Url;
 use url::percent_encoding::{self, QUERY_ENCODE_SET};
 
@@ -95,10 +94,10 @@ pub fn request_task(title: &str) -> Result<RemoteTask, StatusCode> {
         let mut raw_url = url.clone();
         raw_url.query_pairs_mut().append_pair("action", "raw");
 
-        let mut res = Client::new().get(raw_url).send().unwrap();
+        let mut res = reqwest::get(raw_url.as_str()).unwrap();
 
-        if !res.status.is_success() {
-            return Err(res.status);
+        if !res.status().is_success() {
+            return Err(res.status().to_owned());
         }
 
         let mut body = String::new();

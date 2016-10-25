@@ -5,5 +5,7 @@ version = "0.1.0"
 [package.metadata.rosettacode]
 url = "http://rosettacode.org/wiki/HTTP"
 
-[dependencies]
-hyper = "0.9"
+[dependencies.reqwest]
+git = "https://github.com/seanmonstar/reqwest"
+default-features = false
+features = ["tls"]
