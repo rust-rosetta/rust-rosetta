@@ -2362,6 +2362,10 @@ name = "sum-digits-of-an-integer"
 version = "0.1.0"
 
 [[package]]
+name = "sum-multiples-of-3-and-5"
+version = "0.1.0"
+
+[[package]]
 name = "sum-of-a-series"
 version = "0.1.0"
 

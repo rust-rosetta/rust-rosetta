@@ -656,6 +656,9 @@ members = [
     # http://rosettacode.org/wiki/Sum_digits_of_an_integer
     "tasks/sum-digits-of-an-integer",
 
+    # http://rosettacode.org/wiki/Sum_multiples_of_3_and_5
+    "tasks/sum-multiples-of-3-and-5",
+
     # http://rosettacode.org/wiki/Sum_of_a_series
     "tasks/sum-of-a-series",
 

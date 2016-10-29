@@ -1,0 +1,9 @@
+[package]
+name = "sum-multiples-of-3-and-5"
+version = "0.1.0"
+authors = ["Chinmay Deshpande <chinmay1dd@gmail.com>"]
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Sum_multiples_of_3_and_5"
+
+[dependencies]
