@@ -377,6 +377,9 @@ members = [
     # http://rosettacode.org/wiki/Mutual_recursion
     "tasks/mutual-recursion",
 
+    # http://rosettacode.org/wiki/N'th
+    "tasks/nth",
+
     # http://rosettacode.org/wiki/Null_object
     "tasks/null-object",
 
@@ -1558,8 +1561,3 @@ path = "src/multiplication_tables.rs"
 # http://rosettacode.org/wiki/N-queens_problem
 name = "n_queens"
 path = "src/n_queens.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/N'th
-name = "nth"
-path = "src/nth.rs"

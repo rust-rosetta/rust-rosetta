@@ -1,5 +1,3 @@
-// http://rosettacode.org/wiki/N'th
-
 fn nth(num: i32) -> String {
     format!("{}{}",
             num,
