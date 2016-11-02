@@ -1,5 +1,3 @@
-// http://rosettacode.org/wiki/Population_count
-
 use std::iter::{Filter, Map};
 use std::ops::RangeFrom;
 
