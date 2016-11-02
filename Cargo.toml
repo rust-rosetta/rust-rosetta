@@ -374,6 +374,9 @@ members = [
     # http://rosettacode.org/wiki/Mouse_position
     "tasks/mouse-position",
 
+    # https://rosettacode.org/wiki/Multiplication_tables
+    "tasks/multiplication-tables",
+
     # http://rosettacode.org/wiki/Mutual_recursion
     "tasks/mutual-recursion",
 
@@ -1554,8 +1557,3 @@ path = "src/middle_three_digits.rs"
 # http://rosettacode.org/wiki/Modular_inverse
 name = "modular_inverse"
 path = "src/modular_inverse.rs"
-
-[[bin]]
-# https://rosettacode.org/wiki/Multiplication_tables
-name = "multiplication_tables"
-path = "src/multiplication_tables.rs"

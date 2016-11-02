@@ -1,5 +1,3 @@
-// http://rosettacode.org/wiki/Multiplication_tables
-
 #![feature(inclusive_range_syntax)]
 
 const LIMIT: i32 = 12;

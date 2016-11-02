@@ -1458,6 +1458,10 @@ dependencies = [
 ]
 
 [[package]]
+name = "multiplication-tables"
+version = "0.1.0"
+
+[[package]]
 name = "mutual-recursion"
 version = "0.1.0"
 
