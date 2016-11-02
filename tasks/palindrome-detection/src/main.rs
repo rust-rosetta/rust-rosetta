@@ -1,6 +1,3 @@
-// http://rosettacode.org/wiki/Palindrome_detection
-// http://rosettacode.org/wiki/Test_a_function
-
 /// Returns true if the string is a palindrome
 fn palindrome(string: &str) -> bool {
     // The first part of the string

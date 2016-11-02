@@ -380,6 +380,9 @@ members = [
     # http://rosettacode.org/wiki/OpenGL
     "tasks/opengl",
 
+    # http://rosettacode.org/wiki/Palindrome_detection
+    "tasks/palindrome-detection",
+
     # http://rosettacode.org/wiki/Pangram_checker
     "tasks/pangram-checker",
 
@@ -1568,8 +1571,3 @@ path = "src/numerical_integration.rs"
 # http://rosettacode.org/wiki/Ordered_words
 name = "ordered_words"
 path = "src/ordered_words.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Palindrome_detection
-name = "palindrome"
-path = "src/palindrome.rs"

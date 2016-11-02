@@ -1658,6 +1658,10 @@ dependencies = [
 ]
 
 [[package]]
+name = "palindrome-detection"
+version = "0.1.0"
+
+[[package]]
 name = "pancake-sort"
 version = "0.1.0"
 dependencies = [
