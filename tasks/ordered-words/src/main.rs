@@ -1,4 +1,3 @@
-// http://rosettacode.org/wiki/Ordered_words
 use std::fs::File;
 use std::io::{BufReader, BufRead};
 

@@ -380,6 +380,9 @@ members = [
     # http://rosettacode.org/wiki/OpenGL
     "tasks/opengl",
 
+    # http://rosettacode.org/wiki/Ordered_words
+    "tasks/ordered-words",
+
     # http://rosettacode.org/wiki/Palindrome_detection
     "tasks/palindrome-detection",
 
@@ -1566,8 +1569,3 @@ path = "src/number_classifications.rs"
 # http://rosettacode.org/wiki/Numerical_integration
 name = "numerical_integration"
 path = "src/numerical_integration.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Ordered_words
-name = "ordered_words"
-path = "src/ordered_words.rs"
