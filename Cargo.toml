@@ -389,6 +389,9 @@ members = [
     # http://rosettacode.org/wiki/Penney%27s_game
     "tasks/penneys-game",
 
+    # http://rosettacode.org/wiki/Perfect_numbers
+    "tasks/perfect-numbers",
+
     # http://rosettacode.org/wiki/Permutations_with_repetitions
     "tasks/permutations-with-repetitions",
 
@@ -1579,8 +1582,3 @@ path = "src/parametric_polymorphism.rs"
 # http://rosettacode.org/wiki/Pascal%27s_triangle
 name = "pascals_triangle"
 path = "src/pascals_triangle.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Perfect_numbers
-name = "perfect_numbers"
-path = "src/perfect_numbers.rs"
