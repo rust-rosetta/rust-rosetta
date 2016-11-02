@@ -1699,6 +1699,10 @@ dependencies = [
 ]
 
 [[package]]
+name = "pascals-triangle"
+version = "0.1.0"
+
+[[package]]
 name = "penneys-game"
 version = "0.1.0"
 dependencies = [
