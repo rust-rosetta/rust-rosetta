@@ -1,5 +1,3 @@
-// http://rosettacode.org/wiki/Middle_three_digits
-
 fn middle_three_digits(x: i32) -> Result<String, String> {
     let s: String = x.abs().to_string();
     let len = s.len();
