@@ -1573,8 +1573,3 @@ path = "src/ordered_words.rs"
 # http://rosettacode.org/wiki/Palindrome_detection
 name = "palindrome"
 path = "src/palindrome.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Pangram_checker
-name = "pangram"
-path = "src/pangram.rs"

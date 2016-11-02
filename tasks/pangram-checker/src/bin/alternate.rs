@@ -1,4 +1,3 @@
-// http://rosettacode.org/wiki/Pangram_checker
 use std::collections::HashSet;
 
 /// Returns true if the sentence uses all 26 letters in the English
@@ -17,11 +16,7 @@ fn main() {
     for &sentence in &test_sentences {
         println!("\"{}\" {} a pangram",
                  sentence,
-                 if is_pangram(sentence) {
-                     "is"
-                 } else {
-                     "is not"
-                 });
+                 if is_pangram(sentence) { "is" } else { "is not" });
     }
 }
 
