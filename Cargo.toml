@@ -377,6 +377,9 @@ members = [
     # http://rosettacode.org/wiki/Mutual_recursion
     "tasks/mutual-recursion",
 
+    # http://rosettacode.org/wiki/Null_object
+    "tasks/null-object",
+
     # http://rosettacode.org/wiki/Numerical_integration
     "tasks/numerical-integration",
 
@@ -1560,8 +1563,3 @@ path = "src/n_queens.rs"
 # http://rosettacode.org/wiki/N'th
 name = "nth"
 path = "src/nth.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Null_object
-name = "null_object"
-path = "src/null_object.rs"
