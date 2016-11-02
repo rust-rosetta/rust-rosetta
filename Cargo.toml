@@ -386,6 +386,9 @@ members = [
     # http://rosettacode.org/wiki/Parallel_calculations
     "tasks/parallel-calculations",
 
+    # http://rosettacode.org/wiki/Parametric_polymorphism
+    "tasks/parametric-polymorphism",
+
     # http://rosettacode.org/wiki/Pascal%27s_triangle
     "tasks/pascals-triangle",
 
@@ -469,7 +472,7 @@ members = [
 
     # http://rosettacode.org/wiki/Repeat
     "tasks/repeat",
-    
+
     # http://rosettacode.org/wiki/Repeat_a_string
     "tasks/repeat-a-string",
 
@@ -1575,8 +1578,3 @@ path = "src/palindrome.rs"
 # http://rosettacode.org/wiki/Pangram_checker
 name = "pangram"
 path = "src/pangram.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Parametric_polymorphism
-name = "parametric_polymorphism"
-path = "src/parametric_polymorphism.rs"

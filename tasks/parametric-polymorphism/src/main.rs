@@ -1,5 +1,3 @@
-// http://rosettacode.org/wiki/Parametric_polymorphism
-
 struct TreeNode<T> {
     value: T,
     left: Option<Box<TreeNode<T>>>,
