@@ -382,12 +382,15 @@ members = [
 
     # http://rosettacode.org/wiki/Pangram_checker
     "tasks/pangram-checker",
-    
+
     # http://rosettacode.org/wiki/Parallel_calculations
     "tasks/parallel-calculations",
 
     # http://rosettacode.org/wiki/Penney%27s_game
     "tasks/penneys-game",
+
+    # http://rosettacode.org/wiki/Permutations_with_repetitions
+    "tasks/permutations-with-repetitions",
 
     # http://rosettacode.org/wiki/Pernicious_numbers
     "tasks/pernicious-numbers",
@@ -1581,8 +1584,3 @@ path = "src/pascals_triangle.rs"
 # http://rosettacode.org/wiki/Perfect_numbers
 name = "perfect_numbers"
 path = "src/perfect_numbers.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Permutations_with_repetitions
-name = "permutations_with_repetitions"
-path = "src/permutations_with_repetitions.rs"

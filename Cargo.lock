@@ -1706,6 +1706,10 @@ dependencies = [
 ]
 
 [[package]]
+name = "permutations-with-repetitions"
+version = "0.1.0"
+
+[[package]]
 name = "permutohedron"
 version = "0.2.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
