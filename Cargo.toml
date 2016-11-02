@@ -119,6 +119,9 @@ members = [
     # http://rosettacode.org/wiki/Abstract_type
     "tasks/abstract-type",
 
+    # http://rosettacode.org/wiki/Abundant,_deficient_and_perfect_number_classifications
+    "tasks/abundant-deficient-and-perfect-number-classifications",
+
     # http://rosettacode.org/wiki/Accumulator_factory
     "tasks/accumulator-factory",
 
@@ -1562,8 +1565,3 @@ path = "src/nth.rs"
 # http://rosettacode.org/wiki/Null_object
 name = "null_object"
 path = "src/null_object.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Abundant,_deficient_and_perfect_number_classifications
-name = "number_classifications"
-path = "src/number_classifications.rs"

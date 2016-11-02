@@ -52,6 +52,10 @@ name = "abstract-type"
 version = "0.1.0"
 
 [[package]]
+name = "abundant-deficient-and-perfect-number-classifications"
+version = "0.1.0"
+
+[[package]]
 name = "accumulator-factory"
 version = "0.1.0"
 
