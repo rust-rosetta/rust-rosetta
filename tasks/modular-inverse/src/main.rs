@@ -1,5 +1,3 @@
-// http://rosettacode.org/wiki/Modular_inverse
-
 fn main() {
     println!("{:?}", mul_inv(42, 2017));
 }
