@@ -374,6 +374,9 @@ members = [
     # http://rosettacode.org/wiki/Mutual_recursion
     "tasks/mutual-recursion",
 
+    # http://rosettacode.org/wiki/Numerical_integration
+    "tasks/numerical-integration",
+
     # http://rosettacode.org/wiki/One_of_n_lines_in_a_file
     "tasks/one-of-n-lines-in-a-file",
 
@@ -1564,8 +1567,3 @@ path = "src/null_object.rs"
 # http://rosettacode.org/wiki/Abundant,_deficient_and_perfect_number_classifications
 name = "number_classifications"
 path = "src/number_classifications.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Numerical_integration
-name = "numerical_integration"
-path = "src/numerical_integration.rs"

@@ -1,5 +1,3 @@
-// http://rosettacode.org/wiki/Numerical_integration
-
 //! This is a partial solution and only implements trapezium integration.
 
 fn trapezium_integral<F>(f: F, range: std::ops::Range<f64>, n_steps: u32) -> f64
