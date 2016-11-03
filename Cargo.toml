@@ -266,6 +266,9 @@ members = [
     # http://rosettacode.org/wiki/Evolutionary_algorithm
     "tasks/evolutionary-algorithm",
 
+    # http://rosettacode.org/wiki/Execute_a_Markov_algorithm
+    "tasks/execute-a-markov-algorithm",
+
     # http://rosettacode.org/wiki/Fast_Fourier_transform
     "tasks/fast-fourier-transform",
 
@@ -1530,8 +1533,3 @@ path = "src/man_or_boy.rs"
 # http://rosettacode.org/wiki/Map_range
 name = "map_range"
 path = "src/map_range.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Execute_a_Markov_algorithm
-name = "markov_algorithm"
-path = "src/markov_algorithm.rs"

@@ -1,5 +1,3 @@
-// http://rosettacode.org/wiki/Execute_a_Markov_algorithm
-
 /// Individual markov rule
 struct MarkovRule {
     pattern: String,
@@ -58,16 +56,11 @@ impl MarkovAlgorithm {
                     };
 
                     // extract replacement
-                    let replacement = if stop {
-                        &line_end[1..]
-                    } else {
-                        line_end
-                    };
+                    let replacement = if stop { &line_end[1..] } else { line_end };
 
                     // add to rules
-                    let new_rule = MarkovRule::new(pattern.to_string(),
-                                                   replacement.to_string(),
-                                                   stop);
+                    let new_rule =
+                        MarkovRule::new(pattern.to_string(), replacement.to_string(), stop);
                     rules.push(new_rule);
                 }
             }

@@ -697,6 +697,10 @@ dependencies = [
 ]
 
 [[package]]
+name = "execute-a-markov-algorithm"
+version = "0.1.0"
+
+[[package]]
 name = "factorial-plugin"
 version = "1.0.0"
 
