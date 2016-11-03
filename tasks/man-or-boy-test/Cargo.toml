@@ -1,0 +1,6 @@
+[package]
+name = "man-or-boy-test"
+version = "0.1.0"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Man_or_boy_test"
