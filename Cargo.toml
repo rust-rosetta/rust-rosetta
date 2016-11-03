@@ -365,6 +365,9 @@ members = [
     # http://rosettacode.org/wiki/Lychrel_numbers
     "tasks/lychrel-numbers",
 
+    # http://rosettacode.org/wiki/Magic_squares_of_odd_order
+    "tasks/magic-squares-of-odd-order",
+
     # http://rosettacode.org/wiki/Man_or_boy_test
     "tasks/man-or-boy-test",
 
@@ -1524,8 +1527,3 @@ path = "src/luhn_test.rs"
 # http://rosettacode.org/wiki/LZW_compression
 name = "lzw"
 path = "src/lzw.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Magic_squares_of_odd_order
-name = "magic_squares_of_odd_order"
-path = "src/magic_squares_of_odd_order.rs"

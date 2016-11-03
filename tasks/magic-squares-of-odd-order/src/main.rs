@@ -1,5 +1,3 @@
-// http://rosettacode.org/wiki/Magic_squares_of_odd_order
-
 fn main() {
     let n = 9;
     let mut square = vec![vec![0; n]; n];

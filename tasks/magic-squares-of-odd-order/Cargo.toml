@@ -1,0 +1,6 @@
+[package]
+name = "magic-squares-of-odd-order"
+version = "0.1.0"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Magic_squares_of_odd_order"
