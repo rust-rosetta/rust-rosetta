@@ -365,6 +365,9 @@ members = [
     # http://rosettacode.org/wiki/MD5
     "tasks/md5",
 
+    # http://rosettacode.org/wiki/Metered_concurrency
+    "tasks/metered-concurrency",
+
     # http://rosettacode.org/wiki/Middle_three_digits
     "tasks/middle-three-digits",
 
@@ -1547,9 +1550,3 @@ path = "src/menu.rs"
 # https://rosettacode.org/wiki/Metaprogramming
 name = "metaprogramming"
 path = "src/metaprogramming.rs"
-
-
-[[bin]]
-# http://rosettacode.org/wiki/Metered_concurrency
-name = "metered_concurrency"
-path = "src/metered_concurrency.rs"
