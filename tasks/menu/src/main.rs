@@ -1,4 +1,3 @@
-// http://rosettacode.org/wiki/Menu
 use std::io;
 
 /// Print the menu followed by the prompt

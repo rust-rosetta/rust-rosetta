@@ -365,6 +365,9 @@ members = [
     # http://rosettacode.org/wiki/MD5
     "tasks/md5",
 
+    # http://rosettacode.org/wiki/Menu
+    "tasks/menu",
+
     # https://rosettacode.org/wiki/Metaprogramming
     "tasks/metaprogramming",
 
@@ -1543,8 +1546,3 @@ path = "src/md5/implementation.rs"
 # http://rosettacode.org/wiki/Averages/Mean_angle
 name = "mean_angle"
 path = "src/mean_angle.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Menu
-name = "menu"
-path = "src/menu.rs"
