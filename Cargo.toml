@@ -365,6 +365,9 @@ members = [
     # http://rosettacode.org/wiki/Lychrel_numbers
     "tasks/lychrel-numbers",
 
+    # http://rosettacode.org/wiki/Map_range
+    "tasks/map-range",
+
     # http://rosettacode.org/wiki/Maximum_triangle_path_sum
     "tasks/maximum-triangle-path-sum",
 
@@ -1528,8 +1531,3 @@ path = "src/magic_squares_of_odd_order.rs"
 # http://rosettacode.org/wiki/Man_or_boy_test
 name = "man_or_boy"
 path = "src/man_or_boy.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Map_range
-name = "map_range"
-path = "src/map_range.rs"

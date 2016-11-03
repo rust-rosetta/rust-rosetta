@@ -1,5 +1,3 @@
-// http://rosettacode.org/wiki/Map_range
-
 use std::f64;
 
 fn map_range(from_range: (f64, f64), to_range: (f64, f64), s: f64) -> f64 {
