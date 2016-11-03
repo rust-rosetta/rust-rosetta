@@ -1,5 +1,3 @@
-// http://rosettacode.org/wiki/Metaprogramming
-
 //! Rust supports extensive metaprogramming via macros. Note that rust macros differ from, say, C
 //! preprocessor macros in that they are not mere text substitution (so operator precedence is
 //! preserved and name shadowing is not an issue). Here is an example from [rustbyexample.com] that
