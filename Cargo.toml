@@ -176,6 +176,9 @@ members = [
     # http://rosettacode.org/wiki/Average_loop_length
     "tasks/average-loop-length",
 
+    # http://rosettacode.org/wiki/Averages/Mean_angle
+    "tasks/averages/mean-angle",
+
     # http://rosettacode.org/wiki/AVL_tree
     "tasks/avl-tree",
 
@@ -848,11 +851,6 @@ path = "src/associative_array/iteration.rs"
 # http://rosettacode.org/wiki/Averages/Arithmetic_mean
 name = "averages_arithmetic_mean"
 path = "src/averages/arithmetic_mean.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Averages/Mean_angle
-name = "averages_mean_angle"
-path = "src/averages/mean_angle.rs"
 
 [[bin]]
 # http://www.rosettacode.org/wiki/Averages/Median
@@ -1541,8 +1539,3 @@ path = "src/maximum_triangle_path_sum.rs"
 # http://rosettacode.org/wiki/MD5/Implementation
 name = "md5_implementation"
 path = "src/md5/implementation.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Averages/Mean_angle
-name = "mean_angle"
-path = "src/mean_angle.rs"
