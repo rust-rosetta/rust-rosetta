@@ -368,6 +368,9 @@ members = [
     # http://rosettacode.org/wiki/MD5
     "tasks/md5",
 
+    # http://rosettacode.org/wiki/MD5/Implementation
+    "tasks/md5/implementation",
+
     # http://rosettacode.org/wiki/Menu
     "tasks/menu",
 
@@ -1534,8 +1537,3 @@ path = "src/markov_algorithm.rs"
 # http://rosettacode.org/wiki/Maximum_triangle_path_sum
 name = "maximum_triangle_path_sum"
 path = "src/maximum_triangle_path_sum.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/MD5/Implementation
-name = "md5_implementation"
-path = "src/md5/implementation.rs"
