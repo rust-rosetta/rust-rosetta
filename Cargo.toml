@@ -362,6 +362,9 @@ members = [
     # http://rosettacode.org/wiki/Lychrel_numbers
     "tasks/lychrel-numbers",
 
+    # http://rosettacode.org/wiki/Maximum_triangle_path_sum
+    "tasks/maximum-triangle-path-sum",
+
     # http://rosettacode.org/wiki/MD4
     "tasks/md4",
 
@@ -1532,8 +1535,3 @@ path = "src/map_range.rs"
 # http://rosettacode.org/wiki/Execute_a_Markov_algorithm
 name = "markov_algorithm"
 path = "src/markov_algorithm.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Maximum_triangle_path_sum
-name = "maximum_triangle_path_sum"
-path = "src/maximum_triangle_path_sum.rs"

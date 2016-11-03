@@ -1,0 +1,6 @@
+[package]
+name = "maximum-triangle-path-sum"
+version = "0.1.0"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Maximum_triangle_path_sum"

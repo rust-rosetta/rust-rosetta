@@ -1,5 +1,3 @@
-// http://rosettacode.org/wiki/Maximum_triangle_path_sum
-
 use std::cmp;
 
 const TRIANGLE: &'static str = r"55
