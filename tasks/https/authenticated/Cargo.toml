@@ -5,7 +5,5 @@ version = "0.1.0"
 [package.metadata.rosettacode]
 url = "http://rosettacode.org/wiki/HTTPS/Authenticated"
 
-[dependencies.reqwest]
-git = "https://github.com/seanmonstar/reqwest"
-default-features = false
-features = ["tls"]
+[dependencies]
+reqwest = "0.0.0"
