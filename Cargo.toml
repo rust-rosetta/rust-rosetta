@@ -78,14 +78,6 @@ term = "0.4"
 [dependencies.meta]
 path = "meta"
 
-[replace]
-"schannel:0.1.0" = { git = "https://github.com/steffengy/schannel-rs" }
-"security-framework:0.1.8" = { git = "https://github.com/sfackler/rust-security-framework" }
-"security-framework-sys:0.1.8" = { git = "https://github.com/sfackler/rust-security-framework" }
-"openssl:0.8.3" = { git = "https://github.com/sfackler/rust-openssl" }
-"openssl-sys:0.7.17" = { git = "https://github.com/sfackler/rust-openssl" }
-"openssl-verify:0.2.0" = { git = "https://github.com/sfackler/rust-openssl-verify" }
-
 [build-dependencies]
 meta = { path = "meta" }
 unicode-segmentation = "0.1.2"
@@ -118,6 +110,9 @@ members = [
 
     # http://rosettacode.org/wiki/Abstract_type
     "tasks/abstract-type",
+
+    # http://rosettacode.org/wiki/Abundant,_deficient_and_perfect_number_classifications
+    "tasks/abundant-deficient-and-perfect-number-classifications",
 
     # http://rosettacode.org/wiki/Accumulator_factory
     "tasks/accumulator-factory",
@@ -172,6 +167,9 @@ members = [
 
     # http://rosettacode.org/wiki/Average_loop_length
     "tasks/average-loop-length",
+
+    # http://rosettacode.org/wiki/Averages/Mean_angle
+    "tasks/averages/mean-angle",
 
     # http://rosettacode.org/wiki/AVL_tree
     "tasks/avl-tree",
@@ -235,7 +233,7 @@ members = [
 
     # http://rosettacode.org/wiki/Digital_root
     "tasks/digital-root",
-    
+
     # http://rosettacode.org/wiki/Discordian_date
     "tasks/discordian-date",
 
@@ -259,6 +257,9 @@ members = [
 
     # http://rosettacode.org/wiki/Evolutionary_algorithm
     "tasks/evolutionary-algorithm",
+
+    # http://rosettacode.org/wiki/Execute_a_Markov_algorithm
+    "tasks/execute-a-markov-algorithm",
 
     # http://rosettacode.org/wiki/Fast_Fourier_transform
     "tasks/fast-fourier-transform",
@@ -356,14 +357,44 @@ members = [
     # http://rosettacode.org/wiki/Lychrel_numbers
     "tasks/lychrel-numbers",
 
+    # http://rosettacode.org/wiki/Magic_squares_of_odd_order
+    "tasks/magic-squares-of-odd-order",
+
+    # http://rosettacode.org/wiki/Man_or_boy_test
+    "tasks/man-or-boy-test",
+
+    # http://rosettacode.org/wiki/Map_range
+    "tasks/map-range",
+
+    # http://rosettacode.org/wiki/Maximum_triangle_path_sum
+    "tasks/maximum-triangle-path-sum",
+
     # http://rosettacode.org/wiki/MD4
     "tasks/md4",
-    
+
     # http://rosettacode.org/wiki/MD5
     "tasks/md5",
 
+    # http://rosettacode.org/wiki/MD5/Implementation
+    "tasks/md5/implementation",
+
+    # http://rosettacode.org/wiki/Menu
+    "tasks/menu",
+
+    # https://rosettacode.org/wiki/Metaprogramming
+    "tasks/metaprogramming",
+
+    # http://rosettacode.org/wiki/Metered_concurrency
+    "tasks/metered-concurrency",
+
+    # http://rosettacode.org/wiki/Middle_three_digits
+    "tasks/middle-three-digits",
+
     # http://rosettacode.org/wiki/Modular_exponentiation
     "tasks/modular-exponentiation",
+
+    # http://rosettacode.org/wiki/Modular_inverse
+    "tasks/modular-inverse",
 
     # http://rosettacode.org/wiki/Monte_Carlo_methods
     "tasks/monte-carlo-methods",
@@ -371,8 +402,23 @@ members = [
     # http://rosettacode.org/wiki/Mouse_position
     "tasks/mouse-position",
 
+    # https://rosettacode.org/wiki/Multiplication_tables
+    "tasks/multiplication-tables",
+
     # http://rosettacode.org/wiki/Mutual_recursion
     "tasks/mutual-recursion",
+
+    # http://rosettacode.org/wiki/N-queens_problem
+    "tasks/n-queens-problem",
+
+    # http://rosettacode.org/wiki/N'th
+    "tasks/nth",
+
+    # http://rosettacode.org/wiki/Null_object
+    "tasks/null-object",
+
+    # http://rosettacode.org/wiki/Numerical_integration
+    "tasks/numerical-integration",
 
     # http://rosettacode.org/wiki/One_of_n_lines_in_a_file
     "tasks/one-of-n-lines-in-a-file",
@@ -380,14 +426,32 @@ members = [
     # http://rosettacode.org/wiki/OpenGL
     "tasks/opengl",
 
+    # http://rosettacode.org/wiki/Ordered_words
+    "tasks/ordered-words",
+
+    # http://rosettacode.org/wiki/Palindrome_detection
+    "tasks/palindrome-detection",
+
     # http://rosettacode.org/wiki/Pangram_checker
     "tasks/pangram-checker",
-    
+
     # http://rosettacode.org/wiki/Parallel_calculations
     "tasks/parallel-calculations",
 
+    # http://rosettacode.org/wiki/Parametric_polymorphism
+    "tasks/parametric-polymorphism",
+
+    # http://rosettacode.org/wiki/Pascal%27s_triangle
+    "tasks/pascals-triangle",
+
     # http://rosettacode.org/wiki/Penney%27s_game
     "tasks/penneys-game",
+
+    # http://rosettacode.org/wiki/Perfect_numbers
+    "tasks/perfect-numbers",
+
+    # http://rosettacode.org/wiki/Permutations_with_repetitions
+    "tasks/permutations-with-repetitions",
 
     # http://rosettacode.org/wiki/Pernicious_numbers
     "tasks/pernicious-numbers",
@@ -397,6 +461,9 @@ members = [
 
     # http://rosettacode.org/wiki/Playing_cards
     "tasks/playing-cards",
+
+    # http://rosettacode.org/wiki/Population_count
+    "tasks/population-count",
 
     # http://rosettacode.org/wiki/Power_set
     "tasks/power-set",
@@ -457,7 +524,7 @@ members = [
 
     # http://rosettacode.org/wiki/Repeat
     "tasks/repeat",
-    
+
     # http://rosettacode.org/wiki/Repeat_a_string
     "tasks/repeat-a-string",
 
@@ -794,11 +861,6 @@ path = "src/associative_array/iteration.rs"
 # http://rosettacode.org/wiki/Averages/Arithmetic_mean
 name = "averages_arithmetic_mean"
 path = "src/averages/arithmetic_mean.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Averages/Mean_angle
-name = "averages_mean_angle"
-path = "src/averages/mean_angle.rs"
 
 [[bin]]
 # http://www.rosettacode.org/wiki/Averages/Median
@@ -1457,134 +1519,3 @@ path = "src/luhn_test.rs"
 # http://rosettacode.org/wiki/LZW_compression
 name = "lzw"
 path = "src/lzw.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Magic_squares_of_odd_order
-name = "magic_squares_of_odd_order"
-path = "src/magic_squares_of_odd_order.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Man_or_boy_test
-name = "man_or_boy"
-path = "src/man_or_boy.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Map_range
-name = "map_range"
-path = "src/map_range.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Execute_a_Markov_algorithm
-name = "markov_algorithm"
-path = "src/markov_algorithm.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Maximum_triangle_path_sum
-name = "maximum_triangle_path_sum"
-path = "src/maximum_triangle_path_sum.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/MD5/Implementation
-name = "md5_implementation"
-path = "src/md5/implementation.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Averages/Mean_angle
-name = "mean_angle"
-path = "src/mean_angle.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Menu
-name = "menu"
-path = "src/menu.rs"
-
-[[bin]]
-# https://rosettacode.org/wiki/Metaprogramming
-name = "metaprogramming"
-path = "src/metaprogramming.rs"
-
-
-[[bin]]
-# http://rosettacode.org/wiki/Metered_concurrency
-name = "metered_concurrency"
-path = "src/metered_concurrency.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Middle_three_digits
-name = "middle_three_digits"
-path = "src/middle_three_digits.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Modular_inverse
-name = "modular_inverse"
-path = "src/modular_inverse.rs"
-
-[[bin]]
-# https://rosettacode.org/wiki/Multiplication_tables
-name = "multiplication_tables"
-path = "src/multiplication_tables.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/N-queens_problem
-name = "n_queens"
-path = "src/n_queens.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/N'th
-name = "nth"
-path = "src/nth.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Null_object
-name = "null_object"
-path = "src/null_object.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Abundant,_deficient_and_perfect_number_classifications
-name = "number_classifications"
-path = "src/number_classifications.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Numerical_integration
-name = "numerical_integration"
-path = "src/numerical_integration.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Ordered_words
-name = "ordered_words"
-path = "src/ordered_words.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Palindrome_detection
-name = "palindrome"
-path = "src/palindrome.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Pangram_checker
-name = "pangram"
-path = "src/pangram.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Parametric_polymorphism
-name = "parametric_polymorphism"
-path = "src/parametric_polymorphism.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Pascal%27s_triangle
-name = "pascals_triangle"
-path = "src/pascals_triangle.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Perfect_numbers
-name = "perfect_numbers"
-path = "src/perfect_numbers.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Permutations_with_repetitions
-name = "permutations_with_repetitions"
-path = "src/permutations_with_repetitions.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Population_count
-name = "population_count"
-path = "src/population_count.rs"

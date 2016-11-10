@@ -16,7 +16,7 @@ use rustc_plugin::Registry;
 
 fn exp_factorial(cx: &mut ExtCtxt, sp: Span, tts: &[TokenTree]) -> Box<MacResult + 'static> {
     // extract the argument and ensure there is only one and it's a usize
-    let mut parser = parse::new_parser_from_tts(cx.parse_sess(), cx.cfg().clone(), tts.to_vec());
+    let mut parser = parse::new_parser_from_tts(cx.parse_sess(), tts.to_vec());
 
     // Try to parse a literal (doesn't need to be a number)
     let literal = match parser.parse_lit() {

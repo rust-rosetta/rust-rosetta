@@ -1,0 +1,6 @@
+[package]
+name = "pascals-triangle"
+version = "0.1.0"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Pascal%27s_triangle"

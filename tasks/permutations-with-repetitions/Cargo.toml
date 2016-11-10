@@ -1,0 +1,6 @@
+[package]
+name = "permutations-with-repetitions"
+version = "0.1.0"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Permutations_with_repetitions"

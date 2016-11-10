@@ -1,0 +1,6 @@
+[package]
+name = "n-queens-problem"
+version = "0.1.0"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/N-queens_problem"
