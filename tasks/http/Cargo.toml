@@ -6,4 +6,4 @@ version = "0.1.0"
 url = "http://rosettacode.org/wiki/HTTP"
 
 [dependencies]
-reqwest = "0.0.0"
+reqwest = "0.1.0"
