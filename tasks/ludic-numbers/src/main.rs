@@ -1,5 +1,3 @@
-// http://rosettacode.org/wiki/Ludic_numbers
-
 const ARRAY_MAX: usize = 25000;
 const LUDIC_MAX: usize = 2100;
 

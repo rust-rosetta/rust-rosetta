@@ -354,6 +354,9 @@ members = [
     # http://rosettacode.org/wiki/Loops/Nested
     "tasks/loops/nested",
 
+    # http://rosettacode.org/wiki/Ludic_numbers
+    "tasks/ludic-numbers",
+
     # http://rosettacode.org/wiki/Luhn_test_of_credit_card_numbers
     "tasks/luhn-test-of-credit-card-numbers",
 
@@ -1508,10 +1511,4 @@ test = false
 # http://rosettacode.org/wiki/Loops/While
 name = "loops_while"
 path = "src/loops/while.rs"
-test = false
-
-[[bin]]
-# http://rosettacode.org/wiki/Ludic_numbers
-name = "ludic"
-path = "src/ludic.rs"
 test = false

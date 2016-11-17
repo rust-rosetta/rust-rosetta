@@ -1353,6 +1353,10 @@ name = "ls"
 version = "0.1.0"
 
 [[package]]
+name = "ludic-numbers"
+version = "0.1.0"
+
+[[package]]
 name = "luhn-test-of-credit-card-numbers"
 version = "0.1.0"
 
