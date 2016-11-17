@@ -354,6 +354,9 @@ members = [
     # http://rosettacode.org/wiki/Loops/Nested
     "tasks/loops/nested",
 
+    # http://rosettacode.org/wiki/Loops/While
+    "tasks/loops/while",
+
     # http://rosettacode.org/wiki/Ludic_numbers
     "tasks/ludic-numbers",
 
@@ -1505,10 +1508,4 @@ test = false
 # http://rosettacode.org/wiki/Loops/N_plus_one_half
 name = "loops_n_plus_one_half"
 path = "src/loops/n_plus_one_half.rs"
-test = false
-
-[[bin]]
-# http://rosettacode.org/wiki/Loops/While
-name = "loops_while"
-path = "src/loops/while.rs"
 test = false
