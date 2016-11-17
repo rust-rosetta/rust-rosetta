@@ -351,6 +351,9 @@ members = [
     # http://rosettacode.org/wiki/Loops/Break
     "tasks/loops/break",
 
+    # http://rosettacode.org/wiki/Loops/N_plus_one_half
+    "tasks/loops/n-plus-one-half",
+
     # http://rosettacode.org/wiki/Loops/Nested
     "tasks/loops/nested",
 
@@ -1502,10 +1505,4 @@ test = false
 # http://rosettacode.org/wiki/Loops/Infinite
 name = "loops_infinite"
 path = "src/loops/infinite.rs"
-test = false
-
-[[bin]]
-# http://rosettacode.org/wiki/Loops/N_plus_one_half
-name = "loops_n_plus_one_half"
-path = "src/loops/n_plus_one_half.rs"
 test = false

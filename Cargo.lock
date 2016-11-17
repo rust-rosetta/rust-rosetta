@@ -1526,6 +1526,10 @@ name = "mutual-recursion"
 version = "0.1.0"
 
 [[package]]
+name = "n-plus-one-half"
+version = "0.1.0"
+
+[[package]]
 name = "n-queens-problem"
 version = "0.1.0"
 
