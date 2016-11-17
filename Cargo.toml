@@ -357,6 +357,9 @@ members = [
     # http://rosettacode.org/wiki/Lychrel_numbers
     "tasks/lychrel-numbers",
 
+    # http://rosettacode.org/wiki/LZW_compression
+    "tasks/lzw-compression",
+
     # http://rosettacode.org/wiki/Magic_squares_of_odd_order
     "tasks/magic-squares-of-odd-order",
 
@@ -1514,8 +1517,3 @@ test = false
 # http://http://rosettacode.org/wiki/Luhn_test_of_credit_card_numbers
 name = "luhn_test"
 path = "src/luhn_test.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/LZW_compression
-name = "lzw"
-path = "src/lzw.rs"

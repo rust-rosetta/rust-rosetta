@@ -1365,6 +1365,10 @@ version = "0.10.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 
 [[package]]
+name = "lzw-compression"
+version = "0.1.0"
+
+[[package]]
 name = "magic-squares-of-odd-order"
 version = "0.1.0"
 
