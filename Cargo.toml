@@ -351,6 +351,9 @@ members = [
     # http://rosettacode.org/wiki/Loops/Break
     "tasks/loops/break",
 
+    # http://rosettacode.org/wiki/Loops/For_with_a_specified_step
+    "tasks/loops/for-with-a-specified-step",
+
     # http://rosettacode.org/wiki/Loops/Foreach
     "tasks/loops/foreach",
 
@@ -1495,8 +1498,3 @@ path = "src/loops/downward_for.rs"
 name = "loops_for"
 path = "src/loops/for.rs"
 test = false
-
-[[bin]]
-# http://rosettacode.org/wiki/Loops/For_with_a_specified_step
-name = "loops_for_with_a_specified_step"
-path = "src/loops/for_with_a_specified_step.rs"

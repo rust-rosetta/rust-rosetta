@@ -1,4 +1,3 @@
-// http://rosettacode.org/wiki/Loops/For_with_a_specified_step
 #![feature(step_by)]
 
 fn main() {
