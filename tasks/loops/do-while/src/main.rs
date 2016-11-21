@@ -1,5 +1,3 @@
-// http://rosettacode.org/wiki/Loops/Do-while
-
 //! Rust does not have a `do...while` loop. Instead, the keyword `loop` is used with a termination
 //! condition.
 

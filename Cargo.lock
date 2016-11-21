@@ -596,6 +596,10 @@ dependencies = [
 ]
 
 [[package]]
+name = "do-while"
+version = "0.1.0"
+
+[[package]]
 name = "docopt"
 version = "0.6.86"
 source = "registry+https://github.com/rust-lang/crates.io-index"
