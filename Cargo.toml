@@ -351,6 +351,9 @@ members = [
     # http://rosettacode.org/wiki/Loops/Break
     "tasks/loops/break",
 
+    # http://rosettacode.org/wiki/Loops/Infinite
+    "tasks/loops/infinite",
+
     # http://rosettacode.org/wiki/Loops/N_plus_one_half
     "tasks/loops/n-plus-one-half",
 
@@ -1499,10 +1502,4 @@ path = "src/loops/for_with_a_specified_step.rs"
 # http://rosettacode.org/wiki/Loops/Foreach
 name = "loops_foreach"
 path = "src/loops/foreach.rs"
-test = false
-
-[[bin]]
-# http://rosettacode.org/wiki/Loops/Infinite
-name = "loops_infinite"
-path = "src/loops/infinite.rs"
 test = false
