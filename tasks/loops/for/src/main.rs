@@ -1,5 +1,3 @@
-// http://rosettacode.org/wiki/Loops/For
-
 fn main() {
     for i in 1..6 {
         for _ in 1..i + 1 {
