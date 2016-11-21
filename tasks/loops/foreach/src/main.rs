@@ -1,5 +1,3 @@
-// http://rosettacode.org/wiki/Loops/Foreach
-
 use std::collections::HashMap;
 
 fn main() {
