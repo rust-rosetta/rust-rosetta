@@ -351,6 +351,9 @@ members = [
     # http://rosettacode.org/wiki/Loops/Break
     "tasks/loops/break",
 
+    # http://rosettacode.org/wiki/Loops/Downward_for
+    "tasks/loops/downward-for",
+
     # http://rosettacode.org/wiki/Loops/For
     "tasks/loops/for",
 
@@ -1490,8 +1493,3 @@ path = "src/loops/continue.rs"
 # http://rosettacode.org/wiki/Loops/Do-while
 name = "loops_do_while"
 path = "src/loops/do_while.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Loops/Downward_for
-name = "loops_downward_for"
-path = "src/loops/downward_for.rs"
