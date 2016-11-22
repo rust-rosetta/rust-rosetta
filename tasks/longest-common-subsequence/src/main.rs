@@ -1,5 +1,3 @@
-// http://rosettacode.org/wiki/Longest_common_subsequence
-
 /// Returns the longest common subsequence of a and b.
 fn longest_common_subsequence(a: &str, b: &str) -> String {
     let a_chars: Vec<_> = a.chars().collect();

@@ -1,0 +1,7 @@
+[package]
+name = "longest-common-subsequence"
+version = "0.1.0"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Longest_common_subsequence"
+

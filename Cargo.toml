@@ -345,6 +345,9 @@ members = [
     # http://rosettacode.org/wiki/Knuth_shuffle
     "tasks/knuth-shuffle",
 
+    # http://rosettacode.org/wiki/Longest_common_subsequence
+    "tasks/longest-common-subsequence",
+
     # http://rosettacode.org/wiki/Look-and-say_sequence
     "tasks/look-and-say-sequence",
 
@@ -1482,8 +1485,3 @@ path = "src/levenshtein_distance/alignment.rs"
 # http://rosettacode.org/wiki/Linear_congruential_generator
 name = "linear_congruential_generator"
 path = "src/linear_congruential_generator.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Longest_increasing_subsequence
-name = "longest_common_subsequence"
-path = "src/longest_common_subsequence.rs"
