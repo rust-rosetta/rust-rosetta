@@ -324,6 +324,9 @@ members = [
     # http://rosettacode.org/wiki/Integer_sequence
     "tasks/integer-sequence",
 
+    # http://rosettacode.org/wiki/Josephus_problem
+    "tasks/josephus-problem",
+
     # http://rosettacode.org/wiki/JSON
     "tasks/json",
 
@@ -1466,8 +1469,3 @@ path = "src/jensens_device.rs"
 # http://rosettacode.org/wiki/JortSort
 name = "jortsort"
 path = "src/jortsort.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Josephus_problem
-name = "josephus_problem"
-path = "src/josephus_problem.rs"

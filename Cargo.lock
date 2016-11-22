@@ -1267,6 +1267,10 @@ version = "0.1.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 
 [[package]]
+name = "josephus-problem"
+version = "0.1.0"
+
+[[package]]
 name = "jpeg-decoder"
 version = "0.1.7"
 source = "registry+https://github.com/rust-lang/crates.io-index"
