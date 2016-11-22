@@ -1,5 +1,3 @@
-// http://rosettacode.org/wiki/Langton's_ant
-
 use std::num::Wrapping;
 
 struct Ant {
