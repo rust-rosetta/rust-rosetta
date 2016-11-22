@@ -324,6 +324,9 @@ members = [
     # http://rosettacode.org/wiki/Integer_sequence
     "tasks/integer-sequence",
 
+    # https://rosettacode.org/wiki/Iterated_digits_squaring
+    "tasks/iterated-digits-squaring",
+
     # http://rosettacode.org/wiki/Jaro_distance
     "tasks/jaro-distance",
 
@@ -1458,8 +1461,3 @@ path = "src/integer_comparison.rs"
 # http://rosettacode.org/wiki/The_ISAAC_Cipher
 name = "isaac"
 path = "src/isaac.rs"
-
-[[bin]]
-# https://rosettacode.org/wiki/Iterated_digits_squaring
-name = "iterated_digits_squaring"
-path = "src/iterated_digits_squaring.rs"

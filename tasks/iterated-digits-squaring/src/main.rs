@@ -1,5 +1,3 @@
-// http://rosettacode.org/wiki/Iterated_digits_squaring
-
 //! These are two naive solutions, one with lots of redundant calculations (memoizationless
 //! recursion) and one with a few precomputed values. All digit square sums are no greater than 648
 //! for numbers < 100,000,000.
