@@ -1118,6 +1118,10 @@ dependencies = [
 ]
 
 [[package]]
+name = "hailstone-sequence"
+version = "0.1.0"
+
+[[package]]
 name = "hamming-numbers"
 version = "0.1.0"
 dependencies = [

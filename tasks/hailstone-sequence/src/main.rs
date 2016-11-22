@@ -1,5 +1,3 @@
-// http://rosettacode.org/wiki/Hailstone_sequence
-
 /// Define a struct which stores the state for the iterator.
 struct Hailstone {
     next: usize,
