@@ -306,6 +306,9 @@ members = [
     # http://rosettacode.org/wiki/Horner%27s_rule_for_polynomial_evaluation
     "tasks/horners-rule-for-polynomial-evaluation",
 
+    # http://rosettacode.org/wiki/Host_introspection
+    "tasks/host-introspection",
+
     # http://rosettacode.org/wiki/Hough_transform
     "tasks/hough-transform",
 
@@ -1436,9 +1439,3 @@ test = false
 # http://rosettacode.org/wiki/Hofstadter_Q_sequence
 name = "hofstadter_q"
 path = "src/hofstadter_q.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Host_introspection
-name = "host_introspection"
-path = "src/host_introspection.rs"
-test = false
