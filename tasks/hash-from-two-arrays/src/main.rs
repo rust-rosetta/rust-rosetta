@@ -1,5 +1,3 @@
-// http://rosettacode.org/wiki/Hash_from_two_arrays
-
 use std::collections::HashMap;
 
 fn main() {
