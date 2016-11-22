@@ -1,5 +1,3 @@
-// http://rosettacode.org/wiki/Loop_over_multiple_arrays_simultaneously
-
 fn main() {
     let a1 = ["a", "b", "c"];
     let a2 = ["A", "B", "C"];

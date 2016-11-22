@@ -348,6 +348,9 @@ members = [
     # http://rosettacode.org/wiki/Look-and-say_sequence
     "tasks/look-and-say-sequence",
 
+    # http://rosettacode.org/wiki/Loop_over_multiple_arrays_simultaneously
+    "tasks/loop-over-multiple-arrays-simultaneously",
+
     # http://rosettacode.org/wiki/Loops/Break
     "tasks/loops/break",
 
@@ -1484,8 +1487,3 @@ path = "src/linear_congruential_generator.rs"
 # http://rosettacode.org/wiki/Longest_increasing_subsequence
 name = "longest_common_subsequence"
 path = "src/longest_common_subsequence.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Loop_over_multiple_arrays_simultaneously
-name = "loop_over_multiple_arrays_simultaneously"
-path = "src/loop_over_multiple_arrays_simulataneously.rs"
