@@ -297,6 +297,9 @@ members = [
     # http://rosettacode.org/wiki/Handle_a_signal
     "tasks/handle-a-signal",
 
+    # http://rosettacode.org/wiki/Happy_numbers
+    "tasks/happy-numbers",
+
     # http://rosettacode.org/wiki/Harshad_or_Niven_series
     "tasks/harshad-or-niven-series",
 
@@ -1409,8 +1412,3 @@ path = "src/guess_the_number/with_feedback_player.rs"
 # http://rosettacode.org/wiki/Hailstone_sequence
 name = "hailstone"
 path = "src/hailstone.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Happy_numbers
-name = "happy_numbers"
-path = "src/happy_numbers.rs"
