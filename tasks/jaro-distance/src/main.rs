@@ -1,4 +1,3 @@
-// http://rosettacode.org/wiki/Jaro_distance
 use std::cmp;
 
 fn jaro(str1: &str, str2: &str) -> f64 {

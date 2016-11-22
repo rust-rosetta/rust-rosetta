@@ -324,6 +324,9 @@ members = [
     # http://rosettacode.org/wiki/Integer_sequence
     "tasks/integer-sequence",
 
+    # http://rosettacode.org/wiki/Jaro_distance
+    "tasks/jaro-distance",
+
     # http://rosettacode.org/wiki/Jensen's_Device
     "tasks/jensens-device",
 
@@ -1460,8 +1463,3 @@ path = "src/isaac.rs"
 # https://rosettacode.org/wiki/Iterated_digits_squaring
 name = "iterated_digits_squaring"
 path = "src/iterated_digits_squaring.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Jaro_distance
-name = "jaro_distance"
-path = "src/jaro_distance.rs"
