@@ -315,6 +315,9 @@ members = [
     # http://rosettacode.org/wiki/HTTPS/Authenticated
     "tasks/https/authenticated",
 
+    # http://rosettacode.org/wiki/Huffman_coding
+    "tasks/huffman-coding",
+
     # http://rosettacode.org/wiki/I_before_E_except_after_C
     "tasks/i-before-e-except-after-c",
 
@@ -1442,8 +1445,3 @@ test = false
 name = "hough_transform"
 path = "src/hough_transform.rs"
 test = false
-
-[[bin]]
-# http://rosettacode.org/wiki/Huffman_coding
-name = "huffman_coding"
-path = "src/huffman_coding.rs"
