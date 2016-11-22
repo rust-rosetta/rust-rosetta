@@ -2534,6 +2534,10 @@ name = "standard-deviation"
 version = "0.1.0"
 
 [[package]]
+name = "standard-error"
+version = "0.1.0"
+
+[[package]]
 name = "stooge-sort"
 version = "0.1.0"
 dependencies = [
