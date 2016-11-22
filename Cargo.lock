@@ -1255,6 +1255,10 @@ dependencies = [
 ]
 
 [[package]]
+name = "integer-comparison"
+version = "0.1.0"
+
+[[package]]
 name = "integer-sequence"
 version = "0.1.0"
 dependencies = [

@@ -1,5 +1,3 @@
-// http://rosettacode.org/wiki/Integer_comparison
-
 use std::io::{self, BufRead};
 
 fn main() {

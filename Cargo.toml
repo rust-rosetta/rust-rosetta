@@ -321,6 +321,9 @@ members = [
     # http://rosettacode.org/wiki/Include_a_file
     "tasks/include-a-file",
 
+    # http://rosettacode.org/wiki/Integer_comparison
+    "tasks/integer-comparison",
+
     # http://rosettacode.org/wiki/Integer_sequence
     "tasks/integer-sequence",
 
@@ -1454,8 +1457,3 @@ test = false
 name = "input_loop"
 path = "src/input_loop.rs"
 test = false
-
-[[bin]]
-# http://rosettacode.org/wiki/Integer_comparison
-name = "integer_comparison"
-path = "src/integer_comparison.rs"
