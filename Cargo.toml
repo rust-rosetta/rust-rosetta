@@ -321,6 +321,9 @@ members = [
     # http://rosettacode.org/wiki/Include_a_file
     "tasks/include-a-file",
 
+    # http://rosettacode.org/wiki/Input_loop
+    "tasks/input-loop",
+
     # http://rosettacode.org/wiki/Integer_comparison
     "tasks/integer-comparison",
 
@@ -1450,10 +1453,4 @@ path = "src/increment_a_numerical_string.rs"
 # http://rosettacode.org/wiki/Infinity
 name = "infinity"
 path = "src/infinity.rs"
-test = false
-
-[[bin]]
-# http://rosettacode.org/wiki/Input_loop
-name = "input_loop"
-path = "src/input_loop.rs"
 test = false
