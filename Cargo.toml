@@ -342,6 +342,9 @@ members = [
     # http://rosettacode.org/wiki/Knapsack_problem/0-1
     "tasks/knapsack-problem/0-1",
 
+    # http://rosettacode.org/wiki/Knight's_tour
+    "tasks/knights-tour",
+
     # http://rosettacode.org/wiki/Knuth_shuffle
     "tasks/knuth-shuffle",
 
@@ -1468,8 +1471,3 @@ path = "src/jortsort.rs"
 # http://rosettacode.org/wiki/Josephus_problem
 name = "josephus_problem"
 path = "src/josephus_problem.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Knight's_tour
-name = "knights_tour"
-path = "src/knights_tour.rs"

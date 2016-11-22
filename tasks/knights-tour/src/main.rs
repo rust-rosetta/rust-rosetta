@@ -1,5 +1,3 @@
-// http://rosettacode.org/wiki/Knight's_tour
-
 use std::fmt;
 
 const SIZE: usize = 8;
