@@ -345,6 +345,9 @@ members = [
     # http://rosettacode.org/wiki/Knuth_shuffle
     "tasks/knuth-shuffle",
 
+    # http://rosettacode.org/wiki/Leap_year
+    "tasks/leap-year",
+
     # http://rosettacode.org/wiki/Letter_frequency
     "tasks/letter-frequency",
 
@@ -1472,8 +1475,3 @@ path = "src/knights_tour.rs"
 # http://rosettacode.org/wiki/Langton's_ant
 name = "langtons_ant"
 path = "src/langtons_ant.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Leap_year
-name = "leap_year"
-path = "src/leap_year.rs"

@@ -1,0 +1,8 @@
+[package]
+name = "leap-year"
+version = "0.1.0"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Leap_year"
+
+
