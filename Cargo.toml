@@ -303,6 +303,9 @@ members = [
     # http://rosettacode.org/wiki/Hello_world/Web_server
     "tasks/hello-world/web-server",
 
+    # http://rosettacode.org/wiki/Here_document
+    "tasks/here-document",
+
     # http://rosettacode.org/wiki/Higher-order_functions
     "tasks/higher-order-functions",
 
@@ -1429,8 +1432,3 @@ test = false
 # http://rosettacode.org/wiki/Hello_world/Text
 name = "hello_world_text"
 path = "src/hello_world/text.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Here_document
-name = "here_document"
-path = "src/here_document.rs"

@@ -1,5 +1,3 @@
-// http://rosettacode.org/wiki/Here_document
-
 fn main() {
     // Similar to C++, Rust offers raw strings:
     let x = r#"
