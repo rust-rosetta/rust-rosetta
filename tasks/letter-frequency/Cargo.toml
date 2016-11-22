@@ -1,0 +1,6 @@
+[package]
+name = "letter-frequency"
+version = "0.1.0"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Letter_frequency"

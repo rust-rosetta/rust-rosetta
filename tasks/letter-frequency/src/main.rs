@@ -1,4 +1,3 @@
-// http://rosettacode.org/wiki/Letter_frequency
 #![feature(io)]
 
 use std::fs::File;

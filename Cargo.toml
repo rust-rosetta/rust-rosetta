@@ -345,6 +345,9 @@ members = [
     # http://rosettacode.org/wiki/Knuth_shuffle
     "tasks/knuth-shuffle",
 
+    # http://rosettacode.org/wiki/Letter_frequency
+    "tasks/letter-frequency",
+
     # http://rosettacode.org/wiki/Levenshtein_distance
     "tasks/levenshtein-distance",
 
@@ -1474,8 +1477,3 @@ path = "src/langtons_ant.rs"
 # http://rosettacode.org/wiki/Leap_year
 name = "leap_year"
 path = "src/leap_year.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Letter_frequency
-name = "letter_frequency"
-path = "src/letter_frequency.rs"
