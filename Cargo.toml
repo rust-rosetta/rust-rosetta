@@ -300,6 +300,9 @@ members = [
     # http://rosettacode.org/wiki/Hello_world/Graphical
     "tasks/hello-world/graphical",
 
+    # http://rosettacode.org/wiki/Hello_world/Newline_omission
+    "tasks/hello-world/newline-omission",
+
     # http://rosettacode.org/wiki/Hello_world/Standard_error
     "tasks/hello-world/standard-error",
 
@@ -1422,8 +1425,3 @@ path = "src/hello_world/line_printer.rs"
 # http://rosettacode.org/wiki/Hello_world/Newbie
 name = "hello_world_newbie"
 path = "src/hello_world/newbie.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Hello_world/Newline_omission
-name = "hello_world_newline_omission"
-path = "src/hello_world/newline_omission.rs"
