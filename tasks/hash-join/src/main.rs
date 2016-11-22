@@ -1,5 +1,3 @@
-// http://rosettacode.org/wiki/Hash_join
-
 use std::collections::HashMap;
 
 type LeftTable<'a> = Vec<(i64, &'a str)>;

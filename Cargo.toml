@@ -297,6 +297,9 @@ members = [
     # http://rosettacode.org/wiki/Handle_a_signal
     "tasks/handle-a-signal",
 
+    # http://rosettacode.org/wiki/Hash_join
+    "tasks/hash-join",
+
     # http://rosettacode.org/wiki/Hello_world/Graphical
     "tasks/hello-world/graphical",
 
@@ -1416,8 +1419,3 @@ test = false
 # http://rosettacode.org/wiki/Hash_from_two_arrays
 name = "hash_from_two_arrays"
 path = "src/hash_from_two_arrays.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Hash_join
-name = "hash_join"
-path = "src/hash_join.rs"
