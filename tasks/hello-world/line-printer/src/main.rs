@@ -1,5 +1,3 @@
-// http://rosettacode.org/wiki/Hello_world/Line_printer
-
 use std::fs::File;
 use std::io::Write;
 

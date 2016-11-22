@@ -300,6 +300,9 @@ members = [
     # http://rosettacode.org/wiki/Hello_world/Graphical
     "tasks/hello-world/graphical",
 
+    # http://www.rosettacode.org/wiki/Hello_world/Line_printer
+    "tasks/hello-world/line-printer",
+
     # http://rosettacode.org/wiki/Hello_world/Newbie
     "tasks/hello-world/newbie",
 
@@ -1418,8 +1421,3 @@ path = "src/hash_from_two_arrays.rs"
 # http://rosettacode.org/wiki/Hash_join
 name = "hash_join"
 path = "src/hash_join.rs"
-
-[[bin]]
-# http://www.rosettacode.org/wiki/Hello_world/Line_printer
-name = "hello_world_line_printer"
-path = "src/hello_world/line_printer.rs"

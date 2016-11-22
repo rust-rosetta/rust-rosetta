@@ -1457,6 +1457,10 @@ dependencies = [
 ]
 
 [[package]]
+name = "line-printer"
+version = "0.1.0"
+
+[[package]]
 name = "linear-congruential-generator"
 version = "0.1.0"
 
