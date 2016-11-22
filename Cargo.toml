@@ -345,6 +345,9 @@ members = [
     # http://rosettacode.org/wiki/Knuth_shuffle
     "tasks/knuth-shuffle",
 
+    # http://rosettacode.org/wiki/Levenshtein_distance
+    "tasks/levenshtein-distance",
+
     # http://rosettacode.org/wiki/Levenshtein_distance/Alignment
     "tasks/levenshtein-distance/alignment",
 
@@ -1476,8 +1479,3 @@ path = "src/leap_year.rs"
 # http://rosettacode.org/wiki/Letter_frequency
 name = "letter_frequency"
 path = "src/letter_frequency.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Levenshtein_distance
-name = "levenshtein_distance"
-path = "src/levenshtein_distance.rs"
