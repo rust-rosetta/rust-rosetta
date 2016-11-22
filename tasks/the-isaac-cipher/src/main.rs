@@ -1,5 +1,3 @@
-// http://rosettacode.org/wiki/The_ISAAC_Cipher
-
 //! includes the XOR version of the encryption scheme
 
 #![feature(step_by)]
