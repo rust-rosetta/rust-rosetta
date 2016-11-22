@@ -1,5 +1,3 @@
-// http://rosettacode.org/wiki/Hello_world/Newbie
-
 //! A complete description of how to install the language can be found on the [Install page] of the
 //! [Rust web site]. However, for the purposes of trying out code examples, use the [online REPL]
 //! which allows you to enter code, compile it and run it within a single browser window.
