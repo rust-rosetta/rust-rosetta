@@ -1,5 +1,3 @@
-// http://rosettacode.org/wiki/JortSort
-
 use std::cmp::{Ord, Eq};
 
 fn jortsort<T: Ord + Eq + Clone>(array: &[T]) -> bool {
