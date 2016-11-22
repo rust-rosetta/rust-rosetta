@@ -1,5 +1,3 @@
-// http://rosettacode.org/wiki/Jensen's_Device
-
 use std::f32;
 
 fn harmonic_sum<F>(lo: usize, hi: usize, term: F) -> f32
