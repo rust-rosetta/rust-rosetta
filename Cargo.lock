@@ -1365,6 +1365,10 @@ dependencies = [
 ]
 
 [[package]]
+name = "linear-congruential-generator"
+version = "0.1.0"
+
+[[package]]
 name = "log"
 version = "0.3.6"
 source = "registry+https://github.com/rust-lang/crates.io-index"

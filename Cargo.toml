@@ -345,6 +345,9 @@ members = [
     # http://rosettacode.org/wiki/Knuth_shuffle
     "tasks/knuth-shuffle",
 
+    # http://rosettacode.org/wiki/Linear_congruential_generator
+    "tasks/linear-congruential-generator",
+
     # http://rosettacode.org/wiki/Longest_common_subsequence
     "tasks/longest-common-subsequence",
 
@@ -1480,8 +1483,3 @@ path = "src/levenshtein_distance.rs"
 # http://rosettacode.org/wiki/Levenshtein_distance/Alignment
 name = "levenshtein_distance_alignment"
 path = "src/levenshtein_distance/alignment.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Linear_congruential_generator
-name = "linear_congruential_generator"
-path = "src/linear_congruential_generator.rs"
