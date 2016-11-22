@@ -1,4 +1,3 @@
-// http://rosettacode.org/wiki/Levenshtein_distance/Alignment
 use std::usize;
 use std::collections::VecDeque;
 use std::iter::repeat;
