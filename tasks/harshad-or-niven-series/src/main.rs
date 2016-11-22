@@ -1,4 +1,3 @@
-// http://rosettacode.org/wiki/Harshad_or_Niven_series
 use std::u32;
 
 fn main() {

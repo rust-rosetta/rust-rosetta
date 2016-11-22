@@ -297,6 +297,9 @@ members = [
     # http://rosettacode.org/wiki/Handle_a_signal
     "tasks/handle-a-signal",
 
+    # http://rosettacode.org/wiki/Harshad_or_Niven_series
+    "tasks/harshad-or-niven-series",
+
     # http://rosettacode.org/wiki/Hash_from_two_arrays
     "tasks/hash-from-two-arrays",
 
@@ -1411,9 +1414,3 @@ path = "src/hailstone.rs"
 # http://rosettacode.org/wiki/Happy_numbers
 name = "happy_numbers"
 path = "src/happy_numbers.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Harshad_or_Niven_series
-name = "harshad_or_niven_series"
-path = "src/harshad_or_niven_series.rs"
-test = false
