@@ -303,6 +303,9 @@ members = [
     # http://rosettacode.org/wiki/Hello_world/Web_server
     "tasks/hello-world/web-server",
 
+    # http://rosettacode.org/wiki/Hofstadter_Q_sequence
+    "tasks/hofstadter-q-sequence",
+
     # http://rosettacode.org/wiki/Horner%27s_rule_for_polynomial_evaluation
     "tasks/horners-rule-for-polynomial-evaluation",
 
@@ -1434,8 +1437,3 @@ path = "src/here_document.rs"
 name = "higher_order_functions"
 path = "src/higher_order_functions.rs"
 test = false
-
-[[bin]]
-# http://rosettacode.org/wiki/Hofstadter_Q_sequence
-name = "hofstadter_q"
-path = "src/hofstadter_q.rs"
