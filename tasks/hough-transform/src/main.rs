@@ -1,5 +1,3 @@
-// http://rosettacode.org/wiki/Hough_transform
-
 //! Contributed by Gavin Baker <gavinb@antonym.org>
 //! Adapted from the Go version
 
