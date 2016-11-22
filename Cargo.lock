@@ -1140,6 +1140,10 @@ dependencies = [
 ]
 
 [[package]]
+name = "higher-order-functions"
+version = "0.1.0"
+
+[[package]]
 name = "hofstadter-q-sequence"
 version = "0.1.0"
 

@@ -1,5 +1,3 @@
-// http://rosettacode.org/wiki/Higher-order_functions
-
 fn plain_function() {
     println!("regular function");
 }

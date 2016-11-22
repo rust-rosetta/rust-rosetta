@@ -303,6 +303,9 @@ members = [
     # http://rosettacode.org/wiki/Hello_world/Web_server
     "tasks/hello-world/web-server",
 
+    # http://rosettacode.org/wiki/Higher-order_functions
+    "tasks/higher-order-functions",
+
     # http://rosettacode.org/wiki/Hofstadter_Q_sequence
     "tasks/hofstadter-q-sequence",
 
@@ -1431,9 +1434,3 @@ path = "src/hello_world/text.rs"
 # http://rosettacode.org/wiki/Here_document
 name = "here_document"
 path = "src/here_document.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Higher-order_functions
-name = "higher_order_functions"
-path = "src/higher_order_functions.rs"
-test = false
