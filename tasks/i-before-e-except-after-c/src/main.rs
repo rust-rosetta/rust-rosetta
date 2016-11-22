@@ -1,4 +1,3 @@
-// http://rosettacode.org/wiki/I_before_E_except_after_C
 use std::fs::File;
 use std::io::Read;
 use std::path::Path;

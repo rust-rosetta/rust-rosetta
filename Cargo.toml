@@ -315,6 +315,9 @@ members = [
     # http://rosettacode.org/wiki/HTTPS/Authenticated
     "tasks/https/authenticated",
 
+    # http://rosettacode.org/wiki/I_before_E_except_after_C
+    "tasks/i-before-e-except-after-c",
+
     # http://rosettacode.org/wiki/IBAN
     "tasks/iban",
 
@@ -1444,8 +1447,3 @@ test = false
 # http://rosettacode.org/wiki/Huffman_coding
 name = "huffman_coding"
 path = "src/huffman_coding.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/I_before_E_except_after_C
-name = "i_before_e_except_after_c"
-path = "src/i_before_e_except_after_c.rs"
