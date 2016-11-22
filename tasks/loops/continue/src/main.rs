@@ -1,5 +1,3 @@
-// http://rosettacode.org/wiki/Loops/Continue
-
 fn main() {
     for i in 1..10 + 1 {
         print!("{}", i);

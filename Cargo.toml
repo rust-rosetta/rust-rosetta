@@ -351,6 +351,9 @@ members = [
     # http://rosettacode.org/wiki/Loops/Break
     "tasks/loops/break",
 
+    # http://rosettacode.org/wiki/Loops/Continue
+    "tasks/loops/continue",
+
     # http://rosettacode.org/wiki/Loops/Do-while
     "tasks/loops/do-while",
 
@@ -1486,8 +1489,3 @@ path = "src/longest_common_subsequence.rs"
 # http://rosettacode.org/wiki/Loop_over_multiple_arrays_simultaneously
 name = "loop_over_multiple_arrays_simultaneously"
 path = "src/loop_over_multiple_arrays_simulataneously.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Loops/Continue
-name = "loops_continue"
-path = "src/loops/continue.rs"
