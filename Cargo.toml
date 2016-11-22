@@ -321,6 +321,9 @@ members = [
     # http://rosettacode.org/wiki/Include_a_file
     "tasks/include-a-file",
 
+    # http://rosettacode.org/wiki/Increment_a_numerical_string
+    "tasks/increment-a-numerical-string",
+
     # http://rosettacode.org/wiki/Infinity
     "tasks/infinity",
 
@@ -1446,8 +1449,3 @@ path = "src/huffman_coding.rs"
 # http://rosettacode.org/wiki/I_before_E_except_after_C
 name = "i_before_e_except_after_c"
 path = "src/i_before_e_except_after_c.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Increment_a_numerical_string
-name = "increment_a_numerical_string"
-path = "src/increment_a_numerical_string.rs"

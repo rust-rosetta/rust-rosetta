@@ -1,5 +1,3 @@
-// http://rosettacode.org/wiki/Increment_a_numerical_string
-
 use std::num::ParseIntError;
 
 fn increment(input: &str) -> Result<String, ParseIntError> {
