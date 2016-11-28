@@ -762,6 +762,10 @@ dependencies = [
 ]
 
 [[package]]
+name = "fizzbuzz"
+version = "0.1.0"
+
+[[package]]
 name = "flate2"
 version = "0.2.14"
 source = "registry+https://github.com/rust-lang/crates.io-index"

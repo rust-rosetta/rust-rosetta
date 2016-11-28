@@ -1,5 +1,3 @@
-// http://rosettacode.org/wiki/FizzBuzz
-
 // Using conditional expressions,
 // checking 15 divisibility avoided so negligibly faster
 fn fb_one() {
