@@ -273,6 +273,9 @@ members = [
     # http://rosettacode.org/wiki/Flipping_bits_game
     "tasks/flipping-bits-game",
 
+    # http://rosettacode.org/wiki/Four_bit_adder
+    "tasks/four-bit-adder",
+
     # http://rosettacode.org/wiki/FTP
     "tasks/ftp",
 
@@ -1388,8 +1391,3 @@ path = "src/fork.rs"
 # http://rosettacode.org/wiki/Formatted_numeric_output
 name = "formatted_numeric_output"
 path = "src/formatted_numeric_output.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Four_bit_adder
-name = "four_bit_adder"
-path = "src/four_bit_adder.rs"

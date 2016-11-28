@@ -1,4 +1,3 @@
-// http://rosettacode.org/wiki/Four_bit_adder
 use std::ops::Deref;
 use std::fmt;
 
