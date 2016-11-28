@@ -285,6 +285,9 @@ members = [
     # http://rosettacode.org/wiki/Greatest_common_divisor
     "tasks/greatest-common-divisor",
 
+    # http://rosettacode.org/wiki/Greatest_subsequential_sum
+    "tasks/greatest-subsequential-sum",
+
     # http://rosettacode.org/wiki/Guess_the_number
     "tasks/guess-the-number",
 
@@ -1403,8 +1406,3 @@ path = "src/gray_code.rs"
 name = "greater_element_list"
 path = "src/greater_element_list.rs"
 test = false
-
-[[bin]]
-# http://rosettacode.org/wiki/Greatest_subsequential_sum
-name = "greatest_subsequential_sum"
-path = "src/greatest_subsequential_sum.rs"

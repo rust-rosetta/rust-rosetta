@@ -1,5 +1,3 @@
-// http://rosettacode.org/wiki/Greatest_subsequential_sum
-
 use std::ops::Range;
 
 fn greatest_subsequential_sum(nums: &[i32]) -> (i32, Range<usize>) {

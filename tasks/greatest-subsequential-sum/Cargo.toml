@@ -1,0 +1,6 @@
+[package]
+name = "greatest-subsequential-sum"
+version = "0.1.0"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Greatest_subsequential_sum"
