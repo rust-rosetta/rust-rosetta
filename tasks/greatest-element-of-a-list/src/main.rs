@@ -1,5 +1,3 @@
-// http://rosettacode.org/wiki/Greatest_element_of_a_list
-
 use std::fmt::Display;
 
 fn main() {

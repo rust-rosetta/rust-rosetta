@@ -285,6 +285,9 @@ members = [
     # http://rosettacode.org/wiki/Greatest_common_divisor
     "tasks/greatest-common-divisor",
 
+    # http://rosettacode.org/wiki/Greatest_element_of_a_list
+    "tasks/greatest-element-of-a-list",
+
     # http://rosettacode.org/wiki/Greatest_subsequential_sum
     "tasks/greatest-subsequential-sum",
 
@@ -1400,9 +1403,3 @@ path = "src/generate_lower_case_ascii_alphabet.rs"
 # http://rosettacode.org/wiki/Gray_code
 name = "gray_code"
 path = "src/gray_code.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Greatest_element_of_a_list
-name = "greater_element_list"
-path = "src/greater_element_list.rs"
-test = false

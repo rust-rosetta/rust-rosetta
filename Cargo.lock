@@ -1071,6 +1071,10 @@ dependencies = [
 ]
 
 [[package]]
+name = "greatest-element-of-a-list"
+version = "0.1.0"
+
+[[package]]
 name = "greatest-subsequential-sum"
 version = "0.1.0"
 
