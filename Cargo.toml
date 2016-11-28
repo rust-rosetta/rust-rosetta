@@ -276,6 +276,9 @@ members = [
     # http://rosettacode.org/wiki/FTP
     "tasks/ftp",
 
+    # http://rosettacode.org/wiki/General_FizzBuzz
+    "tasks/general-fizzbuzz",
+
     # http://rosettacode.org/wiki/Generate_lower_case_ASCII_alphabet
     "tasks/generate-lower-case-ascii-alphabet",
 
@@ -1394,8 +1397,3 @@ path = "src/function_composition.rs"
 # http://rosettacode.org/wiki/Function_definition
 name = "function_def"
 path = "src/function_def.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/General_FizzBuzz
-name = "general_fizzbuzz"
-path = "src/general_fizzbuzz.rs"

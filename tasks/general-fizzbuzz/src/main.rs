@@ -1,4 +1,3 @@
-// http://rosettacode.org/wiki/General_FizzBuzz
 use std::io;
 use std::io::BufRead;
 
