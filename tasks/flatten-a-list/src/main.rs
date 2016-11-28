@@ -1,6 +1,5 @@
-// http://rosettacode.org/wiki/Flatten_a_list
-
 #![feature(box_syntax)]
+
 use Tree::{Node, Leaf};
 
 #[derive(Debug)]

@@ -270,6 +270,9 @@ members = [
     # http://rosettacode.org/wiki/Find_limit_of_recursion
     "tasks/find-limit-of-recursion",
 
+    # http://rosettacode.org/wiki/Flatten_a_list
+    "tasks/flatten-a-list",
+
     # http://rosettacode.org/wiki/Flipping_bits_game
     "tasks/flipping-bits-game",
 
@@ -1382,8 +1385,3 @@ path = "src/filter.rs"
 # http://rosettacode.org/wiki/FizzBuzz
 name = "fizzbuzz"
 path = "src/fizzbuzz.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Flatten_a_list
-name = "flatten_list"
-path = "src/flatten_list.rs"

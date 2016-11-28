@@ -771,6 +771,10 @@ dependencies = [
 ]
 
 [[package]]
+name = "flatten-a-list"
+version = "0.1.0"
+
+[[package]]
 name = "flipping-bits-game"
 version = "0.1.0"
 dependencies = [

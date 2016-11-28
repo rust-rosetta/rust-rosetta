@@ -1,0 +1,6 @@
+[package]
+name = "flatten-a-list"
+version = "0.1.0"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Flatten_a_list"
