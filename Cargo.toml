@@ -276,6 +276,9 @@ members = [
     # http://rosettacode.org/wiki/FTP
     "tasks/ftp",
 
+    # http://rosettacode.org/wiki/Function_definition
+    "tasks/function-definition",
+
     # http://rosettacode.org/wiki/General_FizzBuzz
     "tasks/general-fizzbuzz",
 
@@ -1392,8 +1395,3 @@ path = "src/four_bit_adder.rs"
 # http://rosettacode.org/wiki/Function_composition
 name = "function_composition"
 path = "src/function_composition.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Function_definition
-name = "function_def"
-path = "src/function_def.rs"
