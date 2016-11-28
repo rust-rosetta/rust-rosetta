@@ -1,5 +1,3 @@
-// http://rosettacode.org/wiki/Function_composition
-
 fn main() {
     use std::f32::consts;
 

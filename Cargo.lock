@@ -817,6 +817,10 @@ dependencies = [
 ]
 
 [[package]]
+name = "function-composition"
+version = "0.1.0"
+
+[[package]]
 name = "function-definition"
 version = "0.1.0"
 
