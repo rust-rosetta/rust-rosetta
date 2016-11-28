@@ -1,5 +1,3 @@
-// http://rosettacode.org/wiki/Gray_code
-
 /// Encode an usize
 fn gray_encode(integer: usize) -> usize {
     (integer >> 1) ^ integer

@@ -282,6 +282,9 @@ members = [
     # http://rosettacode.org/wiki/Globally_replace_text_in_several_files
     "tasks/globally-replace-text-in-several-files",
 
+    # http://rosettacode.org/wiki/Gray_code
+    "tasks/gray-code",
+
     # http://rosettacode.org/wiki/Greatest_common_divisor
     "tasks/greatest-common-divisor",
 
@@ -1398,8 +1401,3 @@ path = "src/general_fizzbuzz.rs"
 # http://rosettacode.org/wiki/Generate_lower_case_ASCII_alphabet
 name = "generate_lower_case_ascii_alphabet"
 path = "src/generate_lower_case_ascii_alphabet.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Gray_code
-name = "gray_code"
-path = "src/gray_code.rs"

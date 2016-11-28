@@ -1064,6 +1064,10 @@ dependencies = [
 ]
 
 [[package]]
+name = "gray-code"
+version = "0.1.0"
+
+[[package]]
 name = "greatest-common-divisor"
 version = "0.1.0"
 dependencies = [
