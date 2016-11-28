@@ -1,0 +1,7 @@
+[package]
+name = "with-feedback-player"
+version = "0.1.0"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Guess_the_number/With_feedback_(player)"
+

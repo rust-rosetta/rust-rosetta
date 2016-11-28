@@ -291,6 +291,9 @@ members = [
     # http://rosettacode.org/wiki/Guess_the_number/With_feedback
     "tasks/guess-the-number/with-feedback",
 
+    # http://rosettacode.org/wiki/Guess_the_number/With_feedback_(player)
+    "tasks/guess-the-number/with-feedback-player",
+
     # http://rosettacode.org/wiki/Hailstone_sequence
     "tasks/hailstone-sequence",
 
@@ -1405,8 +1408,3 @@ test = false
 # http://rosettacode.org/wiki/Greatest_subsequential_sum
 name = "greatest_subsequential_sum"
 path = "src/greatest_subsequential_sum.rs"
-
-[[bin]]
-# http://www.rosettacode.org/wiki/Guess_the_number/With_feedback_(player)
-name = "guess_the_number_with_feedback_player"
-path = "src/guess_the_number/with_feedback_player.rs"

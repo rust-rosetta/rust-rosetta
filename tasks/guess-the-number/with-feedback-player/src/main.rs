@@ -1,5 +1,3 @@
-// http://rosettacode.org/wiki/Guess_the_number/With_feedback_(player)
-
 use std::io::stdin;
 
 const MIN: isize = 1;
