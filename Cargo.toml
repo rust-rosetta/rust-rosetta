@@ -267,6 +267,9 @@ members = [
     # http://rosettacode.org/wiki/Fibonacci_word
     "tasks/fibonacci-word",
 
+    # http://rosettacode.org/wiki/Filter
+    "tasks/filter",
+
     # http://rosettacode.org/wiki/Find_limit_of_recursion
     "tasks/find-limit-of-recursion",
 
@@ -1378,8 +1381,3 @@ path = "src/file_input_output.rs"
 name = "filesize"
 path = "src/filesize.rs"
 test = false
-
-[[bin]]
-# http://rosettacode.org/wiki/Filter
-name = "filter"
-path = "src/filter.rs"

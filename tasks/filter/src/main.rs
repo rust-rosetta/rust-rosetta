@@ -1,4 +1,3 @@
-// http://rosettacode.org/wiki/Filter
 fn main() {
     println!("new vec filtered: ");
     let nums: Vec<i32> = (1..20).collect();
