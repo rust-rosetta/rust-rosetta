@@ -1,5 +1,3 @@
-// http://rosettacode.org/wiki/Formatted_numeric_output
-
 fn main() {
     let x = 7.125;
 
