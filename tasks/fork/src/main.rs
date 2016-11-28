@@ -1,4 +1,3 @@
-// http://rosettacode.org/wiki/Fork
 use std::process::Command;
 
 fn main() {
