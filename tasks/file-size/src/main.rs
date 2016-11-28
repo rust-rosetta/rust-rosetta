@@ -1,5 +1,5 @@
-// http://rosettacode.org/wiki/File_size
 use std::fs;
+
 fn main() {
     if let Ok(attr) = fs::metadata("input.txt") {
         println!("size: {}", attr.len());
