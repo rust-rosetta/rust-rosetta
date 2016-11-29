@@ -1,5 +1,3 @@
-// http://rosettacode.org/wiki/Fibonacci_sequence
-
 fn main() {
     let fns = vec![(fib_recursive as fn(u64) -> u64, "recursive"),
                    (fib_tail_recursive as fn(u64) -> u64, "tail recursive"),
