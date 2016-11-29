@@ -728,7 +728,15 @@ dependencies = [
 ]
 
 [[package]]
+name = "fasta-format"
+version = "0.1.0"
+
+[[package]]
 name = "fibonacci-n-step-number-sequences"
+version = "0.1.0"
+
+[[package]]
+name = "fibonacci-sequence"
 version = "0.1.0"
 
 [[package]]

@@ -1,5 +1,3 @@
-// http://rosettacode.org/wiki/FASTA_format
-
 //! Ported and adapted from rosettacode D example
 use std::fs::File;
 use std::io::{BufReader, BufRead};
