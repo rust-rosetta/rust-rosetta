@@ -1,4 +1,3 @@
-// http://rosettacode.org/wiki/File_input/output
 use std::fs::File;
 use std::io::{Read, Write};
 

@@ -1,0 +1,6 @@
+[package]
+name = "file-input-output"
+version = "0.1.0"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/File_input/output"

@@ -267,6 +267,9 @@ members = [
     # http://rosettacode.org/wiki/Fibonacci_word
     "tasks/fibonacci-word",
 
+    # http://rosettacode.org/wiki/File_input/output
+    "tasks/file-input-output",
+
     # http://rosettacode.org/wiki/File_size
     "tasks/file-size",
 
@@ -1373,8 +1376,3 @@ path = "src/fibonacci.rs"
 # http://rosettacode.org/wiki/Fibonacci_n-step_number_sequences
 name = "fibonacci_n-step_number_sequences"
 path = "src/fibonacci_n-step_number_sequences.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/File_input/output
-name = "file_input_output"
-path = "src/file_input_output.rs"
