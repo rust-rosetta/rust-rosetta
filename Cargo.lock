@@ -728,6 +728,10 @@ dependencies = [
 ]
 
 [[package]]
+name = "fibonacci-n-step-number-sequences"
+version = "0.1.0"
+
+[[package]]
 name = "fibonacci-word"
 version = "0.1.0"
 dependencies = [

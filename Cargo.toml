@@ -264,6 +264,9 @@ members = [
     # http://rosettacode.org/wiki/Fast_Fourier_transform
     "tasks/fast-fourier-transform",
 
+    # http://rosettacode.org/wiki/Fibonacci_n-step_number_sequences
+    "tasks/fibonacci-n-step-number-sequences",
+
     # http://rosettacode.org/wiki/Fibonacci_sequence
     "tasks/fibonacci-sequence",
 
@@ -1369,8 +1372,3 @@ path = "src/factorial.rs"
 # http://rosettacode.org/wiki/FASTA_format
 name = "fasta"
 path = "src/fasta.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Fibonacci_n-step_number_sequences
-name = "fibonacci_n-step_number_sequences"
-path = "src/fibonacci_n-step_number_sequences.rs"
