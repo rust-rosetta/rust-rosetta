@@ -66,7 +66,8 @@ authors = [
     "Allen Bui, https://github.com/allenbui94",
     "Andrey Tonkih, https://github.com/xosmig",
     "Thibault Barbie, https://github.com/thibaultbarbie",
-    "Corentin Henry, https://github.com/little-dude"
+    "Corentin Henry, https://github.com/little-dude",
+    "Dylan Maccora, https://github.com/maccoda"
 ]
 
 [dependencies]
@@ -152,7 +153,7 @@ members = [
 
     # http://rosettacode.org/wiki/Archimedean_spiral
     "tasks/archimedean-spiral",
-    
+
     # http://rosettacode.org/wiki/Arena_storage_pool
     "tasks/arena-storage-pool",
 
@@ -242,6 +243,9 @@ members = [
 
     # http://rosettacode.org/wiki/Dutch_national_flag_problem
     "tasks/dutch-national-flag-problem",
+
+    # http://rosettacode.org/wiki/Element-wise_operations
+    "tasks/element-wise-operations"
 
     # http://rosettacode.org/wiki/Entropy
     "tasks/entropy",
