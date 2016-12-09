@@ -204,6 +204,9 @@ members = [
     # http://rosettacode.org/wiki/Bulls_and_cows
     "tasks/bulls-and-cows",
 
+    # http://rosettacode.org/wiki/Caesar_cipher
+    "tasks/caesar-cipher",
+
     # http://rosettacode.org/wiki/Call_a_foreign-language_function
     "tasks/call-a-foreign-language-function",
 
@@ -1255,8 +1258,3 @@ test = false
 # http://rosettacode.org/wiki/Boolean_values
 name = "boolean_values"
 path = "src/boolean_values.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Caesar_cipher
-name = "caesar_cipher"
-path = "src/caesar_cipher.rs"

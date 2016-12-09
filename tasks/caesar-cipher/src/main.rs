@@ -1,5 +1,3 @@
-// http://rosettacode.org/wiki/Caesar_cipher
-
 use std::io::{self, Write};
 use std::fmt::Display;
 use std::{env, process};
