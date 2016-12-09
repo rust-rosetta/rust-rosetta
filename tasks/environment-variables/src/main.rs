@@ -1,4 +1,3 @@
-// http://rosettacode.org/wiki/Environment_variables
 use std::env;
 
 fn main() {

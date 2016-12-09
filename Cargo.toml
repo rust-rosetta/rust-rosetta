@@ -246,6 +246,9 @@ members = [
     # http://rosettacode.org/wiki/Entropy
     "tasks/entropy",
 
+    # http://rosettacode.org/wiki/Environment_variables
+    "tasks/environment-variables",
+
     # http://rosettacode.org/wiki/Equilibrium_index
     "tasks/equilibrium-index",
 
@@ -1349,8 +1352,3 @@ path = "src/enforced_immutability.rs"
 name = "enumerations"
 path = "src/enumerations.rs"
 test = false
-
-[[bin]]
-# http://rosettacode.org/wiki/Environment_variables
-name = "environment_variables"
-path = "src/environment_variables.rs"

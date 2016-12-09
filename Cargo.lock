@@ -675,6 +675,10 @@ dependencies = [
 ]
 
 [[package]]
+name = "environment-variables"
+version = "0.1.0"
+
+[[package]]
 name = "equilibrium-index"
 version = "0.1.0"
 dependencies = [
