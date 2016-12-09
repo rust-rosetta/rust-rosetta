@@ -207,6 +207,9 @@ members = [
     # http://rosettacode.org/wiki/Call_a_foreign-language_function
     "tasks/call-a-foreign-language-function",
 
+    # http://rosettacode.org/wiki/Call_an_object_method
+    "tasks/call-an-object-method",
+
     # http://rosettacode.org/wiki/Carmichael_3_strong_pseudoprimes
     "tasks/carmichael-3-strong-pseudoprimes",
 
@@ -1257,9 +1260,3 @@ path = "src/boolean_values.rs"
 # http://rosettacode.org/wiki/Caesar_cipher
 name = "caesar_cipher"
 path = "src/caesar_cipher.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Call_an_object_method
-name = "call_an_object_method"
-path = "src/call_an_object_method.rs"
-test = false

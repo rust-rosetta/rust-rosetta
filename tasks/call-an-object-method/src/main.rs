@@ -1,5 +1,3 @@
-// http://rosettacode.org/wiki/Call_an_object_method
-
 #![cfg_attr(feature="clippy", allow(blacklisted_name))]
 
 struct Foo;

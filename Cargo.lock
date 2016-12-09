@@ -369,6 +369,10 @@ dependencies = [
 ]
 
 [[package]]
+name = "call-an-object-method"
+version = "0.1.0"
+
+[[package]]
 name = "carmichael-3-strong-pseudoprimes"
 version = "0.1.0"
 
