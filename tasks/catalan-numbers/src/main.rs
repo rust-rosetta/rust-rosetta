@@ -1,5 +1,3 @@
-// http://rosettacode.org/wiki/Catalan_numbers
-
 fn c_n(n: u64) -> u64 {
     match n {
         0 => 1,

@@ -204,6 +204,9 @@ members = [
     # http://rosettacode.org/wiki/Call_a_foreign-language_function
     "tasks/call-a-foreign-language-function",
 
+    # http://rosettacode.org/wiki/Catalan_numbers
+    "tasks/catalan-numbers",
+
     # http://rosettacode.org/wiki/Catamorphism
     "tasks/catamorphism",
 
@@ -1265,8 +1268,3 @@ test = false
 # http://rosettacode.org/wiki/Carmichael_3_strong_pseudoprimes
 name = "carmichael_3_strong_pseudoprimes"
 path = "src/carmichael_3_strong_pseudoprimes.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Catalan_numbers
-name = "catalan_numbers"
-path = "src/catalan_numbers.rs"
