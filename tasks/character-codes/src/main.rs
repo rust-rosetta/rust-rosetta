@@ -1,4 +1,3 @@
-// http://rosettacode.org/wiki/Character_codes
 use std::char::from_u32;
 
 fn main() {

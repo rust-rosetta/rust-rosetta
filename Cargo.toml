@@ -204,6 +204,9 @@ members = [
     # http://rosettacode.org/wiki/Call_a_foreign-language_function
     "tasks/call-a-foreign-language-function",
 
+    # http://rosettacode.org/wiki/Character_codes
+    "tasks/character-codes",
+
     # http://rosettacode.org/wiki/Chat_server
     "tasks/chat-server",
 
@@ -1269,8 +1272,3 @@ path = "src/catalan_numbers.rs"
 # http://rosettacode.org/wiki/Catamorphism
 name = "catamorphism"
 path = "src/catamorphism.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Character_codes
-name = "character_codes"
-path = "src/character_codes.rs"
