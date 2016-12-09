@@ -1,4 +1,3 @@
-// http://rosettacode.org/wiki/Chat_server
 use std::collections::HashMap;
 use std::io::BufReader;
 use std::io::prelude::*;

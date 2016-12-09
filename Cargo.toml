@@ -204,6 +204,9 @@ members = [
     # http://rosettacode.org/wiki/Call_a_foreign-language_function
     "tasks/call-a-foreign-language-function",
 
+    # http://rosettacode.org/wiki/Chat_server
+    "tasks/chat-server",
+
     # http://rosettacode.org/wiki/Check_input_device_is_a_terminal
     "tasks/check-input-device-is-a-terminal",
 
@@ -1271,8 +1274,3 @@ path = "src/catamorphism.rs"
 # http://rosettacode.org/wiki/Character_codes
 name = "character_codes"
 path = "src/character_codes.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Chat_server
-name = "chat_server"
-path = "src/chat_server.rs"
