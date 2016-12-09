@@ -1,5 +1,3 @@
-// http://rosettacode.org/wiki/Comments
-
 //! A module level comment
 
 // A single line comment

@@ -213,6 +213,9 @@ members = [
     # http://rosettacode.org/wiki/Closest-pair_problem
     "tasks/closest-pair-problem",
 
+    # http://rosettacode.org/wiki/Comments
+    "tasks/comments",
+
     # http://rosettacode.org/wiki/Compile-time_calculation
     "tasks/compile-time-calculation",
 
@@ -1293,8 +1296,3 @@ path = "src/comma_quibbling.rs"
 name = "command_line_arguments"
 path = "src/command_line_args.rs"
 test = false
-
-[[bin]]
-# http://rosettacode.org/wiki/Comments
-name = "comments"
-path = "src/comments.rs"
