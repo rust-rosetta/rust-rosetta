@@ -1,5 +1,3 @@
-// http://rosettacode.org/wiki/Doubly-linked_list/Element_definition
-
 //! Doubly linked lists present a problem in Rust due to its ownership model. There cannot be two
 //! mutable references to the same object, so what are we to do? Below are the relevant lines (with
 //! added comments) from the `std` implementation ([Documentation][doc] [Source][src]).

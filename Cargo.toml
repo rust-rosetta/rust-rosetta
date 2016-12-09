@@ -240,6 +240,9 @@ members = [
     # http://rosettacode.org/wiki/Dot_product
     "tasks/dot-product",
 
+    # http://rosettacode.org/wiki/Doubly-linked_list/Element_definition
+    "tasks/doubly-linked-list/element-definition",
+
     # http://rosettacode.org/wiki/Doubly-linked_list/Element_insertion
     "tasks/doubly-linked-list/element-insertion",
 
@@ -1331,8 +1334,3 @@ path = "src/dining_philosophers.rs"
 # http://rosettacode.org/wiki/DNS_query
 name = "dns_query"
 path = "src/dns_query.rs"
-
-[[bin]]
-# http://www.rosettacode.org/wiki/Doubly-linked_list/Element_definition
-name = "doubly_linked_list_element_definition"
-path = "src/doubly_linked_list/element_definition.rs"

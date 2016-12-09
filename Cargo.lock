@@ -626,6 +626,10 @@ dependencies = [
 ]
 
 [[package]]
+name = "doubly-linked-list-element-definition"
+version = "0.1.0"
+
+[[package]]
 name = "doubly-linked-list-element-insertion"
 version = "0.1.0"
 
