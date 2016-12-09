@@ -210,6 +210,9 @@ members = [
     # http://rosettacode.org/wiki/Check_output_device_is_a_terminal
     "tasks/check-output-device-is-a-terminal",
 
+    # http://rosettacode.org/wiki/Check_that_file_exists
+    "tasks/check-that-file-exists",
+
     # http://rosettacode.org/wiki/Checkpoint_synchronization
     "tasks/checkpoint-synchronization",
 
@@ -1273,9 +1276,3 @@ path = "src/character_codes.rs"
 # http://rosettacode.org/wiki/Chat_server
 name = "chat_server"
 path = "src/chat_server.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Check_that_file_exists
-name = "check_file"
-path = "src/check_file.rs"
-test = false
