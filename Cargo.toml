@@ -165,6 +165,9 @@ members = [
     # http://rosettacode.org/wiki/Arithmetic/Rational
     "tasks/arithmetic/rational",
 
+    # http://rosettacode.org/wiki/Associative_array/Creation
+    "tasks/associative-array/creation",
+
     # http://rosettacode.org/wiki/Associative_array/Iteration
     "tasks/associative-array/iteration",
 
@@ -1230,8 +1233,3 @@ path = "src/arrays.rs"
 name = "assertions"
 path = "src/assertions.rs"
 test = false
-
-[[bin]]
-# http://rosettacode.org/wiki/Associative_array/Creation
-name = "associative_array_creation"
-path = "src/associative_array/creation.rs"
