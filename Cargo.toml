@@ -198,6 +198,9 @@ members = [
     # http://rosettacode.org/wiki/Bitmap/Write_a_PPM_file
     "tasks/bitmap/write-a-ppm-file",
 
+    # http://rosettacode.org/wiki/Bitwise_operations
+    "tasks/bitwise-operations",
+
     # http://rosettacode.org/wiki/Boolean_values
     "tasks/boolean-values",
 
@@ -1250,9 +1253,3 @@ path = "src/binary_digits.rs"
 # http://rosettacode.org/wiki/Binary_search
 name = "binary_search"
 path = "src/binary_search.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Bitwise_operations
-name = "bitwise_operations"
-path = "src/bitwise_operations.rs"
-test = false
