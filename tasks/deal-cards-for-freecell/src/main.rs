@@ -1,5 +1,3 @@
-// http://rosettacode.org/wiki/Deal_cards_for_FreeCell
-
 //! Based on JavaScript.
 
 struct MSVCRandGen {
