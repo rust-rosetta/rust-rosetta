@@ -577,6 +577,10 @@ name = "determine-if-a-string-is-numeric"
 version = "0.1.0"
 
 [[package]]
+name = "determine-if-only-one-instance-is-running"
+version = "0.1.0"
+
+[[package]]
 name = "difference"
 version = "0.4.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"

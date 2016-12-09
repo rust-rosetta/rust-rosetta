@@ -1,5 +1,3 @@
-// http://rosettacode.org/wiki/Determine_if_only_one_instance_is_running
-
 use std::net::TcpListener;
 
 fn create_app_lock(port: u16) -> TcpListener {
