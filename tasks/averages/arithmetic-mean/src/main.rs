@@ -1,5 +1,3 @@
-// http://rosettacode.org/wiki/Averages/Arithmetic_mean
-
 // The mean is not defined for an empty list, so we must return an Option
 fn mean(list: &[f64]) -> Option<f64> {
     match list.len() {

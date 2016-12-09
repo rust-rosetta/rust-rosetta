@@ -171,6 +171,9 @@ members = [
     # http://rosettacode.org/wiki/Average_loop_length
     "tasks/average-loop-length",
 
+    # http://rosettacode.org/wiki/Averages/Arithmetic_mean
+    "tasks/averages/arithmetic-mean",
+
     # http://rosettacode.org/wiki/Averages/Mean_angle
     "tasks/averages/mean-angle",
 
@@ -1234,8 +1237,3 @@ path = "src/associative_array/creation.rs"
 # http://rosettacode.org/wiki/Associative_array/Iteration
 name = "associative_array_iteration"
 path = "src/associative_array/iteration.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Averages/Arithmetic_mean
-name = "averages_arithmetic_mean"
-path = "src/averages/arithmetic_mean.rs"
