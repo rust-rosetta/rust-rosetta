@@ -1,6 +1,6 @@
-// http://rosettacode.org/wiki/Define_a_primitive_data_type
-// Implements a custom type named CustomInt.
-// This type only implements a subset of all traits within std::ops.
+//! Implements a custom type named `CustomInt`.
+//! This type only implements a subset of all traits within `std::ops`.
+
 use std::ops;
 
 #[derive(Eq, PartialEq, Ord, PartialOrd, Debug, Copy, Clone)]

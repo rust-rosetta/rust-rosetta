@@ -228,6 +228,9 @@ members = [
     # http://rosettacode.org/wiki/Day_of_the_week
     "tasks/day-of-the-week",
 
+    # http://rosettacode.org/wiki/Define_a_primitive_data_type
+    "tasks/define-a-primitive-data-type",
+
     # http://rosettacode.org/wiki/Delete_a_file
     "tasks/delete-a-file",
 
@@ -1319,8 +1322,3 @@ test = false
 # http://www.rosettacode.org/wiki/Deal_cards_for_FreeCell
 name = "deal_cards_for_freecell"
 path = "src/deal_cards_for_freecell.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Define_a_primitive_data_type
-name = "define_a_primitive_data_type"
-path = "src/define_a_primitive_data_type.rs"
