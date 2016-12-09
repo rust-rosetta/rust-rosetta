@@ -1,5 +1,3 @@
-// http://rosettacode.org/wiki/Convert_seconds_to_compound_duration
-
 fn seconds_to_compound(secs: u32) -> String {
     let part = |comps: &mut String, c: &str, one: u32, secs: &mut u32| {
         if *secs >= one {

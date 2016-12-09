@@ -219,6 +219,9 @@ members = [
     # http://rosettacode.org/wiki/Concurrent_computing
     "tasks/concurrent-computing",
 
+    # http://rosettacode.org/wiki/Convert_seconds_to_compound_duration
+    "tasks/convert-seconds-to-compound-duration",
+
     # http://rosettacode.org/wiki/Conway's_Game_of_Life
     "tasks/conways-game-of-life",
 
@@ -1301,8 +1304,3 @@ path = "src/continued_fraction.rs"
 # http://rosettacode.org/wiki/Continued_fraction/Arithmetic/Construct_from_rational_number
 name = "continued_fraction_from_rational"
 path = "src/continued_fraction_from_rational.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Convert_seconds_to_compound_duration
-name = "convert_seconds_to_compound_duration"
-path = "src/convert_seconds_to_compound_duration.rs"
