@@ -1,5 +1,3 @@
-// http://rosettacode.org/wiki/Collections
-
 //! Examples of various Rust collections. Contains both original examples and those taken from the
 //! standard API documentation.
 

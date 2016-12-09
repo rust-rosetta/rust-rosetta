@@ -213,6 +213,9 @@ members = [
     # http://rosettacode.org/wiki/Closest-pair_problem
     "tasks/closest-pair-problem",
 
+    # http://rosettacode.org/wiki/Collections
+    "tasks/collections",
+
     # http://rosettacode.org/wiki/Combinations
     "tasks/combinations",
 
@@ -1284,8 +1287,3 @@ path = "src/circles_of_given_radius_through_two_points.rs"
 # http://rosettacode.org/wiki/Closures/Value_capture
 name = "closures_value_capture"
 path = "src/closures/value_capture.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Collections
-name = "collections"
-path = "src/collections.rs"
