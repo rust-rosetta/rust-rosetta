@@ -717,6 +717,10 @@ name = "execute-a-markov-algorithm"
 version = "0.1.0"
 
 [[package]]
+name = "execute-a-system-command"
+version = "0.1.0"
+
+[[package]]
 name = "execute-brainfuck"
 version = "0.1.0"
 

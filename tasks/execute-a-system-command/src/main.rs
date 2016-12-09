@@ -1,4 +1,3 @@
-// http://rosettacode.org/wiki/Execute_a_system_command
 use std::process::Command;
 
 fn main() {
