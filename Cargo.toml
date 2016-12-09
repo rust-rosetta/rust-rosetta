@@ -213,6 +213,9 @@ members = [
     # http://rosettacode.org/wiki/Closest-pair_problem
     "tasks/closest-pair-problem",
 
+    # http://rosettacode.org/wiki/Comma_quibbling
+    "tasks/comma-quibbling",
+
     # http://rosettacode.org/wiki/Command-line_arguments
     "tasks/command-line-arguments",
 
@@ -1288,8 +1291,3 @@ path = "src/collections.rs"
 # http://rosettacode.org/wiki/Combinations
 name = "combinations"
 path = "src/combinations.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Comma_quibbling
-name = "comma_quibbling"
-path = "src/comma_quibbling.rs"

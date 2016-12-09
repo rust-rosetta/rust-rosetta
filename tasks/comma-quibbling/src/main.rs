@@ -1,5 +1,3 @@
-// http://rosettacode.org/wiki/Comma_quibbling
-
 fn quibble(seq: &[&str]) -> String {
     match seq.len() {
         0 => "{}".to_string(),
