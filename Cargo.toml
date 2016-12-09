@@ -219,6 +219,9 @@ members = [
     # http://rosettacode.org/wiki/Concurrent_computing
     "tasks/concurrent-computing",
 
+    # http://rosettacode.org/wiki/Count_in_octal
+    "tasks/count-in-octal",
+
     # http://rosettacode.org/wiki/Count_occurrences_of_a_substring
     "tasks/count-occurrences-of-a-substring",
 
@@ -1305,9 +1308,3 @@ path = "src/convert_seconds_to_compound_duration.rs"
 # http://rosettacode.org/wiki/Conway's_Game_of_Life
 name = "conways_game_of_life"
 path = "src/conways_game_of_life.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Count_in_octal
-name = "count_in_octal"
-path = "src/count_in_octal.rs"
-test = false

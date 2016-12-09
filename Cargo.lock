@@ -500,6 +500,10 @@ dependencies = [
 ]
 
 [[package]]
+name = "count-in-octal"
+version = "0.1.0"
+
+[[package]]
 name = "count-occurrences-of-a-substring"
 version = "0.1.0"
 

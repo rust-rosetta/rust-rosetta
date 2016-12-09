@@ -1,5 +1,3 @@
-// http://rosettacode.org/wiki/Count_in_octal
-
 #![feature(inclusive_range_syntax)]
 
 use std::u8;

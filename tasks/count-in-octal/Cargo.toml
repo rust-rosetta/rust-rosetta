@@ -1,0 +1,7 @@
+[package]
+name = "count-in-octal"
+version = "0.1.0"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Count_in_octal"
+
