@@ -1,5 +1,3 @@
-// http://rosettacode.org/wiki/Factorial
-
 #![feature(test)]
 extern crate test;
 

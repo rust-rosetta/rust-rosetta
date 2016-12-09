@@ -261,6 +261,9 @@ members = [
     # http://rosettacode.org/wiki/Execute_a_Markov_algorithm
     "tasks/execute-a-markov-algorithm",
 
+    # http://rosettacode.org/wiki/Factorial
+    "tasks/factorial",
+
     # http://rosettacode.org/wiki/Fast_Fourier_transform
     "tasks/fast-fourier-transform",
 
@@ -1365,8 +1368,3 @@ path = "src/execute_hq9_plus.rs"
 # http://rosettacode.org/wiki/Factors_of_an_integer
 name = "factor_int"
 path = "src/factor_int.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Factorial
-name = "factorial"
-path = "src/factorial.rs"
