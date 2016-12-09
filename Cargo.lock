@@ -464,6 +464,10 @@ name = "continue"
 version = "0.1.0"
 
 [[package]]
+name = "conways-game-of-life"
+version = "0.1.0"
+
+[[package]]
 name = "cookie"
 version = "0.2.5"
 source = "registry+https://github.com/rust-lang/crates.io-index"

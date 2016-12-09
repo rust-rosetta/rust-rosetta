@@ -219,6 +219,9 @@ members = [
     # http://rosettacode.org/wiki/Concurrent_computing
     "tasks/concurrent-computing",
 
+    # http://rosettacode.org/wiki/Conway's_Game_of_Life
+    "tasks/conways-game-of-life",
+
     # http://rosettacode.org/wiki/Count_in_octal
     "tasks/count-in-octal",
 
@@ -1303,8 +1306,3 @@ path = "src/continued_fraction_from_rational.rs"
 # http://rosettacode.org/wiki/Convert_seconds_to_compound_duration
 name = "convert_seconds_to_compound_duration"
 path = "src/convert_seconds_to_compound_duration.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Conway's_Game_of_Life
-name = "conways_game_of_life"
-path = "src/conways_game_of_life.rs"

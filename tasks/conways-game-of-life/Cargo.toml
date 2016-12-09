@@ -1,0 +1,7 @@
+[package]
+name = "conways-game-of-life"
+version = "0.1.0"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Conway's_Game_of_Life"
+

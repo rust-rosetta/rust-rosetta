@@ -1,5 +1,3 @@
-// http://rosettacode.org/wiki/Conway's_Game_of_Life
-
 use std::time::Duration;
 use std::mem;
 use std::thread;
