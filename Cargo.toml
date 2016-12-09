@@ -237,6 +237,9 @@ members = [
     # http://rosettacode.org/wiki/Discordian_date
     "tasks/discordian-date",
 
+    # http://rosettacode.org/wiki/DNS_query
+    "tasks/dns-query",
+
     # http://rosettacode.org/wiki/Dot_product
     "tasks/dot-product",
 
@@ -1329,8 +1332,3 @@ path = "src/dijkstras_algorithm.rs"
 # http://rosettacode.org/wiki/Dining_philosophers
 name = "dining_philosophers"
 path = "src/dining_philosophers.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/DNS_query
-name = "dns_query"
-path = "src/dns_query.rs"

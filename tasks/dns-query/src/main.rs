@@ -1,5 +1,3 @@
-// http://rosettacode.org/wiki/DNS_query
-
 #![feature(lookup_host)]
 
 use std::io;

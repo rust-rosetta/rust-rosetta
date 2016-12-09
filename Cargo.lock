@@ -604,6 +604,10 @@ dependencies = [
 ]
 
 [[package]]
+name = "dns-query"
+version = "0.1.0"
+
+[[package]]
 name = "do-while"
 version = "0.1.0"
 
