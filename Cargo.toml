@@ -240,6 +240,9 @@ members = [
     # http://rosettacode.org/wiki/Dot_product
     "tasks/dot-product",
 
+    # http://rosettacode.org/wiki/Doubly-linked_list/Element_insertion
+    "tasks/doubly-linked-list/element-insertion",
+
     # http://rosettacode.org/wiki/Dutch_national_flag_problem
     "tasks/dutch-national-flag-problem",
 
@@ -1333,8 +1336,3 @@ path = "src/dns_query.rs"
 # http://www.rosettacode.org/wiki/Doubly-linked_list/Element_definition
 name = "doubly_linked_list_element_definition"
 path = "src/doubly_linked_list/element_definition.rs"
-
-[[bin]]
-# http://www.rosettacode.org/wiki/Doubly-linked_list/Element_insertion
-name = "doubly_linked_list_element_insertion"
-path = "src/doubly_linked_list/element_insertion.rs"
