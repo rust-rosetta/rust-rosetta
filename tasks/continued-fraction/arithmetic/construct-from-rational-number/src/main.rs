@@ -1,5 +1,3 @@
-// http://rosettacode.org/wiki/Continued_fraction/Arithmetic/Construct_from_rational_number
-
 struct R2cf {
     n1: i64,
     n2: i64,
