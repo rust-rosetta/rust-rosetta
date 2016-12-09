@@ -1,5 +1,3 @@
-// http://rosettacode.org/wiki/Arithmetic-geometric_mean
-
 //! Accepts two command line arguments
 //! cargo run --name agm arg1 arg2
 

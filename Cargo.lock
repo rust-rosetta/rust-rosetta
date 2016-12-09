@@ -159,6 +159,10 @@ name = "arena-storage-pool"
 version = "0.1.0"
 
 [[package]]
+name = "arithmetic-geometric-mean"
+version = "0.1.0"
+
+[[package]]
 name = "arithmetic-mean"
 version = "0.1.0"
 

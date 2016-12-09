@@ -168,6 +168,9 @@ members = [
     # http://rosettacode.org/wiki/Arithmetic/Rational
     "tasks/arithmetic/rational",
 
+    # http://rosettacode.org/wiki/Arithmetic-geometric_mean
+    "tasks/arithmetic-geometric-mean",
+
     # http://rosettacode.org/wiki/Array_concatenation
     "tasks/array-concatenation",
 
@@ -1212,12 +1215,3 @@ members = [
     # http://rosettacode.org/wiki/Zig-zag_matrix
     "tasks/zig-zag-matrix",
 ]
-
-[[bin]]
-name = "coverage"
-path = "src/bin/coverage.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Arithmetic-geometric_mean
-name = "arithmetic-geometric_mean"
-path = "src/arithmetic-geometric_mean.rs"
