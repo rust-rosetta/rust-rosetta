@@ -72,7 +72,7 @@ fn scalar_multiplication(scalar: f32, matrix: &Matrix) -> Matrix {
 // Subtract second from first
 fn matrix_subtraction(first: &Matrix, second: &Matrix) -> Result<Matrix, String> {
     if first.width == second.width && first.height == second.height {
-        let negative_matrix = scalar_multiplication(0.0, second);
+        let negative_matrix = scalar_multiplication(-1.0, second);
         let result = matrix_addition(first, &negative_matrix).unwrap();
         Ok(result)
     } else {
@@ -136,7 +136,8 @@ fn main() {
 
 #[cfg(test)]
 mod tests {
-    use super::{Matrix, matrix_addition, scalar_multiplication};
+    use super::{Matrix, matrix_addition, scalar_multiplication, matrix_subtraction,
+                matrix_multiplication};
 
     const HEIGHT: u32 = 2;
     const WIDTH: u32 = 3;
@@ -163,7 +164,27 @@ mod tests {
         assert_eq!(result.get(1, 0), 8.0);
         assert_eq!(result.get(1, 1), 10.0);
         assert_eq!(result.get(1, 2), 12.0);
+    }
 
+    #[test]
+    fn matrix_subtraction_test() {
+        let matrix1: Matrix = Matrix::new(vec![1.0, 2.0, 3.0, 4.0, 5.0, 6.0], HEIGHT, WIDTH);
+        let matrix2: Matrix = Matrix::new(vec![6.0, 5.0, 4.0, 3.0, 2.0, 1.0], HEIGHT, WIDTH);
+        let result = matrix_subtraction(&matrix1, &matrix2).unwrap();
+        assert_eq!(result.get(0, 0), -5.0);
+        assert_eq!(result.get(0, 1), -3.0);
+        assert_eq!(result.get(0, 2), -1.0);
+        assert_eq!(result.get(1, 0), 1.0);
+        assert_eq!(result.get(1, 1), 3.0);
+        assert_eq!(result.get(1, 2), 5.0);
+    }
 
+    #[test]
+    fn matrix_multiplication_test() {
+        let matrix1: Matrix = Matrix::new(vec![1.0, 2.0, 3.0, 4.0, 5.0, 6.0], HEIGHT, WIDTH);
+        let matrix2 = Matrix::new(vec![1.0, 1.0, 1.0], WIDTH, 1);
+        let result = matrix_multiplication(&matrix1, &matrix2).unwrap();
+        assert_eq!(result.get(0, 0), 6.0);
+        assert_eq!(result.get(1, 0), 15.0);
     }
 }

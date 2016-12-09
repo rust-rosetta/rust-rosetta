@@ -245,7 +245,7 @@ members = [
     "tasks/dutch-national-flag-problem",
 
     # http://rosettacode.org/wiki/Element-wise_operations
-    "tasks/element-wise-operations"
+    "tasks/element-wise-operations",
 
     # http://rosettacode.org/wiki/Entropy
     "tasks/entropy",
