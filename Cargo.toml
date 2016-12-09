@@ -243,6 +243,9 @@ members = [
     # http://rosettacode.org/wiki/Dutch_national_flag_problem
     "tasks/dutch-national-flag-problem",
 
+    # http://rosettacode.org/wiki/Echo_server
+    "tasks/echo-server",
+
     # http://rosettacode.org/wiki/Empty_directory
     "tasks/empty-directory",
 
@@ -1335,9 +1338,3 @@ path = "src/doubly_linked_list/element_definition.rs"
 # http://www.rosettacode.org/wiki/Doubly-linked_list/Element_insertion
 name = "doubly_linked_list_element_insertion"
 path = "src/doubly_linked_list/element_insertion.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Echo_server
-name = "echo_server"
-path = "src/echo_server.rs"
-test = false
