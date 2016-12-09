@@ -1,5 +1,3 @@
-// http://rosettacode.org/wiki/Combinations
-
 use std::fmt::Display;
 
 fn comb<T>(arr: &[T], n: u32)
