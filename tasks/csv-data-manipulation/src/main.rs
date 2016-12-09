@@ -1,5 +1,3 @@
-// http://rosettacode.org/wiki/CSV_data_manipulation
-
 use std::vec::Vec ;
 
 fn check_csv_length(values:&[Vec<String>],line_length:usize) -> Result<(),String>{

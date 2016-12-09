@@ -534,6 +534,10 @@ dependencies = [
 ]
 
 [[package]]
+name = "csv-data-manipulation"
+version = "0.1.0"
+
+[[package]]
 name = "currying"
 version = "0.1.0"
 
