@@ -234,6 +234,9 @@ members = [
     # http://rosettacode.org/wiki/Digital_root
     "tasks/digital-root",
 
+    # http://rosettacode.org/wiki/Dijkstra's_algorithm
+    "tasks/dijkstras-algorithm",
+
     # http://rosettacode.org/wiki/Dining_philosophers
     "tasks/dining-philosophers",
 
@@ -1325,8 +1328,3 @@ path = "src/delete_a_file.rs"
 # http://rosettacode.org/wiki/Determine_if_only_one_instance_is_running
 name = "determine_if_only_one_instance_is_running"
 path = "src/determine_if_only_one_instance_is_running.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Dijkstra's_algorithm
-name = "dijkstras_algorithm"
-path = "src/dijkstras_algorithm.rs"

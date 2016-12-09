@@ -1,5 +1,3 @@
-// http://rosettacode.org/wiki/Dijkstra's_algorithm
-
 use std::collections::{HashMap, BinaryHeap, VecDeque};
 use std::collections::hash_map::Entry::{Occupied, Vacant};
 use std::iter::repeat;
