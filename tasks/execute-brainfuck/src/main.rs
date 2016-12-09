@@ -1,5 +1,3 @@
-// http://rosettacode.org/wiki/Execute_Brain****
-
 use std::collections::HashMap;
 use std::env;
 use std::fs::File;

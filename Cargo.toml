@@ -261,6 +261,9 @@ members = [
     # http://rosettacode.org/wiki/Execute_a_Markov_algorithm
     "tasks/execute-a-markov-algorithm",
 
+    # http://rosettacode.org/wiki/Execute_Brain****
+    "tasks/execute-brainfuck",
+
     # http://rosettacode.org/wiki/Execute_HQ9+
     "tasks/execute-hq9-plus",
 
@@ -1359,8 +1362,3 @@ path = "src/even_or_odd.rs"
 # http://rosettacode.org/wiki/Execute_a_system_command
 name = "execute_a_system_command"
 path = "src/execute_a_system_command.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Execute_Brain****
-name = "execute_brainfuck"
-path = "src/execute_brainfuck.rs"
