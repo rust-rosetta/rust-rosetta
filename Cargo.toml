@@ -261,6 +261,9 @@ members = [
     # http://rosettacode.org/wiki/Execute_a_Markov_algorithm
     "tasks/execute-a-markov-algorithm",
 
+    # http://rosettacode.org/wiki/Execute_HQ9+
+    "tasks/execute-hq9-plus",
+
     # http://rosettacode.org/wiki/Factorial
     "tasks/factorial",
 
@@ -1361,8 +1364,3 @@ path = "src/execute_a_system_command.rs"
 # http://rosettacode.org/wiki/Execute_Brain****
 name = "execute_brainfuck"
 path = "src/execute_brainfuck.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Execute_HQ9+
-name = "execute_hq9_plus"
-path = "src/execute_hq9_plus.rs"

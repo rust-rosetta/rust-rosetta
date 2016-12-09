@@ -1,4 +1,3 @@
-// http://rosettacode.org/wiki/Execute_HQ9+
 use std::env;
 
 // HQ9+ requires that '+' increments an accumulator, but it's inaccessible (and thus, unused).

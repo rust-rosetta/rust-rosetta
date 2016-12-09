@@ -1,0 +1,6 @@
+[package]
+name = "execute-hq9-plus"
+version = "0.1.0"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Execute_HQ9+"
