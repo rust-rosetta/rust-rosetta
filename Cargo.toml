@@ -186,6 +186,9 @@ members = [
     # http://rosettacode.org/wiki/Best_shuffle
     "tasks/best-shuffle",
 
+    # http://rosettacode.org/wiki/Binary_search
+    "tasks/binary-search",
+
     # http://rosettacode.org/wiki/Bitcoin/address_validation
     "tasks/bitcoin/address-validation",
 
@@ -1248,8 +1251,3 @@ test = false
 # http://rosettacode.org/wiki/Binary_digits
 name = "binary_digits"
 path = "src/binary_digits.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Binary_search
-name = "binary_search"
-path = "src/binary_search.rs"
