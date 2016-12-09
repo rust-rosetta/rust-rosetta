@@ -1,5 +1,3 @@
-// http://rosettacode.org/wiki/CRC-32
-
 fn main() {
     let s = "The quick brown fox jumps over the lazy dog";
     println!("{:X}", crc(s.as_bytes()));

@@ -219,6 +219,9 @@ members = [
     # http://rosettacode.org/wiki/Concurrent_computing
     "tasks/concurrent-computing",
 
+    # http://rosettacode.org/wiki/CRC-32
+    "tasks/crc-32",
+
     # http://rosettacode.org/wiki/Create_a_file
     "tasks/create-a-file",
 
@@ -1310,8 +1313,3 @@ test = false
 # http://www.rosettacode.org/wiki/Count_occurrences_of_a_substring
 name = "count_occurences_of_substring"
 path = "src/count_occurences_of_substring.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/CRC-32
-name = "crc_32"
-path = "src/crc_32.rs"
