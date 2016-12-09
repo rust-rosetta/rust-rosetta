@@ -1,5 +1,3 @@
-// http://rosettacode.org/wiki/Dining_philosophers
-
 //! A Rust implementation of a solution for the Dining Philosophers Problem. We prevent a deadlock
 //! by using Dijkstra's solution of making a single diner "left-handed." That is, all diners except
 //! one pick up the chopstick "to their left" and then the chopstick "to their right." The

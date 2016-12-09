@@ -234,6 +234,9 @@ members = [
     # http://rosettacode.org/wiki/Digital_root
     "tasks/digital-root",
 
+    # http://rosettacode.org/wiki/Dining_philosophers
+    "tasks/dining-philosophers",
+
     # http://rosettacode.org/wiki/Discordian_date
     "tasks/discordian-date",
 
@@ -1327,8 +1330,3 @@ path = "src/determine_if_only_one_instance_is_running.rs"
 # http://rosettacode.org/wiki/Dijkstra's_algorithm
 name = "dijkstras_algorithm"
 path = "src/dijkstras_algorithm.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Dining_philosophers
-name = "dining_philosophers"
-path = "src/dining_philosophers.rs"
