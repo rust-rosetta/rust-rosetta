@@ -1,0 +1,6 @@
+[package]
+name = "delete-a-file"
+version = "0.1.0"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Delete_a_file"

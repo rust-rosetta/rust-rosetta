@@ -1,4 +1,3 @@
-// http://rosettacode.org/wiki/Delete_a_file
 use std::fs;
 
 fn main() {
