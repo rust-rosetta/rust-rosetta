@@ -1,5 +1,3 @@
-// http://rosettacode.org/wiki/Even_or_odd
-
 #![allow(unused_variables)]
 
 fn main() {

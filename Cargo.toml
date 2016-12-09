@@ -252,6 +252,9 @@ members = [
     # http://rosettacode.org/wiki/Evaluate_binomial_coefficients
     "tasks/evaluate-binomial-coefficients",
 
+    # http://rosettacode.org/wiki/Even_or_odd
+    "tasks/even-or-odd",
+
     # http://rosettacode.org/wiki/Events
     "tasks/events",
 
@@ -1355,8 +1358,3 @@ path = "src/ethiopian_multiplication.rs"
 # http://rosettacode.org/wiki/Euler's_sum_of_powers_conjecture
 name = "eulers_sum_of_powers_conjecture"
 path = "src/eulers_sum_of_powers_conjecture.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Even_or_odd
-name = "even_or_odd"
-path = "src/even_or_odd.rs"
