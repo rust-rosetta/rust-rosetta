@@ -210,6 +210,9 @@ members = [
     # http://rosettacode.org/wiki/Check_output_device_is_a_terminal
     "tasks/check-output-device-is-a-terminal",
 
+    # http://rosettacode.org/wiki/Chinese_remainder_theorem
+    "tasks/chinese-remainder-theorem",
+
     # http://rosettacode.org/wiki/Circles_of_given_radius_through_two_points
     "tasks/circles-of-given-radius-through-two-points",
 
@@ -1278,8 +1281,3 @@ test = false
 # http://rosettacode.org/wiki/Checkpoint_synchronization
 name = "checkpoint_synchronization"
 path = "src/checkpoint_synchronization.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Chinese_remainder_theorem
-name = "chinese_remainder"
-path = "src/chinese_remainder.rs"

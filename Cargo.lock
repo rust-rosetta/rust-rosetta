@@ -393,6 +393,10 @@ dependencies = [
 ]
 
 [[package]]
+name = "chinese-remainder-theorem"
+version = "0.1.0"
+
+[[package]]
 name = "chrono"
 version = "0.2.25"
 source = "registry+https://github.com/rust-lang/crates.io-index"
