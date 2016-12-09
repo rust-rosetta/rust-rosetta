@@ -1,5 +1,3 @@
-// http://rosettacode.org/wiki/Associative_array/Iteration
-
 use std::collections::HashMap;
 
 fn main() {

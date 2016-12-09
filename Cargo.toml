@@ -155,7 +155,7 @@ members = [
 
     # http://rosettacode.org/wiki/Archimedean_spiral
     "tasks/archimedean-spiral",
-    
+
     # http://rosettacode.org/wiki/Arena_storage_pool
     "tasks/arena-storage-pool",
 
@@ -164,6 +164,9 @@ members = [
 
     # http://rosettacode.org/wiki/Arithmetic/Rational
     "tasks/arithmetic/rational",
+
+    # http://rosettacode.org/wiki/Associative_array/Iteration
+    "tasks/associative-array/iteration",
 
     # http://rosettacode.org/wiki/Atomic_updates
     "tasks/atomic-updates",
@@ -1232,8 +1235,3 @@ test = false
 # http://rosettacode.org/wiki/Associative_array/Creation
 name = "associative_array_creation"
 path = "src/associative_array/creation.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Associative_array/Iteration
-name = "associative_array_iteration"
-path = "src/associative_array/iteration.rs"

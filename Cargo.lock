@@ -163,6 +163,10 @@ name = "arithmetic-mean"
 version = "0.1.0"
 
 [[package]]
+name = "associative-array-iteration"
+version = "0.1.0"
+
+[[package]]
 name = "atk-sys"
 version = "0.3.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
