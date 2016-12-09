@@ -249,6 +249,9 @@ members = [
     # http://rosettacode.org/wiki/Equilibrium_index
     "tasks/equilibrium-index",
 
+    # http://rosettacode.org/wiki/Euler's_sum_of_powers_conjecture
+    "tasks/eulers-sum-of-powers-conjecture",
+
     # http://rosettacode.org/wiki/Evaluate_binomial_coefficients
     "tasks/evaluate-binomial-coefficients",
 
@@ -1353,8 +1356,3 @@ path = "src/environment_variables.rs"
 # http://rosettacode.org/wiki/Ethiopian_multiplication
 name = "ethiopian_multiplication"
 path = "src/ethiopian_multiplication.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Euler's_sum_of_powers_conjecture
-name = "eulers_sum_of_powers_conjecture"
-path = "src/eulers_sum_of_powers_conjecture.rs"

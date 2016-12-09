@@ -682,6 +682,10 @@ dependencies = [
 ]
 
 [[package]]
+name = "eulers-sum-of-powers-conjecture"
+version = "0.1.0"
+
+[[package]]
 name = "evaluate-binomial-coefficients"
 version = "0.1.0"
 dependencies = [

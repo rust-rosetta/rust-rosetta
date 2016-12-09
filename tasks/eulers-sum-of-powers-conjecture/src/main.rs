@@ -1,4 +1,3 @@
-// http://rosettacode.org/wiki/Euler's_sum_of_powers_conjecture
 const MAX_N: u64 = 250;
 
 #[cfg_attr(feature = "clippy", allow(needless_range_loop))]
