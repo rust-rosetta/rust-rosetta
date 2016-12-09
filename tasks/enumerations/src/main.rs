@@ -1,5 +1,3 @@
-// http://rosettacode.org/wiki/Enumerations
-
 #[allow(dead_code)]
 enum Fruits {
     Apple,

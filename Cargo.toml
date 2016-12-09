@@ -246,6 +246,9 @@ members = [
     # http://rosettacode.org/wiki/Entropy
     "tasks/entropy",
 
+    # http://rosettacode.org/wiki/Enumerations
+    "tasks/enumerations",
+
     # http://rosettacode.org/wiki/Environment_variables
     "tasks/environment-variables",
 
@@ -1346,9 +1349,3 @@ test = false
 # http://rosettacode.org/wiki/Enforced_mutability
 name = "enforced_immutability"
 path = "src/enforced_immutability.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Enumerations
-name = "enumerations"
-path = "src/enumerations.rs"
-test = false
