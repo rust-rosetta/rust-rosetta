@@ -1,5 +1,3 @@
-// http://rosettacode.org/wiki/Circles_of_given_radius_through_two_points
-
 //! Translation of C.
 
 use std::f64;
