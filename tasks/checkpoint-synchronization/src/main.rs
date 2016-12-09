@@ -1,10 +1,9 @@
-// http://rosettacode.org/wiki/Checkpoint_synchronization
-
 //! We implement this task using Rust's Barriers.  Barriers are simply thread synchronization
 //! points--if a task waits at a barrier, it will not continue until the number of tasks for which
 //! the variable was initialized are also waiting at the barrier, at which point all of them will
 //! stop waiting.  This can be used to allow threads to do asynchronous work and guarantee
 //! properties at checkpoints.
+
 use std::sync::atomic::{AtomicBool, Ordering};
 use std::sync::{Arc, Barrier};
 use std::thread::spawn;
