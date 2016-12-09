@@ -1939,6 +1939,10 @@ dependencies = [
 ]
 
 [[package]]
+name = "mode"
+version = "0.1.0"
+
+[[package]]
 name = "modular-exponentiation"
 version = "0.1.0"
 dependencies = [

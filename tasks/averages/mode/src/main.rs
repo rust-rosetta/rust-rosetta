@@ -1,5 +1,3 @@
-// http://rosettacode.org/wiki/Averages/Mode
-
 use std::collections::HashMap;
 use std::hash::Hash;
 
