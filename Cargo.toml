@@ -162,6 +162,9 @@ members = [
     # http://rosettacode.org/wiki/Arithmetic/Complex
     "tasks/arithmetic/complex",
 
+    # http://rosettacode.org/wiki/Arithmetic/Integer
+    "tasks/arithmetic/integer",
+
     # http://rosettacode.org/wiki/Arithmetic/Rational
     "tasks/arithmetic/rational",
 
@@ -1218,9 +1221,3 @@ path = "src/bin/coverage.rs"
 # http://rosettacode.org/wiki/Arithmetic-geometric_mean
 name = "arithmetic-geometric_mean"
 path = "src/arithmetic-geometric_mean.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Arithmetic/Integer
-name = "arithmetic_integer"
-path = "src/arithmetic/integer.rs"
-test = false
