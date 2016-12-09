@@ -1,4 +1,3 @@
-// http://rosettacode.org/wiki/Empty_directory
 use std::fs;
 use std::env::args;
 
