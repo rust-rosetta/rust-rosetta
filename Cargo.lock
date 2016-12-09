@@ -468,6 +468,10 @@ name = "continue"
 version = "0.1.0"
 
 [[package]]
+name = "continued-fraction"
+version = "0.1.0"
+
+[[package]]
 name = "convert-seconds-to-compound-duration"
 version = "0.1.0"
 

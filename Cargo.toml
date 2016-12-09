@@ -219,6 +219,9 @@ members = [
     # http://rosettacode.org/wiki/Concurrent_computing
     "tasks/concurrent-computing",
 
+    # http://rosettacode.org/wiki/Continued_fraction
+    "tasks/continued-fraction",
+
     # http://rosettacode.org/wiki/Continued_fraction/Arithmetic/Construct_from_rational_number
     "tasks/continued-fraction/arithmetic/construct-from-rational-number",
 
@@ -1297,8 +1300,3 @@ path = "src/comments.rs"
 # http://rosettacode.org/wiki/Compound_data_type
 name = "compound_data_type"
 path = "src/compound_data_type.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Continued_fraction
-name = "continued_fraction"
-path = "src/continued_fraction.rs"

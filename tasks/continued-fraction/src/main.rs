@@ -1,5 +1,3 @@
-// http://rosettacode.org/wiki/Continued_fraction
-
 use std::iter;
 
 // Calculating a continued fraction is quite easy with iterators, however
