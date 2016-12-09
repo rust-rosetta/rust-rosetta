@@ -1,5 +1,3 @@
-// http://rosettacode.org/wiki/Ethiopian_multiplication
-
 fn double(a: i32) -> i32 {
     2 * a
 }

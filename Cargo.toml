@@ -249,6 +249,9 @@ members = [
     # http://rosettacode.org/wiki/Equilibrium_index
     "tasks/equilibrium-index",
 
+    # http://rosettacode.org/wiki/Ethiopian_multiplication
+    "tasks/ethiopian-multiplication",
+
     # http://rosettacode.org/wiki/Euler's_sum_of_powers_conjecture
     "tasks/eulers-sum-of-powers-conjecture",
 
@@ -1351,8 +1354,3 @@ test = false
 # http://rosettacode.org/wiki/Environment_variables
 name = "environment_variables"
 path = "src/environment_variables.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Ethiopian_multiplication
-name = "ethiopian_multiplication"
-path = "src/ethiopian_multiplication.rs"
