@@ -246,6 +246,9 @@ members = [
     # http://rosettacode.org/wiki/Empty_directory
     "tasks/empty-directory",
 
+    # http://rosettacode.org/wiki/Empty_program
+    "tasks/empty-program",
+
     # http://rosettacode.org/wiki/Enforced_immutability
     "tasks/enforced-immutability",
 
@@ -1337,10 +1340,4 @@ path = "src/doubly_linked_list/element_insertion.rs"
 # http://rosettacode.org/wiki/Echo_server
 name = "echo_server"
 path = "src/echo_server.rs"
-test = false
-
-[[bin]]
-# http://rosettacode.org/wiki/Empty_program
-name = "empty"
-path = "src/empty.rs"
 test = false
