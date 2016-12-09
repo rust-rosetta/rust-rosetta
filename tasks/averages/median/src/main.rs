@@ -1,5 +1,3 @@
-// http://rosettacode.org/wiki/Averages/Median
-
 fn median(samples: &[f64]) -> f64 {
     let mut xs = samples.iter().cloned().collect::<Vec<_>>();
     xs.sort_by(|x, y| x.partial_cmp(y).unwrap());
