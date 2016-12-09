@@ -1,0 +1,7 @@
+[package]
+name = "root-mean-square"
+version = "0.1.0"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Averages/Root_mean_square"
+

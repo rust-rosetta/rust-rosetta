@@ -2537,6 +2537,10 @@ dependencies = [
 ]
 
 [[package]]
+name = "root-mean-square"
+version = "0.1.0"
+
+[[package]]
 name = "roots-of-a-function"
 version = "0.1.0"
 dependencies = [

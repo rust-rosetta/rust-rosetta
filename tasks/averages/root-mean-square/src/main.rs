@@ -1,5 +1,3 @@
-// http://rosettacode.org/wiki/Averages/Root_mean_square
-
 /// The mean is not defined for an empty list, so we must return an Option
 fn rms(list: &[f64]) -> Option<f64> {
     match list.len() {
