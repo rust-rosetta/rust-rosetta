@@ -147,6 +147,9 @@ members = [
     # http://rosettacode.org/wiki/Anonymous_recursion
     "tasks/anonymous-recursion",
 
+    # http://rosettacode.org/wiki/Apply_a_callback_to_an_array
+    "tasks/apply-a-callback-to-an-array",
+
     # http://rosettacode.org/wiki/Arbitrary-precision_integers_(included)
     "tasks/arbitrary-precision-integers-included",
 
@@ -1259,10 +1262,4 @@ path = "src/caesar_cipher.rs"
 # http://rosettacode.org/wiki/Call_an_object_method
 name = "call_an_object_method"
 path = "src/call_an_object_method.rs"
-test = false
-
-[[bin]]
-# http://rosettacode.org/wiki/Apply_a_callback_to_an_array
-name = "callback_to_array"
-path = "src/callback_to_array.rs"
 test = false

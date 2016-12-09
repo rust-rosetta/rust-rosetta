@@ -1,0 +1,7 @@
+[package]
+name = "apply-a-callback-to-an-array"
+version = "0.1.0"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Apply_a_callback_to_an_array"
+
