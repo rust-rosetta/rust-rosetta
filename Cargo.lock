@@ -725,6 +725,10 @@ name = "factorial-plugin"
 version = "1.0.0"
 
 [[package]]
+name = "factors-of-an-integer"
+version = "0.1.0"
+
+[[package]]
 name = "fast-fourier-transform"
 version = "0.1.0"
 dependencies = [
