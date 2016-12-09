@@ -204,6 +204,9 @@ members = [
     # http://rosettacode.org/wiki/Call_a_foreign-language_function
     "tasks/call-a-foreign-language-function",
 
+    # http://rosettacode.org/wiki/Carmichael_3_strong_pseudoprimes
+    "tasks/carmichael-3-strong-pseudoprimes",
+
     # http://rosettacode.org/wiki/Catalan_numbers
     "tasks/catalan-numbers",
 
@@ -1263,8 +1266,3 @@ test = false
 name = "callback_to_array"
 path = "src/callback_to_array.rs"
 test = false
-
-[[bin]]
-# http://rosettacode.org/wiki/Carmichael_3_strong_pseudoprimes
-name = "carmichael_3_strong_pseudoprimes"
-path = "src/carmichael_3_strong_pseudoprimes.rs"

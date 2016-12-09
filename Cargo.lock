@@ -365,6 +365,10 @@ dependencies = [
 ]
 
 [[package]]
+name = "carmichael-3-strong-pseudoprimes"
+version = "0.1.0"
+
+[[package]]
 name = "catalan-numbers"
 version = "0.1.0"
 

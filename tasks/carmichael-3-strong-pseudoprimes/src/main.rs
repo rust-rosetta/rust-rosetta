@@ -1,5 +1,3 @@
-// http://rosettacode.org/wiki/Carmichael_3_strong_pseudoprimes
-
 fn is_prime(n: i64) -> bool {
     if n > 1 {
         (2..((n / 2) + 1)).all(|x| n % x != 0)
