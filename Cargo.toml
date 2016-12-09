@@ -165,6 +165,9 @@ members = [
     # http://rosettacode.org/wiki/Arithmetic/Rational
     "tasks/arithmetic/rational",
 
+    # http://rosettacode.org/wiki/Array_concatenation
+    "tasks/array-concatenation",
+
     # http://rosettacode.org/wiki/Array_length
     "tasks/array-length",
 
@@ -1221,8 +1224,3 @@ path = "src/arithmetic-geometric_mean.rs"
 name = "arithmetic_integer"
 path = "src/arithmetic/integer.rs"
 test = false
-
-[[bin]]
-# http://www.rosettacode.org/wiki/Array_concatenation
-name = "array_concatenation"
-path = "src/array_concatenation.rs"

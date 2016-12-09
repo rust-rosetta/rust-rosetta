@@ -1,6 +1,3 @@
-// http://rosettacode.org/wiki/Array_concatenation
-
-
 fn main() {
     let a_vec: Vec<i32> = vec![1, 2, 3, 4, 5];
     let b_vec: Vec<i32> = vec![6; 5];

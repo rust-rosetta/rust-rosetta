@@ -163,6 +163,10 @@ name = "arithmetic-mean"
 version = "0.1.0"
 
 [[package]]
+name = "array-concatenation"
+version = "0.1.0"
+
+[[package]]
 name = "array-length"
 version = "0.1.0"
 
