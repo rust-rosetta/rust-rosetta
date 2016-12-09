@@ -1,5 +1,3 @@
-// http://rosettacode.org/wiki/Compound_data_type
-
 //! There are three kinds of `structs` in Rust, two of which would be suitable to represent a
 //! point.
 

@@ -216,6 +216,9 @@ members = [
     # http://rosettacode.org/wiki/Compile-time_calculation
     "tasks/compile-time-calculation",
 
+    # http://rosettacode.org/wiki/Compound_data_type
+    "tasks/compound-data-type",
+
     # http://rosettacode.org/wiki/Concurrent_computing
     "tasks/concurrent-computing",
 
@@ -1295,8 +1298,3 @@ test = false
 # http://rosettacode.org/wiki/Comments
 name = "comments"
 path = "src/comments.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Compound_data_type
-name = "compound_data_type"
-path = "src/compound_data_type.rs"
