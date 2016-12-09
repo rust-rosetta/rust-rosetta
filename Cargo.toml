@@ -243,6 +243,9 @@ members = [
     # http://rosettacode.org/wiki/Dutch_national_flag_problem
     "tasks/dutch-national-flag-problem",
 
+    # http://rosettacode.org/wiki/Enforced_immutability
+    "tasks/enforced-immutability",
+
     # http://rosettacode.org/wiki/Entropy
     "tasks/entropy",
 
@@ -1344,8 +1347,3 @@ test = false
 name = "empty_directory"
 path = "src/empty_directory.rs"
 test = false
-
-[[bin]]
-# http://rosettacode.org/wiki/Enforced_mutability
-name = "enforced_immutability"
-path = "src/enforced_immutability.rs"

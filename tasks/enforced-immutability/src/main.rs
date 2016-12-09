@@ -1,5 +1,3 @@
-// http://rosettacode.org/wiki/Enforced_immutability
-
 #![allow(unused_variables)]
 
 fn main() {

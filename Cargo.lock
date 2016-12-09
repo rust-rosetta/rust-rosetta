@@ -663,6 +663,10 @@ name = "encode"
 version = "0.1.0"
 
 [[package]]
+name = "enforced-immutability"
+version = "0.1.0"
+
+[[package]]
 name = "entropy"
 version = "0.1.0"
 
