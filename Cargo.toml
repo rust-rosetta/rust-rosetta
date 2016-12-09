@@ -186,6 +186,9 @@ members = [
     # http://rosettacode.org/wiki/Best_shuffle
     "tasks/best-shuffle",
 
+    # http://rosettacode.org/wiki/Binary_digits
+    "tasks/binary-digits",
+
     # http://rosettacode.org/wiki/Binary_search
     "tasks/binary-search",
 
@@ -1246,8 +1249,3 @@ test = true
 name = "benford"
 path = "src/benford.rs"
 test = false
-
-[[bin]]
-# http://rosettacode.org/wiki/Binary_digits
-name = "binary_digits"
-path = "src/binary_digits.rs"
