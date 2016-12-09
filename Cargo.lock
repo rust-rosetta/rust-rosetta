@@ -365,6 +365,10 @@ dependencies = [
 ]
 
 [[package]]
+name = "catamorphism"
+version = "0.1.0"
+
+[[package]]
 name = "cfg-if"
 version = "0.1.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -377,6 +381,10 @@ dependencies = [
  "gleam 0.2.22 (registry+https://github.com/rust-lang/crates.io-index)",
  "libc 0.2.17 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
+
+[[package]]
+name = "character-codes"
+version = "0.1.0"
 
 [[package]]
 name = "chat-server"

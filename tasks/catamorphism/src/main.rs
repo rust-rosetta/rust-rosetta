@@ -1,5 +1,3 @@
-// http://rosettacode.org/wiki/Catamorphism
-
 fn main() {
     let numbers = [1, 2, 3, 4, 5];
     let sum = numbers.iter().fold(0, |a, n| a + n);
