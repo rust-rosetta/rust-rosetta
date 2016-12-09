@@ -1,5 +1,3 @@
-// http://rosettacode.org/wiki/Currying
-
 /// `add_n` returns a boxed closure.
 ///
 /// TODO: Once "unboxed, abstract return types" are

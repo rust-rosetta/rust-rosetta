@@ -222,6 +222,9 @@ members = [
     # http://rosettacode.org/wiki/Create_a_file
     "tasks/create-a-file",
 
+    # http://rosettacode.org/wiki/Currying
+    "tasks/currying",
+
     # http://rosettacode.org/wiki/Date_format
     "tasks/date-format",
 
@@ -1314,9 +1317,3 @@ path = "src/crc_32.rs"
 # http://rosettacode.org/wiki/CSV_data_manipulation
 name = "csv_data_manipulation"
 path = "src/csv_data_manipulation.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Currying
-name = "currying"
-path = "src/currying.rs"
-test = false

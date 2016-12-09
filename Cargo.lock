@@ -534,6 +534,10 @@ dependencies = [
 ]
 
 [[package]]
+name = "currying"
+version = "0.1.0"
+
+[[package]]
 name = "date-format"
 version = "0.1.0"
 dependencies = [
