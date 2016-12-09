@@ -1,0 +1,6 @@
+[package]
+name = "count-occurrences-of-a-substring"
+version = "0.1.0"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Count_occurrences_of_a_substring"

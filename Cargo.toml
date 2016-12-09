@@ -219,6 +219,9 @@ members = [
     # http://rosettacode.org/wiki/Concurrent_computing
     "tasks/concurrent-computing",
 
+    # http://rosettacode.org/wiki/Count_occurrences_of_a_substring
+    "tasks/count-occurrences-of-a-substring",
+
     # http://rosettacode.org/wiki/CRC-32
     "tasks/crc-32",
 
@@ -1308,8 +1311,3 @@ path = "src/conways_game_of_life.rs"
 name = "count_in_octal"
 path = "src/count_in_octal.rs"
 test = false
-
-[[bin]]
-# http://www.rosettacode.org/wiki/Count_occurrences_of_a_substring
-name = "count_occurences_of_substring"
-path = "src/count_occurences_of_substring.rs"

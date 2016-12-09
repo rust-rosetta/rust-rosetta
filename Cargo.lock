@@ -500,11 +500,19 @@ dependencies = [
 ]
 
 [[package]]
+name = "count-occurrences-of-a-substring"
+version = "0.1.0"
+
+[[package]]
 name = "counting-sort"
 version = "0.1.0"
 dependencies = [
  "meta 0.1.0",
 ]
+
+[[package]]
+name = "crc-32"
+version = "0.1.0"
 
 [[package]]
 name = "create-a-file"
