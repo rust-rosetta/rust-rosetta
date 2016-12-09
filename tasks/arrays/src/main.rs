@@ -1,5 +1,3 @@
-// http://rosettacode.org/wiki/Arrays
-
 fn main() {}
 
 #[test]

@@ -165,6 +165,9 @@ members = [
     # http://rosettacode.org/wiki/Arithmetic/Rational
     "tasks/arithmetic/rational",
 
+    # http://rosettacode.org/wiki/Arrays
+    "tasks/arrays",
+
     # http://rosettacode.org/wiki/Assertions
     "tasks/assertions",
 
@@ -1225,8 +1228,3 @@ path = "src/array_concatenation.rs"
 # http://www.rosettacode.org/wiki/Array_length
 name = "array_length"
 path = "src/array_length.rs"
-
-[[bin]]
-# http://rosettacode.org/wiki/Arrays
-name = "arrays"
-path = "src/arrays.rs"
