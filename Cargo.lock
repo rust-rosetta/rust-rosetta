@@ -238,6 +238,10 @@ dependencies = [
 ]
 
 [[package]]
+name = "benfords-law"
+version = "0.1.0"
+
+[[package]]
 name = "bernoulli-numbers"
 version = "0.1.0"
 dependencies = [

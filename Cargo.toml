@@ -180,6 +180,9 @@ members = [
     # http://rosettacode.org/wiki/Balanced_brackets
     "tasks/balanced-brackets",
 
+    # http://rosettacode.org/wiki/Benford%27s_law
+    "tasks/benfords-law",
+
     # http://rosettacode.org/wiki/Bernoulli_numbers
     "tasks/bernoulli-numbers",
 
@@ -1243,9 +1246,3 @@ path = "src/averages/mode.rs"
 name = "averages_root_mean_square"
 path = "src/averages/root_mean_square.rs"
 test = true
-
-[[bin]]
-# http://rosettacode.org/wiki/Benford%27s_law
-name = "benford"
-path = "src/benford.rs"
-test = false

@@ -1,7 +1,4 @@
-// http://rosettacode.org/wiki/Benford's_law
-
 //! Contributed by Gavin Baker <gavinb@antonym.org>
-
 
 use std::fs::File;
 use std::io::{BufReader, BufRead};
