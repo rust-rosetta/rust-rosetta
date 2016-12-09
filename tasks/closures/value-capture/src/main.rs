@@ -1,4 +1,3 @@
-// http://rosettacode.org/wiki/Closures/Value_capture
 use std::iter::Map;
 use std::ops::RangeFrom;
 

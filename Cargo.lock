@@ -3098,6 +3098,10 @@ version = "0.1.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 
 [[package]]
+name = "value-capture"
+version = "0.1.0"
+
+[[package]]
 name = "vector-products"
 version = "0.1.0"
 
