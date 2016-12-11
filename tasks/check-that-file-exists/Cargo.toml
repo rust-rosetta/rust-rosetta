@@ -1,0 +1,6 @@
+[package]
+name = "check-that-file-exists"
+version = "0.1.0"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Check_that_file_exists"

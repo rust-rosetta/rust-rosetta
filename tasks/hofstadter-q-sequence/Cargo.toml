@@ -1,0 +1,7 @@
+[package]
+name = "hofstadter-q-sequence"
+version = "0.1.0"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Hofstadter_Q_sequence"
+

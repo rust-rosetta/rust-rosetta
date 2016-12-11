@@ -1,3 +1,0 @@
-Goodbye London!
-A Sample text file containing the string Goodbye London!
-replacing each occurence of the text Goodbye London! to Hello New York!

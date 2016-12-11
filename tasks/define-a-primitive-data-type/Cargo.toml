@@ -1,0 +1,6 @@
+[package]
+name = "define-a-primitive-data-type"
+version = "0.1.0"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Define_a_primitive_data_type"

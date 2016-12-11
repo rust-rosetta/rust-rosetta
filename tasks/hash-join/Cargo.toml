@@ -1,0 +1,7 @@
+[package]
+name = "hash-join"
+version = "0.1.0"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Hash_join"
+

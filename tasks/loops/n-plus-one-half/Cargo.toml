@@ -1,0 +1,6 @@
+[package]
+name = "n-plus-one-half"
+version = "0.1.0"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Loops/N_plus_one_half"

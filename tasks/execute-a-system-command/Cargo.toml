@@ -1,0 +1,6 @@
+[package]
+name = "execute-a-system-command"
+version = "0.1.0"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Execute_a_system_command"

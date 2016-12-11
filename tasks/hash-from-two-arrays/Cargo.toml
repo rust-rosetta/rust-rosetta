@@ -1,0 +1,7 @@
+[package]
+name = "hash-from-two-arrays"
+version = "0.1.0"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Hash_from_two_arrays"
+

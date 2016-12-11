@@ -1,0 +1,6 @@
+[package]
+name = "jaro-distance"
+version = "0.1.0"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Jaro_distance"

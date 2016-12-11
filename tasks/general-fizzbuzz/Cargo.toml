@@ -1,0 +1,6 @@
+[package]
+name = "general-fizzbuzz"
+version = "0.1.0"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/General_FizzBuzz"

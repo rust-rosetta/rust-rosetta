@@ -1,0 +1,7 @@
+[package]
+name = "newline-omission"
+version = "0.1.0"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Hello_world/Newline_omission"
+

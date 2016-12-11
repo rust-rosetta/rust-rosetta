@@ -1,0 +1,6 @@
+[package]
+name = "for-with-a-specified-step"
+version = "0.1.0"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Loops/For_with_a_specified_step"

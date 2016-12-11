@@ -1,0 +1,6 @@
+[package]
+name = "ethiopian-multiplication"
+version = "0.1.0"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Ethiopian_multiplication"

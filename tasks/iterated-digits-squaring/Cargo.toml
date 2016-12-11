@@ -1,0 +1,7 @@
+[package]
+name = "iterated-digits-squaring"
+version = "0.1.0"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Iterated_digits_squaring"
+

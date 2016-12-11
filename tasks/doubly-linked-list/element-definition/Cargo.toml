@@ -1,0 +1,7 @@
+[package]
+name = "doubly-linked-list-element-definition"
+version = "0.1.0"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Doubly-linked_list/Element_definition"
+

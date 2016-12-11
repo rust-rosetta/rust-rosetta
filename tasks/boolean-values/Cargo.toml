@@ -1,0 +1,7 @@
+[package]
+name = "boolean-values"
+version = "0.1.0"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Boolean_values"
+

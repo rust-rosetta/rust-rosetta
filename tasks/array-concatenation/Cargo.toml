@@ -1,0 +1,8 @@
+[package]
+name = "array-concatenation"
+version = "0.1.0"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Array_concatenation"
+
+
