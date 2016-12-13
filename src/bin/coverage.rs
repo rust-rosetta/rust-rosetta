@@ -1,20 +1,30 @@
 #[macro_use]
 extern crate clap;
+#[macro_use]
+extern crate log;
+
 extern crate difference;
+extern crate env_logger;
+extern crate meta;
+extern crate reqwest;
+extern crate serde;
+extern crate serde_json;
 extern crate term;
 
-extern crate meta;
-
 use std::io;
+use std::path::PathBuf;
 
 use clap::{Arg, App};
 use difference::Difference;
+use reqwest::Method;
+use reqwest::header::{Authorization, Bearer};
+use serde_json::builder::ObjectBuilder;
 use term::Terminal;
 
 use meta::Task;
 
 const ABOUT: &'static str = r#"
-Detect unimplemented tasks.
+Query differences between the rust-rosetta repository and the Rosetta Code wiki.
 
 This script prints out the name of each task, followed by whether it is implemented online,
 locally, or both.
@@ -126,6 +136,10 @@ fn main() {
             .possible_values(&["all", "local", "remote", "unimplemented"])
             .long("filter")
             .takes_value(true))
+        .arg(Arg::with_name("access-token")
+            .help("Uploads the coverage information to a firebase database")
+            .long("upload")
+            .takes_value(true))
         .get_matches();
 
     let mut t = term::stdout().unwrap();
@@ -134,17 +148,41 @@ fn main() {
 
     let tasks = if let Some(tasks) = matches.values_of("task") {
         let task_names = tasks.map(String::from).collect::<Vec<_>>();
-        meta::fetch_tasks(&task_names)
+        meta::fetch_tasks(PathBuf::from(env!("CARGO_MANIFEST_DIR")), &task_names)
     } else {
-        meta::fetch_all_tasks()
+        meta::fetch_all_tasks(PathBuf::from(env!("CARGO_MANIFEST_DIR")))
     };
 
-    for task in tasks {
-        match filter {
-            Filter::LocalOnly if !task.is_local_only() => continue,
-            Filter::RemoteOnly if !task.is_remote_only() => continue,
-            Filter::Unimplemented if !task.is_unimplemented() => continue,
-            Filter::All | _ => print_task(&mut *t, &task, matches.is_present("diff")).unwrap(),
-        }
+    let tasks = tasks.flat_map(|task| {
+            match filter {
+                Filter::LocalOnly if !task.is_local_only() => return None,
+                Filter::RemoteOnly if !task.is_remote_only() => return None,
+                Filter::Unimplemented if !task.is_unimplemented() => return None,
+                Filter::All | _ => {}
+            }
+
+            print_task(&mut *t, &task, matches.is_present("diff")).unwrap();
+
+            if matches.is_present("access-token") {
+                let value = ObjectBuilder::new()
+                    .insert("title", task.title())
+                    .insert("url", task.url().to_string())
+                    .insert("local_code", task.local_code())
+                    .insert("remote_code", task.remote_code());
+
+                Some(value.build())
+            } else {
+                None
+            }
+        })
+        .collect::<Vec<_>>();
+
+    if let Some(access_token) = matches.value_of("access-token") {
+        let client = reqwest::Client::new().unwrap();
+        client.request(Method::Put, "https://rosettacoverage.firebaseio.com/tasks")
+            .header(Authorization(Bearer { token: String::from(access_token) }))
+            .body(serde_json::to_string(&tasks).unwrap())
+            .send()
+            .unwrap();
     }
 }
