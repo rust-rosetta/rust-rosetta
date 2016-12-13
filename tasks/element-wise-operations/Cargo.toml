@@ -1,6 +1,6 @@
 [package]
 name = "element-wise-operations"
 version = "0.1.0"
-authors = ["maccod <maccora17@gmail.com>"]
 
-[dependencies]
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Element-wise_operations"

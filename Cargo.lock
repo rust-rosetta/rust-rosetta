@@ -854,15 +854,15 @@ name = "element-insertion"
 version = "0.1.0"
 
 [[package]]
-<<<<<<< HEAD
 name = "element-wise-operations"
-=======
+version = "0.1.0"
+
+[[package]]
 name = "empty-directory"
 version = "0.1.0"
 
 [[package]]
 name = "empty-program"
->>>>>>> master
 version = "0.1.0"
 
 [[package]]

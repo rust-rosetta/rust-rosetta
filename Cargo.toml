@@ -406,12 +406,11 @@ members = [
     # http://rosettacode.org/wiki/Dutch_national_flag_problem
     "tasks/dutch-national-flag-problem",
 
-<<<<<<< HEAD
-    # http://rosettacode.org/wiki/Element-wise_operations
-    "tasks/element-wise-operations",
-=======
     # http://rosettacode.org/wiki/Echo_server
     "tasks/echo-server",
+    
+    # http://rosettacode.org/wiki/Element-wise_operations
+    "tasks/element-wise-operations",
 
     # http://rosettacode.org/wiki/Empty_directory
     "tasks/empty-directory",
@@ -421,7 +420,6 @@ members = [
 
     # http://rosettacode.org/wiki/Enforced_immutability
     "tasks/enforced-immutability",
->>>>>>> master
 
     # http://rosettacode.org/wiki/Entropy
     "tasks/entropy",
