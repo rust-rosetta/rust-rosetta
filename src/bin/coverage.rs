@@ -1,67 +1,39 @@
+#[macro_use]
+extern crate clap;
 extern crate difference;
-extern crate docopt;
-extern crate rustc_serialize;
 extern crate term;
 
 extern crate meta;
 
 use std::io;
 
-use docopt::Docopt;
+use clap::{Arg, App};
 use difference::Difference;
 use term::Terminal;
 
 use meta::Task;
 
-const USAGE: &'static str = r#"
+const ABOUT: &'static str = r#"
 Detect unimplemented tasks.
 
 This script prints out the name of each task, followed by whether it is implemented online,
 locally, or both.
 
-Tasks must be specified using the names of their articles on the wiki, e.g., "K-d tree". If no
-tasks are specified, determines the status for all tasks.
+If no tasks are specified, determines the status for all tasks."#;
 
-Usage:
-    coverage [options] [<tasks>...]
-
-Options:
-    -h --help           Show this screen.
-
-    --diff              Print diffs of tasks between the local and remote version.
-
-    --filter=<type>     Filter tasks printed by the program. Accepted values:
-
-                            all                 Print all tasks (default).
-
-                            localonly           Only print tasks that are implemented locally, but
-                                                not on the wiki.
-
-                            remoteonly          Only print tasks that are implemented on the wiki,
-                                                but not locally.
-
-                            unimplemented       Only print tasks that neither implemented locally
-                                                nor remotely.
-"#;
-
-#[derive(Debug, RustcDecodable)]
-struct Args {
-    arg_tasks: Vec<String>,
-    flag_diff: bool,
-    flag_filter: Option<TaskFilter>,
+arg_enum!{
+    #[derive(Debug)]
+    enum Filter {
+        All,
+        LocalOnly,
+        RemoteOnly,
+        Unimplemented
+    }
 }
 
-#[derive(Debug, Clone, RustcDecodable)]
-enum TaskFilter {
-    All,
-    LocalOnly,
-    RemoteOnly,
-    Unimplemented,
-}
-
-impl Default for TaskFilter {
+impl Default for Filter {
     fn default() -> Self {
-        TaskFilter::All
+        Filter::All
     }
 }
 
@@ -139,24 +111,40 @@ fn write_status<T: ?Sized>(t: &mut T, boolean: bool) -> io::Result<()>
 }
 
 fn main() {
-    let args: Args = Docopt::new(USAGE).and_then(|d| d.decode()).unwrap_or_else(|e| e.exit());
+    let matches = App::new("coverage")
+        .about(ABOUT)
+        .version(crate_version!())
+        .max_term_width(100)
+        .arg(Arg::with_name("task")
+            .help("The name of a task on the wiki, such as 'K-d tree'")
+            .multiple(true))
+        .arg(Arg::with_name("diff")
+            .help("Print diffs of tasks between the local and remote version")
+            .long("diff"))
+        .arg(Arg::with_name("filter")
+            .help("Filter tasks printed by the program.")
+            .possible_values(&["all", "local", "remote", "unimplemented"])
+            .long("filter")
+            .takes_value(true))
+        .get_matches();
 
     let mut t = term::stdout().unwrap();
 
-    let tasks = if args.arg_tasks.len() > 0 {
-        meta::fetch_tasks(&args.arg_tasks.as_slice())
+    let filter = value_t!(matches.value_of("filter"), Filter).ok().unwrap_or_default();
+
+    let tasks = if let Some(tasks) = matches.values_of("task") {
+        let task_names = tasks.map(String::from).collect::<Vec<_>>();
+        meta::fetch_tasks(&task_names)
     } else {
         meta::fetch_all_tasks()
     };
 
-    let task_filter = args.flag_filter.unwrap_or_default().to_owned();
-
     for task in tasks {
-        match task_filter {
-            TaskFilter::LocalOnly if !task.is_local_only() => continue,
-            TaskFilter::RemoteOnly if !task.is_remote_only() => continue,
-            TaskFilter::Unimplemented if !task.is_unimplemented() => continue,
-            TaskFilter::All | _ => print_task(&mut *t, &task, args.flag_diff).unwrap(),
+        match filter {
+            Filter::LocalOnly if !task.is_local_only() => continue,
+            Filter::RemoteOnly if !task.is_remote_only() => continue,
+            Filter::Unimplemented if !task.is_unimplemented() => continue,
+            Filter::All | _ => print_task(&mut *t, &task, matches.is_present("diff")).unwrap(),
         }
     }
 }

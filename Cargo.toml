@@ -71,9 +71,8 @@ authors = [
 ]
 
 [dependencies]
+clap = "2"
 difference = "0.4.1"
-docopt = "0.6"
-rustc-serialize = "0.3"
 term = "0.4"
 
 [dependencies.meta]
