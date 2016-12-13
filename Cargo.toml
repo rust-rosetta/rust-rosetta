@@ -66,7 +66,8 @@ authors = [
     "Allen Bui, https://github.com/allenbui94",
     "Andrey Tonkih, https://github.com/xosmig",
     "Thibault Barbie, https://github.com/thibaultbarbie",
-    "Corentin Henry, https://github.com/little-dude"
+    "Corentin Henry, https://github.com/little-dude",
+    "Dylan Maccora, https://github.com/maccoda"
 ]
 
 [dependencies]
@@ -407,6 +408,9 @@ members = [
 
     # http://rosettacode.org/wiki/Echo_server
     "tasks/echo-server",
+    
+    # http://rosettacode.org/wiki/Element-wise_operations
+    "tasks/element-wise-operations",
 
     # http://rosettacode.org/wiki/Empty_directory
     "tasks/empty-directory",
