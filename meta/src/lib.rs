@@ -23,9 +23,11 @@ pub extern crate rand;
 use std::collections::{HashSet, VecDeque};
 use std::fs::File;
 use std::io::prelude::*;
-use std::path::Path;
+use std::io;
 use std::iter::FromIterator;
 use std::ops::Sub;
+use std::path::Path;
+use std::process;
 
 use regex::Regex;
 use url::Url;
@@ -172,7 +174,13 @@ impl Iterator for TaskIterator {
                 .iter()
                 .cloned()
                 .find(|task| task.title() == title.as_str());
-            let remote_task = remote::request_task(&title).unwrap();
+            let remote_task = match remote::request_task(&title) {
+                Ok(remote_task) => remote_task,
+                Err(e) => {
+                    writeln!(io::stderr(), "Error while requesting task: {}", e).unwrap();
+                    process::exit(1);
+                }
+            };
 
             let task = Task {
                 local: local_task.clone(),
