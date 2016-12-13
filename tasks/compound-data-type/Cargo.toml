@@ -1,0 +1,7 @@
+[package]
+name = "compound-data-type"
+version = "0.1.0"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Compound_data_type"
+

@@ -1,0 +1,6 @@
+[package]
+name = "call-an-object-method"
+version = "0.1.0"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Call_an_object_method"

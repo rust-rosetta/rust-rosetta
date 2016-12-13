@@ -1,0 +1,7 @@
+[package]
+name = "carmichael-3-strong-pseudoprimes"
+version = "0.1.0"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Carmichael_3_strong_pseudoprimes"
+

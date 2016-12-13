@@ -1,0 +1,7 @@
+[package]
+name = "array-length"
+version = "0.1.0"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Array_length"
+

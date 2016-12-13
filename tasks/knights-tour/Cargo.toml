@@ -1,0 +1,7 @@
+[package]
+name = "knights-tour"
+version = "0.1.0"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Knight's_tour"
+

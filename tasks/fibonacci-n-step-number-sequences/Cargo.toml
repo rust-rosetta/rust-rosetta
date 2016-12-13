@@ -1,0 +1,7 @@
+[package]
+name = "fibonacci-n-step-number-sequences"
+version = "0.1.0"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Fibonacci_n-step_number_sequences"
+

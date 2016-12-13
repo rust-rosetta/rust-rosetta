@@ -1,0 +1,6 @@
+[package]
+name = "binary-digits"
+version = "0.1.0"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Binary_digits"

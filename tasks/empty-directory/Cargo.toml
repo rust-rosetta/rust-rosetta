@@ -1,0 +1,6 @@
+[package]
+name = "empty-directory"
+version = "0.1.0"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Empty_directory"

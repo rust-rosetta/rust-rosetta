@@ -1,0 +1,6 @@
+[package]
+name = "character-codes"
+version = "0.1.0"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Character_codes"

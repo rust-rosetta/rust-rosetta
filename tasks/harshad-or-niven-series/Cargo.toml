@@ -1,0 +1,6 @@
+[package]
+name = "harshad-or-niven-series"
+version = "0.1.0"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Harshad_or_Niven_series"

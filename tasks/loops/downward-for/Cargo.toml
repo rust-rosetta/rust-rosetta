@@ -1,0 +1,6 @@
+[package]
+name = "downward-for"
+version = "0.1.0"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Loops/Downward_for"

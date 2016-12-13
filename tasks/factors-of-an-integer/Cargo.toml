@@ -1,0 +1,7 @@
+[package]
+name = "factors-of-an-integer"
+version = "0.1.0"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Factors_of_an_integer"
+

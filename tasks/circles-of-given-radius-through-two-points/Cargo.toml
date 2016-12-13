@@ -1,0 +1,6 @@
+[package]
+name = "circles-of-given-radius-through-two-points"
+version = "0.1.0"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Circles_of_given_radius_through_two_points"

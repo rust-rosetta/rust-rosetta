@@ -1,0 +1,6 @@
+[package]
+name = "execute-brainfuck"
+version = "0.1.0"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Execute_Brain****"

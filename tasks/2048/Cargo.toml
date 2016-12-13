@@ -9,4 +9,4 @@ url = "http://rosettacode.org/wiki/2048"
 rand = "0.3"
 
 [target."cfg(unix)".dependencies]
-rustbox = "0.8"
+rustbox = "0.9"

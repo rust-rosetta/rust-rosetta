@@ -1,0 +1,7 @@
+[package]
+name = "levenshtein-distance"
+version = "0.1.0"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Levenshtein_distance"
+

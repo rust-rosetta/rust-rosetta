@@ -1,0 +1,7 @@
+[package]
+name = "determine-if-only-one-instance-is-running"
+version = "0.1.0"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Determine_if_only_one_instance_is_running"
+

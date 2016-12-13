@@ -1,0 +1,6 @@
+[package]
+name = "loop-over-multiple-arrays-simultaneously"
+version = "0.1.0"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Loop_over_multiple_arrays_simultaneously"
