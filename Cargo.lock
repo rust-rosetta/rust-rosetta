@@ -3427,6 +3427,10 @@ dependencies = [
 ]
 
 [[package]]
+name = "y-combinator"
+version = "0.1.0"
+
+[[package]]
 name = "zero-to-the-zero-power"
 version = "0.1.0"
 

@@ -1,0 +1,6 @@
+[package]
+name = "y-combinator"
+version = "0.1.0"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Y_combinator"
