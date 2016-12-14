@@ -23,11 +23,14 @@ pub extern crate rand;
 use std::collections::{HashSet, VecDeque};
 use std::fs::File;
 use std::io::prelude::*;
-use std::path::PathBuf;
+use std::io;
 use std::iter::FromIterator;
 use std::ops::Sub;
+use std::path::Path;
+use std::process;
 
 use regex::Regex;
+use url::Url;
 
 pub mod local;
 pub mod remote;
@@ -88,10 +91,15 @@ impl Task {
         self.local.is_some() && self.remote.source().is_none()
     }
 
-    /// True if and only if the task is neither implemented on the Rosetta code wiki or on the
+    /// True if and only if the task is neither implemented on the Rosetta Code wiki or on the
     /// repository.
     pub fn is_unimplemented(&self) -> bool {
         self.local.is_none() && self.remote.source().is_none()
+    }
+
+    /// Returns the URL of the task on the Rosetta Code wiki.
+    pub fn url(&self) -> Url {
+        self.remote.url()
     }
 }
 
@@ -105,9 +113,10 @@ pub struct TaskIterator {
 impl TaskIterator {
     /// Creates a new iterator over the specified tasks. If no tasks are supplied, iterates over
     /// all tasks.
-    pub fn new(titles: &[String]) -> TaskIterator {
-        let parent_cargo_toml = PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../Cargo.toml");
-        let local_tasks = local::parse_tasks(parent_cargo_toml);
+    pub fn new<P>(workspace_root: P, titles: &[String]) -> TaskIterator
+        where P: AsRef<Path>
+    {
+        let local_tasks = local::parse_tasks(workspace_root.as_ref().join("Cargo.toml"));
 
         let all_task_titles = remote::all_task_titles().into_iter().collect::<HashSet<_>>();
 
@@ -165,7 +174,13 @@ impl Iterator for TaskIterator {
                 .iter()
                 .cloned()
                 .find(|task| task.title() == title.as_str());
-            let remote_task = remote::request_task(&title).unwrap();
+            let remote_task = match remote::request_task(&title) {
+                Ok(remote_task) => remote_task,
+                Err(e) => {
+                    writeln!(io::stderr(), "Error while requesting task: {}", e).unwrap();
+                    process::exit(1);
+                }
+            };
 
             let task = Task {
                 local: local_task.clone(),
@@ -180,12 +195,16 @@ impl Iterator for TaskIterator {
 }
 
 /// Retrieves data for every task on Rosetta Code.
-pub fn fetch_all_tasks() -> TaskIterator {
-    TaskIterator::new(&vec![])
+pub fn fetch_all_tasks<P>(workspace_root: P) -> TaskIterator
+    where P: AsRef<Path>
+{
+    TaskIterator::new(workspace_root, &vec![])
 }
 
 /// Parses both local (implemented in this repository) and remote (implemented on the wiki) tasks,
 /// and returns the code of each.
-pub fn fetch_tasks(tasks: &[String]) -> TaskIterator {
-    TaskIterator::new(&tasks)
+pub fn fetch_tasks<P>(workspace_root: P, tasks: &[String]) -> TaskIterator
+    where P: AsRef<Path>
+{
+    TaskIterator::new(workspace_root, &tasks)
 }
