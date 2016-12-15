@@ -1,0 +1,6 @@
+[package]
+name = "copy-a-string"
+version = "0.1.0"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Copy_a_string"

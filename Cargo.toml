@@ -345,6 +345,9 @@ members = [
     # http://rosettacode.org/wiki/Conway's_Game_of_Life
     "tasks/conways-game-of-life",
 
+    # http://rosettacode.org/wiki/Copy_a_string
+    "tasks/copy-a-string",
+
     # http://rosettacode.org/wiki/Count_in_octal
     "tasks/count-in-octal",
 
