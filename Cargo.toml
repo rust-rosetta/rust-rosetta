@@ -507,6 +507,9 @@ members = [
     # http://rosettacode.org/wiki/Flipping_bits_game
     "tasks/flipping-bits-game",
 
+    # http://rosettacode.org/wiki/Forest_fire
+    "tasks/forest-fire",
+
     # http://rosettacode.org/wiki/Fork
     "tasks/fork",
 
