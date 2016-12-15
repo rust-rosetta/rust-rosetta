@@ -433,6 +433,10 @@ name = "carmichael-3-strong-pseudoprimes"
 version = "0.1.0"
 
 [[package]]
+name = "case-sensitivity-of-identifiers"
+version = "0.1.0"
+
+[[package]]
 name = "catalan-numbers"
 version = "0.1.0"
 

@@ -270,6 +270,9 @@ members = [
     # http://rosettacode.org/wiki/Carmichael_3_strong_pseudoprimes
     "tasks/carmichael-3-strong-pseudoprimes",
 
+    # http://rosettacode.org/wiki/Case-sensitivity_of_identifiers
+    "tasks/case-sensitivity-of-identifiers",
+
     # http://rosettacode.org/wiki/Catalan_numbers
     "tasks/catalan-numbers",
 
