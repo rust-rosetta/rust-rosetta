@@ -1,0 +1,10 @@
+[package]
+name = "forest-fire"
+version = "0.1.0"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Forest_fire"
+
+[dependencies]
+rand = "0.3"
+ansi_term = "0.9"

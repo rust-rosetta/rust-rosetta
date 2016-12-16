@@ -270,6 +270,9 @@ members = [
     # http://rosettacode.org/wiki/Carmichael_3_strong_pseudoprimes
     "tasks/carmichael-3-strong-pseudoprimes",
 
+    # http://rosettacode.org/wiki/Case-sensitivity_of_identifiers
+    "tasks/case-sensitivity-of-identifiers",
+
     # http://rosettacode.org/wiki/Catalan_numbers
     "tasks/catalan-numbers",
 
@@ -341,6 +344,9 @@ members = [
 
     # http://rosettacode.org/wiki/Conway's_Game_of_Life
     "tasks/conways-game-of-life",
+
+    # http://rosettacode.org/wiki/Copy_a_string
+    "tasks/copy-a-string",
 
     # http://rosettacode.org/wiki/Count_in_octal
     "tasks/count-in-octal",
@@ -506,6 +512,9 @@ members = [
 
     # http://rosettacode.org/wiki/Flipping_bits_game
     "tasks/flipping-bits-game",
+
+    # http://rosettacode.org/wiki/Forest_fire
+    "tasks/forest-fire",
 
     # http://rosettacode.org/wiki/Fork
     "tasks/fork",
@@ -1214,6 +1223,9 @@ members = [
 
     # http://rosettacode.org/wiki/Write_entire_file
     "tasks/write-entire-file",
+
+    # http://rosettacode.org/wiki/Y_combinator
+    "tasks/y-combinator",
 
     # http://rosettacode.org/wiki/Zero_to_the_zero_power
     "tasks/zero-to-the-zero-power",
