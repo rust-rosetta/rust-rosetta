@@ -27,7 +27,7 @@ before_script:
 
 script:
     - travis-cargo -q build
-    - travis-cargo -q test
+    - travis-cargo -q test --all
 
 # Generate coverage
 after_success:
