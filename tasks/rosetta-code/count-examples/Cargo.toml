@@ -1,0 +1,11 @@
+[package]
+name = "count-examples"
+version = "0.1.0"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Rosetta_Code/Count_examples"
+
+[dependencies]
+reqwest = "0.2.0"
+rustc-serialize = "0.*"
+url = "1.*.*"

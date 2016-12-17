@@ -410,7 +410,7 @@ members = [
 
     # http://rosettacode.org/wiki/Echo_server
     "tasks/echo-server",
-    
+
     # http://rosettacode.org/wiki/Element-wise_operations
     "tasks/element-wise-operations",
 
@@ -962,6 +962,9 @@ members = [
 
     # http://rosettacode.org/wiki/Roots_of_unity
     "tasks/roots-of-unity",
+
+    # http://rosettacode.org/wiki/Rosetta_Code/Count_examples
+    "tasks/rosetta-code/count-examples",
 
     # http://rosettacode.org/wiki/Rosetta_Code/Find_bare_lang_tags
     "tasks/rosetta-code/find-bare-lang-tags",
