@@ -2059,6 +2059,10 @@ dependencies = [
 ]
 
 [[package]]
+name = "moving-average"
+version = "0.1.0"
+
+[[package]]
 name = "multiplication-tables"
 version = "0.1.0"
 
