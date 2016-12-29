@@ -5,31 +5,9 @@ sudo: false
 env:
   global:
     - RUST_BACKTRACE=1
-    - TRAVIS_CARGO_NIGHTLY_FEATURE=""
-
-# `sudo`-less apt install.
-addons:
-  apt:
-    sources:
-      - ubuntu-toolchain-r-test
-    packages:
-        # Needed for `travis-cargo coveralls --no-sudo`
-      - libcurl4-openssl-dev
-      - libelf-dev
-      - libdw-dev
 
 cache: cargo
 
-# Load `travis-cargo`
-before_script:
-    - pip install 'travis-cargo' --user
-    - export PATH=$HOME/.local/bin:$PATH
-
 script:
-    - travis-cargo -q build
-    - travis-cargo -q test --all
-
-# Generate coverage
-after_success:
-    - cd $TRAVIS_BUILD_DIR
-    - travis-cargo -q coveralls --no-sudo
+  - cargo build
+  - cargo test --all
