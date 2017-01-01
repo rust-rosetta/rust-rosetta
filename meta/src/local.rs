@@ -122,9 +122,9 @@ fn parse_task<P>(path: P) -> LocalTask
             }
         })
         .collect::<PathBuf>()
-        .into_os_string()
-        .into_string()
-        .unwrap();
+        .to_str()
+        .unwrap()
+        .to_owned();
 
     let member_toml = Value::Table(parse_toml(path.join("Cargo.toml")).unwrap());
 
@@ -175,7 +175,11 @@ mod tests {
         let parsed_task = super::parse_task(PathBuf::from(env!("CARGO_MANIFEST_DIR"))
             .join("../tasks/rosetta-code/find-unimplemented-tasks"));
 
-        assert_eq!(parsed_task.crate_name(),
-                   "rosetta-code/find-unimplemented-tasks");
+        let name = if cfg!(windows) {
+            "rosetta-code\\find-unimplemented-tasks"
+        } else {
+            "rosetta-code/find-unimplemented-tasks"
+        };
+        assert_eq!(parsed_task.crate_name(), name);
     }
 }
