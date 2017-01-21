@@ -918,6 +918,9 @@ members = [
     # http://rosettacode.org/wiki/Range_extraction
     "tasks/range-extraction",
 
+    # http://rosettacode.org/wiki/Read_a_configuration_file
+    "tasks/read-a-configuration-file",
+
     # http://rosettacode.org/wiki/Read_a_file_line_by_line
     "tasks/read-a-file-line-by-line",
 
