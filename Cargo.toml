@@ -210,6 +210,9 @@ members = [
     # http://www.rosettacode.org/wiki/Averages/Mode
     "tasks/averages/mode",
 
+    # http://rosettacode.org/wiki/Averages/Simple_moving_average
+    "tasks/averages/moving-average",
+
     # http://rosettacode.org/wiki/Averages/Root_mean_square
     "tasks/averages/root-mean-square",
 
@@ -818,6 +821,9 @@ members = [
 
     # http://rosettacode.org/wiki/Mouse_position
     "tasks/mouse-position",
+
+    # http://rosettacode.org/wiki/Averages/Simple_moving_average
+    "tasks/averages/moving-average",
 
     # https://rosettacode.org/wiki/Multiplication_tables
     "tasks/multiplication-tables",
