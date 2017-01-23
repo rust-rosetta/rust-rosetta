@@ -10,7 +10,7 @@ struct MovingAverageError {
 
 impl MovingAverage {
     fn new(period: u32) -> MovingAverage {
-        if period == 0 {
+        if period > 0 {
             MovingAverage {
                 period: period,
                 list: Vec::new(),
