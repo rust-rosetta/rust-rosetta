@@ -28,11 +28,50 @@ impl ConfigVariable {
     }
 }
 
+trait FromConfig {
+    fn from_config(param: &ConfigParams, key: &str) -> Result<Self, String>
+        where Self: std::marker::Sized;
+}
+
+impl FromConfig for String {
+    fn from_config(param: &ConfigParams, key: &str) -> Result<String, String> {
+        match param.params.get(key) {
+            Some(variable) => variable.extract_value_as_string(ConfigType::String),
+            None => Err(format!("Unknown configuration parameter: {:?}", key)),
+        }
+    }
+}
+
+impl FromConfig for bool {
+    fn from_config(param: &ConfigParams, key: &str) -> Result<bool, String> {
+        match param.params.get(key) {
+            Some(variable) => {
+                variable.extract_value_as_string(ConfigType::Boolean)
+                    .map(|x| x.parse::<bool>().unwrap())
+            }
+            None => Ok(false),
+        }
+
+    }
+}
+
+impl FromConfig for Vec<String> {
+    fn from_config(param: &ConfigParams, key: &str) -> Result<Vec<String>, String> {
+        match param.params.get(key) {
+            Some(variable) => {
+                variable.extract_value_as_string(ConfigType::Vector)
+                    .map(|string| string.split(",").map(|item| item.trim().to_owned()).collect())
+            }
+            None => Err(format!("Unknown configuration parameter: {:?}", key)),
+        }
+
+    }
+}
+
 #[derive(Debug)]
 struct ConfigParams {
     params: HashMap<String, ConfigVariable>,
 }
-
 
 impl ConfigParams {
     fn new() -> ConfigParams {
@@ -50,21 +89,18 @@ impl ConfigParams {
                     !(line.starts_with("#") || line.starts_with(";") || line.is_empty())
                 }
             }
-
         };
         let mut params = ConfigParams::new();
         for line in content.lines().filter(is_not_comment) {
             if line.is_ok() {
                 params.update_config(line.unwrap());
             }
-
         }
 
         params
     }
     // Will parse the line and update the internal structure
     fn update_config(&mut self, line: String) {
-        // First space splits the key from value, then if a list is separated by a comma
         let mut parts = line.splitn(2, " ").map(|x| x.to_owned());
         let key = parts.next().unwrap().to_lowercase();
         match parts.next() {
@@ -94,39 +130,9 @@ impl ConfigParams {
 
     }
 
-    fn string_param(&self, key: &str) -> Result<String, String> {
+    fn param<T: FromConfig>(&self, key: &str) -> Result<T, String> {
         key.to_lowercase();
-        match self.params.get(key) {
-            Some(variable) => variable.extract_value_as_string(ConfigType::String),
-            None => Err(format!("No such configuration paramter {:?}", key)),
-        }
-
-    }
-
-    fn bool_param(&self, key: &str) -> Result<bool, String> {
-        key.to_lowercase();
-        match self.params.get(key) {
-            Some(variable) => {
-                variable.extract_value_as_string(ConfigType::Boolean)
-                    .map(|x| x.parse::<bool>().unwrap())
-            }
-            None => Ok(false),
-        }
-    }
-
-    fn vec_param(&self, key: &str) -> Result<Vec<String>, String> {
-        key.to_lowercase();
-        match self.params.get(key) {
-            Some(variable) => {
-                // Get param as string
-                // split string at comma
-                // trim each item and convert to String
-                // collect to vector
-                variable.extract_value_as_string(ConfigType::Vector)
-                    .map(|string| string.split(",").map(|item| item.trim().to_owned()).collect())
-            }
-            None => Err(format!("No such configuration paramter {:?}", key)),
-        }
+        FromConfig::from_config(&self, key)
     }
 }
 
@@ -134,11 +140,11 @@ fn main() {
     const CONF: &'static str = "test.conf";
     let params = ConfigParams::parse(CONF);
 
-    println!("{:?}", params.string_param("fullname"));
-    println!("{:?}", params.string_param("favouritefruit"));
-    println!("{:?}", params.bool_param("needspeeling"));
-    println!("{:?}", params.bool_param("seedsremoved"));
-    println!("{:?}", params.vec_param("otherfamily"));
+    println!("{:?}", params.param::<String>("fullname"));
+    println!("{:?}", params.param::<String>("favouritefruit"));
+    println!("{:?}", params.param::<bool>("needspeeling"));
+    println!("{:?}", params.param::<bool>("seedsremoved"));
+    println!("{:?}", params.param::<Vec<String>>("otherfamily"));
 }
 
 #[cfg(test)]
@@ -148,11 +154,11 @@ mod tests {
     fn main_test() {
         const CONF: &'static str = "test.conf";
         let params = super::ConfigParams::parse(CONF);
-        assert_eq!(params.string_param("fullname").unwrap(), "Foo Barber");
-        assert_eq!(params.string_param("favouritefruit").unwrap(), "banana");
-        assert!(params.bool_param("needspeeling").unwrap());
-        assert!(!params.bool_param("seedsremoved").unwrap());
-        assert_eq!(params.vec_param("otherfamily").unwrap(),
+        assert_eq!(params.param::<String>("fullname").unwrap(), "Foo Barber");
+        assert_eq!(params.param::<String>("favouritefruit").unwrap(), "banana");
+        assert!(params.param::<bool>("needspeeling").unwrap());
+        assert!(!params.param::<bool>("seedsremoved").unwrap());
+        assert_eq!(params.param::<Vec<String>>("otherfamily").unwrap(),
                    vec!["Rhu Barber", "Harry Barber"]);
     }
 }
