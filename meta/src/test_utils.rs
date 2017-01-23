@@ -10,6 +10,7 @@ use std::fmt::Debug;
 /// # Example
 ///
 /// ```
+/// # #[allow(dead_code)]
 /// fn sort<E>(elements: &mut [E]) where E: Ord {
 ///     elements.sort();
 /// }

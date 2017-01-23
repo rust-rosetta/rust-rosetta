@@ -29,7 +29,7 @@ fn exp_factorial(cx: &mut ExtCtxt, sp: Span, tts: &[TokenTree]) -> Box<MacResult
     };
 
     // Take the number of the literal (if it is a number)
-    let n: u64 = match literal.node {
+    let n = match literal.node {
         ast::LitKind::Int(x, _) => x,
         _ => {
             cx.span_err(sp, "Invalid literal (expected unsigned integer)");
