@@ -822,9 +822,6 @@ members = [
     # http://rosettacode.org/wiki/Mouse_position
     "tasks/mouse-position",
 
-    # http://rosettacode.org/wiki/Averages/Simple_moving_average
-    "tasks/averages/moving-average",
-
     # https://rosettacode.org/wiki/Multiplication_tables
     "tasks/multiplication-tables",
 
