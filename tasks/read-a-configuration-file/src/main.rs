@@ -3,41 +3,22 @@ use std::io::{self, BufReader, BufRead};
 use std::path::Path;
 use std::collections::HashMap;
 
-#[derive(Debug, PartialEq)]
-enum ConfigType {
-    String,
-    Boolean,
-    Vector,
-}
-
 #[derive(Debug)]
-struct ConfigVariable {
-    var_type: ConfigType,
-    value: String,
+enum ConfigVariable {
+    String(String),
+    Boolean(bool),
+    Vector(Vec<String>),
 }
 
-impl ConfigVariable {
-    fn extract_value_as_string(&self, typ: ConfigType) -> Result<String, String> {
-        if self.var_type == typ {
-            Ok(self.value.to_owned())
-        } else {
-            Err(format!("Incorrect variable type. Expected: {:?}. Actual: {:?}",
-                        typ,
-                        self.var_type))
-        }
-    }
-}
-
-trait FromConfig {
-    fn from_config(param: &ConfigParams, key: &str) -> Result<Self, String>
-        where Self: std::marker::Sized;
+trait FromConfig: Sized {
+    fn from_config(param: &ConfigParams, key: &str) -> Result<Self, String>;
 }
 
 impl FromConfig for String {
     fn from_config(param: &ConfigParams, key: &str) -> Result<String, String> {
         match param.params.get(key) {
-            Some(variable) => variable.extract_value_as_string(ConfigType::String),
-            None => Err(format!("Unknown configuration parameter: {:?}", key)),
+            Some(&ConfigVariable::String(ref value)) => Ok(value.clone()),
+            _ => Err(format!("Unknown configuration parameter: {:?}", key)),
         }
     }
 }
@@ -45,11 +26,8 @@ impl FromConfig for String {
 impl FromConfig for bool {
     fn from_config(param: &ConfigParams, key: &str) -> Result<bool, String> {
         match param.params.get(key) {
-            Some(variable) => {
-                variable.extract_value_as_string(ConfigType::Boolean)
-                    .map(|x| x.parse::<bool>().unwrap())
-            }
-            None => Ok(false),
+            Some(&ConfigVariable::Boolean(value)) => Ok(value),
+            _ => Ok(false),
         }
 
     }
@@ -58,11 +36,8 @@ impl FromConfig for bool {
 impl FromConfig for Vec<String> {
     fn from_config(param: &ConfigParams, key: &str) -> Result<Vec<String>, String> {
         match param.params.get(key) {
-            Some(variable) => {
-                variable.extract_value_as_string(ConfigType::Vector)
-                    .map(|string| string.split(",").map(|item| item.trim().to_owned()).collect())
-            }
-            None => Err(format!("Unknown configuration parameter: {:?}", key)),
+            Some(&ConfigVariable::Vector(ref value)) => Ok(value.clone()),
+            _ => Err(format!("Unknown configuration parameter: {:?}", key)),
         }
 
     }
@@ -105,25 +80,16 @@ impl ConfigParams {
         let key = parts.next().unwrap().to_lowercase();
         match parts.next() {
             None => {
-                self.params.insert(key,
-                                   ConfigVariable {
-                                       var_type: ConfigType::Boolean,
-                                       value: "true".to_owned(),
-                                   });
+                self.params.insert(key, ConfigVariable::Boolean(true));
             }
             Some(value) => {
                 if value.contains(",") {
                     self.params.insert(key,
-                                       ConfigVariable {
-                                           var_type: ConfigType::Vector,
-                                           value: value,
-                                       });
+                                       ConfigVariable::Vector(value.split(",")
+                                           .map(|item| item.trim().to_owned())
+                                           .collect()));
                 } else {
-                    self.params.insert(key,
-                                       ConfigVariable {
-                                           var_type: ConfigType::String,
-                                           value: value,
-                                       });
+                    self.params.insert(key, ConfigVariable::String(value));
                 }
             }
         }
