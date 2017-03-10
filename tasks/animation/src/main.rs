@@ -38,13 +38,13 @@ fn main() {
 
         if *reverse {
             let begin = &text.split_off(1);
-            &text.insert_str(0, begin);
+            text.insert_str(0, begin);
         } else {
             let end = &text.split_off(len - 1);
-            &text.insert_str(0, end);
+            text.insert_str(0, end);
         }
 
-        &button.set_label(&format!("{}", text));
+        button.set_label(&text);
 
         gtk::Continue(true)
     });
