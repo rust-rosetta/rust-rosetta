@@ -5,7 +5,7 @@ fn main() {
 
     // Get the value at a certain memory address
     let address = &var as *const i32;
-    println!("value at {:p}: {:?}", &address, var);
+    println!("value at {:p}: {:?}", address, var);
 
     // Set the value at a certain memory address
     unsafe {
