@@ -67,7 +67,8 @@ authors = [
     "Andrey Tonkih, https://github.com/xosmig",
     "Thibault Barbie, https://github.com/thibaultbarbie",
     "Corentin Henry, https://github.com/little-dude",
-    "Dylan Maccora, https://github.com/maccoda"
+    "Dylan Maccora, https://github.com/maccoda",
+    "Stefan Müller, https://github.com/zzeroo",
 ]
 
 [dependencies]
@@ -146,6 +147,9 @@ members = [
 
     # http://rosettacode.org/wiki/Anagrams
     "tasks/anagrams",
+
+    # http://rosettacode.org/wiki/Animation
+    "tasks/animation",
 
     # http://rosettacode.org/wiki/Anonymous_recursion
     "tasks/anonymous-recursion",
