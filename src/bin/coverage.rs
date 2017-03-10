@@ -1,24 +1,22 @@
 #[macro_use]
 extern crate clap;
 #[macro_use]
-extern crate log;
+extern crate serde_json;
 
 extern crate difference;
 extern crate env_logger;
 extern crate meta;
 extern crate reqwest;
 extern crate serde;
-extern crate serde_json;
 extern crate term;
 
 use std::io;
 use std::path::PathBuf;
 
 use clap::{Arg, App};
-use difference::Difference;
+use difference::{Changeset, Difference};
 use reqwest::Method;
 use reqwest::header::{Authorization, Bearer};
-use serde_json::builder::ObjectBuilder;
 use term::Terminal;
 
 use meta::Task;
@@ -51,10 +49,10 @@ impl Default for Filter {
 fn print_diff<T: ?Sized>(t: &mut T, s1: &str, s2: &str) -> io::Result<()>
     where T: Terminal
 {
-    let (_dist, changeset) = difference::diff(&s1, &s2, "\n");
+    let changeset = Changeset::new(&s1, &s2, "\n");
 
-    for i in 0..changeset.len() {
-        match changeset[i] {
+    for change in changeset.diffs {
+        match change {
             Difference::Same(ref x) => {
                 try!(t.reset());
                 try!(writeln!(t, " {}", x));
@@ -164,13 +162,14 @@ fn main() {
             print_task(&mut *t, &task, matches.is_present("diff")).unwrap();
 
             if matches.is_present("access-token") {
-                let value = ObjectBuilder::new()
-                    .insert("title", task.title())
-                    .insert("url", task.url().to_string())
-                    .insert("local_code", task.local_code())
-                    .insert("remote_code", task.remote_code());
+                let json = json!({
+                    "title": task.title(),
+                    "url": task.url().to_string(),
+                    "local_code": task.local_code(),
+                    "remote_code": task.remote_code(),
+                });
 
-                Some(value.build())
+                Some(json)
             } else {
                 None
             }
