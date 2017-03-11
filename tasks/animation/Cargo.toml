@@ -8,3 +8,4 @@ url = "http://rosettacode.org/wiki/Animation"
 
 [dependencies.gtk]
 version = "0.1.0"
+features = ["v3_6"]
