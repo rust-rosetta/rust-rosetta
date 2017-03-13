@@ -1,7 +1,6 @@
 [package]
 name = "animation"
-version = "0.1.1"
-authors = ["Stefan Müller <co@zzeroo.com>"]
+version = "0.1.0"
 
 [package.metadata.rosettacode]
 url = "http://rosettacode.org/wiki/Animation"
