@@ -1,0 +1,10 @@
+[package]
+name = "animation"
+version = "0.1.0"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Animation"
+
+[dependencies.gtk]
+version = "0.1.0"
+optional = true
