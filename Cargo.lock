@@ -144,7 +144,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 name = "animation"
 version = "0.1.0"
 dependencies = [
- "gtk 0.1.1 (registry+https://github.com/rust-lang/crates.io-index)",
+ "gtk 0.1.2 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
 [[package]]
