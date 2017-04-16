@@ -1,37 +1,27 @@
-fn showpresents(count: usize) {
-    let days = ["second", "third", "fourth", "fifth", "sixth", "seventh", "eighth", "ninth",
-                "tenth", "eleventh", "twelfth"];
-
-    let presents = ["Two turtle doves",
-                    "Three french hens",
-                    "Four calling birds",
-                    "Five golden rings",
-                    "Six geese a-laying",
-                    "Seven swans a-swimming",
-                    "Eight maids a-milking",
-                    "Nine ladies dancing",
-                    "Ten lords a-leaping",
-                    "Eleven pipers piping",
-                    "Twelve drummers drumming"];
-
-    println!("On the {} day of Christmas my true love gave to me {}",
-             days[count - 1],
-             presents[count - 1]);
-    if count > 0 {
-        let mut j = count - 1;
-        while j > 0 {
-            println!("{}", presents[j - 1]);
-            j -= 1;
-
-        }
-    }
-    println!("And a partridge in a pear tree \n");
-}
-
 fn main() {
-    println!("On the first day of Christmas my true love gave to me a partridge in a pear tree\n");
+    let days = ["first", "second", "third", "fourth", "fifth", "sixth", "seventh", "eighth",
+                "ninth", "tenth", "eleventh", "twelfth"];
 
-    for count in 1..12 {
-        showpresents(count);
+    let gifts = ["A Patridge in a Pear Tree",
+                 "Two Turtle Doves and",
+                 "Three French Hens",
+                 "Four Calling Birds",
+                 "Five Golden Rings",
+                 "Six Geese a Laying",
+                 "Seven Swans a Swimming",
+                 "Eight Maids a Milking",
+                 "Nine Ladies Dancing",
+                 "Ten Lords a Leaping",
+                 "Eleven Pipers Piping",
+                 "Twelve Drummers Drumming"];
+
+    for i in 0..12 {
+        println!("On the {} day of Christmas,", days[i]);
+        println!("My true love sent to me:");
+
+        for j in (0..i + 1).rev() {
+            println!("{}", gifts[j]);
+        }
+        println!()
     }
 }
