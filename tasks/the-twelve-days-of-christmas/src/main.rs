@@ -17,7 +17,7 @@ fn main() {
 
     for i in 0..12 {
         println!("On the {} day of Christmas,", days[i]);
-        println!("My true love sent to me:");
+        println!("My true love gave to me:");
 
         for j in (0..i + 1).rev() {
             println!("{}", gifts[j]);
