@@ -1,0 +1,6 @@
+[package]
+name = "matrix-multiplication"
+version = "0.1.0"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Matrix_multiplication"
