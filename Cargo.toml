@@ -69,6 +69,7 @@ authors = [
     "Corentin Henry, https://github.com/little-dude",
     "Dylan Maccora, https://github.com/maccoda",
     "Stefan Müller, https://github.com/zzeroo",
+    "Kunal Tyagi, https://github.com/kunaltyagi",
 ]
 
 [dependencies]
@@ -90,6 +91,9 @@ unicode-segmentation = "1"
 members = [
     # http://rosettacode.org/wiki/100_doors
     "tasks/100-doors",
+
+    # http://rosettacode.org/wiki/15_Puzzle_Game
+    "tasks/15-puzzle-game",
 
     # http://rosettacode.org/wiki/2048
     "tasks/2048",

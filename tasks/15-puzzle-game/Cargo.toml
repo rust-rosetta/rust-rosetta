@@ -1,0 +1,10 @@
+[package]
+name = "15-puzzle-game"
+version = "0.1.0"
+authors = ["Kunal Tyagi <tyagi.kunal@live.com>>"]
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/15_Puzzle_Game"
+
+[dependencies]
+rand = "0.3"
