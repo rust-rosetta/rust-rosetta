@@ -1,6 +1,10 @@
 // http://rosettacode.org/wiki/Remove_lines_from_a_file
-extern crate rustc_serialize;
+
+#[macro_use]
+extern crate serde_derive;
+
 extern crate docopt;
+extern crate serde;
 
 use docopt::Docopt;
 
@@ -11,7 +15,7 @@ const USAGE: &'static str = r"
 Usage: remove_lines_from_a_file <start> <count> <file>
 ";
 
-#[derive(Debug, RustcDecodable)]
+#[derive(Debug, Deserialize)]
 struct Args {
     arg_start: usize,
     arg_count: usize,
@@ -20,7 +24,7 @@ struct Args {
 
 fn main() {
     let args: Args = Docopt::new(USAGE)
-        .and_then(|d| d.decode())
+        .and_then(|d| d.deserialize())
         .unwrap_or_else(|e| e.exit());
 
     let file = BufReader::new(File::open(args.arg_file).unwrap());
