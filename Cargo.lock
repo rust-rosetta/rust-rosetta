@@ -1622,6 +1622,11 @@ name = "here-document"
 version = "0.1.0"
 
 [[package]]
+name = "hex"
+version = "0.2.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+
+[[package]]
 name = "higher-order-functions"
 version = "0.1.0"
 
@@ -2590,8 +2595,8 @@ version = "0.1.0"
 name = "public-point-to-address"
 version = "0.1.0"
 dependencies = [
+ "hex 0.2.0 (registry+https://github.com/rust-lang/crates.io-index)",
  "rust-crypto 0.2.36 (registry+https://github.com/rust-lang/crates.io-index)",
- "rustc-serialize 0.3.22 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
 [[package]]
@@ -3871,6 +3876,7 @@ version = "0.1.0"
 "checksum gobject-sys 0.3.3 (registry+https://github.com/rust-lang/crates.io-index)" = "c4dba1fb528396780577574ab2fe0e1a364e1f9d8f444dec1e4f319728577a24"
 "checksum gtk 0.1.2 (registry+https://github.com/rust-lang/crates.io-index)" = "7fee2932d0c1d91dd2744a06e242df3d28c5f838aa65cb327a5db71eeb36481c"
 "checksum gtk-sys 0.3.3 (registry+https://github.com/rust-lang/crates.io-index)" = "7445eb281879ac472e5f5816058d53eaceff2bab7b78a095a4044f4c0cccc754"
+"checksum hex 0.2.0 (registry+https://github.com/rust-lang/crates.io-index)" = "d6a22814455d41612f41161581c2883c0c6a1c41852729b17d5ed88f01e153aa"
 "checksum hpack 0.2.0 (registry+https://github.com/rust-lang/crates.io-index)" = "3d2da7d3a34cf6406d9d700111b8eafafe9a251de41ae71d8052748259343b58"
 "checksum httparse 1.2.1 (registry+https://github.com/rust-lang/crates.io-index)" = "a6e7a63e511f9edffbab707141fbb8707d1a3098615fb2adbd5769cdfcc9b17d"
 "checksum hyper 0.10.5 (registry+https://github.com/rust-lang/crates.io-index)" = "43a15e3273b2133aaac0150478ab443fb89f15c3de41d8d93d8f3bb14bf560f6"
