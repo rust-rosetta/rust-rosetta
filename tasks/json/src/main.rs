@@ -1,8 +1,10 @@
-extern crate rustc_serialize;
+#[macro_use]
+extern crate serde_derive;
 
-use rustc_serialize::json;
+extern crate serde;
+extern crate serde_json;
 
-#[derive(Debug, RustcEncodable, RustcDecodable, PartialEq, Eq)]
+#[derive(Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub struct Contact {
     name: String,
     city: String,
@@ -14,12 +16,12 @@ fn main() {
         name: "John".to_string(),
         city: "Paris".to_string(),
     };
-    let json = json::encode(&c);
-    println!("Encoded: {:?}", &(json.unwrap()));
+    let json = serde_json::to_string(&c).unwrap();
+    println!("Encoded: {:?}", json);
 
     // Decode json to contact
-    let json_str = "{\"name\":\"Alan\", \"city\":\"Tokyo\"}";
-    let contact: Contact = json::decode(json_str).unwrap();
+    let json_str = r#"{ "name": "Alan", "city": "Tokyo" }"#;
+    let contact: Contact = serde_json::from_str(json_str).unwrap();
     println!("Decoded: {:?}", contact);
 }
 
@@ -29,15 +31,14 @@ fn test_coherence() {
         name: "John".to_string(),
         city: "Paris".to_string(),
     };
-    assert!(json::decode::<Contact>(&(json::encode(&c)).unwrap()) == Ok(c));
+    assert_eq!(serde_json::from_str::<Contact>(&serde_json::to_string(&c).unwrap()).unwrap(), c);
 }
 
 #[test]
 fn test_decode() {
-    let json_str = "{\"name\":\"Alan\", \"city\":\"Tokyo\"}";
-    let contact: Contact = json::decode(json_str).unwrap();
-    assert!(contact ==
-            Contact {
+    let json_str = r#"{ "name": "Alan", "city": "Tokyo" }"#;
+    let contact: Contact = serde_json::from_str(json_str).unwrap();
+    assert_eq!(contact, Contact {
         name: "Alan".to_string(),
         city: "Tokyo".to_string(),
     });
