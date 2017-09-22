@@ -7,5 +7,7 @@ url = "http://rosettacode.org/wiki/Rosetta_Code/Find_unimplemented_tasks"
 
 [dependencies]
 reqwest = "0.2"
-rustc-serialize = "0.3"
+serde = "1"
+serde_derive = "1"
+serde_json = "1"
 url = "1.1.0"

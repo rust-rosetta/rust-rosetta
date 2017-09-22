@@ -1,17 +1,23 @@
+#[macro_use]
+extern crate serde_derive;
+
 extern crate reqwest;
-extern crate rustc_serialize;
+extern crate serde;
+extern crate serde_json;
 extern crate url;
 
 use std::collections::{BTreeMap, HashSet};
 use std::io::prelude::*;
 
-use rustc_serialize::json::{self, Json};
-use self::url::Url;
+use serde::Deserialize;
+use serde_json::Value;
+use url::Url;
 
 /// A Rosetta Code task.
-#[derive(Clone, PartialEq, Eq, Hash, Debug)]
+#[derive(Clone, PartialEq, Eq, Hash, Debug, Deserialize)]
 pub struct Task {
     /// The ID of the page containing the task in the MediaWiki API.
+    #[serde(rename = "pageid")]
     pub id: u64,
 
     /// The human-readable title of the task.
@@ -25,14 +31,14 @@ enum TaskParseError {
     Http(reqwest::Error),
 
     /// There was a problem parsing the API response into JSON.
-    Json(json::ParserError),
+    Json(serde_json::Error),
 
     /// The response JSON contained unexpected keys or values.
     UnexpectedFormat,
 }
 
-impl From<json::ParserError> for TaskParseError {
-    fn from(err: json::ParserError) -> Self {
+impl From<serde_json::Error> for TaskParseError {
+    fn from(err: serde_json::Error) -> Self {
         TaskParseError::Json(err)
     }
 }
@@ -65,7 +71,7 @@ impl Category {
 /// as a JSON object.
 fn query_api(category_name: &str,
              continue_params: &BTreeMap<String, String>)
-             -> Result<Json, TaskParseError> {
+             -> Result<Value, TaskParseError> {
     let mut url = Url::parse("http://rosettacode.org/mw/api.php").unwrap();
     let category_param = format!("Category:{}", category_name);
     let mut api_parameters = vec![("action", "query"),
@@ -82,31 +88,17 @@ fn query_api(category_name: &str,
     let mut response = try!(reqwest::get(url.as_str()));
     let mut body = String::new();
     response.read_to_string(&mut body).unwrap();
-
-    Ok(try!(Json::from_str(&body)))
+    Ok(serde_json::from_str(&body)?)
 }
 
 /// Given a JSON object, parses the task information from the MediaWiki API response.
-fn parse_tasks(json: &Json) -> Result<Vec<Task>, TaskParseError> {
-    let tasks_json = try!(json.find_path(&["query", "categorymembers"])
-        .and_then(|tasks| tasks.as_array())
-        .ok_or(TaskParseError::UnexpectedFormat));
+fn parse_tasks(json: &Value) -> Result<Vec<Task>, TaskParseError> {
+    let tasks_json = json.pointer("/query/categorymembers")
+        .and_then(Value::as_array)
+        .ok_or(TaskParseError::UnexpectedFormat)?;
 
     tasks_json.iter()
-        .map(|task_json| {
-            let id = try!(task_json.find("pageid")
-                .and_then(|id| id.as_u64())
-                .ok_or(TaskParseError::UnexpectedFormat));
-            let title = try!(task_json.find("title")
-                .and_then(|title| title.as_string())
-                .ok_or(TaskParseError::UnexpectedFormat));
-            let task = Task {
-                id: id,
-                title: title.to_owned(),
-            };
-
-            Ok(task)
-        })
+        .map(|json| Task::deserialize(json).map_err(From::from))
         .collect()
 }
 
@@ -121,13 +113,13 @@ impl Iterator for Category {
         query_api(&self.name, &self.continue_params.clone().unwrap())
             .and_then(|result| {
                 // If there are more pages of results to request, save them for the next iteration.
-                self.continue_params = result.find("continue")
-                    .and_then(|continue_params| continue_params.as_object())
+                self.continue_params = result.get("continue")
+                    .and_then(Value::as_object)
                     .map(|continue_params| {
                         continue_params.iter()
                             .map(|(key, value)| {
                                 (key.to_owned(),
-                                 value.as_string()
+                                 value.as_str()
                                     .unwrap()
                                     .to_owned())
                             })
