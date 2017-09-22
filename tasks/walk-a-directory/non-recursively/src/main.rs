@@ -1,6 +1,9 @@
+#[macro_use]
+extern crate serde_derive;
+
 extern crate docopt;
 extern crate regex;
-extern crate rustc_serialize;
+extern crate serde;
 
 use docopt::Docopt;
 use regex::Regex;
@@ -12,14 +15,14 @@ Walks the directory tree starting with the current working directory and
 print filenames matching <pattern>.
 ";
 
-#[derive(Debug, RustcDecodable)]
+#[derive(Debug, Deserialize)]
 struct Args {
     arg_pattern: String,
 }
 
 fn main() {
     let args: Args = Docopt::new(USAGE)
-        .and_then(|d| d.decode())
+        .and_then(|d| d.deserialize())
         .unwrap_or_else(|e| e.exit());
 
     let re = Regex::new(&args.arg_pattern).unwrap();
