@@ -6,4 +6,4 @@ version = "0.1.0"
 url = "http://rosettacode.org/wiki/OpenGL"
 
 [dependencies]
-glium = "0.15.0"
+glium = "0.17.0"
