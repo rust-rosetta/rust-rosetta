@@ -1,6 +1,6 @@
 //! includes the XOR version of the encryption scheme
 
-#![feature(step_by)]
+#![feature(iterator_step_by)]
 
 use std::num::Wrapping as w;
 

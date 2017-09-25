@@ -3,7 +3,7 @@
 //! Ported from C - Simple MD5 implementation
 //! on Wikipedia https://en.wikipedia.org/wiki/MD5
 
-#![feature(step_by)]
+#![feature(iterator_step_by)]
 
 use std::num::Wrapping as wr;
 use std::fmt::{Debug, Formatter, Result};
