@@ -2,9 +2,9 @@
 
 use std::collections::HashMap;
 
+use percent_encoding::{self, QUERY_ENCODE_SET};
 use regex::Regex;
-use url::Url;
-use url::percent_encoding::{self, QUERY_ENCODE_SET};
+use reqwest::Url;
 
 lazy_static!{
     /// Extracts code from the first Rust section from Rosetta Code wiki markup.

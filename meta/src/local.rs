@@ -5,8 +5,8 @@ use std::io;
 use std::io::prelude::*;
 use std::path::{Path, PathBuf};
 
+use reqwest::Url;
 use toml::{self, Table, Value};
-use url::Url;
 use walkdir::WalkDir;
 
 use TASK_URL_RE;
@@ -167,7 +167,7 @@ where
 mod tests {
     use std::path::PathBuf;
 
-    use url::Url;
+    use reqwest::Url;
 
     #[test]
     fn parse_local_task() {

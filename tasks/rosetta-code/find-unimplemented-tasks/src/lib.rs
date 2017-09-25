@@ -4,14 +4,12 @@ extern crate serde_derive;
 extern crate reqwest;
 extern crate serde;
 extern crate serde_json;
-extern crate url;
 
 use std::collections::{BTreeMap, HashSet};
-use std::io::prelude::*;
 
+use reqwest::Url;
 use serde::Deserialize;
 use serde_json::Value;
-use url::Url;
 
 /// A Rosetta Code task.
 #[derive(Clone, PartialEq, Eq, Hash, Debug, Deserialize)]
@@ -30,6 +28,9 @@ enum TaskParseError {
     /// Something went wrong with the HTTP request to the API.
     Http(reqwest::Error),
 
+    /// Could not parse a URL
+    Url(reqwest::UrlError),
+
     /// There was a problem parsing the API response into JSON.
     Json(serde_json::Error),
 
@@ -40,6 +41,12 @@ enum TaskParseError {
 impl From<serde_json::Error> for TaskParseError {
     fn from(err: serde_json::Error) -> Self {
         TaskParseError::Json(err)
+    }
+}
+
+impl From<reqwest::UrlError> for TaskParseError {
+    fn from(err: reqwest::UrlError) -> Self {
+        TaskParseError::Url(err)
     }
 }
 
@@ -72,23 +79,16 @@ impl Category {
 fn query_api(category_name: &str,
              continue_params: &BTreeMap<String, String>)
              -> Result<Value, TaskParseError> {
-    let mut url = Url::parse("http://rosettacode.org/mw/api.php").unwrap();
-    let category_param = format!("Category:{}", category_name);
-    let mut api_parameters = vec![("action", "query"),
-                                  ("list", "categorymembers"),
-                                  ("cmtitle", &category_param),
-                                  ("cmlimit", "500"),
-                                  ("format", "json")];
+    let mut url = Url::parse("http://rosettacode.org/mw/api.php")?;
+    url.query_pairs_mut()
+        .append_pair("action", "query")
+        .append_pair("list", "categorymembers")
+        .append_pair("cmtitle", &format!("Category:{}", category_name))
+        .append_pair("cmlimit", "500")
+        .append_pair("format", "json")
+        .extend_pairs(continue_params);
 
-    for (key, value) in continue_params {
-        api_parameters.push((key, value));
-    }
-
-    url.query_pairs_mut().extend_pairs(api_parameters.into_iter());
-    let mut response = try!(reqwest::get(url.as_str()));
-    let mut body = String::new();
-    response.read_to_string(&mut body).unwrap();
-    Ok(serde_json::from_str(&body)?)
+    Ok(reqwest::get(url)?.json()?)
 }
 
 /// Given a JSON object, parses the task information from the MediaWiki API response.
@@ -110,7 +110,7 @@ impl Iterator for Category {
             return None;
         }
 
-        query_api(&self.name, &self.continue_params.clone().unwrap())
+        query_api(&self.name, self.continue_params.as_ref().unwrap())
             .and_then(|result| {
                 // If there are more pages of results to request, save them for the next iteration.
                 self.continue_params = result.get("continue")
