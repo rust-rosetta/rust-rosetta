@@ -6,10 +6,11 @@ use reqwest::Client;
 use reqwest::header::{Authorization, Basic, Connection};
 
 fn main() {
-    let client = Client::new().unwrap();
+    let client = Client::new();
 
     // reqwest uses strongly-typed structs for creating headers
-    let mut res = client.get("https://www.example.com")
+    let mut res = client
+        .get("https://www.example.com")
         .header(Authorization(Basic {
             username: String::from("user"),
             password: Some(String::from("password")),
