@@ -1,4 +1,4 @@
-#![feature(step_by)]
+#![feature(iterator_step_by)]
 
 use std::iter::repeat;
 
@@ -24,7 +24,7 @@ fn main() {
         }
 
         // Compute the next line
-        for j in (i as i32..0).step_by(-1) {
+        for j in (i as i32..0).step_by(1) {
             state[j as usize] ^= state[(j - 1) as usize];
         }
 

@@ -1,4 +1,4 @@
-#![feature(step_by)]
+#![feature(iterator_step_by)]
 
 use std::iter::repeat;
 

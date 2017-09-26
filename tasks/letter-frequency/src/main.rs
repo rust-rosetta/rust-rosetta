@@ -1,9 +1,8 @@
 #![feature(io)]
 
-use std::fs::File;
-
 use std::io::{BufReader, Read};
 use std::collections::HashMap;
+use std::fs::File;
 use std::collections::hash_map::Entry::{Occupied, Vacant};
 
 fn count_chars<T>(chars: T) -> HashMap<char, usize>
