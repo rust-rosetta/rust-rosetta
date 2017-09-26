@@ -1,7 +1,5 @@
 //! includes the XOR version of the encryption scheme
-
 #![feature(iterator_step_by)]
-
 use std::num::Wrapping as w;
 
 const MSG: &'static str = "a Top Secret secret";
