@@ -1,4 +1,3 @@
-// http://rosettacode.org/wiki/Ulam_spiral_(for_primes)
 #![feature(iterator_step_by)]
 
 use std::fmt;

@@ -1,7 +1,7 @@
 extern crate crypto;
-extern crate rustc_serialize;
+extern crate hex;
 
-use rustc_serialize::hex::FromHex;
+use hex::FromHex;
 use crypto::digest::Digest;
 use crypto::sha2::Sha256;
 use crypto::ripemd160::Ripemd160;
@@ -56,8 +56,8 @@ fn double_sha256(bytes: &[u8]) -> Vec<u8> {
 fn point_to_address(x: &str, y: &str) -> String {
     let mut addrv: Vec<u8> = Vec::with_capacity(65);
     addrv.push(4u8);
-    addrv.append(&mut x.from_hex().unwrap());
-    addrv.append(&mut y.from_hex().unwrap());
+    addrv.append(&mut <Vec<u8>>::from_hex(x).unwrap());
+    addrv.append(&mut <Vec<u8>>::from_hex(y).unwrap());
     // create Sha256 hasher
     let mut sha256 = Sha256::new();
     sha256.input(&addrv);

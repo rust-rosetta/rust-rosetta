@@ -1,14 +1,18 @@
+#[macro_use]
+extern crate serde_derive;
+
 extern crate rand;
-extern crate rustc_serialize;
+extern crate serde;
+extern crate serde_json;
 extern crate term_painter;
 
-use rand::Rng;
-use rustc_serialize::json;
 use std::cmp::Ordering;
 use std::env;
 use std::fmt::{Debug, Display, Formatter, Result};
-use term_painter::ToStyle;
+
+use rand::Rng;
 use term_painter::Color::*;
+use term_painter::ToStyle;
 
 type NodePtr = Option<usize>;
 
@@ -40,7 +44,7 @@ impl DisplayElement {
     }
 }
 
-#[derive(Debug, Clone, Copy, RustcDecodable, RustcEncodable)]
+#[derive(Debug, Clone, Copy, Deserialize, Serialize)]
 struct Node<K, V> {
     key: K,
     value: V,
@@ -78,7 +82,7 @@ impl<K: Ord + Copy, V: Copy> Node<K, V> {
     }
 }
 
-#[derive(Debug, RustcDecodable, RustcEncodable)]
+#[derive(Debug, Serialize, Deserialize)]
 struct Tree<K, V> {
     root: NodePtr,
     store: Vec<Node<K, V>>,
@@ -261,7 +265,7 @@ fn main() {
     }
 
     let tree = random_tree(r_nodes);
-    let encoded = json::encode(&tree).unwrap();
+    let encoded = serde_json::to_string(&tree).unwrap();
 
     println!("{}", tree);
     println!("{}", encoded);
@@ -284,15 +288,16 @@ fn _main_for_rosetta() {
         "left":null,"right":11,"up":8},{"key":-2,"value":0.75,"left":null,"right":null,
         "up":10},{"key":8,"value":-0.48,"left":null,"right":null,"up":9},{"key":-9,
         "value":0.53,"left":null,"right":null,"up":7}]}"#;
-    let tree: Tree<i32, f32> = json::decode(encoded).unwrap();
+    let tree: Tree<i32, f32> = serde_json::from_str(encoded).unwrap();
     println!("{}", tree);
 }
 
 #[cfg(test)]
 mod tests {
-    use super::{Side, Tree};
     use random_tree;
-    use rustc_serialize::json;
+    use serde_json;
+
+    use super::{Side, Tree};
 
     #[test]
     fn test_insert() {
@@ -330,7 +335,7 @@ mod tests {
             "left":null,"right":11,"up":8},{"key":-2,"value":0.75,"left":null,"right":null,
             "up":10},{"key":8,"value":-0.48,"left":null,"right":null,"up":9},{"key":-9,
             "value":0.53,"left":null,"right":null,"up":7}]}"#;
-        let tree: Tree<i32, f32> = json::decode(&encoded).unwrap();
+        let tree: Tree<i32, f32> = serde_json::from_str(encoded).unwrap();
         assert_eq!(tree.root, Some(0));
         assert_eq!(tree.store[4].key, 5);
         assert_eq!(tree.store[4].value, 0.80);

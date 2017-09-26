@@ -7,7 +7,7 @@
 #[macro_use]
 extern crate glium;
 
-use glium::{DisplayBuild, Surface};
+use glium::{glutin, Surface};
 
 /// Define a struct to store vertices. This struct will be used by `glium` directly.
 #[derive(Copy, Clone)]
@@ -18,7 +18,10 @@ struct Vertex {
 implement_vertex!(Vertex, position);
 
 fn main() {
-    let display = glium::glutin::WindowBuilder::new().build_glium().unwrap();
+    let mut events_loop = glutin::EventsLoop::new();
+    let window = glutin::WindowBuilder::new();
+    let context = glutin::ContextBuilder::new();
+    let display = glium::Display::new(window, context, &events_loop).unwrap();
 
     let vertex1 = Vertex { position: [0.0, 0.0] };
     let vertex2 = Vertex { position: [0.5, 0.0] };
@@ -56,23 +59,30 @@ fn main() {
         glium::Program::from_source(&display, vertex_shader_src, fragment_shader_src, None)
             .unwrap();
 
-    // Finally, draw the triangle!
-    let mut target = display.draw();
-    target.clear_color(0.3, 0.3, 0.3, 0.0);
-    target.draw(&vertex_buffer,
-              &indices,
-              &program,
-              &glium::uniforms::EmptyUniforms,
-              &Default::default())
-        .unwrap();
-    target.finish().unwrap();
+    let draw = || {
+        let mut target = display.draw();
+        target.clear_color(0.3, 0.3, 0.3, 0.0);
+        target.draw(&vertex_buffer,
+                  &indices,
+                  &program,
+                  &glium::uniforms::EmptyUniforms,
+                  &Default::default())
+            .unwrap();
+        target.finish().unwrap();
+    };
 
-    // Loop until the window is closed.
-    loop {
-        for event in display.poll_events() {
-            if let glium::glutin::Event::Closed = event {
-                return;
-            }
+    // Finally, draw the triangle!
+    draw();
+
+    events_loop.run_forever(|event| {
+        match event {
+            glutin::Event::WindowEvent { event, .. } => match event {
+                glutin::WindowEvent::Closed => return glutin::ControlFlow::Break,
+                glutin::WindowEvent::Resized(..) => draw(),
+                _ => (),
+            },
+            _ => (),
         }
-    }
+        glutin::ControlFlow::Continue
+    });
 }

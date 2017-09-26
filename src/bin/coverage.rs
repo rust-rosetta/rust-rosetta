@@ -1,10 +1,11 @@
 #[macro_use]
 extern crate clap;
 #[macro_use]
+extern crate log;
+#[macro_use]
 extern crate serde_json;
 
 extern crate difference;
-extern crate env_logger;
 extern crate meta;
 extern crate reqwest;
 extern crate serde;

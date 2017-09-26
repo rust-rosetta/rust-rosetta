@@ -1,13 +1,8 @@
-#![feature(test)]
-
 extern crate csv;
 extern crate getopts;
 extern crate gnuplot;
 extern crate nalgebra;
-extern crate num;
 extern crate rand;
-extern crate rustc_serialize;
-extern crate test;
 
 use getopts::Options;
 use gnuplot::{Axes2D, AxesCommon, Color, Figure, Fix, PointSize, PointSymbol};
@@ -16,6 +11,8 @@ use rand::{Rng, SeedableRng, StdRng};
 use rand::distributions::{IndependentSample, Range};
 use std::f64::consts::PI;
 use std::env;
+
+use std::fs::File;
 
 type Point = DVector<f64>;
 
@@ -265,17 +262,16 @@ fn main() {
             // Proceed with random 2d data
             points = generate_points(n, &mut rng)
         }
-        Some(file) => {
+        Some(filename) => {
             points = Vec::new();
-            let mut rdr = csv::Reader::from_file(file.clone()).unwrap();
-            for row in rdr.records().map(|r| r.unwrap()) {
-                // row is Vec<String>
-                let floats: Vec<f64> = row.iter().map(|s| s.parse::<f64>().unwrap()).collect();
+            let mut rdr = csv::Reader::from_reader(File::open(&filename).unwrap());
+            for row in rdr.deserialize() {
+                let floats: Vec<f64> = row.unwrap();
                 points.push(DVector::<f64>::from_slice(floats.len(), floats.as_slice()));
             }
             assert!(points.iter().all(|v| v.len() == points[0].len()));
             n = points.len() as u32;
-            println!("Read {} points from {}", points.len(), file.clone());
+            println!("Read {} points from {}", points.len(), filename);
         }
     };
 

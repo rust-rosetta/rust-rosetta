@@ -7,5 +7,7 @@ url = "http://rosettacode.org/wiki/Visualize_a_tree"
 
 [dependencies]
 rand = "0.3"
-rustc-serialize = "0.3"
+serde = "1"
+serde_derive = "1"
+serde_json = "1"
 term-painter = "0.2"
