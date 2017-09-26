@@ -26,8 +26,8 @@ fn fix_tags(languages: Vec<&str>, text: &str) -> String {
         let open = format!("<lang {}>", lang);
         let close = "</lang>";
 
-        replaced_text = bad_open.replace_all(&replaced_text, &open[..]);
-        replaced_text = bad_close.replace_all(&replaced_text, &close[..]);
+        replaced_text = bad_open.replace_all(&replaced_text, &open[..]).into_owned();
+        replaced_text = bad_close.replace_all(&replaced_text, &close[..]).into_owned();
     }
 
     replaced_text.to_owned()

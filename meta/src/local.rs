@@ -39,14 +39,14 @@ impl LocalTask {
     ///
     /// This is the title used to identify the task on the RosettaCode wiki.
     pub fn title(&self) -> String {
-        remote::decode_title(&TASK_URL_RE
+        remote::decode_title(TASK_URL_RE
             .captures(self.url().unwrap().as_str())
-            .and_then(|c| c.at(1))
+            .and_then(|c| c.get(1))
+            .map(|m| m.as_str())
             .expect(&format!(
                 "Found task URL that does not match rosettacode regex: {}",
                 self.url().unwrap()
-            ))
-            .to_owned())
+            )))
     }
 
     /// The name of the crate that implements the task.

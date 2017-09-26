@@ -97,8 +97,8 @@ pub fn parse_tasks(response: &Response) -> Vec<RemoteTask> {
         .map(|page| {
             let source = RUST_WIKI_SECTION_RE
                 .captures(&page.revisions[0].content)
-                .map(|captures| captures.at(1).unwrap())
-                .map(String::from);
+                .map(|captures| captures.get(1).unwrap())
+                .map(|m| m.as_str().to_owned());
 
             let title = page.title.clone();
             let url = Url::parse(&format!(
