@@ -46,7 +46,7 @@ fn is_leap_year(year: i32) -> bool {
 
 fn main() {
     // sample date
-    let utc: DateTime<UTC> = UTC::now();
+    let utc = Utc::now();
     println!("{} in the Discordian Calendar is:", utc);
     println!("{}", discordian_date(utc));
     let local: DateTime<Local> = Local::now();
@@ -61,50 +61,50 @@ mod tests {
 
     #[test]
     fn curse_of_greyface_test() {
-        let dt = UTC.ymd(-1166, 1, 1);
+        let dt = Utc.ymd(-1166, 1, 1);
         assert_eq!("Sweetmorn, Chaos 1, YOLD 0", discordian_date(dt));
     }
 
     #[test]
     fn before_leap_day_test() {
-        let dt = UTC.ymd(2016, 2, 28);
+        let dt = Utc.ymd(2016, 2, 28);
         assert_eq!("Prickle-Prickle, Chaos 59, YOLD 3182", discordian_date(dt));
     }
 
     #[test]
     fn leap_day_test() {
-        let dt = UTC.ymd(2016, 2, 29);
+        let dt = Utc.ymd(2016, 2, 29);
         assert_eq!("St. Tib's Day, YOLD 3182", discordian_date(dt));
     }
 
     #[test]
     fn after_leap_day_test() {
-        let dt = UTC.ymd(2016, 3, 1);
+        let dt = Utc.ymd(2016, 3, 1);
         assert_eq!("Setting Orange, Chaos 60, YOLD 3182", discordian_date(dt));
     }
 
     #[test]
     fn before_not_leap_day_test() {
-        let dt = UTC.ymd(2015, 2, 28);
+        let dt = Utc.ymd(2015, 2, 28);
         assert_eq!("Prickle-Prickle, Chaos 59, YOLD 3181", discordian_date(dt));
     }
 
     #[test]
     fn not_leap_day_test() {
-        let dt = UTC.ymd(2015, 3, 1);
+        let dt = Utc.ymd(2015, 3, 1);
         assert_eq!("Setting Orange, Chaos 60, YOLD 3181", discordian_date(dt));
     }
 
     #[test]
     fn birthday_test() {
-        let dt = UTC.ymd(1994, 5, 14);
+        let dt = Utc.ymd(1994, 5, 14);
         assert_eq!("Prickle-Prickle, Discord 61, YOLD 3160",
                    discordian_date(dt));
     }
 
     #[test]
     fn magna_carta_test() {
-        let dt = UTC.ymd(1215, 6, 15);
+        let dt = Utc.ymd(1215, 6, 15);
         assert_eq!("Sweetmorn, Confusion 20, YOLD 2381", discordian_date(dt));
     }
 }

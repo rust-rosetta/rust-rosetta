@@ -6,4 +6,4 @@ version = "0.1.0"
 url = "http://rosettacode.org/wiki/Discordian_date"
 
 [dependencies]
-chrono = "0.2"
+chrono = "0.4"
