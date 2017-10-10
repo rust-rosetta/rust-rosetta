@@ -6,4 +6,4 @@ version = "0.1.0"
 url = "http://rosettacode.org/wiki/Reverse_a_string"
 
 [dependencies]
-unicode-segmentation = "0.1"
+unicode-segmentation = "1"
