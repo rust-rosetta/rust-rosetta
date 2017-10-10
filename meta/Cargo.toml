@@ -13,6 +13,6 @@ serde = "1"
 serde_derive = "1"
 serde_json = "1"
 toml = "0.1"
-walkdir = "0.1"
+walkdir = "2"
 
 find-unimplemented-tasks = { path = "../tasks/rosetta-code/find-unimplemented-tasks" }
