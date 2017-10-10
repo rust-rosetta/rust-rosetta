@@ -1315,12 +1315,12 @@ dependencies = [
 name = "ftp"
 version = "0.1.0"
 dependencies = [
- "ftp 1.0.0 (registry+https://github.com/rust-lang/crates.io-index)",
+ "ftp 2.2.1 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
 [[package]]
 name = "ftp"
-version = "1.0.0"
+version = "2.2.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 dependencies = [
  "chrono 0.2.25 (registry+https://github.com/rust-lang/crates.io-index)",
@@ -4214,7 +4214,7 @@ version = "0.1.0"
 "checksum fnv 1.0.5 (registry+https://github.com/rust-lang/crates.io-index)" = "6cc484842f1e2884faf56f529f960cc12ad8c71ce96cc7abba0a067c98fee344"
 "checksum foreign-types 0.2.0 (registry+https://github.com/rust-lang/crates.io-index)" = "3e4056b9bd47f8ac5ba12be771f77a0dae796d1bbaaf5fd0b9c2d38b69b8a29d"
 "checksum fs2 0.2.5 (registry+https://github.com/rust-lang/crates.io-index)" = "bcd414e5a1a979b931bb92f41b7a54106d3f6d2e6c253e9ce943b7cd468251ef"
-"checksum ftp 1.0.0 (registry+https://github.com/rust-lang/crates.io-index)" = "20c6dbbef355c7691186f589356befd3136b1cb6bacf84cb6b64119177ff5975"
+"checksum ftp 2.2.1 (registry+https://github.com/rust-lang/crates.io-index)" = "f4679a8d2e434666811ee01ecd9814c28827a20166db65bbb8137c658ff37fd1"
 "checksum fuchsia-zircon 0.2.1 (registry+https://github.com/rust-lang/crates.io-index)" = "f6c0581a4e363262e52b87f59ee2afe3415361c6ec35e665924eb08afe8ff159"
 "checksum fuchsia-zircon-sys 0.2.0 (registry+https://github.com/rust-lang/crates.io-index)" = "43f3795b4bae048dc6123a6b972cadde2e676f9ded08aef6bb77f5f157684a82"
 "checksum futures 0.1.16 (registry+https://github.com/rust-lang/crates.io-index)" = "05a23db7bd162d4e8265968602930c476f688f0c180b44bdaf55e0cb2c687558"

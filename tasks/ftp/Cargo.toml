@@ -6,4 +6,4 @@ version = "0.1.0"
 url = "http://rosettacode.org/wiki/FTP"
 
 [dependencies]
-ftp = "1.0.0"
+ftp = "2"
