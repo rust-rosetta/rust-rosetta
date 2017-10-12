@@ -1,23 +1,20 @@
 #[macro_use]
 extern crate clap;
 #[macro_use]
-extern crate log;
-#[macro_use]
 extern crate serde_json;
 
 extern crate difference;
 extern crate meta;
-extern crate reqwest;
 extern crate serde;
 extern crate term;
 
+use std::fs::File;
+use std::io::prelude::*;
 use std::io;
 use std::path::PathBuf;
 
 use clap::{Arg, App};
 use difference::{Changeset, Difference};
-use reqwest::Method;
-use reqwest::header::{Authorization, Bearer};
 use term::Terminal;
 
 use meta::Task;
@@ -135,10 +132,10 @@ fn main() {
             .possible_values(&["all", "local", "remote", "unimplemented"])
             .long("filter")
             .takes_value(true))
-        .arg(Arg::with_name("access-token")
-            .help("Uploads the coverage information to a firebase database")
-            .long("upload")
-            .takes_value(true))
+        .arg(Arg::with_name("json-file")
+             .help("Dump json to the provided filename")
+             .long("json")
+             .takes_value(true))
         .get_matches();
 
     let mut t = term::stdout().unwrap();
@@ -162,7 +159,7 @@ fn main() {
 
             print_task(&mut *t, &task, matches.is_present("diff")).unwrap();
 
-            if matches.is_present("access-token") {
+            if matches.is_present("json-file") {
                 let json = json!({
                     "title": task.title(),
                     "url": task.url().to_string(),
@@ -177,12 +174,8 @@ fn main() {
         })
         .collect::<Vec<_>>();
 
-    if let Some(access_token) = matches.value_of("access-token") {
-        let client = reqwest::Client::new().unwrap();
-        client.request(Method::Put, "https://rosettacoverage.firebaseio.com/tasks")
-            .header(Authorization(Bearer { token: String::from(access_token) }))
-            .body(serde_json::to_string(&tasks).unwrap())
-            .send()
-            .unwrap();
+    if let Some(filename) = matches.value_of("json-file") {
+        let mut file = File::create(filename).unwrap();
+        file.write_all(serde_json::to_string_pretty(&tasks).unwrap().as_bytes()).unwrap();
     }
 }
