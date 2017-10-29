@@ -326,6 +326,9 @@ members = [
     # http://rosettacode.org/wiki/Combinations
     "tasks/combinations",
 
+    # http://rosettacode.org/wiki/Combinations_with_repetitions
+    "tasks/combinations-with-repetitions",
+
     # http://rosettacode.org/wiki/Comma_quibbling
     "tasks/comma-quibbling",
 
