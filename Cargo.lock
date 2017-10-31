@@ -640,6 +640,10 @@ name = "combinations"
 version = "0.1.0"
 
 [[package]]
+name = "combinations-with-repetitions"
+version = "0.1.0"
+
+[[package]]
 name = "comma-quibbling"
 version = "0.1.0"
 
