@@ -845,6 +845,9 @@ members = [
     # http://rosettacode.org/wiki/N'th
     "tasks/nth",
 
+    # http://rosettacode.org/wiki/Nth_root
+    "tasks/nth-root",
+
     # http://rosettacode.org/wiki/Null_object
     "tasks/null-object",
 

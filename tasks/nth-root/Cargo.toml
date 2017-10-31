@@ -1,0 +1,7 @@
+[package]
+name = "nth-root"
+version = "0.1.0"
+authors = ["Tim Dumol <tim@timdumol.com>"]
+
+[dependencies]
+rand = "0.3"
