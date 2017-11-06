@@ -114,18 +114,24 @@ impl TaskIterator {
     /// Creates a new iterator over the specified tasks. If no tasks are supplied, iterates over
     /// all tasks.
     pub fn new<P>(workspace_root: P, titles: &[String]) -> TaskIterator
-        where P: AsRef<Path>
+    where
+        P: AsRef<Path>,
     {
         let local_tasks = local::parse_tasks(workspace_root.as_ref().join("Cargo.toml"));
 
-        let all_task_titles = remote::all_task_titles().into_iter().collect::<HashSet<_>>();
+        let all_task_titles = remote::all_task_titles()
+            .into_iter()
+            .collect::<HashSet<_>>();
 
-        let all_decoded_task_titles = all_task_titles.iter()
+        let all_decoded_task_titles = all_task_titles
+            .iter()
             .map(|title| remote::decode_title(title))
             .collect::<HashSet<_>>();
 
-        let all_local_task_titles =
-            local_tasks.iter().map(|task| task.title()).collect::<HashSet<_>>();
+        let all_local_task_titles = local_tasks
+            .iter()
+            .map(|task| task.title())
+            .collect::<HashSet<_>>();
 
         if !all_local_task_titles.is_subset(&all_decoded_task_titles) {
             // If there are tasks that can't be matched on the wiki, it's possible that they are
@@ -143,15 +149,18 @@ impl TaskIterator {
             }
 
             if !bad_titles.is_empty() {
-                panic!("Could not match some local tasks to tasks on the wiki: {:?}",
-                       bad_titles);
+                panic!(
+                    "Could not match some local tasks to tasks on the wiki: {:?}",
+                    bad_titles
+                );
             }
         }
 
         let mut requested_task_titles: Vec<_> = if titles.is_empty() {
             all_task_titles.into_iter().collect()
         } else {
-            all_task_titles.intersection(&HashSet::from_iter(titles.iter().cloned()))
+            all_task_titles
+                .intersection(&HashSet::from_iter(titles.iter().cloned()))
                 .cloned()
                 .collect()
         };
@@ -170,10 +179,9 @@ impl Iterator for TaskIterator {
 
     fn next(&mut self) -> Option<Self::Item> {
         if let Some(ref title) = self.requested_task_titles.pop_front() {
-            let local_task = self.local_tasks
-                .iter()
-                .cloned()
-                .find(|task| task.title() == title.as_str());
+            let local_task = self.local_tasks.iter().cloned().find(|task| {
+                task.title() == title.as_str()
+            });
             let remote_task = match remote::request_task(&title) {
                 Ok(remote_task) => remote_task,
                 Err(e) => {
@@ -196,7 +204,8 @@ impl Iterator for TaskIterator {
 
 /// Retrieves data for every task on Rosetta Code.
 pub fn fetch_all_tasks<P>(workspace_root: P) -> TaskIterator
-    where P: AsRef<Path>
+where
+    P: AsRef<Path>,
 {
     TaskIterator::new(workspace_root, &vec![])
 }
@@ -204,7 +213,8 @@ pub fn fetch_all_tasks<P>(workspace_root: P) -> TaskIterator
 /// Parses both local (implemented in this repository) and remote (implemented on the wiki) tasks,
 /// and returns the code of each.
 pub fn fetch_tasks<P>(workspace_root: P, tasks: &[String]) -> TaskIterator
-    where P: AsRef<Path>
+where
+    P: AsRef<Path>,
 {
     TaskIterator::new(workspace_root, &tasks)
 }

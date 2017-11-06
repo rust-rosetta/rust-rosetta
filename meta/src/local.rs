@@ -39,10 +39,13 @@ impl LocalTask {
     ///
     /// This is the title used to identify the task on the RosettaCode wiki.
     pub fn title(&self) -> String {
-        remote::decode_title(&TASK_URL_RE.captures(self.url().unwrap().as_str())
+        remote::decode_title(&TASK_URL_RE
+            .captures(self.url().unwrap().as_str())
             .and_then(|c| c.at(1))
-            .expect(&format!("Found task URL that does not match rosettacode regex: {}",
-                             self.url().unwrap()))
+            .expect(&format!(
+                "Found task URL that does not match rosettacode regex: {}",
+                self.url().unwrap()
+            ))
             .to_owned())
     }
 
@@ -75,7 +78,8 @@ pub enum TaskParseError {
 /// Given a path to the root `Cargo.toml`, returns a list of tasks implemented in the rust-rosetta
 /// repository.
 pub fn parse_tasks<P>(path: P) -> Vec<LocalTask>
-    where P: AsRef<Path>
+where
+    P: AsRef<Path>,
 {
     let cargo_toml = parse_toml(path).unwrap();
 
@@ -83,7 +87,8 @@ pub fn parse_tasks<P>(path: P) -> Vec<LocalTask>
         let workspace_table = cargo_toml.get("workspace").unwrap();
         match workspace_table.lookup("members") {
             Some(&Value::Array(ref members)) => {
-                members.iter()
+                members
+                    .iter()
                     .map(|path| parse_task(path.as_str().unwrap()))
                     .collect()
             }
@@ -95,7 +100,8 @@ pub fn parse_tasks<P>(path: P) -> Vec<LocalTask>
 }
 
 fn parse_toml<P>(path: P) -> io::Result<Table>
-    where P: AsRef<Path>
+where
+    P: AsRef<Path>,
 {
     let mut toml_file = try!(File::open(path));
     let mut contents = String::new();
@@ -104,14 +110,17 @@ fn parse_toml<P>(path: P) -> io::Result<Table>
 }
 
 fn parse_task<P>(path: P) -> LocalTask
-    where P: AsRef<Path>
+where
+    P: AsRef<Path>,
 {
     let path = path.as_ref().canonicalize().unwrap();
 
     // Determine the path to the crate relative from the "tasks" folder. This path will serve as
     // the unique identifier of the task.
     let crate_name = path.components()
-        .skip_while(|component| String::from("tasks") != component.as_os_str().to_str().unwrap())
+        .skip_while(|component| {
+            String::from("tasks") != component.as_os_str().to_str().unwrap()
+        })
         .filter_map(|component| {
             let component = component.as_os_str();
 
@@ -128,7 +137,8 @@ fn parse_task<P>(path: P) -> LocalTask
 
     let member_toml = Value::Table(parse_toml(path.join("Cargo.toml")).unwrap());
 
-    let url = member_toml.lookup("package.metadata.rosettacode.url")
+    let url = member_toml
+        .lookup("package.metadata.rosettacode.url")
         .ok_or(TaskParseError::MissingMetadata)
         .map(|metadata| metadata.as_str().unwrap())
         .and_then(|metadata| {
@@ -161,19 +171,23 @@ mod tests {
 
     #[test]
     fn parse_local_task() {
-        let parsed_task = super::parse_task(PathBuf::from(env!("CARGO_MANIFEST_DIR"))
-            .join("../tasks/a-plus-b"));
+        let parsed_task = super::parse_task(PathBuf::from(env!("CARGO_MANIFEST_DIR")).join(
+            "../tasks/a-plus-b",
+        ));
 
         assert_eq!(parsed_task.title(), "A+B");
-        assert_eq!(parsed_task.url().unwrap(),
-                   Url::parse("http://rosettacode.org/wiki/A%2BB").unwrap());
+        assert_eq!(
+            parsed_task.url().unwrap(),
+            Url::parse("http://rosettacode.org/wiki/A%2BB").unwrap()
+        );
         assert_eq!(parsed_task.crate_name(), "a-plus-b");
     }
 
     #[test]
     fn parse_nested_local_task() {
-        let parsed_task = super::parse_task(PathBuf::from(env!("CARGO_MANIFEST_DIR"))
-            .join("../tasks/rosetta-code/find-unimplemented-tasks"));
+        let parsed_task = super::parse_task(PathBuf::from(env!("CARGO_MANIFEST_DIR")).join(
+            "../tasks/rosetta-code/find-unimplemented-tasks",
+        ));
 
         let name = if cfg!(windows) {
             "rosetta-code\\find-unimplemented-tasks"

@@ -55,7 +55,8 @@ macro_rules! test_sort {
 
 /// Check if a slice is sorted properly.
 pub fn check_sorted<E>(candidate: &[E])
-    where E: Ord + Clone + Debug
+where
+    E: Ord + Clone + Debug,
 {
     let sorted = {
         let mut copy = candidate.iter().cloned().collect::<Vec<_>>();

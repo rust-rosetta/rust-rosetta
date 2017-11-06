@@ -81,7 +81,10 @@ pub fn encode_title(title: &str) -> String {
 
 /// Returns the titles of every task on Rosetta Code.
 pub fn all_task_titles() -> Vec<String> {
-    find_unimplemented_tasks::all_tasks().iter().map(|task| task.title.to_owned()).collect()
+    find_unimplemented_tasks::all_tasks()
+        .iter()
+        .map(|task| task.title.to_owned())
+        .collect()
 }
 
 /// Given a task title, pulls the task page from the RosettaCode wiki and parses its information.
@@ -105,7 +108,8 @@ pub fn request_task(title: &str) -> Result<RemoteTask, StatusCode> {
         body
     };
 
-    let rust_wiki_section = RUST_WIKI_SECTION_RE.captures(&response)
+    let rust_wiki_section = RUST_WIKI_SECTION_RE
+        .captures(&response)
         .map(|captures| captures.at(1).unwrap())
         .map(String::from);
 
@@ -128,8 +132,10 @@ mod tests {
         let remote_task = super::request_task("Quine").unwrap();
 
         assert_eq!(remote_task.title, "Quine");
-        assert_eq!(remote_task.url,
-                   Url::parse("http://rosettacode.org/wiki/Quine").unwrap());
+        assert_eq!(
+            remote_task.url,
+            Url::parse("http://rosettacode.org/wiki/Quine").unwrap()
+        );
         assert!(remote_task.source.is_some());
     }
 

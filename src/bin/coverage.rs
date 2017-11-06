@@ -45,7 +45,8 @@ impl Default for Filter {
 
 /// Prints a colored diff of two strings to the terminal.
 fn print_diff<T: ?Sized>(t: &mut T, s1: &str, s2: &str) -> io::Result<()>
-    where T: Terminal
+where
+    T: Terminal,
 {
     let changeset = Changeset::new(&s1, &s2, "\n");
 
@@ -76,7 +77,8 @@ fn print_diff<T: ?Sized>(t: &mut T, s1: &str, s2: &str) -> io::Result<()>
 
 /// Prints a task in a human-readable format.
 fn print_task<T: ?Sized>(t: &mut T, task: &Task, diff: bool) -> io::Result<()>
-    where T: Terminal
+where
+    T: Terminal,
 {
     try!(t.attr(term::Attr::Bold));
     try!(writeln!(t, "{}", task.title()));
@@ -100,7 +102,8 @@ fn print_task<T: ?Sized>(t: &mut T, task: &Task, diff: bool) -> io::Result<()>
 
 /// Writes a boolean as a pretty, human-readable string.
 fn write_status<T: ?Sized>(t: &mut T, boolean: bool) -> io::Result<()>
-    where T: Terminal
+where
+    T: Terminal,
 {
     try!(t.attr(term::Attr::Bold));
 
@@ -121,26 +124,36 @@ fn main() {
         .about(ABOUT)
         .version(crate_version!())
         .max_term_width(100)
-        .arg(Arg::with_name("task")
-            .help("The name of a task on the wiki, such as 'K-d tree'")
-            .multiple(true))
-        .arg(Arg::with_name("diff")
-            .help("Print diffs of tasks between the local and remote version")
-            .long("diff"))
-        .arg(Arg::with_name("filter")
-            .help("Filter tasks printed by the program.")
-            .possible_values(&["all", "local", "remote", "unimplemented"])
-            .long("filter")
-            .takes_value(true))
-        .arg(Arg::with_name("json-file")
-             .help("Dump json to the provided filename")
-             .long("json")
-             .takes_value(true))
+        .arg(
+            Arg::with_name("task")
+                .help("The name of a task on the wiki, such as 'K-d tree'")
+                .multiple(true),
+        )
+        .arg(
+            Arg::with_name("diff")
+                .help("Print diffs of tasks between the local and remote version")
+                .long("diff"),
+        )
+        .arg(
+            Arg::with_name("filter")
+                .help("Filter tasks printed by the program.")
+                .possible_values(&["all", "local", "remote", "unimplemented"])
+                .long("filter")
+                .takes_value(true),
+        )
+        .arg(
+            Arg::with_name("json-file")
+                .help("Dump json to the provided filename")
+                .long("json")
+                .takes_value(true),
+        )
         .get_matches();
 
     let mut t = term::stdout().unwrap();
 
-    let filter = value_t!(matches.value_of("filter"), Filter).ok().unwrap_or_default();
+    let filter = value_t!(matches.value_of("filter"), Filter)
+        .ok()
+        .unwrap_or_default();
 
     let tasks = if let Some(tasks) = matches.values_of("task") {
         let task_names = tasks.map(String::from).collect::<Vec<_>>();
@@ -149,7 +162,8 @@ fn main() {
         meta::fetch_all_tasks(PathBuf::from(env!("CARGO_MANIFEST_DIR")))
     };
 
-    let tasks = tasks.flat_map(|task| {
+    let tasks = tasks
+        .flat_map(|task| {
             match filter {
                 Filter::LocalOnly if !task.is_local_only() => return None,
                 Filter::RemoteOnly if !task.is_remote_only() => return None,
@@ -176,6 +190,7 @@ fn main() {
 
     if let Some(filename) = matches.value_of("json-file") {
         let mut file = File::create(filename).unwrap();
-        file.write_all(serde_json::to_string_pretty(&tasks).unwrap().as_bytes()).unwrap();
+        file.write_all(serde_json::to_string_pretty(&tasks).unwrap().as_bytes())
+            .unwrap();
     }
 }
