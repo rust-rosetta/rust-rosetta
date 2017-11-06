@@ -11,13 +11,12 @@ extern crate term;
 use std::fs::File;
 use std::io::prelude::*;
 use std::io;
-use std::path::PathBuf;
 
 use clap::{Arg, App};
 use difference::{Changeset, Difference};
 use term::Terminal;
 
-use meta::Task;
+use meta::{TaskIndex, Task};
 
 const ABOUT: &'static str = r#"
 Query differences between the rust-rosetta repository and the Rosetta Code wiki.
@@ -155,15 +154,19 @@ fn main() {
         .ok()
         .unwrap_or_default();
 
+    let task_index = TaskIndex::create(env!("CARGO_MANIFEST_DIR")).unwrap();
+
     let tasks = if let Some(tasks) = matches.values_of("task") {
         let task_names = tasks.map(String::from).collect::<Vec<_>>();
-        meta::fetch_tasks(PathBuf::from(env!("CARGO_MANIFEST_DIR")), &task_names)
+        task_index.fetch_tasks(&task_names)
     } else {
-        meta::fetch_all_tasks(PathBuf::from(env!("CARGO_MANIFEST_DIR")))
+        task_index.fetch_all_tasks()
     };
 
     let tasks = tasks
         .flat_map(|task| {
+            let task = task.unwrap();
+
             match filter {
                 Filter::LocalOnly if !task.is_local_only() => return None,
                 Filter::RemoteOnly if !task.is_remote_only() => return None,
