@@ -3,5 +3,8 @@ name = "nth-root"
 version = "0.1.0"
 authors = ["Tim Dumol <tim@timdumol.com>"]
 
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Nth_root"
+
 [dependencies]
 rand = "0.3"
