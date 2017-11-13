@@ -1,5 +1,3 @@
-use std::ascii::AsciiExt;
-
 const ASCII_A: u8 = b'A';
 
 fn main() {
