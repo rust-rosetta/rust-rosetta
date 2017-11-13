@@ -59,7 +59,7 @@ fn populate_tree(raw: &mut Vec<u8>, width: usize, height: usize, mc: u32) {
     // Vector of 'width' elements slices
     let mut field_base: Vec<_> = raw.as_mut_slice().chunks_mut(width).collect();
     // Addressable 2d vector
-    let mut field: &mut [&mut [u8]] = field_base.as_mut_slice();
+    let field = field_base.as_mut_slice();
 
     // Seed mote
     field[width / 2][height / 2] = 1;
