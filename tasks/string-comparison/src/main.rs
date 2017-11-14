@@ -1,6 +1,3 @@
-// For case-insensitive compare only.
-use std::ascii::AsciiExt;
-
 fn main() {
     // only same types can be compared
     // String and String or &str and &str
