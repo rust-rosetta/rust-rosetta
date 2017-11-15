@@ -14,6 +14,7 @@ script:
   - cargo test --all
 
 before_deploy:
+  - cargo clean
   - cargo run --release --bin coverage -- --json coverage.json
 
 deploy:
