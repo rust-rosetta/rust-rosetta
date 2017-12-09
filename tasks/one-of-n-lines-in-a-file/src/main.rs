@@ -1,22 +1,26 @@
 extern crate rand;
 
-use rand::Rng;
+use rand::{Rng, thread_rng};
 
-fn one_of_n(rng: &mut rand::ThreadRng, n: usize) -> usize {
+fn one_of_n<R: Rng>(rng: &mut R, n: usize) -> usize {
     (1..n).fold(0, |keep, cand| {
-        match rng.next_f64() {
-            y if y < (1.0 / (cand + 1) as f64) => cand,
-            _ => keep,
+        if rng.next_f64() < (1.0 / (cand + 1) as f64) {
+            cand
+        } else {
+            keep
         }
     })
 }
 
 fn main() {
-    let mut dist = [0usize; 10];
-    let mut rng = rand::thread_rng();
+    const LINES: usize = 10;
+    
+    let mut dist = [0; LINES];
+    let mut rng = thread_rng();
 
     for _ in 0..1_000_000 {
-        dist[one_of_n(&mut rng, 10)] += 1;
+        let num = one_of_n(&mut rng, LINES);
+        dist[num] += 1;
     }
 
     println!("{:?}", dist);
