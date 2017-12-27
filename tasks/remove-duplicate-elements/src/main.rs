@@ -1,39 +1,24 @@
+use std::vec::Vec;
 use std::collections::HashSet;
 use std::hash::Hash;
+use std::cmp::Eq;
 
-fn remove_duplicate_elements_hashing<T: Hash + Eq>(elements: &mut Vec<T>) {
+fn main() {
+    let mut sample_elements = vec![0u8, 0, 1, 1, 2, 3, 2];
+    println!("Before removal of duplicates : {:?}", sample_elements);
+    remove_duplicate_elements(&mut sample_elements);
+    println!("After removal of duplicates : {:?}", sample_elements);
+}
+
+fn remove_duplicate_elements<T: Hash + Eq>(elements: &mut Vec<T>) {
     let set: HashSet<_> = elements.drain(..).collect();
     elements.extend(set.into_iter());
 }
 
-fn remove_duplicate_elements_sorting<T: Ord>(elements: &mut Vec<T>) {
-    elements.sort_unstable();
-    elements.dedup();
-}
-
-fn main() {
-    let mut sample_elements = vec![0, 0, 1, 1, 2, 3, 2];
-    println!("Before removal of duplicates : {:?}", sample_elements);
-    remove_duplicate_elements_sorting(&mut sample_elements);
-    println!("After removal of duplicates : {:?}", sample_elements);
-}
-
-#[cfg(test)]
-mod tests {
-    use super::*;
-
-    #[test]
-    fn test_remove_duplicate_elements_hashing() {
-        let mut sample_elements = vec![0, 0, 1, 1, 2, 3, 2];
-        remove_duplicate_elements_hashing(&mut sample_elements);
-        sample_elements.sort_unstable();
-        assert_eq!(sample_elements, [0, 1, 2, 3])
-    }
-
-    #[test]
-    fn test_remove_duplicate_elements_sorting() {
-        let mut sample_elements = vec![0, 0, 1, 1, 2, 3, 2];
-        remove_duplicate_elements_sorting(&mut sample_elements);
-        assert_eq!(sample_elements, [0, 1, 2, 3])
-    }
+#[test]
+fn test_remove_duplicate_elements() {
+    let mut sample_elements = vec![0u8, 0, 1, 1, 2, 3, 2];
+    remove_duplicate_elements(&mut sample_elements);
+    sample_elements.sort();
+    assert_eq!(sample_elements, vec![0, 1, 2, 3])
 }
