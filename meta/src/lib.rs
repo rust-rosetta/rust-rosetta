@@ -127,7 +127,7 @@ impl TaskIndex {
         let local_task_titles = local_tasks.iter().map(LocalTask::title).collect();
 
         let client = Client::new();
-        let all_task_titles = TaskIndex::all_task_titles(&client, local_task_titles)?;
+        let all_task_titles = TaskIndex::all_task_titles(&client, &local_task_titles)?;
 
         Ok(TaskIndex {
             all_task_titles,
@@ -138,18 +138,18 @@ impl TaskIndex {
 
     /// Retrieves data for every task on Rosetta Code.
     pub fn fetch_all_tasks(&self) -> TaskIterator {
-        Self::fetch_tasks(&self, &[])
+        Self::fetch_tasks(self, &[])
     }
 
     /// Parses both local (implemented in this repository) and remote (implemented on the wiki) tasks,
     /// and returns the code of each.
     pub fn fetch_tasks(&self, tasks: &[String]) -> TaskIterator {
-        TaskIterator::new(&self, tasks)
+        TaskIterator::new(self, tasks)
     }
 
     fn all_task_titles(
         client: &Client,
-        local_task_titles: HashSet<String>,
+        local_task_titles: &HashSet<String>,
     ) -> Result<HashSet<String>> {
         let mut all_task_titles = find_unimplemented_tasks::all_tasks()
             .into_iter()

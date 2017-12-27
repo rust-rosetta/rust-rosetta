@@ -127,7 +127,7 @@ mod tests {
 
     #[test]
     fn encode_decode() {
-        const TITLE: &'static str = "Penney's game";
+        const TITLE: &str = "Penney's game";
 
         assert_eq!(super::decode_title(&super::encode_title(TITLE)), TITLE);
     }

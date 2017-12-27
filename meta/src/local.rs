@@ -119,7 +119,7 @@ where
     // the unique identifier of the task.
     let crate_name = path.components()
         .skip_while(|component| {
-            String::from("tasks") != component.as_os_str().to_str().unwrap()
+            "tasks" != component.as_os_str().to_str().unwrap()
         })
         .filter_map(|component| {
             let component = component.as_os_str();
@@ -142,7 +142,7 @@ where
         .ok_or(TaskParseError::MissingMetadata)
         .map(|metadata| metadata.as_str().unwrap())
         .and_then(|metadata| {
-            Url::parse(metadata).or(Err(TaskParseError::InvalidURL(String::from(metadata))))
+            Url::parse(metadata).or_else(|_| Err(TaskParseError::InvalidURL(String::from(metadata))))
         });
 
     let mut sources = vec![];
@@ -156,7 +156,7 @@ where
     }
 
     LocalTask {
-        crate_name: String::from(crate_name),
+        crate_name: crate_name,
         path: path.to_owned(),
         source: sources,
         local_url: url,
