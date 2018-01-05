@@ -12,13 +12,13 @@ use std::fs::File;
 use std::io::prelude::*;
 use std::io;
 
-use clap::{Arg, App};
+use clap::{App, Arg};
 use difference::{Changeset, Difference};
 use term::Terminal;
 
-use meta::{TaskIndex, Task};
+use meta::{Task, TaskIndex};
 
-const ABOUT: &'static str = r#"
+const ABOUT: &str = r#"
 Query differences between the rust-rosetta repository and the Rosetta Code wiki.
 
 This script prints out the name of each task, followed by whether it is implemented online,
@@ -47,7 +47,7 @@ fn print_diff<T: ?Sized>(t: &mut T, s1: &str, s2: &str) -> io::Result<()>
 where
     T: Terminal,
 {
-    let changeset = Changeset::new(&s1, &s2, "\n");
+    let changeset = Changeset::new(s1, s2, "\n");
 
     for change in changeset.diffs {
         match change {
@@ -57,13 +57,13 @@ where
             }
             Difference::Add(ref x) => {
                 try!(t.fg(term::color::GREEN));
-                for line in x.split("\n") {
+                for line in x.split('\n') {
                     try!(writeln!(t, "+{}", line));
                 }
             }
             Difference::Rem(ref x) => {
                 try!(t.fg(term::color::RED));
-                for line in x.split("\n") {
+                for line in x.split('\n') {
                     try!(writeln!(t, "-{}", line));
                 }
             }
