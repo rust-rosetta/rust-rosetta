@@ -6,4 +6,4 @@ version = "0.1.0"
 url = "http://rosettacode.org/wiki/Sorting_algorithms/Radix_sort"
 
 [dev-dependencies]
-rand = "0.3"
+rand = "0.4"

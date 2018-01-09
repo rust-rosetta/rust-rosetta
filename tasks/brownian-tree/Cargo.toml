@@ -7,4 +7,4 @@ url = "http://rosettacode.org/wiki/Brownian_tree"
 
 [dependencies]
 image = "0.17"
-rand = "0.3.14"
+rand = "0.4"

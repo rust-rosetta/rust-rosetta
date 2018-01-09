@@ -790,9 +790,10 @@ pub fn random_bal_tree(n: u32) -> AVLTree<i32, f32> {
 
 #[cfg(test)]
 mod tests {
+    use rand::{thread_rng, seq};
+
     use super::AVLTree;
     use random_bal_tree;
-    use rand::{thread_rng, sample};
 
     #[test]
     fn test_insert() {
@@ -1059,7 +1060,7 @@ mod tests {
         let mut rng = thread_rng();
         for _ in 0..100 {
             tree = random_bal_tree(100);
-            let sample = sample(&mut rng, -50..50, 80);
+            let sample = seq::sample_iter(&mut rng, -50..50, 80).unwrap();
             for i in sample {
                 tree.delete_bal(i);
             }

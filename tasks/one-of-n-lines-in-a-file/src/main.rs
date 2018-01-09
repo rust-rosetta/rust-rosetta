@@ -14,7 +14,7 @@ fn one_of_n<R: Rng>(rng: &mut R, n: usize) -> usize {
 
 fn main() {
     const LINES: usize = 10;
-    
+
     let mut dist = [0; LINES];
     let mut rng = thread_rng();
 
