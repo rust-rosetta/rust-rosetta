@@ -15,7 +15,7 @@ fn is_prime(a: u32) -> bool {
         2 => true,
         x if x <= 1 || x % 2 == 0 => false,
         _ => {
-            let max = f64::sqrt(a as f64) as u32;
+            let max = f64::from(a).sqrt() as u32;
             for x in (3..max).step_by(2) {
                 if a % x == 0 {
                     return false;
@@ -42,7 +42,7 @@ impl fmt::Display for Ulam {
     }
 }
 
-#[cfg_attr(feature = "clippy", allow(many_single_char_names))]
+#[cfg_attr(feature = "cargo-clippy", allow(many_single_char_names))]
 fn generate(n: u32, s: u32, c: char) -> Ulam {
     let mut spiral = vec![vec!["".to_string(); n as usize]; n as usize];
     let mut dir = RIGHT;

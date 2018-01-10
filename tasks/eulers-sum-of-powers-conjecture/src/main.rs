@@ -1,6 +1,5 @@
 const MAX_N: u64 = 250;
 
-#[cfg_attr(feature = "clippy", allow(needless_range_loop))]
 fn eulers_sum_of_powers() -> (usize, usize, usize, usize, usize) {
     let pow5: Vec<u64> = (0..MAX_N).map(|i| i.pow(5)).collect();
     let pow5_to_n = |pow| pow5.binary_search(&pow);

@@ -60,7 +60,7 @@ fn to_roman(mut number: u32) -> String {
     let mut min_numeral = String::new();
     for numeral in &NUMERALS {
         while numeral.value <= number {
-            min_numeral = min_numeral + numeral.symbol;
+            min_numeral += numeral.symbol;
             number -= numeral.value;
         }
     }

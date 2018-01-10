@@ -43,7 +43,7 @@ fn decompress(compressed: &[i32]) -> String {
         dictionary.insert(i, vec![i as u8]);
     }
 
-    let mut w = vec![compressed[0].clone() as u8];
+    let mut w = vec![compressed[0] as u8];
     let compressed = &compressed[1..];
     let mut result = w.clone();
     for &k in compressed {

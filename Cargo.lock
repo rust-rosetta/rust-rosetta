@@ -878,6 +878,9 @@ dependencies = [
 [[package]]
 name = "deal-cards-for-free-cell"
 version = "0.1.0"
+dependencies = [
+ "linear-congruential-generator 0.1.0",
+]
 
 [[package]]
 name = "decode"
@@ -1443,6 +1446,10 @@ dependencies = [
 
 [[package]]
 name = "general-fizzbuzz"
+version = "0.1.0"
+
+[[package]]
+name = "generate-chess960-starting-position"
 version = "0.1.0"
 
 [[package]]
@@ -2108,6 +2115,9 @@ version = "0.1.0"
 [[package]]
 name = "linear-congruential-generator"
 version = "0.1.0"
+dependencies = [
+ "rand 0.4.2 (registry+https://github.com/rust-lang/crates.io-index)",
+]
 
 [[package]]
 name = "log"

@@ -22,7 +22,7 @@ fn main() {
 
             let mut line = String::new();
             let res = stdin().read_line(&mut line);
-            let input: Option<isize> = res.ok().map_or(None, |_| line.trim().parse().ok());
+            let input: Option<isize> = res.ok().and_then(|_| line.trim().parse().ok());
 
             match input {
                 None => println!("numbers only, please"),

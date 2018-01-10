@@ -1,3 +1,5 @@
+#![cfg_attr(feature = "cargo-clippy", allow(unreadable_literal))]
+
 fn middle_three_digits(x: i32) -> Result<String, String> {
     let s: String = x.abs().to_string();
     let len = s.len();

@@ -9,7 +9,7 @@ struct TreeNode<T> {
     right: Option<Box<TreeNode<T>>>,
 }
 
-#[cfg_attr(feature = "clippy", allow(enum_variant_names))]
+#[cfg_attr(feature = "cargo-clippy", allow(enum_variant_names))]
 enum TraversalMethod {
     PreOrder,
     InOrder,
@@ -18,15 +18,15 @@ enum TraversalMethod {
 }
 
 impl<T> TreeNode<T> {
-    pub fn new(arr: &[[i8; 3]]) -> TreeNode<i8> {
+    pub fn from_array(arr: &[[i8; 3]]) -> TreeNode<i8> {
 
         let l = match arr[0][1] {
             -1 => None,
-            i => Some(Box::new(TreeNode::<i8>::new(&arr[(i - arr[0][0]) as usize..]))),
+            i => Some(Box::new(TreeNode::<i8>::from_array(&arr[(i - arr[0][0]) as usize..]))),
         };
         let r = match arr[0][2] {
             -1 => None,
-            i => Some(Box::new(TreeNode::<i8>::new(&arr[(i - arr[0][0]) as usize..]))),
+            i => Some(Box::new(TreeNode::<i8>::from_array(&arr[(i - arr[0][0]) as usize..]))),
         };
 
         TreeNode {
@@ -160,7 +160,7 @@ fn main() {
                     [8, -1, -1],
                     [9, -1, -1]];
 
-    let root = TreeNode::<i8>::new(&arr_tree);
+    let root = TreeNode::<i8>::from_array(&arr_tree);
 
     let method_labels = [(TraversalMethod::PreOrder, "pre-order:"),
                          (TraversalMethod::InOrder, "in-order:"),
@@ -172,7 +172,7 @@ fn main() {
         for n in root.traverse(&method_label.0) {
             print!(" {}", n.value);
         }
-        print!("\n");
+        println!();
     }
 }
 
@@ -195,7 +195,7 @@ mod tests {
                         [7, -1, -1],
                         [8, -1, -1],
                         [9, -1, -1]];
-        let root = TreeNode::<i8>::new(&arr_tree);
+        let root = TreeNode::<i8>::from_array(&arr_tree);
 
         let mut res: Vec<i8>;
         res = trav_values!(root.traverse(&TraversalMethod::PreOrder));

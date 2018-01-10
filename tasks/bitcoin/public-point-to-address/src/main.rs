@@ -16,7 +16,7 @@ static ALPHABET: [char; 58] = ['1', '2', '3', '4', '5', '6', '7', '8', '9', 'A',
 
 fn base58_encode(bytes: &mut [u8]) -> String {
     let base = ALPHABET.len();
-    if bytes.len() == 0 {
+    if bytes.is_empty() {
         return String::from("");
     }
     let mut output: Vec<u8> = Vec::new();
@@ -26,7 +26,7 @@ fn base58_encode(bytes: &mut [u8]) -> String {
         for byte in bytes.iter_mut() {
             num = num * 256 + *byte as usize;
             *byte = (num / base) as u8;
-            num = num % base;
+            num %= base;
         }
         output.push(num as u8);
     }

@@ -19,7 +19,7 @@ pub fn shannon_entropy(s: &str) -> f64 {
     // Calculate the entropy
     let len = s.len() as f64;
     map.iter().fold(0f64, |acc, (_, &nb)| {
-        let p = nb as f64 / len;
+        let p = f64::from(nb) / len;
         acc - p * p.log2()
     })
 }

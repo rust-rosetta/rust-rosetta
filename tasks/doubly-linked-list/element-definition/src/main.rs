@@ -30,6 +30,12 @@ impl<T> LinkedList<T> {
     }
 }
 
+impl<T> Default for LinkedList<T> {
+    fn default() -> Self {
+        Self::new()
+    }
+}
+
 /// Type definition
 type Link<T> = Option<Box<Node<T>>>;
 

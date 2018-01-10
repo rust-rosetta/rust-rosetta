@@ -82,7 +82,7 @@ fn main() {
         for cell in &world {
             print!("{}", cell.to_char());
         }
-        print!("\n");
+        println!();
         next_world(&world, &mut next, w, h);
         mem::swap(&mut world, &mut next);
 

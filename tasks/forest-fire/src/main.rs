@@ -55,7 +55,7 @@ fn main() {
 
     for generation in 1.. {
 
-        for row in forest.iter_mut() {
+        for row in &mut forest {
             for tile in row.iter_mut() {
                 update_tile(tile);
             }
@@ -90,14 +90,14 @@ fn prepopulate_forest(forest: &mut [[Tile; FOREST_WIDTH]; FOREST_HEIGHT]) {
 fn update_tile(tile: &mut Tile) {
     *tile = match *tile {
         Empty => {
-            if prob_check(NEW_TREE_PROB) == true {
+            if prob_check(NEW_TREE_PROB) {
                 Tree
             } else {
                 Empty
             }
         }
         Tree => {
-            if prob_check(FIRE_PROB) == true {
+            if prob_check(FIRE_PROB) {
                 Burning
             } else {
                 Tree
@@ -111,7 +111,7 @@ fn update_tile(tile: &mut Tile) {
 fn heat_neighbors(forest: &mut [[Tile; FOREST_WIDTH]; FOREST_HEIGHT], y: usize, x: usize) {
     let neighbors = [(-1, -1), (-1, 0), (-1, 1), (0, -1), (0, 1), (1, -1), (1, 0), (1, 1)];
 
-    for &(xoff, yoff) in neighbors.iter() {
+    for &(xoff, yoff) in &neighbors {
         let nx: i32 = (x as i32) + xoff;
         let ny: i32 = (y as i32) + yoff;
         if (0..FOREST_WIDTH as i32).contains(nx) && (0..FOREST_HEIGHT as i32).contains(ny) &&
@@ -123,18 +123,18 @@ fn heat_neighbors(forest: &mut [[Tile; FOREST_WIDTH]; FOREST_HEIGHT], y: usize, 
 
 fn prob_check(chance: f32) -> bool {
     let roll = rand::thread_rng().gen::<f32>();
-    if chance - roll > 0.0 { true } else { false }
+    chance - roll > 0.0
 }
 
 fn print_forest(forest: [[Tile; FOREST_WIDTH]; FOREST_HEIGHT], generation: u32) {
     let mut writer = BufWriter::new(io::stdout());
     clear_screen(&mut writer);
     writeln!(writer, "Generation: {}", generation + 1).unwrap();
-    for row in forest.iter() {
+    for row in &forest {
         for tree in row.iter() {
             write!(writer, "{}", tree).unwrap();
         }
-        writer.write(b"\n").unwrap();
+        writeln!(writer).unwrap();
     }
 }
 

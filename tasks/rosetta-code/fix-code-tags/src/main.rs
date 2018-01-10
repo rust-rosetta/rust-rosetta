@@ -5,7 +5,7 @@ use std::io::prelude::*;
 
 use regex::Regex;
 
-const LANGUAGES: &'static str =
+const LANGUAGES: &str =
     "_div abap actionscript actionscript3 ada apache applescript apt_sources asm asp autoit \
      avisynth bash basic4gl bf blitzbasic bnf boo c c_mac caddcl cadlisp cfdg cfm cil cobol cpp \
      cpp-qt csharp css d delphi diff dos dot eiffel email fortran freebasic genero gettext glsl \
@@ -17,10 +17,10 @@ const LANGUAGES: &'static str =
      smalltalk smarty sql tcl teraterm text thinbasic tsql typoscript vb vbnet verilog vhdl vim \
      visualfoxpro visualprolog whitespace winbatch xml xorg_conf xpp z80";
 
-fn fix_tags(languages: Vec<&str>, text: &str) -> String {
+fn fix_tags(languages: &[&str], text: &str) -> String {
     let mut replaced_text = text.to_owned();
 
-    for lang in &languages {
+    for lang in languages.iter() {
         let bad_open = Regex::new(&format!("<{lang}>|<code {lang}>", lang = lang)).unwrap();
         let bad_close = Regex::new(&format!("</{lang}>|</code>", lang = lang)).unwrap();
         let open = format!("<lang {}>", lang);
@@ -37,7 +37,7 @@ fn main() {
     let stdin = io::stdin();
     let mut buf = String::new();
     stdin.lock().read_to_string(&mut buf).unwrap();
-    println!("{}", fix_tags(LANGUAGES.split_whitespace().collect(), &buf));
+    println!("{}", fix_tags(&LANGUAGES.split_whitespace().collect::<Vec<_>>(), &buf));
 }
 
 #[test]
@@ -59,5 +59,5 @@ fn test_replace() {
 
     let languages = vec!["foo", "bar", "baz"];
 
-    assert_eq!(expected, fix_tags(languages, &input));
+    assert_eq!(expected, fix_tags(&languages, &input));
 }

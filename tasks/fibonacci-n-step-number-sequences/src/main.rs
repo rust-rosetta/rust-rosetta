@@ -97,5 +97,4 @@ fn main() {
 
     print!("\nLucas:");
     print(vec![2, 1], 10 - 2);
-    println!("");
 }

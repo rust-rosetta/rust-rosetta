@@ -14,9 +14,9 @@ fn binomial(n: usize, mut k: usize) -> BigUint {
     let mut res: BigUint = One::one();
     for i in 1..(k + 1) {
         let m: BigUint = (n - k + i).to_biguint().unwrap();
-        res = res * m;
+        res *= m;
         let d: BigUint = (i).to_biguint().unwrap();
-        res = res / d;
+        res /= d;
     }
 
     res

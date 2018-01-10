@@ -1,7 +1,6 @@
 use std::iter::repeat;
 
-pub const INPUT: &'static str =
-    r"WWWWWWWWWWWWBWWWWWWWWWWWWBBBWWWWWWWWWWWWWWWWWWWWWWWWBWWWWWWWWWWWWWW";
+pub const INPUT: &str = r"WWWWWWWWWWWWBWWWWWWWWWWWWBBBWWWWWWWWWWWWWWWWWWWWWWWWBWWWWWWWWWWWWWW";
 
 pub fn encode(value: &str) -> String {
     let mut ret = String::new();

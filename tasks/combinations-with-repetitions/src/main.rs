@@ -2,7 +2,7 @@
 // Yields the combinations in lexicographical order.
 struct CombinationsWithRepetitions<'a, T: 'a> {
     // source array to get combinations from
-    arr: &'a Vec<T>,
+    arr: &'a [T],
     // length of the combinations
     k: u32,
     // current counts of each object that represent the next combination
@@ -12,11 +12,10 @@ struct CombinationsWithRepetitions<'a, T: 'a> {
 }
 
 impl<'a, T> CombinationsWithRepetitions<'a, T> {
-    fn new(arr: &Vec<T>, k: u32) -> CombinationsWithRepetitions<T> {
+    fn new(arr: &[T], k: u32) -> CombinationsWithRepetitions<T> {
         let mut counts = vec![0; arr.len()];
         counts[arr.len() - 1] = k;
-        let comb = CombinationsWithRepetitions { arr: arr, k: k, counts: counts, remaining: true };
-        comb
+        CombinationsWithRepetitions { arr: arr, k: k, counts: counts, remaining: true }
     }
 }
 
@@ -29,8 +28,8 @@ impl<'a, T> Iterator for CombinationsWithRepetitions<'a, T> {
         }
         let mut comb = Vec::new();
         for (count, item) in self.counts.iter().zip(self.arr.iter()) {
-            for _ in 0..count.clone() {
-                comb.push(item.clone());
+            for _ in 0..*count {
+                comb.push(item);
             }
         }
         // this is lexicographically largest, and thus the last combination
@@ -58,7 +57,7 @@ impl<'a, T> Iterator for CombinationsWithRepetitions<'a, T> {
 fn main() {
     let collection = vec!["iced", "jam", "plain"];
     for comb in CombinationsWithRepetitions::new(&collection, 2) {
-        for item in comb.iter() {
+        for item in &comb {
             print!("{} ", item)
         }
         println!()

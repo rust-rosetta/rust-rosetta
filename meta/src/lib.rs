@@ -51,12 +51,12 @@ use remote::{RemoteTask, Response};
 pub use errors::{Error, Result};
 
 lazy_static! {
-    /// A Regex that matches valid RosettaCode URLs.
+    /// A Regex that matches valid Rosetta Code URLs.
     static ref TASK_URL_RE: Regex =
         Regex::new(r"^http://rosettacode\.org/wiki/([^#]+)$").unwrap();
 }
 
-/// A representation of a RosettaCode task. Contains information about the implementation on both
+/// A representation of a Rosetta Code task. Contains information about the implementation on both
 /// the local repository and the wiki.
 #[derive(Debug, Clone)]
 pub struct Task {
@@ -203,7 +203,7 @@ impl TaskIndex {
 }
 
 /// An iterator over tasks. Parses information from both the rust-rosetta repository and the
-/// RosettaCode wiki.
+/// Rosetta Code wiki.
 pub struct TaskIterator<'a> {
     client: &'a Client,
     fetched_remote_tasks: VecDeque<RemoteTask>,

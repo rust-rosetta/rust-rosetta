@@ -62,7 +62,7 @@ fn main() {
         for element in &p {
             print!("{} ", element);
         }
-        println!("");
+        println!();
     }
 }
 

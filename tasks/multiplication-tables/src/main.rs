@@ -6,12 +6,12 @@ fn main() {
     for i in 1..=LIMIT {
         print!("{:3} ", i);
     }
-    print!("\n");
+    println!();
 
     for _ in 0..LIMIT {
         print!("----");
     }
-    print!("+\n");
+    println!("+");
 
     for i in 1..=LIMIT {
         for j in 1..=LIMIT {

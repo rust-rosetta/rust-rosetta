@@ -1,5 +1,5 @@
 fn median(samples: &[f64]) -> f64 {
-    let mut xs = samples.iter().cloned().collect::<Vec<_>>();
+    let mut xs = samples.to_vec();
     xs.sort_by(|x, y| x.partial_cmp(y).unwrap());
 
     let n = xs.len();

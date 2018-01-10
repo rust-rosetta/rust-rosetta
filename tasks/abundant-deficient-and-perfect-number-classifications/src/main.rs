@@ -18,7 +18,7 @@ fn classify_numbers() -> Map<Range<i32>, fn(i32) -> Ordering> {
     fn sum_divisors_and_cmp(n: i32) -> Ordering {
         divisors(n).iter().fold(0, std::ops::Add::add).cmp(&n)
     }
-    (1i32..20001).map(sum_divisors_and_cmp as fn(i32) -> Ordering)
+    (1i32..20_001).map(sum_divisors_and_cmp as fn(i32) -> Ordering)
 }
 
 fn main() {

@@ -31,9 +31,9 @@ impl Matrix {
             for col in 0..self.width {
                 print!("{:3.0}", self.get(row, col));
             }
-            println!("");
+            println!();
         }
-        println!("");
+        println!();
     }
 }
 

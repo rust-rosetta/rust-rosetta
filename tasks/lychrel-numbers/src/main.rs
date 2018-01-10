@@ -32,8 +32,7 @@ fn test_lychrel(num: &BigInt, max_tests: usize) -> Option<Vec<BigInt>> {
             Some(current.clone())
         })
         .inspect(|current| sequence.push(current.clone()))
-        .filter(|curent| is_palindrome(curent))
-        .next()
+        .find(|curent| is_palindrome(curent))
         .is_none();
 
     if is_lychrel {
@@ -45,7 +44,7 @@ fn test_lychrel(num: &BigInt, max_tests: usize) -> Option<Vec<BigInt>> {
 
 /// Determine if the sequence for a lychrel number is related to a previously seen sequence
 fn is_related(seq: &[BigInt], lychrel_seq_numbers: &HashSet<BigInt>) -> bool {
-    seq.iter().filter(|num| lychrel_seq_numbers.contains(num)).next().is_some()
+    seq.iter().any(|num| lychrel_seq_numbers.contains(num))
 }
 
 /// Find the lychrel numbers up to `max_num` (inclusive).
@@ -67,7 +66,7 @@ fn find_lychrels(max_num: u64, max_tests: usize) -> (Vec<BigInt>, Vec<BigInt>, V
             let related = is_related(&lychrel_seq, &lychrel_seq_numbers);
 
             // update our sequences
-            for seq_num in lychrel_seq.into_iter() {
+            for seq_num in lychrel_seq {
                 lychrel_seq_numbers.insert(seq_num);
             }
 
@@ -97,7 +96,7 @@ fn print_nums(before: &str, numbers: &[BigInt]) {
             print!(", ");
         }
     }
-    println!("");
+    println!();
 }
 
 fn main() {

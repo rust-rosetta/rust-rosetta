@@ -20,19 +20,19 @@ fn main() {
     let set1_copy = set1.clone();
     assert!(set1_copy == set1);
 
-    println!("");
+    println!();
     println!("Print the union of set1 and set2");
     for num in set1.union(&set2) {
         println!("{}", num);
     }
 
-    println!("");
+    println!();
     println!("Print the intersection of set1 and set2");
     for num in set1.intersection(&set2) {
         println!("{}", num);
     }
 
-    println!("");
+    println!();
     println!("Print the difference between set1 and set2");
     for num in set1.difference(&set2) {
         println!("{}", num);

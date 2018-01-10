@@ -12,9 +12,9 @@ use walkdir::WalkDir;
 use TASK_URL_RE;
 use remote;
 
-/// A representation of a RosettaCode task.
+/// A representation of a Rosetta Code task.
 ///
-/// The task may have an implementation in the GitHub repository (local), on the RosettaCode wiki
+/// The task may have an implementation in the GitHub repository (local), on the Rosetta Code wiki
 /// (remote), both, or neither.
 #[derive(Debug, Clone)]
 pub struct LocalTask {
@@ -25,7 +25,7 @@ pub struct LocalTask {
 }
 
 impl LocalTask {
-    /// The URL of the task on the RosettaCode wiki.
+    /// The URL of the task on the Rosetta Code wiki.
     ///
     /// If we are reading the task data from the wiki itself, the URL will always be available.
     ///
@@ -82,21 +82,16 @@ where
     P: AsRef<Path>,
 {
     let cargo_toml = parse_toml(path).unwrap();
-
-    let members = {
-        let workspace_table = &cargo_toml["workspace"];
-        match workspace_table.get("members") {
-            Some(&Value::Array(ref members)) => {
-                members
-                    .iter()
-                    .map(|path| parse_task(path.as_str().unwrap()))
-                    .collect()
-            }
-            _ => vec![],
+    let workspace_table = &cargo_toml["workspace"];
+    match workspace_table.get("members") {
+        Some(&Value::Array(ref members)) => {
+            members
+                .iter()
+                .map(|path| parse_task(path.as_str().unwrap()))
+                .collect()
         }
-    };
-
-    members
+        _ => vec![],
+    }
 }
 
 fn parse_toml<P>(path: P) -> io::Result<Value>
@@ -145,7 +140,8 @@ where
         .ok_or(TaskParseError::MissingMetadata)
         .map(|metadata| metadata.as_str().unwrap())
         .and_then(|metadata| {
-            Url::parse(metadata).or_else(|_| Err(TaskParseError::InvalidURL(String::from(metadata))))
+            Url::parse(metadata)
+                .or_else(|_| Err(TaskParseError::InvalidURL(String::from(metadata))))
         });
 
     let mut sources = vec![];
@@ -159,7 +155,7 @@ where
     }
 
     LocalTask {
-        crate_name: crate_name,
+        crate_name,
         path: path.to_owned(),
         source: sources,
         local_url: url,

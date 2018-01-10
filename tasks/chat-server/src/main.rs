@@ -23,7 +23,7 @@ fn broadcast_message(user: &str,
     Ok(())
 }
 
-fn chat_loop(listener: TcpListener) -> io::Result<()> {
+fn chat_loop(listener: &TcpListener) -> io::Result<()> {
     let local_clients: Arc<RwLock<HashMap<Username, TcpStream>>> =
         Arc::new(RwLock::new(HashMap::new()));
 
@@ -33,7 +33,7 @@ fn chat_loop(listener: TcpListener) -> io::Result<()> {
     for stream in listener.incoming() {
         match stream {
             Ok(stream) => {
-                let client_clients = local_clients.clone();
+                let client_clients = Arc::clone(&local_clients);
                 thread::spawn(move || -> io::Result<()> {
                     let mut reader = BufReader::new(try!(stream.try_clone()));
                     let mut writer = stream;
@@ -91,7 +91,7 @@ fn chat_loop(listener: TcpListener) -> io::Result<()> {
 
 fn main() {
     let listener = TcpListener::bind(("localhost", 7000)).unwrap();
-    chat_loop(listener).unwrap();
+    chat_loop(&listener).unwrap();
 }
 
 #[cfg(test)]
@@ -117,7 +117,7 @@ mod tests {
     fn single_client() {
         let listener = TcpListener::bind(("localhost", 7000)).unwrap();
         let _ = thread::spawn(move || {
-            super::chat_loop(listener).unwrap();
+            super::chat_loop(&listener).unwrap();
         });
 
         let (mut reader, mut writer) = create_client("localhost:7000");
@@ -144,7 +144,7 @@ mod tests {
     fn multi_client() {
         let listener = TcpListener::bind(("localhost", 8000)).unwrap();
         let _ = thread::spawn(move || {
-            super::chat_loop(listener).unwrap();
+            super::chat_loop(&listener).unwrap();
         });
 
         let (mut reader1, mut writer1) = create_client("localhost:8000");
@@ -188,7 +188,7 @@ mod tests {
     fn existing_name() {
         let listener = TcpListener::bind(("localhost", 9000)).unwrap();
         let _ = thread::spawn(move || {
-            super::chat_loop(listener).unwrap();
+            super::chat_loop(&listener).unwrap();
         });
 
         let (mut reader1, mut writer1) = create_client("localhost:9000");

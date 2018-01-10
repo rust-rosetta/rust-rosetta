@@ -16,7 +16,7 @@ enum DoorState {
 // choose if they want to allocate or just process as a stream.
 fn calculate_doors() -> DoorIter {
     fn door_status(door_number: u32) -> DoorState {
-        let x = (door_number as f64).sqrt();
+        let x = f64::from(door_number).sqrt();
         if (x - x.round()).abs() < f64::EPSILON {
             DoorState::Open
         } else {

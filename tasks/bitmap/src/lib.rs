@@ -83,7 +83,7 @@ pub fn main() {
                 print!(".");
             }
         }
-        println!("");
+        println!();
     }
 }
 

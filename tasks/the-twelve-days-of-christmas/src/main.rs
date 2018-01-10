@@ -2,7 +2,7 @@ fn main() {
     let days = ["first", "second", "third", "fourth", "fifth", "sixth", "seventh", "eighth",
                 "ninth", "tenth", "eleventh", "twelfth"];
 
-    let gifts = ["A Patridge in a Pear Tree",
+    let gifts = ["A Partridge in a Pear Tree",
                  "Two Turtle Doves and",
                  "Three French Hens",
                  "Four Calling Birds",
@@ -15,6 +15,7 @@ fn main() {
                  "Eleven Pipers Piping",
                  "Twelve Drummers Drumming"];
 
+    #[cfg_attr(feature = "cargo-clippy", allow(needless_range_loop))]
     for i in 0..12 {
         println!("On the {} day of Christmas,", days[i]);
         println!("My true love gave to me:");

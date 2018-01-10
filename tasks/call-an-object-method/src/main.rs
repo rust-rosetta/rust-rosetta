@@ -1,4 +1,4 @@
-#![cfg_attr(feature="clippy", allow(blacklisted_name))]
+#![cfg_attr(feature="cargo-clippy", allow(blacklisted_name))]
 
 struct Foo;
 

@@ -1,7 +1,7 @@
-const ARRAY_MAX: usize = 25000;
+const ARRAY_MAX: usize = 25_000;
 const LUDIC_MAX: usize = 2100;
 
-#[cfg_attr(feature = "clippy", allow(needless_range_loop))]
+#[cfg_attr(feature = "cargo-clippy", allow(needless_range_loop))]
 fn main() {
     // Vector that will hold all the ludic numbers
     let mut result: Vec<usize> = vec![];
@@ -31,13 +31,13 @@ fn main() {
 
     print!("First 25: ");
     print_n_ludics(&result, 25);
-    println!("");
+    println!();
     print!("Number of Ludics below 1000: ");
     print_num_ludics_upto(&result, 1000);
-    println!("");
+    println!();
     print!("Ludics from 2000 to 2005: ");
     print_ludics_from_to(&result, 2000, 2005);
-    println!("");
+    println!();
     println!("Triplets below 250: ");
     print_tiples_until(&result, 250);
 }
@@ -47,7 +47,7 @@ fn print_n_ludics(x: &[usize], n: usize) {
     for i in x.iter().take(n) {
         print!("{} ", i);
     }
-    println!("");
+    println!();
 }
 
 /// Calculates how many Ludic numbers are below `max_num`
@@ -66,7 +66,7 @@ fn print_ludics_from_to(x: &[usize], from: usize, to: usize) {
     for i in x.iter().take(to - 1).skip(from - 1) {
         print!("{} ", i);
     }
-    println!("");
+    println!();
 }
 
 /// Calculates triplets until a certain Ludic number

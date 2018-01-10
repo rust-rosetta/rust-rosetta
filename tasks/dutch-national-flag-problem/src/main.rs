@@ -9,7 +9,7 @@ use rand::Rng;
 // 2 = blue
 //
 // look up table
-const COLOR: &'static [&'static str] = &["Red", "White", "Blue"];
+const COLOR: &[&str] = &["Red", "White", "Blue"];
 
 fn check_sorted(color_array: &[u8]) -> bool {
     let mut test_color = 0;

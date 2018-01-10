@@ -23,7 +23,7 @@ fn main() {
         Err(f) => panic!(f.to_string()),
     };
     if matches.opt_present("?") {
-        print_usage(&program, opts);
+        print_usage(&program, &opts);
         return;
     }
     match matches.opt_str("r") {
@@ -55,7 +55,7 @@ fn main() {
 
 }
 
-fn print_usage(program: &str, opts: Options) {
+fn print_usage(program: &str, opts: &Options) {
     let brief = format!("Usage: {} [options]", program);
     print!("{}", opts.usage(&brief));
 }

@@ -12,7 +12,7 @@ fn main() {
     let sum = if words.len() == 2 {
         words[0].expect(err_msg) + words[1].expect(err_msg)
     } else {
-        panic!(err_msg);
+        panic!(err_msg)
     };
 
     println!("{}", sum);

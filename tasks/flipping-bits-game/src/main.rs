@@ -91,17 +91,14 @@ impl Board {
         // Ensure we make a board with a non-zero size
         if size > 0 {
             // Make a vector of the board size
-            let mut r: Vec<bool> = vec![false; size*size];
+            let mut cells: Vec<bool> = vec![false; size*size];
             // Loop through all the cells
-            for i in 0..size * size {
+            for cell in &mut cells {
                 // Give it a random state
-                r[i] = rand::random::<bool>();
+                *cell = rand::random();
             }
             // Return the random board
-            Board {
-                cells: r.clone(),
-                size: size,
-            }
+            Board { cells, size }
         } else {
             Board::random(1)
         }

@@ -23,7 +23,7 @@ fn mod_exp(b: &BigUint, e: &BigUint, n: &BigUint) -> Result<BigUint, &'static st
         if ee.is_odd() {
             result = (result * &bb) % n;
         }
-        ee = ee >> 1;
+        ee >>= 1;
         bb = (&bb * &bb) % n;
     }
     Ok(result)

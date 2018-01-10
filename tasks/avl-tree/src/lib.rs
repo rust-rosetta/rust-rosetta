@@ -98,6 +98,12 @@ pub struct AVLTree<K, V> {
     store: Vec<Node<K, V>>,
 }
 
+impl<K: Ord + Copy + Debug + Display, V: Debug + Copy + Display> Default for AVLTree<K, V> {
+    fn default() -> Self {
+        AVLTree::new()
+    }
+}
+
 impl<K: Ord + Copy + Debug + Display, V: Debug + Copy + Display> AVLTree<K, V> {
     pub fn get_node(&self, np: NodePtr) -> Node<K, V> {
         assert!(np.is_some());
@@ -153,7 +159,7 @@ impl<K: Ord + Copy + Debug + Display, V: Debug + Copy + Display> AVLTree<K, V> {
     pub fn new() -> Self {
         AVLTree {
             root: None,
-            store: Vec::<Node<K, V>>::with_capacity(20000),
+            store: Vec::<Node<K, V>>::with_capacity(20_000),
         }
     }
 
@@ -166,7 +172,7 @@ impl<K: Ord + Copy + Debug + Display, V: Debug + Copy + Display> AVLTree<K, V> {
     /// Insert Node struct
     pub fn insert_node(&mut self, mut n: Node<K, V>) -> (Option<Node<K, V>>, Side) {
         if self.root.is_none() {
-            assert!(self.store.len() == 0);
+            assert!(self.store.is_empty());
             self.store.push(n);
             self.root = Some(0);
             return (Some(n), Side::Root);
@@ -215,10 +221,7 @@ impl<K: Ord + Copy + Debug + Display, V: Debug + Copy + Display> AVLTree<K, V> {
         }
 
         let mut p = nins.unwrap().up;
-        let mut is_left = false;
-        if side == Side::Left {
-            is_left = true;
-        }
+        let mut is_left = side == Side::Left;
 
         while p.is_some() {
 
@@ -250,7 +253,7 @@ impl<K: Ord + Copy + Debug + Display, V: Debug + Copy + Display> AVLTree<K, V> {
                             self.set_balance(p, 0);
                         } else {
                             self.set_balance(child_p, 0);
-                            self.set_balance(p, -1 * i_c.bal_incr);
+                            self.set_balance(p, -i_c.bal_incr);
                         }
                         self.set_balance(grand_p, 0);
                         break;
@@ -362,12 +365,11 @@ impl<K: Ord + Copy + Debug + Display, V: Debug + Copy + Display> AVLTree<K, V> {
 
             // Is this a one-child node?
         } else if n.left.is_none() || n.right.is_none() {
-            let ch;
-            if n.left.is_some() {
-                ch = n.left;
+            let ch = if n.left.is_some() {
+                n.left
             } else {
-                ch = n.right;
-            }
+                n.right
+            };
             if n.key.cmp(&self.get_key(self.root)) == Ordering::Equal {
                 self.set_pointer(ch, Side::Up, None);
                 self.root = ch;
@@ -439,10 +441,7 @@ impl<K: Ord + Copy + Debug + Display, V: Debug + Copy + Display> AVLTree<K, V> {
         let ndel = self.get_node(pdel);
 
         let mut p = pdel;
-        let mut is_left = false;
-        if side == Side::Left {
-            is_left = true;
-        }
+        let mut is_left = side == Side::Left;
 
         // Rebalance and update balance factors. There are two different rotation sequences that
         // are the same within handedness,
@@ -469,7 +468,7 @@ impl<K: Ord + Copy + Debug + Display, V: Debug + Copy + Display> AVLTree<K, V> {
                         self.single_rotation(d_c.this_side, p, child_p);
                         self.set_balance(p, d_c.bal_incr);
                         p = self.get_pointer(p, Side::Up);
-                        self.set_balance(p, -1 * d_c.bal_incr);
+                        self.set_balance(p, -d_c.bal_incr);
                         break;  // No height change
                     }
                     -2 => {
@@ -542,12 +541,12 @@ impl<K: Ord + Copy + Debug + Display, V: Debug + Copy + Display> AVLTree<K, V> {
     }
 
     /// Do an in-order traversal, where a "visit" prints the row with that node in it.
-    fn display(&self, p: NodePtr, side: Side, e: &Vec<DisplayElement>, f: &mut Formatter) {
+    fn display(&self, p: NodePtr, side: Side, e: &[DisplayElement], f: &mut Formatter) {
         if p.is_none() {
             return;
         }
 
-        let mut elems = e.clone();
+        let mut elems = e.to_vec();
         let node = self.get_node(p);
         let mut tail = DisplayElement::SpaceSpace;
         if node.up != self.root {
@@ -758,8 +757,8 @@ impl<K: Ord + Copy + Debug + Display, V: Debug + Copy + Display> Display for AVL
         if self.root.is_none() {
             write!(f, "[empty]")
         } else {
-            let mut v: Vec<DisplayElement> = Vec::new();
-            self.display(self.root, Side::Up, &mut v, f);
+            let v: Vec<DisplayElement> = Vec::new();
+            self.display(self.root, Side::Up, &v, f);
             Ok(())
         }
     }

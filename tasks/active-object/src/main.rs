@@ -57,7 +57,7 @@ impl<S, T> Integrator<S, T>
             // Here is the aforementioned clone.  We have to do it before s enters the closure,
             // because once that happens it is moved into the closure (and later, the new task) and
             // becomes inaccessible to the outside world.
-            output: s.clone(),
+            output: Arc::clone(&s),
         };
         thread::spawn(move || -> () {
             // The frequency is how often we want to "tick" as we update our integrated total.  In
@@ -97,7 +97,7 @@ impl<S, T> Integrator<S, T>
                             // additional subtleties around the actual implementation, but that's
                             // the basic idea.
                             let mut s = s.lock().unwrap();
-                            *s = *s + (k_1 + k_0) * (frequency as f64 / 2.);
+                            *s = *s + (k_1 + k_0) * (f64::from(frequency) / 2.);
                             k_0 = k_1;
                         }
                         Err(_) => break,
@@ -134,8 +134,8 @@ fn integrate() -> f64 {
     let object = Integrator::new(10);
     object.input(Box::new(|t: u32| {
             let two_seconds_ms = 2 * 1000;
-            let f = 1. / two_seconds_ms as f64;
-            (2. * PI * f * t as f64).sin()
+            let f = 1. / f64::from(two_seconds_ms);
+            (2. * PI * f * f64::from(t)).sin()
         }))
         .expect("Failed to set input");
     thread::sleep(Duration::from_secs(2));

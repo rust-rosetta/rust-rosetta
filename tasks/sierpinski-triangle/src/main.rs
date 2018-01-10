@@ -28,6 +28,6 @@ fn main() {
             state[j as usize] ^= state[(j - 1) as usize];
         }
 
-        print!("\n");
+        println!();
     }
 }

@@ -27,7 +27,7 @@ fn printpascal(rows: &[Vec<usize>]) {
             print!("{} ", col);
         }
 
-        println!("");
+        println!();
 
         i += 1;
     }

@@ -58,34 +58,34 @@ impl ConfigParams {
         let content = BufReader::new(conf_file);
 
         let is_not_comment = |x: &Result<String, io::Error>| {
-            match x {
-                &Err(_) => false,
-                &Ok(ref line) => {
-                    !(line.starts_with("#") || line.starts_with(";") || line.is_empty())
+            match *x {
+                Err(_) => false,
+                Ok(ref line) => {
+                    !(line.starts_with('#') || line.starts_with(';') || line.is_empty())
                 }
             }
         };
         let mut params = ConfigParams::new();
         for line in content.lines().filter(is_not_comment) {
             if line.is_ok() {
-                params.update_config(line.unwrap());
+                params.update_config(&line.unwrap());
             }
         }
 
         params
     }
     // Will parse the line and update the internal structure
-    fn update_config(&mut self, line: String) {
-        let mut parts = line.splitn(2, " ").map(|x| x.to_owned());
+    fn update_config(&mut self, line: &str) {
+        let mut parts = line.splitn(2, ' ').map(|x| x.to_owned());
         let key = parts.next().unwrap().to_lowercase();
         match parts.next() {
             None => {
                 self.params.insert(key, ConfigVariable::Boolean(true));
             }
             Some(value) => {
-                if value.contains(",") {
+                if value.contains(',') {
                     self.params.insert(key,
-                                       ConfigVariable::Vector(value.split(",")
+                                       ConfigVariable::Vector(value.split(',')
                                            .map(|item| item.trim().to_owned())
                                            .collect()));
                 } else {
@@ -98,12 +98,12 @@ impl ConfigParams {
 
     fn param<T: FromConfig>(&self, key: &str) -> Result<T, String> {
         key.to_lowercase();
-        FromConfig::from_config(&self, key)
+        FromConfig::from_config(self, key)
     }
 }
 
 fn main() {
-    const CONF: &'static str = "test.conf";
+    const CONF: &str = "test.conf";
     let params = ConfigParams::parse(CONF);
 
     println!("{:?}", params.param::<String>("fullname"));

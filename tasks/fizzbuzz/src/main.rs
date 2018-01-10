@@ -13,7 +13,7 @@ fn fb_one() {
             f = true;
         }
         if f {
-            println!("");
+            println!();
         } else {
             println!("{}", x)
         }

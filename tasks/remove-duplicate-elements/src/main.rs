@@ -1,6 +1,7 @@
 use std::collections::HashSet;
 use std::hash::Hash;
 
+#[allow(dead_code)]
 fn remove_duplicate_elements_hashing<T: Hash + Eq>(elements: &mut Vec<T>) {
     let set: HashSet<_> = elements.drain(..).collect();
     elements.extend(set.into_iter());

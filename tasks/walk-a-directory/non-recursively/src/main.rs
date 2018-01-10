@@ -8,7 +8,7 @@ extern crate serde;
 use docopt::Docopt;
 use regex::Regex;
 
-const USAGE: &'static str = r"
+const USAGE: &str = r"
 Usage: walk_a_directory_non_recursively <pattern>
 
 Walks the directory tree starting with the current working directory and

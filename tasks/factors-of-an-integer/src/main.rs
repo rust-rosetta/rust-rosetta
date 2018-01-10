@@ -14,7 +14,7 @@ fn main() {
 fn factor_int(x: i32) -> Vec<i32> {
     let mut factors: Vec<i32> = Vec::new();
 
-    let bound: i32 = (x as f64).sqrt().floor() as i32;
+    let bound: i32 = f64::from(x).sqrt().floor() as i32;
 
     for i in 1i32..bound {
         if x % i == 0 {

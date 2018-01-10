@@ -47,7 +47,7 @@ macro_rules! md4round2 {
         {
             $a = ($a.wrapping_add( g($b, $c, $d))
                         .wrapping_add($x[$i])
-                        .wrapping_add(0x5a827999_u32))
+                        .wrapping_add(0x5a82_7999_u32))
                     .rotate_left($s);
         }
     };
@@ -61,7 +61,7 @@ macro_rules! md4round3 {
         {
             $a = ($a.wrapping_add(h($b, $c, $d))
                         .wrapping_add($x[$i])
-                        .wrapping_add(0x6ed9eba1_u32))
+                        .wrapping_add(0x6ed9_eba1_u32))
                     .rotate_left($s);
         }
     };
@@ -81,6 +81,7 @@ fn convert_byte_vec_to_u32(mut bytes: Vec<u8>) -> Vec<u32> {
 
 // Returns a 128-bit MD4 hash as an array of four 32-bit words.
 // Based on RFC 1186 from https://www.ietf.org/rfc/rfc1186.txt
+#[cfg_attr(feature = "cargo-clippy", allow(many_single_char_names))]
 fn md4<T: Into<Vec<u8>>>(input: T) -> [u32; 4] {
 
     let mut bytes = input.into().to_vec();
@@ -109,10 +110,10 @@ fn md4<T: Into<Vec<u8>>>(input: T) -> [u32; 4] {
     w.push((initial_bit_len >> 32) as u32);
 
     // Step 3. Initialize MD buffer
-    let mut a = 0x67452301_u32;
-    let mut b = 0xefcdab89_u32;
-    let mut c = 0x98badcfe_u32;
-    let mut d = 0x10325476_u32;
+    let mut a = 0x6745_2301_u32;
+    let mut b = 0xefcd_ab89_u32;
+    let mut c = 0x98ba_dcfe_u32;
+    let mut d = 0x1032_5476_u32;
 
     // Step 4. Process message in 16-word blocks
     let n = w.len();
@@ -227,6 +228,4 @@ fn test_rfc1320() {
     assert_eq!("e33b4ddc9c38f2199c3e7b164fcc0536",
                digest_to_str(&md4("12345678901234567890123456789012345678901234567890123456789\
                                    012345678901234567890")));
-
-
 }

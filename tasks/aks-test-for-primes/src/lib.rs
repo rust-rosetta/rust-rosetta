@@ -5,7 +5,7 @@ pub fn is_prime(p: u32) -> bool {
         let mut c = coefficients(p as usize);
         c[0] -= 1;
         for coefficient in c.iter().take((c.len() + 1) / 2) {
-            if (coefficient % (p as i64)) != 0 {
+            if (coefficient % (i64::from(p))) != 0 {
                 return false;
             }
         }

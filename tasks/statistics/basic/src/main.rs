@@ -46,7 +46,7 @@ fn print_histogram(width: u32, data: &[f32]) {
         for _ in 0..bar_width as usize {
             print!("*");
         }
-        println!("");
+        println!();
     }
 }
 

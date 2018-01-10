@@ -1,12 +1,14 @@
 extern crate image;
 extern crate rand;
 
-use image::ColorType;
-use rand::distributions::{IndependentSample, Range};
 use std::cmp::{min, max};
 use std::env;
 use std::path::Path;
 use std::process;
+use std::u8;
+
+use image::ColorType;
+use rand::distributions::{IndependentSample, Range};
 
 fn help() {
     println!("Usage: brownian_tree <output_path> <mote_count> <edge_length>");
@@ -15,7 +17,7 @@ fn help() {
 fn main() {
     let args: Vec<String> = env::args().collect();
     let mut output_path = Path::new("out.png");
-    let mut mote_count: u32 = 10000;
+    let mut mote_count: u32 = 10_000;
     let mut width: usize = 512;
     let mut height: usize = 512;
 
@@ -41,7 +43,7 @@ fn main() {
 
     // Balance image for 8-bit grayscale
     let our_max = field_raw.iter().fold(0u8, |champ, e| max(champ, *e));
-    let fudge = std::u8::MAX / our_max;
+    let fudge = u8::MAX / our_max;
     let balanced: Vec<u8> = field_raw.iter().map(|e| e * fudge).collect();
 
     match image::save_buffer(output_path,
@@ -80,7 +82,7 @@ fn populate_tree(raw: &mut Vec<u8>, width: usize, height: usize, mc: u32) {
 
         // Increment field value when motes spawn on top of the structure
         if field[x][y] > 0 {
-            field[x][y] = min(field[x][y] as u32 + 1, std::u8::MAX as u32) as u8;
+            field[x][y] = min(u32::from(field[x][y]) + 1, u32::from(u8::MAX)) as u8;
             continue;
         }
 
@@ -91,7 +93,7 @@ fn populate_tree(raw: &mut Vec<u8>, width: usize, height: usize, mc: u32) {
                            field[x + 1][y + 1];
 
             if contacts > 0 {
-                field[x][y] = min(field[x][y] as u32 + 1, std::u8::MAX as u32) as u8;
+                field[x][y] = min(u32::from(field[x][y]) + 1, u32::from(u8::MAX)) as u8;
                 break;
             } else {
                 let xw = walk_range.ind_sample(&mut rng) + x as i32;

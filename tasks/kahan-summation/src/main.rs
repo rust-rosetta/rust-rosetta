@@ -49,9 +49,9 @@ fn all_sums(vec: &mut [f32]) -> Vec<f32> {
     res
 }
 
-#[cfg_attr(feature="clippy", allow(approx_constant))]
+#[cfg_attr(feature="cargo-clippy", allow(approx_constant))]
 fn main() {
-    let v = vec![10000.0f32, 3.14159, 2.71828];
+    let v = vec![10_000f32, 3.14159, 2.71828];
     let sums = all_sums(&mut v.clone());
     let res = kahan_sum(&v).unwrap();
     let max = find_max(&sums[..]).unwrap();
@@ -59,7 +59,7 @@ fn main() {
 }
 
 #[test]
-#[cfg_attr(feature="clippy", allow(approx_constant))]
+#[cfg_attr(feature="cargo-clippy", allow(approx_constant))]
 fn test_kahansum() {
     let v = vec![10000.0f32, 3.14159, 2.71828];
     let sums = all_sums(&mut v.clone());

@@ -9,7 +9,7 @@ fn main() {
     for i in pernicious().take(25) {
         print!("{} ", i);
     }
-    println!("");
+    println!();
     for i in (888_888_877u64..888_888_888).filter(is_pernicious) {
         print!("{} ", i);
     }

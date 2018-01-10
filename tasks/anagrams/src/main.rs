@@ -59,7 +59,7 @@ fn main() {
         for word in group {
             print!("{} ", word)
         }
-        println!("")
+        println!();
     }
 }
 

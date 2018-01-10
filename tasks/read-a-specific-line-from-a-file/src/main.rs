@@ -27,7 +27,7 @@ fn main() {
     let file = File::open(filename).unwrap();
     let reader = BufReader::new(file);
 
-    match reader.lines().skip(line_number - 1).next() {
+    match reader.lines().nth(line_number - 1) {
         None => panic!("No such line (file is too short)"),
         Some(result) => {
             match result {

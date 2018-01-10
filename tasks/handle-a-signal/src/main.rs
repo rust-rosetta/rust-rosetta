@@ -52,7 +52,7 @@ fn main() {
     let end = time::precise_time_ns();
 
     // Compute the difference
-    let diff = Duration::from_millis((end - start) / 1000000);
+    let diff = Duration::from_millis((end - start) / 1_000_000);
 
     // Print the difference and exit
     println!("Program has run for {} seconds", diff.as_secs());

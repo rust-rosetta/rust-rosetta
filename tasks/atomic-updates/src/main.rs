@@ -274,10 +274,10 @@ fn perform_atomic_updates(duration: Duration, original_total: usize, num_ticks: 
     // create a Mutex here.
     let arc = Arc::new((make_buckets(original_total), running));
     // Cloning the arc bumps the reference count.
-    let arc_ = arc.clone();
+    let arc_ = Arc::clone(&arc);
     // Start off the equalize task
     spawn(move || equalize(&arc_.0, &arc_.1, ID_EQUALIZE));
-    let arc_ = arc.clone();
+    let arc_ = Arc::clone(&arc);
     // Start off the randomize task
     spawn(move || randomize(&arc_.0, &arc_.1, ID_RANDOMIZE));
     let (ref bl, ref running) = *arc;

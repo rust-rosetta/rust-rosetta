@@ -57,7 +57,7 @@ fn sift_down<T: Ord>(a: &mut [T], start: usize, end: usize) {
         // if the chile has a sibling and the child's value is less that its sibling's...
         if child + 1 <= end && a[child] < a[child + 1] {
             // .. then point to the right child instead
-            child = child + 1;
+            child += 1;
         }
 
         // out of max-heap order

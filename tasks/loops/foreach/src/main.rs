@@ -31,14 +31,14 @@ fn main() {
     for i in s.chars() {
         print!("{}", i);
     }
-    println!("");
+    println!();
 
     // Iterate through the elements of a slice
     let array = [1, 2, 3, 4, 5];
     for i in &array {
         print!("{}", i);
     }
-    println!("");
+    println!();
 
     // Iterate through the elements of a hashmap
     let mut hashmap = HashMap::new();

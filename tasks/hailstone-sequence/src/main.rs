@@ -60,7 +60,7 @@ fn main() {
              &two_seven[ts_len - 4..]);
 
     // Find the longest.
-    let (biggest, length) = biggest_hailstone(100000);
+    let (biggest, length) = biggest_hailstone(100_000);
     println!("Largest: {}, Size: {}", biggest, length);
 }
 
@@ -74,7 +74,7 @@ fn test_27() {
 
 #[test]
 fn test_biggest() {
-    let (biggest, length) = biggest_hailstone(100000);
+    let (biggest, length) = biggest_hailstone(100_000);
     assert_eq!(biggest, 77031);
     assert_eq!(length, 351);
 }
