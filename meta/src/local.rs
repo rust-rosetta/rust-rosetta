@@ -5,8 +5,8 @@ use std::io;
 use std::io::prelude::*;
 use std::path::{Path, PathBuf};
 
-use toml::{self, Table, Value};
-use url::Url;
+use reqwest::Url;
+use toml::Value;
 use walkdir::WalkDir;
 
 use TASK_URL_RE;
@@ -39,14 +39,14 @@ impl LocalTask {
     ///
     /// This is the title used to identify the task on the RosettaCode wiki.
     pub fn title(&self) -> String {
-        remote::decode_title(&TASK_URL_RE
+        remote::decode_title(TASK_URL_RE
             .captures(self.url().unwrap().as_str())
-            .and_then(|c| c.at(1))
+            .and_then(|c| c.get(1))
+            .map(|m| m.as_str())
             .expect(&format!(
                 "Found task URL that does not match rosettacode regex: {}",
                 self.url().unwrap()
-            ))
-            .to_owned())
+            )))
     }
 
     /// The name of the crate that implements the task.
@@ -84,8 +84,8 @@ where
     let cargo_toml = parse_toml(path).unwrap();
 
     let members = {
-        let workspace_table = cargo_toml.get("workspace").unwrap();
-        match workspace_table.lookup("members") {
+        let workspace_table = &cargo_toml["workspace"];
+        match workspace_table.get("members") {
             Some(&Value::Array(ref members)) => {
                 members
                     .iter()
@@ -99,14 +99,14 @@ where
     members
 }
 
-fn parse_toml<P>(path: P) -> io::Result<Table>
+fn parse_toml<P>(path: P) -> io::Result<Value>
 where
     P: AsRef<Path>,
 {
     let mut toml_file = try!(File::open(path));
     let mut contents = String::new();
     try!(toml_file.read_to_string(&mut contents));
-    Ok(toml::Parser::new(&contents).parse().unwrap())
+    Ok(contents.parse().unwrap())
 }
 
 fn parse_task<P>(path: P) -> LocalTask
@@ -135,10 +135,13 @@ where
         .unwrap()
         .to_owned();
 
-    let member_toml = Value::Table(parse_toml(path.join("Cargo.toml")).unwrap());
+    let member_toml = parse_toml(path.join("Cargo.toml")).unwrap();
 
     let url = member_toml
-        .lookup("package.metadata.rosettacode.url")
+        .get("package")
+        .and_then(|p| p.get("metadata"))
+        .and_then(|m| m.get("rosettacode"))
+        .and_then(|m| m.get("url"))
         .ok_or(TaskParseError::MissingMetadata)
         .map(|metadata| metadata.as_str().unwrap())
         .and_then(|metadata| {
@@ -167,7 +170,7 @@ where
 mod tests {
     use std::path::PathBuf;
 
-    use url::Url;
+    use reqwest::Url;
 
     #[test]
     fn parse_local_task() {

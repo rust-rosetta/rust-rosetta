@@ -4,13 +4,10 @@ extern crate serde_derive;
 extern crate reqwest;
 extern crate serde;
 extern crate serde_json;
-extern crate url;
 
-use std::io::Read;
-
+use reqwest::Url;
 use serde::Deserialize;
 use serde_json::Value;
-use url::Url;
 
 #[derive(Deserialize)]
 pub struct Task {
@@ -66,10 +63,7 @@ fn construct_query_task_content(task_id: &str) -> Url {
 }
 
 fn query_api(url: Url) -> Result<Value, ParseError> {
-    let mut response = try!(reqwest::get(url.as_str()));
-    let mut body = String::new();
-    response.read_to_string(&mut body).unwrap();
-    Ok(serde_json::from_str(&body)?)
+    Ok(reqwest::get(url)?.json()?)
 }
 
 fn parse_all_tasks(reply: &Value) -> Result<Vec<Task>, ParseError> {

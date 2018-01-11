@@ -6,4 +6,4 @@ version = "0.1.0"
 url = "http://rosettacode.org/wiki/One_of_n_lines_in_a_file"
 
 [dependencies]
-rand = "0.3"
+rand = "0.4"

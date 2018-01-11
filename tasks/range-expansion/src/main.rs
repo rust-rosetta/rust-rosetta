@@ -22,13 +22,13 @@ fn expand_range(range: &str) -> Vec<isize> {
 fn expand_item(item: &str) -> Vec<isize> {
     // Handle the case of a single number
     for cap in Regex::new(r"^(-?\d+)$").unwrap().captures_iter(item) {
-        return vec![cap.at(0).and_then(|s| s.parse().ok()).unwrap()];
+        return vec![cap.get(0).and_then(|s| s.as_str().parse().ok()).unwrap()];
     }
 
     // Handle the case of a range
     for cap in Regex::new(r"^(-?\d+)-(-?\d+)$").unwrap().captures_iter(item) {
-        let left: isize = cap.at(1).and_then(|s| s.parse().ok()).unwrap();
-        let right: isize = cap.at(2).and_then(|s| s.parse().ok()).unwrap();
+        let left: isize = cap.get(1).and_then(|s| s.as_str().parse().ok()).unwrap();
+        let right: isize = cap.get(2).and_then(|s| s.as_str().parse().ok()).unwrap();
 
         // Generate and collect a range between them
         return (left..right + 1).collect();

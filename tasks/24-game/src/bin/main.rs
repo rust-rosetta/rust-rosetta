@@ -11,6 +11,8 @@ use std::cmp::Ordering::{self, Greater};
 use std::iter::Peekable;
 use std::str::CharIndices;
 
+use rand::seq;
+
 fn main() {
     use std::io;
 
@@ -18,7 +20,7 @@ fn main() {
     let input = io::stdin();
 
     loop {
-        let mut sample = rand::sample(&mut rng, (1u32..10), 4);
+        let mut sample = seq::sample_iter(&mut rng, (1u32..10), 4).unwrap();
 
         println!("make 24 by combining the following 4 numbers with + - * / or (q)uit");
         println!("{:?}", sample);

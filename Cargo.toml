@@ -78,7 +78,7 @@ difference = "1"
 env_logger = "0.4"
 log = "0.3"
 meta = { path = "meta" }
-reqwest = "0.4"
+reqwest = "0.8"
 serde = "1"
 serde_json = "1"
 term = "0.4"

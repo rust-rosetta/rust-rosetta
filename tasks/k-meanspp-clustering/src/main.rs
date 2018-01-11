@@ -6,7 +6,7 @@ extern crate rand;
 
 use getopts::Options;
 use gnuplot::{Axes2D, AxesCommon, Color, Figure, Fix, PointSize, PointSymbol};
-use nalgebra::{DVector, Iterable};
+use nalgebra::DVector;
 use rand::{Rng, SeedableRng, StdRng};
 use rand::distributions::{IndependentSample, Range};
 use std::f64::consts::PI;
@@ -82,7 +82,7 @@ fn assign_clusters<'a>(points: &'a Vec<Point>, centroids: &Vec<Point>) -> Vec<Cl
     for _ in 0..centroids.len() {
         clusters.push(Cluster {
             members: Vec::new(),
-            center: DVector::new_zeros(points[0].len()),
+            center: DVector::zeros(points[0].len()),
         });
     }
 
@@ -106,7 +106,7 @@ fn compute_stats(clusters: &Vec<Cluster>) -> Stats {
 
     for c in clusters.iter() {
         let pts = &c.members;
-        let seed: DVector<f64> = DVector::new_zeros(pts[0].len());
+        let seed: DVector<f64> = DVector::zeros(pts[0].len());
         let centroid = pts.iter().fold(seed, |a, &b| a + b.clone()) / pts.len() as f64;
         means_vec.push(pts.iter().fold(0f64, |acc, pt| acc + sqdist(pt, &centroid).sqrt()) /
                        pts.len() as f64);
@@ -115,7 +115,7 @@ fn compute_stats(clusters: &Vec<Cluster>) -> Stats {
 
     Stats {
         centroids: centroids,
-        mean_d_from_centroid: DVector::from_slice(means_vec.len(), means_vec.as_slice()),
+        mean_d_from_centroid: DVector::from_row_slice(means_vec.len(), means_vec.as_slice()),
     }
 }
 
@@ -161,7 +161,8 @@ fn generate_points(n: u32, rng: &mut StdRng) -> Vec<Point> {
     for _ in 0..n {
         let root_r = r_range.ind_sample(rng).sqrt();
         let theta = theta_range.ind_sample(rng);
-        points.push(DVector::<f64>::from_slice(2, &[root_r * theta.cos(), root_r * theta.sin()]));
+        let vec = DVector::<f64>::from_row_slice(2, &[root_r * theta.cos(), root_r * theta.sin()]);
+        points.push(vec);
     }
 
     points
@@ -196,10 +197,10 @@ fn viz(clusters: Vec<Cluster>, stats: Stats, k: usize, n: u32, e: f64) {
 
 fn print_dvec(v: &DVector<f64>) {
     print!("(");
-    for elem in v.at.iter().take(v.len() - 1) {
+    for elem in v.iter().take(v.len() - 1) {
         print!("{:+1.2}, ", elem)
     }
-    print!("{:+1.2})", v.at.iter().last().unwrap());
+    print!("{:+1.2})", v.iter().last().unwrap());
 }
 
 fn print_usage(program: &str, opts: Options) {
@@ -267,7 +268,7 @@ fn main() {
             let mut rdr = csv::Reader::from_reader(File::open(&filename).unwrap());
             for row in rdr.deserialize() {
                 let floats: Vec<f64> = row.unwrap();
-                points.push(DVector::<f64>::from_slice(floats.len(), floats.as_slice()));
+                points.push(DVector::<f64>::from_row_slice(floats.len(), floats.as_slice()));
             }
             assert!(points.iter().all(|v| v.len() == points[0].len()));
             n = points.len() as u32;
@@ -298,7 +299,6 @@ fn main() {
 #[cfg(test)]
 mod tests {
     use super::{generate_points, lloyd};
-    use nalgebra::Iterable;
     use rand::{SeedableRng, StdRng};
 
     #[test]
@@ -319,5 +319,4 @@ mod tests {
         assert!(stats.centroids.iter().any(|p| p[0] < 0f64 && p[1] < 0f64));
         assert!(stats.centroids.iter().any(|p| p[0] < 0f64 && p[1] >= 0f64));
     }
-
 }

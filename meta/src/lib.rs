@@ -9,9 +9,9 @@ extern crate error_chain;
 #[macro_use]
 extern crate lazy_static;
 #[macro_use]
-extern crate serde_derive;
+extern crate percent_encoding;
 #[macro_use]
-extern crate url;
+extern crate serde_derive;
 
 extern crate regex;
 extern crate reqwest;
@@ -26,6 +26,8 @@ extern crate find_unimplemented_tasks;
 #[doc(hidden)]
 pub extern crate rand;
 
+mod remote;
+
 use std::cmp;
 use std::collections::{HashSet, VecDeque};
 use std::fs::File;
@@ -36,8 +38,6 @@ use std::path::Path;
 
 use regex::Regex;
 use reqwest::{Client, Url};
-
-mod remote;
 
 pub mod errors;
 pub mod local;

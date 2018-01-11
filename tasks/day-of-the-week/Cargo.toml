@@ -6,4 +6,4 @@ version = "0.1.0"
 url = "http://rosettacode.org/wiki/Day_of_the_week"
 
 [dependencies]
-chrono = "0.2"
+chrono = "0.4"
