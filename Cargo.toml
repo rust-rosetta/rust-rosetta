@@ -527,6 +527,9 @@ members = [
     # http://rosettacode.org/wiki/Flipping_bits_game
     "tasks/flipping-bits-game",
 
+    # http://rosettacode.org/wiki/Floyd-Warshall_algorithm
+    "tasks/floyd-warshall-algorithm",
+
     # http://rosettacode.org/wiki/Forest_fire
     "tasks/forest-fire",
 
