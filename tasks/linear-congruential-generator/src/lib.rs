@@ -7,6 +7,10 @@ pub struct BsdLcg {
 }
 
 impl Rng for BsdLcg {
+    // Because the output is in the range [0, 2147483647], this should technically be `next_u16`
+    // (the largest integer size which is fully covered, as `rand::Rng` assumes).  The `rand`
+    // crate does not provide it however.  If serious usage is required, implementing this
+    // function as a concatenation of two `next_u16`s (elsewhere defined) should work.
     fn next_u32(&mut self) -> u32 {
         self.state = self.state.wrapping_mul(1_103_515_245).wrapping_add(12_345);
         self.state %= 1 << 31;
@@ -28,10 +32,8 @@ pub struct MsLcg {
 }
 
 impl Rng for MsLcg {
-    // Because this only uses the high 16 bits of the state (`>> 16`), this should technically use
-    // `next_u16`, but the `rand` crate does not provide it.  If serious usage is required,
-    // implementing this function as a concatenation of two `next_u16`s (elsewhere defined) should
-    // work.
+    // Similarly, this outputs in the range [0, 32767] and should output a `u8`.  Concatenate
+    // four `next_u8`s for serious usage.
     fn next_u32(&mut self) -> u32 {
         self.state = self.state.wrapping_mul(214_013).wrapping_add(2_531_011);
         self.state %= 1 << 31;
