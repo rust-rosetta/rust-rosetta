@@ -4,3 +4,6 @@ version = "0.1.0"
 
 [package.metadata.rosettacode]
 url = "http://rosettacode.org/wiki/Linear_congruential_generator"
+
+[dependencies]
+rand = "0.3"
