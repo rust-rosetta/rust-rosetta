@@ -5,8 +5,9 @@ environment:
     BITS: 64
   - TARGET: i686-pc-windows-msvc
     BITS: 32
-  - TARGET: i686-pc-windows-gnu
-    BITS: 32
+# Disabled due to rust-lang/rust#47029
+# - TARGET: i686-pc-windows-gnu
+#   BITS: 32
 
 shallow_clone: true
 
