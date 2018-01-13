@@ -1,0 +1,7 @@
+[package]
+name = "floyd-warshall-algorithm"
+version = "0.1.0"
+authors = ["Andy Russell <arussell123@gmail.com>"]
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Floyd-Warshall_algorithm"
