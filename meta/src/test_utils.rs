@@ -37,14 +37,14 @@ macro_rules! test_sort {
             }
         }
 
-        test_case!(already_sorted => [-1i32, 0, 3, 6, 99]);
+        test_case!(already_sorted => [-1_i32, 0, 3, 6, 99]);
         test_case!(array_of_strings => ["beach", "hotel", "airplane", "car", "house", "art"]);
         test_case!(empty_vector => Vec::<i32>::new());
         test_case!(one_element_vector => vec![0_i32]);
         test_case!(random_numbers => {
-                       let mut rng = $crate::rand::thread_rng();
-                       rng.gen_iter::<i32>().take(10).collect::<Vec<i32>>()
-                   });
+            let mut rng = $crate::rand::thread_rng();
+            rng.gen::<[i32; 10]>()
+        });
         test_case!(reverse_sorted_array => [20_i32, 10, 0, -1, -5]);
         test_case!(unsorted_array => [4_i32, 65, 2, -31, 0, 99, 2, 83, 782, 1]);
         test_case!(unsorted_array_positive => [12_i32, 54, 2, 93, 13, 43, 15, 299, 234]);
@@ -56,23 +56,19 @@ macro_rules! test_sort {
 /// Check if a slice is sorted properly.
 pub fn check_sorted<E>(candidate: &[E])
 where
-    E: Ord + Clone + Debug,
+    E: Ord + Copy + Debug, // `Copy` is possible here because it's always called with a `Copy` type
 {
-    let sorted = {
-        let mut copy = candidate.iter().cloned().collect::<Vec<_>>();
-        copy.sort();
-        copy
-    };
+    let mut sorted = candidate.to_vec();
+    sorted.sort(); // order matters. `sort_unstable` might break some tests
 
-    assert_eq!(sorted.as_slice(), candidate);
+    assert_eq!(sorted, candidate);
 }
 
 #[cfg(test)]
 mod tests {
-
     #[test]
     fn check_sorted() {
-        let sorted = vec![1, 2, 3, 4, 5];
+        let sorted = [1, 2, 3, 4, 5];
 
         super::check_sorted(&sorted);
     }
@@ -80,7 +76,7 @@ mod tests {
     #[test]
     #[should_panic]
     fn check_unsorted() {
-        let unsorted = vec![1, 3, 2];
+        let unsorted = [1, 3, 2];
 
         super::check_sorted(&unsorted);
     }
