@@ -4,7 +4,8 @@ use rand::{Rng, thread_rng};
 
 fn one_of_n<R: Rng>(rng: &mut R, n: usize) -> usize {
     (1..n).fold(0, |keep, cand| {
-        if rng.next_f64() < (1.0 / (cand + 1) as f64) {
+        // Note that this will break if n is larger than u32::MAX
+        if rng.gen_weighted_bool(cand as u32 + 1) {
             cand
         } else {
             keep
