@@ -554,6 +554,9 @@ members = [
     # http://rosettacode.org/wiki/General_FizzBuzz
     "tasks/general-fizzbuzz",
 
+    # http://rosettacode.org/wiki/Generate_Chess960_starting_position
+    "tasks/generate-chess960-starting-position",
+
     # http://rosettacode.org/wiki/Generate_lower_case_ASCII_alphabet
     "tasks/generate-lower-case-ascii-alphabet",
 
