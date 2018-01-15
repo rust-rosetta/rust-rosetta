@@ -5,7 +5,7 @@ use crypto::sha2::Sha256;
 
 /// Decodes a base58-encoded string into an array of bytes.
 fn decode_base58(address: &str) -> Result<Vec<u8>, &'static str> {
-    const ALPHABET: &'static str = "123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz";
+    const ALPHABET: &str = "123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz";
     const BASE: usize = 58;
 
     let mut result = vec![0; 25];

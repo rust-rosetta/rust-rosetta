@@ -23,6 +23,12 @@ impl<T> List<T> {
     }
 }
 
+impl<T> Default for List<T> {
+    fn default() -> Self {
+        Self::new()
+    }
+}
+
 /// Iteration by value (simply empties the list as the caller now owns all values)
 pub struct IntoIter<T>(List<T>);
 

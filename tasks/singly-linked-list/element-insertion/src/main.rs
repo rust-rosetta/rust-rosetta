@@ -25,6 +25,12 @@ impl<T> List<T> {
     }
 }
 
+impl<T> Default for List<T> {
+    fn default() -> Self {
+        Self::new()
+    }
+}
+
 fn main() {
     let mut list = List::new();
     list.push(1);

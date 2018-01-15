@@ -14,7 +14,6 @@ fn bogo_sort<T: Ord>(mut v: &mut [T]) {
 }
 
 // helper function that checks for ascending order
-#[cfg_attr(feature = "clippy", allow(needless_range_loop))]
 fn is_sorted<T: Ord>(v: &[T]) -> bool {
     if v.len() > 1 {
         for i in 0..(v.len() - 1) {

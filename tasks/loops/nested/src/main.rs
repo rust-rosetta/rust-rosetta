@@ -19,6 +19,6 @@ fn main() {
                 break 'outer;
             }
         }
-        println!("");
+        println!();
     }
 }

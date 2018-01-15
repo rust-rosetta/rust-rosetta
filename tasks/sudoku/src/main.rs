@@ -217,7 +217,7 @@ fn solve_sudoku(mut puzzle: Sudoku) -> Vec<Sudoku> {
     answers
 }
 
-const INPUT: &'static str = r"
+const INPUT: &str = r"
     850002400
     720000009
     004000000
@@ -240,7 +240,7 @@ fn main() {
 }
 
 #[cfg(test)]
-const SOLUTION: &'static str = r"
+const SOLUTION: &str = r"
     859612437
     723854169
     164379528

@@ -1,5 +1,3 @@
-// http://rosettacode.org/wiki/Remove_lines_from_a_file
-
 #[macro_use]
 extern crate serde_derive;
 
@@ -11,7 +9,7 @@ use docopt::Docopt;
 use std::io::{BufReader, BufRead};
 use std::fs::File;
 
-const USAGE: &'static str = r"
+const USAGE: &str = r"
 Usage: remove_lines_from_a_file <start> <count> <file>
 ";
 

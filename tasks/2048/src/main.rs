@@ -32,8 +32,8 @@ mod mod2048 {
         fn present(&self);
         fn draw_lost(&self);
         fn draw_won(&self);
-        fn draw_score(&self, text: String);
-        fn draw_instructions(&self, text: String);
+        fn draw_score(&self, text: &str);
+        fn draw_instructions(&self, text: &str);
     }
 
     struct TermboxUI<'a> {
@@ -58,7 +58,6 @@ mod mod2048 {
             }
         }
 
-        #[cfg_attr(feature = "clippy", allow(needless_range_loop))]
         fn draw_grid(&self, grid: [[usize; 4]; 4]) {
             let x = 0;
             let y = 2;
@@ -81,7 +80,7 @@ mod mod2048 {
                         w: cell_width,
                         h: cell_height,
                     };
-                    self.draw_rectangle(rect, Color::Black, Color::White, Color::Black);
+                    self.draw_rectangle(&rect, Color::Black, Color::White, Color::Black);
                     if num != "0" {
                         self.rustbox.print(x_coord + x_text_offset,
                                            y_coord + y_text_offset,
@@ -99,18 +98,18 @@ mod mod2048 {
         }
 
         fn draw_lost(&self) {
-            self.draw_text(16, 12, "You lost!".to_string(), Color::Red, Color::Default);
+            self.draw_text(16, 12, "You lost!", Color::Red, Color::Default);
         }
 
         fn draw_won(&self) {
-            self.draw_text(16, 12, "You won!".to_string(), Color::Green, Color::Default);
+            self.draw_text(16, 12, "You won!", Color::Green, Color::Default);
         }
 
-        fn draw_score(&self, text: String) {
+        fn draw_score(&self, text: &str) {
             self.draw_text(16, 1, text, Color::White, Color::Default);
         }
 
-        fn draw_instructions(&self, text: String) {
+        fn draw_instructions(&self, text: &str) {
             self.draw_text(14, 22, text, Color::White, Color::Default);
         }
     }
@@ -140,8 +139,8 @@ mod mod2048 {
             }
         }
 
-        fn draw_rectangle(&self, rect: Rectangle, fill: Color, fg: Color, bg: Color) {
-            let Rectangle { x, y, w, h } = rect;
+        fn draw_rectangle(&self, rect: &Rectangle, fill: Color, fg: Color, bg: Color) {
+            let Rectangle { x, y, w, h } = *rect;
 
             self.fill_area(x, y, w, h, fill, fill);
             self.draw_horizontal_line(x, y, w, fg, bg); // top
@@ -157,7 +156,7 @@ mod mod2048 {
         fn draw_text(&self,
                      x: usize,
                      y: usize,
-                     line: String,
+                     line: &str,
                      fg: Color,
                      bg: Color)
                      -> (usize, usize) {
@@ -278,9 +277,9 @@ mod mod2048 {
         }
 
         fn draw(&self) {
-            self.ui.draw_score(format!("Score: {}", self.total_score));
+            self.ui.draw_score(&format!("Score: {}", self.total_score));
             self.ui.draw_grid(self.grid);
-            self.ui.draw_instructions("←,↑,→,↓ or q".to_string());
+            self.ui.draw_instructions("←,↑,→,↓ or q");
             if self.state == State::Lost {
                 self.ui.draw_lost();
             } else if self.state == State::Won {

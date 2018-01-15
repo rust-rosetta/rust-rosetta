@@ -42,6 +42,6 @@ fn main() {
     };
     root.my_map(&|x| println!("{}", x));
     println!("---------------");
-    let new_root = root.my_map(&|x| *x as f64 * 333.333f64);
+    let new_root = root.my_map(&|x| f64::from(*x) * 333.333);
     new_root.my_map(&|x| println!("{}", x));
 }

@@ -4,7 +4,7 @@ use num::{BigUint, One};
 use num::bigint::ToBigUint;
 use num::integer::Integer;
 
-fn mod_exp<T: Integer + Clone>(mut a: T, mut b: T, m: T) -> T {
+fn mod_exp<T: Integer + Clone>(mut a: T, mut b: T, m: &T) -> T {
     let one: T = One::one();
     let two = one.clone() + one.clone();
 
@@ -28,7 +28,7 @@ fn main() {
     let a: BigUint = BigUint::parse_bytes(a_str.as_bytes(), 10).unwrap();
     let b: BigUint = BigUint::parse_bytes(b_str.as_bytes(), 10).unwrap();
     let m: BigUint = pow(10.to_biguint().unwrap(), 40);
-    println!("{}", mod_exp(a, b, m));
+    println!("{}", mod_exp(a, b, &m));
 }
 
 #[test]
@@ -44,7 +44,7 @@ fn test_mod_exp() {
         let a = a.to_biguint().unwrap();
         let b = b.to_biguint().unwrap();
         let m = m.to_biguint().unwrap();
-        let ans: BigUint = mod_exp(a, b, m);
+        let ans: BigUint = mod_exp(a, b, &m);
 
         assert_eq!(ans, expected.to_biguint().unwrap());
     }

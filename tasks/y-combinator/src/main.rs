@@ -1,3 +1,5 @@
+#![cfg_attr(feature = "cargo-clippy", allow(double_parens, type_complexity))]
+
 use std::sync::Arc;
 
 // Arc<Box<Closure>>
@@ -11,7 +13,7 @@ enum Mu<T> {
 }
 
 fn unroll<T>(Mu::Roll(f): Mu<T>) -> Arc<Box<Fn(Mu<T>) -> T>> {
-    f.clone()
+    Arc::clone(&f)
 }
 
 pub type Func<A> = Arc<Box<Fn(A) -> A>>;
@@ -19,13 +21,13 @@ pub type RecFunc<A> = Arc<Box<Fn(Func<A>) -> Func<A>>>;
 
 pub fn y<A: 'static>(f: RecFunc<A>) -> Func<A> {
     let g: Arc<Box<Fn(Mu<Func<A>>) -> Func<A>>> = abc!(move |x: Mu<Func<A>>| -> Func<A> {
-        let f = f.clone();
+        let f = Arc::clone(&f);
         abc!(move |a: A| -> A {
-            let f = f.clone();
+            let f = Arc::clone(&f);
             f(unroll(x.clone())(x.clone()))(a)
         })
     });
-    g(Mu::Roll(g.clone()))
+    g(Mu::Roll(Arc::clone(&g)))
 }
 
 #[macro_export]

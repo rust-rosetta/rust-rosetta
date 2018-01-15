@@ -26,13 +26,13 @@ struct Stats {
     mean_d_from_centroid: DVector<f64>,
 }
 
-/// DVector doesn't implement BaseFloat, so a custom distance function is required.
+/// `DVector` doesn't implement `BaseFloat`, so a custom distance function is required.
 fn sqdist(p1: &Point, p2: &Point) -> f64 {
     (p1.clone() - p2.clone()).iter().map(|x| x * x).fold(0f64, |a, b| a + b)
 }
 
 /// Returns (distance^2, index) tuple of winning point.
-fn nearest(p: &Point, candidates: &Vec<Point>) -> (f64, usize) {
+fn nearest(p: &Point, candidates: &[Point]) -> (f64, usize) {
     let (dsquared, the_index) = candidates.iter()
         .enumerate()
         .fold((sqdist(p, &candidates[0]), 0), |(d, index), next| {
@@ -47,7 +47,7 @@ fn nearest(p: &Point, candidates: &Vec<Point>) -> (f64, usize) {
 }
 
 /// Computes starting centroids and makes initial assignments.
-fn kpp(points: &Vec<Point>, k: usize, rng: &mut StdRng) -> Stats {
+fn kpp(points: &[Point], k: usize, rng: &mut StdRng) -> Stats {
     let mut centroids: Vec<Point> = Vec::new();
     // Random point for first centroid guess:
     centroids.push(points[rng.gen::<usize>() % points.len()].clone());
@@ -56,7 +56,7 @@ fn kpp(points: &Vec<Point>, k: usize, rng: &mut StdRng) -> Stats {
     for _ in 1..k {
         let mut sum = 0f64;
         for (j, p) in points.iter().enumerate() {
-            let (dsquared, _) = nearest(&p, &centroids);
+            let (dsquared, _) = nearest(p, &centroids);
             dists[j] = dsquared;
             sum += dsquared;
         }
@@ -76,7 +76,7 @@ fn kpp(points: &Vec<Point>, k: usize, rng: &mut StdRng) -> Stats {
     compute_stats(&clusters)
 }
 
-fn assign_clusters<'a>(points: &'a Vec<Point>, centroids: &Vec<Point>) -> Vec<Cluster<'a>> {
+fn assign_clusters<'a>(points: &'a [Point], centroids: &[Point]) -> Vec<Cluster<'a>> {
     let mut clusters: Vec<Cluster> = Vec::new();
 
     for _ in 0..centroids.len() {
@@ -92,15 +92,15 @@ fn assign_clusters<'a>(points: &'a Vec<Point>, centroids: &Vec<Point>) -> Vec<Cl
         clusters[nearest_index].members.push(p);
     }
 
-    for i in 0..clusters.len() {
-        clusters[i].center = clusters[i].center.clone() / clusters[i].members.len() as f64;
+    for cluster in &mut clusters {
+        cluster.center = cluster.center.clone() / cluster.members.len() as f64;
     }
 
     clusters
 }
 
 /// Computes centroids and mean-distance-from-centroid for each cluster.
-fn compute_stats(clusters: &Vec<Cluster>) -> Stats {
+fn compute_stats(clusters: &[Cluster]) -> Stats {
     let mut centroids = Vec::new();
     let mut means_vec = Vec::new();
 
@@ -119,7 +119,7 @@ fn compute_stats(clusters: &Vec<Cluster>) -> Stats {
     }
 }
 
-fn lloyd<'a>(points: &'a Vec<Point>,
+fn lloyd<'a>(points: &'a [Point],
              k: usize,
              stoppage_delta: f64,
              max_iter: u32,
@@ -169,7 +169,7 @@ fn generate_points(n: u32, rng: &mut StdRng) -> Vec<Point> {
 }
 
 // Plot clusters (2d only). Closure idiom allows us to borrow and mutate the Axes2D.
-fn viz(clusters: Vec<Cluster>, stats: Stats, k: usize, n: u32, e: f64) {
+fn viz(clusters: &[Cluster], stats: &Stats, k: usize, n: u32, e: f64) {
     let mut fg = Figure::new();
     {
         let prep = |fg: &mut Figure| {
@@ -203,7 +203,7 @@ fn print_dvec(v: &DVector<f64>) {
     print!("{:+1.2})", v.iter().last().unwrap());
 }
 
-fn print_usage(program: &str, opts: Options) {
+fn print_usage(program: &str, opts: &Options) {
     let brief = format!("Usage: {} [options]", program);
     print!("{}", opts.usage(&brief));
 }
@@ -211,7 +211,7 @@ fn print_usage(program: &str, opts: Options) {
 fn main() {
     let args: Vec<String> = env::args().collect();
     let mut k: usize = 7;
-    let mut n: u32 = 30000;
+    let mut n: u32 = 30_000;
     let mut e: f64 = 1e-3;
     let max_iterations = 100u32;
 
@@ -237,7 +237,7 @@ fn main() {
         Err(f) => panic!(f.to_string()),
     };
     if matches.opt_present("?") {
-        print_usage(&program, opts);
+        print_usage(&program, &opts);
         return;
     }
     match matches.opt_str("k") {
@@ -283,16 +283,16 @@ fn main() {
              std::iter::repeat(" ").take((points[0].len() - 2) * 7 + 7).collect::<String>());
     println!("===  {}  ===========  =====",
              std::iter::repeat("=").take(points[0].len() * 7 + 2).collect::<String>());
-    for i in 0..clusters.len() {
+    for (i, cluster) in clusters.iter().enumerate() {
         print!(" {:>1}    ", i);
         print_dvec(&stats.centroids[i]);
         print!("      {:1.2}       {:>4}\n",
                stats.mean_d_from_centroid[i],
-               clusters[i].members.len());
+               cluster.members.len());
     }
 
     if points[0].len() == 2 {
-        viz(clusters, stats, k, n, e)
+        viz(&clusters, &stats, k, n, e)
     }
 }
 

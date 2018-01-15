@@ -12,8 +12,8 @@ fn is_prime(number: i32) -> bool {
 }
 
 fn main() {
-    println!("{}", is_prime(15485863)); // The 1 000 000th prime.
-    println!("{}", is_prime(62773913)); // The product of the 1000th and 1001st primes.
+    println!("{}", is_prime(15_485_863)); // The 1 000 000th prime.
+    println!("{}", is_prime(62_773_913)); // The product of the 1000th and 1001st primes.
 }
 
 #[test]

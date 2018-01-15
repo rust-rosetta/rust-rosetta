@@ -74,7 +74,7 @@ fn metered(duration: Duration) {
     // Create a channel for notifying the main task that the workers are done
     let (tx, rx) = channel();
     for i in 0..NUM_WORKERS {
-        let sem = sem.clone();
+        let sem = Arc::clone(&sem);
         let tx = tx.clone();
         spawn(move || -> () {
             // Acquire the resource

@@ -16,12 +16,12 @@ fn main() {
     for i in (0..20).map(f) {
         print!("{} ", i);
     }
-    println!("");
+    println!();
 
     for i in (0..20).map(m) {
         print!("{} ", i);
     }
-    println!("");
+    println!();
 }
 
 #[test]

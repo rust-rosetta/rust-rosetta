@@ -90,6 +90,12 @@ impl<T> LinkedList<T> {
     }
 }
 
+impl<T> Default for LinkedList<T> {
+    fn default() -> Self {
+        Self::new()
+    }
+}
+
 fn main() {
     use std::collections;
     let mut list1 = collections::LinkedList::new();

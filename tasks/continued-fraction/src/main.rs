@@ -17,8 +17,8 @@ macro_rules! continued_fraction {
             .take($iterations)
             .collect::<Vec<_>>().iter()
             .rev()
-            .fold(0 as f64, |acc: f64, &(x, y)| {
-                x as f64 + (y as f64 / acc)
+            .fold(0f64, |acc: f64, &(x, y)| {
+                f64::from(x) + (f64::from(y) / acc)
             })
     );
 
@@ -40,11 +40,11 @@ fn main() {
 
     // Pi
     let pi_a = (3..4).chain(iter::repeat(6));
-    let pi_b = (1i64..).map(|x| (2 * x - 1).pow(2));
+    let pi_b = (1i32..).map(|x| (2 * x - 1).pow(2));
     println!("{}", continued_fraction!(pi_a, pi_b));
 }
 
-#[cfg_attr(feature="clippy", allow(float_cmp, approx_constant))]
+#[cfg_attr(feature="cargo-clippy", allow(float_cmp, approx_constant))]
 #[cfg(test)]
 mod tests {
     use std::iter;

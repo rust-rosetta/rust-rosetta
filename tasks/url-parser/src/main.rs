@@ -2,7 +2,7 @@ extern crate url;
 
 use url::Url;
 
-fn print_url(url: Url) {
+fn print_url(url: &Url) {
     println!("scheme:      {:?}", url.scheme());
     if let Some(ref host) = url.host() {
         println!("domain:      {:?}", host);
@@ -11,10 +11,10 @@ fn print_url(url: Url) {
         println!("port:        {:?}", port);
     }
     println!("path:        {:?}", url.path());
-    if let Some(ref query) = url.query() {
+    if let Some(query) = url.query() {
         println!("query:       {:?}", query);
     }
-    if let Some(ref fragment) = url.fragment() {
+    if let Some(fragment) = url.fragment() {
         println!("fragment:    {:?}", fragment);
     }
 }
@@ -38,7 +38,7 @@ fn main() {
     ];
     for url in urls {
         println!("URL: {}", url);
-        print_url(Url::parse(url).unwrap());
-        println!("");
+        print_url(&Url::parse(url).unwrap());
+        println!();
     }
 }

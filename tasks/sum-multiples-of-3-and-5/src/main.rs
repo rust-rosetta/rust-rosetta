@@ -5,12 +5,12 @@ fn sum35(lim: u64) -> u64 {
             sum += i;
         }
     }
-    return sum;
+    sum
 }
 
 
 fn main() {
-    let limit = 10000;
+    let limit = 10_000;
     println!("Sum of multiples of 3 and 5 from 0 till {} are: {}",
              limit,
              sum35(limit));
@@ -18,6 +18,6 @@ fn main() {
 
 #[test]
 fn test_sum35() {
-    assert_eq!(233168, sum35(1000));
-    assert_eq!(35553600, sum35(12345));
+    assert_eq!(233_168, sum35(1000));
+    assert_eq!(35_553_600, sum35(12_345));
 }

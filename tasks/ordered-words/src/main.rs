@@ -17,7 +17,7 @@ fn find_longest_ordered_words(dict: Vec<String>) -> Vec<String> {
     let mut result = Vec::new();
     let mut longest_length = 0;
 
-    for s in dict.into_iter() {
+    for s in dict {
         if is_ordered(&s) {
             let n = s.len();
             if n > longest_length {

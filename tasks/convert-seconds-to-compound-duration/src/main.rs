@@ -27,16 +27,16 @@ fn hours_and_seconds() {
 
 #[test]
 fn one_day() {
-    assert_eq!(seconds_to_compound(86400), "1 d");
+    assert_eq!(seconds_to_compound(86_400), "1 d");
 }
 
 #[test]
 fn six_million_seconds() {
-    assert_eq!(seconds_to_compound(6000000), "9 wk, 6 d, 10 hr, 40 min");
+    assert_eq!(seconds_to_compound(6_000_000), "9 wk, 6 d, 10 hr, 40 min");
 }
 
 fn main() {
     println!("7,259 seconds = {}", seconds_to_compound(7259));
-    println!("86,400 seconds = {}", seconds_to_compound(86400));
-    println!("6,000,000 seconds = {}", seconds_to_compound(6000000));
+    println!("86,400 seconds = {}", seconds_to_compound(86_400));
+    println!("6,000,000 seconds = {}", seconds_to_compound(6_000_000));
 }

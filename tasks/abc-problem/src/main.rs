@@ -1,11 +1,10 @@
 use std::collections::HashSet;
 
-const WORDS: &'static [&'static str] = &["A", "BARK", "BOOK", "TREAT", "COMMON", "SQUAD",
-                                         "CONFUSE"];
+const WORDS: &[&str] = &["A", "BARK", "BOOK", "TREAT", "COMMON", "SQUAD", "CONFUSE"];
 
-const BLOCKS: &'static [&'static str] = &["BO", "XK", "DQ", "CP", "NA", "GT", "RE", "TG", "QD",
-                                          "FS", "JW", "HU", "VI", "AN", "OB", "ER", "FS", "LY",
-                                          "PC", "ZM"];
+const BLOCKS: &[&str] = &["BO", "XK", "DQ", "CP", "NA", "GT", "RE", "TG", "QD",
+                          "FS", "JW", "HU", "VI", "AN", "OB", "ER", "FS", "LY",
+                          "PC", "ZM"];
 
 fn main() {
     println!("******\nmethod 1\n******");

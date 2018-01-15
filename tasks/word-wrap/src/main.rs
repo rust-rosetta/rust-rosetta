@@ -79,7 +79,7 @@ fn main() {
         for line in WordWrap::new(text, length) {
             println!("{}", line);
         }
-        println!("");
+        println!();
     }
 }
 

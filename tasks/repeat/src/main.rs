@@ -23,17 +23,17 @@ fn main() {
     // Repeat a static function.
     repeat(&static_fn, 4);
 
-    println!("");
+    println!();
 
     // Repeat an anonymous closure.
     repeat(&|| print!("Closure "), 5);
 
-    println!("");
+    println!();
 
     // Repeat a mutable closure (can modify local variables).
     let mut x = 1;
     println!("X is {}", x);
-    repeat_mut(&mut || x = x + 1, 5);
+    repeat_mut(&mut || x += 1, 5);
     println!("X is now {}", x);
 }
 

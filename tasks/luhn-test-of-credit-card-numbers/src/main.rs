@@ -42,6 +42,7 @@ fn luhn_test(n: u64) -> bool {
 }
 
 fn main() {
+    #[cfg_attr(feature = "cargo-clippy", allow(unreadable_literal))]
     let nos = [49927398716, 49927398717, 1234567812345678, 1234567812345670];
     for n in &nos {
         if luhn_test(*n) {

@@ -1,6 +1,6 @@
 use std::cmp;
 
-const TRIANGLE: &'static str = r"55
+const TRIANGLE: &str = r"55
 94 48
 95 30 96
 77 71 26 67

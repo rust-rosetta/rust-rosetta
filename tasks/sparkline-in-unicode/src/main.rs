@@ -4,9 +4,9 @@ use std::f64;
 
 use regex::Regex;
 
-const BARS: &'static str = "▁▂▃▄▅▆▇█";
+const BARS: &str = "▁▂▃▄▅▆▇█";
 
-fn read_samples(input: &'static str) -> Vec<f64> {
+fn read_samples(input: &str) -> Vec<f64> {
     let regex = Regex::new(r"[\s,]+").unwrap();
 
     input.split(&regex).map(|value| value.parse().unwrap()).collect()
@@ -26,12 +26,12 @@ fn sparkline(samples: &[f64]) -> String {
 
 fn main() {
     let samples = "1 2 3 4 5 6 7 8 7 6 5 4 3 2 1";
-    println!("{}", &samples);
-    println!("{}", sparkline(&read_samples(&samples)));
+    println!("{}", samples);
+    println!("{}", sparkline(&read_samples(samples)));
 
     let samples = "1.5, 0.5 3.5, 2.5 5.5, 4.5 7.5, 6.5";
-    println!("{}", &samples);
-    println!("{}", sparkline(&read_samples(&samples)));
+    println!("{}", samples);
+    println!("{}", sparkline(&read_samples(samples)));
 }
 
 #[cfg(test)]

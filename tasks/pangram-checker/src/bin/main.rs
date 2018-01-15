@@ -12,7 +12,7 @@ pub fn is_pangram_via_bitmask(s: &str) -> bool {
     for chr in s.chars() {
         let val = chr as u32 & !0x20; /* 0x20 converts lowercase to upper */
         if val <= 'Z' as u32 && val >= 'A' as u32 {
-            mask = mask & !(1 << (val - 'A' as u32));
+            mask &= !(1 << (val - 'A' as u32));
         }
     }
 
@@ -52,7 +52,7 @@ fn main() {
     let examples = ["The quick brown fox jumps over the lazy dog",
                     "The quick white cat jumps over the lazy dog"];
 
-    for &text in examples.iter() {
+    for &text in &examples {
         let is_pangram_sort = is_pangram_via_sort(text);
         println!("Is \"{}\" a pangram via sort? - {}", text, is_pangram_sort);
 

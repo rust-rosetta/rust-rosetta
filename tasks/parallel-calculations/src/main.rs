@@ -1,5 +1,5 @@
-//! See http://static.rust-lang.org/doc/master/guide-tasks.html for information
-//! about tasks, channels, future, etc.
+//! See <http://static.rust-lang.org/doc/master/guide-tasks.html> for information about tasks,
+//! channels, futures, etc.
 
 extern crate eventual;
 
@@ -48,7 +48,7 @@ pub fn largest_min_factor_chan(numbers: &[usize]) -> usize {
 
 fn main() {
     // Numbers to be factorized
-    let numbers = &[1122725, 1125827, 1122725, 1152800, 1157978, 1099726];
+    let numbers = &[1_122_725, 1_125_827, 1_122_725, 1_152_800, 1_157_978, 1_099_726];
 
     let max = largest_min_factor_fut(numbers);
     println!("The largest minimal factor is {}", max);
@@ -67,7 +67,7 @@ mod tests {
 
     #[test]
     fn test_equivalence() {
-        let numbers = &[1122725, 1125827, 1122725, 1152800, 1157978, 1099726];
+        let numbers = &[1_122_725, 1_125_827, 1_122_725, 1_152_800, 1_157_978, 1_099_726];
         assert_eq!(largest_min_factor_chan(numbers),
                    largest_min_factor_fut(numbers));
     }

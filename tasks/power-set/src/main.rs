@@ -14,7 +14,7 @@ fn power_set<T>(items: &mut Iter<T>) -> Vec<Vec<T>>
     match items.next() {
         None => power.push(Vec::new()),
         Some(item) => {
-            for mut set in power_set(items).into_iter() {
+            for mut set in power_set(items) {
                 power.push(set.clone());
                 set.push(item.clone());
                 power.push(set);

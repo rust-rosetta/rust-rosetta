@@ -125,7 +125,7 @@ impl<K: Ord + Copy + Debug + Display, V: Debug + Copy + Display> Tree<K, V> {
         let mut n = Node::new(k, v);
 
         if self.root.is_none() {
-            assert!(self.store.len() == 0);
+            assert!(self.store.is_empty());
             self.store.push(n);
             self.root = Some(0);
             return Some(n);

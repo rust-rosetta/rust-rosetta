@@ -25,7 +25,7 @@ fn main() {
         counter += 1;
 
         for _ in 0..nb_copy {
-            let sentence = mutate(&mut parent, mutation_rate);
+            let sentence = mutate(&parent, mutation_rate);
             let f = fitness(&target, &sentence);
 
             sentences.insert(f, sentence);
@@ -48,7 +48,7 @@ fn main() {
 }
 
 /// Computes the fitness of a sentence against a target string.
-fn fitness(target: &String, sentence: &String) -> u32 {
+fn fitness(target: &str, sentence: &str) -> u32 {
     target.chars()
         .zip(sentence.chars())
         .fold(0, |acc, (c1, c2)| {
@@ -63,7 +63,7 @@ fn fitness(target: &String, sentence: &String) -> u32 {
 /// Mutation algorithm.
 ///
 /// It mutates each character of a string, according to a `mutation_rate`.
-/// Please note that for full usefullness, `mutation_rate` should be between
+/// Please note that for full usefulness, `mutation_rate` should be between
 /// 0 and 1.
 fn mutate(sentence: &str, mutation_rate: f64) -> String {
     let mut rng = rand::thread_rng();
@@ -80,7 +80,7 @@ fn mutate(sentence: &str, mutation_rate: f64) -> String {
 }
 
 
-/// Generates a random sentence of length 28 from completly random chars.
+/// Generates a random sentence of length 28 from completely random chars.
 
 fn generate_first_sentence(parent: &mut String) {
     for _ in 0..28 {
@@ -90,7 +90,7 @@ fn generate_first_sentence(parent: &mut String) {
 
 /// Generates a random char (between 'A' and '\\').
 fn random_char() -> char {
-    match rand::thread_rng().gen_range('A' as u8, '\\' as u8) as char {
+    match rand::thread_rng().gen_range(b'A', b'\\') as char {
         '[' => ' ',
         c => c,
     }

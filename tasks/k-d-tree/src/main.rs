@@ -177,7 +177,7 @@ pub fn main() {
     let end_cons_time = get_time();
     println!("1,000 3d points (Construction time: {}ms)",
              ((end_cons_time.sec - start_cons_time.sec) * 1000) as f32 +
-             ((end_cons_time.nsec - start_cons_time.nsec) as f32) / 1000000f32);
+             ((end_cons_time.nsec - start_cons_time.nsec) as f32) / 1_000_000f32);
 
     let random_target = make_random_point();
 
@@ -204,7 +204,7 @@ pub fn main() {
              total_n_visited as f32 / n_searches as f32,
              n_searches,
              ((end_search_time.sec - start_search_time.sec) * 1000) as f32 +
-             ((end_search_time.nsec - start_search_time.nsec) as f32) / 1000000f32);
+             ((end_search_time.nsec - start_search_time.nsec) as f32) / 1_000_000f32);
 }
 
 fn quickselect_by<T>(arr: &mut [T], position: usize, cmp: &Fn(&T, &T) -> Ordering) -> T

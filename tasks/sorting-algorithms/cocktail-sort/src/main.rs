@@ -3,7 +3,6 @@
 extern crate meta;
 
 // Progress through the slice and 'bubble' elements up and down until they are in order.
-#[cfg_attr(feature = "clippy", allow(needless_range_loop))]
 fn cocktail_sort<T: PartialOrd>(v: &mut [T]) {
     (1..v.len() + 1).rev().all(|length| {
         let mut swapped: bool = false;

@@ -1,5 +1,5 @@
 //! Author: Rahul Sharma
-//! Github: https://github.com/creativcoder
+//! Github: <https://github.com/creativcoder>
 
 use std::io::BufReader;
 use std::io::BufWriter;
@@ -37,7 +37,7 @@ fn main() {
             // loop until line end
             while line.trim() != "" {
                 let mut replaced_line = line.trim().replace("Goodbye London!", "Hello New York!");
-                replaced_line = replaced_line + "\n";
+                replaced_line += "\n";
                 write_line(&replaced_line[..]);
                 line.clear();
                 reader.read_line(&mut line).unwrap();

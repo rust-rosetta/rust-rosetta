@@ -6,7 +6,7 @@ use std::env;
 use rand::{thread_rng, Rng};
 use std::str;
 
-const WORDS: &'static [&'static str] = &["abracadabra", "seesaw", "elk", "grrrrrr", "up", "a"];
+const WORDS: &[&str] = &["abracadabra", "seesaw", "elk", "grrrrrr", "up", "a"];
 
 #[derive(Eq)]
 struct Solution {

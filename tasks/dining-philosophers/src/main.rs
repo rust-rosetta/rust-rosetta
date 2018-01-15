@@ -59,7 +59,7 @@ fn main() {
 
     let handles: Vec<_> = philosophers.into_iter()
         .map(|p| {
-            let table = table.clone();
+            let table = Arc::clone(&table);
 
             thread::spawn(move || {
                 p.eat(&table);

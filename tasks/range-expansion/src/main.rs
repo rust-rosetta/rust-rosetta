@@ -21,12 +21,12 @@ fn expand_range(range: &str) -> Vec<isize> {
 /// Expand a single element, which can be a number or a range.
 fn expand_item(item: &str) -> Vec<isize> {
     // Handle the case of a single number
-    for cap in Regex::new(r"^(-?\d+)$").unwrap().captures_iter(item) {
+    if let Some(cap) = Regex::new(r"^(-?\d+)$").unwrap().captures(item) {
         return vec![cap.get(0).and_then(|s| s.as_str().parse().ok()).unwrap()];
     }
 
     // Handle the case of a range
-    for cap in Regex::new(r"^(-?\d+)-(-?\d+)$").unwrap().captures_iter(item) {
+    if let Some(cap) = Regex::new(r"^(-?\d+)-(-?\d+)$").unwrap().captures(item) {
         let left: isize = cap.get(1).and_then(|s| s.as_str().parse().ok()).unwrap();
         let right: isize = cap.get(2).and_then(|s| s.as_str().parse().ok()).unwrap();
 

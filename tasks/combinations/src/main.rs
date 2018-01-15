@@ -24,7 +24,7 @@ fn comb_intern<T>(arr: &[T], n: usize, incl_arr: &mut [bool], index: usize)
         for val in it {
             print!("{} ", *val);
         }
-        print!("\n");
+        println!();
         return;
     }
 

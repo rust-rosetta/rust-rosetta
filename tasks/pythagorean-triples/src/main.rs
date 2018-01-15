@@ -3,6 +3,7 @@ use std::collections::LinkedList;
 /// Count the number of Pythagorean triples whose sum are below the specified limit (inclusive).
 /// Does a BFS over the tree of primitive Pythagorean triples (see [0]), and uses the fact that
 /// each child has a bigger sum than its parent.
+///
 /// [0]: http://en.wikipedia.org/wiki/Tree_of_Pythagorean_triples
 fn count_pythagorean_triples(below: u64) -> (u64, u64) {
     let mut tot_cnt = 0;

@@ -1,4 +1,4 @@
-//! Utilities for interacting with tasks implemented on the RosettaCode wiki.
+//! Utilities for interacting with tasks implemented on the Rosetta Code wiki.
 
 use std::collections::HashMap;
 
@@ -20,7 +20,7 @@ define_encode_set! {
     pub ROSETTA_ENCODE_SET = [QUERY_ENCODE_SET] | { '+' }
 }
 
-/// Represents a task implemented on the RosettaCode wiki.
+/// Represents a task implemented on the Rosetta Code wiki.
 #[derive(Debug, Clone)]
 pub struct RemoteTask {
     title: String,

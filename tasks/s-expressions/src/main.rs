@@ -57,7 +57,7 @@ enum Error {
     UnterminatedStringLiteral,
 
     /// Some other kind of I/O error
-    IoError,
+    Io,
 
     /// ) appeared where it shouldn't (usually as the first token)
     IncorrectCloseDelimiter,
@@ -71,7 +71,7 @@ enum Error {
 
 impl From<io::Error> for Error {
     fn from(_err: io::Error) -> Error {
-        Error::IoError
+        Error::Io
     }
 }
 
@@ -270,7 +270,7 @@ impl<'a> SExp<'a> {
                     _ => Err(Error::NoReprForFloat),
                 }
             }
-            List(ref l) => {
+            List(l) => {
                 // Writing a list is very straightforward--write a left parenthesis, then
                 // recursively call encode on each member, and then write a right parenthesis.  The
                 // only reason the logic is as long as it is is to make sure we don't write
@@ -381,7 +381,7 @@ fn try_encode() -> Result<String, Error> {
     SEXP_STRUCT.buffer_encode()
 }
 
-const SEXP_STRING_IN: &'static str = r#"((data "quoted data" 123 4.5)
+const SEXP_STRING_IN: &str = r#"((data "quoted data" 123 4.5)
 (data (!@# (4.5) "(more" "data)")))"#;
 
 fn try_decode<'a>(ctx: &'a mut ParseContext<'a>) -> Result<SExp<'a>, Error> {

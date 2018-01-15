@@ -14,7 +14,7 @@ fn simple_unboxed() {
 // given a number x, return the (boxed) closure that
 // computes x squared
 fn closure_gen<'a>(x: u32) -> Box<Fn() -> f64 + 'a> {
-    Box::new(move || (x as f64).powi(2))
+    Box::new(move || f64::from(x).powi(2))
 }
 
 // type alias for the closure iterator

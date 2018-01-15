@@ -98,7 +98,7 @@ fn main() {
         for &SumCubes { a, b, .. } in &ways {
             print!(" = {:>4}^3 + {:>4}^3", a, b);
         }
-        print!("\n");
+        println!();
     }
 }
 

@@ -58,5 +58,5 @@ fn main() {
             print!("-{}", hi.unwrap())
         }
     }
-    println!("");
+    println!();
 }

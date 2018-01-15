@@ -12,116 +12,116 @@ struct Want<'a> {
 
 /// Global, immutable allocation of our items. This is so we can reference
 /// this in multiple functions.
-const ITEMS: &'static [Want<'static>] = &[Want {
-                                              name: "map",
-                                              weight: 9,
-                                              value: 150,
-                                          },
-                                          Want {
-                                              name: "compass",
-                                              weight: 13,
-                                              value: 35,
-                                          },
-                                          Want {
-                                              name: "water",
-                                              weight: 153,
-                                              value: 200,
-                                          },
-                                          Want {
-                                              name: "sandwich",
-                                              weight: 50,
-                                              value: 160,
-                                          },
-                                          Want {
-                                              name: "glucose",
-                                              weight: 15,
-                                              value: 60,
-                                          },
-                                          Want {
-                                              name: "tin",
-                                              weight: 68,
-                                              value: 45,
-                                          },
-                                          Want {
-                                              name: "banana",
-                                              weight: 27,
-                                              value: 60,
-                                          },
-                                          Want {
-                                              name: "apple",
-                                              weight: 39,
-                                              value: 40,
-                                          },
-                                          Want {
-                                              name: "cheese",
-                                              weight: 23,
-                                              value: 30,
-                                          },
-                                          Want {
-                                              name: "beer",
-                                              weight: 52,
-                                              value: 10,
-                                          },
-                                          Want {
-                                              name: "suntancream",
-                                              weight: 11,
-                                              value: 70,
-                                          },
-                                          Want {
-                                              name: "camera",
-                                              weight: 32,
-                                              value: 30,
-                                          },
-                                          Want {
-                                              name: "T-shirt",
-                                              weight: 24,
-                                              value: 15,
-                                          },
-                                          Want {
-                                              name: "trousers",
-                                              weight: 48,
-                                              value: 10,
-                                          },
-                                          Want {
-                                              name: "umbrella",
-                                              weight: 73,
-                                              value: 40,
-                                          },
-                                          Want {
-                                              name: "waterproof trousers",
-                                              weight: 42,
-                                              value: 70,
-                                          },
-                                          Want {
-                                              name: "waterproof overclothes",
-                                              weight: 43,
-                                              value: 75,
-                                          },
-                                          Want {
-                                              name: "note-case",
-                                              weight: 22,
-                                              value: 80,
-                                          },
-                                          Want {
-                                              name: "sunglasses",
-                                              weight: 7,
-                                              value: 20,
-                                          },
-                                          Want {
-                                              name: "towel",
-                                              weight: 18,
-                                              value: 12,
-                                          },
-                                          Want {
-                                              name: "socks",
-                                              weight: 4,
-                                              value: 50,
-                                          },
-                                          Want {
-                                              name: "book",
-                                              weight: 30,
-                                              value: 10,
-                                          }];
+const ITEMS: &[Want<'static>] = &[Want {
+                                      name: "map",
+                                      weight: 9,
+                                      value: 150,
+                                  },
+                                  Want {
+                                      name: "compass",
+                                      weight: 13,
+                                      value: 35,
+                                  },
+                                  Want {
+                                      name: "water",
+                                      weight: 153,
+                                      value: 200,
+                                  },
+                                  Want {
+                                      name: "sandwich",
+                                      weight: 50,
+                                      value: 160,
+                                  },
+                                  Want {
+                                      name: "glucose",
+                                      weight: 15,
+                                      value: 60,
+                                  },
+                                  Want {
+                                      name: "tin",
+                                      weight: 68,
+                                      value: 45,
+                                  },
+                                  Want {
+                                      name: "banana",
+                                      weight: 27,
+                                      value: 60,
+                                  },
+                                  Want {
+                                      name: "apple",
+                                      weight: 39,
+                                      value: 40,
+                                  },
+                                  Want {
+                                      name: "cheese",
+                                      weight: 23,
+                                      value: 30,
+                                  },
+                                  Want {
+                                      name: "beer",
+                                      weight: 52,
+                                      value: 10,
+                                  },
+                                  Want {
+                                      name: "suntancream",
+                                      weight: 11,
+                                      value: 70,
+                                  },
+                                  Want {
+                                      name: "camera",
+                                      weight: 32,
+                                      value: 30,
+                                  },
+                                  Want {
+                                      name: "T-shirt",
+                                      weight: 24,
+                                      value: 15,
+                                  },
+                                  Want {
+                                      name: "trousers",
+                                      weight: 48,
+                                      value: 10,
+                                  },
+                                  Want {
+                                      name: "umbrella",
+                                      weight: 73,
+                                      value: 40,
+                                  },
+                                  Want {
+                                      name: "waterproof trousers",
+                                      weight: 42,
+                                      value: 70,
+                                  },
+                                  Want {
+                                      name: "waterproof overclothes",
+                                      weight: 43,
+                                      value: 75,
+                                  },
+                                  Want {
+                                      name: "note-case",
+                                      weight: 22,
+                                      value: 80,
+                                  },
+                                  Want {
+                                      name: "sunglasses",
+                                      weight: 7,
+                                      value: 20,
+                                  },
+                                  Want {
+                                      name: "towel",
+                                      weight: 18,
+                                      value: 12,
+                                  },
+                                  Want {
+                                      name: "socks",
+                                      weight: 4,
+                                      value: 50,
+                                  },
+                                  Want {
+                                      name: "book",
+                                      weight: 30,
+                                      value: 10,
+                                  }];
 
 /// This is a bottom-up dynamic programming solution to the 0-1 knap-sack problem.
 ///

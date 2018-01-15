@@ -22,7 +22,8 @@ impl Chess960 {
 
     fn is_valid(s: &str) -> bool {
         let k = s.find('K').unwrap();
-        k > s.find('R').unwrap() && k < s.rfind('R').unwrap() && s.find('B').unwrap() % 2 != s.rfind('B').unwrap() % 2
+        k > s.find('R').unwrap() && k < s.rfind('R').unwrap()
+            && s.find('B').unwrap() % 2 != s.rfind('B').unwrap() % 2
     }
 }
 

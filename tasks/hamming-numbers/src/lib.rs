@@ -52,7 +52,7 @@ impl<T: HammingNumber> Hamming<T> {
     }
 
     /// Pushes the next multiple of `n` (x2, x3, x5) to the queues
-    pub fn enqueue(&mut self, n: T) {
+    pub fn enqueue(&mut self, n: &T) {
         let (two, three, five): (T, T, T) = HammingNumber::multipliers();
         self.q2.push_back(two * n.clone());
         self.q3.push_back(three * n.clone());
@@ -95,7 +95,7 @@ impl<T: HammingNumber> Iterator for Hamming<T> {
 
         match h2.or(h3).or(h5) {
             Some(n) => {
-                self.enqueue(n.clone());
+                self.enqueue(&n);
                 Some(n)
             }
             None => unreachable!(),
@@ -116,8 +116,8 @@ fn create() {
 fn try_enqueue() {
     let mut h = Hamming::<BigUint>::new(5);
     let (two, three, five): (BigUint, BigUint, BigUint) = HammingNumber::multipliers();
-    h.enqueue(one::<BigUint>());
-    h.enqueue((one::<BigUint>() * two.clone()));
+    h.enqueue(&one::<BigUint>());
+    h.enqueue(&(one::<BigUint>() * two.clone()));
 
     assert!(h.q2.pop_front().unwrap() == one::<BigUint>());
     assert!(h.q3.pop_front().unwrap() == one::<BigUint>());

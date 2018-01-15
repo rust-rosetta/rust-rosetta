@@ -22,5 +22,5 @@ fn main() {
             Err(error) => print!("{}", error),
         }
     }
-    println!("");
+    println!();
 }

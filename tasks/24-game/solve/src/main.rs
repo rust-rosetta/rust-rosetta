@@ -19,7 +19,7 @@ macro_rules! rationals(
 
 fn main() {
     let mut r = rationals![1, 3, 7, 9];
-    let sol = solve(&mut r[..], 24).unwrap_or("no solution found".to_string());
+    let sol = solve(&mut r[..], 24).unwrap_or_else(|| String::from("no solution found"));
     println!("{}", sol);
 }
 
@@ -47,17 +47,17 @@ fn solve(r: &mut [Rational], target_val: isize) -> Option<String> {
 /// creates a tuple with the result and the expression in String form returns all (result,
 /// expression in string form) results in a vector
 fn compute_all_operations(l: &[Rational]) -> Vec<(Rational, String)> {
-    match l {
-        &[] => vec![],
-        &[x] => vec![(x, (format!("{}", x)))],
-        &[x, ref rest..] => {
+    match *l {
+        [] => vec![],
+        [x] => vec![(x, (format!("{}", x)))],
+        [x, ref rest..] => {
             let mut rt = Vec::new();
             for &(y, ref exp) in &compute_all_operations(rest) {
                 let mut sub = vec![(x * y, "*"), (x + y, "+"), (x - y, "-")];
                 if y != Zero::zero() {
                     sub.push((x / y, "/"));
                 }
-                for &(z, ref op) in &sub {
+                for &(z, op) in &sub {
                     let aux = (z, (format!("({} {} {})", x, op, exp)));
                     rt.push(aux);
                 }

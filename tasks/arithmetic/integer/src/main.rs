@@ -10,8 +10,8 @@ fn main() {
         .map(|s| s.parse().ok())
         .collect::<Vec<Option<i32>>>();
 
-    let (a, b) = match &words[..] {
-        &[Some(x), Some(y)] => (x, y),
+    let (a, b) = match words[..] {
+        [Some(x), Some(y)] => (x, y),
         _ => panic!("Please enter 2 integers"),
     };
 

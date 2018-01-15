@@ -1,7 +1,7 @@
 // http://rosettacode.org/wiki/MD5/Implementation
 
 //! Ported from C - Simple MD5 implementation
-//! on Wikipedia https://en.wikipedia.org/wiki/MD5
+//! on Wikipedia: <https://en.wikipedia.org/wiki/MD5>
 
 #![feature(iterator_step_by)]
 
@@ -23,17 +23,17 @@ fn main() {
 }
 
 /// Constants are the integer part of the sines of integers (in radians) * 2^32.
-const K: [u32; 64] = [0xd76aa478, 0xe8c7b756, 0x242070db, 0xc1bdceee, 0xf57c0faf, 0x4787c62a,
-                      0xa8304613, 0xfd469501, 0x698098d8, 0x8b44f7af, 0xffff5bb1, 0x895cd7be,
-                      0x6b901122, 0xfd987193, 0xa679438e, 0x49b40821, 0xf61e2562, 0xc040b340,
-                      0x265e5a51, 0xe9b6c7aa, 0xd62f105d, 0x02441453, 0xd8a1e681, 0xe7d3fbc8,
-                      0x21e1cde6, 0xc33707d6, 0xf4d50d87, 0x455a14ed, 0xa9e3e905, 0xfcefa3f8,
-                      0x676f02d9, 0x8d2a4c8a, 0xfffa3942, 0x8771f681, 0x6d9d6122, 0xfde5380c,
-                      0xa4beea44, 0x4bdecfa9, 0xf6bb4b60, 0xbebfbc70, 0x289b7ec6, 0xeaa127fa,
-                      0xd4ef3085, 0x04881d05, 0xd9d4d039, 0xe6db99e5, 0x1fa27cf8, 0xc4ac5665,
-                      0xf4292244, 0x432aff97, 0xab9423a7, 0xfc93a039, 0x655b59c3, 0x8f0ccc92,
-                      0xffeff47d, 0x85845dd1, 0x6fa87e4f, 0xfe2ce6e0, 0xa3014314, 0x4e0811a1,
-                      0xf7537e82, 0xbd3af235, 0x2ad7d2bb, 0xeb86d391];
+const K: [u32; 64] = [0xd76a_a478, 0xe8c7_b756, 0x2420_70db, 0xc1bd_ceee, 0xf57c_0faf, 0x4787_c62a,
+                      0xa830_4613, 0xfd46_9501, 0x6980_98d8, 0x8b44_f7af, 0xffff_5bb1, 0x895c_d7be,
+                      0x6b90_1122, 0xfd98_7193, 0xa679_438e, 0x49b4_0821, 0xf61e_2562, 0xc040_b340,
+                      0x265e_5a51, 0xe9b6_c7aa, 0xd62f_105d, 0x0244_1453, 0xd8a1_e681, 0xe7d3_fbc8,
+                      0x21e1_cde6, 0xc337_07d6, 0xf4d5_0d87, 0x455a_14ed, 0xa9e3_e905, 0xfcef_a3f8,
+                      0x676f_02d9, 0x8d2a_4c8a, 0xfffa_3942, 0x8771_f681, 0x6d9d_6122, 0xfde5_380c,
+                      0xa4be_ea44, 0x4bde_cfa9, 0xf6bb_4b60, 0xbebf_bc70, 0x289b_7ec6, 0xeaa1_27fa,
+                      0xd4ef_3085, 0x0488_1d05, 0xd9d4_d039, 0xe6db_99e5, 0x1fa2_7cf8, 0xc4ac_5665,
+                      0xf429_2244, 0x432a_ff97, 0xab94_23a7, 0xfc93_a039, 0x655b_59c3, 0x8f0c_cc92,
+                      0xffef_f47d, 0x8584_5dd1, 0x6fa8_7e4f, 0xfe2c_e6e0, 0xa301_4314, 0x4e08_11a1,
+                      0xf753_7e82, 0xbd3a_f235, 0x2ad7_d2bb, 0xeb86_d391];
 
 /// R specifies the per-round shift amounts
 const R: [u32; 64] = [7, 12, 17, 22, 7, 12, 17, 22, 7, 12, 17, 22, 7, 12, 17, 22, 5, 9, 14, 20, 5,
@@ -62,12 +62,12 @@ fn to_bytes(val: u64) -> [u8; 8] {
     tmp
 }
 
-#[cfg_attr(feature="clippy", allow(many_single_char_names))]
+#[cfg_attr(feature="cargo-clippy", allow(many_single_char_names))]
 fn md5(initial_msg: &[u8]) -> MD5 {
     let initial_len = initial_msg.len() as u64;
 
     // These vars will contain the hash
-    let mut h: [wr<u32>; 4] = [wr(0x67452301u32), wr(0xefcdab89), wr(0x98badcfe), wr(0x10325476)];
+    let mut h: [wr<u32>; 4] = [wr(0x6745_2301), wr(0xefcd_ab89), wr(0x98ba_dcfe), wr(0x1032_5476)];
 
     // Pre-processing:
     // append "1" bit to message
@@ -97,8 +97,8 @@ fn md5(initial_msg: &[u8]) -> MD5 {
         // break chunk into sixteen 32-bit words w[j], 0 ≤ j ≤ 15
         for i in 0u32..16 {
             let j = i as usize * 4 + offset as usize;
-            w[i as usize] = (msg[j] as u32) | (msg[j + 1] as u32) << 8 | (msg[j + 2] as u32) << 16 |
-                            (msg[j + 3] as u32) << 24;
+            w[i as usize] = u32::from(msg[j]) | u32::from(msg[j + 1]) << 8 |
+                            u32::from(msg[j + 2]) << 16 | u32::from(msg[j + 3]) << 24;
         }
 
         // Initialize hash value for this chunk:
@@ -116,15 +116,15 @@ fn md5(initial_msg: &[u8]) -> MD5 {
             let temp = d;
             d = c;
             c = b;
-            b = b + wr((a + f + wr(K[ind]) + wr(w[g])).0.rotate_left(R[ind]));
+            b += wr((a + f + wr(K[ind]) + wr(w[g])).0.rotate_left(R[ind]));
             a = temp;
         }
 
         // Add this chunk's hash to result so far:
-        h[0] = h[0] + a;
-        h[1] = h[1] + b;
-        h[2] = h[2] + c;
-        h[3] = h[3] + d;
+        h[0] += a;
+        h[1] += b;
+        h[2] += c;
+        h[3] += d;
     }
     drop(msg); // cleanup, msg is freed
 

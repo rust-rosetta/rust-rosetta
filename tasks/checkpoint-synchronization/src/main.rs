@@ -5,10 +5,9 @@
 //! properties at checkpoints.
 
 use std::sync::atomic::{AtomicBool, Ordering};
+use std::sync::mpsc::channel;
 use std::sync::{Arc, Barrier};
 use std::thread::spawn;
-use std::sync::mpsc::channel;
-
 
 pub fn checkpoint() {
     const NUM_TASKS: usize = 10;
@@ -29,7 +28,7 @@ pub fn checkpoint() {
     // Channel for communicating when tasks are done
     let (tx, rx) = channel();
     for i in 0..NUM_TASKS {
-        let arc = arc.clone();
+        let arc = Arc::clone(&arc);
         let tx = tx.clone();
         // Spawn a new worker
         spawn(move || -> () {

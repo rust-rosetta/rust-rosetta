@@ -83,14 +83,12 @@ fn main() {
             '<' => {
                 ptr -= 1;
             }
-
             '+' => {
-                mem[ptr] = mem[ptr] + ONE;
+                mem[ptr] += ONE;
             }
             '-' => {
-                mem[ptr] = mem[ptr] - ONE;
+                mem[ptr] -= ONE;
             }
-
             '[' => {
                 if val == 0 {
                     pc = brackets[&pc];
@@ -104,7 +102,6 @@ fn main() {
                     pc = matching_bracket - 1;
                 }
             }
-
             '.' => {
                 if debug {
                     println!("(BFDB) STDOUT: '{}'", val as char);  // Intercept output
@@ -115,7 +112,6 @@ fn main() {
             ',' => {
                 mem[ptr] = Wrapping(reader.next().unwrap().unwrap());
             }
-
             _ => (),
         }
 

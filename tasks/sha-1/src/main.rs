@@ -1,4 +1,4 @@
-#![cfg_attr(feature = "clippy", allow(many_single_char_names))]
+#![cfg_attr(feature = "cargo-clippy", allow(many_single_char_names, needless_range_loop))]
 
 //! Straight port from golang crypto/sha1 library implementation
 use std::num::Wrapping as wr;
@@ -10,7 +10,7 @@ const SIZE: usize = 20;
 /// The blocksize of SHA1 in bytes.
 const CHUNK: usize = 64;
 const INIT: [wr<u32>; 5] =
-    [wr(0x67452301), wr(0xEFCDAB89), wr(0x98BADCFE), wr(0x10325476), wr(0xC3D2E1F0)];
+    [wr(0x6745_2301), wr(0xEFCD_AB89), wr(0x98BA_DCFE), wr(0x1032_5476), wr(0xC3D2_E1F0)];
 
 fn main() {
     let mut d = Digest::new();
@@ -72,9 +72,8 @@ impl Digest {
         digest
     }
 
-    #[cfg_attr(feature="clippy", allow(needless_range_loop))]
     fn process_block(&self, data: &[u8]) -> [wr<u32>; 5] {
-        let k: [u32; 4] = [0x5A827999, 0x6ED9EBA1, 0x8F1BBCDC, 0xCA62C1D6];
+        let k: [u32; 4] = [0x5A82_7999, 0x6ED9_EBA1, 0x8F1B_BCDC, 0xCA62_C1D6];
 
         #[inline]
         fn part(a: wr<u32>, b: wr<u32>) -> (wr<u32>, wr<u32>) {
@@ -91,8 +90,8 @@ impl Digest {
         while p.len() >= CHUNK {
             for i in 0..16 {
                 let j = i * 4;
-                w[i] = (p[j] as u32) << 24 | (p[j + 1] as u32) << 16 | (p[j + 2] as u32) << 8 |
-                       p[j + 3] as u32;
+                w[i] = u32::from(p[j]) << 24 | u32::from(p[j + 1]) << 16 |
+                       u32::from(p[j + 2]) << 8 | u32::from(p[j + 3]);
             }
 
             let (mut a, mut b, mut c, mut d, mut e) = (h0, h1, h2, h3, h4);
@@ -155,11 +154,11 @@ impl Digest {
                 d = c;
                 c = b30;
             }
-            h0 = h0 + a;
-            h1 = h1 + b;
-            h2 = h2 + c;
-            h3 = h3 + d;
-            h4 = h4 + e;
+            h0 += a;
+            h1 += b;
+            h2 += c;
+            h3 += d;
+            h4 += e;
 
             p = &p[CHUNK..];
         }
@@ -191,7 +190,7 @@ impl Write for Digest {
                 n = CHUNK - self.nx;
             }
             for i in 0..n {
-                self.x[self.nx + i] = *buf_m.get(i).unwrap();
+                self.x[self.nx + i] = buf_m[i];
             }
             self.nx += n;
             if self.nx == CHUNK {

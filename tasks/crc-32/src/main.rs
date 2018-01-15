@@ -10,7 +10,7 @@ fn crc(bytes: &[u8]) -> u32 {
         let mut word = i as u32;
         for _ in 0..8 {
             if word & 1 == 1 {
-                word = (word >> 1) ^ 0xedb88320
+                word = (word >> 1) ^ 0xedb8_8320
             } else {
                 word >>= 1;
             }
@@ -18,15 +18,15 @@ fn crc(bytes: &[u8]) -> u32 {
         *value = word;
     }
 
-    let mut crc: u32 = 0xffffffff;
+    let mut crc: u32 = 0xffff_ffff;
     for byte in bytes {
         crc = table[(crc as u8 ^ *byte) as usize] ^ (crc >> 8);
     }
-    crc ^ 0xffffffff
+    crc ^ 0xffff_ffff
 }
 
 #[test]
 fn test() {
     let s = "The quick brown fox jumps over the lazy dog";
-    assert_eq!(crc(s.as_bytes()), 0x414FA339);
+    assert_eq!(crc(s.as_bytes()), 0x414F_A339);
 }

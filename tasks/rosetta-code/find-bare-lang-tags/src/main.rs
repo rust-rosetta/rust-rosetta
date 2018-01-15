@@ -44,7 +44,7 @@ fn main() {
         if num_bare > 0 {
             println!("{} in {}",
                      result.1,
-                     result.0.to_owned().unwrap_or("no language".to_owned()));
+                     result.0.to_owned().unwrap_or_else(|| String::from("no language")));
         }
     }
 }

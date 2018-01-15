@@ -14,12 +14,12 @@ use std::time::Duration;
 
 /// Given a duration to wait before sending an event from one process to another, returns the
 /// elapsed time before the event was actually sent.
-#[cfg_attr(feature="clippy", allow(mutex_atomic))]
+#[cfg_attr(feature="cargo-clippy", allow(mutex_atomic))]
 fn handle_event(duration: Duration) -> Duration {
     // Create a Mutex.  By default a Mutex is created with a single condition variable (condvar_id
     // 0) but it can be created with an arbitrary number using Mutex::new_with_condvars();
     let pair = Arc::new((Mutex::new(false), Condvar::new()));
-    let pair_ = pair.clone();
+    let pair_ = Arc::clone(&pair);
     let start = time::precise_time_ns();
     // Lock the mutex
     let &(ref mutex, ref cond) = &*pair;
@@ -52,7 +52,7 @@ fn handle_event(duration: Duration) -> Duration {
     // When the guard exits scope, the condvar is reset.
     drop(guard);
     // Return the elapsed time
-    Duration::from_millis((end - start) / 1000000)
+    Duration::from_millis((end - start) / 1_000_000)
 }
 
 pub fn main() {

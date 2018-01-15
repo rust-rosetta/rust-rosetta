@@ -74,12 +74,6 @@ fn jaro(str1: &str, str2: &str) -> f64 {
         k += 1;
     }
 
-    // deallocate variables no longer used
-    drop(k);
-    drop(str1_matches);
-    drop(str2_matches);
-    drop(match_distance);
-
     // divide the number of transpositions by two as per the algorithm specs
     transpositions /= 2.0;
 

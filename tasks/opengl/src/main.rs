@@ -4,6 +4,8 @@
 //!
 //! [official tutorial]: http://tomaka.github.io/glium/book/index.html
 
+#![cfg_attr(feature = "cargo-clippy", allow(forget_copy))]
+
 #[macro_use]
 extern crate glium;
 
@@ -75,13 +77,12 @@ fn main() {
     draw();
 
     events_loop.run_forever(|event| {
-        match event {
-            glutin::Event::WindowEvent { event, .. } => match event {
+        if let glutin::Event::WindowEvent { event, .. } = event {
+            match event {
                 glutin::WindowEvent::Closed => return glutin::ControlFlow::Break,
                 glutin::WindowEvent::Resized(..) => draw(),
                 _ => (),
-            },
-            _ => (),
+            }
         }
         glutin::ControlFlow::Continue
     });

@@ -45,12 +45,12 @@ fn main() {
 }
 
 fn factorial(n: u32) -> f64 {
-    (1..n + 1).fold(1f64, |p, n| p * n as f64)
+    (1..n + 1).fold(1f64, |p, n| p * f64::from(n))
 }
 
 fn analytical(n: u32) -> f64 {
     (1..(n + 1))
-        .map(|i| factorial(n) / (n as f64).powi(i as i32) / factorial(n - i))
+        .map(|i| factorial(n) / f64::from(n).powi(i as i32) / factorial(n - i))
         .fold(0f64, |a, v| a + v)
 }
 
@@ -63,15 +63,15 @@ fn empirical(n: u32, trials: u32, rng: &mut ThreadRng) -> f64 {
 
             for step in 0..n {
                 if seen.contains(&item) {
-                    return step as f64;
+                    return f64::from(step);
                 }
                 seen.insert(item);
                 item = range.ind_sample(rng);
             }
-            n as f64
+            f64::from(n)
         })
         .fold(0f64, |a, v| a + v);
-    sum / trials as f64
+    sum / f64::from(trials)
 }
 
 

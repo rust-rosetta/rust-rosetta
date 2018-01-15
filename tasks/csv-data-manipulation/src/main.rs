@@ -1,9 +1,10 @@
 use std::vec::Vec ;
 
 fn check_csv_length(values:&[Vec<String>],line_length:usize) -> Result<(),String>{
-    match values.iter().all(|line| line.len() == line_length) {
-        true => Ok(()),
-        false => Err("Values have inconsistent number of columns".to_string())
+    if values.iter().all(|line| line.len() == line_length) {
+        Ok(())
+    } else {
+        Err("Values have inconsistent number of columns".to_string())
     }
 }
 
@@ -20,7 +21,7 @@ fn csv_sum(csv:&str) -> Result<Vec<Vec<String>>,String> {
                 None => unreachable!(), // even with an empty string, split will always return
                 // a non-empty vector, hence here split here unreachable
                 Some((string,slice)) if slice.is_empty()
-                                     && string.trim().len() == 0 => false,  // filter empty lines
+                                     && string.trim().is_empty() => false,  // filter empty lines
                 _ => true // non-empty line, don't filter it
             }
         })
@@ -92,7 +93,7 @@ fn csv_sum(csv:&str) -> Result<Vec<Vec<String>>,String> {
     })
 }
 
-fn vec_csv_to_string(csv:&Vec<Vec<String>>) -> String {
+fn vec_csv_to_string(csv: &[Vec<String>]) -> String {
     let mut string = String::new();
     for line in csv.iter() {
         string.push_str(&line.join(","));

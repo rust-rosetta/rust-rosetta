@@ -1,4 +1,4 @@
-const TEST_STR: &'static str = r"Given$a$text$file$of$many$lines,$where$fields$within$a$line$
+const TEST_STR: &str = r"Given$a$text$file$of$many$lines,$where$fields$within$a$line$
 are$delineated$by$a$single$'dollar'$character,$write$a$program
 that$aligns$each$column$of$fields$by$ensuring$that$words$in$each$
 column$are$separated$by$at$least$one$space.
@@ -39,17 +39,17 @@ fn print_aligned_columns(chunks: &[Vec<String>], max_lengths: &[usize]) {
         for (i, split) in chunk.iter().enumerate() {
             print!("{0:<1$}", split, 1 + max_lengths[i]);
         }
-        println!("");
+        println!();
     }
-    println!("");
+    println!();
     // right aligned
     for chunk in chunks {
         for (i, split) in chunk.iter().enumerate() {
             print!("{0:>1$}", split, 1 + max_lengths[i]);
         }
-        println!("");
+        println!();
     }
-    println!("");
+    println!();
     // center aligned
     for chunk in chunks {
         for (i, split) in chunk.iter().enumerate() {
@@ -62,7 +62,7 @@ fn print_aligned_columns(chunks: &[Vec<String>], max_lengths: &[usize]) {
                 print!(" ");
             }
         }
-        println!("");
+        println!();
     }
 }
 

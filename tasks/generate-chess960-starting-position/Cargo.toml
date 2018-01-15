@@ -3,4 +3,4 @@ name = "generate-chess960-starting-position"
 version = "0.1.0"
 
 [package.metadata.rosettacode]
-url = "https://rosettacode.org/wiki/Generate_Chess960_starting_position"
+url = "http://rosettacode.org/wiki/Generate_Chess960_starting_position"
