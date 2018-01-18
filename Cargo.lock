@@ -2195,6 +2195,14 @@ name = "man-or-boy-test"
 version = "0.1.0"
 
 [[package]]
+name = "mandelbrot-set"
+version = "0.1.0"
+dependencies = [
+ "image 0.17.0 (registry+https://github.com/rust-lang/crates.io-index)",
+ "num-complex 0.1.41 (registry+https://github.com/rust-lang/crates.io-index)",
+]
+
+[[package]]
 name = "map-range"
 version = "0.1.0"
 
