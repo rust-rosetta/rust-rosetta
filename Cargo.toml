@@ -1183,6 +1183,9 @@ members = [
 
     # http://rosettacode.org/wiki/System_time
     "tasks/system-time",
+    
+    # https://rosettacode.org/wiki/Take_notes_on_the_command_line
+    "tasks/take-notes-on-the-command-line",
 
     # http://rosettacode.org/wiki/Taxicab_numbers
     "tasks/taxicab-numbers",
