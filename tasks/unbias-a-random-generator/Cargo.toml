@@ -1,0 +1,10 @@
+[package]
+name = "unbias-a-random-generator"
+version = "0.1.0"
+authors = ["Daniel Watson <danielwatson311@gmail.com>"]
+
+[package.metadata.rosettacode]
+url = "https://rosettacode.org/wiki/Unbias_a_random_generator"
+
+[dependencies]
+rand = "0.4"
