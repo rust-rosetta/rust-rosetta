@@ -1,0 +1,10 @@
+[package]
+name = "device"
+version = "0.1.0"
+authors = ["Daniel Watson <danielwatson311@gmail.com>"]
+
+[package.metadata.rosettacode]
+url = "https://rosettacode.org/wiki/Random_number_generator_(device)"
+
+[dependencies]
+rand = "0.4"
