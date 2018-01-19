@@ -50,6 +50,6 @@ fn test_unbiased() {
         }
 
         let ratio = 1000 * count / SAMPLES;
-        assert!(ratio > 490 && ratio < 510, "{}", ratio);
+        assert!(ratio > 450 && ratio < 550, "{}", ratio);
     }
 }
