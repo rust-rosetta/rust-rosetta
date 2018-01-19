@@ -346,6 +346,9 @@ members = [
 
     # http://rosettacode.org/wiki/Concurrent_computing
     "tasks/concurrent-computing",
+    
+    # https://rosettacode.org/wiki/Constrained_random_points_on_a_circle
+    "tasks/constrained-random-points-on-a-circle",
 
     # http://rosettacode.org/wiki/Continued_fraction
     "tasks/continued-fraction",
