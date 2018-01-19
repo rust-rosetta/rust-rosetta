@@ -931,6 +931,9 @@ members = [
 
     # http://rosettacode.org/wiki/Quine
     "tasks/quine",
+    
+    # https://rosettacode.org/wiki/Random_number_generator_(device)
+    "tasks/random-number-generator/device",
 
     # http://rosettacode.org/wiki/Random_numbers
     "tasks/random-numbers",
