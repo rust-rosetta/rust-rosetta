@@ -1,44 +1,44 @@
-extern crate time;
+extern crate chrono;
 
-use std::fs::{OpenOptions};
-use std::io::{BufReader, BufWriter};
+use std::fs::OpenOptions;
+use std::io::{self, BufReader, BufWriter};
 use std::io::prelude::*;
 use std::env;
 
-fn show_notes() {
+const FILENAME: &str = "NOTES.TXT";
+
+fn show_notes() -> Result<(), io::Error> {
     let file = OpenOptions::new()
         .read(true)
-        .write(true)
-        .create(true)
-        .open("NOTES.TXT")
-        .unwrap();
+        .create(true) // create the file if not found
+        .write(true) // necessary to create the file
+        .open(FILENAME)?;
     let mut buf_reader = BufReader::new(file);
     let mut contents = String::new();
-    buf_reader.read_to_string(&mut contents).unwrap();
+    buf_reader.read_to_string(&mut contents)?;
     println!("{}", contents);
+    Ok(())
 }
 
-fn add_to_notes(note: &str) {
+fn add_to_notes(note: &str) -> Result<(), io::Error> {
     let file = OpenOptions::new()
-        .append(true)
+        .append(true) // disables overwriting, writes to the end of the file
         .create(true)
-        .open("NOTES.TXT")
-        .unwrap();
+        .open(FILENAME)?;
     let mut buf_writer = BufWriter::new(file);
 
-    let now = time::now();
-    let date_and_time = now.asctime();
-    writeln!(buf_writer, "{}", date_and_time).unwrap();
+    let date_and_time = chrono::Local::now();
+    writeln!(buf_writer, "{}", date_and_time)?;
 
-    writeln!(buf_writer, "\t{}", note).unwrap();
+    writeln!(buf_writer, "\t{}", note)
 }
 
 fn main() {
     let note = env::args().skip(1).collect::<Vec<_>>();
 
     if note.is_empty() {
-        show_notes();
+        show_notes().expect("failed to print NOTES.TXT");
     } else {
-        add_to_notes(&note.join(" "));
+        add_to_notes(&note.join(" ")).expect("failed to write to NOTES.TXT");
     }
 }
