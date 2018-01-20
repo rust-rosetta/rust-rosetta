@@ -7,4 +7,4 @@ authors = ["Daniel Watson <danielwatson311@gmail.com>"]
 url = "https://rosettacode.org/wiki/Take_notes_on_the_command_line"
 
 [dependencies]
-time = "0.1"
+chrono = "0.4"
