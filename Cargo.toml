@@ -1213,6 +1213,9 @@ members = [
 
     # http://rosettacode.org/wiki/Ulam_spiral_(for_primes)
     "tasks/ulam-spiral-for-primes",
+    
+    # https://rosettacode.org/wiki/Unbias_a_random_generator
+    "tasks/unbias-a-random-generator",
 
     # http://rosettacode.org/wiki/Unicode_variable_names
     "tasks/unicode-variable-names",
