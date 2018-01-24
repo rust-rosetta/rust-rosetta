@@ -505,6 +505,10 @@ name = "carmichael-3-strong-pseudoprimes"
 version = "0.1.0"
 
 [[package]]
+name = "cartesian-product-of-two-or-more-lists"
+version = "0.1.0"
+
+[[package]]
 name = "case-sensitivity-of-identifiers"
 version = "0.1.0"
 
