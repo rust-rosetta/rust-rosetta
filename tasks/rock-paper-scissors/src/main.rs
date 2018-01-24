@@ -1,45 +1,28 @@
 extern crate rand;
+#[macro_use]
+extern crate rand_derive;
 
 use std::io;
-use rand::{Rng, thread_rng};
+use rand::Rng;
 use Choice::*;
 
-#[derive(PartialEq, Clone, Copy)]
+#[derive(PartialEq, Clone, Copy, Rand, Debug)]
 pub enum Choice {
     Rock,
     Paper,
     Scissors,
 }
 
-impl Choice {
-    fn print(&self) -> &str {
-        match *self {
-            Rock => "Rock",
-            Paper => "Paper",
-            Scissors => "Scissors",
-        }
-    }
-
-    fn rand(&mut self) {
-        match thread_rng().gen_range(0, 2) {
-            0 => *self = Rock,
-            1 => *self = Paper,
-            2 | _ => *self = Scissors,
-        }
-    }
-}
-
 fn beats(c1: Choice, c2: Choice) -> bool {
-    (c1 == Rock) && (c2 == Scissors) || (c1 == Scissors && c2 == Paper) ||
-    (c1 == Paper && c2 == Rock)
+    (c1 == Rock && c2 == Scissors) || (c1 == Scissors && c2 == Paper) || (c1 == Paper && c2 == Rock)
 }
 
-fn ai_move(v: [usize; 3]) -> Choice {
-    // weighted random choice
-    let sum = thread_rng().gen_range(0, v[0] + v[1] + v[2]);
-    if sum < v[0] {
+fn ai_move<R: Rng>(rng: &mut R, v: [usize; 3]) -> Choice {
+    // weighted random choice, a dynamic version of `rand::distributions::WeightedChoice`
+    let rand = rng.gen_range(0, v[0] + v[1] + v[2]);
+    if rand < v[0] {
         Paper
-    } else if sum < v[0] + v[1] {
+    } else if rand < v[0] + v[1] {
         Scissors
     } else {
         Rock
@@ -47,44 +30,44 @@ fn ai_move(v: [usize; 3]) -> Choice {
 }
 
 fn main() {
+    let mut rng = rand::thread_rng();
+
     println!("Rock, paper, scissors!");
-    let mut aichoice: Choice = Rock;
-    aichoice.rand();
-    let mut uchoice: Choice;
-    let mut ucf: [usize; 3] = [0, 0, 0]; //user choice frequency
-    let mut score: [usize; 2] = [0, 0];
-    println!("Please input your move: r, p or s. Type q to quit");
+    let mut ai_choice: Choice = rng.gen();
+    let mut ucf = [0, 0, 0]; // user choice frequency
+    let mut score = [0, 0];
+
     loop {
+        println!("Please input your move: 'r', 'p' or 's'. Type 'q' to quit");
+
         let mut input = String::new();
         io::stdin()
             .read_line(&mut input)
             .expect("failed to read line");
-        match input.to_lowercase().trim() {
+        let u_choice = match input.to_lowercase().trim() {
             s if s.starts_with('r') => {
-                uchoice = Rock;
-                ucf[0] += 1
+                ucf[0] += 1;
+                Rock
             }
             s if s.starts_with('p') => {
-                uchoice = Paper;
-                ucf[1] += 1
+                ucf[1] += 1;
+                Paper
             }
             s if s.starts_with('s') => {
-                uchoice = Scissors;
-                ucf[2] += 1
+                ucf[2] += 1;
+                Scissors
             }
             s if s.starts_with('q') => break,
             _ => {
-                println!("Please enter correct choice!");
+                println!("Please enter a correct choice!");
                 continue;
             }
         };
-        println!("You chose {}, I chose {}.",
-                 uchoice.print(),
-                 aichoice.print());
-        if beats(uchoice, aichoice) {
+        println!("You chose {:?}, I chose {:?}.", u_choice, ai_choice);
+        if beats(u_choice, ai_choice) {
             score[0] += 1;
             println!("You win!");
-        } else if uchoice == aichoice {
+        } else if u_choice == ai_choice {
             println!("It's a tie!");
         } else {
             score[1] += 1;
@@ -92,9 +75,16 @@ fn main() {
         }
         println!("-Score: You {}, Me {}", score[0], score[1]);
 
-        aichoice = ai_move(ucf);
-        // only after the 1st iteration ai knows the stats and can make
+        // only after the 1st iteration the AI knows the stats and can make
         // its weighted random move
+        ai_choice = ai_move(&mut rng, ucf);
     }
     println!("Thank you for the game!");
+}
+
+#[test]
+fn test_victory() {
+    assert!(beats(Scissors, Paper));
+    assert!(beats(Rock, Scissors));
+    assert!(beats(Paper, Rock));
 }
