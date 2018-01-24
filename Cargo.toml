@@ -84,7 +84,9 @@ serde_json = "1"
 term = "0.4"
 
 [build-dependencies]
+failure = "0.1"
 meta = { path = "meta" }
+toml = "0.4"
 unicode-segmentation = "1"
 
 [workspace]
@@ -170,6 +172,9 @@ members = [
     # http://rosettacode.org/wiki/Arena_storage_pool
     "tasks/arena-storage-pool",
 
+    # http://rosettacode.org/wiki/Arithmetic-geometric_mean
+    "tasks/arithmetic-geometric-mean",
+
     # http://rosettacode.org/wiki/Arithmetic/Complex
     "tasks/arithmetic/complex",
 
@@ -178,9 +183,6 @@ members = [
 
     # http://rosettacode.org/wiki/Arithmetic/Rational
     "tasks/arithmetic/rational",
-
-    # http://rosettacode.org/wiki/Arithmetic-geometric_mean
-    "tasks/arithmetic-geometric-mean",
 
     # http://rosettacode.org/wiki/Array_concatenation
     "tasks/array-concatenation",

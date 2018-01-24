@@ -182,6 +182,7 @@ fn main() {
                     "url": task.url().to_string(),
                     "local_code": task.local_code(),
                     "remote_code": task.remote_code(),
+                    "path": task.local_path(),
                 });
 
                 Some(json)
