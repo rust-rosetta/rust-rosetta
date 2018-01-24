@@ -9,10 +9,10 @@ use std::collections::VecDeque;
 
 /// Computes the cartesian product of two or more lists of clonable elements.
 ///
-/// Uses a queue to iterate over the elements like a Breadth-First-Search
+/// Uses a queue to iterate over the elements (Breadth-First-Search).
 ///
 fn cartesian_product<T: Clone>(lists: &[&[T]]) -> Vec<Vec<T>> {
-    // If there are no lists, jsut returns an empty list.
+    // If there are no lists, just returns an empty list.
     if lists.is_empty() {
         return vec![];
     }
