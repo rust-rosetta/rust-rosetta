@@ -7,3 +7,4 @@ url = "http://rosettacode.org/wiki/Rock-paper-scissors"
 
 [dependencies]
 rand = "0.4"
+rand_derive = "0.3"
