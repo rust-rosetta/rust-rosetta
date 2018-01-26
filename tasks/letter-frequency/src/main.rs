@@ -1,46 +1,50 @@
 #![feature(io)]
 
-use std::io::{BufReader, Read};
-use std::collections::HashMap;
+use std::io::BufReader;
+use std::io::prelude::*;
 use std::fs::File;
-use std::collections::hash_map::Entry::{Occupied, Vacant};
+use std::hash::Hash;
+use std::collections::HashMap;
 
-fn count_chars<T>(chars: T) -> HashMap<char, usize>
-    where T: Iterator<Item = char>
+/// Returns a `HashMap` of each letter and its count
+fn count_chars<I, T: Hash + Eq>(chars: I) -> HashMap<T, usize>
+where
+    I: Iterator<Item = T>,
 {
-    let mut map: HashMap<char, usize> = HashMap::new();
+    // something like `HashMap::with_capacity(chars.len() / 2)` might be worthwile for large inputs
+    let mut map = HashMap::new();
     for letter in chars {
-        match map.entry(letter) {
-            Vacant(entry) => {
-                entry.insert(1);
-            }
-            Occupied(mut entry) => {
-                *entry.get_mut() += 1;
-            }
-        };
+        *map.entry(letter).or_insert(0) += 1;
     }
     map
 }
 
 fn main() {
-    let file = File::open("resources/unixdict.txt").unwrap();
+    let file = File::open("resources/unixdict.txt").expect("Failed to open file");
     let reader = BufReader::new(file);
 
-    println!("{:?}", count_chars(reader.chars().map(|c| c.unwrap())));
+    let chars = reader.chars().map(|c| c.unwrap());
+    let count = count_chars(chars);
+    println!("{:?}", count);
 }
 
-#[test]
-fn test_empty() {
-    let map = count_chars("".chars());
-    assert!(map.len() == 0);
-}
+#[cfg(test)]
+mod tests {
+    use super::*;
 
-#[test]
-fn test_basic() {
-    let map = count_chars("aaaabbbbc".chars());
+    #[test]
+    fn test_empty() {
+        let map = count_chars("".chars());
+        assert!(map.is_empty());
+    }
 
-    assert!(map.len() == 3);
-    assert!(map[&'a'] == 4);
-    assert!(map[&'b'] == 4);
-    assert!(map[&'c'] == 1);
+    #[test]
+    fn test_basic() {
+        let map = count_chars("aaaabbbbc".chars());
+
+        assert_eq!(map.len(), 3);
+        assert_eq!(map[&'a'], 4);
+        assert_eq!(map[&'b'], 4);
+        assert_eq!(map[&'c'], 1);
+    }
 }
