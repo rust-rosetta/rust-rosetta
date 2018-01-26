@@ -536,6 +536,14 @@ dependencies = [
 ]
 
 [[package]]
+name = "chaos-game"
+version = "0.1.0"
+dependencies = [
+ "image 0.17.0 (registry+https://github.com/rust-lang/crates.io-index)",
+ "rand 0.4.2 (registry+https://github.com/rust-lang/crates.io-index)",
+]
+
+[[package]]
 name = "character-codes"
 version = "0.1.0"
 

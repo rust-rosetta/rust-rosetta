@@ -1,0 +1,10 @@
+[package]
+name = "chaos-game"
+version = "0.1.0"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Chaos_game"
+
+[dependencies]
+image = "0.17"
+rand = "0.4"

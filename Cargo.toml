@@ -70,6 +70,7 @@ authors = [
     "Dylan Maccora, https://github.com/maccoda",
     "Stefan Müller, https://github.com/zzeroo",
     "Kunal Tyagi, https://github.com/kunaltyagi",
+    "Andrey Lebedev, https://github.com/areinull",
 ]
 
 [dependencies]
@@ -289,6 +290,9 @@ members = [
 
     # http://rosettacode.org/wiki/Catamorphism
     "tasks/catamorphism",
+
+    # http://rosettacode.org/wiki/Chaos_game
+    "tasks/chaos-game",
 
     # http://rosettacode.org/wiki/Character_codes
     "tasks/character-codes",
