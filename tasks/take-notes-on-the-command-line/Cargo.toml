@@ -1,0 +1,10 @@
+[package]
+name = "take-notes-on-the-command-line"
+version = "0.1.0"
+authors = ["Daniel Watson <danielwatson311@gmail.com>"]
+
+[package.metadata.rosettacode]
+url = "https://rosettacode.org/wiki/Take_notes_on_the_command_line"
+
+[dependencies]
+chrono = "0.4"
