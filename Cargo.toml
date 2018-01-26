@@ -800,6 +800,9 @@ members = [
     # http://rosettacode.org/wiki/Man_or_boy_test
     "tasks/man-or-boy-test",
 
+    # http://rosettacode.org/wiki/Mandelbrot_set
+    "tasks/mandelbrot-set",
+
     # http://rosettacode.org/wiki/Map_range
     "tasks/map-range",
 
