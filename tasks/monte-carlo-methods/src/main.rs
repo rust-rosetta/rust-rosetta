@@ -13,7 +13,9 @@ fn is_inside_circle((x, y): (f64, f64)) -> bool {
 fn simulate<R: Rng>(rng: &mut R, samples: usize) -> f64 {
     let mut count = 0;
     for _ in 0..samples {
-        count += is_inside_circle(rng.gen()) as usize;
+        if is_inside_circle(rng.gen()) {
+            count += 1;
+        }
     }
     (count as f64) / (samples as f64)
 }
