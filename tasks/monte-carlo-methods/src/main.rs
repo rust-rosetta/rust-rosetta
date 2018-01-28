@@ -4,7 +4,8 @@ use rand::Rng;
 use std::f64::consts::PI;
 
 // `(f32, f32)` would be faster for some RNGs (including `rand::thread_rng` on 32-bit platforms
-// and `rand::weak_rng`), but less accurate.
+// and `rand::weak_rng` as of rand v0.4) as `next_u64` combines two `next_u32`s if not natively
+// supported by the RNG.  It would less accurate however.
 fn is_inside_circle((x, y): (f64, f64)) -> bool {
     x * x + y * y <= 1.0
 }
