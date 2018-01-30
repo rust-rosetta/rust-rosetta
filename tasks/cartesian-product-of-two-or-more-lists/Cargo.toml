@@ -1,0 +1,10 @@
+[package]
+name = "cartesian-product-of-two-or-more-lists"
+version = "0.1.0"
+authors = ["xahigoyez <pierre.bertin-johannet@orange.fr>"]
+
+[dependencies]
+
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Cartesian_product_of_two_or_more_lists"
