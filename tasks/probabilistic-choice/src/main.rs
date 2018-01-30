@@ -16,7 +16,7 @@ const DATA: [(&str, f64); 8] = [
 
 const SAMPLES: usize = 1_000_000;
 
-// Generate a mapping to be used by `WeightedChoice`
+/// Generate a mapping to be used by `WeightedChoice`
 fn gen_mapping() -> Vec<Weighted<usize>> {
     DATA.iter()
         .enumerate()
@@ -32,7 +32,7 @@ fn gen_mapping() -> Vec<Weighted<usize>> {
         .collect()
 }
 
-// Generate a mapping of the raw probabilities
+/// Generate a mapping of the raw probabilities
 fn gen_mapping_float() -> Vec<f64> {
     // This does the work of `WeightedChoice::new`, splitting a number into various ranges.  The
     // `item` of `Weighted` is represented here merely by the probability's position in the `Vec`.
@@ -45,8 +45,8 @@ fn gen_mapping_float() -> Vec<f64> {
         .collect()
 }
 
-// An implementation of `WeightedChoice` which uses probabilities rather than weights.  Refer to
-// the `WeightedChoice` source for serious usage.
+/// An implementation of `WeightedChoice` which uses probabilities rather than weights.  Refer to
+/// the `WeightedChoice` source for serious usage.
 struct WcFloat {
     mapping: Vec<f64>,
 }
