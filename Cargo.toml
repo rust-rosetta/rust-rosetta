@@ -929,6 +929,9 @@ members = [
 
     # http://rosettacode.org/wiki/Prime_decomposition
     "tasks/prime-decomposition",
+    
+    # https://rosettacode.org/wiki/Probabilistic_choice
+    "tasks/probabilistic-choice",
 
     # https://rosettacode.org/wiki/Program_name
     "tasks/program-name",
