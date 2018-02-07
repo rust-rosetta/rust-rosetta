@@ -1,70 +1,62 @@
-//! This build script checks that all files in the `src` directory have lines of at most 100
-//! characters and don't contain trailing whitespace.
+//! This build script runs automated checks across the repository and emits warnings if they are
+//! violated.
 //!
-//! It also ensures that comment indicating which task a file solves is at the top.
-//!
-//! In case we find a line that doesn't comply with this rules, the build will fail and indicate
-//! the cause of the problem.
+//! - All files have a maximum line length of 100.
+//! - No trailing whitespace.
+//! - All workspace members must be listed in `Cargo.toml` alphabetically.
+//! - We are able to extract the needed metadata for task coverage.
 
+#![feature(fs_read_write)]
+
+extern crate failure;
 extern crate meta;
+extern crate toml;
 extern crate unicode_segmentation;
 
-use std::fs::File;
-use std::io::prelude::*;
+use std::fs;
 use std::path::Path;
 
+use failure::Error;
+use toml::Value;
 use unicode_segmentation::UnicodeSegmentation;
 
-use meta::local::{self, TaskParseError};
+use meta::local;
 
-fn main() {
-    let tasks = local::parse_tasks("Cargo.toml");
+/// Verify that all workspace members are declared in `Cargo.toml` in lexicographic order.
+fn verify_sort<P>(manifest_path: P) -> Result<(), Error>
+where
+    P: AsRef<Path>,
+{
+    let toml: Value = fs::read_string(manifest_path)?.parse()?;
+    let members = toml.get("workspace")
+        .and_then(|w| w.get("members"))
+        .and_then(|m| m.as_array())
+        .unwrap()
+        .iter()
+        .flat_map(|m| m.as_str())
+        .collect::<Vec<_>>();
 
-    // Verify that all workspace members are in lexicographic order.
-    let sorted_tasks = {
-        let mut sorted_tasks = tasks.clone();
-        sorted_tasks.sort_by_key(|task| task.path());
-        sorted_tasks
-    };
+    let mut sorted_members = members.clone();
+    sorted_members.sort_unstable();
 
-    for (task, sorted_task) in tasks.iter().zip(sorted_tasks) {
-        if task.path() != sorted_task.path() {
-            println!("cargo:warning={}",
-                     format!("{} is not in the correct order in `Cargo.toml`!",
-                             task.path().to_str().unwrap()));
+    for (member, sorted_member) in members.iter().zip(sorted_members) {
+        if *member != sorted_member {
+            println!(
+                "cargo:warning={}",
+                format!("{} is not in the correct order in `Cargo.toml`!", member)
+            );
         }
     }
 
-    // Verify that all workspace members have the required metadata.
-    for task in &tasks {
-        if let Err(ref err) = task.url() {
-            match *err {
-                TaskParseError::InvalidURL(ref url) => {
-                    println!("cargo:warning={}",
-                             format!("invalid URL '{}' found for task {}", url, task.crate_name()));
-                }
-                TaskParseError::MissingMetadata => {
-                    println!("cargo:warning={}",
-                             format!("missing URL metadata for {}. See CONTRIBUTING.md for \
-                                      details.",
-                                     task.crate_name()));
-                }
-
-            }
-        }
-
-        for source in &task.source() {
-            check_file(source);
-        }
-    }
+    Ok(())
 }
 
 /// Performs all checks on a particular file.
-fn check_file<P>(path: &P)
-    where P: AsRef<Path>
+fn check_file<P>(path: &P) -> Result<(), Error>
+where
+    P: AsRef<Path>,
 {
-    let mut content = String::new();
-    File::open(&path).unwrap().read_to_string(&mut content).unwrap();
+    let content = fs::read_string(path)?;
 
     for (i, mut line) in content.lines().enumerate() {
         // Ignore '\r'
@@ -84,14 +76,42 @@ fn check_file<P>(path: &P)
             }
         }
     }
+
+    Ok(())
 }
 
 fn line_error<P>(line: usize, path: &P, msg: &str)
-    where P: AsRef<Path>
+where
+    P: AsRef<Path>,
 {
-    println!("cargo:warning={}",
-             format!("Formatting error: {} (line {} of file \"{}\")",
-                     msg,
-                     line,
-                     path.as_ref().to_str().unwrap()));
+    println!(
+        "cargo:warning={}",
+        format!(
+            "Formatting error: {} (line {} of file \"{}\")",
+            msg,
+            line,
+            path.as_ref().to_str().unwrap()
+        )
+    );
+}
+
+fn run() -> Result<(), Error> {
+    let manifest_path = "Cargo.toml";
+
+    let tasks = local::parse_tasks(manifest_path)?;
+
+    verify_sort(manifest_path)?;
+
+    // Verify that all workspace members have the required metadata.
+    for task in &tasks {
+        for source in &task.source {
+            check_file(source)?;
+        }
+    }
+
+    Ok(())
+}
+
+fn main() {
+    run().unwrap();
 }

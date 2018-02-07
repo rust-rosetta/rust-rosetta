@@ -2,10 +2,9 @@
 //!
 //! [rust-rosetta]: https://github.com/Hoverbear/rust-rosetta
 
+#![feature(fs_read_write)]
 #![warn(missing_docs)]
 
-#[macro_use]
-extern crate error_chain;
 #[macro_use]
 extern crate lazy_static;
 #[macro_use]
@@ -13,6 +12,9 @@ extern crate percent_encoding;
 #[macro_use]
 extern crate serde_derive;
 
+extern crate cargo_metadata;
+extern crate failure;
+extern crate pathdiff;
 extern crate regex;
 extern crate reqwest;
 extern crate serde;
@@ -34,12 +36,12 @@ use std::fs::File;
 use std::io::prelude::*;
 use std::iter::FromIterator;
 use std::ops::Sub;
-use std::path::Path;
+use std::path::{Path, PathBuf};
 
+use failure::Error;
 use regex::Regex;
 use reqwest::{Client, Url};
 
-pub mod errors;
 pub mod local;
 
 #[macro_use]
@@ -48,12 +50,13 @@ pub mod test_utils;
 use local::LocalTask;
 use remote::{RemoteTask, Response};
 
-pub use errors::{Error, Result};
+/// Crate-specific error type.
+pub type Result<T> = std::result::Result<T, Error>;
 
 lazy_static! {
     /// A Regex that matches valid Rosetta Code URLs.
     static ref TASK_URL_RE: Regex =
-        Regex::new(r"^http://rosettacode\.org/wiki/([^#]+)$").unwrap();
+        Regex::new(r"^https?://rosettacode\.org/wiki/([^#]+)$").unwrap();
 }
 
 /// A representation of a Rosetta Code task. Contains information about the implementation on both
@@ -76,7 +79,7 @@ impl Task {
             // FIXME: Too simple for the multiple source file case.
             let mut code = String::new();
 
-            for source in &task.source() {
+            for source in &task.source {
                 let mut file = File::open(source).unwrap();
                 file.read_to_string(&mut code).unwrap();
             }
@@ -110,6 +113,14 @@ impl Task {
     pub fn url(&self) -> Url {
         self.remote.url()
     }
+
+    /// Returns the relative path to the task from repository root.
+    pub fn local_path(&self) -> Option<PathBuf> {
+        self.local.as_ref().and_then(|l| {
+            let workspace_root_dir = Path::new(env!("CARGO_MANIFEST_DIR")).parent().unwrap();
+            pathdiff::diff_paths(l.manifest_path.parent().unwrap(), workspace_root_dir)
+        })
+    }
 }
 
 /// The index of all tasks implemented locally and remotely.
@@ -123,8 +134,8 @@ impl TaskIndex {
     /// Generate the task index by parsing tasks in the repository and requesting task titles from
     /// the wiki.
     pub fn create<P: AsRef<Path>>(workspace_root: P) -> Result<TaskIndex> {
-        let local_tasks = local::parse_tasks(workspace_root.as_ref().join("Cargo.toml"));
-        let local_task_titles = local_tasks.iter().map(LocalTask::title).collect();
+        let local_tasks = local::parse_tasks(workspace_root.as_ref().join("Cargo.toml")).unwrap();
+        let local_task_titles = local_tasks.iter().map(|task| task.title.clone()).collect();
 
         let client = Client::new();
         let all_task_titles = TaskIndex::all_task_titles(&client, &local_task_titles)?;
@@ -273,9 +284,10 @@ impl<'a> Iterator for TaskIterator<'a> {
         }
 
         let remote_task = self.fetched_remote_tasks.pop_front().unwrap();
-        let local_task = self.local_tasks.iter().cloned().find(|task| {
-            task.title() == remote_task.title()
-        });
+        let local_task = self.local_tasks
+            .iter()
+            .cloned()
+            .find(|task| task.title == remote_task.title());
 
         let task = Task {
             local: local_task,
