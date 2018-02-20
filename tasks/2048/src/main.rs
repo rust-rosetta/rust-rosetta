@@ -5,7 +5,7 @@ extern crate rand;
 use std::ops::{Index, IndexMut};
 use std::io;
 
-use rand::distributions::{IndependentSample, Range};
+use rand::Rng;
 
 const GRID_DIMENSION: usize = 4;
 
@@ -88,15 +88,14 @@ impl Grid {
             return Err(GridFullError);
         }
 
+        let mut rng = rand::thread_rng();
+
         loop {
             let (x, y) = rand::random::<(usize, usize)>();
             let rand_tile = &mut self[(x % GRID_DIMENSION, y % GRID_DIMENSION)];
 
             if rand_tile.is_none() {
-                let mut rng = rand::thread_rng();
-
-                let range = Range::new(0f64, 1.);
-                *rand_tile = if range.ind_sample(&mut rng) > 0.9 {
+                *rand_tile = if rng.gen_weighted_bool(10) {
                     Some(4)
                 } else {
                     Some(2)
