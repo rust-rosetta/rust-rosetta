@@ -4,94 +4,98 @@
 
 extern crate rand;
 
-use std::collections::HashMap;
 use rand::Rng;
 
 fn main() {
-    let target: String = String::from("METHINKS IT IS LIKE A WEASEL");
-    let mut parent: String = String::new();
-    let nb_copy = 400;
-    let mutation_rate: f64 = 0.05;
-    let mut counter = 0;
+    let target = "METHINKS IT IS LIKE A WEASEL";
+    let copies = 100;
+    let mutation_rate = 20; // 1/20 = 0.05 = 5%
 
-    generate_first_sentence(&mut parent);
+    let mut rng = rand::weak_rng();
+
+    // Generate first sentence, mutating each character
+    let start = mutate(&mut rng, target, 1); // 1/1 = 1 = 100%
 
     println!("{}", target);
-    println!("{}", parent);
-    while fitness(&target, &parent) != 0 {
-        let mut sentences: HashMap<u32, String> = HashMap::new();
-        let mut f_min: u32 = 30;
+    println!("{}", start);
 
+    evolve(&mut rng, target, start, copies, mutation_rate);
+}
+
+/// Evolution algorithm
+///
+/// Evolves `parent` to match `target`.  Returns the number of evolutions performed.
+fn evolve<R: Rng>(
+    rng: &mut R,
+    target: &str,
+    mut parent: String,
+    copies: usize,
+    mutation_rate: u32,
+) -> usize {
+    let mut counter = 0;
+    let mut parent_fitness = target.len() + 1;
+
+    loop {
         counter += 1;
 
-        for _ in 0..nb_copy {
-            let sentence = mutate(&parent, mutation_rate);
-            let f = fitness(&target, &sentence);
+        let (best_fitness, best_sentence) = (0..copies)
+            .map(|_| {
+                // Copy and mutate a new sentence.
+                let sentence = mutate(rng, &parent, mutation_rate);
+                // Find the fitness of the new mutation
+                (fitness(target, &sentence), sentence)
+            })
+            .min_by_key(|&(f, _)| f) // find the closest mutation to the target
+            .unwrap(); // fails if `copies == 0`
 
-            sentences.insert(f, sentence);
+        // If the best mutation of this generation is better than `parent` then "the fittest
+        // survives" and the next parent becomes the best of this generation.
+        if best_fitness < parent_fitness {
+            parent = best_sentence;
+            parent_fitness = best_fitness;
+            println!(
+                "{} : generation {} with fitness {}",
+                parent, counter, best_fitness
+            );
 
-            if f < f_min {
-                f_min = f
-            }
-        }
-
-        if fitness(&target, &parent) > f_min {
-            match sentences.get(&f_min) {
-                Some(s) => {
-                    parent = s.clone();
-                    println!("{} : {}", parent, counter);
-                }
-                None => panic!("Error, fitness minimum but no sentence."),
+            if best_fitness == 0 {
+                return counter;
             }
         }
     }
 }
 
-/// Computes the fitness of a sentence against a target string.
-fn fitness(target: &str, sentence: &str) -> u32 {
-    target.chars()
-        .zip(sentence.chars())
-        .fold(0, |acc, (c1, c2)| {
-            if c1 != c2 {
-                acc + 1
-            } else {
-                acc
-            }
-        })
+/// Computes the fitness of a sentence against a target string, returning the number of
+/// incorrect characters.
+fn fitness(target: &str, sentence: &str) -> usize {
+    sentence
+        .chars()
+        .zip(target.chars())
+        .filter(|&(c1, c2)| c1 != c2)
+        .count()
 }
 
 /// Mutation algorithm.
 ///
 /// It mutates each character of a string, according to a `mutation_rate`.
-/// Please note that for full usefulness, `mutation_rate` should be between
-/// 0 and 1.
-fn mutate(sentence: &str, mutation_rate: f64) -> String {
-    let mut rng = rand::thread_rng();
-    let mut mutation = String::new();
-    for c in sentence.chars() {
-        if mutation_rate > rng.gen_range(0.0, 1.0) {
-            mutation.push(random_char());
+fn mutate<R: Rng>(rng: &mut R, sentence: &str, mutation_rate: u32) -> String {
+    let maybe_mutate = |c| {
+        if rng.gen_weighted_bool(mutation_rate) {
+            random_char(rng)
         } else {
-            mutation.push(c);
+            c
         }
-    }
-
-    mutation
+    };
+    sentence.chars().map(maybe_mutate).collect()
 }
 
-
-/// Generates a random sentence of length 28 from completely random chars.
-
-fn generate_first_sentence(parent: &mut String) {
-    for _ in 0..28 {
-        parent.push(random_char());
-    }
-}
-
-/// Generates a random char (between 'A' and '\\').
-fn random_char() -> char {
-    match rand::thread_rng().gen_range(b'A', b'\\') as char {
-        '[' => ' ',
-        c => c,
+/// Generates a random letter or space.
+fn random_char<R: Rng>(rng: &mut R) -> char {
+    // Returns a value in the range [A, Z] + an extra slot for the space character.  (The `u8`
+    // values could be cast to larger integers for a better chance of the RNG hitting the proper
+    // range).
+    match rng.gen_range(b'A', b'Z' + 2) {
+        c if c == b'Z' + 1 => ' ', // the `char` after 'Z'
+        c => c as char,
     }
 }

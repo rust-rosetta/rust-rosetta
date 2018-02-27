@@ -1,6 +1,7 @@
 [package]
 name = "evolutionary-algorithm"
 version = "0.1.0"
+authors = ["Thibault Barbie", "Daniel Watson <danielwatson311@gmail.com>"]
 
 [package.metadata.rosettacode]
 url = "http://rosettacode.org/wiki/Evolutionary_algorithm"
