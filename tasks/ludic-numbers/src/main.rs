@@ -63,7 +63,7 @@ fn print_ludics_from_to(x: &[usize], from: usize, to: usize) {
     println!("{:?}", &x[from - 1..to - 1]);
 }
 
-/// Calculates the triplet of a Ludic number.
+/// Calculates triplets until a certain Ludic number.
 fn triplets_below(ludics: &[usize], limit: usize) -> Vec<(usize, usize, usize)> {
     ludics
         .iter()
