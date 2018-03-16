@@ -1,5 +1,3 @@
-#![feature(inclusive_range_syntax)]
-
 const LIMIT: i32 = 12;
 
 fn main() {

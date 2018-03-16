@@ -1,5 +1,3 @@
-#![feature(inclusive_range_syntax)]
-
 extern crate rand;
 
 use std::ops::{Index, IndexMut};

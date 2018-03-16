@@ -1,5 +1,3 @@
-#![feature(inclusive_range_syntax)]
-
 use std::cmp;
 use std::collections::BTreeMap;
 use std::i32;
