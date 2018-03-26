@@ -73,23 +73,23 @@ impl fmt::Display for Sudoku {
 
         for y in 0..BOARD_HEIGHT {
             if y % GROUP_HEIGHT == 0 {
-                try!(writeln!(f, "{}", hbar));
+                writeln!(f, "{}", hbar)?;
             }
 
             for x in 0..BOARD_WIDTH {
                 if x % GROUP_WIDTH == 0 {
-                    try!(write!(f, "|"));
+                    write!(f, "|")?;
                 }
 
                 match self.get(x, y) {
-                    INVALID_CELL => try!(write!(f, "!")),
-                    0 => try!(write!(f, " ")),
-                    d => try!(write!(f, "{}", d)),
+                    INVALID_CELL => write!(f, "!")?,
+                    0 => write!(f, " ")?,
+                    d => write!(f, "{}", d)?,
                 }
             }
-            try!(writeln!(f, "|"));
+            writeln!(f, "|")?;
         }
-        try!(writeln!(f, "{}", hbar));
+        writeln!(f, "{}", hbar)?;
 
         Ok(())
     }

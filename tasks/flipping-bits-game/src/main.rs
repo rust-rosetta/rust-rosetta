@@ -144,17 +144,17 @@ impl fmt::Display for Board {
         // Get the string width of the size of the board
         let width = (self.size - 1).to_string().len();
         // Write the initial spaces (upper left)
-        try!(write!(f, "{space: >0$}", width, space = " "));
+        write!(f, "{space: >0$}", width, space = " ")?;
         // Write the column numbers
         for i in 0..self.size {
-            try!(write!(f, " {offset:>0$}", width, offset = i));
+            write!(f, " {offset:>0$}", width, offset = i)?;
         }
         // Newline for rows
-        try!(write!(f, "\n"));
+        write!(f, "\n")?;
         // Loop through the rows
         for row in 0..self.size {
             // Write the row number
-            try!(write!(f, "{row:>0$}", width, row = row));
+            write!(f, "{row:>0$}", width, row = row)?;
             // Loop through the columns
             for col in 0..self.size {
                 // Get the value of the cell as 1 or 0
@@ -164,10 +164,10 @@ impl fmt::Display for Board {
                     0
                 };
                 // Write the column value
-                try!(write!(f, " {col:>0$}", width, col = p));
+                write!(f, " {col:>0$}", width, col = p)?;
             }
             // Newline for next row
-            try!(write!(f, "\n"));
+            write!(f, "\n")?;
         }
         // Return Formatter result
         write!(f, "")

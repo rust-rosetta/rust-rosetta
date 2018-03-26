@@ -127,16 +127,16 @@ impl P15 {
 
 impl fmt::Display for P15 {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        try!(write!(f, "+----+----+----+----+\n"));
+        write!(f, "+----+----+----+----+\n")?;
         for (i, &cell) in self.board.iter().enumerate() {
             match cell {
-                Cell::Card(value) => try!(write!(f, "| {:2} ", value)),
-                Cell::Empty => try!(write!(f, "|    ")),
+                Cell::Card(value) => write!(f, "| {:2} ", value)?,
+                Cell::Empty => write!(f, "|    ")?,
             }
 
             if i % 4 == 3 {
-                try!(write!(f, "|\n"));
-                try!(write!(f, "+----+----+----+----+\n"));
+                write!(f, "|\n")?;
+                write!(f, "+----+----+----+----+\n")?;
             }
         }
         Ok(())

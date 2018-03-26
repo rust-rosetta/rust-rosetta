@@ -67,9 +67,9 @@ impl fmt::Display for Board {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         for row in &self.field {
             for x in row.iter() {
-                try!(write!(f, "{:3} ", x));
+                write!(f, "{:3} ", x)?;
             }
-            try!(write!(f, "\n"));
+            write!(f, "\n")?;
         }
         Ok(())
     }

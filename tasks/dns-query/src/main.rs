@@ -12,7 +12,7 @@ enum Ip {
 fn get_ips(host: &str) -> io::Result<Vec<Ip>> {
     use std::net::{self, SocketAddr};
 
-    let hosts = try!(net::lookup_host(host));
+    let hosts = net::lookup_host(host)?;
     let ips: Vec<_> = hosts
         .filter_map(|h| match h {
             SocketAddr::V4(s_v4) => Some(Ip::V4(*s_v4.ip())),

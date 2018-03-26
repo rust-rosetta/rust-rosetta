@@ -16,7 +16,7 @@ fn broadcast_message(
 ) -> io::Result<()> {
     for (client, stream) in clients.iter_mut() {
         if client != user {
-            try!(writeln!(stream, "{}", message));
+            writeln!(stream, "{}", message)?;
         }
     }
 
@@ -27,62 +27,55 @@ fn chat_loop(listener: &TcpListener) -> io::Result<()> {
     let local_clients: Arc<RwLock<HashMap<Username, TcpStream>>> =
         Arc::new(RwLock::new(HashMap::new()));
 
-    println!(
-        "Accepting connections on {}",
-        try!(listener.local_addr()).port()
-    );
+    println!("Accepting connections on {}", listener.local_addr()?.port());
 
     for stream in listener.incoming() {
         match stream {
             Ok(stream) => {
                 let client_clients = Arc::clone(&local_clients);
                 thread::spawn(move || -> io::Result<()> {
-                    let mut reader = BufReader::new(try!(stream.try_clone()));
+                    let mut reader = BufReader::new(stream.try_clone()?);
                     let mut writer = stream;
 
                     let mut name = String::new();
                     loop {
-                        try!(write!(writer, "Please enter a username: "));
-                        try!(reader.read_line(&mut name));
+                        write!(writer, "Please enter a username: ")?;
+                        reader.read_line(&mut name)?;
                         name = name.trim().to_owned();
 
                         let clients = client_clients.read().unwrap();
                         if !clients.contains_key(&name) {
-                            try!(writeln!(writer, "Welcome, {}!", &name));
+                            writeln!(writer, "Welcome, {}!", &name)?;
                             break;
                         }
 
-                        try!(writeln!(writer, "That username is taken."));
+                        writeln!(writer, "That username is taken.")?;
                         name.clear();
                     }
 
                     {
                         let mut clients = client_clients.write().unwrap();
                         clients.insert(name.clone(), writer);
-                        try!(broadcast_message(
+                        broadcast_message(
                             &name,
                             &mut *clients,
-                            &format!("{} has joined the chat room.", &name)
-                        ));
+                            &format!("{} has joined the chat room.", &name),
+                        )?;
                     }
 
                     for line in reader.lines() {
                         let mut clients = client_clients.write().unwrap();
-                        try!(broadcast_message(
-                            &name,
-                            &mut *clients,
-                            &format!("{}: {}", &name, try!(line))
-                        ));
+                        broadcast_message(&name, &mut *clients, &format!("{}: {}", &name, line?))?;
                     }
 
                     {
                         let mut clients = client_clients.write().unwrap();
                         clients.remove(&name);
-                        try!(broadcast_message(
+                        broadcast_message(
                             &name,
                             &mut *clients,
-                            &format!("{} has left the chat room.", &name)
-                        ));
+                            &format!("{} has left the chat room.", &name),
+                        )?;
                     }
 
                     Ok(())

@@ -11,7 +11,7 @@ trait PPMWritable {
 
 impl PPMWritable for Image {
     fn write_ppm(&self, filename: &str) -> Result<(), Error> {
-        let mut writer = try!{File::create(filename)};
+        let mut writer = File::create(filename)?;
         // let mut writer = BufWriter::new(file);
         writeln!(&mut writer, "P6")?;
         write!(&mut writer, "{} {} {}\n", self.width, self.height, 255)?;

@@ -79,7 +79,7 @@ impl Default for Deck {
 impl fmt::Display for Deck {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         for card in &self.0 {
-            try!(writeln!(f, "{}", card));
+            writeln!(f, "{}", card)?;
         }
         write!(f, "")
     }

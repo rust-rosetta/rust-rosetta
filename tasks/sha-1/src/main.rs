@@ -179,7 +179,7 @@ impl Default for Digest {
 
 impl Write for Digest {
     fn write(&mut self, buf: &[u8]) -> Result<usize> {
-        try!(self.write_all(buf));
+        self.write_all(buf)?;
         Ok(buf.len())
     }
 

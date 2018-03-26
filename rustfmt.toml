@@ -3,3 +3,4 @@ ignore = [
     "tasks/comments/src/main.rs",
     "tasks/quine/src/main.rs",
 ]
+use_try_shorthand = true

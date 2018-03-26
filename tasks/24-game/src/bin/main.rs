@@ -207,7 +207,7 @@ impl<'a> Parser<'a> {
 
     pub fn parse(&mut self) -> Result<f32, String> {
         self.operators.push(Operator::Sentinel);
-        try!(self.e());
+        self.e()?;
         self.operands
             .last()
             .cloned()
@@ -215,7 +215,7 @@ impl<'a> Parser<'a> {
     }
 
     fn e(&mut self) -> Result<(), String> {
-        try!(self.p());
+        self.p()?;
         while let Some(&(_, x)) = self.lexer.by_ref().peek() {
             if !x.is_binary() {
                 break;
@@ -233,7 +233,7 @@ impl<'a> Parser<'a> {
 
             // Consume the peeked value
             self.lexer.by_ref().next();
-            try!(self.p());
+            self.p()?;
         }
 
         while let Some(&op) = self.operators.last() {
@@ -251,13 +251,13 @@ impl<'a> Parser<'a> {
             Some((_, Token::Int(n))) => self.operands.push(n as f32),
             Some((_, Token::LParen)) => {
                 self.operators.push(Operator::Sentinel);
-                try!(self.e());
-                try!(Lexer::expect(&mut self.lexer, &[Token::RParen]));
+                self.e()?;
+                Lexer::expect(&mut self.lexer, &[Token::RParen])?;
                 self.operators.pop();
             }
             Some((_, Token::Minus)) => {
                 self.push_operator(Operator::Neg);
-                try!(self.p());
+                self.p()?;
             }
             Some((p, e)) => return Err(format!("unexpected token {:?} at pos {}", e, p)),
             _ => return Err("unexpected end of command".to_string()),

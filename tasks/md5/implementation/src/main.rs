@@ -105,7 +105,7 @@ impl Debug for MD5 {
     fn fmt(&self, f: &mut Formatter) -> Result {
         let MD5(md5) = *self;
         for b in &md5 {
-            try!(write!(f, "{:02x}", *b));
+            write!(f, "{:02x}", *b)?;
         }
         Ok(())
     }

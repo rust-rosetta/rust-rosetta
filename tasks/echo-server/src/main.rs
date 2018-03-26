@@ -5,7 +5,7 @@ use std::thread;
 // The actual echo server
 fn echo_server(host: &'static str, port: u16) -> io::Result<()> {
     // Create a new TCP listener at host:port.
-    let listener = try!(TcpListener::bind((host, port)));
+    let listener = TcpListener::bind((host, port))?;
     println!("Starting echo server on {:?}", listener.local_addr());
 
     // Process each new connection to the server
@@ -13,7 +13,7 @@ fn echo_server(host: &'static str, port: u16) -> io::Result<()> {
         match stream {
             Err(e) => println!("Connection failed: {}", e),
             Ok(stream) => {
-                let addr = try!(stream.peer_addr());
+                let addr = stream.peer_addr()?;
                 println!("New connection: {}", addr);
                 // Launch a new thread to deal with the connection.
                 thread::spawn(move || {
@@ -31,13 +31,13 @@ fn echo_server(host: &'static str, port: u16) -> io::Result<()> {
 
 // Each connection gets its own session.
 fn echo_session(stream: TcpStream) -> io::Result<()> {
-    let addr = try!(stream.peer_addr());
+    let addr = stream.peer_addr()?;
     let mut writer = stream.try_clone().unwrap();
     let reader = BufReader::new(stream);
     for line in reader.lines() {
-        let line = try!(line);
+        let line = line?;
         println!("Received line from {}: {}", addr, line);
-        try!(writer.write_all(line.as_bytes()));
+        writer.write_all(line.as_bytes())?;
         println!("Wrote line to {}: {}", addr, line);
     }
     Ok(())

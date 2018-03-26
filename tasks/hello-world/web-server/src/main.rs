@@ -21,16 +21,16 @@ charset=UTF-8
     </body>
 </html>";
 
-    try!(stream.write_all(response));
+    stream.write_all(response)?;
     stream.shutdown(Shutdown::Write)
 }
 
 fn handle_server(ip: &str, port: u16) -> Result<TcpListener> {
     use std::thread::spawn;
-    let listener = try!(TcpListener::bind((ip, port)));
+    let listener = TcpListener::bind((ip, port))?;
     println!("Listening for connections on port {}", port);
 
-    let handle = try!(listener.try_clone());
+    let handle = listener.try_clone()?;
     for stream in handle.incoming() {
         match stream {
             Ok(s) => {

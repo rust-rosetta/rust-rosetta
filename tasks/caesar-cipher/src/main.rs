@@ -33,10 +33,10 @@ fn cipher(input: &str, shift: u8) -> String {
 
 fn get_input() -> io::Result<String> {
     print!("Plain text:  ");
-    try!(io::stdout().flush());
+    io::stdout().flush()?;
 
     let mut buf = String::new();
-    try!(io::stdin().read_line(&mut buf));
+    io::stdin().read_line(&mut buf)?;
     Ok(buf)
 }
 

@@ -51,7 +51,7 @@ fn double_sha256(bytes: &[u8]) -> Vec<u8> {
 /// Returns `Ok` if the address validates.
 /// Returns `Err` with the reason if the address is invalid.
 fn validate(address: &str) -> Result<(), &'static str> {
-    let bytes = try!(decode_base58(address));
+    let bytes = decode_base58(address)?;
 
     // A bitcoin address encodes 25 bytes:
     if bytes.len() != 25 {

@@ -52,25 +52,25 @@ where
     for change in changeset.diffs {
         match change {
             Difference::Same(ref x) => {
-                try!(t.reset());
-                try!(writeln!(t, " {}", x));
+                t.reset()?;
+                writeln!(t, " {}", x)?;
             }
             Difference::Add(ref x) => {
-                try!(t.fg(term::color::GREEN));
+                t.fg(term::color::GREEN)?;
                 for line in x.split('\n') {
-                    try!(writeln!(t, "+{}", line));
+                    writeln!(t, "+{}", line)?;
                 }
             }
             Difference::Rem(ref x) => {
-                try!(t.fg(term::color::RED));
+                t.fg(term::color::RED)?;
                 for line in x.split('\n') {
-                    try!(writeln!(t, "-{}", line));
+                    writeln!(t, "-{}", line)?;
                 }
             }
         }
     }
-    try!(t.reset());
-    try!(t.flush());
+    t.reset()?;
+    t.flush()?;
     Ok(())
 }
 
@@ -79,20 +79,20 @@ fn print_task<T: ?Sized>(t: &mut T, task: &Task, diff: bool) -> io::Result<()>
 where
     T: Terminal,
 {
-    try!(t.attr(term::Attr::Bold));
-    try!(writeln!(t, "{}", task.title()));
-    try!(t.reset());
+    t.attr(term::Attr::Bold)?;
+    writeln!(t, "{}", task.title())?;
+    t.reset()?;
 
-    try!(write!(t, "Local:"));
-    try!(write_status(t, task.local_code().is_some()));
+    write!(t, "Local:")?;
+    write_status(t, task.local_code().is_some())?;
 
-    try!(write!(t, "Remote:"));
-    try!(write_status(t, task.remote_code().is_some()));
-    try!(writeln!(t, ""));
+    write!(t, "Remote:")?;
+    write_status(t, task.remote_code().is_some())?;
+    writeln!(t, "")?;
 
     if let (Some(ref local_code), Some(ref remote_code)) = (task.local_code(), task.remote_code()) {
         if diff {
-            try!(print_diff(t, remote_code, local_code));
+            print_diff(t, remote_code, local_code)?;
         }
     }
 
@@ -104,17 +104,17 @@ fn write_status<T: ?Sized>(t: &mut T, boolean: bool) -> io::Result<()>
 where
     T: Terminal,
 {
-    try!(t.attr(term::Attr::Bold));
+    t.attr(term::Attr::Bold)?;
 
     if boolean {
-        try!(t.fg(term::color::GREEN));
-        try!(write!(t, " ✔ "))
+        t.fg(term::color::GREEN)?;
+        write!(t, " ✔ ")?
     } else {
-        try!(t.fg(term::color::RED));
-        try!(write!(t, " ✘ "));
+        t.fg(term::color::RED)?;
+        write!(t, " ✘ ")?;
     }
 
-    try!(t.reset());
+    t.reset()?;
     Ok(())
 }
 
