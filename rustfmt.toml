@@ -1,3 +1,4 @@
+error_on_unformatted = true
 ignore = [
     "tasks/comments/src/main.rs",
     "tasks/quine/src/main.rs",

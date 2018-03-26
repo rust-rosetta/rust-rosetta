@@ -55,9 +55,8 @@ fn parse_digits(chars: &[char]) -> Option<BigInt> {
             None => return None,
         }
     }
-    let as_str = String::from_utf8(vec).unwrap(); // since it was built
-                                                  // from digits we know the vec is all made of valid utf8, so we
-                                                  // can just unwrap()
+    // Since it was built from digits we know the vec is valid utf8, so we can just unwrap().
+    let as_str = String::from_utf8(vec).unwrap();
     as_str.parse::<BigInt>().ok()
 }
 

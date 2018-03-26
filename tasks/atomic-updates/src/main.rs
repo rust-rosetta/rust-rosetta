@@ -166,7 +166,8 @@ mod buckets {
                 .zip(self.buckets.iter())
                 .map(|(dest, src)| {
                     let lock = src.mutex.lock();
-                    // Is SeqCst necessary here?  Maybe, maybe not, but when in doubt go with SeqCst.
+                    // Is SeqCst necessary here?  Maybe, maybe not, but when in doubt go with
+                    // SeqCst.
                     *dest = src.data.load(Ordering::SeqCst);
                     lock
                 })
