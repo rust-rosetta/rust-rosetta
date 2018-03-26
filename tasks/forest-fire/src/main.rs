@@ -32,6 +32,8 @@ const FOREST_HEIGHT: usize = 30;
 
 const SLEEP_MILLIS: u64 = 25;
 
+use ansi_term::Colour::*;
+use rand::Rng;
 use std::fmt;
 use std::io;
 use std::io::prelude::*;
@@ -39,10 +41,8 @@ use std::io::BufWriter;
 use std::io::Stdout;
 use std::process::Command;
 use std::time::Duration;
-use rand::Rng;
-use ansi_term::Colour::*;
 
-use Tile::{Empty, Tree, Burning, Heating};
+use Tile::{Burning, Empty, Heating, Tree};
 
 fn main() {
     let sleep_duration = Duration::from_millis(SLEEP_MILLIS);
@@ -54,7 +54,6 @@ fn main() {
     std::thread::sleep(sleep_duration);
 
     for generation in 1.. {
-
         for row in &mut forest {
             for tile in row.iter_mut() {
                 update_tile(tile);
@@ -109,13 +108,23 @@ fn update_tile(tile: &mut Tile) {
 }
 
 fn heat_neighbors(forest: &mut [[Tile; FOREST_WIDTH]; FOREST_HEIGHT], y: usize, x: usize) {
-    let neighbors = [(-1, -1), (-1, 0), (-1, 1), (0, -1), (0, 1), (1, -1), (1, 0), (1, 1)];
+    let neighbors = [
+        (-1, -1),
+        (-1, 0),
+        (-1, 1),
+        (0, -1),
+        (0, 1),
+        (1, -1),
+        (1, 0),
+        (1, 1),
+    ];
 
     for &(xoff, yoff) in &neighbors {
         let nx: i32 = (x as i32) + xoff;
         let ny: i32 = (y as i32) + yoff;
-        if (0..FOREST_WIDTH as i32).contains(nx) && (0..FOREST_HEIGHT as i32).contains(ny) &&
-           forest[ny as usize][nx as usize] == Tree {
+        if (0..FOREST_WIDTH as i32).contains(nx) && (0..FOREST_HEIGHT as i32).contains(ny)
+            && forest[ny as usize][nx as usize] == Tree
+        {
             forest[ny as usize][nx as usize] = Heating
         }
     }

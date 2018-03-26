@@ -1,7 +1,7 @@
 extern crate num;
 
-use num::FromPrimitive;
 use num::bigint::BigInt;
+use num::FromPrimitive;
 
 use std::collections::HashSet;
 
@@ -103,17 +103,20 @@ fn main() {
     let max_num: u64 = 10_000;
     let max_tests: usize = 500;
 
-    println!("Calculations using n = 1..{} and limiting each search to {} reverse-digits-and-adds",
-             max_num,
-             max_tests);
+    println!(
+        "Calculations using n = 1..{} and limiting each search to {} reverse-digits-and-adds",
+        max_num, max_tests
+    );
 
     let (lychrels, relateds, palindrome_lychrels) = find_lychrels(max_num, max_tests);
 
     println!("Number of Lychrel numbers: {}", lychrels.len());
     print_nums("Lychrel numbers: ", &lychrels);
     println!("Number of Lychrel related: {}", relateds.len());
-    println!("Number of Lychrel palindromes: {}",
-             palindrome_lychrels.len());
+    println!(
+        "Number of Lychrel palindromes: {}",
+        palindrome_lychrels.len()
+    );
     print_nums("Lychrel palindromes: ", &palindrome_lychrels);
 }
 

@@ -9,18 +9,16 @@ fn execute(code: &str) {
         match c {
             'Q' => println!("{}", code),
             'H' => println!("Hello, World!"),
-            '9' => {
-                for n in (1..100).rev() {
-                    println!("{} bottles of beer on the wall", n);
-                    println!("{} bottles of beer", n);
-                    println!("Take one down, pass it around");
-                    if (n - 1) > 1 {
-                        println!("{} bottles of beer on the wall\n", n - 1);
-                    } else {
-                        println!("1 bottle of beer on the wall\n");
-                    }
+            '9' => for n in (1..100).rev() {
+                println!("{} bottles of beer on the wall", n);
+                println!("{} bottles of beer", n);
+                println!("Take one down, pass it around");
+                if (n - 1) > 1 {
+                    println!("{} bottles of beer on the wall\n", n - 1);
+                } else {
+                    println!("1 bottle of beer on the wall\n");
                 }
-            }
+            },
             '+' => accumulator += 1,
             _ => panic!("Invalid character '{}' found in source.", c),
         }

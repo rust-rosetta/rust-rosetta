@@ -5,14 +5,18 @@ use std::collections::VecDeque;
 use std::ops::Mul;
 
 use num::bigint::{BigUint, ToBigUint};
-use num::traits::One;
 use num::one;
+use num::traits::One;
 
 /// representing a Hamming number as a `BigUint`
 impl HammingNumber for BigUint {
     // returns the multipliers 2, 3 and 5 in the representation for the HammingNumber
     fn multipliers() -> (BigUint, BigUint, BigUint) {
-        (2u8.to_biguint().unwrap(), 3u8.to_biguint().unwrap(), 5u8.to_biguint().unwrap())
+        (
+            2u8.to_biguint().unwrap(),
+            3u8.to_biguint().unwrap(),
+            5u8.to_biguint().unwrap(),
+        )
     }
 }
 
@@ -77,21 +81,9 @@ impl<T: HammingNumber> Iterator for Hamming<T> {
             _ => unreachable!(),
         };
 
-        let h2 = if two {
-            self.q2.pop_front()
-        } else {
-            None
-        };
-        let h3 = if three {
-            self.q3.pop_front()
-        } else {
-            None
-        };
-        let h5 = if five {
-            self.q5.pop_front()
-        } else {
-            None
-        };
+        let h2 = if two { self.q2.pop_front() } else { None };
+        let h3 = if three { self.q3.pop_front() } else { None };
+        let h5 = if five { self.q5.pop_front() } else { None };
 
         match h2.or(h3).or(h5) {
             Some(n) => {
@@ -140,7 +132,8 @@ fn hamming_iter_1million() {
     // one-million-th hamming number has index 999_999 because indexes are zero-based
     let millionth_hamming_number = "51931278044838873608958984375000000000000000000000000000000000\
                                     0000000000000000000000";
-    assert_eq!(hamming.nth(999_999).unwrap().to_biguint(),
-               millionth_hamming_number.parse::<BigUint>()
-                   .ok());
+    assert_eq!(
+        hamming.nth(999_999).unwrap().to_biguint(),
+        millionth_hamming_number.parse::<BigUint>().ok()
+    );
 }

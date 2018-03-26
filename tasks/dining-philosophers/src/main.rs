@@ -3,9 +3,9 @@
 //! one pick up the chopstick "to their left" and then the chopstick "to their right." The
 //! remaining diner performs this in reverse.
 
+use std::sync::{Arc, Mutex};
 use std::thread;
 use std::time::Duration;
-use std::sync::{Mutex, Arc};
 
 struct Philosopher {
     name: String,
@@ -41,12 +41,12 @@ struct Table {
 fn main() {
     let table = Arc::new(Table {
         forks: vec![
-        Mutex::new(()),
-        Mutex::new(()),
-        Mutex::new(()),
-        Mutex::new(()),
-        Mutex::new(()),
-    ],
+            Mutex::new(()),
+            Mutex::new(()),
+            Mutex::new(()),
+            Mutex::new(()),
+            Mutex::new(()),
+        ],
     });
 
     let philosophers = vec![
@@ -57,7 +57,8 @@ fn main() {
         Philosopher::new("Michel Foucault", 0, 4),
     ];
 
-    let handles: Vec<_> = philosophers.into_iter()
+    let handles: Vec<_> = philosophers
+        .into_iter()
         .map(|p| {
             let table = Arc::clone(&table);
 

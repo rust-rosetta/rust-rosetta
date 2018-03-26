@@ -1,9 +1,9 @@
 extern crate permutohedron;
 extern crate rand;
 
+use rand::{thread_rng, Rng};
 use std::cmp::{min, Ordering};
 use std::env;
-use rand::{thread_rng, Rng};
 use std::str;
 
 const WORDS: &[&str] = &["abracadabra", "seesaw", "elk", "grrrrrr", "up", "a"];
@@ -26,7 +26,6 @@ impl PartialOrd for Solution {
         }
     }
 }
-
 
 impl PartialEq for Solution {
     fn eq(&self, other: &Solution) -> bool {
@@ -56,16 +55,12 @@ fn main() {
     let mut words: Vec<String> = vec![];
 
     match args.len() {
-        1 => {
-            for w in WORDS.iter() {
-                words.push(String::from(*w));
-            }
-        }
-        _ => {
-            for w in args.split_at(1).1 {
-                words.push(w.clone());
-            }
-        }
+        1 => for w in WORDS.iter() {
+            words.push(String::from(*w));
+        },
+        _ => for w in args.split_at(1).1 {
+            words.push(w.clone());
+        },
     }
 
     let solutions = words.iter().map(|w| best_shuffle(w)).collect::<Vec<_>>();
@@ -89,12 +84,14 @@ fn _best_shuffle_perm(w: &str) -> Solution {
     let mut permutations = permutohedron::Heap::new(&mut permutocopy);
     while let Some(p) = permutations.next_permutation() {
         let hamm = hamming(&w_bytes, p);
-        soln = min(soln,
-                   Solution {
-                       original: w.clone(),
-                       shuffled: String::from(str::from_utf8(p).unwrap()),
-                       score: hamm,
-                   });
+        soln = min(
+            soln,
+            Solution {
+                original: w.clone(),
+                shuffled: String::from(str::from_utf8(p).unwrap()),
+                score: hamm,
+            },
+        );
         // Accept the solution if score 0 found
         if hamm == 0 {
             break;
@@ -140,7 +137,7 @@ fn hamming(w0: &[u8], w1: &[u8]) -> usize {
 
 #[cfg(test)]
 mod tests {
-    use super::{best_shuffle, _best_shuffle_perm};
+    use super::{_best_shuffle_perm, best_shuffle};
 
     #[test]
     fn test_best_shuffle_perm() {

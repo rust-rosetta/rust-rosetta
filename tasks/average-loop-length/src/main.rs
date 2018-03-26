@@ -2,8 +2,8 @@
 
 extern crate rand;
 
-use rand::{ThreadRng, thread_rng};
 use rand::distributions::{IndependentSample, Range};
+use rand::{thread_rng, ThreadRng};
 use std::collections::HashSet;
 use std::env;
 use std::process;
@@ -36,11 +36,13 @@ fn main() {
     for n in 1..(max_n + 1) {
         let the_analytical = analytical(n);
         let the_empirical = empirical(n, trials, &mut rng);
-        println!(" {:>2}     {:3.4}        {:3.4}  ( {:>+1.2}%)",
-                 n,
-                 the_empirical,
-                 the_analytical,
-                 100f64 * (the_empirical / the_analytical - 1f64));
+        println!(
+            " {:>2}     {:3.4}        {:3.4}  ( {:>+1.2}%)",
+            n,
+            the_empirical,
+            the_analytical,
+            100f64 * (the_empirical / the_analytical - 1f64)
+        );
     }
 }
 
@@ -74,10 +76,9 @@ fn empirical(n: u32, trials: u32, rng: &mut ThreadRng) -> f64 {
     sum / f64::from(trials)
 }
 
-
 #[cfg(test)]
 mod tests {
-    use super::{factorial, analytical, empirical};
+    use super::{analytical, empirical, factorial};
 
     use rand::thread_rng;
 

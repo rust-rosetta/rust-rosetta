@@ -1,8 +1,8 @@
 extern crate num;
 
 use num::bigint::BigUint;
-use num::traits::{Zero, One};
 use num::integer::Integer;
+use num::traits::{One, Zero};
 
 fn mod_exp(b: &BigUint, e: &BigUint, n: &BigUint) -> Result<BigUint, &'static str> {
     if n.is_zero() {
@@ -32,9 +32,13 @@ fn mod_exp(b: &BigUint, e: &BigUint, n: &BigUint) -> Result<BigUint, &'static st
 fn main() {
     let msg = "Rosetta Code";
 
-    let n = "9516311845790656153499716760847001433441357".parse().unwrap();
+    let n = "9516311845790656153499716760847001433441357"
+        .parse()
+        .unwrap();
     let e = "65537".parse().unwrap();
-    let d = "5617843187844953170308463622230283376298685".parse().unwrap();
+    let d = "5617843187844953170308463622230283376298685"
+        .parse()
+        .unwrap();
 
     let msg_int = BigUint::from_bytes_be(msg.as_bytes());
     let enc = mod_exp(&msg_int, &e, &n).unwrap();
@@ -53,7 +57,7 @@ mod tests {
     use super::mod_exp;
     use num::bigint::BigUint;
     use num::integer::Integer;
-    use num::traits::{Zero, FromPrimitive};
+    use num::traits::{FromPrimitive, Zero};
 
     const N: &'static str = "9516311845790656153499716760847001433441357";
     const E: &'static str = "65537";

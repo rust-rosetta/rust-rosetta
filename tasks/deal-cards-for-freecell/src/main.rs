@@ -15,7 +15,9 @@ fn shuffle<T>(rng: &mut MsLcg, deck: &mut [T]) {
 }
 
 fn gen_deck() -> Vec<String> {
-    const RANKS: [char; 13] = ['A','2','3','4','5','6','7','8','9','T','J','Q','K'];
+    const RANKS: [char; 13] = [
+        'A', '2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K',
+    ];
     const SUITS: [char; 4] = ['C', 'D', 'H', 'S'];
 
     let render_card = |card: usize| {
@@ -62,7 +64,7 @@ mod tests {
                 "4C 5C TS QH 4H AC 4D 7S",
                 "3S TD 4S TH 8H 2C JH 7D",
                 "6D 8S 8D QS 6C 3D 8C TC",
-                "6S 9C 2H 6H"
+                "6S 9C 2H 6H",
             ]
         );
     }
@@ -78,7 +80,7 @@ mod tests {
                 "KD 5H 9S 3C 8S 7H 4D JS",
                 "4C QS 9C 9H 7C 6H 2C 2S",
                 "4S TS 2H 5D JC 6C JH QH",
-                "JD KS KC 4H"
+                "JD KS KC 4H",
             ]
         );
     }

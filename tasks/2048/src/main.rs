@@ -1,7 +1,7 @@
 extern crate rand;
 
-use std::ops::{Index, IndexMut};
 use std::io;
+use std::ops::{Index, IndexMut};
 
 use rand::Rng;
 
@@ -322,13 +322,13 @@ mod ui_imp {
 
     use super::{Game, Key, State, Ui};
 
-    use std::io::{self, Stdin, Stdout};
     use std::io::prelude::*;
+    use std::io::{self, Stdin, Stdout};
 
-    use self::termion::{color, cursor, style};
     use self::termion::event::Key as TermKey;
     use self::termion::input::Keys;
     use self::termion::raw::{IntoRawMode, RawTerminal};
+    use self::termion::{color, cursor, style};
 
     pub struct Termion {
         keys: Keys<Stdin>,

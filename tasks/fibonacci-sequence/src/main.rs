@@ -1,7 +1,9 @@
 fn main() {
-    let fns = vec![(fib_recursive as fn(u64) -> u64, "recursive"),
-                   (fib_tail_recursive as fn(u64) -> u64, "tail recursive"),
-                   (fib_iterative as fn(u64) -> u64, "iterative")];
+    let fns = vec![
+        (fib_recursive as fn(u64) -> u64, "recursive"),
+        (fib_tail_recursive as fn(u64) -> u64, "tail recursive"),
+        (fib_iterative as fn(u64) -> u64, "iterative"),
+    ];
 
     for (f, desc) in fns {
         let r = (0u64..10).map(f).collect::<Vec<u64>>();
@@ -45,7 +47,7 @@ fn fib_iterative(n: u64) -> u64 {
 
 #[cfg(test)]
 mod tests {
-    use super::{fib_recursive, fib_iterative, fib_tail_recursive};
+    use super::{fib_iterative, fib_recursive, fib_tail_recursive};
 
     /// helper function to test that all versions of the fib function
     /// return the expected values.
@@ -58,9 +60,11 @@ mod tests {
 
     #[test]
     fn fib_values() {
-        let fns = vec![fib_recursive as fn(u64) -> u64,
-                       fib_tail_recursive as fn(u64) -> u64,
-                       fib_iterative as fn(u64) -> u64];
+        let fns = vec![
+            fib_recursive as fn(u64) -> u64,
+            fib_tail_recursive as fn(u64) -> u64,
+            fib_iterative as fn(u64) -> u64,
+        ];
         for &f in &fns {
             tester(f);
         }

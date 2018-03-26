@@ -5,7 +5,8 @@ use std::io::stdin;
 fn main() {
     let mut input = String::new();
     let _ = stdin().read_line(&mut input).unwrap();
-    let words = input.split_whitespace()
+    let words = input
+        .split_whitespace()
         .take(2)
         .map(|s| s.parse().ok())
         .collect::<Vec<Option<i32>>>();

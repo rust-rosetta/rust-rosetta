@@ -11,19 +11,16 @@ fn main() {
     let mut stdout = io::stdout();
 
     // generating 4 numbers
-    let choices: Vec<u32> = (0u32..4)
-        .map(|_| rng.gen_range(1u32, 10))
-        .collect();
+    let choices: Vec<u32> = (0u32..4).map(|_| rng.gen_range(1u32, 10)).collect();
     println!("Make 24 with the following numbers");
 
     // start the game loop
     let mut buffer = String::new();
     loop {
-        println!("Your numbers: {}, {}, {}, {}",
-                 choices[0],
-                 choices[1],
-                 choices[2],
-                 choices[3]);
+        println!(
+            "Your numbers: {}, {}, {}, {}",
+            choices[0], choices[1], choices[2], choices[3]
+        );
         buffer.clear();
         stdin.read_line(&mut buffer).expect("Failed to read line!");
         match check_input(&buffer[..], &choices[..]) {
@@ -102,24 +99,32 @@ mod tests {
 
     #[test]
     fn incorrect_result() {
-        assert_eq!(check_input("4 3 * 2 6 + -", &v1),
-                   Err("Wrong answer. Result: 4".to_string()));
+        assert_eq!(
+            check_input("4 3 * 2 6 + -", &v1),
+            Err("Wrong answer. Result: 4".to_string())
+        );
     }
 
     #[test]
     fn wrong_numbers_in_input() {
-        assert_eq!(check_input("4 5 + 6 2 * -", &v1),
-                   Err("Cannot use 5".to_string()));
+        assert_eq!(
+            check_input("4 5 + 6 2 * -", &v1),
+            Err("Cannot use 5".to_string())
+        );
     }
 
     #[test]
     fn invalid_chars_in_input() {
-        assert_eq!(check_input("4 ) + _ 2 * -", &v1),
-                   Err("Invalid input: )".to_string()));
+        assert_eq!(
+            check_input("4 ) + _ 2 * -", &v1),
+            Err("Invalid input: )".to_string())
+        );
     }
 
     fn invalid_rpn_expression() {
-        assert_eq!(check_input("4 3 + 6 2 *", &v1),
-                   Err("Not a valid RPN expression!".to_string()));
+        assert_eq!(
+            check_input("4 3 + 6 2 *", &v1),
+            Err("Not a valid RPN expression!".to_string())
+        );
     }
 }

@@ -1,7 +1,7 @@
 extern crate num;
 
-use num::One;
 use num::bigint::{BigUint, ToBigUint};
+use num::One;
 
 fn binomial(n: usize, mut k: usize) -> BigUint {
     // Since binomial(n, k) = binomial(n, n - k), we might as well use
@@ -34,6 +34,8 @@ fn test_binomial() {
     assert_eq!(binomial(20, 15), binomial(19, 14) + binomial(19, 15));
     assert_eq!(binomial(5, 3), 10.to_biguint().unwrap());
     assert_eq!(binomial(31, 17), 265182525.to_biguint().unwrap());
-    assert_eq!(binomial(300, 30),
-               BigUint::from_str_radix("173193226149263513034110205899732811401360", 10).unwrap());
+    assert_eq!(
+        binomial(300, 30),
+        BigUint::from_str_radix("173193226149263513034110205899732811401360", 10).unwrap()
+    );
 }

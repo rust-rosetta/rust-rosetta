@@ -14,11 +14,7 @@ fn main() {
         }
 
         for filled in state.iter().take(i + 1) {
-            let fill = if *filled {
-                "*"
-            } else {
-                " "
-            };
+            let fill = if *filled { "*" } else { " " };
 
             print!(" {}", fill);
         }

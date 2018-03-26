@@ -3,7 +3,8 @@
 extern crate meta;
 
 fn stoogesort<E>(a: &mut [E])
-    where E: PartialOrd
+where
+    E: PartialOrd,
 {
     if a.is_empty() {
         return;

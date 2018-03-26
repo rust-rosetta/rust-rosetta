@@ -4,7 +4,10 @@ fn create_app_lock(port: u16) -> TcpListener {
     match TcpListener::bind(("0.0.0.0", port)) {
         Ok(socket) => socket,
         Err(e) => {
-            panic!("Couldn't lock port {}: another instance already running? ({})", port, e);
+            panic!(
+                "Couldn't lock port {}: another instance already running? ({})",
+                port, e
+            );
         }
     }
 }

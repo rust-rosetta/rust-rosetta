@@ -3,7 +3,8 @@ fn plain_function() {
 }
 
 fn higher_order<F>(cb: F)
-    where F: Fn()
+where
+    F: Fn(),
 {
     cb();
 }

@@ -26,7 +26,9 @@ fn r2cf(n1: i64, n2: i64) -> R2cf {
 }
 
 macro_rules! printcf {
-    ($x:expr, $y:expr) => (println!("{:?}", r2cf($x, $y).collect::<Vec<_>>()));
+    ($x:expr, $y:expr) => {
+        println!("{:?}", r2cf($x, $y).collect::<Vec<_>>())
+    };
 }
 
 fn main() {
@@ -54,8 +56,8 @@ fn main() {
 
 #[cfg(test)]
 mod tests {
-    use std::iter::Iterator;
     use super::r2cf;
+    use std::iter::Iterator;
 
     #[test]
     fn test_misc() {
@@ -66,9 +68,14 @@ mod tests {
 
     #[test]
     fn test_sqrt2() {
-        assert!(Iterator::eq(r2cf(14_142, 10_000), vec![1, 2, 2, 2, 2, 2, 1, 1, 29]));
-        assert!(Iterator::eq(r2cf(14_142_136, 10_000_000),
-                             vec![1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 6, 1, 2, 4, 1, 1, 2]));
+        assert!(Iterator::eq(
+            r2cf(14_142, 10_000),
+            vec![1, 2, 2, 2, 2, 2, 1, 1, 29]
+        ));
+        assert!(Iterator::eq(
+            r2cf(14_142_136, 10_000_000),
+            vec![1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 6, 1, 2, 4, 1, 1, 2]
+        ));
     }
 
     #[test]

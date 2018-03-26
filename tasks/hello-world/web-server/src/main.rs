@@ -1,6 +1,6 @@
 use std::env;
-use std::net::{TcpStream, TcpListener, Shutdown};
-use std::io::{Write, Result};
+use std::io::{Result, Write};
+use std::net::{Shutdown, TcpListener, TcpStream};
 
 fn handle_client(mut stream: TcpStream) -> Result<()> {
     let response = b"HTTP/1.1 200 OK
@@ -34,11 +34,9 @@ fn handle_server(ip: &str, port: u16) -> Result<TcpListener> {
     for stream in handle.incoming() {
         match stream {
             Ok(s) => {
-                spawn(move || {
-                    match handle_client(s) {
-                        Ok(_) => println!("Response sent!"),
-                        Err(e) => println!("Failed sending response: {}!", e),
-                    }
+                spawn(move || match handle_client(s) {
+                    Ok(_) => println!("Response sent!"),
+                    Err(e) => println!("Failed sending response: {}!", e),
                 });
             }
             Err(e) => {
@@ -53,13 +51,13 @@ fn handle_server(ip: &str, port: u16) -> Result<TcpListener> {
 
 fn main() {
     let mut args = env::args();
-    let app_name = args.next()
-        .unwrap()
-        .to_owned();
+    let app_name = args.next().unwrap().to_owned();
     let host = "127.0.0.1";
     let port = if let Some(os_port) = args.next() {
         let s_port = os_port.to_owned();
-        s_port.parse::<u16>().expect(&*format!("Usage: {:?} <port>", app_name))
+        s_port
+            .parse::<u16>()
+            .expect(&*format!("Usage: {:?} <port>", app_name))
     } else {
         8080
     };

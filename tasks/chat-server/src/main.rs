@@ -1,7 +1,7 @@
 use std::collections::HashMap;
-use std::io::BufReader;
-use std::io::prelude::*;
 use std::io;
+use std::io::prelude::*;
+use std::io::BufReader;
 use std::net::{TcpListener, TcpStream};
 use std::sync::{Arc, RwLock};
 use std::thread;
@@ -9,11 +9,11 @@ use std::thread;
 type Username = String;
 
 /// Sends a message to all clients except the sending client.
-fn broadcast_message(user: &str,
-                     clients: &mut HashMap<String, TcpStream>,
-                     message: &str)
-                     -> io::Result<()> {
-
+fn broadcast_message(
+    user: &str,
+    clients: &mut HashMap<String, TcpStream>,
+    message: &str,
+) -> io::Result<()> {
     for (client, stream) in clients.iter_mut() {
         if client != user {
             try!(writeln!(stream, "{}", message));
@@ -27,8 +27,10 @@ fn chat_loop(listener: &TcpListener) -> io::Result<()> {
     let local_clients: Arc<RwLock<HashMap<Username, TcpStream>>> =
         Arc::new(RwLock::new(HashMap::new()));
 
-    println!("Accepting connections on {}",
-             try!(listener.local_addr()).port());
+    println!(
+        "Accepting connections on {}",
+        try!(listener.local_addr()).port()
+    );
 
     for stream in listener.incoming() {
         match stream {
@@ -57,24 +59,30 @@ fn chat_loop(listener: &TcpListener) -> io::Result<()> {
                     {
                         let mut clients = client_clients.write().unwrap();
                         clients.insert(name.clone(), writer);
-                        try!(broadcast_message(&name,
-                                               &mut *clients,
-                                               &format!("{} has joined the chat room.", &name)));
+                        try!(broadcast_message(
+                            &name,
+                            &mut *clients,
+                            &format!("{} has joined the chat room.", &name)
+                        ));
                     }
 
                     for line in reader.lines() {
                         let mut clients = client_clients.write().unwrap();
-                        try!(broadcast_message(&name,
-                                               &mut *clients,
-                                               &format!("{}: {}", &name, try!(line))));
+                        try!(broadcast_message(
+                            &name,
+                            &mut *clients,
+                            &format!("{}: {}", &name, try!(line))
+                        ));
                     }
 
                     {
                         let mut clients = client_clients.write().unwrap();
                         clients.remove(&name);
-                        try!(broadcast_message(&name,
-                                               &mut *clients,
-                                               &format!("{} has left the chat room.", &name)));
+                        try!(broadcast_message(
+                            &name,
+                            &mut *clients,
+                            &format!("{} has left the chat room.", &name)
+                        ));
                     }
 
                     Ok(())
@@ -96,13 +104,14 @@ fn main() {
 
 #[cfg(test)]
 mod tests {
-    use std::io::{BufReader, BufWriter};
     use std::io::prelude::*;
+    use std::io::{BufReader, BufWriter};
     use std::net::{TcpListener, TcpStream, ToSocketAddrs};
     use std::thread;
 
     fn create_client<A>(addr: A) -> (BufReader<TcpStream>, BufWriter<TcpStream>)
-        where A: ToSocketAddrs
+    where
+        A: ToSocketAddrs,
     {
         let client = TcpStream::connect(addr).unwrap();
         let reader = BufReader::new(client.try_clone().unwrap());

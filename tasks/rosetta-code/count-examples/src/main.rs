@@ -1,4 +1,3 @@
-
 extern crate count_examples;
 fn main() {
     let all_tasks = count_examples::query_all_tasks();

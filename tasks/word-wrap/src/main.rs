@@ -25,7 +25,7 @@ impl<'a> WordWrap<'a> {
 impl<'a> Iterator for WordWrap<'a> {
     type Item = String;
 
-    #[cfg_attr(feature="clippy", allow(while_let_on_iterator))]
+    #[cfg_attr(feature = "clippy", allow(while_let_on_iterator))]
     fn next(&mut self) -> Option<String> {
         // Move anything left over from last run to this_line
         let mut this_line = String::new();
@@ -95,8 +95,10 @@ fn test_single_word_shorter_than_line() {
 
 #[test]
 fn test_two_words_shorter_than_line() {
-    assert_eq!(WordWrap::new("Hello world", 80).next().unwrap(),
-               "Hello world");
+    assert_eq!(
+        WordWrap::new("Hello world", 80).next().unwrap(),
+        "Hello world"
+    );
 }
 
 #[test]

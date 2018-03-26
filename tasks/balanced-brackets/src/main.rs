@@ -30,15 +30,7 @@ impl<'a> Balanced for str {
 fn generate_brackets(num: usize) -> String {
     use rand::random;
 
-    (0..num)
-        .map(|_| {
-            if random() {
-                '['
-            } else {
-                ']'
-            }
-        })
-        .collect()
+    (0..num).map(|_| if random() { '[' } else { ']' }).collect()
 }
 
 fn main() {

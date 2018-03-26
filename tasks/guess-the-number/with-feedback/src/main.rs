@@ -1,7 +1,7 @@
 extern crate rand;
 
+use rand::{thread_rng, Rng};
 use std::io::stdin;
-use rand::{Rng, thread_rng};
 
 const LOWEST: isize = 1;
 const HIGHEST: isize = 100;
@@ -13,9 +13,10 @@ fn main() {
         let number: isize = rng.gen_range(LOWEST, HIGHEST + 1);
         let mut num_guesses = 0;
 
-        println!("I have chosen my number between {} and {}. You know what to do",
-                 LOWEST,
-                 HIGHEST);
+        println!(
+            "I have chosen my number between {} and {}. You know what to do",
+            LOWEST, HIGHEST
+        );
 
         loop {
             num_guesses += 1;

@@ -76,9 +76,10 @@ impl Category {
 
 /// Sends a request to Rosetta Code through the MediaWiki API. If successful, returns the response
 /// as a JSON object.
-fn query_api(category_name: &str,
-             continue_params: &BTreeMap<String, String>)
-             -> Result<Value, TaskParseError> {
+fn query_api(
+    category_name: &str,
+    continue_params: &BTreeMap<String, String>,
+) -> Result<Value, TaskParseError> {
     let mut url = Url::parse("http://rosettacode.org/mw/api.php")?;
     url.query_pairs_mut()
         .append_pair("action", "query")
@@ -97,7 +98,8 @@ fn parse_tasks(json: &Value) -> Result<Vec<Task>, TaskParseError> {
         .and_then(Value::as_array)
         .ok_or(TaskParseError::UnexpectedFormat)?;
 
-    tasks_json.iter()
+    tasks_json
+        .iter()
         .map(|json| Task::deserialize(json).map_err(From::from))
         .collect()
 }
@@ -113,18 +115,16 @@ impl Iterator for Category {
         query_api(&self.name, self.continue_params.as_ref().unwrap())
             .and_then(|result| {
                 // If there are more pages of results to request, save them for the next iteration.
-                self.continue_params = result.get("continue")
-                    .and_then(Value::as_object)
-                    .map(|continue_params| {
-                        continue_params.iter()
+                self.continue_params = result.get("continue").and_then(Value::as_object).map(
+                    |continue_params| {
+                        continue_params
+                            .iter()
                             .map(|(key, value)| {
-                                (key.to_owned(),
-                                 value.as_str()
-                                    .unwrap()
-                                    .to_owned())
+                                (key.to_owned(), value.as_str().unwrap().to_owned())
                             })
                             .collect()
-                    });
+                    },
+                );
 
                 parse_tasks(&result)
             })
@@ -144,7 +144,8 @@ pub fn unimplemented_tasks(lang: &str) -> Vec<Task> {
     let implemented_tasks = Category::new(lang)
         .flat_map(|tasks| tasks)
         .collect::<HashSet<_>>();
-    let mut unimplemented_tasks = all_tasks.difference(&implemented_tasks)
+    let mut unimplemented_tasks = all_tasks
+        .difference(&implemented_tasks)
         .cloned()
         .collect::<Vec<Task>>();
     unimplemented_tasks.sort_by(|a, b| a.title.cmp(&b.title));

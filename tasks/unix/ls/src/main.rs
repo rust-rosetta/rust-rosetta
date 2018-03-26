@@ -6,14 +6,14 @@ use std::path::Path;
 
 fn main() {
     // ignoring all arguments except the 1st
-    match env::args().nth(1) { // check if the program received an argument
+    match env::args().nth(1) {
+        // check if the program received an argument
         Some(path) => {
             print_files(Path::new(&path));
         }
         _ => {
             print_files(&env::current_dir().unwrap());
-        }
-        // note that current_dir value might be invalid, so it's a Result
+        } // note that current_dir value might be invalid, so it's a Result
     }
 }
 

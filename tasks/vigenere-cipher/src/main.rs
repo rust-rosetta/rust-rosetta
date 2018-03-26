@@ -35,7 +35,8 @@ fn vigenere(plaintext: &str, key: &str, encrypt: bool) -> String {
 }
 
 fn to_sanitized_bytes(string: &str) -> Vec<u8> {
-    string.chars()
+    string
+        .chars()
         .filter(|&c| c.is_alphabetic())
         .map(|c| c.to_ascii_uppercase() as u8)
         .collect::<Vec<u8>>()
@@ -55,11 +56,15 @@ fn test_enc_dec() {
     let key = "VIGENERECIPHER";
 
     let enc = vigenere(plaintext, key, true);
-    assert_eq!("WMCEEIKLGRPIFVMEUGXQPWQVIOIAVEYXUEKFKBTALVXTGAFXYEVKPAGY",
-               enc);
+    assert_eq!(
+        "WMCEEIKLGRPIFVMEUGXQPWQVIOIAVEYXUEKFKBTALVXTGAFXYEVKPAGY",
+        enc
+    );
     let dec = vigenere(&enc, key, false);
-    assert_eq!("BEWARETHEJABBERWOCKMYSONTHEJAWSTHATBITETHECLAWSTHATCATCH",
-               dec);
+    assert_eq!(
+        "BEWARETHEJABBERWOCKMYSONTHEJAWSTHATBITETHECLAWSTHATCATCH",
+        dec
+    );
 }
 
 #[test]

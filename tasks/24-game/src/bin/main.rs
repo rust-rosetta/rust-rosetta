@@ -6,8 +6,8 @@
 
 extern crate rand;
 
-use std::f32;
 use std::cmp::Ordering::{self, Greater};
+use std::f32;
 use std::iter::Peekable;
 use std::str::CharIndices;
 
@@ -20,7 +20,7 @@ fn main() {
     let input = io::stdin();
 
     loop {
-        let mut sample = seq::sample_iter(&mut rng, (1u32..10), 4).unwrap();
+        let mut sample = seq::sample_iter(&mut rng, 1u32..10, 4).unwrap();
 
         println!("make 24 by combining the following 4 numbers with + - * / or (q)uit");
         println!("{:?}", sample);
@@ -52,13 +52,10 @@ fn main() {
 pub fn check_values(sample: &mut [u32], input: &str) -> bool {
     let lex = Lexer::new(input);
 
-    let mut numbers_used = lex.filter_map(|(_, a)| {
-            match a {
-                Token::Int(i) => Some(i),
-                _ => None,
-            }
-        })
-        .collect::<Vec<u32>>();
+    let mut numbers_used = lex.filter_map(|(_, a)| match a {
+        Token::Int(i) => Some(i),
+        _ => None,
+    }).collect::<Vec<u32>>();
 
     numbers_used.sort();
     sample.sort();
@@ -94,17 +91,21 @@ pub struct Lexer<'a> {
 
 impl<'a> Lexer<'a> {
     pub fn new(input: &str) -> Lexer {
-        Lexer { input: input.char_indices().peekable() }
+        Lexer {
+            input: input.char_indices().peekable(),
+        }
     }
 
     fn expect<I>(iter: &mut I, expected: &[Token]) -> Result<Token, String>
-        where I: Iterator<Item = (usize, Token)>
+    where
+        I: Iterator<Item = (usize, Token)>,
     {
         match iter.next() {
             Some((_, a)) if expected.contains(&a) => Ok(a),
-            Some((n, other)) => {
-                Err(format!("Parsing error: {:?} was unexpected at offset {}", other, n))
-            }
+            Some((n, other)) => Err(format!(
+                "Parsing error: {:?} was unexpected at offset {}",
+                other, n
+            )),
             None => Err("unexpected end of token list".into()),
         }
     }
@@ -117,7 +118,8 @@ impl<'a> Iterator for Lexer<'a> {
         if let Some((idx, c)) = self.input
             .by_ref()
             .skip_while(|&(_, c)| c.is_whitespace())
-            .next() {
+            .next()
+        {
             let ret = match c {
                 '(' => Token::LParen,
                 ')' => Token::RParen,
@@ -130,7 +132,8 @@ impl<'a> Iterator for Lexer<'a> {
                     while let Some(dg) = self.input
                         .by_ref()
                         .peek()
-                        .and_then(|&(_, di)| di.to_digit(10)) {
+                        .and_then(|&(_, di)| di.to_digit(10))
+                    {
                         val = val * 10 + dg;
                         self.input.by_ref().next();
                     }
@@ -283,7 +286,8 @@ impl<'a> Parser<'a> {
 
     #[inline]
     fn binary_op<F>(&mut self, op: F)
-        where F: Fn(f32, f32) -> f32
+    where
+        F: Fn(f32, f32) -> f32,
     {
         match (self.operands.pop(), self.operands.pop()) {
             (Some(t1), Some(t2)) => self.operands.push(op(t2, t1)),
@@ -293,7 +297,8 @@ impl<'a> Parser<'a> {
 
     #[inline]
     fn unary_op<F>(&mut self, op: F)
-        where F: Fn(f32) -> f32
+    where
+        F: Fn(f32) -> f32,
     {
         match self.operands.pop() {
             Some(t1) => self.operands.push(op(t1)),
@@ -304,10 +309,10 @@ impl<'a> Parser<'a> {
 
 #[cfg(test)]
 mod tests {
-    use super::{Token, Lexer, Parser};
-    use super::Operator::{Add, Sub, Mul, Div};
     use super::check_values;
-    use super::Token::{LParen, RParen, Plus, Slash, Star, Int};
+    use super::Operator::{Add, Div, Mul, Sub};
+    use super::Token::{Int, LParen, Plus, RParen, Slash, Star};
+    use super::{Lexer, Parser, Token};
 
     #[test]
     fn test_precedence() {

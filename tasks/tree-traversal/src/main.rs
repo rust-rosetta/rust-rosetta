@@ -19,14 +19,17 @@ enum TraversalMethod {
 
 impl<T> TreeNode<T> {
     pub fn from_array(arr: &[[i8; 3]]) -> TreeNode<i8> {
-
         let l = match arr[0][1] {
             -1 => None,
-            i => Some(Box::new(TreeNode::<i8>::from_array(&arr[(i - arr[0][0]) as usize..]))),
+            i => Some(Box::new(TreeNode::<i8>::from_array(
+                &arr[(i - arr[0][0]) as usize..],
+            ))),
         };
         let r = match arr[0][2] {
             -1 => None,
-            i => Some(Box::new(TreeNode::<i8>::from_array(&arr[(i - arr[0][0]) as usize..]))),
+            i => Some(Box::new(TreeNode::<i8>::from_array(
+                &arr[(i - arr[0][0]) as usize..],
+            ))),
         };
 
         TreeNode {
@@ -150,22 +153,26 @@ impl<T> TreeNode<T> {
 
 fn main() {
     // Array representation of task tree
-    let arr_tree = [[1, 2, 3],
-                    [2, 4, 5],
-                    [3, 6, -1],
-                    [4, 7, -1],
-                    [5, -1, -1],
-                    [6, 8, 9],
-                    [7, -1, -1],
-                    [8, -1, -1],
-                    [9, -1, -1]];
+    let arr_tree = [
+        [1, 2, 3],
+        [2, 4, 5],
+        [3, 6, -1],
+        [4, 7, -1],
+        [5, -1, -1],
+        [6, 8, 9],
+        [7, -1, -1],
+        [8, -1, -1],
+        [9, -1, -1],
+    ];
 
     let root = TreeNode::<i8>::from_array(&arr_tree);
 
-    let method_labels = [(TraversalMethod::PreOrder, "pre-order:"),
-                         (TraversalMethod::InOrder, "in-order:"),
-                         (TraversalMethod::PostOrder, "post-order:"),
-                         (TraversalMethod::LevelOrder, "level-order:")];
+    let method_labels = [
+        (TraversalMethod::PreOrder, "pre-order:"),
+        (TraversalMethod::InOrder, "in-order:"),
+        (TraversalMethod::PostOrder, "post-order:"),
+        (TraversalMethod::LevelOrder, "level-order:"),
+    ];
 
     for method_label in &method_labels {
         print!("{}\t", method_label.1);
@@ -178,23 +185,27 @@ fn main() {
 
 #[cfg(test)]
 mod tests {
-    use super::{TreeNode, TraversalMethod};
+    use super::{TraversalMethod, TreeNode};
 
     macro_rules! trav_values {
-        ($x:expr) => ($x.iter().map(|n| n.value).collect(););
+        ($x:expr) => {
+            $x.iter().map(|n| n.value).collect();
+        };
     }
 
     #[test]
     fn test_traversals() {
-        let arr_tree = [[1, 2, 3],
-                        [2, 4, 5],
-                        [3, 6, -1],
-                        [4, 7, -1],
-                        [5, -1, -1],
-                        [6, 8, 9],
-                        [7, -1, -1],
-                        [8, -1, -1],
-                        [9, -1, -1]];
+        let arr_tree = [
+            [1, 2, 3],
+            [2, 4, 5],
+            [3, 6, -1],
+            [4, 7, -1],
+            [5, -1, -1],
+            [6, 8, 9],
+            [7, -1, -1],
+            [8, -1, -1],
+            [9, -1, -1],
+        ];
         let root = TreeNode::<i8>::from_array(&arr_tree);
 
         let mut res: Vec<i8>;

@@ -12,8 +12,9 @@ fn main() {
 }
 
 fn compose<'a, F, G, A, B, C>(f: F, g: G) -> Box<Fn(A) -> C + 'a>
-    where G: Fn(A) -> B + 'a,
-          F: Fn(B) -> C + 'a
+where
+    G: Fn(A) -> B + 'a,
+    F: Fn(B) -> C + 'a,
 {
     Box::new(move |a: A| f(g(a)))
 }

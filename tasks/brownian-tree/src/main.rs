@@ -1,7 +1,7 @@
 extern crate image;
 extern crate rand;
 
-use std::cmp::{min, max};
+use std::cmp::{max, min};
 use std::env;
 use std::path::Path;
 use std::process;
@@ -46,16 +46,17 @@ fn main() {
     let fudge = u8::MAX / our_max;
     let balanced: Vec<u8> = field_raw.iter().map(|e| e * fudge).collect();
 
-    match image::save_buffer(output_path,
-                             &balanced,
-                             width as u32,
-                             height as u32,
-                             ColorType::Gray(8)) {
+    match image::save_buffer(
+        output_path,
+        &balanced,
+        width as u32,
+        height as u32,
+        ColorType::Gray(8),
+    ) {
         Err(e) => println!("Error writing output image:\n{}", e),
         Ok(_) => println!("Output written to:\n{}", output_path.to_str().unwrap()),
     }
 }
-
 
 fn populate_tree(raw: &mut Vec<u8>, width: usize, height: usize, mc: u32) {
     // Vector of 'width' elements slices
@@ -87,10 +88,9 @@ fn populate_tree(raw: &mut Vec<u8>, width: usize, height: usize, mc: u32) {
         }
 
         loop {
-            let contacts = field[x - 1][y - 1] + field[x][y - 1] + field[x + 1][y - 1] +
-                           field[x - 1][y] + field[x + 1][y] +
-                           field[x - 1][y + 1] + field[x][y + 1] +
-                           field[x + 1][y + 1];
+            let contacts = field[x - 1][y - 1] + field[x][y - 1] + field[x + 1][y - 1]
+                + field[x - 1][y] + field[x + 1][y] + field[x - 1][y + 1]
+                + field[x][y + 1] + field[x + 1][y + 1];
 
             if contacts > 0 {
                 field[x][y] = min(u32::from(field[x][y]) + 1, u32::from(u8::MAX)) as u8;
@@ -108,7 +108,6 @@ fn populate_tree(raw: &mut Vec<u8>, width: usize, height: usize, mc: u32) {
         }
     }
 }
-
 
 #[cfg(test)]
 mod tests {

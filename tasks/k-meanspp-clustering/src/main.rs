@@ -7,10 +7,10 @@ extern crate rand;
 use getopts::Options;
 use gnuplot::{Axes2D, AxesCommon, Color, Figure, Fix, PointSize, PointSymbol};
 use nalgebra::DVector;
-use rand::{Rng, SeedableRng, StdRng};
 use rand::distributions::{IndependentSample, Range};
-use std::f64::consts::PI;
+use rand::{Rng, SeedableRng, StdRng};
 use std::env;
+use std::f64::consts::PI;
 
 use std::fs::File;
 
@@ -28,21 +28,25 @@ struct Stats {
 
 /// `DVector` doesn't implement `BaseFloat`, so a custom distance function is required.
 fn sqdist(p1: &Point, p2: &Point) -> f64 {
-    (p1.clone() - p2.clone()).iter().map(|x| x * x).fold(0f64, |a, b| a + b)
+    (p1.clone() - p2.clone())
+        .iter()
+        .map(|x| x * x)
+        .fold(0f64, |a, b| a + b)
 }
 
 /// Returns (distance^2, index) tuple of winning point.
 fn nearest(p: &Point, candidates: &[Point]) -> (f64, usize) {
-    let (dsquared, the_index) = candidates.iter()
-        .enumerate()
-        .fold((sqdist(p, &candidates[0]), 0), |(d, index), next| {
+    let (dsquared, the_index) = candidates.iter().enumerate().fold(
+        (sqdist(p, &candidates[0]), 0),
+        |(d, index), next| {
             let dprime = sqdist(p, &candidates[next.0]);
             if dprime < d {
                 (dprime, next.0)
             } else {
                 (d, index)
             }
-        });
+        },
+    );
     (dsquared, the_index)
 }
 
@@ -108,8 +112,11 @@ fn compute_stats(clusters: &[Cluster]) -> Stats {
         let pts = &c.members;
         let seed: DVector<f64> = DVector::zeros(pts[0].len());
         let centroid = pts.iter().fold(seed, |a, &b| a + b.clone()) / pts.len() as f64;
-        means_vec.push(pts.iter().fold(0f64, |acc, pt| acc + sqdist(pt, &centroid).sqrt()) /
-                       pts.len() as f64);
+        means_vec.push(
+            pts.iter()
+                .fold(0f64, |acc, pt| acc + sqdist(pt, &centroid).sqrt())
+                / pts.len() as f64,
+        );
         centroids.push(centroid);
     }
 
@@ -119,13 +126,13 @@ fn compute_stats(clusters: &[Cluster]) -> Stats {
     }
 }
 
-fn lloyd<'a>(points: &'a [Point],
-             k: usize,
-             stoppage_delta: f64,
-             max_iter: u32,
-             rng: &mut StdRng)
-             -> (Vec<Cluster<'a>>, Stats) {
-
+fn lloyd<'a>(
+    points: &'a [Point],
+    k: usize,
+    stoppage_delta: f64,
+    max_iter: u32,
+    rng: &mut StdRng,
+) -> (Vec<Cluster<'a>>, Stats) {
     let mut clusters = Vec::new();
     // Choose starting centroids and make initial assignments
     let mut stats = kpp(points, k, rng);
@@ -141,7 +148,11 @@ fn lloyd<'a>(points: &'a [Point],
         }
         // Console output
         print!("Iter {}: ", i);
-        for (cen, mu) in stats.centroids.iter().zip(stats.mean_d_from_centroid.iter()) {
+        for (cen, mu) in stats
+            .centroids
+            .iter()
+            .zip(stats.mean_d_from_centroid.iter())
+        {
             print_dvec(cen);
             print!(" {:1.2} | ", mu);
         }
@@ -178,16 +189,18 @@ fn viz(clusters: &[Cluster], stats: &Stats, k: usize, n: u32, e: f64) {
             let centroids_x = stats.centroids.iter().map(|c| c[0]);
             let centroids_y = stats.centroids.iter().map(|c| c[1]);
             for cluster in clusters.iter() {
-                axes.points(cluster.members.iter().map(|p| p[0]),
-                            cluster.members
-                                .iter()
-                                .map(|p| p[1]),
-                            &[PointSymbol('O'), PointSize(0.25)]);
+                axes.points(
+                    cluster.members.iter().map(|p| p[0]),
+                    cluster.members.iter().map(|p| p[1]),
+                    &[PointSymbol('O'), PointSize(0.25)],
+                );
             }
             axes.set_aspect_ratio(Fix(1.0))
-                .points(centroids_x,
-                        centroids_y,
-                        &[PointSymbol('o'), PointSize(1.5), Color("black")])
+                .points(
+                    centroids_x,
+                    centroids_y,
+                    &[PointSymbol('o'), PointSize(1.5), Color("black")],
+                )
                 .set_title(&title[..], &[]);
         };
         prep(&mut fg);
@@ -217,18 +230,24 @@ fn main() {
 
     let mut opts = Options::new();
     opts.optflag("?", "help", "Print this help menu");
-    opts.optopt("k",
-                "",
-                "Number of clusters to assign (default: 7)",
-                "<clusters>");
-    opts.optopt("n",
-                "",
-                "Operate on this many points on the unit disk (default: 30000)",
-                "<pts>");
-    opts.optopt("e",
-                "",
-                "Min delta in norm of successive cluster centroids to continue (default: 1e-3)",
-                "<eps>");
+    opts.optopt(
+        "k",
+        "",
+        "Number of clusters to assign (default: 7)",
+        "<clusters>",
+    );
+    opts.optopt(
+        "n",
+        "",
+        "Operate on this many points on the unit disk (default: 30000)",
+        "<pts>",
+    );
+    opts.optopt(
+        "e",
+        "",
+        "Min delta in norm of successive cluster centroids to continue (default: 1e-3)",
+        "<eps>",
+    );
     opts.optopt("f", "", "Read points from file (overrides -n)", "<csv>");
 
     let program = args[0].clone();
@@ -268,7 +287,10 @@ fn main() {
             let mut rdr = csv::Reader::from_reader(File::open(&filename).unwrap());
             for row in rdr.deserialize() {
                 let floats: Vec<f64> = row.unwrap();
-                points.push(DVector::<f64>::from_row_slice(floats.len(), floats.as_slice()));
+                points.push(DVector::<f64>::from_row_slice(
+                    floats.len(),
+                    floats.as_slice(),
+                ));
             }
             assert!(points.iter().all(|v| v.len() == points[0].len()));
             n = points.len() as u32;
@@ -279,16 +301,26 @@ fn main() {
     assert!(points.len() >= k);
     let (clusters, stats) = lloyd(&points, k, e, max_iterations, &mut rng);
 
-    println!(" k       centroid{}mean dist    pop",
-             std::iter::repeat(" ").take((points[0].len() - 2) * 7 + 7).collect::<String>());
-    println!("===  {}  ===========  =====",
-             std::iter::repeat("=").take(points[0].len() * 7 + 2).collect::<String>());
+    println!(
+        " k       centroid{}mean dist    pop",
+        std::iter::repeat(" ")
+            .take((points[0].len() - 2) * 7 + 7)
+            .collect::<String>()
+    );
+    println!(
+        "===  {}  ===========  =====",
+        std::iter::repeat("=")
+            .take(points[0].len() * 7 + 2)
+            .collect::<String>()
+    );
     for (i, cluster) in clusters.iter().enumerate() {
         print!(" {:>1}    ", i);
         print_dvec(&stats.centroids[i]);
-        print!("      {:1.2}       {:>4}\n",
-               stats.mean_d_from_centroid[i],
-               cluster.members.len());
+        print!(
+            "      {:1.2}       {:>4}\n",
+            stats.mean_d_from_centroid[i],
+            cluster.members.len()
+        );
     }
 
     if points[0].len() == 2 {

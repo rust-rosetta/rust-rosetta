@@ -2,9 +2,10 @@ use std::collections::HashSet;
 
 const WORDS: &[&str] = &["A", "BARK", "BOOK", "TREAT", "COMMON", "SQUAD", "CONFUSE"];
 
-const BLOCKS: &[&str] = &["BO", "XK", "DQ", "CP", "NA", "GT", "RE", "TG", "QD",
-                          "FS", "JW", "HU", "VI", "AN", "OB", "ER", "FS", "LY",
-                          "PC", "ZM"];
+const BLOCKS: &[&str] = &[
+    "BO", "XK", "DQ", "CP", "NA", "GT", "RE", "TG", "QD", "FS", "JW", "HU", "VI", "AN", "OB", "ER",
+    "FS", "LY", "PC", "ZM",
+];
 
 fn main() {
     println!("******\nmethod 1\n******");
@@ -14,9 +15,11 @@ fn main() {
 
     println!("\n******\nmethod 2\n******");
     for word in WORDS {
-        println!("can {} be built? {}",
-                 word,
-                 can_be_built_blocks_first(*word))
+        println!(
+            "can {} be built? {}",
+            word,
+            can_be_built_blocks_first(*word)
+        )
     }
 }
 

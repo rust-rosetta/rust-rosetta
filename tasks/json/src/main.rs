@@ -31,15 +31,21 @@ fn test_coherence() {
         name: "John".to_string(),
         city: "Paris".to_string(),
     };
-    assert_eq!(serde_json::from_str::<Contact>(&serde_json::to_string(&c).unwrap()).unwrap(), c);
+    assert_eq!(
+        serde_json::from_str::<Contact>(&serde_json::to_string(&c).unwrap()).unwrap(),
+        c
+    );
 }
 
 #[test]
 fn test_decode() {
     let json_str = r#"{ "name": "Alan", "city": "Tokyo" }"#;
     let contact: Contact = serde_json::from_str(json_str).unwrap();
-    assert_eq!(contact, Contact {
-        name: "Alan".to_string(),
-        city: "Tokyo".to_string(),
-    });
+    assert_eq!(
+        contact,
+        Contact {
+            name: "Alan".to_string(),
+            city: "Tokyo".to_string(),
+        }
+    );
 }

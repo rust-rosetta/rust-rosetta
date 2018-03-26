@@ -1,6 +1,6 @@
 extern crate rand;
 
-use rand::{Rng, thread_rng};
+use rand::{thread_rng, Rng};
 
 fn one_of_n<R: Rng>(rng: &mut R, n: usize) -> usize {
     (1..n).fold(0, |keep, cand| {

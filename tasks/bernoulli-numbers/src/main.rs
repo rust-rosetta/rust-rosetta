@@ -78,24 +78,32 @@ fn main() {
     // Collect the solutions by using the Context iterator
     // (this is not as fast as calling the optimized function directly).
     let res = context.take(up_to + 1).collect::<Vec<_>>();
-    let width = res.iter().fold(0, |a, r| max(a, r.value.numer().to_string().len()));
+    let width = res.iter()
+        .fold(0, |a, r| max(a, r.value.numer().to_string().len()));
 
     for r in res.iter().filter(|r| r.index % 2 == 0) {
-        println!("B({:>2}) = {:>2$} / {denom}",
-                 r.index,
-                 r.value.numer(),
-                 width,
-                 denom = r.value.denom());
+        println!(
+            "B({:>2}) = {:>2$} / {denom}",
+            r.index,
+            r.value.numer(),
+            width,
+            denom = r.value.denom()
+        );
     }
 }
 
 // Implementation with no reused calculations.
 fn _bernoulli_naive(n: usize, c: &mut Context) -> BigRational {
     for m in 0..n + 1 {
-        c.a.push(BigRational::new(c.bigone_const.clone(), (m + 1).to_bigint().unwrap()));
+        c.a.push(BigRational::new(
+            c.bigone_const.clone(),
+            (m + 1).to_bigint().unwrap(),
+        ));
         for j in (1..m + 1).rev() {
-            c.a[j - 1] = (c.a[j - 1].clone().sub(c.a[j].clone()))
-                .mul(BigRational::new(j.to_bigint().unwrap(), c.bigone_const.clone()));
+            c.a[j - 1] = (c.a[j - 1].clone().sub(c.a[j].clone())).mul(BigRational::new(
+                j.to_bigint().unwrap(),
+                c.bigone_const.clone(),
+            ));
         }
     }
     c.a[0].reduced()
@@ -105,20 +113,24 @@ fn _bernoulli_naive(n: usize, c: &mut Context) -> BigRational {
 fn bernoulli(n: usize, c: &mut Context) -> BigRational {
     for i in 0..n + 1 {
         if i >= c.a.len() {
-            c.a.push(BigRational::new(c.bigone_const.clone(), (i + 1).to_bigint().unwrap()));
+            c.a.push(BigRational::new(
+                c.bigone_const.clone(),
+                (i + 1).to_bigint().unwrap(),
+            ));
             for j in (1..i + 1).rev() {
-                c.a[j - 1] = (c.a[j - 1].clone().sub(c.a[j].clone()))
-                    .mul(BigRational::new(j.to_bigint().unwrap(), c.bigone_const.clone()));
+                c.a[j - 1] = (c.a[j - 1].clone().sub(c.a[j].clone())).mul(BigRational::new(
+                    j.to_bigint().unwrap(),
+                    c.bigone_const.clone(),
+                ));
             }
         }
     }
     c.a[0].reduced()
 }
 
-
 #[cfg(test)]
 mod tests {
-    use super::{Bn, Context, bernoulli, _bernoulli_naive};
+    use super::{_bernoulli_naive, bernoulli, Bn, Context};
     use num::rational::BigRational;
     use std::str::FromStr;
     use test::Bencher;
@@ -126,7 +138,9 @@ mod tests {
     #[test]
     fn test_bernoulli_naive() {
         let mut context = Context::new();
-        assert_eq!(_bernoulli_naive(60, &mut context), BigRational::new(
+        assert_eq!(
+            _bernoulli_naive(60, &mut context),
+            BigRational::new(
                 FromStr::from_str("-1215233140483755572040304994079820246041491").unwrap(),
                 FromStr::from_str("56786730").unwrap()
             )
@@ -136,7 +150,9 @@ mod tests {
     #[test]
     fn test_bernoulli() {
         let mut context = Context::new();
-        assert_eq!(bernoulli(60, &mut context), BigRational::new(
+        assert_eq!(
+            bernoulli(60, &mut context),
+            BigRational::new(
                 FromStr::from_str("-1215233140483755572040304994079820246041491").unwrap(),
                 FromStr::from_str("56786730").unwrap()
             )
@@ -147,7 +163,9 @@ mod tests {
     fn test_bernoulli_iter() {
         let context = Context::new();
         let res = context.take(60 + 1).collect::<Vec<_>>();
-        assert_eq!(res.last().unwrap().value, BigRational::new(
+        assert_eq!(
+            res.last().unwrap().value,
+            BigRational::new(
                 FromStr::from_str("-1215233140483755572040304994079820246041491").unwrap(),
                 FromStr::from_str("56786730").unwrap()
             )

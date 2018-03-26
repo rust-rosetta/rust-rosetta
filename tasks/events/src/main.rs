@@ -8,13 +8,13 @@
 
 extern crate time;
 
-use std::sync::{Arc, Mutex, Condvar};
+use std::sync::{Arc, Condvar, Mutex};
 use std::thread::{self, spawn};
 use std::time::Duration;
 
 /// Given a duration to wait before sending an event from one process to another, returns the
 /// elapsed time before the event was actually sent.
-#[cfg_attr(feature="cargo-clippy", allow(mutex_atomic))]
+#[cfg_attr(feature = "cargo-clippy", allow(mutex_atomic))]
 fn handle_event(duration: Duration) -> Duration {
     // Create a Mutex.  By default a Mutex is created with a single condition variable (condvar_id
     // 0) but it can be created with an arbitrary number using Mutex::new_with_condvars();
@@ -57,8 +57,10 @@ fn handle_event(duration: Duration) -> Duration {
 
 pub fn main() {
     let duration = Duration::from_secs(1); // Process event after one second.
-    println!("{} seconds elapsed before event triggered",
-             handle_event(duration).as_secs());
+    println!(
+        "{} seconds elapsed before event triggered",
+        handle_event(duration).as_secs()
+    );
 }
 
 #[test]

@@ -23,7 +23,7 @@ fn main() {
 
 #[cfg(test)]
 mod tests {
-    use super::{Square, Shape};
+    use super::{Shape, Square};
 
     #[test]
     fn area() {

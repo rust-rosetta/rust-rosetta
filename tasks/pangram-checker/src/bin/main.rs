@@ -5,7 +5,6 @@ extern crate test;
 use std::collections::HashSet;
 
 pub fn is_pangram_via_bitmask(s: &str) -> bool {
-
     // Create a mask of set bits and convert to false as we find characters.
     let mut mask = (1 << 26) - 1;
 
@@ -20,7 +19,6 @@ pub fn is_pangram_via_bitmask(s: &str) -> bool {
 }
 
 pub fn is_pangram_via_hashset(s: &str) -> bool {
-
     // Insert lowercase letters into a HashSet, then check if we have at least 26.
     let letters = s.chars()
         .flat_map(|chr| chr.to_lowercase())
@@ -34,7 +32,6 @@ pub fn is_pangram_via_hashset(s: &str) -> bool {
 }
 
 pub fn is_pangram_via_sort(s: &str) -> bool {
-
     // Copy chars into a vector, convert to lowercase, sort, and remove duplicates.
     let mut chars: Vec<char> = s.chars()
         .flat_map(|chr| chr.to_lowercase())
@@ -48,23 +45,26 @@ pub fn is_pangram_via_sort(s: &str) -> bool {
 }
 
 fn main() {
-
-    let examples = ["The quick brown fox jumps over the lazy dog",
-                    "The quick white cat jumps over the lazy dog"];
+    let examples = [
+        "The quick brown fox jumps over the lazy dog",
+        "The quick white cat jumps over the lazy dog",
+    ];
 
     for &text in &examples {
         let is_pangram_sort = is_pangram_via_sort(text);
         println!("Is \"{}\" a pangram via sort? - {}", text, is_pangram_sort);
 
         let is_pangram_bitmask = is_pangram_via_bitmask(text);
-        println!("Is \"{}\" a pangram via bitmask? - {}",
-                 text,
-                 is_pangram_bitmask);
+        println!(
+            "Is \"{}\" a pangram via bitmask? - {}",
+            text, is_pangram_bitmask
+        );
 
         let is_pangram_hashset = is_pangram_via_hashset(text);
-        println!("Is \"{}\" a pangram via bitmask? - {}",
-                 text,
-                 is_pangram_hashset);
+        println!(
+            "Is \"{}\" a pangram via bitmask? - {}",
+            text, is_pangram_hashset
+        );
     }
 }
 
@@ -75,20 +75,32 @@ mod tests {
 
     #[test]
     fn test_sort() {
-        assert!(is_pangram_via_sort("The quick brown fox jumps over the lazy dog"));
-        assert!(!is_pangram_via_sort("The quick white cat jumps over the lazy dog"));
+        assert!(is_pangram_via_sort(
+            "The quick brown fox jumps over the lazy dog"
+        ));
+        assert!(!is_pangram_via_sort(
+            "The quick white cat jumps over the lazy dog"
+        ));
     }
 
     #[test]
     fn test_bitmask() {
-        assert!(is_pangram_via_bitmask("The quick brown fox jumps over the lazy dog"));
-        assert!(!is_pangram_via_bitmask("The quick white cat jumps over the lazy dog"));
+        assert!(is_pangram_via_bitmask(
+            "The quick brown fox jumps over the lazy dog"
+        ));
+        assert!(!is_pangram_via_bitmask(
+            "The quick white cat jumps over the lazy dog"
+        ));
     }
 
     #[test]
     fn test_hashset() {
-        assert!(is_pangram_via_hashset("The quick brown fox jumps over the lazy dog"));
-        assert!(!is_pangram_via_hashset("The quick white cat jumps over the lazy dog"));
+        assert!(is_pangram_via_hashset(
+            "The quick brown fox jumps over the lazy dog"
+        ));
+        assert!(!is_pangram_via_hashset(
+            "The quick white cat jumps over the lazy dog"
+        ));
     }
 
     #[bench]

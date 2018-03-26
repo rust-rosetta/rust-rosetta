@@ -30,9 +30,11 @@ impl MovingAverage {
     fn calculate(&self) -> Result<f32, MovingAverageError> {
         if self.list.len() < self.period as usize {
             Err(MovingAverageError {
-                message: format!("Currently only have {} entries, period is {}",
-                                 self.list.len(),
-                                 self.period),
+                message: format!(
+                    "Currently only have {} entries, period is {}",
+                    self.list.len(),
+                    self.period
+                ),
             })
         } else {
             Ok(self.list.iter().fold(0.0_f32, |l, r| l + r) / (self.period as f32))

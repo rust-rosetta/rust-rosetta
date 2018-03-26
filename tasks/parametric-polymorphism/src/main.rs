@@ -6,7 +6,8 @@ struct TreeNode<T> {
 
 impl<T> TreeNode<T> {
     fn my_map<U, F>(&self, f: &F) -> TreeNode<U>
-        where F: Fn(&T) -> U
+    where
+        F: Fn(&T) -> U,
     {
         TreeNode {
             value: f(&self.value),

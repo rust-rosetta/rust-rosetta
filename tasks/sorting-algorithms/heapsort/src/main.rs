@@ -44,7 +44,6 @@ fn heapify<T: Ord>(a: &mut [T], count: usize) {
     }
 }
 
-
 fn sift_down<T: Ord>(a: &mut [T], start: usize, end: usize) {
     // end represents the limit of how far down the heap to shift
     let mut root = start;

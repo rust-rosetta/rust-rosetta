@@ -12,7 +12,9 @@ fn sort_custom(strings: &mut Vec<&str>) {
 }
 
 fn main() {
-    let mut strings = vec!["Here", "are", "some", "sample", "strings", "to", "be", "sorted"];
+    let mut strings = vec![
+        "Here", "are", "some", "sample", "strings", "to", "be", "sorted",
+    ];
     sort_custom(&mut strings);
     println!("{:?}", strings);
 }

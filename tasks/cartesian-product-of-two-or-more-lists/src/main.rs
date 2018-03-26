@@ -1,11 +1,8 @@
-/// # Cartesian product of lists
-///
-/// Solution for the "cartesian product of two or more lists" entry in rosetta code
-///
-
+//! # Cartesian product of lists
+//!
+//! Solution for the "cartesian product of two or more lists" entry in rosetta code
 
 use std::collections::VecDeque;
-
 
 /// Computes the cartesian product of two or more lists of clonable elements.
 ///
@@ -25,7 +22,6 @@ fn cartesian_product<T: Clone>(lists: &[&[T]]) -> Vec<Vec<T>> {
     let mut result = vec![];
 
     while let Some(next) = queue.pop_front() {
-
         // find the index of the next list to multiply with.
         let next_list = next.len();
 
@@ -54,7 +50,6 @@ fn main() {
 
         [[3, 1], [3, 2], [4, 1], [4, 2]]
     */
-
 }
 
 #[cfg(test)]

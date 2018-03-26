@@ -20,7 +20,9 @@ struct Sudoku {
 
 impl Sudoku {
     fn new() -> Sudoku {
-        Sudoku { map: [[MASK_ALL; BOARD_WIDTH]; BOARD_HEIGHT] }
+        Sudoku {
+            map: [[MASK_ALL; BOARD_WIDTH]; BOARD_HEIGHT],
+        }
     }
 
     fn get(&self, x: usize, y: usize) -> u32 {
@@ -94,7 +96,17 @@ impl fmt::Display for Sudoku {
 }
 
 fn solve_sudoku(mut puzzle: Sudoku) -> Vec<Sudoku> {
-    let idx_in_grp = [(0, 0), (0, 1), (0, 2), (1, 0), (1, 1), (1, 2), (2, 0), (2, 1), (2, 2)];
+    let idx_in_grp = [
+        (0, 0),
+        (0, 1),
+        (0, 2),
+        (1, 0),
+        (1, 1),
+        (1, 2),
+        (2, 0),
+        (2, 1),
+        (2, 2),
+    ];
 
     loop {
         let bkup = puzzle;
@@ -107,7 +119,10 @@ fn solve_sudoku(mut puzzle: Sudoku) -> Vec<Sudoku> {
                     continue;
                 }
 
-                let (x0, y0) = ((x / GROUP_WIDTH) * GROUP_WIDTH, (y / GROUP_HEIGHT) * GROUP_HEIGHT);
+                let (x0, y0) = (
+                    (x / GROUP_WIDTH) * GROUP_WIDTH,
+                    (y / GROUP_HEIGHT) * GROUP_HEIGHT,
+                );
 
                 let row = (0..BOARD_WIDTH).map(|x| (x, y));
                 let col = (0..BOARD_HEIGHT).map(|y| (x, y));
@@ -159,7 +174,8 @@ fn solve_sudoku(mut puzzle: Sudoku) -> Vec<Sudoku> {
             for y0 in (0..BOARD_HEIGHT).step_by(GROUP_WIDTH) {
                 for x0 in (0..BOARD_WIDTH).step_by(GROUP_HEIGHT) {
                     let next = {
-                        let mut it = idx_in_grp.iter()
+                        let mut it = idx_in_grp
+                            .iter()
                             .map(|&(dx, dy)| (x0 + dx, y0 + dy))
                             .filter(|&(x, y)| puzzle.map[y][x] & bit != 0);
                         let next = it.next();

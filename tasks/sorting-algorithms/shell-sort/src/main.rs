@@ -2,7 +2,7 @@
 #[macro_use]
 extern crate meta;
 
-#[cfg_attr(feature="clippy", allow(needless_range_loop))]
+#[cfg_attr(feature = "clippy", allow(needless_range_loop))]
 fn shell_sort<T: Ord + Copy>(v: &mut [T]) {
     let mut gap = v.len() / 2;
     let len = v.len();

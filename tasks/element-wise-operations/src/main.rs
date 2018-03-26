@@ -40,9 +40,11 @@ impl Matrix {
 // Matrix addition will perform element-wise addition
 fn matrix_addition(first: &Matrix, second: &Matrix) -> Result<Matrix, String> {
     if first.width == second.width && first.height == second.height {
-        let mut result = Matrix::new(vec![0.0f32; (first.height * first.width) as usize],
-                                     first.height,
-                                     first.width);
+        let mut result = Matrix::new(
+            vec![0.0f32; (first.height * first.width) as usize],
+            first.height,
+            first.width,
+        );
         for row in 0..first.height {
             for col in 0..first.width {
                 let first_value = first.get(row, col);
@@ -57,9 +59,11 @@ fn matrix_addition(first: &Matrix, second: &Matrix) -> Result<Matrix, String> {
 }
 
 fn scalar_multiplication(scalar: f32, matrix: &Matrix) -> Matrix {
-    let mut result = Matrix::new(vec![0.0f32; (matrix.height * matrix.width) as usize],
-                                 matrix.height,
-                                 matrix.width);
+    let mut result = Matrix::new(
+        vec![0.0f32; (matrix.height * matrix.width) as usize],
+        matrix.height,
+        matrix.width,
+    );
     for row in 0..matrix.height {
         for col in 0..matrix.width {
             let value = matrix.get(row, col);
@@ -83,9 +87,11 @@ fn matrix_subtraction(first: &Matrix, second: &Matrix) -> Result<Matrix, String>
 // First must be a l x m matrix and second a m x n matrix for this to work.
 fn matrix_multiplication(first: &Matrix, second: &Matrix) -> Result<Matrix, String> {
     if first.width == second.height {
-        let mut result = Matrix::new(vec![0.0f32; (first.height * second.width) as usize],
-                                     first.height,
-                                     second.width);
+        let mut result = Matrix::new(
+            vec![0.0f32; (first.height * second.width) as usize],
+            first.height,
+            second.width,
+        );
         for row in 0..result.height {
             for col in 0..result.width {
                 let mut value = 0.0;
@@ -100,7 +106,6 @@ fn matrix_multiplication(first: &Matrix, second: &Matrix) -> Result<Matrix, Stri
         Err("Dimensions don't match. Width of first must equal height of second".to_owned())
     }
 }
-
 
 fn main() {
     let height = 2;
@@ -136,8 +141,8 @@ fn main() {
 
 #[cfg(test)]
 mod tests {
-    use super::{Matrix, matrix_addition, scalar_multiplication, matrix_subtraction,
-                matrix_multiplication};
+    use super::{matrix_addition, matrix_multiplication, matrix_subtraction, scalar_multiplication,
+                Matrix};
 
     const HEIGHT: u32 = 2;
     const WIDTH: u32 = 3;
@@ -151,7 +156,6 @@ mod tests {
                 assert_eq!(result.get(row, col), 7.0);
             }
         }
-
     }
 
     #[test]

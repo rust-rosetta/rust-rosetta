@@ -26,8 +26,10 @@ fn recursive_euclid_gcd(m: i32, n: i32) -> i32 {
 fn main() {
     println!("gcd(399, -3999) = {}", gcd(399, -3999));
     println!("gcd(0, 3999) = {}", iterative_euclid_gcd(0, 3999));
-    println!("gcd(13 * 13, 13 * 29) = {}",
-             recursive_euclid_gcd(13 * 13, 13 * 29));
+    println!(
+        "gcd(13 * 13, 13 * 29) = {}",
+        recursive_euclid_gcd(13 * 13, 13 * 29)
+    );
 }
 
 #[cfg(test)]

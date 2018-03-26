@@ -29,7 +29,7 @@ impl Board {
         // Ensure we make a board with a non-zero size
         if size > 0 {
             Board {
-                cells: vec![false; size*size],
+                cells: vec![false; size * size],
                 size: size,
             }
         } else {
@@ -91,7 +91,7 @@ impl Board {
         // Ensure we make a board with a non-zero size
         if size > 0 {
             // Make a vector of the board size
-            let mut cells: Vec<bool> = vec![false; size*size];
+            let mut cells: Vec<bool> = vec![false; size * size];
             // Loop through all the cells
             for cell in &mut cells {
                 // Give it a random state
@@ -232,14 +232,18 @@ fn main() {
                             if x < size {
                                 x
                             } else {
-                                println!("Error: Must specify a row or column within size({})",
-                                         size);
+                                println!(
+                                    "Error: Must specify a row or column within size({})",
+                                    size
+                                );
                                 continue 'userinput;
                             }
                         }
                         Err(_) => {
-                            println!("Error: '{}': Unable to parse row or column number",
-                                     input[1..].to_string());
+                            println!(
+                                "Error: '{}': Unable to parse row or column number",
+                                input[1..].to_string()
+                            );
                             continue 'userinput;
                         }
                     };

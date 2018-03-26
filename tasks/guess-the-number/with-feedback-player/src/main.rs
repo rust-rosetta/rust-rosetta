@@ -29,8 +29,10 @@ fn main() {
                     if num_guesses == 1 {
                         println!("\n*** That was easy! Got it in one guess! ***\n");
                     } else {
-                        println!("\n*** I knew it! Got it in only {} guesses! ***\n",
-                                 num_guesses);
+                        println!(
+                            "\n*** I knew it! Got it in only {} guesses! ***\n",
+                            num_guesses
+                        );
                     }
                     break;
                 }

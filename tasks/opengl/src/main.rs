@@ -25,9 +25,15 @@ fn main() {
     let context = glutin::ContextBuilder::new();
     let display = glium::Display::new(window, context, &events_loop).unwrap();
 
-    let vertex1 = Vertex { position: [0.0, 0.0] };
-    let vertex2 = Vertex { position: [0.5, 0.0] };
-    let vertex3 = Vertex { position: [0.0, 0.5] };
+    let vertex1 = Vertex {
+        position: [0.0, 0.0],
+    };
+    let vertex2 = Vertex {
+        position: [0.5, 0.0],
+    };
+    let vertex3 = Vertex {
+        position: [0.0, 0.5],
+    };
     let shape = vec![vertex1, vertex2, vertex3];
 
     let vertex_buffer = glium::VertexBuffer::new(&display, &shape).unwrap();
@@ -64,11 +70,14 @@ fn main() {
     let draw = || {
         let mut target = display.draw();
         target.clear_color(0.3, 0.3, 0.3, 0.0);
-        target.draw(&vertex_buffer,
-                  &indices,
-                  &program,
-                  &glium::uniforms::EmptyUniforms,
-                  &Default::default())
+        target
+            .draw(
+                &vertex_buffer,
+                &indices,
+                &program,
+                &glium::uniforms::EmptyUniforms,
+                &Default::default(),
+            )
             .unwrap();
         target.finish().unwrap();
     };

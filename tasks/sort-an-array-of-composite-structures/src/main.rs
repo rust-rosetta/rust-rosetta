@@ -42,13 +42,15 @@ mod tests {
             Element::new("Zinc", "Zn"),
         ];
         sort_by_name(&mut values);
-        assert_eq!(values,
-                   vec![
-            Element::new("Cobalt", "Co"),
-            Element::new("Copper", "Cu"),
-            Element::new("Iron", "Fe"),
-            Element::new("Nickel", "Ni"),
-            Element::new("Zinc", "Zn"),
-        ]);
+        assert_eq!(
+            values,
+            vec![
+                Element::new("Cobalt", "Co"),
+                Element::new("Copper", "Cu"),
+                Element::new("Iron", "Fe"),
+                Element::new("Nickel", "Ni"),
+                Element::new("Zinc", "Zn"),
+            ]
+        );
     }
 }

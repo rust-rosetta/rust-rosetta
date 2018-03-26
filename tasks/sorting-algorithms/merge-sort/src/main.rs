@@ -60,7 +60,9 @@ mod tests {
     #[test]
     fn random() {
         let arr = [12i32, 54, 2, 93, 13, 43, 15, 299, 234];
-        assert_eq!(merge_sort(&arr),
-                   vec![2i32, 12, 13, 15, 43, 54, 93, 234, 299]);
+        assert_eq!(
+            merge_sort(&arr),
+            vec![2i32, 12, 13, 15, 43, 54, 93, 234, 299]
+        );
     }
 }

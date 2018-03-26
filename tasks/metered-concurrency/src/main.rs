@@ -1,12 +1,12 @@
 //! Rust has a perfectly good Semaphore type already. It lacks count(), though, so we can't use it
 //! directly.
 
-use std::sync::Arc;
 use std::sync::atomic::AtomicUsize;
 use std::sync::atomic::Ordering::SeqCst;
+use std::sync::mpsc::channel;
+use std::sync::Arc;
 use std::thread::{self, spawn};
 use std::time::Duration;
-use std::sync::mpsc::channel;
 
 pub struct CountingSemaphore {
     /// Remaining resource count
@@ -69,7 +69,7 @@ fn metered(duration: Duration) {
     static MAX_COUNT: usize = 4; // Total available resources
     static NUM_WORKERS: u8 = 10; // Number of workers contending for the resources
     let backoff = Duration::from_millis(1); // Linear backoff time
-    // Create a shared reference to the semaphore
+                                            // Create a shared reference to the semaphore
     let sem = Arc::new(CountingSemaphore::new(MAX_COUNT, backoff));
     // Create a channel for notifying the main task that the workers are done
     let (tx, rx) = channel();

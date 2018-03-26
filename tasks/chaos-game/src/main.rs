@@ -1,9 +1,9 @@
 extern crate image;
 extern crate rand;
 
-use std::fs::File;
 use rand::Rng;
 use std::f32;
+use std::fs::File;
 
 fn main() {
     let max_iterations = 50_000u32;

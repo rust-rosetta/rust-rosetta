@@ -44,7 +44,9 @@ impl Bounded for CustomInt {
 impl ops::Add for CustomInt {
     type Output = CustomInt;
     fn add(self, rhs: CustomInt) -> CustomInt {
-        let rval = CustomInt { value: (self.value + rhs.value) };
+        let rval = CustomInt {
+            value: (self.value + rhs.value),
+        };
         rval.in_bounds();
         rval
     }
@@ -53,7 +55,9 @@ impl ops::Add for CustomInt {
 impl ops::Sub for CustomInt {
     type Output = CustomInt;
     fn sub(self, rhs: CustomInt) -> CustomInt {
-        let rval = CustomInt { value: (self.value - rhs.value) };
+        let rval = CustomInt {
+            value: (self.value - rhs.value),
+        };
         rval.in_bounds();
         rval
     }
@@ -62,7 +66,9 @@ impl ops::Sub for CustomInt {
 impl ops::Mul for CustomInt {
     type Output = CustomInt;
     fn mul(self, rhs: CustomInt) -> CustomInt {
-        let rval = CustomInt { value: (self.value * rhs.value) };
+        let rval = CustomInt {
+            value: (self.value * rhs.value),
+        };
         rval.in_bounds();
         rval
     }
@@ -71,7 +77,9 @@ impl ops::Mul for CustomInt {
 impl ops::Div for CustomInt {
     type Output = CustomInt;
     fn div(self, rhs: CustomInt) -> CustomInt {
-        let rval = CustomInt { value: (self.value / rhs.value) };
+        let rval = CustomInt {
+            value: (self.value / rhs.value),
+        };
         rval.in_bounds();
         rval
     }
@@ -80,7 +88,9 @@ impl ops::Div for CustomInt {
 impl ops::BitAnd for CustomInt {
     type Output = CustomInt;
     fn bitand(self, rhs: CustomInt) -> CustomInt {
-        let rval = CustomInt { value: (self.value & rhs.value) };
+        let rval = CustomInt {
+            value: (self.value & rhs.value),
+        };
         rval.in_bounds();
         rval
     }
@@ -89,7 +99,9 @@ impl ops::BitAnd for CustomInt {
 impl ops::BitOr for CustomInt {
     type Output = CustomInt;
     fn bitor(self, rhs: CustomInt) -> CustomInt {
-        let rval = CustomInt { value: (self.value | rhs.value) };
+        let rval = CustomInt {
+            value: (self.value | rhs.value),
+        };
         rval.in_bounds();
         rval
     }
@@ -98,7 +110,9 @@ impl ops::BitOr for CustomInt {
 impl ops::BitXor for CustomInt {
     type Output = CustomInt;
     fn bitxor(self, rhs: CustomInt) -> CustomInt {
-        let rval = CustomInt { value: (self.value ^ rhs.value) };
+        let rval = CustomInt {
+            value: (self.value ^ rhs.value),
+        };
         rval.in_bounds();
         rval
     }

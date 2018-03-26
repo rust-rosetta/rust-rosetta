@@ -41,15 +41,19 @@ fn test_create_file() {
     }
     match File::create(&file_path) {
         Ok(_) => assert!(true),
-        Err(e) => {
-            panic!("failed to create_file at {}, error: {}",
-                   file_path.display(),
-                   e)
-        }
+        Err(e) => panic!(
+            "failed to create_file at {}, error: {}",
+            file_path.display(),
+            e
+        ),
     }
 
     // Remove the build dir, but only after making sure there's only one file in it.
-    let contents = build_dir.read_dir().unwrap().collect::<Result<Vec<_>, _>>().unwrap();
+    let contents = build_dir
+        .read_dir()
+        .unwrap()
+        .collect::<Result<Vec<_>, _>>()
+        .unwrap();
 
     assert!(contents.len() == 1);
     assert!(contents[0].path() == file_path);

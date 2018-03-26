@@ -1,26 +1,30 @@
 use std::fmt::Display;
 
 fn comb<T>(arr: &[T], n: u32)
-    where T: Display
+where
+    T: Display,
 {
     let mut incl_arr = vec![false; arr.len()];
     comb_intern(arr, n as usize, &mut incl_arr, 0);
 }
 
 fn comb_intern<T>(arr: &[T], n: usize, incl_arr: &mut [bool], index: usize)
-    where T: Display
+where
+    T: Display,
 {
     if arr.len() < n + index {
         return;
     }
     if n == 0 {
-        let it = arr.iter().zip(incl_arr.iter()).filter_map(|(val, incl)| {
-            if *incl {
-                Some(val)
-            } else {
-                None
-            }
-        });
+        let it = arr.iter().zip(incl_arr.iter()).filter_map(
+            |(val, incl)| {
+                if *incl {
+                    Some(val)
+                } else {
+                    None
+                }
+            },
+        );
         for val in it {
             print!("{} ", *val);
         }

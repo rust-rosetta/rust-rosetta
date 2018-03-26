@@ -23,11 +23,12 @@ fn check_sorted(color_array: &[u8]) -> bool {
 }
 
 fn color_to_string(color_array: &[u8]) -> String {
-    color_array.iter().fold("".to_string(), |string, &x| string + COLOR[x as usize])
+    color_array
+        .iter()
+        .fold("".to_string(), |string, &x| string + COLOR[x as usize])
 }
 
 fn main() {
-
     let mut rng = rand::thread_rng();
     let mut color_array = [0u8; 20];
 
@@ -36,15 +37,16 @@ fn main() {
     }
 
     if check_sorted(&color_array) {
-        println!("oops i generated a sorted array {}",
-                 color_to_string(&color_array));
+        println!(
+            "oops i generated a sorted array {}",
+            color_to_string(&color_array)
+        );
     } else {
         println!("random flag {}", color_to_string(&color_array));
     }
 
     color_array.sort();
     println!("a dutch flag {}", color_to_string(&color_array));
-
 }
 
 #[test]

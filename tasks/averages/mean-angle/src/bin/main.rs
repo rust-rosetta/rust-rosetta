@@ -14,27 +14,33 @@ fn main() {
     let angles1 = [350.0_f64, 10.0];
     let angles2 = [90.0_f64, 180.0, 270.0, 360.0];
     let angles3 = [10.0_f64, 20.0, 30.0];
-    println!("Mean Angle for {:?}  is {:.5} degrees",
-             &angles1,
-             mean_angle(&angles1));
-    println!("Mean Angle for {:?}  is {:.5} degrees",
-             &angles2,
-             mean_angle(&angles2));
-    println!("Mean Angle for {:?}  is {:.5} degrees",
-             &angles3,
-             mean_angle(&angles3));
+    println!(
+        "Mean Angle for {:?}  is {:.5} degrees",
+        &angles1,
+        mean_angle(&angles1)
+    );
+    println!(
+        "Mean Angle for {:?}  is {:.5} degrees",
+        &angles2,
+        mean_angle(&angles2)
+    );
+    println!(
+        "Mean Angle for {:?}  is {:.5} degrees",
+        &angles3,
+        mean_angle(&angles3)
+    );
 }
 
 #[cfg(test)]
 mod tests {
     use super::mean_angle;
 
-    macro_rules! assert_diff{
-        ($x: expr,$y : expr, $diff :expr)=>{
-            if ( $x - $y ).abs() > $diff {
-                panic!("floating point difference is to big {}", $x - $y );
+    macro_rules! assert_diff {
+        ($x:expr, $y:expr, $diff:expr) => {
+            if ($x - $y).abs() > $diff {
+                panic!("floating point difference is to big {}", $x - $y);
             }
-        }
+        };
     }
 
     #[test]

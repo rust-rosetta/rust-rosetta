@@ -8,14 +8,19 @@ struct CombinationsWithRepetitions<'a, T: 'a> {
     // current counts of each object that represent the next combination
     counts: Vec<u32>,
     // whether there are any combinations left
-    remaining: bool
+    remaining: bool,
 }
 
 impl<'a, T> CombinationsWithRepetitions<'a, T> {
     fn new(arr: &[T], k: u32) -> CombinationsWithRepetitions<T> {
         let mut counts = vec![0; arr.len()];
         counts[arr.len() - 1] = k;
-        CombinationsWithRepetitions { arr: arr, k: k, counts: counts, remaining: true }
+        CombinationsWithRepetitions {
+            arr: arr,
+            k: k,
+            counts: counts,
+            remaining: true,
+        }
     }
 }
 
@@ -24,7 +29,7 @@ impl<'a, T> Iterator for CombinationsWithRepetitions<'a, T> {
 
     fn next(&mut self) -> Option<Vec<&'a T>> {
         if !self.remaining {
-            return None
+            return None;
         }
         let mut comb = Vec::new();
         for (count, item) in self.counts.iter().zip(self.arr.iter()) {
@@ -40,11 +45,11 @@ impl<'a, T> Iterator for CombinationsWithRepetitions<'a, T> {
             for i in (1..n).rev() {
                 if self.counts[i] > 0 {
                     let original_value = self.counts[i];
-                    self.counts[i-1] += 1;
+                    self.counts[i - 1] += 1;
                     for j in i..(n - 1) {
                         self.counts[j] = 0;
                     }
-                    self.counts[n - 1] = original_value-1;
+                    self.counts[n - 1] = original_value - 1;
                     break;
                 }
             }
@@ -52,7 +57,6 @@ impl<'a, T> Iterator for CombinationsWithRepetitions<'a, T> {
         Some(comb)
     }
 }
-
 
 fn main() {
     let collection = vec!["iced", "jam", "plain"];

@@ -9,10 +9,9 @@ fn main() {
     olympic_medals.insert("Great Britain", (246, 276, 284));
     olympic_medals.insert("Germany", (252, 260, 270));
     for (country, medals) in olympic_medals {
-        println!("{} has had {} gold medals, {} silver medals, and {} bronze medals",
-                 country,
-                 medals.0,
-                 medals.1,
-                 medals.2);
+        println!(
+            "{} has had {} gold medals, {} silver medals, and {} bronze medals",
+            country, medals.0, medals.1, medals.2
+        );
     }
 }

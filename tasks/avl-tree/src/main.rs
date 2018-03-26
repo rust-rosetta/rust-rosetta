@@ -38,8 +38,10 @@ fn main() {
     let mut tree = avl_tree::random_bal_tree(r_nodes as u32);
     let mut rng = rand::thread_rng();
     for _ in 0..n {
-        tree.insert_bal(rng.gen_range(-(r_nodes as i32) / 2, (r_nodes as i32) / 2),
-                        rng.gen_range(-1f32, 1f32));
+        tree.insert_bal(
+            rng.gen_range(-(r_nodes as i32) / 2, (r_nodes as i32) / 2),
+            rng.gen_range(-1f32, 1f32),
+        );
         tree.delete_bal(rng.gen_range(-(r_nodes as i32) / 2, (r_nodes as i32) / 2));
     }
     let res = tree.gather_balances();
@@ -47,12 +49,11 @@ fn main() {
     assert!(bals.iter().max().unwrap() < &2);
     assert!(bals.iter().min().unwrap() > &-2);
 
-    println!("AVL tree after ~{} random inserts and ~{} random deletes, starting with {} nodes:",
-             n,
-             n,
-             r_nodes);
+    println!(
+        "AVL tree after ~{} random inserts and ~{} random deletes, starting with {} nodes:",
+        n, n, r_nodes
+    );
     println!("{}", tree);
-
 }
 
 fn print_usage(program: &str, opts: &Options) {

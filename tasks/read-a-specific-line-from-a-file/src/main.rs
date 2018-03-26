@@ -1,7 +1,7 @@
-use std::fs::File;
-use std::io::{BufReader, BufRead};
-use std::env::args;
 use std::borrow::ToOwned;
+use std::env::args;
+use std::fs::File;
+use std::io::{BufRead, BufReader};
 
 fn main() {
     let mut args = args();

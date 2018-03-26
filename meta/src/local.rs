@@ -10,8 +10,8 @@ use reqwest::Url;
 use toml::Value;
 use walkdir::WalkDir;
 
-use TASK_URL_RE;
 use remote;
+use TASK_URL_RE;
 
 /// A local (in repository) implementation of a Rosetta Code task.
 #[derive(Debug, Clone)]

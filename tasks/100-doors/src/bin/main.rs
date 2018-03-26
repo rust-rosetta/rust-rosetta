@@ -11,7 +11,6 @@ fn main() {
     for (idx, door) in doors.iter().enumerate() {
         println!("door {} open: {}", idx + 1, door);
     }
-
 }
 
 /// unoptimized solution for the 100 Doors problem,

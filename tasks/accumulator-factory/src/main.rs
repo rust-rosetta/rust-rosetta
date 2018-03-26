@@ -1,7 +1,8 @@
 use std::ops::Add;
 
 fn accum<'a, T>(mut n: T) -> Box<FnMut(T) -> T + 'a>
-    where T: 'a + Add<T, Output = T> + Copy
+where
+    T: 'a + Add<T, Output = T> + Copy,
 {
     Box::new(move |i: T| {
         n = n + i;

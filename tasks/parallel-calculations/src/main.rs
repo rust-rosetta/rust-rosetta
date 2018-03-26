@@ -5,10 +5,10 @@ extern crate eventual;
 
 extern crate prime_decomposition;
 
-use std::thread::spawn;
 use std::sync::mpsc;
+use std::thread::spawn;
 
-use eventual::{Future, Async};
+use eventual::{Async, Future};
 use prime_decomposition::factor;
 
 /// Returns the minimal prime factor of a number
@@ -28,7 +28,11 @@ pub fn largest_min_factor_fut(numbers: &[usize]) -> usize {
         })
         .collect();
     // Get the largest minimal factor of all results
-    results.into_iter().map(|f| f.await().ok().unwrap()).max().unwrap()
+    results
+        .into_iter()
+        .map(|f| f.await().ok().unwrap())
+        .max()
+        .unwrap()
 }
 
 /// Returns the largest minimal factor of the numbers in a slice
@@ -43,12 +47,16 @@ pub fn largest_min_factor_chan(numbers: &[usize]) -> usize {
     }
 
     // Receive them and keep the largest one
-    numbers.iter().fold(0, |max, _| std::cmp::max(receiver.recv().unwrap(), max))
+    numbers
+        .iter()
+        .fold(0, |max, _| std::cmp::max(receiver.recv().unwrap(), max))
 }
 
 fn main() {
     // Numbers to be factorized
-    let numbers = &[1_122_725, 1_125_827, 1_122_725, 1_152_800, 1_157_978, 1_099_726];
+    let numbers = &[
+        1_122_725, 1_125_827, 1_122_725, 1_152_800, 1_157_978, 1_099_726,
+    ];
 
     let max = largest_min_factor_fut(numbers);
     println!("The largest minimal factor is {}", max);
@@ -67,8 +75,12 @@ mod tests {
 
     #[test]
     fn test_equivalence() {
-        let numbers = &[1_122_725, 1_125_827, 1_122_725, 1_152_800, 1_157_978, 1_099_726];
-        assert_eq!(largest_min_factor_chan(numbers),
-                   largest_min_factor_fut(numbers));
+        let numbers = &[
+            1_122_725, 1_125_827, 1_122_725, 1_152_800, 1_157_978, 1_099_726,
+        ];
+        assert_eq!(
+            largest_min_factor_chan(numbers),
+            largest_min_factor_fut(numbers)
+        );
     }
 }

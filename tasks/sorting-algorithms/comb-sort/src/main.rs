@@ -2,7 +2,7 @@
 #[macro_use]
 extern crate meta;
 
-#[cfg_attr(feature="clippy", allow(needless_range_loop))]
+#[cfg_attr(feature = "clippy", allow(needless_range_loop))]
 fn comb_sort<T: PartialOrd>(v: &mut [T]) {
     let len = v.len();
     let mut gap: usize = v.len();

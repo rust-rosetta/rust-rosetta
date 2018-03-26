@@ -1,9 +1,9 @@
 const EPSILON: f64 = 1e-10;
 
-fn nth_root(x: f64, n: f64) -> f64{
+fn nth_root(x: f64, n: f64) -> f64 {
     let mut x0: f64 = x;
     loop {
-        let delta = (x/x0.powf(n-1.) - x0)/n;
+        let delta = (x / x0.powf(n - 1.) - x0) / n;
         x0 += delta;
         if delta.abs() < EPSILON {
             return x0;

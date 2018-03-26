@@ -70,8 +70,8 @@ fn main() {
 
 #[cfg(test)]
 mod tests {
+    use super::{mean, standard_deviation, variance};
     use std::f32;
-    use super::{mean, variance, standard_deviation};
 
     fn approx(statistics: Option<f32>, value: f32) -> bool {
         (statistics.unwrap() - value).abs() <= f32::EPSILON
@@ -101,7 +101,9 @@ mod tests {
         assert_eq!(standard_deviation(&empty), None);
         assert!(approx(standard_deviation(&[0.0]), 0.0));
         assert!(approx(standard_deviation(&[1.0, 1.0, 1.0]), 0.0));
-        assert!(approx(standard_deviation(&[1.0, 2.0, 3.0]),
-                       (2.0f32 / 3.0f32).sqrt()));
+        assert!(approx(
+            standard_deviation(&[1.0, 2.0, 3.0]),
+            (2.0f32 / 3.0f32).sqrt()
+        ));
     }
 }

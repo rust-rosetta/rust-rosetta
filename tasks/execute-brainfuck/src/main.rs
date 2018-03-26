@@ -67,12 +67,14 @@ fn main() {
         let Wrapping(val) = mem[ptr];
 
         if debug {
-            println!("(BFDB) PC: {:04} \tPTR: {:04} \t$PTR: {:03} \tSTACK_DEPTH: {} \tSYMBOL: {}",
-                     pc,
-                     ptr,
-                     val,
-                     stack.len(),
-                     src[pc]);
+            println!(
+                "(BFDB) PC: {:04} \tPTR: {:04} \t$PTR: {:03} \tSTACK_DEPTH: {} \tSYMBOL: {}",
+                pc,
+                ptr,
+                val,
+                stack.len(),
+                src[pc]
+            );
         }
 
         const ONE: Wrapping<u8> = Wrapping(1);
@@ -104,7 +106,7 @@ fn main() {
             }
             '.' => {
                 if debug {
-                    println!("(BFDB) STDOUT: '{}'", val as char);  // Intercept output
+                    println!("(BFDB) STDOUT: '{}'", val as char); // Intercept output
                 } else {
                     print!("{}", val as char);
                 }

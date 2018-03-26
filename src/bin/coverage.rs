@@ -9,14 +9,14 @@ extern crate serde;
 extern crate term;
 
 use std::fs::File;
-use std::io::prelude::*;
 use std::io;
+use std::io::prelude::*;
 
-use clap::{Arg, App};
+use clap::{App, Arg};
 use difference::{Changeset, Difference};
 use term::Terminal;
 
-use meta::{TaskIndex, Task};
+use meta::{Task, TaskIndex};
 
 const ABOUT: &str = r#"
 Query differences between the rust-rosetta repository and the Rosetta Code wiki.

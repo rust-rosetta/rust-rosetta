@@ -24,18 +24,18 @@ extern crate test;
 
 use arena::TypedArena;
 
+use self::Error::*;
+use self::SExp::*;
+use self::Token::*;
 use std::io;
 use std::num::FpCategory;
 use std::str::FromStr;
-use self::SExp::*;
-use self::Error::*;
-use self::Token::*;
 
 /// The actual `SExp` structure.  Supports `f64`s, lists, and string literals.  Note that it takes
 /// everything by reference, rather than owning it--this is mostly done just so we can allocate
 /// `SExp`s statically (since we don't have to call `Vec`).  It does complicate the code a bit,
 /// requiring us to have a `ParseContext` that holds an arena where lists are actually allocated.
-#[derive(PartialEq,Debug)]
+#[derive(PartialEq, Debug)]
 enum SExp<'a> {
     /// Float literal: 0.5
     F64(f64),
@@ -113,20 +113,16 @@ impl<'a> Tokens<'a> {
         let mut chars = string.chars();
 
         match chars.next() {
-            Some(ch) => {
-                Tokens {
-                    string: string,
-                    first: Some(ch),
-                    rest: chars.as_str(),
-                }
-            }
-            None => {
-                Tokens {
-                    string: string,
-                    first: None,
-                    rest: string,
-                }
-            }
+            Some(ch) => Tokens {
+                string: string,
+                first: Some(ch),
+                rest: chars.as_str(),
+            },
+            None => Tokens {
+                string: string,
+                first: None,
+                rest: string,
+            },
         }
     }
 
@@ -222,13 +218,10 @@ impl<'a> Tokens<'a> {
 /// twice, but it avoids having to write our own number parsing logic.
 fn parse_literal(literal: &str) -> SExp {
     match literal.bytes().next() {
-        Some(b'0'...b'9') |
-        Some(b'-') => {
-            match f64::from_str(literal) {
-                Ok(f) => F64(f),
-                Err(_) => Str(literal),
-            }
-        }
+        Some(b'0'...b'9') | Some(b'-') => match f64::from_str(literal) {
+            Ok(f) => F64(f),
+            Err(_) => Str(literal),
+        },
         _ => Str(literal),
     }
 }
@@ -303,7 +296,11 @@ impl<'a> SExp<'a> {
             Some(ref mut arena) => arena,
             None => unreachable!(),
         };
-        let ParseContext { string, ref mut stack, .. } = *ctx;
+        let ParseContext {
+            string,
+            ref mut stack,
+            ..
+        } = *ctx;
         // Make sure the stack is cleared--we keep it in the context to avoid unnecessary
         // reallocation between parses (if you need to remember old parse information for a new
         // list, you can pass in a new context).
@@ -336,7 +333,8 @@ impl<'a> SExp<'a> {
                 }
                 Literal(s) => list.push(s), // Plain old literal, push it onto the current list
                 ListEnd => {
-                    match stack.pop() { // Pop the old context off the stack on list end.
+                    match stack.pop() {
+                        // Pop the old context off the stack on list end.
                         Some(mut l) => {
                             // We allocate a slot for the current list in our parse context (needed
                             // for safety) before pushing it onto its parent list.
@@ -372,10 +370,13 @@ impl<'a> SExp<'a> {
     }
 }
 
-const SEXP_STRUCT: SExp<'static> =
-    List(&[List(&[Str("data"), Str("quoted data"), F64(123.), F64(4.5)]),
-           List(&[Str("data"),
-                  List(&[Str("!@#"), List(&[F64(4.5)]), Str("(more"), Str("data)")])])]);
+const SEXP_STRUCT: SExp<'static> = List(&[
+    List(&[Str("data"), Str("quoted data"), F64(123.), F64(4.5)]),
+    List(&[
+        Str("data"),
+        List(&[Str("!@#"), List(&[F64(4.5)]), Str("(more"), Str("data)")]),
+    ]),
+]);
 
 fn try_encode() -> Result<String, Error> {
     SEXP_STRUCT.buffer_encode()

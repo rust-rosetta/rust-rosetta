@@ -1,6 +1,6 @@
 extern crate rand;
 
-use GameState::{PlayerWin, ComputerWin, Draw, Playing};
+use GameState::{ComputerWin, Draw, PlayerWin, Playing};
 
 #[derive(PartialEq, Debug)]
 enum GameState {
@@ -125,10 +125,16 @@ fn test_which_win() {
 
 #[test]
 fn test_check_win() {
-    assert_eq!(check_win([['X', 'X', 'X'], ['4', 'O', 'O'], ['7', '8', '9']]),
-               PlayerWin);
-    assert_eq!(check_win([['O', 'X', '3'], ['X', 'O', '6'], ['X', '8', 'O']]),
-               ComputerWin);
-    assert_eq!(check_win([['O', 'X', 'X'], ['X', 'O', 'O'], ['O', 'X', 'X']]),
-               Draw);
+    assert_eq!(
+        check_win([['X', 'X', 'X'], ['4', 'O', 'O'], ['7', '8', '9']]),
+        PlayerWin
+    );
+    assert_eq!(
+        check_win([['O', 'X', '3'], ['X', 'O', '6'], ['X', '8', 'O']]),
+        ComputerWin
+    );
+    assert_eq!(
+        check_win([['O', 'X', 'X'], ['X', 'O', 'O'], ['O', 'X', 'X']]),
+        Draw
+    );
 }

@@ -1,11 +1,11 @@
 //! Author: Rahul Sharma
 //! Github: <https://github.com/creativcoder>
 
-use std::io::BufReader;
-use std::io::BufWriter;
-use std::io::BufRead;
 use std::fs::File;
 use std::fs::OpenOptions;
+use std::io::BufRead;
+use std::io::BufReader;
+use std::io::BufWriter;
 use std::io::Write;
 
 fn main() {
@@ -16,15 +16,13 @@ fn main() {
         .open("resources/output.txt");
 
     // defining a closure write_line
-    let write_line = |line: &str| {
-        match out_fd {
-            Ok(ref v) => {
-                let mut writer = BufWriter::new(v);
-                writer.write_all(line.as_bytes()).unwrap();
-            }
-            Err(ref e) => {
-                println!("Error:{}", e);
-            }
+    let write_line = |line: &str| match out_fd {
+        Ok(ref v) => {
+            let mut writer = BufWriter::new(v);
+            writer.write_all(line.as_bytes()).unwrap();
+        }
+        Err(ref e) => {
+            println!("Error:{}", e);
         }
     };
     // read input file

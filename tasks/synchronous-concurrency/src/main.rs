@@ -3,8 +3,8 @@
 //! number of lines printed from the printer unit, and then prints them.
 
 use std::fs::File;
-use std::io::{BufReader, BufRead};
-use std::sync::mpsc::{channel, Sender, Receiver};
+use std::io::{BufRead, BufReader};
+use std::sync::mpsc::{channel, Receiver, Sender};
 use std::thread;
 
 const FILENAME: &str = "resources/input.txt";
@@ -19,7 +19,6 @@ fn printer(i_snd: &Sender<i32>, msg_rcv: &Receiver<Message>) {
     while let Message::Line(line) = msg_rcv.recv().unwrap() {
         println!("{}", line);
         count += 1;
-
     }
     i_snd.send(count).unwrap();
 }

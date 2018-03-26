@@ -63,8 +63,10 @@ mod tests {
             const BUF_SIZE: usize = 1024;
             let mut buffer = [0; BUF_SIZE];
             assert_eq!(1, Query(buffer.as_mut_ptr(), &mut BUF_SIZE));
-            assert_eq!(CString::new("Here am I").unwrap(),
-                       CStr::from_ptr(buffer.as_ptr()).to_owned());
+            assert_eq!(
+                CString::new("Here am I").unwrap(),
+                CStr::from_ptr(buffer.as_ptr()).to_owned()
+            );
         }
     }
 }

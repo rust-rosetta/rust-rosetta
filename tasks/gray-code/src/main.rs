@@ -13,11 +13,13 @@ fn gray_decode(integer: usize) -> usize {
 
 fn main() {
     for i in 0..32 {
-        println!("{:2} {:0>5} {:0>5} {:2}",
-                 i,
-                 i,
-                 gray_encode(i),
-                 gray_decode(i));
+        println!(
+            "{:2} {:0>5} {:0>5} {:2}",
+            i,
+            i,
+            gray_encode(i),
+            gray_decode(i)
+        );
     }
 }
 

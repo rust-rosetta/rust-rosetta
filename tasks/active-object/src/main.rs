@@ -5,13 +5,13 @@ extern crate schedule_recv;
 
 use num::traits::Zero;
 use num::Float;
+use schedule_recv::periodic_ms;
 use std::f64::consts::PI;
+use std::ops::Mul;
+use std::sync::mpsc::{self, SendError, Sender};
 use std::sync::{Arc, Mutex};
 use std::thread;
 use std::time::Duration;
-use std::sync::mpsc::{self, Sender, SendError};
-use std::ops::Mul;
-use schedule_recv::periodic_ms;
 
 pub type Actor<S> = Sender<Box<Fn(u32) -> S + Send>>;
 pub type ActorResult<S> = Result<(), SendError<Box<Fn(u32) -> S + Send>>>;
@@ -38,8 +38,9 @@ pub struct Integrator<S: 'static, T: Send> {
 /// multiplied by `f64`.  We could possibly replace `f64` with a generic as well, but it would make
 /// things a bit more complex.
 impl<S, T> Integrator<S, T>
-    where S: Mul<f64, Output = T> + Float + Zero,
-          T: 'static + Clone + Send + Float
+where
+    S: Mul<f64, Output = T> + Float + Zero,
+    T: 'static + Clone + Send + Float,
 {
     pub fn new(frequency: u32) -> Integrator<S, T> {
         // We create a pipe allowing functions to be sent from tx (the sending end) to input (the
@@ -132,7 +133,8 @@ impl<S, T> Integrator<S, T>
 /// to 2pi * f * t, and then wait as described in the Rosetta stone problem.
 fn integrate() -> f64 {
     let object = Integrator::new(10);
-    object.input(Box::new(|t: u32| {
+    object
+        .input(Box::new(|t: u32| {
             let two_seconds_ms = 2 * 1000;
             let f = 1. / f64::from(two_seconds_ms);
             (2. * PI * f * f64::from(t)).sin()
@@ -156,7 +158,8 @@ fn solution() {
     // rust-lang/rust issue #17060 if we make frequency or period a variable.
     // FIXME(pythonesque): When unboxed closures are fixed, fix integrate() to take two arguments.
     let object = Integrator::new(10);
-    object.input(Box::new(|t: u32| {
+    object
+        .input(Box::new(|t: u32| {
             let two_seconds_ms = 2 * 1000;
             let f = 1. / (two_seconds_ms / 10) as f64;
             (2. * PI * f * t as f64).sin()

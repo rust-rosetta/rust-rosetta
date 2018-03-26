@@ -11,7 +11,8 @@ struct RangeFinder<'a, T: 'a> {
 }
 
 impl<'a, T> Iterator for RangeFinder<'a, T>
-    where T: PartialEq + Add<T, Output = T> + Copy + One
+where
+    T: PartialEq + Add<T, Output = T> + Copy + One,
 {
     type Item = (T, Option<T>);
     fn next(&mut self) -> Option<Self::Item> {
@@ -19,8 +20,9 @@ impl<'a, T> Iterator for RangeFinder<'a, T>
             return None;
         }
         let lo = self.index;
-        while self.index < self.length - 1 &&
-              self.arr[self.index + 1] == self.arr[self.index] + T::one() {
+        while self.index < self.length - 1
+            && self.arr[self.index + 1] == self.arr[self.index] + T::one()
+        {
             self.index += 1
         }
         let hi = self.index;

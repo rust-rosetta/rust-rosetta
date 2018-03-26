@@ -3,16 +3,16 @@
 
 //! basic syntax extension to calculate the factorial of 10 at compile time for the compile-time
 //! calculation task (the task itself is in `src/compile_time_calculation.rs`)
-extern crate syntax;
 extern crate rustc_plugin;
+extern crate syntax;
 
+use rustc_plugin::Registry;
 use syntax::ast;
 use syntax::codemap::Span;
+use syntax::ext::base::{DummyResult, ExtCtxt, MacEager, MacResult};
+use syntax::ext::build::AstBuilder; // trait for expr_usize
 use syntax::parse;
-use syntax::ext::base::{ExtCtxt, MacResult, DummyResult, MacEager};
-use syntax::ext::build::AstBuilder;  // trait for expr_usize
 use syntax::tokenstream::TokenTree;
-use rustc_plugin::Registry;
 
 fn exp_factorial(cx: &mut ExtCtxt, sp: Span, tts: &[TokenTree]) -> Box<MacResult + 'static> {
     // extract the argument and ensure there is only one and it's a usize

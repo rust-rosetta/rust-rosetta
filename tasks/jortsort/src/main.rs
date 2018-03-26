@@ -1,4 +1,4 @@
-use std::cmp::{Ord, Eq};
+use std::cmp::{Eq, Ord};
 
 fn jortsort<T: Ord + Eq + Clone>(array: &[T]) -> bool {
     // sort the array

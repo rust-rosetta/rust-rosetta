@@ -9,7 +9,7 @@ const NUMBER_OF_DIGITS: usize = 4;
 /// generates a random `NUMBER_OF_DIGITS`
 fn generate_digits() -> Vec<u32> {
     let mut rng = rand::thread_rng();
-    seq::sample_iter(&mut rng, (1u32..10), NUMBER_OF_DIGITS).unwrap()
+    seq::sample_iter(&mut rng, 1u32..10, NUMBER_OF_DIGITS).unwrap()
 }
 
 /// types of errors we can have when parsing a malformed guess
@@ -66,8 +66,7 @@ fn calculate_score(given_digits: &[u32], guessed_digits: &[u32]) -> (usize, usiz
     let mut bulls = 0;
     let mut cows = 0;
     for (i, given_digit) in given_digits.iter().enumerate().take(NUMBER_OF_DIGITS) {
-        let pos = guessed_digits.iter()
-            .position(|&a| a == *given_digit);
+        let pos = guessed_digits.iter().position(|&a| a == *given_digit);
 
         match pos {
             None => (),
@@ -82,8 +81,10 @@ fn main() {
     let reader = std::io::stdin();
     loop {
         let given_digits = generate_digits();
-        println!("I have chosen my {} digits. Please guess what they are",
-                 NUMBER_OF_DIGITS);
+        println!(
+            "I have chosen my {} digits. Please guess what they are",
+            NUMBER_OF_DIGITS
+        );
         loop {
             let mut guess_string = String::new();
             let _ = reader.read_line(&mut guess_string).unwrap();
@@ -92,15 +93,13 @@ fn main() {
                 Err(msg) => {
                     println!("{}", msg);
                 }
-                Ok(guess_digits) => {
-                    match calculate_score(&given_digits, &guess_digits) {
-                        (NUMBER_OF_DIGITS, _) => {
-                            println!("you win!");
-                            break;
-                        }
-                        (bulls, cows) => println!("bulls: {}, cows: {}", bulls, cows),
+                Ok(guess_digits) => match calculate_score(&given_digits, &guess_digits) {
+                    (NUMBER_OF_DIGITS, _) => {
+                        println!("you win!");
+                        break;
                     }
-                }
+                    (bulls, cows) => println!("bulls: {}, cows: {}", bulls, cows),
+                },
             }
         }
     }

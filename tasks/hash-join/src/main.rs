@@ -29,10 +29,19 @@ where
 }
 
 fn main() {
-    let table1 = [("Jonah", 27), ("Alan", 18), ("Glory", 28), ("Popeye", 18), ("Alan", 28)];
+    let table1 = [
+        ("Jonah", 27),
+        ("Alan", 18),
+        ("Glory", 28),
+        ("Popeye", 18),
+        ("Alan", 28),
+    ];
     let table2 = [
-        ("Jonah", "Whales"), ("Jonah", "Spiders"), ("Alan", "Ghosts"),
-        ("Alan", "Zombies"), ("Glory", "Buffy")
+        ("Jonah", "Whales"),
+        ("Jonah", "Spiders"),
+        ("Alan", "Ghosts"),
+        ("Alan", "Zombies"),
+        ("Glory", "Buffy"),
     ];
     let result = hash_join(&table1, &table2);
     println!("Age | Character Name | Nemesis");

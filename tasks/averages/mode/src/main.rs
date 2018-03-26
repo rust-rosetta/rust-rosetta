@@ -9,8 +9,9 @@ use std::hash::Hash;
 /// println!("{}", mode(v1));
 /// ```
 fn mode<I>(items: I) -> Vec<I::Item>
-    where I: IntoIterator,
-          I::Item: Hash + Eq
+where
+    I: IntoIterator,
+    I::Item: Hash + Eq,
 {
     // NOTE: Usually, you wouldn't need to explicitly call `into_iter()` before
     // looping over a type implementing `IntoIterator`. However, we do it here
@@ -40,12 +41,12 @@ fn mode<I>(items: I) -> Vec<I::Item>
     let max = map.values()         // Iterate over the counts by reference.
                  .cloned()         // Convert the `&i32`s to `i32`s.
                  .max()            // Find the maximum.
-                 .unwrap_or(0);    // If there are no items, default 0.
+                 .unwrap_or(0); // If there are no items, default 0.
 
     map.into_iter()                // Iterate by `(item, value)` pairs.
        .filter(|&(_, v)| v == max) // Find all modes (there may be multiple).
        .map(|(k, _)| k)            // Go from `(item, value)` pairs to `item`s.
-       .collect()                  // Collect into a `Vec<I::Item>`.
+       .collect() // Collect into a `Vec<I::Item>`.
 }
 
 fn main() {

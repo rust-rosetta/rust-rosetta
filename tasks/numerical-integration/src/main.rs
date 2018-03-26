@@ -1,7 +1,8 @@
 //! This is a partial solution and only implements trapezium integration.
 
 fn trapezium_integral<F>(f: F, range: &std::ops::Range<f64>, n_steps: u32) -> f64
-    where F: Fn(f64) -> f64
+where
+    F: Fn(f64) -> f64,
 {
     let step_size = (range.end - range.start) / f64::from(n_steps);
 

@@ -1,5 +1,5 @@
-use std::collections::HashMap;
 use std::collections::hash_map::Entry::{Occupied, Vacant};
+use std::collections::HashMap;
 
 pub fn shannon_entropy(s: &str) -> f64 {
     let mut map = HashMap::new();
@@ -26,13 +26,15 @@ pub fn shannon_entropy(s: &str) -> f64 {
 
 #[test]
 fn test_entropy() {
-    let tests = vec![("1223334444", 1.846439344671f64),
-                     ("1223334444555555555", 1.969811065121),
-                     ("122333", 1.459147917061),
-                     ("1227774444", 1.846439344671),
-                     ("aaBBcccDDDD", 1.936260027482),
-                     ("1234567890abcdefghijklmnopqrstuvwxyz", 5.169925004424),
-                     ("Rosetta Code", 3.084962500407)];
+    let tests = vec![
+        ("1223334444", 1.846439344671f64),
+        ("1223334444555555555", 1.969811065121),
+        ("122333", 1.459147917061),
+        ("1227774444", 1.846439344671),
+        ("aaBBcccDDDD", 1.936260027482),
+        ("1234567890abcdefghijklmnopqrstuvwxyz", 5.169925004424),
+        ("Rosetta Code", 3.084962500407),
+    ];
     // Good enough, actual float epsilon is much smaller
     let epsilon: f64 = 0.0000001;
     for (input, expected) in tests {

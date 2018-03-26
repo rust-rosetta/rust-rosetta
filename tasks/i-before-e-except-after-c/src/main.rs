@@ -103,22 +103,26 @@ fn main() {
     let mut data = String::new();
     file.read_to_string(&mut data).unwrap();
     let occ = count_occurrences(&data);
-    println!("I before E when not preceded by C is {} (ie: {}, cie: {})",
-             if occ.ie > 2 * occ.cie {
-                 "plausible"
-             } else {
-                 "implausible"
-             },
-             occ.ie,
-             occ.cie);
-    println!("E before I when preceded by C is {} (cei: {}, ei: {})",
-             if occ.cei > 2 * occ.ei {
-                 "plausible"
-             } else {
-                 "implausible"
-             },
-             occ.cei,
-             occ.ei);
+    println!(
+        "I before E when not preceded by C is {} (ie: {}, cie: {})",
+        if occ.ie > 2 * occ.cie {
+            "plausible"
+        } else {
+            "implausible"
+        },
+        occ.ie,
+        occ.cie
+    );
+    println!(
+        "E before I when preceded by C is {} (cei: {}, ei: {})",
+        if occ.cei > 2 * occ.ei {
+            "plausible"
+        } else {
+            "implausible"
+        },
+        occ.cei,
+        occ.ei
+    );
 }
 
 #[test]

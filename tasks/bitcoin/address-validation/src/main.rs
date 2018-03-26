@@ -99,6 +99,7 @@ fn test_valid() {
 
 #[test]
 fn test_invalid() {
-    assert!(validate("1AGNa15ZQXAZUgFiqJ2i7Z2DPU2J6hW62j").unwrap_err() ==
-            "checksum did not validate")
+    assert!(
+        validate("1AGNa15ZQXAZUgFiqJ2i7Z2DPU2J6hW62j").unwrap_err() == "checksum did not validate"
+    )
 }

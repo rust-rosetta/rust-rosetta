@@ -1,6 +1,8 @@
 // Repeat the function f, n times.
 fn repeat<F>(f: &F, n: u32)
-    where F: Fn() {
+where
+    F: Fn(),
+{
     for _ in 0..n {
         f();
     }
@@ -8,7 +10,9 @@ fn repeat<F>(f: &F, n: u32)
 
 // Repeat the mutable function f, n times.
 fn repeat_mut<F>(f: &mut F, n: u32)
-    where F: FnMut() {
+where
+    F: FnMut(),
+{
     for _ in 0..n {
         f();
     }
@@ -19,7 +23,6 @@ fn static_fn() {
 }
 
 fn main() {
-
     // Repeat a static function.
     repeat(&static_fn, 4);
 

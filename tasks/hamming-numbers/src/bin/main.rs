@@ -2,8 +2,8 @@ extern crate num;
 
 extern crate hamming_numbers;
 
-use num::BigUint;
 use num::bigint::ToBigUint;
+use num::BigUint;
 
 use hamming_numbers::Hamming;
 

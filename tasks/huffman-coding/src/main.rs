@@ -1,9 +1,9 @@
 // Implement data structures for a Huffman encoding tree:
-use std::collections::HashMap;
+use std::cmp::Ordering;
+use std::cmp::Ordering::{Equal, Greater, Less};
 use std::collections::hash_map::Entry::{Occupied, Vacant};
 use std::collections::BinaryHeap;
-use std::cmp::Ordering;
-use std::cmp::Ordering::{Less, Equal, Greater};
+use std::collections::HashMap;
 
 /// Each `HNode` has a weight, representing the sum of the frequencies for all its
 /// children. It is either a leaf (containing a character), or an `HTree` (containing two children)
