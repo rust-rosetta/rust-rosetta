@@ -97,7 +97,7 @@ fn parse_rosetta_url<P>(manifest_path: P) -> Result<Url, Error>
 where
     P: AsRef<Path>,
 {
-    let manifest: Value = fs::read_string(manifest_path)?.parse()?;
+    let manifest: Value = fs::read_to_string(manifest_path)?.parse()?;
 
     let url = manifest
         .get("package")
