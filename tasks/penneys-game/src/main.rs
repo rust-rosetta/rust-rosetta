@@ -1,9 +1,9 @@
 extern crate rand;
 
-use std::io::{stdout, stdin, Write};
+use rand::{thread_rng, Rng};
+use std::io::{stdin, stdout, Write};
 use std::thread;
 use std::time::Duration;
-use rand::{Rng, thread_rng};
 
 fn toss_coin(print: bool) -> char {
     let c: char;
@@ -32,11 +32,9 @@ fn gen_sequence(seed: Option<&str>) -> String {
             seq.push(c0);
             seq.push(s.chars().nth(1).unwrap());
         }
-        None => {
-            for _ in 0..3 {
-                seq.push(toss_coin(false))
-            }
-        }
+        None => for _ in 0..3 {
+            seq.push(toss_coin(false))
+        },
     }
     seq
 }
@@ -48,8 +46,9 @@ fn read_sequence(used_seq: Option<&str>) -> String {
         println!("Please, enter sequence of 3 coins: H (heads) or T (tails): ");
         stdin().read_line(&mut seq).expect("failed to read line");
         seq = seq.trim().to_uppercase();
-        if !(seq.chars().all(|c| c == 'H' || c == 'T') && seq.len() == 3 &&
-             seq != used_seq.unwrap_or("")) {
+        if !(seq.chars().all(|c| c == 'H' || c == 'T') && seq.len() == 3
+            && seq != used_seq.unwrap_or(""))
+        {
             println!("Please enter correct sequence!");
             continue;
         }

@@ -1,8 +1,16 @@
 use std::fmt;
 
 const SIZE: usize = 8;
-const MOVES: [(i32, i32); 8] = [(2, 1), (1, 2), (-1, 2), (-2, 1), (-2, -1), (-1, -2), (1, -2),
-                                (2, -1)];
+const MOVES: [(i32, i32); 8] = [
+    (2, 1),
+    (1, 2),
+    (-1, 2),
+    (-2, 1),
+    (-2, -1),
+    (-1, -2),
+    (1, -2),
+    (2, -1),
+];
 
 #[derive(Copy, Clone, Eq, PartialEq, PartialOrd, Ord)]
 struct Point {
@@ -25,7 +33,9 @@ struct Board {
 
 impl Board {
     fn new() -> Board {
-        Board { field: [[0; SIZE]; SIZE] }
+        Board {
+            field: [[0; SIZE]; SIZE],
+        }
     }
 
     fn available(&self, p: Point) -> bool {
@@ -57,9 +67,9 @@ impl fmt::Display for Board {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         for row in &self.field {
             for x in row.iter() {
-                try!(write!(f, "{:3} ", x));
+                write!(f, "{:3} ", x)?;
             }
-            try!(write!(f, "\n"));
+            write!(f, "\n")?;
         }
         Ok(())
     }
@@ -107,21 +117,22 @@ fn main() {
         Some(b) => print!("{}", b),
         None => println!("Fail!"),
     }
-
 }
 
 #[cfg(test)]
 mod tests {
-    use super::{SIZE, knights_tour};
+    use super::{knights_tour, SIZE};
 
-    const ANSWER: [[i32; SIZE]; SIZE] = [[23, 20, 3, 32, 25, 10, 5, 8],
-                                         [2, 33, 24, 21, 4, 7, 26, 11],
-                                         [19, 22, 51, 34, 31, 28, 9, 6],
-                                         [50, 1, 40, 29, 54, 35, 12, 27],
-                                         [41, 18, 55, 52, 61, 30, 57, 36],
-                                         [46, 49, 44, 39, 56, 53, 62, 13],
-                                         [17, 42, 47, 60, 15, 64, 37, 58],
-                                         [48, 45, 16, 43, 38, 59, 14, 63]];
+    const ANSWER: [[i32; SIZE]; SIZE] = [
+        [23, 20, 3, 32, 25, 10, 5, 8],
+        [2, 33, 24, 21, 4, 7, 26, 11],
+        [19, 22, 51, 34, 31, 28, 9, 6],
+        [50, 1, 40, 29, 54, 35, 12, 27],
+        [41, 18, 55, 52, 61, 30, 57, 36],
+        [46, 49, 44, 39, 56, 53, 62, 13],
+        [17, 42, 47, 60, 15, 64, 37, 58],
+        [48, 45, 16, 43, 38, 59, 14, 63],
+    ];
 
     #[test]
     fn test() {

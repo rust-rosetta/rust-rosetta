@@ -15,7 +15,7 @@ struct Point<T> {
 struct TuplePoint<T>(T, T);
 
 fn main() {
-    let p1 = Point { x: 1.0, y: 2.5 };    // p is of type Point<f64>
+    let p1 = Point { x: 1.0, y: 2.5 }; // p is of type Point<f64>
     println!("{}, {}", p1.x, p1.y);
 
     let p2 = TuplePoint(1.0, 2.5);

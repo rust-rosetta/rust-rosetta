@@ -16,7 +16,7 @@ fn main() {
     // *y += 2; //~ ERROR cannot borrow `x` as mutable because it is also borrowed as immutable
 
     let y = &mut x;
-    *y += 2;    // Works
+    *y += 2; // Works
 
     // Note that though y is now a mutable reference, y itself is still immutable e.g.
     // let mut z = 5;

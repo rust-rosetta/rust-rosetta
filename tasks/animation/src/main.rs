@@ -50,7 +50,6 @@ mod graphical {
     }
 }
 
-
 #[cfg(feature = "gtk")]
 fn main() {
     graphical::create_window();

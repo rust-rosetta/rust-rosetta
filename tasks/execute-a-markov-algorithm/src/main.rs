@@ -71,7 +71,6 @@ impl MarkovAlgorithm {
 
     /// Transform a text string by applying the markov algorithm
     pub fn apply(&self, input: &str) -> String {
-
         // get a writable version of the input to work with
         let mut state = input.to_string();
 
@@ -126,8 +125,9 @@ struct RCSample<'a> {
 // Sample markov algorithms from Rosetta Code
 // The extra whitespaces are trimmed when MarkovAlgorithm::parse is called.
 fn get_samples<'a>() -> [RCSample<'a>; 5] {
-    [RCSample {
-         ruleset: r"# This rules file is extracted from Wikipedia:
+    [
+        RCSample {
+            ruleset: r"# This rules file is extracted from Wikipedia:
                 # http://en.wikipedia.org/wiki/Markov_Algorithm
                 A -> apple
                 B -> bag
@@ -135,22 +135,22 @@ fn get_samples<'a>() -> [RCSample<'a>; 5] {
                 T -> the
                 the shop -> my brother
                 a never used -> .terminating rule",
-         input: "I bought a B of As from T S.",
-         expected_result: "I bought a bag of apples from my brother.",
-     },
-     RCSample {
-         ruleset: r"# Slightly modified from the rules on Wikipedia
+            input: "I bought a B of As from T S.",
+            expected_result: "I bought a bag of apples from my brother.",
+        },
+        RCSample {
+            ruleset: r"# Slightly modified from the rules on Wikipedia
                 A -> apple
                 B -> bag
                 S -> .shop
                 T -> the
                 the shop -> my brother
                 a never used -> .terminating rule",
-         input: "I bought a B of As from T S.",
-         expected_result: "I bought a bag of apples from T shop.",
-     },
-     RCSample {
-         ruleset: r"# BNF Syntax testing rules
+            input: "I bought a B of As from T S.",
+            expected_result: "I bought a bag of apples from T shop.",
+        },
+        RCSample {
+            ruleset: r"# BNF Syntax testing rules
                 A -> apple
                 WWWW -> with
                 Bgage -> ->.*
@@ -161,11 +161,12 @@ fn get_samples<'a>() -> [RCSample<'a>; 5] {
                 T -> the
                 the shop -> my brother
                 a never used -> .terminating rule",
-         input: "I bought a B of As W my Bgage from T S.",
-         expected_result: "I bought a bag of apples with my money from T shop.",
-     },
-     RCSample {
-         ruleset: r"### Unary Multiplication Engine, for testing Markov Algorithm implementations
+            input: "I bought a B of As W my Bgage from T S.",
+            expected_result: "I bought a bag of apples with my money from T shop.",
+        },
+        RCSample {
+            ruleset:
+                r"### Unary Multiplication Engine, for testing Markov Algorithm implementations
                 ### By Donal Fellows.
                 # Unary addition engine
                 _+1 -> _1+
@@ -193,11 +194,11 @@ fn get_samples<'a>() -> [RCSample<'a>; 5] {
                 _1 -> 1
                 1+_ -> 1
                 _+_ -> ",
-         input: "_1111*11111_",
-         expected_result: "11111111111111111111",
-     },
-     RCSample {
-         ruleset: r"# Turing machine: three-state busy beaver
+            input: "_1111*11111_",
+            expected_result: "11111111111111111111",
+        },
+        RCSample {
+            ruleset: r"# Turing machine: three-state busy beaver
                 #
                 # state A, symbol 0 => write 1, move right, new state B
                 A0 -> 1B
@@ -215,9 +216,10 @@ fn get_samples<'a>() -> [RCSample<'a>; 5] {
                 # state C, symbol 1 => write 1, move left, halt
                 0C1 -> H01
                 1C1 -> H11",
-         input: "000000A000000",
-         expected_result: "00011H1111000",
-     }]
+            input: "000000A000000",
+            expected_result: "00011H1111000",
+        },
+    ]
 }
 
 fn main() {

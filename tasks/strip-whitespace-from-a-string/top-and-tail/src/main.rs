@@ -4,8 +4,12 @@ fn main() {
     let string_with_spaces = spaces.to_string() + string + spaces;
 
     assert_eq!(string_with_spaces.trim(), string);
-    assert_eq!(string_with_spaces.trim_left().to_string(),
-               string.to_string() + spaces);
-    assert_eq!(string_with_spaces.trim_right().to_string(),
-               spaces.to_string() + string);
+    assert_eq!(
+        string_with_spaces.trim_left().to_string(),
+        string.to_string() + spaces
+    );
+    assert_eq!(
+        string_with_spaces.trim_right().to_string(),
+        spaces.to_string() + string
+    );
 }

@@ -92,6 +92,8 @@ fn test_coherence() {
 #[test]
 fn test_example() {
     let original = "TOBEORNOTTOBEORTOBEORNOT";
-    assert_eq!(compress(original),
-               [84i32, 79, 66, 69, 79, 82, 78, 79, 84, 256, 258, 260, 265, 259, 261, 263]);
+    assert_eq!(
+        compress(original),
+        [84i32, 79, 66, 69, 79, 82, 78, 79, 84, 256, 258, 260, 265, 259, 261, 263,]
+    );
 }

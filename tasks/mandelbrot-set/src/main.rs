@@ -1,8 +1,8 @@
 extern crate image;
 extern crate num_complex;
 
-use std::fs::File;
 use num_complex::Complex;
+use std::fs::File;
 
 fn main() {
     let max_iterations = 256u16;

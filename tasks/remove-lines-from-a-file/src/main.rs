@@ -6,8 +6,8 @@ extern crate serde;
 
 use docopt::Docopt;
 
-use std::io::{BufReader, BufRead};
 use std::fs::File;
+use std::io::{BufRead, BufReader};
 
 const USAGE: &str = r"
 Usage: remove_lines_from_a_file <start> <count> <file>

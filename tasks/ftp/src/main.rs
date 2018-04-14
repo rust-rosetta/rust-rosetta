@@ -2,10 +2,10 @@
 
 extern crate ftp;
 
+use ftp::types::{FileType, Result};
 use ftp::FtpStream;
-use ftp::types::{Result,FileType};
-use std::fs::{File};
-use std::io::{Read,Write};
+use std::fs::File;
+use std::io::{Read, Write};
 
 fn write_file(filename: &str) -> impl Fn(&mut Read) -> Result<()> {
     let filename = filename.to_string();
@@ -16,7 +16,7 @@ fn write_file(filename: &str) -> impl Fn(&mut Read) -> Result<()> {
             match stream.read(&mut buf) {
                 Ok(0) => break,
                 Ok(n) => file.write_all(&buf[0..n]).unwrap(),
-                Err(err) => panic!(err)
+                Err(err) => panic!(err),
             };
         }
         Ok(())
@@ -34,7 +34,7 @@ fn main() {
     // list files in the current directory
     match ftp.list(None) {
         Ok(output) => println!("{}", output.join("")),
-        Err(err) => panic!(err)
+        Err(err) => panic!(err),
     }
 
     // download a file a write it on the disk
@@ -44,10 +44,10 @@ fn main() {
 
 #[cfg(test)]
 mod test {
+    use super::write_file;
+    use ftp::types::FileType;
     use ftp::FtpStream;
     use std::fs;
-    use ftp::types::{FileType};
-    use super::{write_file};
 
     fn connect() -> FtpStream {
         let mut ftp = FtpStream::connect("kernel.org:21").unwrap();
@@ -71,7 +71,8 @@ mod test {
         let mut ftp = connect();
         assert_eq!(
             ftp.list(Some("/")).unwrap().join(""),
-            "drwxr-xr-x    9 ftp      ftp          4096 Dec 01  2011 pub");
+            "drwxr-xr-x    9 ftp      ftp          4096 Dec 01  2011 pub"
+        );
     }
 
     #[ignore]
@@ -93,7 +94,7 @@ mod test {
                 assert_eq!(metadata.len(), 12056);
                 fs::remove_file(filename).unwrap();
             }
-            Err(_) => panic!("file not downloaded")
+            Err(_) => panic!("file not downloaded"),
         }
     }
 }

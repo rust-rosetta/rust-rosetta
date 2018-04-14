@@ -1,5 +1,5 @@
 use std::fs::File;
-use std::io::{BufReader, BufRead};
+use std::io::{BufRead, BufReader};
 
 fn is_ordered(s: &str) -> bool {
     let mut prev = '\x00';

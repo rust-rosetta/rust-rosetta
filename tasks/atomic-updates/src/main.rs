@@ -9,13 +9,13 @@
 
 extern crate rand;
 
+use std::sync::atomic::{AtomicBool, Ordering};
+use std::sync::Arc;
 use std::thread::{self, spawn};
 use std::time::Duration;
-use std::sync::Arc;
-use std::sync::atomic::{AtomicBool, Ordering};
 
-use rand::{Rng, weak_rng};
 use rand::distributions::{IndependentSample, Range};
+use rand::{weak_rng, Rng};
 
 /// The reason I used a module here is simply to keep it clearer who can access what.  Rust
 /// protects against data races just fine, but it's not as good at protecting against deadlocks or
@@ -130,11 +130,7 @@ mod buckets {
             // It's very important to lock our Mutexes in the same order everywhere to avoid
             // deadlock.  We arbitrarily choose the convention that we lock in ascending index
             // order.
-            let (low, high) = if from < to {
-                (b1, b2)
-            } else {
-                (b2, b1)
-            };
+            let (low, high) = if from < to { (b1, b2) } else { (b2, b1) };
             {
                 // The reason we introduce a new scope here is that we want to make it clear how
                 // long we're locking for.  Locks should be held as briefly as possible and
@@ -165,12 +161,17 @@ mod buckets {
             let mut transfers = [0; N_WORKERS];
             // We collect all the locks in order, being careful not to drop any until we're done
             // (so as to preserve consistency of the snapshot).
-            let locks = buckets.iter_mut().zip(self.buckets.iter()).map( |(dest, src)| {
-                let lock = src.mutex.lock();
-                // Is SeqCst necessary here?  Maybe, maybe not, but when in doubt go with SeqCst.
-                *dest = src.data.load(Ordering::SeqCst);
-                lock
-            }).collect::<Vec<_>>();
+            let locks = buckets
+                .iter_mut()
+                .zip(self.buckets.iter())
+                .map(|(dest, src)| {
+                    let lock = src.mutex.lock();
+                    // Is SeqCst necessary here?  Maybe, maybe not, but when in doubt go with
+                    // SeqCst.
+                    *dest = src.data.load(Ordering::SeqCst);
+                    lock
+                })
+                .collect::<Vec<_>>();
             for (dest, src) in transfers.iter_mut().zip(self.transfers.iter()) {
                 // We synchronize with the Acquire in transfer, making sure that our zeroing out
                 // gets noticed.
@@ -235,11 +236,13 @@ fn randomize(bl: &buckets::Buckets, running: &AtomicBool, worker: usize) {
 /// The display task--for a total time of `duration`, it displays information about the update
 /// process and checks to make sure that the invariant (that the total remains constant) is
 /// preserved.  It prints an update `nticks` times, evenly spaced.
-fn display(bl: &buckets::Buckets,
-           running: &AtomicBool,
-           original_total: usize,
-           duration: Duration,
-           nticks: u32) {
+fn display(
+    bl: &buckets::Buckets,
+    running: &AtomicBool,
+    original_total: usize,
+    duration: Duration,
+    nticks: u32,
+) {
     println!("transfers, N. transfers, buckets, buckets sum:");
 
     let duration = duration / nticks;

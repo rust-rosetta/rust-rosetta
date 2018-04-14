@@ -1,6 +1,6 @@
-use std::time::Duration;
 use std::mem;
 use std::thread;
+use std::time::Duration;
 
 #[derive(Copy, Clone)]
 enum Cell {
@@ -25,21 +25,22 @@ impl Cell {
     }
 }
 
-#[cfg_attr(feature="cargo-clippy", allow(match_same_arms))]
+#[cfg_attr(feature = "cargo-clippy", allow(match_same_arms))]
 fn next_world(input: &[Cell], output: &mut [Cell], w: usize, h: usize) {
     for i in 0..(w * h) {
         match input[i] {
             Cell::Empty(c) => output[i] = Cell::Empty(c),
             cell => {
-                let live = vec![input.get(i - w - 1),
-                                input.get(i - w),
-                                input.get(i - w + 1),
-                                input.get(i - 1),
-                                input.get(i + 1),
-                                input.get(i + w - 1),
-                                input.get(i + w),
-                                input.get(i + w + 1)]
-                    .iter()
+                let live = vec![
+                    input.get(i - w - 1),
+                    input.get(i - w),
+                    input.get(i - w + 1),
+                    input.get(i - 1),
+                    input.get(i + 1),
+                    input.get(i + w - 1),
+                    input.get(i + w),
+                    input.get(i + w + 1),
+                ].iter()
                     .fold(0, |sum, &o| {
                         if let Some(&Cell::Alive) = o {
                             sum + 1
@@ -51,8 +52,8 @@ fn next_world(input: &[Cell], output: &mut [Cell], w: usize, h: usize) {
                     (Cell::Alive, 0...1) => Cell::Dead,  // Lonely
                     (Cell::Alive, 4...8) => Cell::Dead,  // Overcrowded
                     (Cell::Alive, 2...3) => Cell::Alive, // Lives
-                    (Cell::Dead, 3) => Cell::Alive, // It takes three to give birth!
-                    _ => Cell::Dead,  // Barren
+                    (Cell::Dead, 3) => Cell::Alive,      // It takes three to give birth!
+                    _ => Cell::Dead,                     // Barren
                 }
             }
         }

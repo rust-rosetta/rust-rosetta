@@ -1,7 +1,7 @@
 extern crate num;
 
+use num::{BigUint, One, Zero};
 use std::cmp::min;
-use num::{BigUint, Zero, One};
 
 pub struct Solver {
     /// The `cache` is a private implementation detail,
@@ -13,7 +13,9 @@ pub struct Solver {
 impl Solver {
     pub fn new() -> Solver {
         // Setup the cache with the initial row
-        Solver { cache: vec![vec![One::one()]] }
+        Solver {
+            cache: vec![vec![One::one()]],
+        }
     }
 
     /// Returns a string representing a line

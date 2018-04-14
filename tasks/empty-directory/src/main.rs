@@ -1,5 +1,5 @@
-use std::fs;
 use std::env::args;
+use std::fs;
 
 fn main() {
     // Open path

@@ -3,11 +3,11 @@ extern crate time;
 
 #[cfg(unix)]
 fn main() {
-    use std::sync::atomic::{AtomicBool, ATOMIC_BOOL_INIT, Ordering};
+    use std::sync::atomic::{AtomicBool, Ordering, ATOMIC_BOOL_INIT};
     use std::thread;
     use std::time::Duration;
 
-    use libc::{SIGINT, sighandler_t};
+    use libc::{sighandler_t, SIGINT};
 
     // The time between ticks of our counter.
     let duration = Duration::from_secs(1) / 2;

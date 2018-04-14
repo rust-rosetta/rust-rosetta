@@ -34,10 +34,7 @@ fn find_divisors(primes: &mut Vec<usize>, num: usize) -> Vec<usize> {
     let ceiling = ((num as f64).sqrt() as usize) + 1;
     add_more_prime_numbers(primes, ceiling);
     // Filter all primes num % p == 0
-    let prime_factors: Vec<usize> = primes.iter()
-        .filter(|&p| num % *p == 0)
-        .cloned()
-        .collect();
+    let prime_factors: Vec<usize> = primes.iter().filter(|&p| num % *p == 0).cloned().collect();
     // Check all k*p p..ceiling
     // Following code is ineffective (due to duplicates) but simple
     for p in prime_factors {
@@ -77,8 +74,10 @@ fn main() {
             max_divs.1.push(n);
         }
     }
-    println!("Most divisors a number within 1 to 20000 has: {}",
-             max_divs.0);
+    println!(
+        "Most divisors a number within 1 to 20000 has: {}",
+        max_divs.0
+    );
     print!("Numbers with {} divisors: ", max_divs.0);
     println!("{:?}", max_divs.1);
 }

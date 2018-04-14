@@ -1,6 +1,6 @@
 extern crate bitmap;
 
-use bitmap::{Image, Color};
+use bitmap::{Color, Image};
 
 fn main() {
     let mut image = Image::new(10, 10);

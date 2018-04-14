@@ -116,13 +116,19 @@ mod tests {
     #[test]
     fn encode() {
         use super::encode_title;
-        assert_eq!(encode_title("K-means++ clustering"), "K-means%2B%2B_clustering");
+        assert_eq!(
+            encode_title("K-means++ clustering"),
+            "K-means%2B%2B_clustering"
+        );
     }
 
     #[test]
     fn decode() {
         use super::decode_title;
-        assert_eq!(decode_title("K-means%2B%2B_clustering"), "K-means++ clustering");
+        assert_eq!(
+            decode_title("K-means%2B%2B_clustering"),
+            "K-means++ clustering"
+        );
     }
 
     #[test]

@@ -152,8 +152,8 @@ impl TaskIndex {
         Self::fetch_tasks(self, &[])
     }
 
-    /// Parses both local (implemented in this repository) and remote (implemented on the wiki) tasks,
-    /// and returns the code of each.
+    /// Parses both local (implemented in this repository) and remote (implemented on the wiki)
+    /// tasks, and returns the code of each.
     pub fn fetch_tasks(&self, tasks: &[String]) -> TaskIterator {
         TaskIterator::new(self, tasks)
     }

@@ -1,6 +1,6 @@
 use std::default::Default;
-use std::io::{Write, BufWriter, Error};
 use std::fs::File;
+use std::io::{BufWriter, Error, Write};
 use std::ops::{Index, IndexMut};
 
 #[derive(Copy, Clone, Default, PartialEq, Debug)]
@@ -34,13 +34,13 @@ impl Image {
     }
 
     pub fn write_ppm(&self, filename: &str) -> Result<(), Error> {
-        let file = try!(File::create(filename));
+        let file = File::create(filename)?;
         let mut writer = BufWriter::new(file);
-        try!(writeln!(&mut writer, "P6"));
-        try!(write!(&mut writer, "{} {} {}\n", self.width, self.height, 255));
+        writeln!(&mut writer, "P6")?;
+        write!(&mut writer, "{} {} {}\n", self.width, self.height, 255)?;
         for color in &(self.data) {
             for channel in &[color.red, color.green, color.blue] {
-                try!(write!(&mut writer, "{}", *channel as u8));
+                write!(&mut writer, "{}", *channel as u8)?;
             }
         }
         Ok(())
@@ -118,12 +118,14 @@ mod tests {
             green: 1,
             blue: 1,
         };
-        assert_eq!(image[(0, 0)],
-                   Color {
-                       red: 1,
-                       green: 1,
-                       blue: 1,
-                   });
+        assert_eq!(
+            image[(0, 0)],
+            Color {
+                red: 1,
+                green: 1,
+                blue: 1,
+            }
+        );
     }
 
     #[test]

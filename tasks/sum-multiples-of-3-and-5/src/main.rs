@@ -8,12 +8,13 @@ fn sum35(lim: u64) -> u64 {
     sum
 }
 
-
 fn main() {
     let limit = 10_000;
-    println!("Sum of multiples of 3 and 5 from 0 till {} are: {}",
-             limit,
-             sum35(limit));
+    println!(
+        "Sum of multiples of 3 and 5 from 0 till {} are: {}",
+        limit,
+        sum35(limit)
+    );
 }
 
 #[test]

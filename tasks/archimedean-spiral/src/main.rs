@@ -29,5 +29,6 @@ fn main() {
     }
 
     // Save the image
-    img.save("archimedean_spiral.bmp").unwrap_or_else(|e| panic!("Failed to save: {}", e));
+    img.save("archimedean_spiral.bmp")
+        .unwrap_or_else(|e| panic!("Failed to save: {}", e));
 }

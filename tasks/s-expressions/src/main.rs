@@ -24,18 +24,18 @@ extern crate test;
 
 use arena::TypedArena;
 
+use self::Error::*;
+use self::SExp::*;
+use self::Token::*;
 use std::io;
 use std::num::FpCategory;
 use std::str::FromStr;
-use self::SExp::*;
-use self::Error::*;
-use self::Token::*;
 
 /// The actual `SExp` structure.  Supports `f64`s, lists, and string literals.  Note that it takes
 /// everything by reference, rather than owning it--this is mostly done just so we can allocate
 /// `SExp`s statically (since we don't have to call `Vec`).  It does complicate the code a bit,
 /// requiring us to have a `ParseContext` that holds an arena where lists are actually allocated.
-#[derive(PartialEq,Debug)]
+#[derive(PartialEq, Debug)]
 enum SExp<'a> {
     /// Float literal: 0.5
     F64(f64),
@@ -113,20 +113,16 @@ impl<'a> Tokens<'a> {
         let mut chars = string.chars();
 
         match chars.next() {
-            Some(ch) => {
-                Tokens {
-                    string: string,
-                    first: Some(ch),
-                    rest: chars.as_str(),
-                }
-            }
-            None => {
-                Tokens {
-                    string: string,
-                    first: None,
-                    rest: string,
-                }
-            }
+            Some(ch) => Tokens {
+                string: string,
+                first: Some(ch),
+                rest: chars.as_str(),
+            },
+            None => Tokens {
+                string: string,
+                first: None,
+                rest: string,
+            },
         }
     }
 
@@ -222,13 +218,10 @@ impl<'a> Tokens<'a> {
 /// twice, but it avoids having to write our own number parsing logic.
 fn parse_literal(literal: &str) -> SExp {
     match literal.bytes().next() {
-        Some(b'0'...b'9') |
-        Some(b'-') => {
-            match f64::from_str(literal) {
-                Ok(f) => F64(f),
-                Err(_) => Str(literal),
-            }
-        }
+        Some(b'0'...b'9') | Some(b'-') => match f64::from_str(literal) {
+            Ok(f) => F64(f),
+            Err(_) => Str(literal),
+        },
         _ => Str(literal),
     }
 }
@@ -264,7 +257,7 @@ impl<'a> SExp<'a> {
                 match f.classify() {
                     // We don't want to identify NaN, Infinity, etc. as floats.
                     FpCategory::Normal | FpCategory::Zero => {
-                        try!(write!(writer, "{}", f));
+                        write!(writer, "{}", f)?;
                         Ok(())
                     }
                     _ => Err(Error::NoReprForFloat),
@@ -275,20 +268,20 @@ impl<'a> SExp<'a> {
                 // recursively call encode on each member, and then write a right parenthesis.  The
                 // only reason the logic is as long as it is is to make sure we don't write
                 // unnecessary spaces between parentheses in the zero or one element cases.
-                try!(write!(writer, "{}", '('));
+                write!(writer, "{}", '(')?;
                 let mut iter = l.iter();
                 if let Some(sexp) = iter.next() {
-                    try!(sexp.encode(writer));
+                    sexp.encode(writer)?;
                     for sexp in iter {
-                        try!(write!(writer, "{}", ' '));
-                        try!(sexp.encode(writer));
+                        write!(writer, "{}", ' ')?;
+                        sexp.encode(writer)?;
                     }
                 }
-                try!(write!(writer, "{}", ')'));
+                write!(writer, "{}", ')')?;
                 Ok(())
             }
             Str(s) => {
-                try!(write!(writer, "\"{}\"", s));
+                write!(writer, "\"{}\"", s)?;
                 Ok(())
             }
         }
@@ -303,7 +296,11 @@ impl<'a> SExp<'a> {
             Some(ref mut arena) => arena,
             None => unreachable!(),
         };
-        let ParseContext { string, ref mut stack, .. } = *ctx;
+        let ParseContext {
+            string,
+            ref mut stack,
+            ..
+        } = *ctx;
         // Make sure the stack is cleared--we keep it in the context to avoid unnecessary
         // reallocation between parses (if you need to remember old parse information for a new
         // list, you can pass in a new context).
@@ -312,10 +309,10 @@ impl<'a> SExp<'a> {
         // First, we check the very first token to see if we're parsing a full list.  It
         // simplifies parsing a lot in the subsequent code if we can assume that.
         let next = tokens.next_token();
-        let mut list = match try!(next) {
+        let mut list = match next? {
             ListStart => Vec::new(),
             Literal(s) => {
-                return if try!(tokens.next_token()) == EOF {
+                return if tokens.next_token()? == EOF {
                     Ok(s)
                 } else {
                     Err(ExpectedEOF)
@@ -328,7 +325,7 @@ impl<'a> SExp<'a> {
         // We know we're in a list if we got this far.
         loop {
             let tok = tokens.next_token();
-            match try!(tok) {
+            match tok? {
                 ListStart => {
                     // We push the previous context onto our stack when we start reading a new list.
                     stack.push(list);
@@ -336,7 +333,8 @@ impl<'a> SExp<'a> {
                 }
                 Literal(s) => list.push(s), // Plain old literal, push it onto the current list
                 ListEnd => {
-                    match stack.pop() { // Pop the old context off the stack on list end.
+                    match stack.pop() {
+                        // Pop the old context off the stack on list end.
                         Some(mut l) => {
                             // We allocate a slot for the current list in our parse context (needed
                             // for safety) before pushing it onto its parent list.
@@ -348,7 +346,7 @@ impl<'a> SExp<'a> {
                         // The check to make sure there are no more tokens is required for
                         // correctness.
                         None => {
-                            return match try!(tokens.next_token()) {
+                            return match tokens.next_token()? {
                                 EOF => Ok(List(&*arena.alloc(list))),
                                 _ => Err(ExpectedEOF),
                             }
@@ -364,7 +362,7 @@ impl<'a> SExp<'a> {
     /// Convenience method for the common case where you just want to encode a SExp as a String.
     fn buffer_encode(&self) -> Result<String, Error> {
         let mut m = Vec::new();
-        try!(self.encode(&mut m));
+        self.encode(&mut m)?;
         // Because encode() only ever writes valid UTF-8, we can safely skip the secondary check we
         // normally have to do when converting from Vec<u8> to String.  If we didn't know that the
         // buffer was already UTF-8, we'd want to call container_as_str() here.
@@ -372,10 +370,13 @@ impl<'a> SExp<'a> {
     }
 }
 
-const SEXP_STRUCT: SExp<'static> =
-    List(&[List(&[Str("data"), Str("quoted data"), F64(123.), F64(4.5)]),
-           List(&[Str("data"),
-                  List(&[Str("!@#"), List(&[F64(4.5)]), Str("(more"), Str("data)")])])]);
+const SEXP_STRUCT: SExp<'static> = List(&[
+    List(&[Str("data"), Str("quoted data"), F64(123.), F64(4.5)]),
+    List(&[
+        Str("data"),
+        List(&[Str("!@#"), List(&[F64(4.5)]), Str("(more"), Str("data)")]),
+    ]),
+]);
 
 fn try_encode() -> Result<String, Error> {
     SEXP_STRUCT.buffer_encode()

@@ -1,5 +1,3 @@
-#![feature(inclusive_range_syntax)]
-
 use std::u8;
 
 fn main() {

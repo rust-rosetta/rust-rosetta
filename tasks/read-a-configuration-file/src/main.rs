@@ -1,7 +1,7 @@
-use std::fs::File;
-use std::io::{self, BufReader, BufRead};
-use std::path::Path;
 use std::collections::HashMap;
+use std::fs::File;
+use std::io::{self, BufRead, BufReader};
+use std::path::Path;
 
 #[derive(Debug)]
 enum ConfigVariable {
@@ -29,7 +29,6 @@ impl FromConfig for bool {
             Some(&ConfigVariable::Boolean(value)) => Ok(value),
             _ => Ok(false),
         }
-
     }
 }
 
@@ -39,7 +38,6 @@ impl FromConfig for Vec<String> {
             Some(&ConfigVariable::Vector(ref value)) => Ok(value.clone()),
             _ => Err(format!("Unknown configuration parameter: {:?}", key)),
         }
-
     }
 }
 
@@ -50,20 +48,18 @@ struct ConfigParams {
 
 impl ConfigParams {
     fn new() -> ConfigParams {
-        ConfigParams { params: HashMap::new() }
+        ConfigParams {
+            params: HashMap::new(),
+        }
     }
 
     fn parse<P: AsRef<Path>>(path: P) -> ConfigParams {
         let conf_file = File::open(path).unwrap();
         let content = BufReader::new(conf_file);
 
-        let is_not_comment = |x: &Result<String, io::Error>| {
-            match *x {
-                Err(_) => false,
-                Ok(ref line) => {
-                    !(line.starts_with('#') || line.starts_with(';') || line.is_empty())
-                }
-            }
+        let is_not_comment = |x: &Result<String, io::Error>| match *x {
+            Err(_) => false,
+            Ok(ref line) => !(line.starts_with('#') || line.starts_with(';') || line.is_empty()),
         };
         let mut params = ConfigParams::new();
         for line in content.lines().filter(is_not_comment) {
@@ -84,16 +80,20 @@ impl ConfigParams {
             }
             Some(value) => {
                 if value.contains(',') {
-                    self.params.insert(key,
-                                       ConfigVariable::Vector(value.split(',')
-                                           .map(|item| item.trim().to_owned())
-                                           .collect()));
+                    self.params.insert(
+                        key,
+                        ConfigVariable::Vector(
+                            value
+                                .split(',')
+                                .map(|item| item.trim().to_owned())
+                                .collect(),
+                        ),
+                    );
                 } else {
                     self.params.insert(key, ConfigVariable::String(value));
                 }
             }
         }
-
     }
 
     fn param<T: FromConfig>(&self, key: &str) -> Result<T, String> {
@@ -124,7 +124,9 @@ mod tests {
         assert_eq!(params.param::<String>("favouritefruit").unwrap(), "banana");
         assert!(params.param::<bool>("needspeeling").unwrap());
         assert!(!params.param::<bool>("seedsremoved").unwrap());
-        assert_eq!(params.param::<Vec<String>>("otherfamily").unwrap(),
-                   vec!["Rhu Barber", "Harry Barber"]);
+        assert_eq!(
+            params.param::<Vec<String>>("otherfamily").unwrap(),
+            vec!["Rhu Barber", "Harry Barber"]
+        );
     }
 }

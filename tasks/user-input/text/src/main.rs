@@ -1,15 +1,15 @@
 //! This program demonstrates proper error handling.
 
-use std::io::{self, Write};
 use std::fmt::Display;
+use std::io::{self, Write};
 use std::process;
 
 fn grab_input(msg: &str) -> io::Result<String> {
     let mut buf = String::new();
     print!("{}: ", msg);
-    try!(io::stdout().flush());
+    io::stdout().flush()?;
 
-    try!(io::stdin().read_line(&mut buf));
+    io::stdin().read_line(&mut buf)?;
     Ok(buf)
 }
 

@@ -27,7 +27,11 @@ fn count_pythagorean_triples(below: u64) -> (u64, u64) {
             // Explore the children of the current node
             queue.push_back((a - 2 * b + 2 * c, 2 * a - b + 2 * c, 2 * a - 2 * b + 3 * c));
             queue.push_back((a + 2 * b + 2 * c, 2 * a + b + 2 * c, 2 * a + 2 * b + 3 * c));
-            queue.push_back((-a + 2 * b + 2 * c, -2 * a + b + 2 * c, -2 * a + 2 * b + 3 * c));
+            queue.push_back((
+                -a + 2 * b + 2 * c,
+                -2 * a + b + 2 * c,
+                -2 * a + 2 * b + 3 * c,
+            ));
         }
     }
 
@@ -37,10 +41,10 @@ fn count_pythagorean_triples(below: u64) -> (u64, u64) {
 fn main() {
     for n in 1..9 {
         let (tot, prim) = count_pythagorean_triples(10u64.pow(n));
-        println!("Up to 10^{}: {:>10} triples {:>10} primitives",
-                 n,
-                 tot,
-                 prim);
+        println!(
+            "Up to 10^{}: {:>10} triples {:>10} primitives",
+            n, tot, prim
+        );
     }
 }
 

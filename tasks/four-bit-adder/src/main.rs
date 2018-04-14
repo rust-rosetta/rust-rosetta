@@ -1,5 +1,5 @@
-use std::ops::Deref;
 use std::fmt;
+use std::ops::Deref;
 
 // primitive gates
 fn not(a: bool) -> bool {
@@ -56,17 +56,13 @@ impl Nibble {
 
 impl fmt::Display for Nibble {
     fn fmt(&self, f: &mut fmt::Formatter) -> Result<(), fmt::Error> {
-        write!(f,
-               "{}",
-               self.iter()
-                   .map(|&b| {
-                if b {
-                    '1'
-                } else {
-                    '0'
-                }
-            })
-                   .collect::<String>())
+        write!(
+            f,
+            "{}",
+            self.iter()
+                .map(|&b| if b { '1' } else { '0' })
+                .collect::<String>()
+        )
     }
 }
 
@@ -97,14 +93,16 @@ fn main() {
     let b = 6;
     let nib_b = Nibble::from_u8(b);
     let (result, carry) = four_bit_adder(nib_a, nib_b, false);
-    println!("{} + {} = {} | {} + {} = {} | overflow: {}",
-             a,
-             b,
-             result.to_u8(carry),
-             nib_a,
-             nib_b,
-             result,
-             carry)
+    println!(
+        "{} + {} = {} | {} + {} = {} | overflow: {}",
+        a,
+        b,
+        result.to_u8(carry),
+        nib_a,
+        nib_b,
+        result,
+        carry
+    )
 }
 
 #[test]

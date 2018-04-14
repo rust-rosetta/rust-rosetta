@@ -1,10 +1,10 @@
 #![feature(io)]
 
-use std::io::BufReader;
-use std::io::prelude::*;
+use std::collections::HashMap;
 use std::fs::File;
 use std::hash::Hash;
-use std::collections::HashMap;
+use std::io::prelude::*;
+use std::io::BufReader;
 
 /// Returns a `HashMap` of each letter and its count
 fn count_chars<I, T: Hash + Eq>(chars: I) -> HashMap<T, usize>

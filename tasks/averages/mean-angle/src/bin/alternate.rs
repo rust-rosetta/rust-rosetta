@@ -3,7 +3,8 @@
 use std::f64::consts::PI;
 
 fn mean_angle(angles: &[f64]) -> f64 {
-    let (sum_cos, sum_sin) = angles.iter()
+    let (sum_cos, sum_sin) = angles
+        .iter()
         .map(|&x| x * PI / 180.)
         .map(|x| (x.cos(), x.sin()))
         .fold((0., 0.), |(sc, ss), (c, s)| (sc + c, ss + s));

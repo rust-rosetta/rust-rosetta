@@ -12,5 +12,4 @@ fn main() {
     if !false_value {
         println!("bar is {}.", false_value);
     }
-
 }

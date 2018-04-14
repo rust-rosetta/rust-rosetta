@@ -4,7 +4,9 @@ use std::sync::Arc;
 
 // Arc<Box<Closure>>
 macro_rules! abc {
-    ($x:expr) => (Arc::new(Box::new($x)));
+    ($x:expr) => {
+        Arc::new(Box::new($x))
+    };
 }
 
 #[derive(Clone)]
@@ -32,9 +34,9 @@ pub fn y<A: 'static>(f: RecFunc<A>) -> Func<A> {
 
 #[macro_export]
 macro_rules! y {
-    (|$name:ident| $fun:tt) => {
+    (| $name:ident | $fun:tt) => {
         y(abc!(|$name| abc!($fun)))
-    }
+    };
 }
 
 fn fac(n: u32) -> u32 {

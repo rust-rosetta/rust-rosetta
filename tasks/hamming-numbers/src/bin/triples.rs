@@ -6,13 +6,13 @@ extern crate num;
 
 extern crate hamming_numbers;
 
-use std::ops::Mul;
 use std::cmp::Ordering;
-use std::cmp::Ordering::{Less, Equal, Greater};
+use std::cmp::Ordering::{Equal, Greater, Less};
+use std::ops::Mul;
 
+use num::bigint::{BigUint, ToBigUint};
 use num::pow;
 use num::traits::One;
-use num::bigint::{BigUint, ToBigUint};
 
 use hamming_numbers::{Hamming, HammingNumber};
 
@@ -74,33 +74,36 @@ impl One for HammingTriple {
 
 impl HammingNumber for HammingTriple {
     fn multipliers() -> (HammingTriple, HammingTriple, HammingTriple) {
-        (HammingTriple {
-            pow_2: 1,
-            pow_3: 0,
-            pow_5: 0,
-            ln: LN_2,
-        },
-         HammingTriple {
-            pow_2: 0,
-            pow_3: 1,
-            pow_5: 0,
-            ln: LN_3,
-        },
-         HammingTriple {
-            pow_2: 0,
-            pow_3: 0,
-            pow_5: 1,
-            ln: LN_5,
-        })
+        (
+            HammingTriple {
+                pow_2: 1,
+                pow_3: 0,
+                pow_5: 0,
+                ln: LN_2,
+            },
+            HammingTriple {
+                pow_2: 0,
+                pow_3: 1,
+                pow_5: 0,
+                ln: LN_3,
+            },
+            HammingTriple {
+                pow_2: 0,
+                pow_3: 0,
+                pow_5: 1,
+                ln: LN_5,
+            },
+        )
     }
 }
 
 impl ToBigUint for HammingTriple {
     /// calculate the value as a `BigUint`
     fn to_biguint(&self) -> Option<BigUint> {
-        Some(pow(2u8.to_biguint().unwrap(), self.pow_2) *
-             pow(3u8.to_biguint().unwrap(), self.pow_3) *
-             pow(5u8.to_biguint().unwrap(), self.pow_5))
+        Some(
+            pow(2u8.to_biguint().unwrap(), self.pow_2) * pow(3u8.to_biguint().unwrap(), self.pow_3)
+                * pow(5u8.to_biguint().unwrap(), self.pow_5),
+        )
     }
 }
 
@@ -127,11 +130,13 @@ impl PartialOrd for HammingTriple {
     fn partial_cmp(&self, other: &HammingTriple) -> Option<Ordering> {
         if self == other {
             Some(Equal)
-        } else if ((self.pow_2 >= other.pow_2) && (self.pow_3 >= other.pow_3) &&
-            (self.pow_5 >= other.pow_5)) || (self.ln > other.ln) {
+        } else if ((self.pow_2 >= other.pow_2) && (self.pow_3 >= other.pow_3)
+            && (self.pow_5 >= other.pow_5)) || (self.ln > other.ln)
+        {
             Some(Greater)
-        } else if ((self.pow_2 <= other.pow_2) && (self.pow_3 <= other.pow_3) &&
-            (self.pow_5 <= other.pow_5)) || (self.ln < other.ln) {
+        } else if ((self.pow_2 <= other.pow_2) && (self.pow_3 <= other.pow_3)
+            && (self.pow_5 <= other.pow_5)) || (self.ln < other.ln)
+        {
             Some(Less)
         } else {
             None
@@ -162,7 +167,8 @@ fn hamming_iter_1million() {
                                     0000000000000000000000";
 
     // one-million-th hamming number has index 999_999 because indexes are zero-based
-    assert_eq!(hamming.nth(999_999).unwrap().to_biguint(),
-               millionth_hamming_number.parse::<BigUint>()
-                   .ok());
+    assert_eq!(
+        hamming.nth(999_999).unwrap().to_biguint(),
+        millionth_hamming_number.parse::<BigUint>().ok()
+    );
 }

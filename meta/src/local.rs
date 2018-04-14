@@ -10,8 +10,8 @@ use reqwest::Url;
 use toml::Value;
 use walkdir::WalkDir;
 
-use TASK_URL_RE;
 use remote;
+use TASK_URL_RE;
 
 /// A local (in repository) implementation of a Rosetta Code task.
 #[derive(Debug, Clone)]
@@ -97,7 +97,7 @@ fn parse_rosetta_url<P>(manifest_path: P) -> Result<Url, Error>
 where
     P: AsRef<Path>,
 {
-    let manifest: Value = fs::read_string(manifest_path)?.parse()?;
+    let manifest: Value = fs::read_to_string(manifest_path)?.parse()?;
 
     let url = manifest
         .get("package")

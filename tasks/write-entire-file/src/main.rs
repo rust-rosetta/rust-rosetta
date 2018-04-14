@@ -1,5 +1,5 @@
-use std::io::prelude::*;
 use std::fs::OpenOptions;
+use std::io::prelude::*;
 
 fn main() {
     let contents = r"(Over)write a file so that it contains a string.

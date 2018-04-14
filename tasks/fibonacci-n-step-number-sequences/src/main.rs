@@ -14,11 +14,11 @@ struct GenFibonacci {
 impl Iterator for GenFibonacci {
     type Item = u64;
     fn next(&mut self) -> Option<u64> {
-        let result = self.sum;                      // capture current sum
-        self.sum += result - self.buf[self.idx];    // add new elt, subtract old
-        self.buf[self.idx] = result;                // write new elt to buffer
+        let result = self.sum; // capture current sum
+        self.sum += result - self.buf[self.idx]; // add new elt, subtract old
+        self.buf[self.idx] = result; // write new elt to buffer
         self.idx = (self.idx + 1) % self.buf.len(); // advance index
-        Some(result)                                // return result
+        Some(result) // return result
     }
 }
 
@@ -78,7 +78,6 @@ mod tests {
         test(vec![2, 1], vec![2, 1, 3, 4, 7, 11, 18, 29, 47, 76]);
     }
 }
-
 
 // main() should print:
 // Fib2:	1	1	2	3	5	8	13	21	34	55

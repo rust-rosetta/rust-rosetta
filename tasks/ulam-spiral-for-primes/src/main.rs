@@ -33,10 +33,11 @@ struct Ulam {
 impl fmt::Display for Ulam {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         for row in &self.u {
-            write!(f,
-                   "{}\n",
-                   format!("{:?}", row).replace("\"", "").replace(", ", ""))
-                .unwrap();
+            write!(
+                f,
+                "{}\n",
+                format!("{:?}", row).replace("\"", "").replace(", ", "")
+            ).unwrap();
         }
         write!(f, "\n")
     }
@@ -47,11 +48,7 @@ fn generate(n: u32, s: u32, c: char) -> Ulam {
     let mut spiral = vec![vec!["".to_string(); n as usize]; n as usize];
     let mut dir = RIGHT;
     let mut y = (n / 2) as usize;
-    let mut x = if n % 2 == 0 {
-        y - 1
-    } else {
-        y
-    }; // shift left for even n's
+    let mut x = if n % 2 == 0 { y - 1 } else { y }; // shift left for even n's
     for j in s..n * n + s {
         spiral[y][x] = if is_prime(j) {
             if c == '\0' {

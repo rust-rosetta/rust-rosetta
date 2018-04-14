@@ -19,7 +19,6 @@ mod tests {
         assert_eq!(increment("47").unwrap(), "48".to_owned());
     }
 
-
     #[test]
     fn not_numeric() {
         assert!(increment("abc").is_err());

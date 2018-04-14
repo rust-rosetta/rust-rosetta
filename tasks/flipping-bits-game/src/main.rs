@@ -29,7 +29,7 @@ impl Board {
         // Ensure we make a board with a non-zero size
         if size > 0 {
             Board {
-                cells: vec![false; size*size],
+                cells: vec![false; size * size],
                 size: size,
             }
         } else {
@@ -91,7 +91,7 @@ impl Board {
         // Ensure we make a board with a non-zero size
         if size > 0 {
             // Make a vector of the board size
-            let mut cells: Vec<bool> = vec![false; size*size];
+            let mut cells: Vec<bool> = vec![false; size * size];
             // Loop through all the cells
             for cell in &mut cells {
                 // Give it a random state
@@ -144,17 +144,17 @@ impl fmt::Display for Board {
         // Get the string width of the size of the board
         let width = (self.size - 1).to_string().len();
         // Write the initial spaces (upper left)
-        try!(write!(f, "{space: >0$}", width, space = " "));
+        write!(f, "{space: >0$}", width, space = " ")?;
         // Write the column numbers
         for i in 0..self.size {
-            try!(write!(f, " {offset:>0$}", width, offset = i));
+            write!(f, " {offset:>0$}", width, offset = i)?;
         }
         // Newline for rows
-        try!(write!(f, "\n"));
+        write!(f, "\n")?;
         // Loop through the rows
         for row in 0..self.size {
             // Write the row number
-            try!(write!(f, "{row:>0$}", width, row = row));
+            write!(f, "{row:>0$}", width, row = row)?;
             // Loop through the columns
             for col in 0..self.size {
                 // Get the value of the cell as 1 or 0
@@ -164,10 +164,10 @@ impl fmt::Display for Board {
                     0
                 };
                 // Write the column value
-                try!(write!(f, " {col:>0$}", width, col = p));
+                write!(f, " {col:>0$}", width, col = p)?;
             }
             // Newline for next row
-            try!(write!(f, "\n"));
+            write!(f, "\n")?;
         }
         // Return Formatter result
         write!(f, "")
@@ -232,14 +232,18 @@ fn main() {
                             if x < size {
                                 x
                             } else {
-                                println!("Error: Must specify a row or column within size({})",
-                                         size);
+                                println!(
+                                    "Error: Must specify a row or column within size({})",
+                                    size
+                                );
                                 continue 'userinput;
                             }
                         }
                         Err(_) => {
-                            println!("Error: '{}': Unable to parse row or column number",
-                                     input[1..].to_string());
+                            println!(
+                                "Error: '{}': Unable to parse row or column number",
+                                input[1..].to_string()
+                            );
                             continue 'userinput;
                         }
                     };

@@ -6,15 +6,14 @@
 /// trait Copy.
 ///
 /// The index of a node in the vector store should not be confused with its key.
-
 extern crate rand;
 extern crate term_painter;
 
 use rand::Rng;
 use std::cmp::Ordering;
 use std::fmt::{Debug, Display, Formatter, Result};
-use term_painter::ToStyle;
 use term_painter::Color::*;
+use term_painter::ToStyle;
 
 pub type NodePtr = Option<usize>;
 
@@ -178,7 +177,7 @@ impl<K: Ord + Copy + Debug + Display, V: Debug + Copy + Display> AVLTree<K, V> {
             return (Some(n), Side::Root);
         }
 
-        let mut p = self.root;      // Possibly None
+        let mut p = self.root; // Possibly None
         let mut prev = p;
         let mut side = Side::Left;
         while p.is_some() {
@@ -224,12 +223,11 @@ impl<K: Ord + Copy + Debug + Display, V: Debug + Copy + Display> AVLTree<K, V> {
         let mut is_left = side == Side::Left;
 
         while p.is_some() {
-
             let i_c = get_insertion_constants(is_left);
 
             let b = self.increment_balance(p, i_c.bal_incr);
             if b == 0 {
-                break;  // No further adjustments necessary
+                break; // No further adjustments necessary
             } else if b.abs() > 1 {
                 let child_p = self.get_pointer(p, i_c.this_side);
                 match self.get_balance(child_p) * b {
@@ -363,7 +361,7 @@ impl<K: Ord + Copy + Debug + Display, V: Debug + Copy + Display> AVLTree<K, V> {
                 res = prev;
             }
 
-            // Is this a one-child node?
+        // Is this a one-child node?
         } else if n.left.is_none() || n.right.is_none() {
             let ch = if n.left.is_some() {
                 n.left
@@ -385,8 +383,8 @@ impl<K: Ord + Copy + Debug + Display, V: Debug + Copy + Display> AVLTree<K, V> {
                 res = prev;
             }
 
-            // Complicated case:  two children, do delete-by-copy. Replace n with its first
-            // predecessor (the mirror image using the first successor would work as well).
+        // Complicated case:  two children, do delete-by-copy. Replace n with its first
+        // predecessor (the mirror image using the first successor would work as well).
         } else {
             let mut tmp = n.left;
             let mut last = tmp;
@@ -469,7 +467,7 @@ impl<K: Ord + Copy + Debug + Display, V: Debug + Copy + Display> AVLTree<K, V> {
                         self.set_balance(p, d_c.bal_incr);
                         p = self.get_pointer(p, Side::Up);
                         self.set_balance(p, -d_c.bal_incr);
-                        break;  // No height change
+                        break; // No height change
                     }
                     -2 => {
                         // +1/-1/x & -1/+1/x patterns
@@ -586,18 +584,24 @@ impl<K: Ord + Copy + Debug + Display, V: Debug + Copy + Display> AVLTree<K, V> {
             for e in elems.clone() {
                 let _ = write!(f, "{}", e.string());
             }
-            let _ = write!(f,
-                           "{key:>width$} ",
-                           key = Green.bold().paint(node.key),
-                           width = 2);
-            let _ = write!(f,
-                           "{value:>width$} ",
-                           value = Blue.bold().paint(format!("{:.*}", 2, node.value)),
-                           width = 4);
-            let _ = write!(f,
-                           "{bal:<-width$}\n",
-                           bal = Red.bold().paint(node.balance),
-                           width = 2);
+            let _ = write!(
+                f,
+                "{key:>width$} ",
+                key = Green.bold().paint(node.key),
+                width = 2
+            );
+            let _ = write!(
+                f,
+                "{value:>width$} ",
+                value = Blue.bold().paint(format!("{:.*}", 2, node.value)),
+                width = 4
+            );
+            let _ = write!(
+                f,
+                "{bal:<-width$}\n",
+                bal = Red.bold().paint(node.balance),
+                width = 2
+            );
 
             elems[hindex] = tail;
         }
@@ -781,15 +785,17 @@ pub fn random_bal_tree(n: u32) -> AVLTree<i32, f32> {
     let mut rng = rand::thread_rng();
     tree.insert_bal(0, rng.gen_range(-1f32, 1f32));
     for _ in 0..n {
-        tree.insert_bal(rng.gen_range(-(n as i32) / 2, (n as i32) / 2),
-                        rng.gen_range(-1f32, 1f32));
+        tree.insert_bal(
+            rng.gen_range(-(n as i32) / 2, (n as i32) / 2),
+            rng.gen_range(-1f32, 1f32),
+        );
     }
     tree
 }
 
 #[cfg(test)]
 mod tests {
-    use rand::{thread_rng, seq};
+    use rand::{seq, thread_rng};
 
     use super::AVLTree;
     use random_bal_tree;
@@ -808,10 +814,14 @@ mod tests {
         assert_eq!(tree.lookup(-8), Some(-8.8));
 
         let s = &tree.store;
-        assert_eq!(s[s[s[tree.root.unwrap()].right.unwrap()].right.unwrap()].value,
-                   12.12);
-        assert_eq!(s[s[s[tree.root.unwrap()].right.unwrap()].right.unwrap()].left,
-                   None);
+        assert_eq!(
+            s[s[s[tree.root.unwrap()].right.unwrap()].right.unwrap()].value,
+            12.12
+        );
+        assert_eq!(
+            s[s[s[tree.root.unwrap()].right.unwrap()].right.unwrap()].left,
+            None
+        );
     }
 
     #[test]

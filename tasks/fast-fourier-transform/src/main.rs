@@ -1,7 +1,7 @@
 extern crate num;
 
-use std::f32::consts::PI;
 use num::complex::Complex;
+use std::f32::consts::PI;
 use std::iter::repeat;
 
 fn fft(arr: &[Complex<f32>]) -> Vec<Complex<f32>> {
@@ -35,14 +35,16 @@ fn fft(arr: &[Complex<f32>]) -> Vec<Complex<f32>> {
 }
 
 fn main() {
-    let test = [Complex::new(1f32, 0f32),
-                Complex::new(1f32, 0f32),
-                Complex::new(1f32, 0f32),
-                Complex::new(1f32, 0f32),
-                Complex::new(0f32, 0f32),
-                Complex::new(0f32, 0f32),
-                Complex::new(0f32, 0f32),
-                Complex::new(0f32, 0f32)];
+    let test = [
+        Complex::new(1f32, 0f32),
+        Complex::new(1f32, 0f32),
+        Complex::new(1f32, 0f32),
+        Complex::new(1f32, 0f32),
+        Complex::new(0f32, 0f32),
+        Complex::new(0f32, 0f32),
+        Complex::new(0f32, 0f32),
+        Complex::new(0f32, 0f32),
+    ];
 
     let test_fft = fft(&test[..]);
     println!("{:?}", test_fft);
@@ -55,22 +57,26 @@ mod tests {
 
     #[test]
     fn transform() {
-        let test = [Complex::new(1f32, 0f32),
-                    Complex::new(1f32, 0f32),
-                    Complex::new(1f32, 0f32),
-                    Complex::new(1f32, 0f32),
-                    Complex::new(0f32, 0f32),
-                    Complex::new(0f32, 0f32),
-                    Complex::new(0f32, 0f32),
-                    Complex::new(0f32, 0f32)];
-        let target = [Complex::new(4f32, 0f32),
-                      Complex::new(1f32, -2.414f32),
-                      Complex::new(0f32, 0f32),
-                      Complex::new(1f32, -0.414f32),
-                      Complex::new(0f32, 0f32),
-                      Complex::new(1f32, 0.414f32),
-                      Complex::new(0f32, 0f32),
-                      Complex::new(1f32, 2.414f32)];
+        let test = [
+            Complex::new(1f32, 0f32),
+            Complex::new(1f32, 0f32),
+            Complex::new(1f32, 0f32),
+            Complex::new(1f32, 0f32),
+            Complex::new(0f32, 0f32),
+            Complex::new(0f32, 0f32),
+            Complex::new(0f32, 0f32),
+            Complex::new(0f32, 0f32),
+        ];
+        let target = [
+            Complex::new(4f32, 0f32),
+            Complex::new(1f32, -2.414f32),
+            Complex::new(0f32, 0f32),
+            Complex::new(1f32, -0.414f32),
+            Complex::new(0f32, 0f32),
+            Complex::new(1f32, 0.414f32),
+            Complex::new(0f32, 0f32),
+            Complex::new(1f32, 2.414f32),
+        ];
 
         let test_fft = fft(&test[..]);
         println!("{:?}", target.to_vec());

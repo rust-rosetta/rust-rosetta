@@ -3,7 +3,9 @@ extern crate num;
 use num::traits::{PrimInt, Zero};
 
 fn horner<T: PrimInt + Zero>(cs: &[T], x: T) -> T {
-    cs.iter().rev().fold(Zero::zero(), |acc: T, c| (acc * x) + (*c))
+    cs.iter()
+        .rev()
+        .fold(Zero::zero(), |acc: T, c| (acc * x) + (*c))
 }
 
 fn main() {

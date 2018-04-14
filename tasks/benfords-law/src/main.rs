@@ -1,7 +1,7 @@
 //! Contributed by Gavin Baker <gavinb@antonym.org>
 
 use std::fs::File;
-use std::io::{BufReader, BufRead};
+use std::io::{BufRead, BufReader};
 
 /// Calculate the expected frequency of a digit according to Benford's Law
 fn benford_freq(d: u64) -> f32 {
@@ -21,7 +21,6 @@ fn first_digit_of(n: u64) -> usize {
 
 /// Count frequency table using the first digit of each number in a vector
 fn benford_distrib(numbers: &[u64]) -> Vec<f32> {
-
     // Counts
 
     let mut counts = [0u64; 10];
@@ -71,10 +70,9 @@ fn main() {
         let found_pc = found_distrib[digit] * 100.0;
         let delta_pc = expected_pc - found_pc;
 
-        println!("{}        {:>4.1}%      {:>4.1}%    {:>5.2}%",
-                 digit,
-                 expected_pc,
-                 found_pc,
-                 delta_pc);
+        println!(
+            "{}        {:>4.1}%      {:>4.1}%    {:>5.2}%",
+            digit, expected_pc, found_pc, delta_pc
+        );
     }
 }

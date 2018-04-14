@@ -7,10 +7,7 @@ struct Hailstone {
 impl Hailstone {
     /// Define a constructor for the struct.
     fn new(n: usize) -> Hailstone {
-        Hailstone {
-            next: n,
-            start: n,
-        }
+        Hailstone { next: n, start: n }
     }
 }
 
@@ -53,11 +50,13 @@ fn main() {
     // Find the hailstone for 27.
     let two_seven = Hailstone::new(27).collect::<Vec<usize>>();
     let ts_len = two_seven.len();
-    println!("Testing: {}, Length: {}, Values: {:?}...{:?}",
-             two_seven[0],
-             ts_len,
-             &two_seven[0..4],
-             &two_seven[ts_len - 4..]);
+    println!(
+        "Testing: {}, Length: {}, Values: {:?}...{:?}",
+        two_seven[0],
+        ts_len,
+        &two_seven[0..4],
+        &two_seven[ts_len - 4..]
+    );
 
     // Find the longest.
     let (biggest, length) = biggest_hailstone(100_000);

@@ -2,8 +2,8 @@ extern crate reqwest;
 
 use std::io::Read;
 
-use reqwest::Client;
 use reqwest::header::{Authorization, Basic, Connection};
+use reqwest::Client;
 
 fn main() {
     let client = Client::new();

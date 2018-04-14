@@ -1,7 +1,7 @@
 //! Examples of various Rust collections. Contains both original examples and those taken from the
 //! standard API documentation.
 
-use std::collections::{BinaryHeap, BTreeMap, HashMap, HashSet, LinkedList, VecDeque};
+use std::collections::{BTreeMap, BinaryHeap, HashMap, HashSet, LinkedList, VecDeque};
 
 fn main() {
     // Stack-allocated collections
@@ -21,7 +21,7 @@ fn main() {
     // strings)
     let array = [1, 2, 3, 4, 5];
     let slice = &array[0..2];
-    println!("{:?}", slice);    // Output: [1, 2]
+    println!("{:?}", slice); // Output: [1, 2]
 
     // String slice
     //
@@ -61,7 +61,7 @@ fn main() {
     // Strings are growable strings stored as a UTF-8 buffer which are just Vec<u8>s under the
     // hood. Like strs, they are not indexable (for the same reasons) but iterators can be created
     // over the graphemes, codepoints or bytes therein.
-    let x = "abc";      // x is of type &str (a borrowed string slice)
+    let x = "abc"; // x is of type &str (a borrowed string slice)
     let s1 = String::from(x);
     assert_eq!(x, &s1);
 
@@ -99,7 +99,7 @@ fn main() {
     a.append(&mut b);
 
     for e in &a {
-        println!("{}", e);      // prints 1, then 2, then 3, then 4
+        println!("{}", e); // prints 1, then 2, then 3, then 4
     }
 
     // HashMap

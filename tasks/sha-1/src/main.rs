@@ -1,16 +1,21 @@
 #![cfg_attr(feature = "cargo-clippy", allow(many_single_char_names, needless_range_loop))]
 
 //! Straight port from golang crypto/sha1 library implementation
+use std::io::{Result, Write};
 use std::num::Wrapping as wr;
-use std::io::{Write, Result};
 
 /// The size of a SHA1 checksum in bytes.
 const SIZE: usize = 20;
 
 /// The blocksize of SHA1 in bytes.
 const CHUNK: usize = 64;
-const INIT: [wr<u32>; 5] =
-    [wr(0x6745_2301), wr(0xEFCD_AB89), wr(0x98BA_DCFE), wr(0x1032_5476), wr(0xC3D2_E1F0)];
+const INIT: [wr<u32>; 5] = [
+    wr(0x6745_2301),
+    wr(0xEFCD_AB89),
+    wr(0x98BA_DCFE),
+    wr(0x1032_5476),
+    wr(0xC3D2_E1F0),
+];
 
 fn main() {
     let mut d = Digest::new();
@@ -90,8 +95,8 @@ impl Digest {
         while p.len() >= CHUNK {
             for i in 0..16 {
                 let j = i * 4;
-                w[i] = u32::from(p[j]) << 24 | u32::from(p[j + 1]) << 16 |
-                       u32::from(p[j + 2]) << 8 | u32::from(p[j + 3]);
+                w[i] = u32::from(p[j]) << 24 | u32::from(p[j + 1]) << 16 | u32::from(p[j + 2]) << 8
+                    | u32::from(p[j + 3]);
             }
 
             let (mut a, mut b, mut c, mut d, mut e) = (h0, h1, h2, h3, h4);
@@ -174,7 +179,7 @@ impl Default for Digest {
 
 impl Write for Digest {
     fn write(&mut self, buf: &[u8]) -> Result<usize> {
-        try!(self.write_all(buf));
+        self.write_all(buf)?;
         Ok(buf.len())
     }
 
@@ -222,15 +227,29 @@ impl Write for Digest {
 
 #[test]
 fn known_sha1s() {
-    let input_output = [("His money is twice tainted: 'taint yours and 'taint mine.",
-                         [0x59u8, 0x7f, 0x6a, 0x54, 0x0, 0x10, 0xf9, 0x4c, 0x15, 0xd7, 0x18, 0x6,
-                          0xa9, 0x9a, 0x2c, 0x87, 0x10, 0xe7, 0x47, 0xbd]),
-                        ("The quick brown fox jumps over the lazy dog",
-                         [0x2fu8, 0xd4, 0xe1, 0xc6, 0x7a, 0x2d, 0x28, 0xfc, 0xed, 0x84, 0x9e,
-                          0xe1, 0xbb, 0x76, 0xe7, 0x39, 0x1b, 0x93, 0xeb, 0x12]),
-                        ("The quick brown fox jumps over the lazy cog",
-                         [0xdeu8, 0x9f, 0x2c, 0x7f, 0xd2, 0x5e, 0x1b, 0x3a, 0xfa, 0xd3, 0xe8,
-                          0x5a, 0x0b, 0xd1, 0x7d, 0x9b, 0x10, 0x0d, 0xb4, 0xb3])];
+    let input_output = [
+        (
+            "His money is twice tainted: 'taint yours and 'taint mine.",
+            [
+                0x59u8, 0x7f, 0x6a, 0x54, 0x0, 0x10, 0xf9, 0x4c, 0x15, 0xd7, 0x18, 0x6, 0xa9, 0x9a,
+                0x2c, 0x87, 0x10, 0xe7, 0x47, 0xbd,
+            ],
+        ),
+        (
+            "The quick brown fox jumps over the lazy dog",
+            [
+                0x2fu8, 0xd4, 0xe1, 0xc6, 0x7a, 0x2d, 0x28, 0xfc, 0xed, 0x84, 0x9e, 0xe1, 0xbb,
+                0x76, 0xe7, 0x39, 0x1b, 0x93, 0xeb, 0x12,
+            ],
+        ),
+        (
+            "The quick brown fox jumps over the lazy cog",
+            [
+                0xdeu8, 0x9f, 0x2c, 0x7f, 0xd2, 0x5e, 0x1b, 0x3a, 0xfa, 0xd3, 0xe8, 0x5a, 0x0b,
+                0xd1, 0x7d, 0x9b, 0x10, 0x0d, 0xb4, 0xb3,
+            ],
+        ),
+    ];
 
     for &(i, o) in &input_output {
         let mut d = Digest::new();

@@ -1,7 +1,7 @@
 extern crate rand;
 
-use std::fmt;
 use rand::Rng;
+use std::fmt;
 use Pip::*;
 use Suit::*;
 
@@ -21,8 +21,9 @@ enum Pip {
     Queen,
     King,
 }
-static PIPS: [Pip; 13] = [Ace, Two, Three, Four, Five, Six, Seven, Eight, Nine, Ten, Jack, Queen,
-                          King];
+static PIPS: [Pip; 13] = [
+    Ace, Two, Three, Four, Five, Six, Seven, Eight, Nine, Ten, Jack, Queen, King,
+];
 
 #[derive(Copy, Clone, Debug)]
 enum Suit {
@@ -78,7 +79,7 @@ impl Default for Deck {
 impl fmt::Display for Deck {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         for card in &self.0 {
-            try!(writeln!(f, "{}", card));
+            writeln!(f, "{}", card)?;
         }
         write!(f, "")
     }

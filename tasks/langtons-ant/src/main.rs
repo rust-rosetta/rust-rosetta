@@ -6,7 +6,7 @@ struct Ant {
     dir: Direction,
 }
 
-#[derive(Clone,Copy)]
+#[derive(Clone, Copy)]
 enum Direction {
     North,
     East,
@@ -37,7 +37,6 @@ impl Ant {
             East => self.x += Wrapping(1),
             West => self.x -= Wrapping(1),
         }
-
     }
 }
 
@@ -74,13 +73,7 @@ fn main() {
         // using iterator methods to quickly convert the vector
         // to a string
         let string = each.iter()
-            .map(|&x| {
-                if x == 0 {
-                    " "
-                } else {
-                    "#"
-                }
-            })
+            .map(|&x| if x == 0 { " " } else { "#" })
             .fold(String::new(), |x, y| x + y);
         println!("{}", string);
     }

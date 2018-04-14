@@ -36,18 +36,20 @@ fn main() {
 
 #[test]
 fn test_is_self_describing() {
-    let tests = [(0, false),
-                 (1, false),
-                 (200, false),
-                 (1337, false),
-                 (2020, true),
-                 (1210, true),
-                 (21200, true),
-                 (3211000, true),
-                 (42101000, true),
-                 (43101000, false),
-                 (521001000, true),
-                 (6210001000, true)];
+    let tests = [
+        (0, false),
+        (1, false),
+        (200, false),
+        (1337, false),
+        (2020, true),
+        (1210, true),
+        (21200, true),
+        (3211000, true),
+        (42101000, true),
+        (43101000, false),
+        (521001000, true),
+        (6210001000, true),
+    ];
 
     for &(n, expected) in &tests {
         assert_eq!(is_self_describing(n), expected);

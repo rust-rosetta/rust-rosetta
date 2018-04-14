@@ -1,5 +1,5 @@
-use std::collections::{BinaryHeap, HashMap, VecDeque};
 use std::cmp::Ordering;
+use std::collections::{BinaryHeap, HashMap, VecDeque};
 use std::usize;
 
 type Node = usize;

@@ -1,9 +1,9 @@
 extern crate chrono;
 
-use std::fs::OpenOptions;
-use std::io::{self, BufReader, BufWriter};
-use std::io::prelude::*;
 use std::env;
+use std::fs::OpenOptions;
+use std::io::prelude::*;
+use std::io::{self, BufReader, BufWriter};
 
 const FILENAME: &str = "NOTES.TXT";
 

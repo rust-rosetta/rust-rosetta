@@ -14,10 +14,7 @@ fn is_kprime(mut n: usize, k: usize) -> bool {
 }
 
 fn get_kprimes(k: usize, amount: usize) -> Vec<usize> {
-    (2..)
-        .filter(|&x| is_kprime(x, k))
-        .take(amount)
-        .collect()
+    (2..).filter(|&x| is_kprime(x, k)).take(amount).collect()
 }
 
 fn main() {

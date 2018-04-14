@@ -12,12 +12,11 @@ enum Ip {
 fn get_ips(host: &str) -> io::Result<Vec<Ip>> {
     use std::net::{self, SocketAddr};
 
-    let hosts = try!(net::lookup_host(host));
-    let ips: Vec<_> = hosts.filter_map(|h| {
-            match h {
-                SocketAddr::V4(s_v4) => Some(Ip::V4(*s_v4.ip())),
-                SocketAddr::V6(s_v6) => Some(Ip::V6(*s_v6.ip())),
-            }
+    let hosts = net::lookup_host(host)?;
+    let ips: Vec<_> = hosts
+        .filter_map(|h| match h {
+            SocketAddr::V4(s_v4) => Some(Ip::V4(*s_v4.ip())),
+            SocketAddr::V6(s_v6) => Some(Ip::V6(*s_v6.ip())),
         })
         .collect();
     Ok(ips)
@@ -34,7 +33,7 @@ fn main() {
 
 #[cfg(test)]
 mod tests {
-    use super::{Ip, get_ips};
+    use super::{get_ips, Ip};
     use std::net::{Ipv4Addr, Ipv6Addr};
     use std::str::FromStr;
 

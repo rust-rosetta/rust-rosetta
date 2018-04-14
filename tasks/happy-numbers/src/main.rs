@@ -30,10 +30,7 @@ fn is_happy(mut x: usize) -> bool {
 
 fn main() {
     // Print the first 8 happy numbers
-    let v: Vec<usize> = (1..)
-        .filter(|x| is_happy(*x))
-        .take(8)
-        .collect();
+    let v: Vec<usize> = (1..).filter(|x| is_happy(*x)).take(8).collect();
     println!("{:?}", v)
 }
 

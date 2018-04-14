@@ -12,17 +12,20 @@ use std::iter;
 // Another is that iterators cannot be resused once consumed, so it is often
 // required to make many clones of iterators.
 macro_rules! continued_fraction {
-    ($a:expr, $b:expr ; $iterations:expr) => (
+    ($a:expr, $b:expr; $iterations:expr) => {
         ($a).zip($b)
             .take($iterations)
-            .collect::<Vec<_>>().iter()
+            .collect::<Vec<_>>()
+            .iter()
             .rev()
             .fold(0f64, |acc: f64, &(x, y)| {
                 f64::from(x) + (f64::from(y) / acc)
             })
-    );
+    };
 
-    ($a:expr, $b:expr) => (continued_fraction!($a, $b ; 1000));
+    ($a:expr, $b:expr) => {
+        continued_fraction!($a, $b ; 1000)
+    };
 }
 
 fn main() {
@@ -31,12 +34,10 @@ fn main() {
     let sqrt2_b = iter::repeat(1);
     println!("{}", continued_fraction!(sqrt2_a, sqrt2_b));
 
-
     // Napier's Constant
     let napier_a = (2..3).chain(1..);
     let napier_b = (1..2).chain(1..);
     println!("{}", continued_fraction!(napier_a, napier_b));
-
 
     // Pi
     let pi_a = (3..4).chain(iter::repeat(6));
@@ -44,7 +45,7 @@ fn main() {
     println!("{}", continued_fraction!(pi_a, pi_b));
 }
 
-#[cfg_attr(feature="cargo-clippy", allow(float_cmp, approx_constant))]
+#[cfg_attr(feature = "cargo-clippy", allow(float_cmp, approx_constant))]
 #[cfg(test)]
 mod tests {
     use std::iter;
@@ -55,13 +56,19 @@ mod tests {
         let sqrt2_b = iter::repeat(1);
 
         // Note that we must clone the iterator here if we want to reuse
-        assert_eq!(continued_fraction!(sqrt2_a.clone(), sqrt2_b.clone() ; 10),
-                   1.4142131979695431f64);
+        assert_eq!(
+            continued_fraction!(sqrt2_a.clone(), sqrt2_b.clone() ; 10),
+            1.4142131979695431f64
+        );
 
-        assert_eq!(continued_fraction!(sqrt2_a.clone(), sqrt2_b.clone()),
-                   continued_fraction!(sqrt2_a.clone(), sqrt2_b.clone() ; 1000));
+        assert_eq!(
+            continued_fraction!(sqrt2_a.clone(), sqrt2_b.clone()),
+            continued_fraction!(sqrt2_a.clone(), sqrt2_b.clone() ; 1000)
+        );
 
-        assert_eq!(continued_fraction!(sqrt2_a, sqrt2_b ; 73),
-                   1.4142135623730951f64);
+        assert_eq!(
+            continued_fraction!(sqrt2_a, sqrt2_b ; 73),
+            1.4142135623730951f64
+        );
     }
 }

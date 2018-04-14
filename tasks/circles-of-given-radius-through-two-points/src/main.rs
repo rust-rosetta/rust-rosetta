@@ -3,7 +3,7 @@
 use std::f64;
 use std::fmt;
 
-#[derive(Clone,Copy)]
+#[derive(Clone, Copy)]
 struct Point {
     x: f64,
     y: f64,
@@ -29,71 +29,89 @@ fn describe_circle(p1: Point, p2: Point, r: f64) {
             println!("Infinitely many circles can be drawn through {}", p1);
         }
     } else if (sep - 2.0 * r).abs() < f64::EPSILON {
-        println!("Given points are opposite ends of a diameter of the circle with center \
-                  ({:.4},{:.4}) and r {:.4}",
-                 (p1.x + p2.x) / 2.0,
-                 (p1.y + p2.y) / 2.0,
-                 r);
+        println!(
+            "Given points are opposite ends of a diameter of the circle with center \
+             ({:.4},{:.4}) and r {:.4}",
+            (p1.x + p2.x) / 2.0,
+            (p1.y + p2.y) / 2.0,
+            r
+        );
     } else if (sep - 2.0 * r).abs() < f64::EPSILON {
-        println!("Given points are farther away from each other than a diameter of a circle with \
-                  r {:.4}",
-                 r);
+        println!(
+            "Given points are farther away from each other than a diameter of a circle with \
+             r {:.4}",
+            r
+        );
     } else {
         let mirror_dist = (r.powi(2) - (sep / 2.0).powi(2)).sqrt();
 
         println!("Two circles are possible.");
-        println!("Circle C1 with center ({:.4}, {:.4}), r {:.4} and Circle C2 with center \
-                  ({:.4}, {:.4}), r {:.4}",
-                 ((p1.x + p2.x) / 2.0) + mirror_dist * (p1.y - p2.y) / sep,
-                 (p1.y + p2.y) / 2.0 + mirror_dist * (p2.x - p1.x) / sep,
-                 r,
-                 (p1.x + p2.x) / 2.0 - mirror_dist * (p1.y - p2.y) / sep,
-                 (p1.y + p2.y) / 2.0 - mirror_dist * (p2.x - p1.x) / sep,
-                 r);
+        println!(
+            "Circle C1 with center ({:.4}, {:.4}), r {:.4} and Circle C2 with center \
+             ({:.4}, {:.4}), r {:.4}",
+            ((p1.x + p2.x) / 2.0) + mirror_dist * (p1.y - p2.y) / sep,
+            (p1.y + p2.y) / 2.0 + mirror_dist * (p2.x - p1.x) / sep,
+            r,
+            (p1.x + p2.x) / 2.0 - mirror_dist * (p1.y - p2.y) / sep,
+            (p1.y + p2.y) / 2.0 - mirror_dist * (p2.x - p1.x) / sep,
+            r
+        );
     }
 }
 
 fn main() {
-    let points = vec![(Point {
-                          x: 0.1234,
-                          y: 0.9876,
-                      },
-                       Point {
-                          x: 0.8765,
-                          y: 0.2345,
-                      }),
-                      (Point {
-                          x: 0.0000,
-                          y: 2.0000,
-                      },
-                       Point {
-                          x: 0.0000,
-                          y: 0.0000,
-                      }),
-                      (Point {
-                          x: 0.1234,
-                          y: 0.9876,
-                      },
-                       Point {
-                          x: 0.1234,
-                          y: 0.9876,
-                      }),
-                      (Point {
-                          x: 0.1234,
-                          y: 0.9876,
-                      },
-                       Point {
-                          x: 0.8765,
-                          y: 0.2345,
-                      }),
-                      (Point {
-                          x: 0.1234,
-                          y: 0.9876,
-                      },
-                       Point {
-                          x: 0.1234,
-                          y: 0.9876,
-                      })];
+    let points = vec![
+        (
+            Point {
+                x: 0.1234,
+                y: 0.9876,
+            },
+            Point {
+                x: 0.8765,
+                y: 0.2345,
+            },
+        ),
+        (
+            Point {
+                x: 0.0000,
+                y: 2.0000,
+            },
+            Point {
+                x: 0.0000,
+                y: 0.0000,
+            },
+        ),
+        (
+            Point {
+                x: 0.1234,
+                y: 0.9876,
+            },
+            Point {
+                x: 0.1234,
+                y: 0.9876,
+            },
+        ),
+        (
+            Point {
+                x: 0.1234,
+                y: 0.9876,
+            },
+            Point {
+                x: 0.8765,
+                y: 0.2345,
+            },
+        ),
+        (
+            Point {
+                x: 0.1234,
+                y: 0.9876,
+            },
+            Point {
+                x: 0.1234,
+                y: 0.9876,
+            },
+        ),
+    ];
     let radii: Vec<f64> = vec![2.0, 1.0, 2.0, 0.5, 0.0];
 
     for (p, r) in points.into_iter().zip(radii.into_iter()) {

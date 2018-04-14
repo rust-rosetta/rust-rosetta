@@ -2,7 +2,7 @@
 #[macro_use]
 extern crate meta;
 
-#[cfg_attr(feature="clippy", allow(needless_range_loop))]
+#[cfg_attr(feature = "clippy", allow(needless_range_loop))]
 fn selection_sort<T: Ord>(v: &mut [T]) {
     if v.is_empty() {
         return;

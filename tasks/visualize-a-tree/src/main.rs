@@ -131,7 +131,7 @@ impl<K: Ord + Copy + Debug + Display, V: Debug + Copy + Display> Tree<K, V> {
             return Some(n);
         }
 
-        let mut p = self.root;      // Possibly None
+        let mut p = self.root; // Possibly None
         let mut prev = p;
         let mut side = Side::Left;
         while let Some(_) = p {
@@ -209,14 +209,18 @@ impl<K: Ord + Copy + Debug + Display, V: Debug + Copy + Display> Tree<K, V> {
         for e in elems.clone() {
             let _ = write!(f, "{}", e.string());
         }
-        let _ = write!(f,
-                       "{key:>width$} ",
-                       key = Green.bold().paint(node.key),
-                       width = 2);
-        let _ = write!(f,
-                       "{value:>width$}\n",
-                       value = Blue.bold().paint(format!("{:.*}", 2, node.value)),
-                       width = 4);
+        let _ = write!(
+            f,
+            "{key:>width$} ",
+            key = Green.bold().paint(node.key),
+            width = 2
+        );
+        let _ = write!(
+            f,
+            "{value:>width$}\n",
+            value = Blue.bold().paint(format!("{:.*}", 2, node.value)),
+            width = 4
+        );
 
         // Overwrite last element before continuing traversal
         elems[hindex] = tail;
@@ -242,8 +246,10 @@ fn random_tree(n: u32) -> Tree<i32, f32> {
     let mut rng = rand::thread_rng();
     tree.insert(0, rng.gen_range(-1f32, 1f32));
     for _ in 0..n - 1 {
-        tree.insert(rng.gen_range(-(n as i32) / 2, (n as i32) / 2),
-                    rng.gen_range(-1f32, 1f32));
+        tree.insert(
+            rng.gen_range(-(n as i32) / 2, (n as i32) / 2),
+            rng.gen_range(-1f32, 1f32),
+        );
     }
     tree
 }
@@ -308,15 +314,24 @@ mod tests {
         assert!(tree.insert(4, 4.4).is_some());
         tree.insert(12, 12.12);
 
-        assert_eq!(tree._get_value(tree.get_pointer(tree.root, Side::Left)),
-                   -8.8);
-        assert_eq!(tree._get_value(tree.get_pointer(tree.get_pointer(tree.root, Side::Right),
-                                                    Side::Right)),
-                   12.12);
-        assert_eq!(tree.get_pointer(tree.get_pointer(tree.get_pointer(tree.root, Side::Right),
-                                                     Side::Right),
-                                    Side::Left),
-                   None);
+        assert_eq!(
+            tree._get_value(tree.get_pointer(tree.root, Side::Left)),
+            -8.8
+        );
+        assert_eq!(
+            tree._get_value(tree.get_pointer(
+                tree.get_pointer(tree.root, Side::Right),
+                Side::Right
+            )),
+            12.12
+        );
+        assert_eq!(
+            tree.get_pointer(
+                tree.get_pointer(tree.get_pointer(tree.root, Side::Right), Side::Right),
+                Side::Left
+            ),
+            None
+        );
 
         tree = random_tree(100);
         assert!(tree.store.len() > 0);

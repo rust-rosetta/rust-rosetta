@@ -43,22 +43,32 @@ impl From<reqwest::Error> for ParseError {
 fn construct_query_category(category: &str) -> Url {
     let mut base_url = Url::parse("http://rosettacode.org/mw/api.php").unwrap();
     let cat = format!("Category:{}", category);
-    let query_pairs = vec![("action", "query"),
-                           ("format", "json"),
-                           ("list", "categorymembers"),
-                           ("cmlimit", "500"),
-                           ("cmtitle", &cat),
-                           ("continue", "")];
-    base_url.query_pairs_mut().extend_pairs(query_pairs.into_iter());
+    let query_pairs = vec![
+        ("action", "query"),
+        ("format", "json"),
+        ("list", "categorymembers"),
+        ("cmlimit", "500"),
+        ("cmtitle", &cat),
+        ("continue", ""),
+    ];
+    base_url
+        .query_pairs_mut()
+        .extend_pairs(query_pairs.into_iter());
     base_url
 }
 
 fn construct_query_task_content(task_id: &str) -> Url {
     let mut base_url = Url::parse("http://rosettacode.org/mw/api.php").unwrap();
-    let mut query_pairs =
-        vec![("action", "query"), ("format", "json"), ("prop", "revisions"), ("rvprop", "content")];
+    let mut query_pairs = vec![
+        ("action", "query"),
+        ("format", "json"),
+        ("prop", "revisions"),
+        ("rvprop", "content"),
+    ];
     query_pairs.push(("pageids", task_id));
-    base_url.query_pairs_mut().extend_pairs(query_pairs.into_iter());
+    base_url
+        .query_pairs_mut()
+        .extend_pairs(query_pairs.into_iter());
     base_url
 }
 
@@ -67,11 +77,15 @@ fn query_api(url: Url) -> Result<Value, ParseError> {
 }
 
 fn parse_all_tasks(reply: &Value) -> Result<Vec<Task>, ParseError> {
-    let tasks_json = reply.pointer("/query/categorymembers")
+    let tasks_json = reply
+        .pointer("/query/categorymembers")
         .and_then(|tasks| tasks.as_array())
         .ok_or(ParseError::UnexpectedFormat)?;
 
-    tasks_json.iter().map(|json| Task::deserialize(json).map_err(From::from)).collect()
+    tasks_json
+        .iter()
+        .map(|json| Task::deserialize(json).map_err(From::from))
+        .collect()
 }
 
 fn count_number_examples(task: &Value, task_id: u64) -> Result<u32, ParseError> {

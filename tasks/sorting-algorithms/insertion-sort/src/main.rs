@@ -3,7 +3,8 @@
 extern crate meta;
 
 fn insertion_sort<T>(arr: &mut [T])
-    where T: Ord
+where
+    T: Ord,
 {
     for i in 1..arr.len() {
         let mut j = i;

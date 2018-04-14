@@ -1,9 +1,9 @@
 //! Implements with the sorting indexes algorithm explained in the [discussion page].
 //!
 //! [discussion page]:http://rosettacode.org/wiki/Talk:Zig-zag_matrix
-use std::iter::repeat;
 use std::cmp::Ordering;
-use std::cmp::Ordering::{Less, Equal, Greater};
+use std::cmp::Ordering::{Equal, Greater, Less};
+use std::iter::repeat;
 
 #[derive(Debug, PartialEq, Eq)]
 struct SortIndex {
@@ -63,10 +63,12 @@ fn main() {
 
 #[test]
 fn result() {
-    let exp = vec![vec![0, 1, 5, 6, 14],
-                   vec![2, 4, 7, 13, 15],
-                   vec![3, 8, 12, 16, 21],
-                   vec![9, 11, 17, 20, 22],
-                   vec![10, 18, 19, 23, 24]];
+    let exp = vec![
+        vec![0, 1, 5, 6, 14],
+        vec![2, 4, 7, 13, 15],
+        vec![3, 8, 12, 16, 21],
+        vec![9, 11, 17, 20, 22],
+        vec![10, 18, 19, 23, 24],
+    ];
     assert_eq!(zigzag(5), exp);
 }

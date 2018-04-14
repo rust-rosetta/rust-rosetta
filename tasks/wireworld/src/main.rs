@@ -36,15 +36,16 @@ fn next_world(input: &[Cell], output: &mut [Cell], w: usize, h: usize) {
             Cell::Tail => output[i] = Cell::Conductor,
             Cell::Head => output[i] = Cell::Tail,
             Cell::Conductor => {
-                let nc = vec![input.get(i - w - 1),
-                              input.get(i - w),
-                              input.get(i - w + 1),
-                              input.get(i - 1),
-                              input.get(i + 1),
-                              input.get(i + w - 1),
-                              input.get(i + w),
-                              input.get(i + w + 1)]
-                    .iter()
+                let nc = vec![
+                    input.get(i - w - 1),
+                    input.get(i - w),
+                    input.get(i - w + 1),
+                    input.get(i - 1),
+                    input.get(i + 1),
+                    input.get(i + w - 1),
+                    input.get(i + w),
+                    input.get(i + w + 1),
+                ].iter()
                     .fold(0, |sum, &o| {
                         if let Some(&Cell::Head) = o {
                             sum + 1

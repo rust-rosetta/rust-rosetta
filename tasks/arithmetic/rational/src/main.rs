@@ -2,9 +2,9 @@ extern crate num;
 
 use std::cmp::Ordering;
 use std::fmt;
-use std::ops::{Add, Mul, Neg, Sub, Div};
+use std::ops::{Add, Div, Mul, Neg, Sub};
 
-use num::{Zero, One};
+use num::{One, Zero};
 
 fn main() {
     for p in perfect_numbers(1 << 19) {

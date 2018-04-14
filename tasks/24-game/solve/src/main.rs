@@ -69,19 +69,25 @@ fn compute_all_operations(l: &[Rational]) -> Vec<(Rational, String)> {
 
 #[test]
 fn test_rationals_macro() {
-    assert_eq!(// without the rationals! macro
-               [Ratio::from_integer(1),
-                Ratio::from_integer(2),
-                Ratio::from_integer(3),
-                Ratio::from_integer(4)],
-    // with the rationals! macro
-               (rationals![1, 2, 3, 4]));
+    assert_eq!(
+        // without the rationals! macro
+        [
+            Ratio::from_integer(1),
+            Ratio::from_integer(2),
+            Ratio::from_integer(3),
+            Ratio::from_integer(4),
+        ],
+        // with the rationals! macro
+        (rationals![1, 2, 3, 4])
+    );
 }
 
 #[test]
 #[ignore]
 fn test_solve() {
     let mut r = rationals![1, 3, 7, 9];
-    assert_eq!(solve(&mut r[..], 24),
-               Some("(9 / (3 / (1 + 7)))".to_string()));
+    assert_eq!(
+        solve(&mut r[..], 24),
+        Some("(9 / (3 / (1 + 7)))".to_string())
+    );
 }

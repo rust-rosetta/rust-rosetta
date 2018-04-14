@@ -1,8 +1,8 @@
-use std::collections::{HashMap, HashSet};
 use std::collections::hash_map::Entry::{Occupied, Vacant};
+use std::collections::{HashMap, HashSet};
 use std::fs::File;
-use std::io::BufReader;
 use std::io::prelude::*;
+use std::io::BufReader;
 
 fn sorted_characters(string: &str) -> String {
     let mut chars = string.chars().collect::<Vec<char>>();
@@ -32,11 +32,9 @@ fn anagrams<T: Iterator<Item = String>>(lines: T) -> HashMap<String, HashSet<Str
 
 /// Returns the groups of anagrams that contain the most words in them
 fn largest_groups(groups: &HashMap<String, HashSet<String>>) -> HashMap<String, HashSet<String>> {
-    let max_length = groups.iter()
-        .map(|(_, group)| group.len())
-        .max()
-        .unwrap();
-    groups.iter()
+    let max_length = groups.iter().map(|(_, group)| group.len()).max().unwrap();
+    groups
+        .iter()
         .filter_map(|(key, group)| {
             if group.len() == max_length {
                 Some((key.clone(), group.clone()))

@@ -24,9 +24,11 @@ fn factorial_loop(n: usize) -> usize {
 }
 
 fn main() {
-    let fs = vec![("Recursive", factorial_recursive as fn(usize) -> usize),
-                  ("Iterative", factorial_iterative as fn(usize) -> usize),
-                  ("Looooooop", factorial_loop as fn(usize) -> usize)];
+    let fs = vec![
+        ("Recursive", factorial_recursive as fn(usize) -> usize),
+        ("Iterative", factorial_iterative as fn(usize) -> usize),
+        ("Looooooop", factorial_loop as fn(usize) -> usize),
+    ];
     for (name, f) in fs {
         println!("---------\n{}", name);
         for i in 1..10 {
@@ -37,8 +39,8 @@ fn main() {
 
 #[cfg(test)]
 mod tests {
-    use super::{factorial_recursive, factorial_iterative, factorial_loop};
     use super::test::{self, Bencher};
+    use super::{factorial_iterative, factorial_loop, factorial_recursive};
 
     /// Tests
     fn t(f: fn(usize) -> usize) {

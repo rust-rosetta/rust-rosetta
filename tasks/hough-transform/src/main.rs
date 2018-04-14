@@ -1,8 +1,8 @@
 //! Contributed by Gavin Baker <gavinb@antonym.org>
 //! Adapted from the Go version
 
-use std::io::{BufReader, BufRead, BufWriter, Write, Read};
 use std::fs::File;
+use std::io::{BufRead, BufReader, BufWriter, Read, Write};
 use std::iter::repeat;
 
 /// Simple 8-bit grayscale image
@@ -64,10 +64,10 @@ fn save_pgm(img: &ImageGray8, filename: &str) {
         println!("Failed to write header: {}", e);
     }
 
-    println!("Writing pgm file {}: {} x {}",
-             filename,
-             img.width,
-             img.height);
+    println!(
+        "Writing pgm file {}: {} x {}",
+        filename, img.width, img.height
+    );
 
     // Write binary image data
     if let Err(e) = file.write_all(&(img.data[..])) {

@@ -29,7 +29,6 @@ pub struct IterMut<'a, T: 'a> {
     next: Option<&'a mut Item<T>>,
 }
 
-
 impl<T> Queue<T> {
     pub fn new() -> Self {
         Queue {
@@ -79,11 +78,15 @@ impl<T> Queue<T> {
     }
 
     pub fn iter(&self) -> Iter<T> {
-        Iter { next: self.head.as_ref().map(|item| &**item) }
+        Iter {
+            next: self.head.as_ref().map(|item| &**item),
+        }
     }
 
     pub fn iter_mut(&mut self) -> IterMut<T> {
-        IterMut { next: self.head.as_mut().map(|item| &mut **item) }
+        IterMut {
+            next: self.head.as_mut().map(|item| &mut **item),
+        }
     }
 }
 

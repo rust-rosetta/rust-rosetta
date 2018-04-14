@@ -1,5 +1,5 @@
-use std::fs::OpenOptions;
 use std::env;
+use std::fs::OpenOptions;
 use std::str::FromStr;
 
 fn main() {

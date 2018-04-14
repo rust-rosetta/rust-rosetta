@@ -79,9 +79,9 @@ Not sure how to help?
 
 * Your code should build without warnings on latest nightly provided by [`rustup.rs`](https://rustup.rs).
 
-* Please, use [`rustfmt`](https://github.com/rust-lang-nursery/rustfmt) on your code.
+* Use [`rustfmt`](https://github.com/rust-lang-nursery/rustfmt) on your code. If your formatting does not match `rustfmt`, the build will fail.
 
-    You can install the tool with `cargo install rustfmt`. See `rustfmt --help` for more information. If you're having trouble getting `rustfmt` to work, try to keep your contributions adherent to the official style guide which you can see at [this location](http://doc.rust-lang.org/nightly/style/). Note the style guide is still a work-in-progress.
+    You can install the tool with `rustup component add rustfmt-preview`. See `cargo fmt --help` for more information.
 
 * Stage your changes for commit, adding new and modified files to it:
 

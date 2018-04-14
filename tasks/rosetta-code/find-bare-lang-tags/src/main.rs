@@ -42,9 +42,14 @@ fn main() {
         let num_bare = result.1;
 
         if num_bare > 0 {
-            println!("{} in {}",
-                     result.1,
-                     result.0.to_owned().unwrap_or_else(|| String::from("no language")));
+            println!(
+                "{} in {}",
+                result.1,
+                result
+                    .0
+                    .to_owned()
+                    .unwrap_or_else(|| String::from("no language"))
+            );
         }
     }
 }

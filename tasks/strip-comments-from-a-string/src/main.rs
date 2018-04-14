@@ -5,7 +5,11 @@ fn strip_comments(str: &str) -> &str {
 
 #[test]
 fn test_strip_comments() {
-    let inputs = ["apples, pears # and bananas", "apples, pears ; and bananas", "  apples, pears "];
+    let inputs = [
+        "apples, pears # and bananas",
+        "apples, pears ; and bananas",
+        "  apples, pears ",
+    ];
     let output = "apples, pears";
 
     for &input in &inputs {
@@ -14,7 +18,11 @@ fn test_strip_comments() {
 }
 
 fn main() {
-    let inputs = ["apples, pears # and bananas", "apples, pears ; and bananas", "  apples, pears "];
+    let inputs = [
+        "apples, pears # and bananas",
+        "apples, pears ; and bananas",
+        "  apples, pears ",
+    ];
 
     for &input in &inputs {
         println!("Input: {}\nStripped: {}", input, strip_comments(input))

@@ -4,13 +4,14 @@
 
 use std::cell::Cell;
 
-fn a(k: i32,
-     x1: &Fn() -> i32,
-     x2: &Fn() -> i32,
-     x3: &Fn() -> i32,
-     x4: &Fn() -> i32,
-     x5: &Fn() -> i32)
-     -> i32 {
+fn a(
+    k: i32,
+    x1: &Fn() -> i32,
+    x2: &Fn() -> i32,
+    x3: &Fn() -> i32,
+    x4: &Fn() -> i32,
+    x5: &Fn() -> i32,
+) -> i32 {
     let k = Cell::new(k);
 
     let (b, tmp): (Cell<Option<&Fn() -> i32>>, _);

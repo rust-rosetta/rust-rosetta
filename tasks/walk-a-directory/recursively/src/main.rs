@@ -2,12 +2,13 @@
 extern crate regex;
 
 use regex::Regex;
-use std::fs;
 use std::convert::AsRef;
+use std::fs;
 use std::path::Path;
 
 fn walk<P>(pth: P, regex: &Regex)
-    where P: AsRef<Path>
+where
+    P: AsRef<Path>,
 {
     let result = match fs::read_dir(pth) {
         Ok(result) => result,

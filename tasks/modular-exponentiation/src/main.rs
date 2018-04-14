@@ -1,8 +1,8 @@
 extern crate num;
 
-use num::{BigUint, One};
 use num::bigint::ToBigUint;
 use num::integer::Integer;
+use num::{BigUint, One};
 
 fn mod_exp<T: Integer + Clone>(mut a: T, mut b: T, m: &T) -> T {
     let one: T = One::one();
@@ -33,12 +33,14 @@ fn main() {
 
 #[test]
 fn test_mod_exp() {
-    let tests = [(0, 10, 10, 0),
-                 (1, 10, 10, 1),
-                 (2, 1000, 2, 0),
-                 (2, 10, 2147483647, 1024),
-                 (1337, 100, 2147483647, 1398068914),
-                 (18, 112994442, 1000000001, 59108659)];
+    let tests = [
+        (0, 10, 10, 0),
+        (1, 10, 10, 1),
+        (2, 1000, 2, 0),
+        (2, 10, 2147483647, 1024),
+        (1337, 100, 2147483647, 1398068914),
+        (18, 112994442, 1000000001, 59108659),
+    ];
 
     for &(a, b, m, expected) in &tests {
         let a = a.to_biguint().unwrap();

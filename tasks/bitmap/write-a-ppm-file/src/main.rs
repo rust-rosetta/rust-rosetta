@@ -1,9 +1,9 @@
 extern crate bitmap;
 extern crate rand;
 
+use bitmap::Image;
 use std::fs::File;
 use std::io::{Error, Write};
-use bitmap::Image;
 
 trait PPMWritable {
     fn write_ppm(&self, filename: &str) -> Result<(), Error>;
@@ -11,7 +11,7 @@ trait PPMWritable {
 
 impl PPMWritable for Image {
     fn write_ppm(&self, filename: &str) -> Result<(), Error> {
-        let mut writer = try!{File::create(filename)};
+        let mut writer = File::create(filename)?;
         // let mut writer = BufWriter::new(file);
         writeln!(&mut writer, "P6")?;
         write!(&mut writer, "{} {} {}\n", self.width, self.height, 255)?;
@@ -51,11 +51,11 @@ pub fn main() {
 #[cfg(test)]
 mod tests {
     use bitmap::{Color, Image};
-    use std::fs::File;
-    use std::io::{BufReader, BufRead, Read};
     use rand;
     use rand::Rng;
     use std::env;
+    use std::fs::File;
+    use std::io::{BufRead, BufReader, Read};
 
     #[test]
     fn write_ppm() {
@@ -70,9 +70,11 @@ mod tests {
             green: 5,
             blue: 6,
         };
-        let fname = format!("{}/test-{}.ppm",
-                            env::temp_dir().to_str().unwrap(),
-                            rand::thread_rng().gen::<i32>());
+        let fname = format!(
+            "{}/test-{}.ppm",
+            env::temp_dir().to_str().unwrap(),
+            rand::thread_rng().gen::<i32>()
+        );
         // Can't use try! macro because we want to panic, not return.
         match image.write_ppm(&fname[..]) {
             Ok(_) => {}

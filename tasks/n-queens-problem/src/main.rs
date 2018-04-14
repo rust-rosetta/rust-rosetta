@@ -1,9 +1,9 @@
 #![feature(test)]
 extern crate test;
 
-use std::vec::Vec;
-use std::thread::spawn;
 use std::sync::mpsc::channel;
+use std::thread::spawn;
+use std::vec::Vec;
 
 fn main() {
     for num in 0i32..16 {
@@ -68,19 +68,19 @@ fn n_queens_helper(all_ones: i32, left_diags: i32, columns: i32, right_diags: i3
 
         // Make a recursive call. This is where we infer the conflicts
         // for the next row.
-        solutions += n_queens_helper(all_ones,
-                                     // We add a conflict in the current spot and then shift left,
-                                     // which has the desired effect of moving all of the conflicts
-                                     // that are created by left diagonals to the left one square.
-                                     (left_diags | spot) << 1,
-
-                                     // For columns we simply mark this column as filled by ORing
-                                     // in the currentSpot.
-                                     (columns | spot),
-
-                                     // This is the same as the left_diag shift, except we shift
-                                     // right because these conflicts are caused by right diagonals.
-                                     (right_diags | spot) >> 1);
+        solutions += n_queens_helper(
+            all_ones,
+            // We add a conflict in the current spot and then shift left,
+            // which has the desired effect of moving all of the conflicts
+            // that are created by left diagonals to the left one square.
+            (left_diags | spot) << 1,
+            // For columns we simply mark this column as filled by ORing
+            // in the currentSpot.
+            columns | spot,
+            // This is the same as the left_diag shift, except we shift
+            // right because these conflicts are caused by right diagonals.
+            (right_diags | spot) >> 1,
+        );
     }
 
     // If columns is all blocked (i.e. if it is all ones) then we
@@ -105,22 +105,25 @@ fn semi_parallel_n_queens(n: i32) -> usize {
         receivers.push(rx);
 
         spawn(move || -> () {
-            tx.send(n_queens_helper(all_ones,
-                                      (left_diags | spot) << 1,
-                                      (columns | spot),
-                                      (right_diags | spot) >> 1))
-                .unwrap();
+            tx.send(n_queens_helper(
+                all_ones,
+                (left_diags | spot) << 1,
+                columns | spot,
+                (right_diags | spot) >> 1,
+            )).unwrap();
         });
     }
 
-    receivers.iter().map(|r| r.recv().unwrap()).fold(0, |a, b| a + b) +
-    ((columns == all_ones) as usize)
+    receivers
+        .iter()
+        .map(|r| r.recv().unwrap())
+        .fold(0, |a, b| a + b) + ((columns == all_ones) as usize)
 }
 
 #[cfg(test)]
 mod tests {
-    use super::{n_queens, semi_parallel_n_queens};
     use super::test::{self, Bencher};
+    use super::{n_queens, semi_parallel_n_queens};
 
     #[test]
     fn test_n_queens() {

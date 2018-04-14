@@ -27,7 +27,9 @@ fn fix_tags(languages: &[&str], text: &str) -> String {
         let close = "</lang>";
 
         replaced_text = bad_open.replace_all(&replaced_text, &open[..]).into_owned();
-        replaced_text = bad_close.replace_all(&replaced_text, &close[..]).into_owned();
+        replaced_text = bad_close
+            .replace_all(&replaced_text, &close[..])
+            .into_owned();
     }
 
     replaced_text.to_owned()
@@ -37,7 +39,10 @@ fn main() {
     let stdin = io::stdin();
     let mut buf = String::new();
     stdin.lock().read_to_string(&mut buf).unwrap();
-    println!("{}", fix_tags(&LANGUAGES.split_whitespace().collect::<Vec<_>>(), &buf));
+    println!(
+        "{}",
+        fix_tags(&LANGUAGES.split_whitespace().collect::<Vec<_>>(), &buf)
+    );
 }
 
 #[test]

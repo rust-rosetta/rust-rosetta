@@ -2,8 +2,8 @@ extern crate rand;
 #[macro_use]
 extern crate rand_derive;
 
-use std::io;
 use rand::Rng;
+use std::io;
 use Choice::*;
 
 #[derive(PartialEq, Clone, Copy, Rand, Debug)]
