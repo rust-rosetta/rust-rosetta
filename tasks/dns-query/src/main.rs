@@ -1,7 +1,5 @@
-#![feature(lookup_host)]
-
 use std::io;
-use std::net::{Ipv4Addr, Ipv6Addr};
+use std::net::{Ipv4Addr, Ipv6Addr, SocketAddr, ToSocketAddrs};
 
 #[derive(PartialEq)]
 enum Ip {
@@ -10,10 +8,8 @@ enum Ip {
 }
 
 fn get_ips(host: &str) -> io::Result<Vec<Ip>> {
-    use std::net::{self, SocketAddr};
-
-    let hosts = net::lookup_host(host)?;
-    let ips: Vec<_> = hosts
+    let hosts = host.to_socket_addrs()?;
+    let ips = hosts
         .filter_map(|h| match h {
             SocketAddr::V4(s_v4) => Some(Ip::V4(*s_v4.ip())),
             SocketAddr::V6(s_v6) => Some(Ip::V6(*s_v6.ip())),
