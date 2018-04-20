@@ -122,7 +122,7 @@ fn heat_neighbors(forest: &mut [[Tile; FOREST_WIDTH]; FOREST_HEIGHT], y: usize, 
     for &(xoff, yoff) in &neighbors {
         let nx: i32 = (x as i32) + xoff;
         let ny: i32 = (y as i32) + yoff;
-        if (0..FOREST_WIDTH as i32).contains(nx) && (0..FOREST_HEIGHT as i32).contains(ny)
+        if (0..FOREST_WIDTH as i32).contains(&nx) && (0..FOREST_HEIGHT as i32).contains(&ny)
             && forest[ny as usize][nx as usize] == Tree
         {
             forest[ny as usize][nx as usize] = Heating
