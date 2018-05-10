@@ -319,10 +319,9 @@ mod tests {
             -8.8
         );
         assert_eq!(
-            tree._get_value(tree.get_pointer(
-                tree.get_pointer(tree.root, Side::Right),
-                Side::Right
-            )),
+            tree._get_value(
+                tree.get_pointer(tree.get_pointer(tree.root, Side::Right), Side::Right)
+            ),
             12.12
         );
         assert_eq!(

@@ -159,7 +159,8 @@ fn md5(initial_msg: &[u8]) -> MD5 {
         // break chunk into sixteen 32-bit words w[j], 0 ≤ j ≤ 15
         for i in 0u32..16 {
             let j = i as usize * 4 + offset as usize;
-            w[i as usize] = u32::from(msg[j]) | u32::from(msg[j + 1]) << 8
+            w[i as usize] = u32::from(msg[j])
+                | u32::from(msg[j + 1]) << 8
                 | u32::from(msg[j + 2]) << 16
                 | u32::from(msg[j + 3]) << 24;
         }

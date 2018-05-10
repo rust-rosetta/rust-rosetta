@@ -46,7 +46,8 @@ fn read_sequence(used_seq: Option<&str>) -> String {
         println!("Please, enter sequence of 3 coins: H (heads) or T (tails): ");
         stdin().read_line(&mut seq).expect("failed to read line");
         seq = seq.trim().to_uppercase();
-        if !(seq.chars().all(|c| c == 'H' || c == 'T') && seq.len() == 3
+        if !(seq.chars().all(|c| c == 'H' || c == 'T')
+            && seq.len() == 3
             && seq != used_seq.unwrap_or(""))
         {
             println!("Please enter correct sequence!");

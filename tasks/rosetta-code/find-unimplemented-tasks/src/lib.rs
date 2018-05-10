@@ -94,7 +94,8 @@ fn query_api(
 
 /// Given a JSON object, parses the task information from the MediaWiki API response.
 fn parse_tasks(json: &Value) -> Result<Vec<Task>, TaskParseError> {
-    let tasks_json = json.pointer("/query/categorymembers")
+    let tasks_json = json
+        .pointer("/query/categorymembers")
         .and_then(Value::as_array)
         .ok_or(TaskParseError::UnexpectedFormat)?;
 

@@ -60,7 +60,8 @@ impl WcFloat {
 
     // This is roughly the same logic as `WeightedChoice::ind_sample` (though is likely slower)
     fn search(&self, sample_prob: f64) -> usize {
-        let idx = self.mapping
+        let idx = self
+            .mapping
             .binary_search_by(|p| p.partial_cmp(&sample_prob).unwrap());
         match idx {
             Ok(i) | Err(i) => i,

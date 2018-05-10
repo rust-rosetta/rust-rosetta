@@ -19,7 +19,8 @@ impl<'a, 'b> Sub<&'b Point> for &'a Point {
     fn sub(self, rhs: &Point) -> Point {
         assert_eq!(self.coords.len(), rhs.coords.len());
         Point {
-            coords: self.coords
+            coords: self
+                .coords
                 .iter()
                 .zip(rhs.coords.iter())
                 .map(|(x, &y)| *x - y)

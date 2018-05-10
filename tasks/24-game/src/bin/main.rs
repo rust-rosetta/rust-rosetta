@@ -52,10 +52,11 @@ fn main() {
 pub fn check_values(sample: &mut [u32], input: &str) -> bool {
     let lex = Lexer::new(input);
 
-    let mut numbers_used = lex.filter_map(|(_, a)| match a {
-        Token::Int(i) => Some(i),
-        _ => None,
-    }).collect::<Vec<u32>>();
+    let mut numbers_used =
+        lex.filter_map(|(_, a)| match a {
+            Token::Int(i) => Some(i),
+            _ => None,
+        }).collect::<Vec<u32>>();
 
     numbers_used.sort();
     sample.sort();
@@ -115,7 +116,8 @@ impl<'a> Iterator for Lexer<'a> {
     type Item = (usize, Token);
 
     fn next(&mut self) -> Option<(usize, Token)> {
-        if let Some((idx, c)) = self.input
+        if let Some((idx, c)) = self
+            .input
             .by_ref()
             .skip_while(|&(_, c)| c.is_whitespace())
             .next()
@@ -129,7 +131,8 @@ impl<'a> Iterator for Lexer<'a> {
                 '*' => Token::Star,
                 d @ '0'...'9' => {
                     let mut val = d.to_digit(10).unwrap();
-                    while let Some(dg) = self.input
+                    while let Some(dg) = self
+                        .input
                         .by_ref()
                         .peek()
                         .and_then(|&(_, di)| di.to_digit(10))
