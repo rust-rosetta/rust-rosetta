@@ -352,7 +352,7 @@ members = [
 
     # http://rosettacode.org/wiki/Concurrent_computing
     "tasks/concurrent-computing",
-    
+
     # https://rosettacode.org/wiki/Constrained_random_points_on_a_circle
     "tasks/constrained-random-points-on-a-circle",
 
@@ -526,6 +526,9 @@ members = [
 
     # http://rosettacode.org/wiki/Find_limit_of_recursion
     "tasks/find-limit-of-recursion",
+
+    # http://rosettacode.org/wiki/Five_weekends
+    "tasks/five-weekends",
 
     # http://rosettacode.org/wiki/FizzBuzz
     "tasks/fizzbuzz",
@@ -928,7 +931,7 @@ members = [
 
     # http://rosettacode.org/wiki/Prime_decomposition
     "tasks/prime-decomposition",
-    
+
     # https://rosettacode.org/wiki/Probabilistic_choice
     "tasks/probabilistic-choice",
 
@@ -946,7 +949,7 @@ members = [
 
     # http://rosettacode.org/wiki/Quine
     "tasks/quine",
-    
+
     # https://rosettacode.org/wiki/Random_number_generator_(device)
     "tasks/random-number-generator/device",
 
@@ -1201,7 +1204,7 @@ members = [
 
     # http://rosettacode.org/wiki/System_time
     "tasks/system-time",
-    
+
     # https://rosettacode.org/wiki/Take_notes_on_the_command_line
     "tasks/take-notes-on-the-command-line",
 
@@ -1231,7 +1234,7 @@ members = [
 
     # http://rosettacode.org/wiki/Ulam_spiral_(for_primes)
     "tasks/ulam-spiral-for-primes",
-    
+
     # https://rosettacode.org/wiki/Unbias_a_random_generator
     "tasks/unbias-a-random-generator",
 

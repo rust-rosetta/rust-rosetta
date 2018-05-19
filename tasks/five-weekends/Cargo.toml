@@ -1,0 +1,10 @@
+[package]
+name = "five-weekends"
+version = "0.1.0"
+authors = ["nyradr <nyradr@protonmail.com>"]
+
+[dependencies]
+chrono = "0.4.2"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Five_weekends"
