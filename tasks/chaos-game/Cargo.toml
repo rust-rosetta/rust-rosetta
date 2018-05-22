@@ -7,4 +7,4 @@ url = "http://rosettacode.org/wiki/Chaos_game"
 
 [dependencies]
 image = "0.17"
-rand = "0.4"
+rand = "0.5"

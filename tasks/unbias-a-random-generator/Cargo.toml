@@ -7,4 +7,4 @@ authors = ["Daniel Watson <danielwatson311@gmail.com>"]
 url = "https://rosettacode.org/wiki/Unbias_a_random_generator"
 
 [dependencies]
-rand = "0.4"
+rand = "0.5"

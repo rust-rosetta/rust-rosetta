@@ -19,11 +19,11 @@ macro_rules! rationals(
 
 fn main() {
     let mut r = rationals![1, 3, 7, 9];
-    let sol = solve(&mut r[..], 24).unwrap_or_else(|| String::from("no solution found"));
+    let sol = solve(&mut r, 24).unwrap_or_else(|| "no solution found".to_string());
     println!("{}", sol);
 }
 
-/// for a vector of rationals r, find the combination of arithmentic operations that yield
+/// for a vector of rationals r, find the combination of arithmetic operations that yield
 /// `target_val` as a result (if such combination exists)
 fn solve(r: &mut [Rational], target_val: isize) -> Option<String> {
     // need to sort because next_permutation()
@@ -75,7 +75,7 @@ fn test_rationals_macro() {
             Ratio::from_integer(1),
             Ratio::from_integer(2),
             Ratio::from_integer(3),
-            Ratio::from_integer(4),
+            Ratio::from_integer(4)
         ],
         // with the rationals! macro
         (rationals![1, 2, 3, 4])
@@ -86,8 +86,5 @@ fn test_rationals_macro() {
 #[ignore]
 fn test_solve() {
     let mut r = rationals![1, 3, 7, 9];
-    assert_eq!(
-        solve(&mut r[..], 24),
-        Some("(9 / (3 / (1 + 7)))".to_string())
-    );
+    assert_eq!(solve(&mut r, 24), Some("(9 / (3 / (1 + 7)))".to_string()));
 }

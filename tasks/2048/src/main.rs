@@ -3,7 +3,7 @@ extern crate rand;
 use std::io;
 use std::ops::{Index, IndexMut};
 
-use rand::Rng;
+use rand::prelude::*;
 
 const GRID_DIMENSION: usize = 4;
 
@@ -86,18 +86,19 @@ impl Grid {
             return Err(GridFullError);
         }
 
-        let mut rng = rand::thread_rng();
+        let mut rng = SmallRng::from_rng(&mut thread_rng()).unwrap();
 
         loop {
-            let (x, y) = rand::random::<(usize, usize)>();
-            let rand_tile = &mut self[(x % GRID_DIMENSION, y % GRID_DIMENSION)];
+            // `GRID_DIMENSION` is a power of two so modulo reduction is
+            // unbiased. Because we only need 2 bits, we can just generate a
+            // `u8` and split the bits. This is faster than generating two
+            // `usize` values.
+            let r = rng.gen::<u8>() as usize;
+            let rand_tile = &mut self[(r % GRID_DIMENSION, r >> (8 - 2))];
 
             if rand_tile.is_none() {
-                *rand_tile = if rng.gen_weighted_bool(10) {
-                    Some(4)
-                } else {
-                    Some(2)
-                };
+                let tile = if rng.gen_bool(1.0 / 10.0) { 4 } else { 2 };
+                *rand_tile = Some(tile);
                 break;
             }
         }
@@ -110,7 +111,7 @@ impl Grid {
     /// Returns a tuple containing the new vector and the change in score.
     fn merge(vector: &[Tile]) -> (Vec<Tile>, u32) {
         // Remove intermediate empty tiles.
-        let mut shifted = vector.iter().flat_map(|x| *x).collect::<Vec<_>>();
+        let mut shifted = vector.iter().filter_map(|&x| x).collect::<Vec<_>>();
 
         // Merge tiles that are next to each other, leaving an empty space.
         let mut score = 0;
@@ -125,14 +126,13 @@ impl Grid {
         // Remove intermediate empty tiles
         let mut shifted = shifted
             .into_iter()
-            .filter(|x| *x != 0)
+            .filter(|&x| x != 0)
             .map(Some)
             .collect::<Vec<_>>();
 
         // Fill remaining array.
-        while shifted.len() < GRID_DIMENSION {
-            shifted.push(None);
-        }
+        let len = shifted.len();
+        shifted.extend(std::iter::repeat(None).take(GRID_DIMENSION - len));
 
         (shifted, score)
     }
@@ -142,13 +142,9 @@ impl Grid {
         let mut moved = false;
         let mut score = 0;
         for row in 0..GRID_DIMENSION {
-            let mut tiles = vec![];
+            let tiles: Vec<_> = (0..GRID_DIMENSION).map(|col| self[(row, col)]).collect();
 
-            for col in 0..GRID_DIMENSION {
-                tiles.push(self[(row, col)]);
-            }
-
-            let (merged_row, row_score) = Grid::merge(&mut tiles);
+            let (merged_row, row_score) = Grid::merge(&tiles);
             score += row_score;
             if !moved && tiles != merged_row {
                 moved = true;
@@ -177,7 +173,7 @@ impl Grid {
                 tiles.push(self[(row, col)]);
             }
 
-            let (merged_col, col_score) = Grid::merge(&mut tiles);
+            let (merged_col, col_score) = Grid::merge(&tiles);
             score += col_score;
             if !moved && tiles != merged_col {
                 moved = true;
@@ -206,7 +202,7 @@ impl Grid {
                 tiles.push(self[(row, col)]);
             }
 
-            let (merged_col, col_score) = Grid::merge(&mut tiles);
+            let (merged_col, col_score) = Grid::merge(&tiles);
             score += col_score;
             if !moved && tiles != merged_col {
                 moved = true;
@@ -235,7 +231,7 @@ impl Grid {
                 tiles.push(self[(row, col)]);
             }
 
-            let (merged_row, row_score) = Grid::merge(&mut tiles);
+            let (merged_row, row_score) = Grid::merge(&tiles);
             score += row_score;
             if !moved && tiles != merged_row {
                 moved = true;

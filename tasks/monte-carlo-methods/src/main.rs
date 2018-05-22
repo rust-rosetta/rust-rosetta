@@ -1,27 +1,25 @@
 extern crate rand;
 
-use rand::Rng;
+use rand::prelude::*;
 use std::f64::consts::PI;
 
-// `(f32, f32)` would be faster for some RNGs (including `rand::thread_rng` on 32-bit platforms
-// and `rand::weak_rng` as of rand v0.4) as `next_u64` combines two `next_u32`s if not natively
-// supported by the RNG.  It would less accurate however.
+// `(f32, f32)` may be faster for some RNGs (including `rand::XorShiftRng`),
+// but less accurate.
 fn is_inside_circle((x, y): (f64, f64)) -> bool {
     x * x + y * y <= 1.0
 }
 
 fn simulate<R: Rng>(rng: &mut R, samples: usize) -> f64 {
-    let mut count = 0;
-    for _ in 0..samples {
-        if is_inside_circle(rng.gen()) {
-            count += 1;
-        }
-    }
+    let count = (0..samples).filter(|_| is_inside_circle(rng.gen())).count();
+    // A branchless method might be faster
+    /*for _ in 0..samples {
+        count += is_inside_circle(rng.gen()) as usize;
+    }*/
     (count as f64) / (samples as f64)
 }
 
 fn main() {
-    let mut rng = rand::weak_rng();
+    let mut rng = SmallRng::from_entropy();
 
     println!("Real pi: {}", PI);
 

@@ -2,6 +2,8 @@ extern crate rand;
 
 use GameState::{ComputerWin, Draw, PlayerWin, Playing};
 
+use rand::prelude::*;
+
 #[derive(PartialEq, Debug)]
 enum GameState {
     PlayerWin,
@@ -10,8 +12,12 @@ enum GameState {
     Playing,
 }
 
+type Board = [[char; 3]; 3];
+
 fn main() {
-    let mut board: [[char; 3]; 3] = [['1', '2', '3'], ['4', '5', '6'], ['7', '8', '9']];
+    let mut rng = SmallRng::from_entropy();
+
+    let mut board: Board = [['1', '2', '3'], ['4', '5', '6'], ['7', '8', '9']];
 
     draw_board(board);
     loop {
@@ -19,7 +25,7 @@ fn main() {
         if check_win(board) != Playing {
             break;
         }
-        computer_turn(&mut board);
+        computer_turn(&mut rng, &mut board);
         if check_win(board) != Playing {
             break;
         }
@@ -36,7 +42,11 @@ fn main() {
     println!("{}", announcement);
 }
 
-fn check_win(board: [[char; 3]; 3]) -> GameState {
+fn is_empty(cell: &char) -> bool {
+    *cell != 'X' && *cell != 'O'
+}
+
+fn check_win(board: Board) -> GameState {
     // check for win
     for (i, row) in board.iter().enumerate() {
         if row[0] == row[1] && row[0] == row[2] {
@@ -52,14 +62,12 @@ fn check_win(board: [[char; 3]; 3]) -> GameState {
     }
 
     // check if it's not a draw
-    for row in &board {
-        for c in row {
-            if *c != 'X' && *c != 'O' {
-                return Playing;
-            }
-        }
+    let is_draw = board.iter().flat_map(|row| row).any(is_empty);
+    if is_draw {
+        Playing
+    } else {
+        Draw
     }
-    Draw
 }
 
 fn which_win(s: char) -> GameState {
@@ -70,13 +78,15 @@ fn which_win(s: char) -> GameState {
     }
 }
 
-fn player_turn(board: &mut [[char; 3]; 3]) {
+fn player_turn(board: &mut Board) {
     use std::io;
 
     println!("Player, enter your field of choice!: ");
     let mut ln = String::new();
-    let _ = io::stdin().read_line(&mut ln);
-    let choice = ln.trim().parse::<usize>().unwrap();
+    io::stdin()
+        .read_line(&mut ln)
+        .expect("Failed to read stdin");
+    let choice = ln.trim().parse::<usize>().expect("Failed to parse input");
     let row = (choice - 1) / 3;
     let col = (choice - 1) % 3;
 
@@ -88,30 +98,23 @@ fn player_turn(board: &mut [[char; 3]; 3]) {
     }
 }
 
-fn computer_turn(board: &mut [[char; 3]; 3]) {
-    use rand::{thread_rng, Rng};
+fn computer_turn<R: Rng>(rng: &mut R, board: &mut Board) {
+    let possible_choices: Vec<_> = board
+        .iter()
+        .flat_map(|r| r) // turns the 2D array into a 1D iterator
+        .enumerate()
+        .filter(|&(_, c)| is_empty(c))
+        .map(|(i, _)| i)
+        .collect();
 
-    // Computer just does a random possible move
-    let mut rng = thread_rng();
-
-    let mut possible_choices: Vec<char> = vec![];
-    for row in board.iter() {
-        for space in row {
-            if *space != 'X' && *space != 'O' {
-                possible_choices.push(*space);
-            }
-        }
-    }
-
-    let choice_index: usize = rng.gen_range(0, possible_choices.len());
-    let choice = possible_choices[choice_index] as usize - 48;
+    let choice = rng.choose(&possible_choices).unwrap();
     println!("Computer chose: {}", choice);
-    let row = (choice - 1) / 3;
-    let col = (choice - 1) % 3;
+    let row = choice / 3;
+    let col = choice % 3;
     board[row][col] = 'O';
 }
 
-fn draw_board(board: [[char; 3]; 3]) {
+fn draw_board(board: Board) {
     for row in &board {
         println!("{} {} {}", row[0], row[1], row[2]);
     }

@@ -6,7 +6,7 @@ version = "0.1.0"
 url = "http://rosettacode.org/wiki/Sorting_algorithms/Bogosort"
 
 [dependencies]
-rand = "0.4"
+rand = "0.5"
 
 [dev-dependencies]
 meta = { path = "../../../meta" }

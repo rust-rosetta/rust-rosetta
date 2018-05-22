@@ -1,40 +1,39 @@
 extern crate image;
 extern crate rand;
 
-use rand::Rng;
-use std::f32;
+use std::f32::consts::PI;
 use std::fs::File;
 
+use rand::prelude::*;
+
 fn main() {
-    let max_iterations = 50_000u32;
-    let img_side = 800u32;
-    let tri_size = 400f32;
+    let max_iterations = 50_000;
+    let img_side = 800;
+    let tri_size = 400.0;
 
     // Create a new ImgBuf
     let mut imgbuf = image::ImageBuffer::new(img_side, img_side);
 
     // Create triangle vertices
-    let mut vertices: [[f32; 2]; 3] = [[0f32, 0f32]; 3];
-    for i in 0..vertices.len() {
-        vertices[i][0] =
-            (img_side as f32 / 2.) + (tri_size / 2.) * (f32::consts::PI * i as f32 * 2. / 3.).cos();
-        vertices[i][1] =
-            (img_side as f32 / 2.) + (tri_size / 2.) * (f32::consts::PI * i as f32 * 2. / 3.).sin();
+    let mut vertices = [(0.0, 0.0); 3];
+    for (i, (x, y)) in vertices.iter_mut().enumerate() {
+        *x = (img_side as f32 / 2.) + (tri_size / 2.) * (PI * i as f32 * 2. / 3.).cos();
+        *y = (img_side as f32 / 2.) + (tri_size / 2.) * (PI * i as f32 * 2. / 3.).sin();
     }
-    for v in &vertices {
-        imgbuf.put_pixel(v[0] as u32, v[1] as u32, image::Luma([255u8]));
+    for &(x, y) in &vertices {
+        imgbuf.put_pixel(x as u32, y as u32, image::Luma([255]));
     }
 
     // Iterate chaos game
-    let mut rng = rand::weak_rng();
-    let mut x = img_side as f32 / 2.;
-    let mut y = img_side as f32 / 2.;
+    let mut rng = SmallRng::from_entropy();
+    let mut x = img_side as f32 / 2.0;
+    let mut y = img_side as f32 / 2.0;
     for _ in 0..max_iterations {
-        let choice = rng.gen_range(0, vertices.len());
-        x = (x + vertices[choice][0]) / 2.;
-        y = (y + vertices[choice][1]) / 2.;
+        let (choice_x, choice_y) = rng.choose(&vertices).unwrap();
+        x = (x + choice_x) / 2.0;
+        y = (y + choice_y) / 2.0;
 
-        imgbuf.put_pixel(x as u32, y as u32, image::Luma([255u8]));
+        imgbuf.put_pixel(x as u32, y as u32, image::Luma([255]));
     }
 
     // Save image

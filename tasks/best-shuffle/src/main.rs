@@ -1,10 +1,11 @@
 extern crate permutohedron;
 extern crate rand;
 
-use rand::{thread_rng, Rng};
 use std::cmp::{min, Ordering};
 use std::env;
 use std::str;
+
+use rand::{thread_rng, Rng};
 
 const WORDS: &[&str] = &["abracadabra", "seesaw", "elk", "grrrrrr", "up", "a"];
 
@@ -18,31 +19,19 @@ struct Solution {
 // Ordering trait implementations are only needed for the permutations method
 impl PartialOrd for Solution {
     fn partial_cmp(&self, other: &Solution) -> Option<Ordering> {
-        match (self.score, other.score) {
-            (s, o) if s < o => Some(Ordering::Less),
-            (s, o) if s > o => Some(Ordering::Greater),
-            (s, o) if s == o => Some(Ordering::Equal),
-            _ => None,
-        }
+        self.score.partial_cmp(&other.score)
     }
 }
 
 impl PartialEq for Solution {
     fn eq(&self, other: &Solution) -> bool {
-        match (self.score, other.score) {
-            (s, o) if s == o => true,
-            _ => false,
-        }
+        self.score == other.score
     }
 }
 
 impl Ord for Solution {
     fn cmp(&self, other: &Solution) -> Ordering {
-        match (self.score, other.score) {
-            (s, o) if s < o => Ordering::Less,
-            (s, o) if s > o => Ordering::Greater,
-            _ => Ordering::Equal,
-        }
+        self.score.cmp(&other.score)
     }
 }
 
@@ -52,18 +41,13 @@ fn _help() {
 
 fn main() {
     let args: Vec<String> = env::args().collect();
-    let mut words: Vec<String> = vec![];
 
-    match args.len() {
-        1 => for w in WORDS.iter() {
-            words.push(String::from(*w));
-        },
-        _ => for w in args.split_at(1).1 {
-            words.push(w.clone());
-        },
-    }
+    let words = match args.len() {
+        1 => WORDS.iter().map(|s| s.to_string()).collect(),
+        _ => args[1..].to_vec(),
+    };
 
-    let solutions = words.iter().map(|w| best_shuffle(w)).collect::<Vec<_>>();
+    let solutions = words.iter().map(|w| best_shuffle(w));
 
     for s in solutions {
         println!("{}, {}, ({})", s.original, s.shuffled, s.score);
@@ -132,7 +116,7 @@ fn best_shuffle(w: &str) -> Solution {
 }
 
 fn hamming(w0: &[u8], w1: &[u8]) -> usize {
-    w0.iter().zip(w1.iter()).filter(|z| z.0 == z.1).count()
+    w0.iter().zip(w1.iter()).filter(|&(a, b)| a == b).count()
 }
 
 #[cfg(test)]

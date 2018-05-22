@@ -50,12 +50,9 @@ struct Deck(Vec<Card>);
 impl Deck {
     fn new() -> Deck {
         let mut cards: Vec<Card> = Vec::with_capacity(52);
-        for suit in &SUITS {
-            for pip in &PIPS {
-                cards.push(Card {
-                    pip: *pip,
-                    suit: *suit,
-                });
+        for &suit in &SUITS {
+            for &pip in &PIPS {
+                cards.push(Card { pip, suit });
             }
         }
         Deck(cards)
@@ -81,7 +78,7 @@ impl fmt::Display for Deck {
         for card in &self.0 {
             writeln!(f, "{}", card)?;
         }
-        write!(f, "")
+        Ok(())
     }
 }
 

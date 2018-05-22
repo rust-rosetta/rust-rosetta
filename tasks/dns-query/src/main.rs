@@ -39,14 +39,24 @@ mod tests {
 
     #[test]
     fn ipv4() {
-        let ip = Ip::V4(Ipv4Addr::from_str("203.178.141.194").unwrap());
-        assert!(get_ips("www.kame.net").unwrap().contains(&ip));
+        let host = "203.178.141.194:80";
+        if let SocketAddr::V4(addr) = host.to_socket_addrs().unwrap().next().unwrap() {
+            let ip = IpAddr::V4(*addr.ip());
+            assert!(get_ips("www.kame.net:80").unwrap().any(|x| x == ip));
+        } else {
+            panic!();
+        }
     }
 
     #[test]
     #[ignore]
     fn ipv6() {
-        let ip = Ip::V6(Ipv6Addr::from_str("2001:200:dff:fff1:216:3eff:feb1:44d7").unwrap());
-        assert!(get_ips("www.kame.net").unwrap().contains(&ip));
+        let host = "2001:200:dff:fff1:216:3eff:feb1:44d7:80";
+        if let SocketAddr::V6(addr) = host.to_socket_addrs().unwrap().next().unwrap() {
+            let ip = IpAddr::V6(*addr.ip());
+            assert!(get_ips("www.kame.net:80").unwrap().any(|x| x == ip));
+        } else {
+            panic!();
+        }
     }
 }

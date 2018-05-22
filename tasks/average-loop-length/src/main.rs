@@ -2,11 +2,12 @@
 
 extern crate rand;
 
-use rand::distributions::{IndependentSample, Range};
-use rand::{thread_rng, ThreadRng};
 use std::collections::HashSet;
 use std::env;
 use std::process;
+
+use rand::distributions::Uniform;
+use rand::{thread_rng, Rng};
 
 fn help() {
     println!("usage: average_loop_length <max_N> <trials>");
@@ -20,8 +21,8 @@ fn main() {
     match args.len() {
         1 => {}
         3 => {
-            max_n = args[1].parse::<u32>().unwrap();
-            trials = args[2].parse::<u32>().unwrap();
+            max_n = args[1].parse().unwrap();
+            trials = args[2].parse().unwrap();
         }
         _ => {
             help();
@@ -41,47 +42,44 @@ fn main() {
             n,
             the_empirical,
             the_analytical,
-            100f64 * (the_empirical / the_analytical - 1f64)
+            100.0 * (the_empirical / the_analytical - 1.0)
         );
     }
 }
 
 fn factorial(n: u32) -> f64 {
-    (1..n + 1).fold(1f64, |p, n| p * f64::from(n))
+    (1..n + 1).map(f64::from).product()
 }
 
 fn analytical(n: u32) -> f64 {
     (1..(n + 1))
         .map(|i| factorial(n) / f64::from(n).powi(i as i32) / factorial(n - i))
-        .fold(0f64, |a, v| a + v)
+        .sum()
 }
 
-fn empirical(n: u32, trials: u32, rng: &mut ThreadRng) -> f64 {
+fn empirical(n: u32, trials: u32, rng: &mut impl Rng) -> f64 {
     let sum: f64 = (0..trials)
-        .map(|_t| {
-            let mut item = 1u32;
+        .map(|_trial| {
             let mut seen = HashSet::new();
-            let range = Range::new(1u32, n + 1);
+            let range = Uniform::new_inclusive(1, n);
 
-            for step in 0..n {
-                if seen.contains(&item) {
+            seen.insert(1);
+            for step in 1..n {
+                let item = rng.sample(range);
+                let inserted = seen.insert(item);
+                if !inserted {
                     return f64::from(step);
                 }
-                seen.insert(item);
-                item = range.ind_sample(rng);
             }
             f64::from(n)
         })
-        .fold(0f64, |a, v| a + v);
+        .sum();
     sum / f64::from(trials)
 }
 
 #[cfg(test)]
 mod tests {
-    use super::{analytical, empirical, factorial};
-
-    use rand::thread_rng;
-
+    use super::*;
     use std::f64;
 
     #[test]
@@ -100,6 +98,6 @@ mod tests {
         let mut rng = thread_rng();
         let emp = empirical(20, 10000, &mut rng);
         let ana = analytical(20);
-        assert!((emp / ana - 1f64).abs() < 0.05);
+        assert!((emp / ana - 1.0).abs() < 0.05);
     }
 }

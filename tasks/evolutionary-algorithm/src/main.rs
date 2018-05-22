@@ -4,17 +4,18 @@
 
 extern crate rand;
 
-use rand::Rng;
+use rand::distributions::Uniform;
+use rand::prelude::*;
 
 fn main() {
     let target = "METHINKS IT IS LIKE A WEASEL";
     let copies = 100;
-    let mutation_rate = 20; // 1/20 = 0.05 = 5%
+    let mutation_rate = 1.0 / 20.0; // = 0.05 = 5%
 
-    let mut rng = rand::weak_rng();
+    let mut rng = SmallRng::from_entropy();
 
     // Generate first sentence, mutating each character
-    let start = mutate(&mut rng, target, 1); // 1/1 = 1 = 100%
+    let start = mutate(&mut rng, target, 1.0); // = 100%
 
     println!("{}", target);
     println!("{}", start);
@@ -30,7 +31,7 @@ fn evolve<R: Rng>(
     target: &str,
     mut parent: String,
     copies: usize,
-    mutation_rate: u32,
+    mutation_rate: f64,
 ) -> usize {
     let mut counter = 0;
     let mut parent_fitness = target.len() + 1;
@@ -78,9 +79,9 @@ fn fitness(target: &str, sentence: &str) -> usize {
 /// Mutation algorithm.
 ///
 /// It mutates each character of a string, according to a `mutation_rate`.
-fn mutate<R: Rng>(rng: &mut R, sentence: &str, mutation_rate: u32) -> String {
+fn mutate<R: Rng>(rng: &mut R, sentence: &str, mutation_rate: f64) -> String {
     let maybe_mutate = |c| {
-        if rng.gen_weighted_bool(mutation_rate) {
+        if rng.gen_bool(mutation_rate) {
             random_char(rng)
         } else {
             c
@@ -91,10 +92,12 @@ fn mutate<R: Rng>(rng: &mut R, sentence: &str, mutation_rate: u32) -> String {
 
 /// Generates a random letter or space.
 fn random_char<R: Rng>(rng: &mut R) -> char {
-    // Returns a value in the range [A, Z] + an extra slot for the space character.  (The `u8`
-    // values could be cast to larger integers for a better chance of the RNG hitting the proper
-    // range).
-    match rng.gen_range(b'A', b'Z' + 2) {
+    // Something similar to `rand::distributions::Alphanumeric` might be faster.
+
+    // Returns a value in the range [A, Z] + an extra slot for the space character.
+    // `Uniform` rather than `gen_range`'s `Uniform::sample_single` for speed
+    let range = Uniform::new_inclusive(b'A', b'Z' + 1);
+    match rng.sample(range) {
         c if c == b'Z' + 1 => ' ', // the `char` after 'Z'
         c => c as char,
     }

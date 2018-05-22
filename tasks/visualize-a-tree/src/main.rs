@@ -10,6 +10,7 @@ use std::cmp::Ordering;
 use std::env;
 use std::fmt::{Debug, Display, Formatter, Result};
 
+use rand::distributions::Uniform;
 use rand::Rng;
 use term_painter::Color::*;
 use term_painter::ToStyle;
@@ -34,13 +35,14 @@ enum DisplayElement {
 
 impl DisplayElement {
     fn string(&self) -> String {
-        match *self {
-            DisplayElement::TrunkSpace => "    │   ".to_string(),
-            DisplayElement::SpaceRight => "    ┌───".to_string(),
-            DisplayElement::SpaceLeft => "    └───".to_string(),
-            DisplayElement::SpaceSpace => "        ".to_string(),
-            DisplayElement::Root => "├──".to_string(),
-        }
+        let x = match *self {
+            DisplayElement::TrunkSpace => "    │   ",
+            DisplayElement::SpaceRight => "    ┌───",
+            DisplayElement::SpaceLeft => "    └───",
+            DisplayElement::SpaceSpace => "        ",
+            DisplayElement::Root => "├──",
+        };
+        x.to_string()
     }
 }
 
@@ -244,12 +246,12 @@ impl<K: Ord + Copy + Debug + Display, V: Debug + Copy + Display> Display for Tre
 fn random_tree(n: u32) -> Tree<i32, f32> {
     let mut tree: Tree<i32, f32> = Tree::new();
     let mut rng = rand::thread_rng();
-    tree.insert(0, rng.gen_range(-1f32, 1f32));
+    // Use `Uniform` rather than `gen_range`'s `Uniform::sample_single` for speed
+    let key_range = Uniform::new(-(n as i32) / 2, (n as i32) / 2);
+    let value_range = Uniform::new(-1.0, 1.0);
+    tree.insert(0, rng.sample(value_range));
     for _ in 0..n - 1 {
-        tree.insert(
-            rng.gen_range(-(n as i32) / 2, (n as i32) / 2),
-            rng.gen_range(-1f32, 1f32),
-        );
+        tree.insert(rng.sample(key_range), rng.sample(value_range));
     }
     tree
 }
@@ -319,10 +321,9 @@ mod tests {
             -8.8
         );
         assert_eq!(
-            tree._get_value(tree.get_pointer(
-                tree.get_pointer(tree.root, Side::Right),
-                Side::Right
-            )),
+            tree._get_value(
+                tree.get_pointer(tree.get_pointer(tree.root, Side::Right), Side::Right)
+            ),
             12.12
         );
         assert_eq!(

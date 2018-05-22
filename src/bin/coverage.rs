@@ -88,7 +88,7 @@ where
 
     write!(t, "Remote:")?;
     write_status(t, task.remote_code().is_some())?;
-    writeln!(t, "")?;
+    writeln!(t)?;
 
     if let (Some(ref local_code), Some(ref remote_code)) = (task.local_code(), task.remote_code()) {
         if diff {

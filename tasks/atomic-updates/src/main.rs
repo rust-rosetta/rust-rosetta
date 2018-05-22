@@ -14,8 +14,8 @@ use std::sync::Arc;
 use std::thread::{self, spawn};
 use std::time::Duration;
 
-use rand::distributions::{IndependentSample, Range};
-use rand::{weak_rng, Rng};
+use rand::distributions::Uniform;
+use rand::{thread_rng, Rng};
 
 /// The reason I used a module here is simply to keep it clearer who can access what.  Rust
 /// protects against data races just fine, but it's not as good at protecting against deadlocks or
@@ -97,12 +97,12 @@ mod buckets {
                 // dropped.
                 unsafe { ::std::ptr::write(dest as *mut _, bucket) }
             }
-            for t in (&mut transfers[..]).iter_mut() {
+            for t in &mut transfers {
                 *t = AtomicUsize::new(0);
             }
             Buckets {
                 buckets: buckets_,
-                transfers: transfers,
+                transfers,
             }
         }
 
@@ -118,7 +118,7 @@ mod buckets {
         /// likely be done elsewhere).
         pub fn transfer(&self, from: usize, to: usize, amount: usize, worker: usize) {
             // The from == to check is important so we don't deadlock, since Rust mutexes are
-            // nonreentrant.
+            // non-reentrant.
             if from == to || N_BUCKETS <= from || N_BUCKETS <= to || N_WORKERS <= worker {
                 return;
             }
@@ -189,7 +189,7 @@ mod buckets {
 fn make_buckets(initial_sum: usize) -> buckets::Buckets {
     let mut buckets = [0; buckets::N_BUCKETS];
     let mut dist = initial_sum;
-    for (i, b) in (&mut buckets[..]).iter_mut().enumerate() {
+    for (i, b) in buckets.iter_mut().enumerate() {
         let v = dist / (buckets::N_BUCKETS - i);
         *b = v;
         dist -= v;
@@ -199,15 +199,14 @@ fn make_buckets(initial_sum: usize) -> buckets::Buckets {
 
 /// The equalize task--it chooses two random buckets and tries to make their values the same.
 fn equalize(bl: &buckets::Buckets, running: &AtomicBool, worker: usize) {
-    // We preallocate the Range for improved performance.
-    let between = Range::new(0, buckets::N_BUCKETS);
-    // We use the weak random number generator for improved performance.
-    let mut r = weak_rng();
+    let mut rng = thread_rng();
+    // `Uniform` rather than `gen_range`'s `Uniform::sample_single` for speed
+    let range = Uniform::new(0, buckets::N_BUCKETS);
     // Running is read Relaxed because it's not important that the task stop right away as long as
     // it happens eventually.
     while running.load(Ordering::Relaxed) {
-        let b1 = between.ind_sample(&mut r);
-        let b2 = between.ind_sample(&mut r);
+        let b1 = rng.sample(range);
+        let b2 = rng.sample(range);
         let v1 = bl.get(b1).unwrap();
         let v2 = bl.get(b2).unwrap();
         if v1 > v2 {
@@ -220,16 +219,14 @@ fn equalize(bl: &buckets::Buckets, running: &AtomicBool, worker: usize) {
 
 /// The randomize task--it chooses two random buckets and randomly redistributes their values.
 fn randomize(bl: &buckets::Buckets, running: &AtomicBool, worker: usize) {
-    // We preallocate the Range for improved performance.
-    let between = Range::new(0, buckets::N_BUCKETS);
-    // We use the weak random number generator for improved performance.
-    let mut r = weak_rng();
+    let mut rng = thread_rng();
+    let range = Uniform::new(0, buckets::N_BUCKETS);
     // Running is read Relaxed because it's not important that the task stop right away as long as
     // it happens eventually.
     while running.load(Ordering::Relaxed) {
-        let b1 = between.ind_sample(&mut r);
-        let b2 = between.ind_sample(&mut r);
-        bl.transfer(b1, b2, r.gen_range(0, bl.get(b1).unwrap() + 1), worker);
+        let b1 = rng.sample(range);
+        let b2 = rng.sample(range);
+        bl.transfer(b1, b2, rng.gen_range(0, bl.get(b1).unwrap() + 1), worker);
     }
 }
 
@@ -250,9 +247,9 @@ fn display(
         // Get a consistent snapshot
         let (s, tc) = bl.snapshot();
         // Sum up the buckets
-        let sum = s.iter().fold(0, |a, &b| a + b);
+        let sum: usize = s.iter().sum();
         // Sum up the transfers.
-        let n_transfers = tc.iter().fold(0, |a, &b| a + b);
+        let n_transfers: usize = tc.iter().sum();
         // Print the relevant information.
         println!("{:?}, {}, {:?}, {}", tc, n_transfers, s, sum);
         // Check the invariant, failing if necessary.
@@ -277,10 +274,10 @@ fn perform_atomic_updates(duration: Duration, original_total: usize, num_ticks: 
     // create a Mutex here.
     let arc = Arc::new((make_buckets(original_total), running));
     // Cloning the arc bumps the reference count.
-    let arc_ = Arc::clone(&arc);
+    let arc_ = arc.clone();
     // Start off the equalize task
     spawn(move || equalize(&arc_.0, &arc_.1, ID_EQUALIZE));
-    let arc_ = Arc::clone(&arc);
+    let arc_ = arc.clone();
     // Start off the randomize task
     spawn(move || randomize(&arc_.0, &arc_.1, ID_RANDOMIZE));
     let (ref bl, ref running) = *arc;

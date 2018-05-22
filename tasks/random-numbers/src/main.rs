@@ -1,13 +1,12 @@
 extern crate rand;
 
-use rand::distributions::{IndependentSample, Normal};
+use rand::distributions::Normal;
+use rand::Rng;
 
 fn main() {
     let normal = Normal::new(1.0, 0.5);
     let mut rng = rand::thread_rng();
 
-    let rands = (0..1000)
-        .map(|_| normal.ind_sample(&mut rng))
-        .collect::<Vec<_>>();
+    let rands = (0..1000).map(|_| rng.sample(normal)).collect::<Vec<_>>();
     println!("{:?}", rands);
 }

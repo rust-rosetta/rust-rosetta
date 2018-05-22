@@ -21,7 +21,8 @@ fn tasks_are_sorted() {
         .unwrap()
         .parse()
         .unwrap();
-    let members = toml.get("workspace")
+    let members = toml
+        .get("workspace")
         .and_then(|w| w.get("members"))
         .and_then(|m| m.as_array())
         .unwrap()

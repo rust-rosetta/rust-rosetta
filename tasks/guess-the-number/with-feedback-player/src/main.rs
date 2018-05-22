@@ -15,8 +15,12 @@ fn main() {
             println!("(type h if my guess is too high, l if too low, e if equal and q to quit)");
 
             let mut line = String::new();
-            stdin().read_line(&mut line).unwrap();
-            match Some(line.chars().next().unwrap().to_uppercase().next().unwrap()) {
+            let input = stdin()
+                .read_line(&mut line)
+                .ok()
+                .and_then(|_| line.trim_left().chars().next())
+                .and_then(|c| c.to_uppercase().next());
+            match input {
                 Some('H') => {
                     max = guess - 1;
                     num_guesses += 1;

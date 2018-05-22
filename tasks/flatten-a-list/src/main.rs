@@ -11,7 +11,8 @@ enum Tree<T> {
 fn flatten<T>(tree: Tree<T>) -> Vec<T> {
     match tree {
         Leaf(val) => vec![val],
-        Node(vec) => vec.into_iter()
+        Node(vec) => vec
+            .into_iter()
             .flat_map(|t| flatten(t).into_iter())
             .collect(),
     }

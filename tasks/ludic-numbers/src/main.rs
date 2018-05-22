@@ -9,17 +9,17 @@ const LUDIC_MAX: usize = 2100;
 fn ludic_numbers() -> Vec<usize> {
     // The first two Ludic numbers
     let mut numbers = vec![1, 2];
-    // We start the array with an immediate first removal to reduce memory usage by collecting
-    // only odd numbers.
+    // We start the array with an immediate first removal to reduce memory usage by
+    // collecting only odd numbers.
     numbers.extend((3..ARRAY_MAX).step_by(2));
 
     // We keep the correct Ludic numbers in place, removing the incorrect ones.
     for ludic_idx in 2..LUDIC_MAX {
         let next_ludic = numbers[ludic_idx];
 
-        // We remove incorrect numbers by counting the indices after the correct numbers.  We
-        // start from zero and keep until we reach the potentially incorrect numbers.  Then we
-        // keep only those not divisible by the `next_ludic`.
+        // We remove incorrect numbers by counting the indices after the correct numbers.
+        // We start from zero and keep until we reach the potentially incorrect numbers.
+        // Then we keep only those not divisible by the `next_ludic`.
         let mut idx = 0;
         numbers.retain(|_| {
             let keep = idx <= ludic_idx || (idx - ludic_idx) % next_ludic != 0;
@@ -73,11 +73,12 @@ fn triplets_below(ludics: &[usize], limit: usize) -> Vec<(usize, usize, usize)> 
             let triplet_2 = number + 2;
             let triplet_3 = number + 6;
 
-            // Search for the other two triplet numbers.  We know they are larger than `number` so
-            // we can give the searches lower bounds of `idx + 1` and `idx + 2`.  We also know that
-            // the `n + 2` number can only ever be two numbers away from the previous and the `n + 6`
-            // number can only be four away (because we removed some in between).  Short circuiting
-            // and doing the check more likely to fail first are also useful.
+            // Search for the other two triplet numbers.  We know they are larger than
+            // `number` so we can give the searches lower bounds of `idx + 1` and
+            // `idx + 2`.  We also know that the `n + 2` number can only ever be two
+            // numbers away from the previous and the `n + 6` number can only be four
+            // away (because we removed some in between).  Short circuiting and doing
+            // the check more likely to fail first are also useful.
             let is_triplet = ludics[idx + 1..idx + 3].binary_search(&triplet_2).is_ok()
                 && ludics[idx + 2..idx + 5].binary_search(&triplet_3).is_ok();
 
