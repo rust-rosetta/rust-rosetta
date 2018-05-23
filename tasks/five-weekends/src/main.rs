@@ -23,7 +23,7 @@ fn five_weekends(start: i32, end: i32)->Vec<(i32, u32)>{
 
 fn main() {
     let out = five_weekends(1900, 2100);
-    
+
     let len = out.len();
     println!("There are {} months of which the first and last five are:", len);
     for (y, m) in &out[..5]{
@@ -39,5 +39,5 @@ fn main() {
 #[test]
 fn test(){
     let out = five_weekends(1900, 2100);
-    assert_eq(out.len(), 201);
+    assert_eq!(out.len(), 201);
 }
