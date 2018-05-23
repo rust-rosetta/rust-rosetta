@@ -101,7 +101,8 @@ impl ToBigUint for HammingTriple {
     /// calculate the value as a `BigUint`
     fn to_biguint(&self) -> Option<BigUint> {
         Some(
-            pow(2u8.to_biguint().unwrap(), self.pow_2) * pow(3u8.to_biguint().unwrap(), self.pow_3)
+            pow(2u8.to_biguint().unwrap(), self.pow_2)
+                * pow(3u8.to_biguint().unwrap(), self.pow_3)
                 * pow(5u8.to_biguint().unwrap(), self.pow_5),
         )
     }
@@ -130,11 +131,13 @@ impl PartialOrd for HammingTriple {
     fn partial_cmp(&self, other: &HammingTriple) -> Option<Ordering> {
         if self == other {
             Some(Equal)
-        } else if ((self.pow_2 >= other.pow_2) && (self.pow_3 >= other.pow_3)
+        } else if ((self.pow_2 >= other.pow_2)
+            && (self.pow_3 >= other.pow_3)
             && (self.pow_5 >= other.pow_5)) || (self.ln > other.ln)
         {
             Some(Greater)
-        } else if ((self.pow_2 <= other.pow_2) && (self.pow_3 <= other.pow_3)
+        } else if ((self.pow_2 <= other.pow_2)
+            && (self.pow_3 <= other.pow_3)
             && (self.pow_5 <= other.pow_5)) || (self.ln < other.ln)
         {
             Some(Less)

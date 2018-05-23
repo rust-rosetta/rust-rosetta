@@ -78,7 +78,8 @@ fn jaro(str1: &str, str2: &str) -> f64 {
     transpositions /= 2.0;
 
     // return the Jaro distance
-    ((matches / str1_len as f64) + (matches / str2_len as f64)
+    ((matches / str1_len as f64)
+        + (matches / str2_len as f64)
         + ((matches - transpositions) / matches)) / 3.0
 }
 

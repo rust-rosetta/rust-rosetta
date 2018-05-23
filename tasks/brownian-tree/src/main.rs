@@ -88,9 +88,14 @@ fn populate_tree(raw: &mut Vec<u8>, width: usize, height: usize, mc: u32) {
         }
 
         loop {
-            let contacts = field[x - 1][y - 1] + field[x][y - 1] + field[x + 1][y - 1]
-                + field[x - 1][y] + field[x + 1][y] + field[x - 1][y + 1]
-                + field[x][y + 1] + field[x + 1][y + 1];
+            let contacts = field[x - 1][y - 1]
+                + field[x][y - 1]
+                + field[x + 1][y - 1]
+                + field[x - 1][y]
+                + field[x + 1][y]
+                + field[x - 1][y + 1]
+                + field[x][y + 1]
+                + field[x + 1][y + 1];
 
             if contacts > 0 {
                 field[x][y] = min(u32::from(field[x][y]) + 1, u32::from(u8::MAX)) as u8;

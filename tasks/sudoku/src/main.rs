@@ -128,7 +128,8 @@ fn solve_sudoku(mut puzzle: Sudoku) -> Vec<Sudoku> {
                 let col = (0..BOARD_HEIGHT).map(|y| (x, y));
                 let grp = idx_in_grp.iter().map(|&(dx, dy)| (x0 + dx, y0 + dy));
 
-                let it = row.chain(col)
+                let it = row
+                    .chain(col)
                     .chain(grp)
                     .filter(|&pos: &(usize, usize)| pos != (x, y));
 
@@ -212,7 +213,8 @@ fn solve_sudoku(mut puzzle: Sudoku) -> Vec<Sudoku> {
     }
 
     // Find the first undetermined cell.
-    let (x, y, _cnt) = *it.iter()
+    let (x, y, _cnt) = *it
+        .iter()
         .filter(|&&(_x, _y, cnt)| cnt > 1)
         .min_by_key(|&&(_x, _y, cnt)| cnt)
         .unwrap();

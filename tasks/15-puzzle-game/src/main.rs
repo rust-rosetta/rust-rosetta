@@ -239,7 +239,7 @@ mod tests {
     fn board_validity() {
         let mut rng = rand::weak_rng();
 
-        fn assert_is_valid<R: Rng>(rng: &mut R, ints: &[usize; 16]) {
+        fn assert_is_valid(ints: &[usize; 16]) {
             let board = board_from_ints(ints);
             assert!(P15::is_valid(board));
         }
@@ -271,22 +271,10 @@ mod tests {
             &[4, 15, 7, 9, 3, 12, 1, 8, 5, 0, 11, 2, 13, 6, 10, 14],
         );
 
-        assert_is_valid(
-            &mut rng,
-            &[7, 1, 3, 14, 6, 0, 4, 8, 5, 9, 13, 2, 12, 15, 11, 10],
-        );
-        assert_is_valid(
-            &mut rng,
-            &[7, 9, 1, 14, 6, 0, 13, 10, 8, 3, 12, 4, 15, 5, 2, 11],
-        );
-        assert_is_valid(
-            &mut rng,
-            &[15, 8, 9, 14, 5, 10, 1, 0, 12, 4, 3, 13, 11, 2, 7, 6],
-        );
-        assert_is_valid(
-            &mut rng,
-            &[1, 12, 4, 8, 10, 7, 2, 11, 6, 3, 15, 14, 9, 13, 5, 0],
-        );
+        assert_is_valid(&[7, 1, 3, 14, 6, 0, 4, 8, 5, 9, 13, 2, 12, 15, 11, 10]);
+        assert_is_valid(&[7, 9, 1, 14, 6, 0, 13, 10, 8, 3, 12, 4, 15, 5, 2, 11]);
+        assert_is_valid(&[15, 8, 9, 14, 5, 10, 1, 0, 12, 4, 3, 13, 11, 2, 7, 6]);
+        assert_is_valid(&[1, 12, 4, 8, 10, 7, 2, 11, 6, 3, 15, 14, 9, 13, 5, 0]);
     }
 
     #[test]
