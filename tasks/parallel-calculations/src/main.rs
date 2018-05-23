@@ -1,86 +1,40 @@
-//! See <http://static.rust-lang.org/doc/master/guide-tasks.html> for information about tasks,
-//! channels, futures, etc.
+//! This solution uses [rayon](https://github.com/rayon-rs/rayon), a data-parallelism library.
+//! Since Rust guarantees that a program has no data races, adding parallelism to a sequential
+//! computation is as easy as importing the rayon traits and calling the `par_iter()` method.
 
-extern crate eventual;
+extern crate rayon;
 
 extern crate prime_decomposition;
 
-use std::sync::mpsc;
-use std::thread::spawn;
-
-use eventual::{Async, Future};
-use prime_decomposition::factor;
-
-/// Returns the minimal prime factor of a number
-fn min_factor(x: usize) -> usize {
-    // factor returns a sorted vector, so we just take the first element
-    factor(x)[0]
-}
+use rayon::prelude::*;
 
 /// Returns the largest minimal factor of the numbers in a slice
-/// The function is implemented using the Future struct from crate "eventual"
-pub fn largest_min_factor_fut(numbers: &[usize]) -> usize {
-    // We will save the future values of the minimal factor in the results vec
-    let results: Vec<Future<usize, ()>> = (0..numbers.len())
-        .map(|i| {
-            let number = numbers[i];
-            Future::spawn(move || min_factor(number))
+pub fn largest_min_factor(numbers: &[usize]) -> usize {
+    numbers
+        .par_iter()
+        .map(|n| {
+            // `factor` returns a sorted vector, so we just take the first element.
+            prime_decomposition::factor(*n)[0]
         })
-        .collect();
-    // Get the largest minimal factor of all results
-    results
-        .into_iter()
-        .map(|f| f.await().ok().unwrap())
         .max()
         .unwrap()
 }
 
-/// Returns the largest minimal factor of the numbers in a slice
-/// The function is implemented using a channel
-pub fn largest_min_factor_chan(numbers: &[usize]) -> usize {
-    let (sender, receiver) = mpsc::channel();
-
-    // Send all the minimal factors
-    for &x in numbers {
-        let child_sender = sender.clone();
-        spawn(move || child_sender.send(min_factor(x)).unwrap());
-    }
-
-    // Receive them and keep the largest one
-    numbers
-        .iter()
-        .fold(0, |max, _| std::cmp::max(receiver.recv().unwrap(), max))
-}
-
 fn main() {
-    // Numbers to be factorized
     let numbers = &[
         1_122_725, 1_125_827, 1_122_725, 1_152_800, 1_157_978, 1_099_726,
     ];
-
-    let max = largest_min_factor_fut(numbers);
+    let max = largest_min_factor(numbers);
     println!("The largest minimal factor is {}", max);
 }
 
 #[cfg(test)]
 mod tests {
-    use super::{largest_min_factor_chan, largest_min_factor_fut};
+    use super::largest_min_factor;
 
-    /// We don't have benchmarks because the Bencher doesn't work good with tasks
     #[test]
     fn test_basic() {
         let numbers = &[25, 80, 256, 55, 18, 19];
-        assert_eq!(largest_min_factor_fut(numbers), 19);
-    }
-
-    #[test]
-    fn test_equivalence() {
-        let numbers = &[
-            1_122_725, 1_125_827, 1_122_725, 1_152_800, 1_157_978, 1_099_726,
-        ];
-        assert_eq!(
-            largest_min_factor_chan(numbers),
-            largest_min_factor_fut(numbers)
-        );
+        assert_eq!(largest_min_factor(numbers), 19);
     }
 }
