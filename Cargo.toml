@@ -82,6 +82,7 @@ meta = { path = "meta" }
 reqwest = "0.8"
 serde = "1"
 serde_json = "1"
+structopt = "0.2"
 term = "0.4"
 
 [dev-dependencies]

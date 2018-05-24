@@ -7,8 +7,7 @@ url = "http://rosettacode.org/wiki/K-means%2B%2B_clustering"
 
 [dependencies]
 csv = "1.0.0-beta.4"
-getopts = "0.2"
 gnuplot = "0.0.23"
 nalgebra = "0.13"
 rand = "0.5"
-serde = "1"
+structopt = "0.2"

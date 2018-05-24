@@ -1,36 +1,34 @@
 #[macro_use]
-extern crate serde_derive;
-
-extern crate docopt;
-extern crate serde;
-
-use docopt::Docopt;
+extern crate structopt;
 
 use std::fs::File;
 use std::io::{BufRead, BufReader};
+use std::path::PathBuf;
 
-const USAGE: &str = r"
-Usage: remove_lines_from_a_file <start> <count> <file>
-";
+use structopt::StructOpt;
 
-#[derive(Debug, Deserialize)]
-struct Args {
-    arg_start: usize,
-    arg_count: usize,
-    arg_file: String,
+#[derive(Debug, StructOpt)]
+struct Opt {
+    /// The file that lines should be removed from
+    #[structopt(parse(from_os_str))]
+    file: PathBuf,
+
+    /// The first line number that should be removed (starting at 1)
+    start: usize,
+
+    /// The number of lines that should be removed
+    count: usize,
 }
 
 fn main() {
-    let args: Args = Docopt::new(USAGE)
-        .and_then(|d| d.deserialize())
-        .unwrap_or_else(|e| e.exit());
+    let opt = Opt::from_args();
 
-    let file = BufReader::new(File::open(args.arg_file).unwrap());
+    let file = BufReader::new(File::open(opt.file).unwrap());
 
     for (i, line) in file.lines().enumerate() {
         let cur = i + 1;
 
-        if cur < args.arg_start || cur >= (args.arg_start + args.arg_count) {
+        if cur < opt.start || cur >= (opt.start + opt.count) {
             println!("{}", line.unwrap());
         }
     }

@@ -6,7 +6,5 @@ version = "0.1.0"
 url = "http://rosettacode.org/wiki/Walk_a_directory/Non-recursively"
 
 [dependencies]
-docopt = "0.8"
-regex = "0.2"
-serde = "1"
-serde_derive = "1"
+regex = "1"
+structopt = "0.2"
