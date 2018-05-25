@@ -6,10 +6,10 @@ extern crate rand;
 
 use rand::{thread_rng, Rng};
 
-fn bogo_sort<T: Ord>(mut v: &mut [T]) {
+fn bogo_sort<T: Ord>(v: &mut [T]) {
     let mut rng = thread_rng();
     while !is_sorted(v) {
-        rng.shuffle(&mut v);
+        rng.shuffle(v);
     }
 }
 

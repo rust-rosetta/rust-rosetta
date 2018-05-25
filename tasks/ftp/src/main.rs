@@ -1,5 +1,3 @@
-#![feature(conservative_impl_trait)]
-
 extern crate ftp;
 
 use ftp::types::{FileType, Result};

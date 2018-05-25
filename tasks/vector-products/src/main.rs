@@ -58,7 +58,7 @@ fn vector_cross_product() {
         Vector {
             x: -3.0,
             y: 6.0,
-            z: -3.0
+            z: -3.0,
         }
     );
 }

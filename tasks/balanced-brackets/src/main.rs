@@ -28,9 +28,12 @@ impl<'a> Balanced for str {
 
 /// Generates random brackets
 fn generate_brackets(num: usize) -> String {
-    use rand::random;
+    use rand::{thread_rng, Rng};
 
-    (0..num).map(|_| if random() { '[' } else { ']' }).collect()
+    let mut rng = thread_rng();
+    (0..num)
+        .map(|_| if rng.gen() { '[' } else { ']' })
+        .collect()
 }
 
 fn main() {

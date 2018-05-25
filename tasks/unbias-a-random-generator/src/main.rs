@@ -1,9 +1,9 @@
 extern crate rand;
 
-use rand::Rng;
+use rand::prelude::*;
 
 fn rand_n<R: Rng>(rng: &mut R, n: u32) -> usize {
-    rng.gen_weighted_bool(n) as usize // maps `false` to 0 and `true` to 1
+    (rng.gen_range(0, n) == 0) as usize // maps `false` to 0 and `true` to 1
 }
 
 fn unbiased<R: Rng>(rng: &mut R, n: u32) -> usize {
@@ -16,7 +16,7 @@ fn unbiased<R: Rng>(rng: &mut R, n: u32) -> usize {
 
 fn main() {
     const SAMPLES: usize = 100_000;
-    let mut rng = rand::weak_rng();
+    let mut rng = SmallRng::from_entropy();
 
     println!(" Bias    rand_n  unbiased");
     for n in 3..=6 {
@@ -38,7 +38,7 @@ fn main() {
 
 #[test]
 fn test_unbiased() {
-    let mut rng = rand::weak_rng();
+    let mut rng = SmallRng::from_entropy();
     const SAMPLES: usize = 10_000;
 
     for n in 3..=6 {

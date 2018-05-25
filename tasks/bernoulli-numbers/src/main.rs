@@ -78,7 +78,8 @@ fn main() {
     // Collect the solutions by using the Context iterator
     // (this is not as fast as calling the optimized function directly).
     let res = context.take(up_to + 1).collect::<Vec<_>>();
-    let width = res.iter()
+    let width = res
+        .iter()
         .fold(0, |a, r| max(a, r.value.numer().to_string().len()));
 
     for r in res.iter().filter(|r| r.index % 2 == 0) {

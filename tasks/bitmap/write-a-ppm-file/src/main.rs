@@ -1,23 +1,23 @@
 extern crate bitmap;
-extern crate rand;
 
-use bitmap::Image;
+use bitmap::{Color, Image};
 use std::fs::File;
-use std::io::{Error, Write};
+use std::io;
+use std::io::prelude::*;
 
 trait PPMWritable {
-    fn write_ppm(&self, filename: &str) -> Result<(), Error>;
+    fn write_ppm(&self, filename: &str) -> Result<(), io::Error>;
 }
 
 impl PPMWritable for Image {
-    fn write_ppm(&self, filename: &str) -> Result<(), Error> {
+    fn write_ppm(&self, filename: &str) -> Result<(), io::Error> {
         let mut writer = File::create(filename)?;
         // let mut writer = BufWriter::new(file);
         writeln!(&mut writer, "P6")?;
-        write!(&mut writer, "{} {} {}\n", self.width, self.height, 255)?;
+        writeln!(&mut writer, "{} {} 255", self.width, self.height)?;
         for color in &(self.data) {
-            for channel in &[color.red, color.green, color.blue] {
-                let ch = *channel as u8;
+            for &channel in &[color.red, color.green, color.blue] {
+                let ch = channel as u8;
                 writer.write_all(&[ch])?;
             }
         }
@@ -26,8 +26,6 @@ impl PPMWritable for Image {
 }
 
 pub fn main() {
-    use bitmap::Color;
-
     // write a PPM image, the left side of which is red, and the right side
     // of which is blue
     let mut image = Image::new(64, 64);
@@ -50,12 +48,11 @@ pub fn main() {
 
 #[cfg(test)]
 mod tests {
-    use bitmap::{Color, Image};
-    use rand;
-    use rand::Rng;
+    extern crate rand;
+
+    use super::*;
+    use io::BufReader;
     use std::env;
-    use std::fs::File;
-    use std::io::{BufRead, BufReader, Read};
 
     #[test]
     fn write_ppm() {
@@ -73,21 +70,18 @@ mod tests {
         let fname = format!(
             "{}/test-{}.ppm",
             env::temp_dir().to_str().unwrap(),
-            rand::thread_rng().gen::<i32>()
+            self::rand::random::<i32>(),
         );
         // Can't use try! macro because we want to panic, not return.
-        match image.write_ppm(&fname[..]) {
-            Ok(_) => {}
-            Err(e) => panic!(e),
-        }
+        image.write_ppm(&fname).unwrap_or_else(|e| panic!(e));
 
-        let file = File::open(&fname[..]).unwrap();
+        let file = File::open(&fname).unwrap();
         let mut reader = BufReader::new(file);
         let mut line = String::new();
-        let _ = reader.read_line(&mut line);
+        reader.read_line(&mut line).unwrap();
         assert_eq!(line, "P6\n");
         line = String::new();
-        let _ = reader.read_line(&mut line);
+        reader.read_line(&mut line).unwrap();
         assert_eq!(line, "2 1 255\n");
         let mut bytes = reader.bytes();
         assert_eq!(bytes.next().unwrap().unwrap(), 49);

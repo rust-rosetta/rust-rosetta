@@ -141,8 +141,9 @@ fn main() {
 
 #[cfg(test)]
 mod tests {
-    use super::{matrix_addition, matrix_multiplication, matrix_subtraction, scalar_multiplication,
-                Matrix};
+    use super::{
+        matrix_addition, matrix_multiplication, matrix_subtraction, scalar_multiplication, Matrix,
+    };
 
     const HEIGHT: u32 = 2;
     const WIDTH: u32 = 3;

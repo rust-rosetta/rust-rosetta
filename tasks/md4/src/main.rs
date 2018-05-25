@@ -42,7 +42,8 @@ macro_rules! md4round1 {
 //   A = (A + g(B,C,D) + X[i] + 5A827999) <<< s .
 macro_rules! md4round2 {
     ($a:expr, $b:expr, $c:expr, $d:expr, $i:expr, $s:expr, $x:expr) => {{
-        $a = ($a.wrapping_add(g($b, $c, $d))
+        $a = ($a
+            .wrapping_add(g($b, $c, $d))
             .wrapping_add($x[$i])
             .wrapping_add(0x5a82_7999_u32))
             .rotate_left($s);
@@ -54,7 +55,8 @@ macro_rules! md4round2 {
 //   A = (A + h(B,C,D) + X[i] + 6ED9EBA1) <<< s .
 macro_rules! md4round3 {
     ($a:expr, $b:expr, $c:expr, $d:expr, $i:expr, $s:expr, $x:expr) => {{
-        $a = ($a.wrapping_add(h($b, $c, $d))
+        $a = ($a
+            .wrapping_add(h($b, $c, $d))
             .wrapping_add($x[$i])
             .wrapping_add(0x6ed9_eba1_u32))
             .rotate_left($s);

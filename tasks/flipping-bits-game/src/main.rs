@@ -6,6 +6,8 @@ use std::fmt;
 // For I/O (stdin, stdout, etc)
 use std::io::prelude::*;
 
+use rand::Rng;
+
 /// A simple struct for a board
 struct Board {
     /// The cells of the board
@@ -30,7 +32,7 @@ impl Board {
         if size > 0 {
             Board {
                 cells: vec![false; size * size],
-                size: size,
+                size,
             }
         } else {
             Board::new(1)
@@ -87,49 +89,24 @@ impl Board {
     /// ```
     /// let target: Board = Board::random(3);
     /// ```
-    fn random(size: usize) -> Board {
+    fn random<R: Rng>(rng: &mut R, size: usize) -> Board {
         // Ensure we make a board with a non-zero size
-        if size > 0 {
-            // Make a vector of the board size
-            let mut cells: Vec<bool> = vec![false; size * size];
-            // Loop through all the cells
-            for cell in &mut cells {
-                // Give it a random state
-                *cell = rand::random();
-            }
-            // Return the random board
-            Board { cells, size }
-        } else {
-            Board::random(1)
+        if size == 0 {
+            return Board::random(rng, 1);
         }
-    }
 
-    /// Check if a board is equal to another
-    ///
-    /// Returns true if boards are of equal size and contents, false otherwise.
-    ///
-    /// ```
-    /// let mut board: Board = Board::new(3);
-    /// let target: Board = Board::random(3);
-    /// if board.eq(&target) {
-    ///     // randomness won and set to empty board
-    /// } else {
-    ///     // not equal
-    /// ```
+        // Make a vector of the board size with random bits
+        let cells = (0..size * size)
+            .map(|_| rng.gen::<bool>())
+            .collect::<Vec<_>>();
+        // Return the random board
+        Board { cells, size }
+    }
+}
+
+impl PartialEq for Board {
     fn eq(&self, rhs: &Board) -> bool {
-        // Has to be a board of the same size
-        if self.size != rhs.size {
-            return false;
-        }
-        // Loop through the board
-        for i in 0..self.size * self.size {
-            // If cells do not match, not equal
-            if self.cells[i] != rhs.cells[i] {
-                return false;
-            }
-        }
-        // If we get here, boards are equal
-        true
+        self.cells == rhs.cells
     }
 }
 
@@ -150,7 +127,7 @@ impl fmt::Display for Board {
             write!(f, " {offset:>0$}", width, offset = i)?;
         }
         // Newline for rows
-        write!(f, "\n")?;
+        writeln!(f)?;
         // Loop through the rows
         for row in 0..self.size {
             // Write the row number
@@ -158,27 +135,25 @@ impl fmt::Display for Board {
             // Loop through the columns
             for col in 0..self.size {
                 // Get the value of the cell as 1 or 0
-                let p = if self.cells[row * self.size + col] {
-                    1
-                } else {
-                    0
-                };
+                let p = self.cells[row * self.size + col] as usize;
                 // Write the column value
                 write!(f, " {col:>0$}", width, col = p)?;
             }
             // Newline for next row
-            write!(f, "\n")?;
+            writeln!(f)?;
         }
         // Return Formatter result
-        write!(f, "")
+        Ok(())
     }
 }
 
 fn main() {
+    let mut rng = rand::thread_rng();
+
     // The board size
     let size: usize = 3;
     // The target board
-    let target: Board = Board::random(size);
+    let target: Board = Board::random(&mut rng, size);
     // The user board
     let mut board: Board = Board::new(size);
     // How many moves taken
@@ -268,7 +243,7 @@ fn main() {
                 }
             }
         } // 'userinput
-        if board.eq(&target) {
+        if board == target {
             println!("You win!");
             break;
         }

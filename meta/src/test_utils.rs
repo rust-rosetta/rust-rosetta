@@ -43,7 +43,9 @@ macro_rules! test_sort {
         test_case!(one_element_vector => vec![0_i32]);
         test_case!(random_numbers => {
             let mut rng = $crate::rand::thread_rng();
-            rng.gen::<[i32; 10]>()
+            let mut numbers = [0i32; 10];
+            rng.fill(&mut numbers);
+            numbers
         });
         test_case!(reverse_sorted_array => [20_i32, 10, 0, -1, -5]);
         test_case!(unsorted_array => [4_i32, 65, 2, -31, 0, 99, 2, 83, 782, 1]);

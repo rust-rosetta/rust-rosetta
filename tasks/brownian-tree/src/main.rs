@@ -1,14 +1,14 @@
 extern crate image;
 extern crate rand;
 
-use std::cmp::{max, min};
+use std::cmp::min;
 use std::env;
 use std::path::Path;
 use std::process;
-use std::u8;
 
 use image::ColorType;
-use rand::distributions::{IndependentSample, Range};
+use rand::distributions::Uniform;
+use rand::{thread_rng, Rng};
 
 fn help() {
     println!("Usage: brownian_tree <output_path> <mote_count> <edge_length>");
@@ -42,8 +42,8 @@ fn main() {
     populate_tree(&mut field_raw, width, height, mote_count);
 
     // Balance image for 8-bit grayscale
-    let our_max = field_raw.iter().fold(0u8, |champ, e| max(champ, *e));
-    let fudge = u8::MAX / our_max;
+    let our_max = field_raw.iter().max().unwrap();
+    let fudge = u8::max_value() / our_max;
     let balanced: Vec<u8> = field_raw.iter().map(|e| e * fudge).collect();
 
     match image::save_buffer(
@@ -60,17 +60,16 @@ fn main() {
 
 fn populate_tree(raw: &mut Vec<u8>, width: usize, height: usize, mc: u32) {
     // Vector of 'width' elements slices
-    let mut field_base: Vec<_> = raw.as_mut_slice().chunks_mut(width).collect();
+    let mut field_base: Vec<_> = raw.chunks_mut(width).collect();
     // Addressable 2d vector
     let field = field_base.as_mut_slice();
 
     // Seed mote
     field[width / 2][height / 2] = 1;
 
-    let walk_range = Range::new(-1i32, 2i32);
-    let x_spawn_range = Range::new(1usize, width - 1);
-    let y_spawn_range = Range::new(1usize, height - 1);
-    let mut rng = rand::thread_rng();
+    let x_spawn_range = Uniform::new(1, width - 1);
+    let y_spawn_range = Uniform::new(1, height - 1);
+    let mut rng = thread_rng();
 
     for i in 0..mc {
         if i % 100 == 0 {
@@ -78,26 +77,32 @@ fn populate_tree(raw: &mut Vec<u8>, width: usize, height: usize, mc: u32) {
         }
 
         // Spawn mote
-        let mut x = x_spawn_range.ind_sample(&mut rng);
-        let mut y = y_spawn_range.ind_sample(&mut rng);
+        let mut x = rng.sample(x_spawn_range);
+        let mut y = rng.sample(y_spawn_range);
 
         // Increment field value when motes spawn on top of the structure
         if field[x][y] > 0 {
-            field[x][y] = min(u32::from(field[x][y]) + 1, u32::from(u8::MAX)) as u8;
+            field[x][y] = min(field[x][y] + 1, u8::max_value()) as u8;
             continue;
         }
 
         loop {
-            let contacts = field[x - 1][y - 1] + field[x][y - 1] + field[x + 1][y - 1]
-                + field[x - 1][y] + field[x + 1][y] + field[x - 1][y + 1]
-                + field[x][y + 1] + field[x + 1][y + 1];
+            let contacts = field[x - 1][y - 1]
+                + field[x][y - 1]
+                + field[x + 1][y - 1]
+                + field[x - 1][y]
+                + field[x + 1][y]
+                + field[x - 1][y + 1]
+                + field[x][y + 1]
+                + field[x + 1][y + 1];
 
             if contacts > 0 {
-                field[x][y] = min(u32::from(field[x][y]) + 1, u32::from(u8::MAX)) as u8;
+                field[x][y] = min(field[x][y] + 1, u8::max_value()) as u8;
                 break;
             } else {
-                let xw = walk_range.ind_sample(&mut rng) + x as i32;
-                let yw = walk_range.ind_sample(&mut rng) + y as i32;
+                let range = Uniform::new(-1, 2);
+                let xw = rng.sample(range) + x as i32;
+                let yw = rng.sample(range) + y as i32;
                 if xw < 1 || xw >= (width as i32 - 1) || yw < 1 || yw >= (height as i32 - 1) {
                     // println!("wandered off");
                     break;
@@ -112,7 +117,6 @@ fn populate_tree(raw: &mut Vec<u8>, width: usize, height: usize, mc: u32) {
 #[cfg(test)]
 mod tests {
     use super::populate_tree;
-    use std::cmp::max;
 
     #[test]
     fn test_brownian_tree() {
@@ -121,7 +125,7 @@ mod tests {
         let mote_count = 1000;
         let mut field_raw = vec![0u8; width * height];
         populate_tree(&mut field_raw, width, height, mote_count);
-        let our_max = field_raw.iter().fold(0u8, |champ, e| max(champ, *e));
-        assert!(our_max >= 1);
+        let our_max = field_raw.iter().max().unwrap();
+        assert!(*our_max >= 1);
     }
 }

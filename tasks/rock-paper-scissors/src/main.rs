@@ -1,16 +1,30 @@
 extern crate rand;
-#[macro_use]
-extern crate rand_derive;
 
-use rand::Rng;
 use std::io;
+
+use rand::distributions::{Standard, Uniform};
+use rand::prelude::*;
+
 use Choice::*;
 
-#[derive(PartialEq, Clone, Copy, Rand, Debug)]
-pub enum Choice {
+#[derive(PartialEq, Clone, Copy, Debug)]
+enum Choice {
     Rock,
     Paper,
     Scissors,
+}
+
+impl Distribution<Choice> for Standard {
+    fn sample<R: Rng + ?Sized>(&self, rng: &mut R) -> Choice {
+        // Use `Uniform` rather than `gen_range`'s `Uniform::sample_single` for speed
+        let range = Uniform::new(0, 3);
+        match rng.sample(range) {
+            0 => Rock,
+            1 => Paper,
+            2 => Scissors,
+            _ => unreachable!(), // `_ | 2` would remove the check
+        }
+    }
 }
 
 fn beats(c1: Choice, c2: Choice) -> bool {
@@ -44,20 +58,26 @@ fn main() {
         io::stdin()
             .read_line(&mut input)
             .expect("failed to read line");
-        let u_choice = match input.to_lowercase().trim() {
-            s if s.starts_with('r') => {
+        // trim leading whitespace, get first lowercase character
+        let u_choice = match input
+            .trim_left()
+            .chars()
+            .next()
+            .and_then(|c| c.to_lowercase().next())
+        {
+            Some('r') => {
                 ucf[0] += 1;
                 Rock
             }
-            s if s.starts_with('p') => {
+            Some('p') => {
                 ucf[1] += 1;
                 Paper
             }
-            s if s.starts_with('s') => {
+            Some('s') => {
                 ucf[2] += 1;
                 Scissors
             }
-            s if s.starts_with('q') => break,
+            Some('q') => break,
             _ => {
                 println!("Please enter a correct choice!");
                 continue;
@@ -82,9 +102,22 @@ fn main() {
     println!("Thank you for the game!");
 }
 
-#[test]
-fn test_victory() {
-    assert!(beats(Scissors, Paper));
-    assert!(beats(Rock, Scissors));
-    assert!(beats(Paper, Rock));
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_victory() {
+        assert!(beats(Scissors, Paper));
+        assert!(beats(Rock, Scissors));
+        assert!(beats(Paper, Rock));
+    }
+
+    #[test]
+    fn rand_choice() {
+        let mut rng = thread_rng();
+        for _ in 0..4 {
+            rng.gen::<Choice>();
+        }
+    }
 }

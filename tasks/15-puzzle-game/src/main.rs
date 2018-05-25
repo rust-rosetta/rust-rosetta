@@ -3,7 +3,8 @@ extern crate rand;
 use std::collections::HashMap;
 use std::fmt;
 
-use rand::Rng;
+use rand::distributions::{Distribution, Standard};
+use rand::prelude::*;
 
 #[derive(Copy, Clone, PartialEq, Debug)]
 enum Cell {
@@ -31,18 +32,20 @@ struct P15 {
     board: Board,
 }
 
-impl P15 {
-    fn new() -> Self {
+impl Distribution<P15> for Standard {
+    // TODO: make the board valid right from the start.
+    fn sample<R: Rng + ?Sized>(&self, rng: &mut R) -> P15 {
         let mut board = EMPTY;
         for (i, cell) in board.iter_mut().enumerate().skip(1) {
             *cell = Cell::Card(i);
         }
 
-        let mut rng = rand::thread_rng();
-
         rng.shuffle(&mut board);
-        if !Self::is_valid(board) {
+        if !P15::is_valid(board) {
             // random swap
+            // NOTE: because 16 is a power of two, we could use the faster
+            // modulo reduction (`n % 16`) without bias; `gen_range` is
+            // presented here for the general case.
             let i = rng.gen_range(0, 16);
             let mut j = rng.gen_range(0, 16);
             while j == i {
@@ -50,12 +53,15 @@ impl P15 {
             }
             board.swap(i, j);
         }
+        debug_assert!(P15::is_valid(board));
 
-        Self { board }
+        P15 { board }
     }
+}
 
+impl P15 {
+    // TODO: optimize
     fn is_valid(mut board: Board) -> bool {
-        // TODO: optimize
         let mut permutations = 0;
 
         let pos = board.iter().position(|&cell| cell == Cell::Empty).unwrap();
@@ -127,16 +133,16 @@ impl P15 {
 
 impl fmt::Display for P15 {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "+----+----+----+----+\n")?;
+        writeln!(f, "+----+----+----+----+")?;
         for (i, &cell) in self.board.iter().enumerate() {
             match cell {
                 Cell::Card(value) => write!(f, "| {:2} ", value)?,
                 Cell::Empty => write!(f, "|    ")?,
-            }
+            };
 
             if i % 4 == 3 {
-                write!(f, "|\n")?;
-                write!(f, "+----+----+----+----+\n")?;
+                writeln!(f, "|")?;
+                writeln!(f, "+----+----+----+----+")?;
             }
         }
         Ok(())
@@ -144,7 +150,8 @@ impl fmt::Display for P15 {
 }
 
 fn main() {
-    let mut p15 = P15::new();
+    let mut rng = SmallRng::from_rng(&mut thread_rng()).unwrap();
+    let mut p15 = rng.gen::<P15>();
 
     for turns in 1.. {
         println!("{}", p15);
@@ -220,10 +227,14 @@ mod tests {
     }
 
     fn make_valid<R: Rng>(rng: &mut R, mut board: Board) -> Board {
-        let i = rng.gen_range(0, 16);
-        let mut j = rng.gen_range(0, 16);
+        // get 2 indices from a single random byte
+        let rand_byte = rng.gen::<u8>() as usize;
+        // modulo reduction for test speed
+        let i = rand_byte % 16;
+        let mut j = rand_byte >> (8 - 2);
+
         while j == i {
-            j = rng.gen_range(0, 16);
+            j = rng.gen::<u8>() as usize % 16; // rng.gen_range(0, 16);
         }
         board.swap(i, j);
         board
@@ -231,15 +242,16 @@ mod tests {
 
     #[test]
     fn board_creation() {
-        let p15 = P15::new();
+        let mut rng = SmallRng::from_rng(&mut thread_rng()).unwrap();
+        let p15: P15 = rng.gen();
         assert!(P15::is_valid(p15.board));
     }
 
     #[test]
     fn board_validity() {
-        let mut rng = rand::weak_rng();
+        let mut rng = SmallRng::from_rng(&mut thread_rng()).unwrap();
 
-        fn assert_is_valid<R: Rng>(rng: &mut R, ints: &[usize; 16]) {
+        fn assert_is_valid(ints: &[usize; 16]) {
             let board = board_from_ints(ints);
             assert!(P15::is_valid(board));
         }
@@ -271,22 +283,10 @@ mod tests {
             &[4, 15, 7, 9, 3, 12, 1, 8, 5, 0, 11, 2, 13, 6, 10, 14],
         );
 
-        assert_is_valid(
-            &mut rng,
-            &[7, 1, 3, 14, 6, 0, 4, 8, 5, 9, 13, 2, 12, 15, 11, 10],
-        );
-        assert_is_valid(
-            &mut rng,
-            &[7, 9, 1, 14, 6, 0, 13, 10, 8, 3, 12, 4, 15, 5, 2, 11],
-        );
-        assert_is_valid(
-            &mut rng,
-            &[15, 8, 9, 14, 5, 10, 1, 0, 12, 4, 3, 13, 11, 2, 7, 6],
-        );
-        assert_is_valid(
-            &mut rng,
-            &[1, 12, 4, 8, 10, 7, 2, 11, 6, 3, 15, 14, 9, 13, 5, 0],
-        );
+        assert_is_valid(&[7, 1, 3, 14, 6, 0, 4, 8, 5, 9, 13, 2, 12, 15, 11, 10]);
+        assert_is_valid(&[7, 9, 1, 14, 6, 0, 13, 10, 8, 3, 12, 4, 15, 5, 2, 11]);
+        assert_is_valid(&[15, 8, 9, 14, 5, 10, 1, 0, 12, 4, 3, 13, 11, 2, 7, 6]);
+        assert_is_valid(&[1, 12, 4, 8, 10, 7, 2, 11, 6, 3, 15, 14, 9, 13, 5, 0]);
     }
 
     #[test]

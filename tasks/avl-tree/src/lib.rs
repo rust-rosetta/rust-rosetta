@@ -9,9 +9,11 @@
 extern crate rand;
 extern crate term_painter;
 
-use rand::Rng;
 use std::cmp::Ordering;
 use std::fmt::{Debug, Display, Formatter, Result};
+
+use rand::distributions::Uniform;
+use rand::Rng;
 use term_painter::Color::*;
 use term_painter::ToStyle;
 
@@ -59,7 +61,7 @@ struct BalanceConstants {
     gcp1_parent_adj: i8, // Del only, balance adjustment to parent for b = 1 grandchild
 }
 
-static BALANCE_CONSTANTS_A: BalanceConstants = BalanceConstants {
+const BALANCE_CONSTANTS_A: BalanceConstants = BalanceConstants {
     bal_incr: -1,
     this_side: Side::Left,
     that_side: Side::Right,
@@ -70,7 +72,7 @@ static BALANCE_CONSTANTS_A: BalanceConstants = BalanceConstants {
     gcp1_parent_adj: 0,
 };
 
-static BALANCE_CONSTANTS_B: BalanceConstants = BalanceConstants {
+const BALANCE_CONSTANTS_B: BalanceConstants = BalanceConstants {
     bal_incr: 1,
     this_side: Side::Right,
     that_side: Side::Left,
@@ -355,11 +357,11 @@ impl<K: Ord + Copy + Debug + Display, V: Debug + Copy + Display> AVLTree<K, V> {
             }
             self.remove_carefully(p);
             // The prev pointer is now stale
-            if prev.is_some() && prev.unwrap() == self.store.len() {
-                res = p;
+            res = if prev == Some(self.store.len()) {
+                p
             } else {
-                res = prev;
-            }
+                prev
+            };
 
         // Is this a one-child node?
         } else if n.left.is_none() || n.right.is_none() {
@@ -377,11 +379,11 @@ impl<K: Ord + Copy + Debug + Display, V: Debug + Copy + Display> AVLTree<K, V> {
             }
             self.remove_carefully(p);
             // The prev pointer is now stale
-            if prev.is_some() && prev.unwrap() == self.store.len() {
-                res = p;
+            res = if prev == Some(self.store.len()) {
+                p
             } else {
-                res = prev;
-            }
+                prev
+            };
 
         // Complicated case:  two children, do delete-by-copy. Replace n with its first
         // predecessor (the mirror image using the first successor would work as well).
@@ -418,11 +420,11 @@ impl<K: Ord + Copy + Debug + Display, V: Debug + Copy + Display> AVLTree<K, V> {
 
             self.remove_carefully(tmp);
             // The prev pointer is now stale
-            if prev.unwrap() == self.store.len() {
-                res = tmp;
+            res = if prev.unwrap() == self.store.len() {
+                tmp
             } else {
-                res = prev;
-            }
+                prev
+            };
         }
 
         (res, side)
@@ -509,11 +511,7 @@ impl<K: Ord + Copy + Debug + Display, V: Debug + Copy + Display> AVLTree<K, V> {
 
     /// Returns node value
     pub fn lookup(&self, k: K) -> Option<V> {
-        if let Some(n) = self.search(k) {
-            Some(n.value)
-        } else {
-            None
-        }
+        self.search(k).map(|n| n.value)
     }
 
     /// Returns node (not pointer)
@@ -550,11 +548,12 @@ impl<K: Ord + Copy + Debug + Display, V: Debug + Copy + Display> AVLTree<K, V> {
         if node.up != self.root {
             // Direction switching, need trunk element to be printed for lines before that node
             // is visited.
-            if side == Side::Left && node.right.is_some() {
-                elems.push(DisplayElement::TrunkSpace);
+            let new_elem = if side == Side::Left && node.right.is_some() {
+                DisplayElement::TrunkSpace
             } else {
-                elems.push(DisplayElement::SpaceSpace);
-            }
+                DisplayElement::SpaceSpace
+            };
+            elems.push(new_elem);
         }
         let hindex = elems.len() - 1;
         self.display(node.right, Side::Right, &elems, f);
@@ -664,11 +663,12 @@ impl<K: Ord + Copy + Debug + Display, V: Debug + Copy + Display> AVLTree<K, V> {
         self.set_pointer(q, Side::Left, p);
         self.set_pointer(p, Side::Right, ql);
         if p_parent.is_some() {
-            if self.get_pointer(p_parent, Side::Right) == p {
-                self.set_pointer(p_parent, Side::Right, q);
+            let side = if self.get_pointer(p_parent, Side::Right) == p {
+                Side::Right
             } else {
-                self.set_pointer(p_parent, Side::Left, q);
-            }
+                Side::Left
+            };
+            self.set_pointer(p_parent, side, q);
         } else {
             self.root = q;
         }
@@ -693,11 +693,12 @@ impl<K: Ord + Copy + Debug + Display, V: Debug + Copy + Display> AVLTree<K, V> {
         self.set_pointer(q, Side::Right, p);
         self.set_pointer(p, Side::Left, qr);
         if p_parent.is_some() {
-            if self.get_pointer(p_parent, Side::Right) == p {
-                self.set_pointer(p_parent, Side::Right, q);
+            let side = if self.get_pointer(p_parent, Side::Right) == p {
+                Side::Right
             } else {
-                self.set_pointer(p_parent, Side::Left, q);
-            }
+                Side::Left
+            };
+            self.set_pointer(p_parent, side, q);
         } else {
             self.root = q;
         }
@@ -783,12 +784,12 @@ fn get_deletion_constants(is_left: bool) -> &'static BalanceConstants {
 pub fn random_bal_tree(n: u32) -> AVLTree<i32, f32> {
     let mut tree: AVLTree<i32, f32> = AVLTree::new();
     let mut rng = rand::thread_rng();
-    tree.insert_bal(0, rng.gen_range(-1f32, 1f32));
+    // `Uniform` rather than `gen_range`'s `Uniform::sample_single` for speed
+    let key_range = Uniform::new(-(n as i32) / 2, (n as i32) / 2);
+    let value_range = Uniform::new(-1.0, 1.0);
+    tree.insert_bal(0, rng.sample(value_range));
     for _ in 0..n {
-        tree.insert_bal(
-            rng.gen_range(-(n as i32) / 2, (n as i32) / 2),
-            rng.gen_range(-1f32, 1f32),
-        );
+        tree.insert_bal(rng.sample(key_range), rng.sample(value_range));
     }
     tree
 }
@@ -1079,8 +1080,8 @@ mod tests {
         let (_, bals) = res;
 
         if bals.len() > 0 {
-            assert!(bals.iter().max().unwrap() < &2);
-            assert!(bals.iter().min().unwrap() > &-2);
+            assert!(*bals.iter().max().unwrap() < 2);
+            assert!(*bals.iter().min().unwrap() > -2);
         }
 
         return;

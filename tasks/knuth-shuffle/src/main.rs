@@ -2,8 +2,9 @@ extern crate rand;
 
 use rand::Rng;
 
-fn knuth_shuffle<T>(v: &mut [T]) {
-    let mut rng = rand::thread_rng();
+// Since you're probably already using the `rand` crate, you should just use
+// `rand::Rng::shuffle`.
+fn knuth_shuffle<T>(rng: &mut impl Rng, v: &mut [T]) {
     let l = v.len();
 
     for n in 0..l {
@@ -14,8 +15,9 @@ fn knuth_shuffle<T>(v: &mut [T]) {
 
 fn main() {
     let mut v: Vec<_> = (0..10).collect();
+    let mut rng = rand::thread_rng();
 
     println!("before: {:?}", v);
-    knuth_shuffle(&mut v);
+    knuth_shuffle(&mut rng, &mut v);
     println!("after:  {:?}", v);
 }

@@ -4,13 +4,17 @@ extern crate gnuplot;
 extern crate nalgebra;
 extern crate rand;
 
-use getopts::Options;
-use gnuplot::{Axes2D, AxesCommon, Color, Figure, Fix, PointSize, PointSymbol};
-use nalgebra::DVector;
-use rand::distributions::{IndependentSample, Range};
-use rand::{Rng, SeedableRng, StdRng};
 use std::env;
 use std::f64::consts::PI;
+
+use getopts::Options;
+
+use gnuplot::{Axes2D, AxesCommon, Color, Figure, Fix, PointSize, PointSymbol};
+
+use nalgebra::DVector;
+
+use rand::distributions::Uniform;
+use rand::{Rng, SeedableRng, StdRng};
 
 use std::fs::File;
 
@@ -28,10 +32,7 @@ struct Stats {
 
 /// `DVector` doesn't implement `BaseFloat`, so a custom distance function is required.
 fn sqdist(p1: &Point, p2: &Point) -> f64 {
-    (p1.clone() - p2.clone())
-        .iter()
-        .map(|x| x * x)
-        .fold(0f64, |a, b| a + b)
+    (p1.clone() - p2.clone()).iter().map(|x| x * x).sum()
 }
 
 /// Returns (distance^2, index) tuple of winning point.
@@ -51,14 +52,14 @@ fn nearest(p: &Point, candidates: &[Point]) -> (f64, usize) {
 }
 
 /// Computes starting centroids and makes initial assignments.
-fn kpp(points: &[Point], k: usize, rng: &mut StdRng) -> Stats {
+fn kpp(points: &[Point], k: usize, rng: &mut impl Rng) -> Stats {
     let mut centroids: Vec<Point> = Vec::new();
     // Random point for first centroid guess:
-    centroids.push(points[rng.gen::<usize>() % points.len()].clone());
+    centroids.push(rng.choose(&points).unwrap().clone());
     let mut dists: Vec<f64> = vec![0f64; points.len()];
 
     for _ in 1..k {
-        let mut sum = 0f64;
+        let mut sum = 0.0;
         for (j, p) in points.iter().enumerate() {
             let (dsquared, _) = nearest(p, &centroids);
             dists[j] = dsquared;
@@ -66,7 +67,7 @@ fn kpp(points: &[Point], k: usize, rng: &mut StdRng) -> Stats {
         }
 
         // This part chooses the next cluster center with a probability proportional to d^2
-        sum *= rng.next_f64();
+        sum *= rng.gen::<f64>();
         for (j, d) in dists.iter().enumerate() {
             sum -= *d;
             if sum <= 0f64 {
@@ -131,7 +132,7 @@ fn lloyd<'a>(
     k: usize,
     stoppage_delta: f64,
     max_iter: u32,
-    rng: &mut StdRng,
+    rng: &mut impl Rng,
 ) -> (Vec<Cluster<'a>>, Stats) {
     let mut clusters = Vec::new();
     // Choose starting centroids and make initial assignments
@@ -164,19 +165,17 @@ fn lloyd<'a>(
 }
 
 /// Uniform sampling on the unit disk.
-fn generate_points(n: u32, rng: &mut StdRng) -> Vec<Point> {
-    let r_range = Range::new(0f64, 1f64);
-    let theta_range = Range::new(0f64, 2f64 * PI);
-    let mut points: Vec<Point> = Vec::new();
+fn generate_points(n: u32, rng: &mut impl Rng) -> Vec<Point> {
+    // `Uniform` rather than `gen_range`'s `Uniform::sample_single` for speed
+    let range = Uniform::new(0.0, 2.0 * PI);
 
-    for _ in 0..n {
-        let root_r = r_range.ind_sample(rng).sqrt();
-        let theta = theta_range.ind_sample(rng);
-        let vec = DVector::<f64>::from_row_slice(2, &[root_r * theta.cos(), root_r * theta.sin()]);
-        points.push(vec);
-    }
-
-    points
+    (0..n)
+        .map(|_| {
+            let root_r = rng.gen::<f64>();
+            let theta = rng.sample(range);
+            DVector::<f64>::from_row_slice(2, &[root_r * theta.cos(), root_r * theta.sin()])
+        })
+        .collect()
 }
 
 // Plot clusters (2d only). Closure idiom allows us to borrow and mutate the Axes2D.
@@ -219,6 +218,14 @@ fn print_dvec(v: &DVector<f64>) {
 fn print_usage(program: &str, opts: &Options) {
     let brief = format!("Usage: {} [options]", program);
     print!("{}", opts.usage(&brief));
+}
+
+fn unseeded_stdrng() -> StdRng {
+    let mut seed = <StdRng as SeedableRng>::Seed::default();
+    for (i, x) in seed.iter_mut().enumerate() {
+        *x = i as u8;
+    }
+    StdRng::from_seed(seed)
 }
 
 fn main() {
@@ -272,8 +279,7 @@ fn main() {
         Some(x) => e = x.parse::<f64>().unwrap(),
     };
 
-    let seed: &[_] = &[1, 2, 3, 4];
-    let mut rng: StdRng = SeedableRng::from_seed(seed);
+    let mut rng = unseeded_stdrng();
 
     let mut points: Vec<Point>;
 
@@ -330,13 +336,11 @@ fn main() {
 
 #[cfg(test)]
 mod tests {
-    use super::{generate_points, lloyd};
-    use rand::{SeedableRng, StdRng};
+    use super::{generate_points, lloyd, unseeded_stdrng};
 
     #[test]
     fn test_lloyd2d() {
-        let seed: &[_] = &[1, 2, 3, 4];
-        let mut rng: StdRng = SeedableRng::from_seed(seed);
+        let mut rng = unseeded_stdrng();
         let points = generate_points(1000, &mut rng);
 
         let (clusters, stats) = lloyd(&points, 4, 0.001, 100, &mut rng);
