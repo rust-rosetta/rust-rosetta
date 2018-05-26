@@ -77,14 +77,14 @@ pub struct Revision {
 
 /// Transforms a URL-encoded task title from the wiki to a human-readable task title.
 pub fn decode_title(title: &str) -> String {
-    let title = title.replace("_", " ").into_bytes();
+    let title = title.replace('_', " ").into_bytes();
     let decoded = percent_encoding::percent_decode(&title);
     String::from_utf8(decoded.collect()).unwrap()
 }
 
 /// Transforms a human-readable task title to the form used in a wiki URL.
 pub fn encode_title(title: &str) -> String {
-    let snake_case_title = title.replace(" ", "_").into_bytes();
+    let snake_case_title = title.replace(' ', "_").into_bytes();
     let encoded = percent_encoding::percent_encode(&snake_case_title, ROSETTA_ENCODE_SET);
     encoded.collect()
 }

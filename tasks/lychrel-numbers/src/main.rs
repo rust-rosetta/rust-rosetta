@@ -16,9 +16,12 @@ fn rev_add(num: &BigInt) -> BigInt {
 /// Check if a number is a palindrome when written in base 10.
 fn is_palindrome(num: &BigInt) -> bool {
     let num_string = num.to_string();
-    let rev_string: String = num_string.chars().rev().collect();
+    let rev_string = num_string.chars().rev();
     let comp_len = num_string.len() / 2;
-    num_string[0..comp_len] == rev_string[0..comp_len]
+    num_string
+        .chars()
+        .take(comp_len)
+        .eq(rev_string.take(comp_len))
 }
 
 /// Perform a lychrel test on a number, stopping after `max_tests`
@@ -32,8 +35,7 @@ fn test_lychrel(num: &BigInt, max_tests: usize) -> Option<Vec<BigInt>> {
             Some(current.clone())
         })
         .inspect(|current| sequence.push(current.clone()))
-        .find(|curent| is_palindrome(curent))
-        .is_none();
+        .all(|cur| !is_palindrome(&cur));
 
     if is_lychrel {
         Some(sequence)

@@ -95,7 +95,7 @@ fn main() {
         println!(" Play again? 'Y' to play, 'Q' to exit.");
         let mut input = String::new();
         stdin().read_line(&mut input).expect("failed to read line");
-        match input.chars().next().unwrap() {
+        match input.trim_left().chars().next().unwrap() {
             'Y' | 'y' => continue,
             _ => break,
         }
