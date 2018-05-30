@@ -49,9 +49,12 @@ impl<'a, T> RangeFinder<'a, T> {
 }
 
 fn main() {
-    let n = [0, 1, 2, 3];
+    let n = &[
+        0, 1, 2, 4, 6, 7, 8, 11, 12, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 27, 28, 29,
+        30, 31, 32, 33, 35, 36, 37, 38, 39,
+    ];
 
-    for (i, (lo, hi)) in RangeFinder::new(&n).enumerate() {
+    for (i, (lo, hi)) in RangeFinder::new(n).enumerate() {
         if i > 0 {
             print!(", ")
         }
@@ -61,4 +64,26 @@ fn main() {
         }
     }
     println!();
+}
+
+#[test]
+fn test_solution() {
+    let n: &[u8] = &[
+        0, 1, 2, 4, 6, 7, 8, 11, 12, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 27, 28, 29,
+        30, 31, 32, 33, 35, 36, 37, 38, 39,
+    ];
+
+    let actual: Vec<(u8, Option<u8>)> = RangeFinder::new(n).collect();
+    let expected = &[
+        (0, Some(2)),
+        (4, None),
+        (6, Some(8)),
+        (11, None),
+        (12, None),
+        (14, Some(25)),
+        (27, Some(33)),
+        (35, Some(39)),
+    ];
+
+    assert_eq!(&actual, expected);
 }
