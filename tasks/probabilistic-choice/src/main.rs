@@ -162,6 +162,7 @@ mod tests {
     }
 
     #[test]
+    #[ignore]
     fn wcf_deviation() {
         let mapping = gen_mapping_float();
         let wc = WcFloat::new(&mapping);
@@ -170,6 +171,7 @@ mod tests {
     }
 
     #[test]
+    #[ignore]
     fn wc_deviation() {
         let mut mapping = gen_mapping();
         let wc = WeightedChoice::new(&mut mapping);
