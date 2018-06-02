@@ -17,13 +17,11 @@ pub struct Image {
 }
 
 impl Image {
-    pub fn new(width: usize, height: usize) -> Image {
-        Image {
-            width: width,
-            height: height,
-            data: ::std::iter::repeat(Default::default())
-                .take(width * height)
-                .collect(),
+    pub fn new(width: usize, height: usize) -> Self {
+        Self {
+            width,
+            height,
+            data: vec![Color::default(); width * height],
         }
     }
 
@@ -37,10 +35,10 @@ impl Image {
         let file = File::create(filename)?;
         let mut writer = BufWriter::new(file);
         writeln!(&mut writer, "P6")?;
-        write!(&mut writer, "{} {} {}\n", self.width, self.height, 255)?;
-        for color in &(self.data) {
-            for channel in &[color.red, color.green, color.blue] {
-                write!(&mut writer, "{}", *channel as u8)?;
+        writeln!(&mut writer, "{} {} 255", self.width, self.height)?;
+        for color in &self.data {
+            for &channel in &[color.red, color.green, color.blue] {
+                write!(&mut writer, "{}", channel as u8)?;
             }
         }
         Ok(())
@@ -77,11 +75,13 @@ pub fn main() {
 
     for y in 0..10 {
         for x in 0..10 {
-            if image[(x, y)].red + image[(x, y)].green + image[(x, y)].blue == 0 {
-                print!("#");
+            let color = image[(x, y)];
+            let ch = if color.red + color.green + color.blue == 0 {
+                '#'
             } else {
-                print!(".");
-            }
+                '.'
+            };
+            print!("{}", ch);
         }
         println!();
     }
@@ -89,15 +89,13 @@ pub fn main() {
 
 #[cfg(test)]
 mod tests {
-    use super::{Color, Image};
-    use std::default::Default;
+    use super::*;
 
     #[test]
     #[should_panic]
     fn out_of_bounds() {
         let image = Image::new(10, 10);
-        let _ = image[(10, 11)];
-        assert!(false);
+        image[(10, 11)];
     }
 
     #[test]

@@ -1,15 +1,18 @@
 // Code available at https://rosettacode.org/wiki/Linear_congruential_generator#Rust
 extern crate linear_congruential_generator;
+extern crate rand;
 
-use linear_congruential_generator::{MsLcg, Rng, SeedableRng};
+use linear_congruential_generator::MsLcg;
+use rand::prelude::*;
 
-// We can't use `rand::Rng::shuffle` because it uses the more uniform `rand::Rng::gen_range`
-// (`% range` is subject to modulo bias).  If an exact match of the old dealer is not needed,
-// `rand::Rng::shuffle` should be used.
+// We can't use `rand::Rng::shuffle` because it uses the more uniform
+// `rand::Rng::gen_range` (`% range` is subject to modulo bias).  If an exact match
+// of the old dealer is not needed, `rand::Rng::shuffle` should be used. Though you also
+// likely should use a better PRNG, `rand` offers a few.
 fn shuffle<T>(rng: &mut MsLcg, deck: &mut [T]) {
     let len = deck.len() as u32;
     for i in (1..len).rev() {
-        let j = rng.next_u32() % (i + 1);
+        let j = rng.gen::<u32>() % (i + 1);
         deck.swap(i as usize, j as usize);
     }
 }
@@ -29,7 +32,7 @@ fn gen_deck() -> Vec<String> {
 }
 
 fn deal_ms_fc_board(seed: u32) -> Vec<String> {
-    let mut rng = MsLcg::from_seed(seed);
+    let mut rng = MsLcg::from_seed_u32(seed);
     let mut deck = gen_deck();
 
     shuffle(&mut rng, &mut deck);

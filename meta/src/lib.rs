@@ -284,7 +284,8 @@ impl<'a> Iterator for TaskIterator<'a> {
         }
 
         let remote_task = self.fetched_remote_tasks.pop_front().unwrap();
-        let local_task = self.local_tasks
+        let local_task = self
+            .local_tasks
             .iter()
             .cloned()
             .find(|task| task.title == remote_task.title());

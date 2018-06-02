@@ -20,7 +20,8 @@ pub fn is_pangram_via_bitmask(s: &str) -> bool {
 
 pub fn is_pangram_via_hashset(s: &str) -> bool {
     // Insert lowercase letters into a HashSet, then check if we have at least 26.
-    let letters = s.chars()
+    let letters = s
+        .chars()
         .flat_map(|chr| chr.to_lowercase())
         .filter(|&chr| chr >= 'a' && chr <= 'z')
         .fold(HashSet::new(), |mut letters, chr| {
@@ -33,7 +34,8 @@ pub fn is_pangram_via_hashset(s: &str) -> bool {
 
 pub fn is_pangram_via_sort(s: &str) -> bool {
     // Copy chars into a vector, convert to lowercase, sort, and remove duplicates.
-    let mut chars: Vec<char> = s.chars()
+    let mut chars: Vec<char> = s
+        .chars()
         .flat_map(|chr| chr.to_lowercase())
         .filter(|&chr| chr >= 'a' && chr <= 'z')
         .collect();

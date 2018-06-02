@@ -1,7 +1,7 @@
 extern crate rand;
 
-use rand::distributions::{IndependentSample, Sample, Weighted, WeightedChoice};
-use rand::{weak_rng, Rng};
+use rand::distributions::{Distribution, Weighted, WeightedChoice};
+use rand::prelude::*;
 
 const DATA: [(&str, f64); 8] = [
     ("aleph", 1.0 / 5.0),
@@ -60,7 +60,8 @@ impl WcFloat {
 
     // This is roughly the same logic as `WeightedChoice::ind_sample` (though is likely slower)
     fn search(&self, sample_prob: f64) -> usize {
-        let idx = self.mapping
+        let idx = self
+            .mapping
             .binary_search_by(|p| p.partial_cmp(&sample_prob).unwrap());
         match idx {
             Ok(i) | Err(i) => i,
@@ -68,29 +69,20 @@ impl WcFloat {
     }
 }
 
-impl IndependentSample<usize> for WcFloat {
-    fn ind_sample<R: Rng>(&self, rng: &mut R) -> usize {
+impl Distribution<usize> for WcFloat {
+    fn sample<R: Rng + ?Sized>(&self, rng: &mut R) -> usize {
         // Because we know the total is exactly 1.0, we can merely use a raw float value.
         // Otherwise caching `Range::new(0.0, running_total)` and sampling with
         // `range.ind_sample(&mut rng)` is recommended.
-        let sample_prob = rng.next_f64();
+        let sample_prob = rng.gen::<f64>();
         self.search(sample_prob)
     }
 }
 
-impl Sample<usize> for WcFloat {
-    fn sample<R: Rng>(&mut self, rng: &mut R) -> usize {
-        self.ind_sample(rng)
-    }
-}
-
-fn take_samples<R: Rng, T>(rng: &mut R, wc: &T) -> [usize; 8]
-where
-    T: IndependentSample<usize>,
-{
+fn take_samples<R: Rng>(rng: &mut R, wc: &impl Distribution<usize>) -> [usize; 8] {
     let mut counts = [0; 8];
     for _ in 0..SAMPLES {
-        let sample = wc.ind_sample(rng);
+        let sample = rng.sample(wc);
         counts[sample] += 1;
     }
     counts
@@ -106,7 +98,7 @@ fn print_mapping(counts: &[usize]) {
 }
 
 fn main() {
-    let mut rng = weak_rng();
+    let mut rng = SmallRng::from_entropy();
 
     println!("    ~~~ U32 METHOD ~~~");
     let mut mapping = gen_mapping();
@@ -131,13 +123,13 @@ mod tests {
     use super::*;
 
     fn test_sample_logic(samples: usize) {
-        let mut rng = weak_rng();
+        let mut rng = SmallRng::from_entropy();
 
         let mapping = gen_mapping_float();
         let wc = WcFloat::new(&mapping);
 
         for _ in 0..samples {
-            let prob = rng.next_f64();
+            let prob = rng.gen::<f64>();
             let i = wc.search(prob);
 
             assert!(prob <= mapping[i], "p:{} m:{}", prob, mapping[i]);
@@ -158,8 +150,8 @@ mod tests {
         test_sample_logic(100_000_000);
     }
 
-    fn test_deviation<T: IndependentSample<usize>>(wc: T) {
-        let mut rng = weak_rng();
+    fn test_deviation<T: Distribution<usize>>(wc: T) {
+        let mut rng = SmallRng::from_entropy();
 
         let counts = take_samples(&mut rng, &wc);
         for (&(_, expected), &count) in DATA.iter().zip(counts.iter()) {
@@ -170,6 +162,7 @@ mod tests {
     }
 
     #[test]
+    #[ignore]
     fn wcf_deviation() {
         let mapping = gen_mapping_float();
         let wc = WcFloat::new(&mapping);
@@ -178,6 +171,7 @@ mod tests {
     }
 
     #[test]
+    #[ignore]
     fn wc_deviation() {
         let mut mapping = gen_mapping();
         let wc = WeightedChoice::new(&mut mapping);

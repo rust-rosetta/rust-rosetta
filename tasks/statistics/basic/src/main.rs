@@ -1,6 +1,7 @@
 extern crate rand;
 
-use rand::distributions::{IndependentSample, Range};
+use rand::distributions::Standard;
+use rand::Rng;
 
 pub fn mean(data: &[f32]) -> Option<f32> {
     if data.is_empty() {
@@ -51,15 +52,10 @@ fn print_histogram(width: u32, data: &[f32]) {
 }
 
 fn main() {
-    let range = Range::new(0f32, 1f32);
     let mut rng = rand::thread_rng();
 
     for &number_of_samples in &[1000, 10_000, 1_000_000] {
-        let mut data = vec![];
-        for _ in 0..number_of_samples {
-            let x = range.ind_sample(&mut rng);
-            data.push(x);
-        }
+        let data: Vec<f32> = rng.sample_iter(&Standard).take(number_of_samples).collect();
         println!("  Statistics for sample size {}", number_of_samples);
         println!("Mean:               {:?}", mean(&data));
         println!("Variance:           {:?}", variance(&data));
@@ -79,7 +75,7 @@ mod tests {
 
     #[test]
     fn test_mean() {
-        let empty: Vec<f32> = vec![];
+        let empty = vec![];
         assert_eq!(mean(&empty), None);
         assert!(approx(mean(&[1.0]), 1.0));
         assert!(approx(mean(&[1.0, 3.0]), 2.0));
@@ -88,7 +84,7 @@ mod tests {
 
     #[test]
     fn test_variance() {
-        let empty: Vec<f32> = vec![];
+        let empty = vec![];
         assert_eq!(variance(&empty), None);
         assert!(approx(variance(&[0.0]), 0.0));
         assert!(approx(variance(&[1.0, 1.0, 1.0]), 0.0));
@@ -97,13 +93,13 @@ mod tests {
 
     #[test]
     fn test_standard_deviation() {
-        let empty: Vec<f32> = vec![];
+        let empty = vec![];
         assert_eq!(standard_deviation(&empty), None);
         assert!(approx(standard_deviation(&[0.0]), 0.0));
         assert!(approx(standard_deviation(&[1.0, 1.0, 1.0]), 0.0));
         assert!(approx(
             standard_deviation(&[1.0, 2.0, 3.0]),
-            (2.0f32 / 3.0f32).sqrt()
+            (2f32 / 3f32).sqrt()
         ));
     }
 }

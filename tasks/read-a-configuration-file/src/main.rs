@@ -59,7 +59,10 @@ impl ConfigParams {
 
         let is_not_comment = |x: &Result<String, io::Error>| match *x {
             Err(_) => false,
-            Ok(ref line) => !(line.starts_with('#') || line.starts_with(';') || line.is_empty()),
+            Ok(ref line) => {
+                let comment_chars = ['#', ';'];
+                !(line.starts_with(&comment_chars[..]) || line.is_empty())
+            }
         };
         let mut params = ConfigParams::new();
         for line in content.lines().filter(is_not_comment) {

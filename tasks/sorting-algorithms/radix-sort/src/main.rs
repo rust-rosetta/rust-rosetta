@@ -9,11 +9,11 @@ fn radix_sort(data: &mut [i32]) {
     for bit in 0..31 {
         // types of small and big is Vec<i32>.
         // It will be infered from the next call of merge function.
-        let (small, big): (Vec<_>, Vec<_>) = data.iter().partition(|&x| ((*x >> bit) & 1) == 0);
+        let (small, big): (Vec<_>, Vec<_>) = data.iter().partition(|&&x| (x >> bit) & 1 == 0);
         merge(&small, &big, data);
     }
     // last bit is sign
-    let (negative, positive): (Vec<_>, Vec<_>) = data.iter().partition(|&x| *x < 0);
+    let (negative, positive): (Vec<_>, Vec<_>) = data.iter().partition(|&&x| x < 0);
     merge(&negative, &positive, data);
 }
 
@@ -66,7 +66,7 @@ mod tests {
     #[test]
     fn test_random_numbers() {
         let mut rng = thread_rng();
-        let mut numbers: Vec<i32> = rng.gen_iter::<i32>().take(500).collect();
+        let mut numbers: Vec<i32> = (0..500).map(|_| rng.gen()).collect();
         check_numbers(numbers.as_mut_slice());
     }
 }

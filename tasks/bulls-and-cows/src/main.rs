@@ -1,15 +1,13 @@
 extern crate rand;
 
+use rand::{seq, Rng};
 use std::fmt::{self, Display};
-
-use rand::seq;
 
 const NUMBER_OF_DIGITS: usize = 4;
 
 /// generates a random `NUMBER_OF_DIGITS`
-fn generate_digits() -> Vec<u32> {
-    let mut rng = rand::thread_rng();
-    seq::sample_iter(&mut rng, 1u32..10, NUMBER_OF_DIGITS).unwrap()
+fn generate_digits(rng: &mut impl Rng) -> Vec<u32> {
+    seq::sample_iter(rng, 1..10, NUMBER_OF_DIGITS).unwrap()
 }
 
 /// types of errors we can have when parsing a malformed guess
@@ -66,7 +64,7 @@ fn calculate_score(given_digits: &[u32], guessed_digits: &[u32]) -> (usize, usiz
     let mut bulls = 0;
     let mut cows = 0;
     for (i, given_digit) in given_digits.iter().enumerate().take(NUMBER_OF_DIGITS) {
-        let pos = guessed_digits.iter().position(|&a| a == *given_digit);
+        let pos = guessed_digits.iter().position(|a| a == given_digit);
 
         match pos {
             None => (),
@@ -79,8 +77,10 @@ fn calculate_score(given_digits: &[u32], guessed_digits: &[u32]) -> (usize, usiz
 
 fn main() {
     let reader = std::io::stdin();
+    let mut rng = rand::thread_rng();
+
     loop {
-        let given_digits = generate_digits();
+        let given_digits = generate_digits(&mut rng);
         println!(
             "I have chosen my {} digits. Please guess what they are",
             NUMBER_OF_DIGITS
@@ -112,9 +112,10 @@ mod tests {
     /// test we generate `NUMBER_OF_DIGITS` unique digits between 1 and 9
     #[test]
     fn generate_digits() {
-        let mut digits = super::generate_digits();
-        assert!(digits.iter().all(|&d| d > 0u32));
-        digits.sort();
+        let mut rng = super::rand::thread_rng();
+        let mut digits = super::generate_digits(&mut rng);
+        assert!(digits.iter().all(|&d| d > 0));
+        digits.sort_unstable();
         digits.dedup();
         assert_eq!(digits.len(), super::NUMBER_OF_DIGITS)
     }

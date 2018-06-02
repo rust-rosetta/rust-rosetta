@@ -5,7 +5,7 @@ use std::cmp::Ordering;
 use std::cmp::Ordering::Less;
 use std::ops::Sub;
 
-use rand::Rng;
+use rand::prelude::*;
 use time::get_time;
 
 #[derive(Clone, PartialEq, Debug)]
@@ -19,10 +19,11 @@ impl<'a, 'b> Sub<&'b Point> for &'a Point {
     fn sub(self, rhs: &Point) -> Point {
         assert_eq!(self.coords.len(), rhs.coords.len());
         Point {
-            coords: self.coords
+            coords: self
+                .coords
                 .iter()
                 .zip(rhs.coords.iter())
-                .map(|(x, &y)| *x - y)
+                .map(|(&x, &y)| x - y)
                 .collect(),
         }
     }
@@ -30,7 +31,7 @@ impl<'a, 'b> Sub<&'b Point> for &'a Point {
 
 impl Point {
     fn norm_sq(&self) -> f32 {
-        self.coords.iter().fold(0f32, |a, &b| a + b * b)
+        self.coords.iter().map(|n| n * n).sum()
     }
 }
 
@@ -52,7 +53,7 @@ impl KDTreeNode {
         if points_len == 1 {
             return KDTreeNode {
                 point: points[0].clone(),
-                dim: dim,
+                dim,
                 left: None,
                 right: None,
             };
@@ -78,9 +79,9 @@ impl KDTreeNode {
 
         KDTreeNode {
             point: pivot.clone(),
-            dim: dim,
-            left: left,
-            right: right,
+            dim,
+            left,
+            right,
         }
     }
 
@@ -162,21 +163,25 @@ impl KDTreeNode {
 }
 
 pub fn main() {
+    // We create `rng` from `thread_rng` so that `thread_rng` is already
+    // initialized for `quickselect_by`.
+    let mut rng = SmallRng::from_rng(&mut thread_rng()).unwrap();
+
     // wordpress
     let mut wp_points: Vec<Point> = [
-        [2f32, 3f32],
-        [5f32, 4f32],
-        [9f32, 6f32],
-        [4f32, 7f32],
-        [8f32, 1f32],
-        [7f32, 2f32],
+        [2.0, 3.0],
+        [5.0, 4.0],
+        [9.0, 6.0],
+        [4.0, 7.0],
+        [8.0, 1.0],
+        [7.0, 2.0],
     ].iter()
         .map(|x| Point { coords: x.to_vec() })
         .collect();
-    let wp_tree = KDTreeNode::new(&mut wp_points[..], 0);
+    let wp_tree = KDTreeNode::new(&mut wp_points, 0);
 
     let wp_target = Point {
-        coords: vec![9f32, 2f32],
+        coords: vec![9.0, 2.0],
     };
     let (point, n_visited) = wp_tree.find_nearest_neighbor(&wp_target);
     println!("Wikipedia example data:");
@@ -187,15 +192,13 @@ pub fn main() {
 
     // randomly generated 3D
     let n_random = 1000;
-    let make_random_point = || Point {
-        coords: (0..3)
-            .map(|_| (rand::thread_rng().gen::<f32>() - 0.5f32) * 1000f32)
-            .collect(),
+    let mut make_random_point = || Point {
+        coords: (0..3).map(|_| (rng.gen::<f32>() - 0.5) * 1000.0).collect(),
     };
     let mut random_points: Vec<Point> = (0..n_random).map(|_| make_random_point()).collect();
 
     let start_cons_time = get_time();
-    let random_tree = KDTreeNode::new(&mut random_points[..], 0);
+    let random_tree = KDTreeNode::new(&mut random_points, 0);
     let end_cons_time = get_time();
     println!(
         "1,000 3d points (Construction time: {}ms)",
@@ -235,7 +238,8 @@ fn quickselect_by<T>(arr: &mut [T], position: usize, cmp: &Fn(&T, &T) -> Orderin
 where
     T: Clone,
 {
-    let mut pivot_index = rand::thread_rng().gen_range(0, arr.len());
+    // We use `thread_rng` here because it was already initialized in `main`.
+    let mut pivot_index = thread_rng().gen_range(0, arr.len());
     // Need to wrap in another closure or we get ownership complaints.
     // Tried using an unboxed closure to get around this but couldn't get it to work.
     pivot_index = partition_by(arr, pivot_index, &|a: &T, b: &T| cmp(a, b));
@@ -253,13 +257,12 @@ where
     }
 }
 
-#[cfg_attr(feature = "clippy", allow(needless_range_loop))]
 fn partition_by<T>(arr: &mut [T], pivot_index: usize, cmp: &Fn(&T, &T) -> Ordering) -> usize {
     let array_len = arr.len();
     arr.swap(pivot_index, array_len - 1);
     let mut store_index = 0;
     for i in 0..array_len - 1 {
-        if (*cmp)(&arr[i], &arr[array_len - 1]) == Less {
+        if cmp(&arr[i], &arr[array_len - 1]) == Less {
             arr.swap(i, store_index);
             store_index += 1;
         }
@@ -275,25 +278,25 @@ mod tests {
     #[test]
     fn wp() {
         let mut wp_points: Vec<Point> = [
-            [2f32, 3f32],
-            [5f32, 4f32],
-            [9f32, 6f32],
-            [4f32, 7f32],
-            [8f32, 1f32],
-            [7f32, 2f32],
+            [2.0, 3.0],
+            [5.0, 4.0],
+            [9.0, 6.0],
+            [4.0, 7.0],
+            [8.0, 1.0],
+            [7.0, 2.0],
         ].iter()
             .map(|x| Point { coords: x.to_vec() })
             .collect();
-        let wp_tree = KDTreeNode::new(&mut wp_points[..], 0);
+        let wp_tree = KDTreeNode::new(&mut wp_points, 0);
 
         let wp_target = Point {
-            coords: vec![9f32, 2f32],
+            coords: vec![9.0, 2.0],
         };
         let (point, _) = wp_tree.find_nearest_neighbor(&wp_target);
         assert_eq!(
             *point,
             Point {
-                coords: vec![8f32, 1f32],
+                coords: vec![8.0, 1.0],
             }
         );
     }

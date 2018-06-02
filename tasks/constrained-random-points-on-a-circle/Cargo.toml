@@ -7,4 +7,4 @@ authors = ["Daniel Watson <danielwatson311@gmail.com>"]
 url = "https://rosettacode.org/wiki/Constrained_random_points_on_a_circle"
 
 [dependencies]
-rand = "0.4"
+rand = "0.5"

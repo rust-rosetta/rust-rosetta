@@ -95,7 +95,9 @@ impl Digest {
         while p.len() >= CHUNK {
             for i in 0..16 {
                 let j = i * 4;
-                w[i] = u32::from(p[j]) << 24 | u32::from(p[j + 1]) << 16 | u32::from(p[j + 2]) << 8
+                w[i] = u32::from(p[j]) << 24
+                    | u32::from(p[j + 1]) << 16
+                    | u32::from(p[j + 2]) << 8
                     | u32::from(p[j + 3]);
             }
 

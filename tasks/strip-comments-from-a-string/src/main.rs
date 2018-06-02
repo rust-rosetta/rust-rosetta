@@ -1,6 +1,6 @@
-fn strip_comments(str: &str) -> &str {
+fn strip_comments(s: &str) -> &str {
     let markers = ['#', ';'];
-    str.find(&markers[..]).map_or(str, |i| &str[..i]).trim()
+    s.find(&markers[..]).map_or(s, |i| &s[..i]).trim()
 }
 
 #[test]

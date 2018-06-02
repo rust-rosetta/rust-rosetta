@@ -24,7 +24,8 @@ impl MarkovAlgorithm {
     /// Parse an algorithm description to build a markov algorithm
     pub fn parse(s: &str) -> Result<MarkovAlgorithm, String> {
         let mut rules: Vec<MarkovRule> = vec![];
-        for line in s.lines()
+        for line in s
+            .lines()
             .map(|l| l.trim())
             .filter(|l| match l.chars().next() {
                 Some(c) if c != '#' => true,
@@ -78,7 +79,8 @@ impl MarkovAlgorithm {
         loop {
             // find the first rule that is applicable
             // (pattern string is in state)
-            let possible_rule = self.rules
+            let possible_rule = self
+                .rules
                 .iter()
                 .find(|rule| state.find(&rule.pattern[..]).is_some());
 

@@ -33,13 +33,10 @@ struct Ulam {
 impl fmt::Display for Ulam {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         for row in &self.u {
-            write!(
-                f,
-                "{}\n",
-                format!("{:?}", row).replace("\"", "").replace(", ", "")
-            ).unwrap();
+            let pretty = format!("{:?}", row).replace('\"', "").replace(", ", "");
+            write!(f, "{}\n", pretty)?;
         }
-        write!(f, "\n")
+        writeln!(f)
     }
 }
 

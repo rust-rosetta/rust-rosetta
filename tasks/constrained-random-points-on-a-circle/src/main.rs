@@ -1,13 +1,16 @@
 extern crate rand;
 
-use rand::Rng;
+use rand::distributions::Uniform;
+use rand::prelude::*;
 
 const POINTS_N: usize = 100;
 
 fn generate_point<R: Rng>(rng: &mut R) -> (i32, i32) {
+    // `Uniform` rather than `gen_range`'s `Uniform::sample_single` for speed
+    let range = Uniform::new_inclusive(-15, 15);
     loop {
-        let x = rng.gen_range(-15, 16); // exclusive
-        let y = rng.gen_range(-15, 16);
+        let x = rng.sample(range); // exclusive
+        let y = rng.sample(range);
 
         let r2 = x * x + y * y;
         if r2 >= 100 && r2 <= 225 {
@@ -63,7 +66,7 @@ fn precalculating_method<R: Rng>(rng: &mut R) {
 }
 
 fn main() {
-    let mut rng = rand::weak_rng();
+    let mut rng = SmallRng::from_entropy();
 
     filtering_method(&mut rng);
 

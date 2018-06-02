@@ -17,11 +17,13 @@ fn main() {
 
     for y in 0..10 {
         for x in 0..10 {
-            if image[(x, y)].red + image[(x, y)].green + image[(x, y)].blue == 0 {
-                print!("#");
+            let color = image[(x, y)];
+            let ch = if color.red.wrapping_add(color.green).wrapping_add(color.blue) == 0 {
+                '#'
             } else {
-                print!(".");
-            }
+                '.'
+            };
+            print!("{}", ch);
         }
         println!();
     }

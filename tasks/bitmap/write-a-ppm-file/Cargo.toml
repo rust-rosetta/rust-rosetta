@@ -6,5 +6,5 @@ version = "0.1.0"
 url = "http://rosettacode.org/wiki/Bitmap/Write_a_PPM_file"
 
 [dependencies]
-rand = "0.4"
+rand = "0.5"
 bitmap = { path = ".." }
