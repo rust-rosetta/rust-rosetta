@@ -70,6 +70,7 @@ authors = [
     "Stefan Müller, https://github.com/zzeroo",
     "Kunal Tyagi, https://github.com/kunaltyagi",
     "Andrey Lebedev, https://github.com/areinull",
+    "J Henry Waugh (psudeonym), https://github.com/jhwgh1968"
 ]
 
 [dependencies]
@@ -160,6 +161,9 @@ members = [
 
     # http://rosettacode.org/wiki/Apply_a_callback_to_an_array
     "tasks/apply-a-callback-to-an-array",
+
+    # http://rosettacode.org/wiki/Apply_a_digital_filter_(direct_form_II_transposed)
+    "tasks/apply-a-digital-filter",
 
     # http://rosettacode.org/wiki/Arbitrary-precision_integers_(included)
     "tasks/arbitrary-precision-integers-included",

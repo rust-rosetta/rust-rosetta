@@ -1,0 +1,6 @@
+[package]
+name = "apply-a-digital-filter"
+version = "0.1.0"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Apply_a_digital_filter_(direct_form_II_transposed)"
