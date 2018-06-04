@@ -1,8 +1,9 @@
 #[macro_use]
-extern crate clap;
-#[macro_use]
 extern crate serde_json;
-
+#[macro_use]
+extern crate structopt;
+#[macro_use]
+extern crate clap;
 extern crate difference;
 extern crate meta;
 extern crate serde;
@@ -11,36 +12,13 @@ extern crate term;
 use std::fs::File;
 use std::io;
 use std::io::prelude::*;
+use std::path::PathBuf;
 
-use clap::{App, Arg};
 use difference::{Changeset, Difference};
+use structopt::StructOpt;
 use term::Terminal;
 
 use meta::{Task, TaskIndex};
-
-const ABOUT: &str = r#"
-Query differences between the rust-rosetta repository and the Rosetta Code wiki.
-
-This script prints out the name of each task, followed by whether it is implemented online,
-locally, or both.
-
-If no tasks are specified, determines the status for all tasks."#;
-
-arg_enum!{
-    #[derive(Debug)]
-    enum Filter {
-        All,
-        LocalOnly,
-        RemoteOnly,
-        Unimplemented
-    }
-}
-
-impl Default for Filter {
-    fn default() -> Self {
-        Filter::All
-    }
-}
 
 /// Prints a colored diff of two strings to the terminal.
 fn print_diff<T: ?Sized>(t: &mut T, s1: &str, s2: &str) -> io::Result<()>
@@ -118,47 +96,60 @@ where
     Ok(())
 }
 
+arg_enum!{
+    #[derive(Debug)]
+    enum Filter {
+        All,
+        LocalOnly,
+        RemoteOnly,
+        Unimplemented
+    }
+}
+
+impl Default for Filter {
+    fn default() -> Self {
+        Filter::All
+    }
+}
+
+/// Query differences between the rust-rosetta repository and the Rosetta Code wiki.
+///
+/// This script prints out the name of each task, followed by whether it is implemented online,
+/// locally, or both.
+///
+/// If no tasks are specified, determines the status for all tasks.
+#[derive(Debug, StructOpt)]
+struct Opt {
+    /// The name of a task on the wiki, such as "K-d tree"
+    #[structopt(name = "task")]
+    tasks: Vec<String>,
+
+    /// Print diffs of tasks between the local and remote version
+    #[structopt(long = "diff")]
+    diff: bool,
+
+    /// Filter tasks printed by the program
+    #[structopt(
+        long = "filter",
+        raw(possible_values = "&Filter::variants()", case_insensitive = "true"),
+        default_value = "all"
+    )]
+    filter: Filter,
+
+    /// Dump JSON to the provided filename
+    #[structopt(long = "json", parse(from_os_str))]
+    json_file: Option<PathBuf>,
+}
+
 fn main() {
-    let matches = App::new("coverage")
-        .about(ABOUT)
-        .version(crate_version!())
-        .max_term_width(100)
-        .arg(
-            Arg::with_name("task")
-                .help("The name of a task on the wiki, such as 'K-d tree'")
-                .multiple(true),
-        )
-        .arg(
-            Arg::with_name("diff")
-                .help("Print diffs of tasks between the local and remote version")
-                .long("diff"),
-        )
-        .arg(
-            Arg::with_name("filter")
-                .help("Filter tasks printed by the program.")
-                .possible_values(&["all", "local", "remote", "unimplemented"])
-                .long("filter")
-                .takes_value(true),
-        )
-        .arg(
-            Arg::with_name("json-file")
-                .help("Dump json to the provided filename")
-                .long("json")
-                .takes_value(true),
-        )
-        .get_matches();
+    let opt = Opt::from_args();
 
     let mut t = term::stdout().unwrap();
 
-    let filter = value_t!(matches.value_of("filter"), Filter)
-        .ok()
-        .unwrap_or_default();
-
     let task_index = TaskIndex::create(env!("CARGO_MANIFEST_DIR")).unwrap();
 
-    let tasks = if let Some(tasks) = matches.values_of("task") {
-        let task_names = tasks.map(String::from).collect::<Vec<_>>();
-        task_index.fetch_tasks(&task_names)
+    let tasks = if !opt.tasks.is_empty() {
+        task_index.fetch_tasks(&opt.tasks)
     } else {
         task_index.fetch_all_tasks()
     };
@@ -167,16 +158,16 @@ fn main() {
         .flat_map(|task| {
             let task = task.unwrap();
 
-            match filter {
+            match opt.filter {
                 Filter::LocalOnly if !task.is_local_only() => return None,
                 Filter::RemoteOnly if !task.is_remote_only() => return None,
                 Filter::Unimplemented if !task.is_unimplemented() => return None,
                 Filter::All | _ => {}
             }
 
-            print_task(&mut *t, &task, matches.is_present("diff")).unwrap();
+            print_task(&mut *t, &task, opt.diff).unwrap();
 
-            if matches.is_present("json-file") {
+            if opt.json_file.is_some() {
                 let json = json!({
                     "title": task.title(),
                     "url": task.url().to_string(),
@@ -192,7 +183,7 @@ fn main() {
         })
         .collect::<Vec<_>>();
 
-    if let Some(filename) = matches.value_of("json-file") {
+    if let Some(filename) = opt.json_file {
         let mut file = File::create(filename).unwrap();
         file.write_all(serde_json::to_string_pretty(&tasks).unwrap().as_bytes())
             .unwrap();

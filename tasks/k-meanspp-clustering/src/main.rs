@@ -1,22 +1,19 @@
+#[macro_use]
+extern crate structopt;
 extern crate csv;
-extern crate getopts;
 extern crate gnuplot;
 extern crate nalgebra;
 extern crate rand;
 
-use std::env;
 use std::f64::consts::PI;
-
-use getopts::Options;
+use std::fs::File;
+use std::path::PathBuf;
 
 use gnuplot::{Axes2D, AxesCommon, Color, Figure, Fix, PointSize, PointSymbol};
-
 use nalgebra::DVector;
-
 use rand::distributions::Uniform;
 use rand::{Rng, SeedableRng, StdRng};
-
-use std::fs::File;
+use structopt::StructOpt;
 
 type Point = DVector<f64>;
 
@@ -215,11 +212,6 @@ fn print_dvec(v: &DVector<f64>) {
     print!("{:+1.2})", v.iter().last().unwrap());
 }
 
-fn print_usage(program: &str, opts: &Options) {
-    let brief = format!("Usage: {} [options]", program);
-    print!("{}", opts.usage(&brief));
-}
-
 fn unseeded_stdrng() -> StdRng {
     let mut seed = <StdRng as SeedableRng>::Seed::default();
     for (i, x) in seed.iter_mut().enumerate() {
@@ -228,84 +220,52 @@ fn unseeded_stdrng() -> StdRng {
     StdRng::from_seed(seed)
 }
 
+#[derive(Debug, StructOpt)]
+struct Opt {
+    /// Number of clusters to assign
+    #[structopt(short = "k", default_value = "7")]
+    clusters: usize,
+
+    /// Operate on this many points on the unit disk
+    #[structopt(short = "n", default_value = "30000")]
+    points: u32,
+
+    /// Min delta in norm of successive cluster centroids to continue
+    #[structopt(short = "e", default_value = "1e-3")]
+    epsilon: f64,
+
+    /// Read points from file (overrides -n)
+    #[structopt(short = "f", parse(from_os_str))]
+    csv: Option<PathBuf>,
+}
+
 fn main() {
-    let args: Vec<String> = env::args().collect();
-    let mut k: usize = 7;
-    let mut n: u32 = 30_000;
-    let mut e: f64 = 1e-3;
-    let max_iterations = 100u32;
-
-    let mut opts = Options::new();
-    opts.optflag("?", "help", "Print this help menu");
-    opts.optopt(
-        "k",
-        "",
-        "Number of clusters to assign (default: 7)",
-        "<clusters>",
-    );
-    opts.optopt(
-        "n",
-        "",
-        "Operate on this many points on the unit disk (default: 30000)",
-        "<pts>",
-    );
-    opts.optopt(
-        "e",
-        "",
-        "Min delta in norm of successive cluster centroids to continue (default: 1e-3)",
-        "<eps>",
-    );
-    opts.optopt("f", "", "Read points from file (overrides -n)", "<csv>");
-
-    let program = args[0].clone();
-    let matches = match opts.parse(&args[1..]) {
-        Ok(m) => m,
-        Err(f) => panic!(f.to_string()),
-    };
-    if matches.opt_present("?") {
-        print_usage(&program, &opts);
-        return;
-    }
-    match matches.opt_str("k") {
-        None => {}
-        Some(x) => k = x.parse::<usize>().unwrap(),
-    };
-    match matches.opt_str("n") {
-        None => {}
-        Some(x) => n = x.parse::<u32>().unwrap(),
-    };
-    match matches.opt_str("e") {
-        None => {}
-        Some(x) => e = x.parse::<f64>().unwrap(),
-    };
+    let mut opt = Opt::from_args();
+    const MAX_ITERATIONS: u32 = 100u32;
 
     let mut rng = unseeded_stdrng();
 
-    let mut points: Vec<Point>;
-
-    match matches.opt_str("f") {
-        None => {
-            // Proceed with random 2d data
-            points = generate_points(n, &mut rng)
+    let points = if let Some(filename) = opt.csv {
+        let mut points = Vec::new();
+        let mut rdr = csv::Reader::from_reader(File::open(&filename).unwrap());
+        for row in rdr.deserialize() {
+            let floats: Vec<f64> = row.unwrap();
+            points.push(DVector::<f64>::from_row_slice(
+                floats.len(),
+                floats.as_slice(),
+            ));
         }
-        Some(filename) => {
-            points = Vec::new();
-            let mut rdr = csv::Reader::from_reader(File::open(&filename).unwrap());
-            for row in rdr.deserialize() {
-                let floats: Vec<f64> = row.unwrap();
-                points.push(DVector::<f64>::from_row_slice(
-                    floats.len(),
-                    floats.as_slice(),
-                ));
-            }
-            assert!(points.iter().all(|v| v.len() == points[0].len()));
-            n = points.len() as u32;
-            println!("Read {} points from {}", points.len(), filename);
-        }
+        assert!(points.iter().all(|v| v.len() == points[0].len()));
+        opt.points = points.len() as u32;
+        println!("Read {} points from {}", points.len(), filename.display());
+        points
+    } else {
+        // Proceed with random 2d data
+        generate_points(opt.points, &mut rng)
     };
 
-    assert!(points.len() >= k);
-    let (clusters, stats) = lloyd(&points, k, e, max_iterations, &mut rng);
+    assert!(points.len() >= opt.clusters);
+    let (clusters, stats) = lloyd(&points, opt.clusters, opt.epsilon, MAX_ITERATIONS, &mut rng);
 
     println!(
         " k       centroid{}mean dist    pop",
@@ -330,7 +290,7 @@ fn main() {
     }
 
     if points[0].len() == 2 {
-        viz(&clusters, &stats, k, n, e)
+        viz(&clusters, &stats, opt.clusters, opt.points, opt.epsilon)
     }
 }
 
