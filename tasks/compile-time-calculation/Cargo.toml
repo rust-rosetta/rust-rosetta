@@ -6,4 +6,4 @@ version = "0.1.0"
 url = "http://rosettacode.org/wiki/Compile-time_calculation"
 
 [dependencies]
-factorial-plugin = { path = "factorial-plugin" }
+factorial-macro = { path = "factorial-macro" }

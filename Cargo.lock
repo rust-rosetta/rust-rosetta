@@ -710,7 +710,7 @@ version = "0.1.0"
 name = "compile-time-calculation"
 version = "0.1.0"
 dependencies = [
- "factorial-plugin 1.0.0",
+ "factorial-macro 1.0.0",
 ]
 
 [[package]]
@@ -1235,8 +1235,12 @@ name = "factorial"
 version = "0.1.0"
 
 [[package]]
-name = "factorial-plugin"
+name = "factorial-macro"
 version = "1.0.0"
+dependencies = [
+ "quote 0.6.3 (registry+https://github.com/rust-lang/crates.io-index)",
+ "syn 0.14.2 (registry+https://github.com/rust-lang/crates.io-index)",
+]
 
 [[package]]
 name = "factors-of-an-integer"
