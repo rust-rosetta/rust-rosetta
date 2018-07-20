@@ -1,4 +1,7 @@
-#![cfg_attr(feature = "cargo-clippy", allow(many_single_char_names, needless_range_loop))]
+#![cfg_attr(
+    feature = "cargo-clippy",
+    allow(many_single_char_names, needless_range_loop)
+)]
 
 //! Straight port from golang crypto/sha1 library implementation
 use std::io::{Result, Write};
