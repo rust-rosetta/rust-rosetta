@@ -1,5 +1,3 @@
-use std::cmp::Ordering;
-
 struct IIRFilter<'f>(&'f [f32], &'f [f32]);
 
 impl<'f> IIRFilter<'f> {
@@ -103,6 +101,8 @@ fn main() {
 
 #[test]
 fn test() {
+    use std::cmp::Ordering;
+
     let a: &[f32] = &[1.00000000, -2.77555756e-16, 3.33333333e-01, -1.85037171e-17];
     let b: &[f32] = &[0.16666667, 0.5, 0.5, 0.16666667];
 

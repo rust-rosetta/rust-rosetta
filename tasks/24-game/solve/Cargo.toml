@@ -6,5 +6,5 @@ version = "0.1.0"
 url = "http://rosettacode.org/wiki/24_game/Solve"
 
 [dependencies]
-num = "0.1"
+num = "0.2"
 permutohedron = "0.2"

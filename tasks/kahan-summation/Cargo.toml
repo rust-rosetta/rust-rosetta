@@ -6,5 +6,5 @@ version = "0.1.0"
 url = "http://rosettacode.org/wiki/Kahan_summation"
 
 [dependencies]
-num = "0.1"
+num = "0.2"
 permutohedron = "0.2"

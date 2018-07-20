@@ -49,11 +49,11 @@ where
 
     for member in &metadata.workspace_members {
         // Skip if we encounter known non-task crates.
-        if member.name == "rust-rosetta" || member.name == "meta" {
+        if member.name() == "rust-rosetta" || member.name() == "meta" {
             continue;
         }
 
-        let package = packages.iter().find(|p| p.name == member.name).unwrap();
+        let package = packages.iter().find(|p| p.name == member.name()).unwrap();
 
         // If the package has a proc-macro or dylib target, it's probably just a dependency of
         // another task. Skip it.
@@ -81,7 +81,7 @@ where
         };
 
         tasks.push(LocalTask {
-            package_name: member.name.clone(),
+            package_name: member.name().to_owned(),
             manifest_path: manifest_path.to_owned(),
             source: find_sources(manifest_path.parent().unwrap())?,
             url: rosetta_url,

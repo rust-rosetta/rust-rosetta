@@ -6,4 +6,4 @@ version = "0.1.0"
 url = "http://rosettacode.org/wiki/Sparkline_in_unicode"
 
 [dependencies]
-regex = { version = "0.2", features = ["pattern"] }
+regex = { version = "1", features = ["pattern"] }

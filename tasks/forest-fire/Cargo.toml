@@ -7,4 +7,4 @@ url = "http://rosettacode.org/wiki/Forest_fire"
 
 [dependencies]
 rand = "0.5"
-ansi_term = "0.10"
+ansi_term = "0.11"

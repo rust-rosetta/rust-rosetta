@@ -6,5 +6,5 @@ version = "0.1.0"
 url = "http://rosettacode.org/wiki/Mandelbrot_set"
 
 [dependencies]
-image = "0.17"
-num-complex = "0.1"
+image = "0.19"
+num-complex = "0.2"

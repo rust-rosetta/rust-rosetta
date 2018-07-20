@@ -88,7 +88,7 @@ fn main() {
     events_loop.run_forever(|event| {
         if let glutin::Event::WindowEvent { event, .. } = event {
             match event {
-                glutin::WindowEvent::Closed => return glutin::ControlFlow::Break,
+                glutin::WindowEvent::CloseRequested => return glutin::ControlFlow::Break,
                 glutin::WindowEvent::Resized(..) => draw(),
                 _ => (),
             }

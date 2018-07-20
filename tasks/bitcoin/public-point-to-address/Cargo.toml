@@ -6,5 +6,5 @@ version = "0.1.0"
 url = "http://rosettacode.org/wiki/Bitcoin/public_point_to_address"
 
 [dependencies]
-hex = "0.2"
+hex = "0.3"
 rust-crypto = "^0.2"
