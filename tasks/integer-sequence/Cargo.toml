@@ -6,4 +6,4 @@ version = "0.1.0"
 url = "http://rosettacode.org/wiki/Integer_sequence"
 
 [dependencies]
-num = "0.1"
+num = "0.2"

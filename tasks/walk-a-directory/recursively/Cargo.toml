@@ -6,4 +6,4 @@ version = "0.1.0"
 url = "http://rosettacode.org/wiki/Walk_a_directory/Recursively"
 
 [dependencies]
-regex = "0.2"
+regex = "1"

@@ -2,7 +2,6 @@ extern crate image;
 extern crate num_complex;
 
 use num_complex::Complex;
-use std::fs::File;
 
 fn main() {
     let max_iterations = 256u16;
@@ -37,7 +36,5 @@ fn main() {
         *pixel = image::Luma([i as u8]);
     }
 
-    // Save image
-    let fout = &mut File::create("fractal.png").unwrap();
-    image::ImageLuma8(imgbuf).save(fout, image::PNG).unwrap();
+    image::ImageLuma8(imgbuf).save("fractal.png").unwrap();
 }

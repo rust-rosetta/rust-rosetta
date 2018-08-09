@@ -6,4 +6,4 @@ version = "0.1.0"
 url = "http://rosettacode.org/wiki/Rosetta_Code/Fix_code_tags"
 
 [dependencies]
-regex = "0.2"
+regex = "1"

@@ -2,7 +2,6 @@ extern crate image;
 extern crate rand;
 
 use std::f32::consts::PI;
-use std::fs::File;
 
 use rand::prelude::*;
 
@@ -36,7 +35,5 @@ fn main() {
         imgbuf.put_pixel(x as u32, y as u32, image::Luma([255]));
     }
 
-    // Save image
-    let fout = &mut File::create("fractal.png").unwrap();
-    image::ImageLuma8(imgbuf).save(fout, image::PNG).unwrap();
+    image::ImageLuma8(imgbuf).save("fractal.png").unwrap();
 }
