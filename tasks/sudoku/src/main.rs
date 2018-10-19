@@ -1,5 +1,3 @@
-#![feature(iterator_step_by)]
-
 use std::fmt;
 use std::str::FromStr;
 

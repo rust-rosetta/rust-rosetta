@@ -1,5 +1,4 @@
-#![feature(proc_macro_non_items)]
-#![feature(use_extern_macros)]
+#![feature(proc_macro_hygiene)]
 
 extern crate factorial_macro;
 
