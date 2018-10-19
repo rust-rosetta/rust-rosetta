@@ -1,4 +1,3 @@
-#[macro_use]
 extern crate structopt;
 extern crate avl_tree;
 extern crate rand;
