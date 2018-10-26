@@ -1,15 +1,13 @@
-#![feature(rustc_private)]
+extern crate typed_arena;
 
-extern crate arena;
-
-use arena::TypedArena;
+use typed_arena::Arena;
 
 fn main() {
     // Memory is allocated using the default allocator (currently jemalloc).  The memory is
     // allocated in chunks, and when one chunk is full another is allocated.  This ensures that
     // references to an arena don't become invalid when the original chunk runs out of space.  The
     // chunk size is configurable as an argument to TypedArena::with_capacity if necessary.
-    let arena = TypedArena::new();
+    let arena = Arena::new();
     // The arena crate contains two types of arenas: TypedArena and Arena.  Arena is
     // reflection-basd and slower, but can allocate objects of any type.  TypedArena is faster, and
     // can allocate only objects of one type.  The type is determined by type inference--if you try

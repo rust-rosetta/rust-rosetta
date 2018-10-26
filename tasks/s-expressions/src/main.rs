@@ -16,13 +16,13 @@
 //! the decoding technique doesn't allocate extra space for strings.  Does support numbers, but
 //! only float types (supporting more types is possible but would complicate the code
 //! significantly).
-#![feature(rustc_private)]
+
 #![feature(test)]
 
-extern crate arena;
+extern crate typed_arena;
 extern crate test;
 
-use arena::TypedArena;
+use typed_arena::Arena;
 
 use self::Error::*;
 use self::SExp::*;
@@ -232,7 +232,7 @@ struct ParseContext<'a> {
     string: &'a str,
 
     /// Arena holding any allocations made by the parser.
-    arena: Option<TypedArena<Vec<SExp<'a>>>>,
+    arena: Option<Arena<Vec<SExp<'a>>>>,
 
     /// Stored in the parse context so it can be reused once allocated.
     stack: Vec<Vec<SExp<'a>>>,
@@ -289,7 +289,7 @@ impl<'a> SExp<'a> {
 
     /// Deserialize a SExp.
     fn parse(ctx: &'a mut ParseContext<'a>) -> Result<SExp<'a>, Error> {
-        ctx.arena = Some(TypedArena::new());
+        ctx.arena = Some(Arena::new());
         // Hopefully this unreachable! gets optimized out, because it should literally be
         // unreachable.
         let arena = match ctx.arena {
