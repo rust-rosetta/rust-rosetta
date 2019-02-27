@@ -1,0 +1,10 @@
+[package]
+name = "move-to-front"
+version = "0.1.0"
+authors = ["Olav de Haas <https://github.com/Olavhaasie>"]
+edition = "2018"
+
+[dependencies]
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Move-to-front_algorithm"
