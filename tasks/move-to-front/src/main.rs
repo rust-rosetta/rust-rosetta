@@ -2,7 +2,11 @@ fn main() {
     let examples = vec!["broood", "bananaaa", "hiphophiphop"];
     for example in examples {
         let encoded = encode(example);
-        println!("{} encodes to {:?}", example, encoded);
+        let decoded = decode(&encoded);
+        println!(
+            "{} encodes to {:?} decodes to {}",
+            example, encoded, decoded
+        );
     }
 }
 
@@ -24,6 +28,21 @@ fn encode(input: &str) -> Vec<usize> {
         .0
 }
 
+fn decode(input: &[usize]) -> String {
+    input
+        .iter()
+        .fold((Vec::new(), get_symbols()), |(mut o, mut s), x| {
+            o.push(s[*x]);
+            let c = s.remove(*x);
+            s.insert(0, c);
+            (o, s)
+        })
+        .0
+        .into_iter()
+        .map(|c| c as char)
+        .collect()
+}
+
 #[cfg(test)]
 mod tests {
     use crate::*;
@@ -31,6 +50,12 @@ mod tests {
     #[test]
     fn correct_encode() {
         let encoded = encode("broood");
-        assert_eq!(encoded, vec![1,17,15,0,0,5]);
+        assert_eq!(encoded, vec![1, 17, 15, 0, 0, 5]);
+    }
+
+    #[test]
+    fn correct_decode() {
+        let decoded = decode(&[1, 17, 15, 0, 0, 5]);
+        assert_eq!(decoded, "broood");
     }
 }
