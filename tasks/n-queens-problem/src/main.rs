@@ -110,14 +110,16 @@ fn semi_parallel_n_queens(n: i32) -> usize {
                 (left_diags | spot) << 1,
                 columns | spot,
                 (right_diags | spot) >> 1,
-            )).unwrap();
+            ))
+            .unwrap();
         });
     }
 
     receivers
         .iter()
         .map(|r| r.recv().unwrap())
-        .fold(0, |a, b| a + b) + ((columns == all_ones) as usize)
+        .fold(0, |a, b| a + b)
+        + ((columns == all_ones) as usize)
 }
 
 #[cfg(test)]

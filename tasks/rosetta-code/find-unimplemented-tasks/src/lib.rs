@@ -116,16 +116,18 @@ impl Iterator for Category {
         query_api(&self.name, self.continue_params.as_ref().unwrap())
             .and_then(|result| {
                 // If there are more pages of results to request, save them for the next iteration.
-                self.continue_params = result.get("continue").and_then(Value::as_object).map(
-                    |continue_params| {
-                        continue_params
-                            .iter()
-                            .map(|(key, value)| {
-                                (key.to_owned(), value.as_str().unwrap().to_owned())
-                            })
-                            .collect()
-                    },
-                );
+                self.continue_params =
+                    result
+                        .get("continue")
+                        .and_then(Value::as_object)
+                        .map(|continue_params| {
+                            continue_params
+                                .iter()
+                                .map(|(key, value)| {
+                                    (key.to_owned(), value.as_str().unwrap().to_owned())
+                                })
+                                .collect()
+                        });
 
                 parse_tasks(&result)
             })

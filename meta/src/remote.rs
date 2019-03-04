@@ -6,7 +6,7 @@ use percent_encoding::{self, QUERY_ENCODE_SET};
 use regex::Regex;
 use reqwest::Url;
 
-lazy_static!{
+lazy_static! {
     /// Extracts code from the first Rust section from Rosetta Code wiki markup.
     static ref RUST_WIKI_SECTION_RE: Regex =
         Regex::new(r"==\{\{header\|Rust\}\}==(?s:.*?)<lang rust>((?s:.*?))</lang>").unwrap();
@@ -104,7 +104,8 @@ pub fn parse_tasks(response: &Response) -> Vec<RemoteTask> {
             let url = Url::parse(&format!(
                 "http://rosettacode.org/wiki/{}",
                 encode_title(&title)
-            )).unwrap();
+            ))
+            .unwrap();
 
             RemoteTask { title, url, source }
         })

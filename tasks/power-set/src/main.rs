@@ -14,11 +14,13 @@ where
     let mut power = Vec::new();
     match items.next() {
         None => power.push(Vec::new()),
-        Some(item) => for mut set in power_set(items) {
-            power.push(set.clone());
-            set.push(item.clone());
-            power.push(set);
-        },
+        Some(item) => {
+            for mut set in power_set(items) {
+                power.push(set.clone());
+                set.push(item.clone());
+                power.push(set);
+            }
+        }
     }
     power
 }

@@ -316,7 +316,7 @@ impl<'a> SExp<'a> {
                     Ok(s)
                 } else {
                     Err(ExpectedEOF)
-                }
+                };
             }
             ListEnd => return Err(IncorrectCloseDelimiter),
             EOF => return Err(UnexpectedEOF),
@@ -349,7 +349,7 @@ impl<'a> SExp<'a> {
                             return match tokens.next_token()? {
                                 EOF => Ok(List(&*arena.alloc(list))),
                                 _ => Err(ExpectedEOF),
-                            }
+                            };
                         }
                     }
                 }

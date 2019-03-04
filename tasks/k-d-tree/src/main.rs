@@ -175,9 +175,10 @@ pub fn main() {
         [4.0, 7.0],
         [8.0, 1.0],
         [7.0, 2.0],
-    ].iter()
-        .map(|x| Point { coords: x.to_vec() })
-        .collect();
+    ]
+    .iter()
+    .map(|x| Point { coords: x.to_vec() })
+    .collect();
     let wp_tree = KDTreeNode::new(&mut wp_points, 0);
 
     let wp_target = Point {
@@ -284,9 +285,10 @@ mod tests {
             [4.0, 7.0],
             [8.0, 1.0],
             [7.0, 2.0],
-        ].iter()
-            .map(|x| Point { coords: x.to_vec() })
-            .collect();
+        ]
+        .iter()
+        .map(|x| Point { coords: x.to_vec() })
+        .collect();
         let wp_tree = KDTreeNode::new(&mut wp_points, 0);
 
         let wp_target = Point {
