@@ -365,11 +365,7 @@ impl<K: Ord + Copy + Debug + Display, V: Debug + Copy + Display> AVLTree<K, V> {
 
         // Is this a one-child node?
         } else if n.left.is_none() || n.right.is_none() {
-            let ch = if n.left.is_some() {
-                n.left
-            } else {
-                n.right
-            };
+            let ch = if n.left.is_some() { n.left } else { n.right };
             if n.key.cmp(&self.get_key(self.root)) == Ordering::Equal {
                 self.set_pointer(ch, Side::Up, None);
                 self.root = ch;

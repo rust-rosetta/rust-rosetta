@@ -40,14 +40,15 @@ fn next_world(input: &[Cell], output: &mut [Cell], w: usize, h: usize) {
                     input.get(i + w - 1),
                     input.get(i + w),
                     input.get(i + w + 1),
-                ].iter()
-                    .fold(0, |sum, &o| {
-                        if let Some(&Cell::Alive) = o {
-                            sum + 1
-                        } else {
-                            sum
-                        }
-                    });
+                ]
+                .iter()
+                .fold(0, |sum, &o| {
+                    if let Some(&Cell::Alive) = o {
+                        sum + 1
+                    } else {
+                        sum
+                    }
+                });
                 output[i] = match (cell, live) {
                     (Cell::Alive, 0...1) => Cell::Dead,  // Lonely
                     (Cell::Alive, 4...8) => Cell::Dead,  // Overcrowded
@@ -73,9 +74,9 @@ fn main() {
 |                                                                                                 |
 +-------------------------------------------------------------------------------------------------+
 "
-        .chars()
-        .map(Cell::from_char)
-        .collect();
+    .chars()
+    .map(Cell::from_char)
+    .collect();
     let mut next: Vec<Cell> = world.clone();
 
     loop {
@@ -105,9 +106,9 @@ fn test() {
 |           |
 +-----------+
 "
-        .chars()
-        .map(Cell::from_char)
-        .collect();
+    .chars()
+    .map(Cell::from_char)
+    .collect();
     let mut next: Vec<Cell> = world.clone();
 
     next_world(&world, &mut next, w, h);

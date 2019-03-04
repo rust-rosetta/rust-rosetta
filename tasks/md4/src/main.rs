@@ -46,7 +46,7 @@ macro_rules! md4round2 {
             .wrapping_add(g($b, $c, $d))
             .wrapping_add($x[$i])
             .wrapping_add(0x5a82_7999_u32))
-            .rotate_left($s);
+        .rotate_left($s);
     }};
 }
 
@@ -59,7 +59,7 @@ macro_rules! md4round3 {
             .wrapping_add(h($b, $c, $d))
             .wrapping_add($x[$i])
             .wrapping_add(0x6ed9_eba1_u32))
-            .rotate_left($s);
+        .rotate_left($s);
     }};
 }
 

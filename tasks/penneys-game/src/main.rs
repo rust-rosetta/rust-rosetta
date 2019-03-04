@@ -26,9 +26,11 @@ fn gen_sequence<R: Rng>(rng: &mut R, seed: Option<&str>) -> String {
             seq.push(c0);
             seq.push(iter.next().unwrap());
         }
-        None => for _ in 0..3 {
-            seq.push(toss_coin(rng, false))
-        },
+        None => {
+            for _ in 0..3 {
+                seq.push(toss_coin(rng, false))
+            }
+        }
     }
     seq
 }

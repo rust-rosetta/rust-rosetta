@@ -50,11 +50,12 @@ fn main() {
 pub fn check_values(sample: &mut [u32], input: &str) -> bool {
     let lex = Lexer::new(input);
 
-    let mut numbers_used =
-        lex.filter_map(|(_, a)| match a {
+    let mut numbers_used = lex
+        .filter_map(|(_, a)| match a {
             Token::Int(i) => Some(i),
             _ => None,
-        }).collect::<Vec<u32>>();
+        })
+        .collect::<Vec<u32>>();
 
     numbers_used.sort();
     sample.sort();

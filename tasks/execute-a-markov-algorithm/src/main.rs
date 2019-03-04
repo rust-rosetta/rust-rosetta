@@ -30,7 +30,8 @@ impl MarkovAlgorithm {
             .filter(|l| match l.chars().next() {
                 Some(c) if c != '#' => true,
                 _ => false,
-            }) {
+            })
+        {
             // Ignore comments
 
             // check for -> (must be preceded by whitespace)
