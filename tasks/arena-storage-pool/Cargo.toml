@@ -2,8 +2,8 @@
 name = "arena-storage-pool"
 version = "0.1.0"
 
-[dependencies]
-typed-arena = "1.1.0"
-
 [package.metadata.rosettacode]
 url = "http://rosettacode.org/wiki/Arena_storage_pool"
+
+[dependencies]
+typed-arena = "1.1.0"
