@@ -150,7 +150,8 @@ fn test() {
         0.06925842,
         0.38544586,
         0.65177077,
-    ].into_iter();
+    ]
+    .into_iter();
 
     let actual = IIRFilter::with_coefficients(a, b).apply(samples.iter());
 

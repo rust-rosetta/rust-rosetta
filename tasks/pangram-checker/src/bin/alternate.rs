@@ -8,7 +8,8 @@ fn is_pangram(sentence: &str) -> bool {
         .map(|c| c.to_lowercase().next().unwrap())
         .filter(|&c| c >= 'a' && c <= 'z')
         .collect::<HashSet<char>>()
-        .len() == 26
+        .len()
+        == 26
 }
 
 fn main() {

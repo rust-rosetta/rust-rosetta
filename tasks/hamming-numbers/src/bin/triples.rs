@@ -133,12 +133,14 @@ impl PartialOrd for HammingTriple {
             Some(Equal)
         } else if ((self.pow_2 >= other.pow_2)
             && (self.pow_3 >= other.pow_3)
-            && (self.pow_5 >= other.pow_5)) || (self.ln > other.ln)
+            && (self.pow_5 >= other.pow_5))
+            || (self.ln > other.ln)
         {
             Some(Greater)
         } else if ((self.pow_2 <= other.pow_2)
             && (self.pow_3 <= other.pow_3)
-            && (self.pow_5 <= other.pow_5)) || (self.ln < other.ln)
+            && (self.pow_5 <= other.pow_5))
+            || (self.ln < other.ln)
         {
             Some(Less)
         } else {

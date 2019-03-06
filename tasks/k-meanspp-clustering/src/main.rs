@@ -34,17 +34,18 @@ fn sqdist(p1: &Point, p2: &Point) -> f64 {
 
 /// Returns (distance^2, index) tuple of winning point.
 fn nearest(p: &Point, candidates: &[Point]) -> (f64, usize) {
-    let (dsquared, the_index) = candidates.iter().enumerate().fold(
-        (sqdist(p, &candidates[0]), 0),
-        |(d, index), next| {
-            let dprime = sqdist(p, &candidates[next.0]);
-            if dprime < d {
-                (dprime, next.0)
-            } else {
-                (d, index)
-            }
-        },
-    );
+    let (dsquared, the_index) =
+        candidates
+            .iter()
+            .enumerate()
+            .fold((sqdist(p, &candidates[0]), 0), |(d, index), next| {
+                let dprime = sqdist(p, &candidates[next.0]);
+                if dprime < d {
+                    (dprime, next.0)
+                } else {
+                    (d, index)
+                }
+            });
     (dsquared, the_index)
 }
 

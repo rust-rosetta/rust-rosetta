@@ -1,7 +1,4 @@
-#![cfg_attr(
-    feature = "cargo-clippy",
-    allow(double_parens, type_complexity)
-)]
+#![cfg_attr(feature = "cargo-clippy", allow(double_parens, type_complexity))]
 
 use std::sync::Arc;
 

@@ -45,14 +45,15 @@ fn next_world(input: &[Cell], output: &mut [Cell], w: usize, h: usize) {
                     input.get(i + w - 1),
                     input.get(i + w),
                     input.get(i + w + 1),
-                ].iter()
-                    .fold(0, |sum, &o| {
-                        if let Some(&Cell::Head) = o {
-                            sum + 1
-                        } else {
-                            sum
-                        }
-                    });
+                ]
+                .iter()
+                .fold(0, |sum, &o| {
+                    if let Some(&Cell::Head) = o {
+                        sum + 1
+                    } else {
+                        sum
+                    }
+                });
                 output[i] = if nc == 1 || nc == 2 {
                     Cell::Head
                 } else {
@@ -74,9 +75,9 @@ fn main() {
 |Ht.. ......|
 +-----------+
 "
-        .chars()
-        .map(Cell::from_char)
-        .collect();
+    .chars()
+    .map(Cell::from_char)
+    .collect();
     let mut next: Vec<Cell> = world.clone();
 
     loop {
@@ -106,9 +107,9 @@ fn test() {
 |Ht.. ......|
 +-----------+
 "
-        .chars()
-        .map(Cell::from_char)
-        .collect();
+    .chars()
+    .map(Cell::from_char)
+    .collect();
     let mut next: Vec<Cell> = world.clone();
 
     for _ in 0..10 {

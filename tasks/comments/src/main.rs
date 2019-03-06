@@ -9,7 +9,7 @@
  *   *  containing nested multi-line comment
  *   *  (nesting supported since 0.9-pre https://github.com/rust-lang/rust/issues/9468)
  *   */
- */
+*/
 
 /// Outer single line Rustdoc comments apply to the next item.
 

@@ -2,7 +2,7 @@ extern crate reqwest;
 
 use std::io::Read;
 
-use reqwest::header::{Authorization, Basic, Connection};
+use reqwest::header::CONNECTION;
 use reqwest::Client;
 
 fn main() {
@@ -11,11 +11,8 @@ fn main() {
     // reqwest uses strongly-typed structs for creating headers
     let mut res = client
         .get("https://www.example.com")
-        .header(Authorization(Basic {
-            username: String::from("user"),
-            password: Some(String::from("password")),
-        }))
-        .header(Connection::close())
+        .basic_auth("user", Some("password"))
+        .header(CONNECTION, "close")
         .send()
         .unwrap();
 

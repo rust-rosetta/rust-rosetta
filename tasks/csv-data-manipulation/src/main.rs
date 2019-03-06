@@ -86,7 +86,8 @@ fn csv_sum(csv: &str) -> Result<Vec<Vec<String>>, String> {
                 global_result
             })
         }
-    }.and_then(|_| Ok(lines))
+    }
+    .and_then(|_| Ok(lines))
 }
 
 fn vec_csv_to_string(csv: &[Vec<String>]) -> String {

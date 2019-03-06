@@ -1,7 +1,8 @@
 fn perfect_number(n: usize) -> bool {
     (1..(n / 2) + 1)
         .filter(|&i| n % i == 0)
-        .fold(0, |a, b| a + b) == n
+        .fold(0, |a, b| a + b)
+        == n
 }
 
 fn main() {
