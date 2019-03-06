@@ -18,8 +18,8 @@
 //! significantly).
 #![feature(test)]
 
-extern crate typed_arena;
 extern crate test;
+extern crate typed_arena;
 
 use typed_arena::Arena;
 
