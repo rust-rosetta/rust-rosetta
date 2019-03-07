@@ -2503,6 +2503,10 @@ dependencies = [
 ]
 
 [[package]]
+name = "move-to-front"
+version = "0.1.0"
+
+[[package]]
 name = "moving-average"
 version = "0.1.0"
 

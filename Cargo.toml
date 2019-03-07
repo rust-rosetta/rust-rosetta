@@ -70,7 +70,8 @@ authors = [
     "Stefan Müller, https://github.com/zzeroo",
     "Kunal Tyagi, https://github.com/kunaltyagi",
     "Andrey Lebedev, https://github.com/areinull",
-    "J Henry Waugh (psudeonym), https://github.com/jhwgh1968"
+    "J Henry Waugh (psudeonym), https://github.com/jhwgh1968",
+    "Olav de Haas, https://github.com/Olavhaasie"
 ]
 
 [dependencies]
@@ -858,6 +859,9 @@ members = [
 
     # http://rosettacode.org/wiki/Mouse_position
     "tasks/mouse-position",
+
+    # http://rosettacode.org/wiki/Move-to-front_algorithm
+    "tasks/move-to-front",
 
     # https://rosettacode.org/wiki/Multiplication_tables
     "tasks/multiplication-tables",
