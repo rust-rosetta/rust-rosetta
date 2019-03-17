@@ -1,7 +1,6 @@
-extern crate crypto;
+extern crate ring;
 
-use crypto::digest::Digest;
-use crypto::sha2::Sha256;
+use ring::digest::{digest, SHA256};
 
 /// Decodes a base58-encoded string into an array of bytes.
 fn decode_base58(address: &str) -> Result<Vec<u8>, &'static str> {
@@ -32,18 +31,10 @@ fn decode_base58(address: &str) -> Result<Vec<u8>, &'static str> {
 
 /// Hashed the input with the SHA-256 algorithm twice, and returns the output.
 fn double_sha256(bytes: &[u8]) -> Vec<u8> {
-    let mut hasher = Sha256::new();
+    let digest_1 = digest(&SHA256, bytes);
 
-    hasher.input(bytes);
-    let mut digest_1 = vec![0; 32];
-    hasher.result(&mut digest_1);
-    hasher.reset();
-
-    hasher.input(&digest_1);
-    let mut digest_2 = vec![0; 32];
-    hasher.result(&mut digest_2);
-
-    digest_2
+    let digest_2 = digest(&SHA256, digest_1.as_ref());
+    digest_2.as_ref().to_vec()
 }
 
 /// Validates a bitcoin address.
