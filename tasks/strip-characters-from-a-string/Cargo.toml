@@ -7,4 +7,4 @@ edition = "2018"
 [dependencies]
 
 [package.metadata.rosettacode]
-url = "rosettacode.org/wiki/Strip_a_set_of_characters_from_a_string"
+url = "https://rosettacode.org/wiki/Strip_a_set_of_characters_from_a_string"
