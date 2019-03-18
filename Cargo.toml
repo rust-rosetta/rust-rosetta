@@ -1184,6 +1184,9 @@ members = [
     # http://rosettacode.org/wiki/String_matching
     "tasks/string-matching",
 
+    # rosettacode.org/wiki/Strip_a_set_of_characters_from_a_string
+    "tasks/strip-characters-from-a-string",
+
     # http://rosettacode.org/wiki/Strip_comments_from_a_string
     "tasks/strip-comments-from-a-string",
 
