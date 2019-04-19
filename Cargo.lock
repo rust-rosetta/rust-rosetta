@@ -4384,6 +4384,10 @@ dependencies = [
 ]
 
 [[package]]
+name = "validate-isin"
+version = "0.1.0"
+
+[[package]]
 name = "value-capture"
 version = "0.1.0"
 
