@@ -1,0 +1,10 @@
+[package]
+name = "strip-characters-from-a-string"
+version = "0.1.0"
+authors = ["Olav de Haas <o.n.dehaas@student.tudelft.nl>"]
+edition = "2018"
+
+[dependencies]
+
+[package.metadata.rosettacode]
+url = "https://rosettacode.org/wiki/Strip_a_set_of_characters_from_a_string"
