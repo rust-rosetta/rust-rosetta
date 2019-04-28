@@ -57,6 +57,10 @@ name = "a-plus-b"
 version = "0.1.0"
 
 [[package]]
+name = "abbreviations-easy"
+version = "0.1.0"
+
+[[package]]
 name = "abc-problem"
 version = "0.1.0"
 
