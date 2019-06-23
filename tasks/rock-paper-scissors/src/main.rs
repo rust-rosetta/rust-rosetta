@@ -60,7 +60,7 @@ fn main() {
             .expect("failed to read line");
         // trim leading whitespace, get first lowercase character
         let u_choice = match input
-            .trim_left()
+            .trim_start()
             .chars()
             .next()
             .and_then(|c| c.to_lowercase().next())

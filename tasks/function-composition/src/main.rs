@@ -11,7 +11,7 @@ fn main() {
     println!("{:?}", (*comp)(consts::PI));
 }
 
-fn compose<'a, F, G, A, B, C>(f: F, g: G) -> Box<Fn(A) -> C + 'a>
+fn compose<'a, F, G, A, B, C>(f: F, g: G) -> Box<dyn Fn(A) -> C + 'a>
 where
     G: Fn(A) -> B + 'a,
     F: Fn(B) -> C + 'a,

@@ -128,7 +128,7 @@ impl<'a> Iterator for Lexer<'a> {
                 '-' => Token::Minus,
                 '/' => Token::Slash,
                 '*' => Token::Star,
-                d @ '0'...'9' => {
+                d @ '0'..='9' => {
                     let mut val = d.to_digit(10).unwrap();
                     while let Some(dg) = self
                         .input

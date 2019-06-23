@@ -1,6 +1,6 @@
 use std::ops::Add;
 
-fn accum<'a, T>(mut n: T) -> Box<FnMut(T) -> T + 'a>
+fn accum<'a, T>(mut n: T) -> Box<dyn FnMut(T) -> T + 'a>
 where
     T: 'a + Add<T, Output = T> + Copy,
 {
