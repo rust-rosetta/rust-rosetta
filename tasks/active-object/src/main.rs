@@ -1,20 +1,17 @@
-#![feature(mpsc_select)]
-
-extern crate num;
-extern crate schedule_recv;
-
-use num::traits::Zero;
-use num::Float;
-use schedule_recv::periodic_ms;
 use std::f64::consts::PI;
 use std::ops::Mul;
-use std::sync::mpsc::{self, SendError, Sender};
 use std::sync::{Arc, Mutex};
 use std::thread;
 use std::time::Duration;
 
-pub type Actor<S> = Sender<Box<Fn(u32) -> S + Send>>;
-pub type ActorResult<S> = Result<(), SendError<Box<Fn(u32) -> S + Send>>>;
+use num::traits::Zero;
+use num::Float;
+
+use channel::{select, SendError, Sender};
+use crossbeam_channel as channel;
+
+pub type Actor<S> = Sender<Box<dyn Fn(u32) -> S + Send>>;
+pub type ActorResult<S> = Result<(), SendError<Box<dyn Fn(u32) -> S + Send>>>;
 
 /// Rust supports both shared-memory and actor models of concurrency, and the `Integrator` utilizes
 /// both.  We use an `Actor` to send the `Integrator` new functions, while we use a `Mutex`
@@ -46,7 +43,7 @@ where
         // We create a pipe allowing functions to be sent from tx (the sending end) to input (the
         // receiving end).  In order to change the function we are integrating from the task in
         // which the Integrator lives, we simply send the function through tx.
-        let (tx, input) = mpsc::channel();
+        let (tx, input) = channel::unbounded();
         // The easiest way to do shared-memory concurrency in Rust is to use atomic reference
         // counting, or Arc, around a synchronized type (like Mutex<T>).  Arc gives you a guarantee
         // that memory will not be freed as long as there is at least one reference to it.
@@ -60,15 +57,15 @@ where
             // becomes inaccessible to the outside world.
             output: Arc::clone(&s),
         };
-        thread::spawn(move || -> () {
+        thread::spawn(move || {
             // The frequency is how often we want to "tick" as we update our integrated total.  In
             // Rust, timers can yield Receivers that are periodically notified with an empty
             // message (where the period is the frequency).  This is useful because it lets us wait
             // on either a tick or another type of message (in this case, a request to change the
             // function we are integrating).
-            let periodic = periodic_ms(frequency);
+            let periodic = channel::tick(Duration::from_millis(frequency.into()));
             let mut t = 0;
-            let mut k: Box<Fn(u32) -> S + Send> = Box::new(|_| Zero::zero());
+            let mut k: Box<dyn Fn(u32) -> S + Send> = Box::new(|_| Zero::zero());
             let mut k_0: S = Zero::zero();
             loop {
                 // Here's the selection we talked about above.  Note that we are careful to call
@@ -79,7 +76,7 @@ where
                 // it just happens when the Integrator falls out of scope.  So we handle it cleanly
                 // and break out of the loop, rather than failing.
                 select! {
-                    res = periodic.recv() => match res {
+                    recv(periodic) -> res => match res {
                         Ok(_) => {
                             t += frequency;
                             let k_1: S = k(t);
@@ -103,7 +100,7 @@ where
                         }
                         Err(_) => break,
                     },
-                    res = input.recv() => match res {
+                    recv(input) -> res => match res {
                         Ok(k_new) => k = k_new,
                         Err(_) => break,
                     }
@@ -113,7 +110,7 @@ where
         integrator
     }
 
-    pub fn input(&self, k: Box<Fn(u32) -> S + Send>) -> ActorResult<S> {
+    pub fn input(&self, k: Box<dyn Fn(u32) -> S + Send>) -> ActorResult<S> {
         // The meat of the work is done in the other thread, so to set the
         // input we just send along the Sender we set earlier...
         self.input.send(k)

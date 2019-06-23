@@ -1,10 +1,11 @@
 [package]
 name = "active-object"
 version = "0.1.0"
+edition = "2018"
 
 [package.metadata.rosettacode]
 url = "http://rosettacode.org/wiki/Active_object"
 
 [dependencies]
 num = "0.2"
-schedule_recv = "0.1.0"
+crossbeam-channel = "0.3.8"
