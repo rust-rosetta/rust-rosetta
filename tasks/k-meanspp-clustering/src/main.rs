@@ -1,9 +1,8 @@
-#[macro_use]
-extern crate structopt;
 extern crate csv;
 extern crate gnuplot;
 extern crate nalgebra;
 extern crate rand;
+extern crate structopt;
 
 use std::f64::consts::PI;
 use std::fs::File;

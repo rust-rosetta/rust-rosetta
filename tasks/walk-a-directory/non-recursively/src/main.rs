@@ -1,6 +1,5 @@
-#[macro_use]
-extern crate structopt;
 extern crate regex;
+extern crate structopt;
 
 use regex::Regex;
 use structopt::StructOpt;
