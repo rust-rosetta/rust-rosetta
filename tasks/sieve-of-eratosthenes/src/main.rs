@@ -1,5 +1,3 @@
-#![feature(iterator_step_by)]
-
 use std::iter::repeat;
 
 fn int_sqrt(n: usize) -> usize {

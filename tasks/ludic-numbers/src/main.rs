@@ -1,5 +1,3 @@
-#![feature(iterator_step_by)] // for `step_by`
-
 const ARRAY_MAX: usize = 25_000;
 const LUDIC_MAX: usize = 2100;
 

@@ -2,7 +2,6 @@
 //!
 //! [rust-rosetta]: https://github.com/Hoverbear/rust-rosetta
 
-#![feature(fs_read_write)]
 #![warn(missing_docs)]
 
 #[macro_use]

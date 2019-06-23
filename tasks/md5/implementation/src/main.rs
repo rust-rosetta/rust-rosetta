@@ -1,9 +1,5 @@
-// http://rosettacode.org/wiki/MD5/Implementation
-
 //! Ported from C - Simple MD5 implementation
 //! on Wikipedia: <https://en.wikipedia.org/wiki/MD5>
-
-#![feature(iterator_step_by)]
 
 use std::fmt::{Debug, Formatter, Result};
 use std::num::Wrapping as wr;
