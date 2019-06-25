@@ -812,6 +812,9 @@ members = [
     # http://rosettacode.org/wiki/LZW_compression
     "tasks/lzw-compression",
 
+    # https://rosettacode.org/wiki/Machine_code
+    "tasks/machine-code",
+
     # http://rosettacode.org/wiki/Magic_squares_of_odd_order
     "tasks/magic-squares-of-odd-order",
 

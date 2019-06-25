@@ -2290,6 +2290,13 @@ name = "lzw-compression"
 version = "0.1.0"
 
 [[package]]
+name = "machine-code"
+version = "0.1.0"
+dependencies = [
+ "libc 0.2.50 (registry+https://github.com/rust-lang/crates.io-index)",
+]
+
+[[package]]
 name = "magic-squares-of-odd-order"
 version = "0.1.0"
 
