@@ -333,7 +333,6 @@ mod ui_imp {
 
     impl Termion {
         pub fn new() -> Self {
-            use std::io;
             use ui_imp::termion::input::TermRead;
 
             let mut stdout = io::stdout().into_raw_mode().unwrap();

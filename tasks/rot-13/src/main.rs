@@ -2,8 +2,8 @@ fn rot13(string: &str) -> String {
     fn rot13u8(c: char) -> char {
         let d = c as u8;
         match c {
-            'a'...'m' | 'A'...'M' => (d + 13) as char,
-            'n'...'z' | 'N'...'Z' => (d - 13) as char,
+            'a'..='m' | 'A'..='M' => (d + 13) as char,
+            'n'..='z' | 'N'..='Z' => (d - 13) as char,
             _ => c,
         }
     }

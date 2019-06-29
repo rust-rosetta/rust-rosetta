@@ -45,11 +45,11 @@ impl MarkovAlgorithm {
                 }
                 Some(arrow) => {
                     // extract pattern (trim trailing whitespace)
-                    let pattern = line[..arrow].trim_right();
+                    let pattern = line[..arrow].trim_end();
 
                     // get the string after the arrow
                     // this adds 3 to skip the arrow itself
-                    let line_end = line[arrow + 3..].trim_left();
+                    let line_end = line[arrow + 3..].trim_start();
 
                     // check for . (stop)
                     let stop = match line_end.chars().next() {

@@ -1,12 +1,11 @@
 #[macro_use]
 extern crate serde_json;
 #[macro_use]
-extern crate structopt;
-#[macro_use]
 extern crate clap;
 extern crate difference;
 extern crate meta;
 extern crate serde;
+extern crate structopt;
 extern crate term;
 
 use std::fs::File;

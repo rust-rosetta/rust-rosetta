@@ -1,4 +1,4 @@
-fn lower_case_alphabet() -> Box<Iterator<Item = char>> {
+fn lower_case_alphabet() -> Box<dyn Iterator<Item = char>> {
     let ascii_iter = (0..26).map(|x| (x + b'a') as char);
     Box::new(ascii_iter)
 }

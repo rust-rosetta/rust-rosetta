@@ -11,18 +11,18 @@ macro_rules! abc {
 
 #[derive(Clone)]
 enum Mu<T> {
-    Roll(Arc<Box<Fn(Mu<T>) -> T>>),
+    Roll(Arc<Box<dyn Fn(Mu<T>) -> T>>),
 }
 
-fn unroll<T>(Mu::Roll(f): Mu<T>) -> Arc<Box<Fn(Mu<T>) -> T>> {
+fn unroll<T>(Mu::Roll(f): Mu<T>) -> Arc<Box<dyn Fn(Mu<T>) -> T>> {
     Arc::clone(&f)
 }
 
-pub type Func<A> = Arc<Box<Fn(A) -> A>>;
-pub type RecFunc<A> = Arc<Box<Fn(Func<A>) -> Func<A>>>;
+pub type Func<A> = Arc<Box<dyn Fn(A) -> A>>;
+pub type RecFunc<A> = Arc<Box<dyn Fn(Func<A>) -> Func<A>>>;
 
 pub fn y<A: 'static>(f: RecFunc<A>) -> Func<A> {
-    let g: Arc<Box<Fn(Mu<Func<A>>) -> Func<A>>> = abc!(move |x: Mu<Func<A>>| -> Func<A> {
+    let g: Arc<Box<dyn Fn(Mu<Func<A>>) -> Func<A>>> = abc!(move |x: Mu<Func<A>>| -> Func<A> {
         let f = Arc::clone(&f);
         abc!(move |a: A| -> A {
             let f = Arc::clone(&f);

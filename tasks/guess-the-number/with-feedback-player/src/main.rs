@@ -18,7 +18,7 @@ fn main() {
             let input = stdin()
                 .read_line(&mut line)
                 .ok()
-                .and_then(|_| line.trim_left().chars().next())
+                .and_then(|_| line.trim_start().chars().next())
                 .and_then(|c| c.to_uppercase().next());
             match input {
                 Some('H') => {

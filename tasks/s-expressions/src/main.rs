@@ -217,7 +217,7 @@ impl<'a> Tokens<'a> {
 /// twice, but it avoids having to write our own number parsing logic.
 fn parse_literal(literal: &str) -> SExp {
     match literal.bytes().next() {
-        Some(b'0'...b'9') | Some(b'-') => match f64::from_str(literal) {
+        Some(b'0'..=b'9') | Some(b'-') => match f64::from_str(literal) {
             Ok(f) => F64(f),
             Err(_) => Str(literal),
         },

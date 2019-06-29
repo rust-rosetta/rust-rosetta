@@ -50,9 +50,9 @@ fn next_world(input: &[Cell], output: &mut [Cell], w: usize, h: usize) {
                     }
                 });
                 output[i] = match (cell, live) {
-                    (Cell::Alive, 0...1) => Cell::Dead,  // Lonely
-                    (Cell::Alive, 4...8) => Cell::Dead,  // Overcrowded
-                    (Cell::Alive, 2...3) => Cell::Alive, // Lives
+                    (Cell::Alive, 0..=1) => Cell::Dead,  // Lonely
+                    (Cell::Alive, 4..=8) => Cell::Dead,  // Overcrowded
+                    (Cell::Alive, 2..=3) => Cell::Alive, // Lives
                     (Cell::Dead, 3) => Cell::Alive,      // It takes three to give birth!
                     _ => Cell::Dead,                     // Barren
                 }

@@ -1,9 +1,5 @@
-// http://rosettacode.org/wiki/MD5/Implementation
-
 //! Ported from C - Simple MD5 implementation
 //! on Wikipedia: <https://en.wikipedia.org/wiki/MD5>
-
-#![feature(iterator_step_by)]
 
 use std::fmt::{Debug, Formatter, Result};
 use std::num::Wrapping as wr;
@@ -171,9 +167,9 @@ fn md5(initial_msg: &[u8]) -> MD5 {
         // Main loop:
         for ind in 0..64 {
             let (f, g) = match ind {
-                i @ 0...15 => ((b & c) | ((!b) & d) /* f */, i), //g
-                i @ 16...31 => ((d & b) | ((!d) & c), (5 * i + 1) % 16),
-                i @ 32...47 => (b ^ c ^ d, (3 * i + 5) % 16),
+                i @ 0..=15 => ((b & c) | ((!b) & d) /* f */, i), //g
+                i @ 16..=31 => ((d & b) | ((!d) & c), (5 * i + 1) % 16),
+                i @ 32..=47 => (b ^ c ^ d, (3 * i + 5) % 16),
                 i => (c ^ (b | (!d)), (7 * i) % 16),
             };
 

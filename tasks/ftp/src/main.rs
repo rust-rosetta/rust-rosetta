@@ -5,7 +5,7 @@ use ftp::FtpStream;
 use std::fs::File;
 use std::io::{Read, Write};
 
-fn write_file(filename: &str) -> impl Fn(&mut Read) -> Result<()> {
+fn write_file(filename: &str) -> impl Fn(&mut dyn Read) -> Result<()> {
     let filename = filename.to_string();
     move |stream| {
         let mut file = File::create(&filename).unwrap();

@@ -5,11 +5,11 @@ fn main() {
 
     assert_eq!(string_with_spaces.trim(), string);
     assert_eq!(
-        string_with_spaces.trim_left().to_string(),
+        string_with_spaces.trim_start().to_string(),
         string.to_string() + spaces
     );
     assert_eq!(
-        string_with_spaces.trim_right().to_string(),
+        string_with_spaces.trim_end().to_string(),
         spaces.to_string() + string
     );
 }

@@ -13,17 +13,17 @@ fn simple_unboxed() {
 
 // given a number x, return the (boxed) closure that
 // computes x squared
-fn closure_gen<'a>(x: u32) -> Box<Fn() -> f64 + 'a> {
+fn closure_gen<'a>(x: u32) -> Box<dyn Fn() -> f64 + 'a> {
     Box::new(move || f64::from(x).powi(2))
 }
 
 // type alias for the closure iterator
-type ClosureIter<'a> = Map<RangeFrom<u32>, fn(u32) -> Box<Fn() -> f64 + 'a>>;
+type ClosureIter<'a> = Map<RangeFrom<u32>, fn(u32) -> Box<dyn Fn() -> f64 + 'a>>;
 
 // return an iterator that on every iteration returns
 // a closure computing the index of the iteration squared
 fn closures_iterator<'a>() -> ClosureIter<'a> {
-    let cl_gen: fn(u32) -> Box<Fn() -> f64 + 'a> = closure_gen;
+    let cl_gen: fn(u32) -> Box<dyn Fn() -> f64 + 'a> = closure_gen;
     (0..).map(cl_gen)
 }
 

@@ -1,4 +1,3 @@
-#[macro_use]
 extern crate structopt;
 
 use std::fs::File;

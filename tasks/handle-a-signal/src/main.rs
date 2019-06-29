@@ -3,7 +3,7 @@ extern crate time;
 
 #[cfg(unix)]
 fn main() {
-    use std::sync::atomic::{AtomicBool, Ordering, ATOMIC_BOOL_INIT};
+    use std::sync::atomic::{AtomicBool, Ordering};
     use std::thread;
     use std::time::Duration;
 
@@ -13,7 +13,7 @@ fn main() {
     let duration = Duration::from_secs(1) / 2;
 
     // "SIGINT received" global variable.
-    static mut GOT_SIGINT: AtomicBool = ATOMIC_BOOL_INIT;
+    static mut GOT_SIGINT: AtomicBool = AtomicBool::new(false);
 
     unsafe {
         // Initially, "SIGINT received" is false.

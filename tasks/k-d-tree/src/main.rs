@@ -235,7 +235,7 @@ pub fn main() {
     );
 }
 
-fn quickselect_by<T>(arr: &mut [T], position: usize, cmp: &Fn(&T, &T) -> Ordering) -> T
+fn quickselect_by<T>(arr: &mut [T], position: usize, cmp: &dyn Fn(&T, &T) -> Ordering) -> T
 where
     T: Clone,
 {
@@ -258,7 +258,7 @@ where
     }
 }
 
-fn partition_by<T>(arr: &mut [T], pivot_index: usize, cmp: &Fn(&T, &T) -> Ordering) -> usize {
+fn partition_by<T>(arr: &mut [T], pivot_index: usize, cmp: &dyn Fn(&T, &T) -> Ordering) -> usize {
     let array_len = arr.len();
     arr.swap(pivot_index, array_len - 1);
     let mut store_index = 0;
