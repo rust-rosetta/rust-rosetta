@@ -1,0 +1,11 @@
+[package]
+name = "machine-code"
+version = "0.1.0"
+authors = ["Polochon-street <polochonstreet@gmx.fr>"]
+edition = "2018"
+
+[package.metadata.rosettacode]
+url = "https://rosettacode.org/wiki/Machine_code"
+
+[dependencies]
+libc = "0.2.2"
