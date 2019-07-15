@@ -1,0 +1,7 @@
+[package]
+name = "cramers-rule"
+version = "0.1.0"
+authors = ["Fabrice Mouhartem <fabrice.mouhartem@ens-lyon.org>"]
+
+[package.metadata.rosettacode]
+url = "https://rosettacode.org/wiki/Cramer%27s_rule"
