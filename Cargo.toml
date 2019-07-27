@@ -116,6 +116,9 @@ members = [
     # http://rosettacode.org/wiki/A%2BB
     "tasks/a-plus-b",
 
+    # https://rosettacode.org/wiki/Abbreviations,_easy
+    "tasks/abbreviations-easy",
+
     # http://rosettacode.org/wiki/ABC_Problem
     "tasks/abc-problem",
 
