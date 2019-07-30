@@ -41,4 +41,12 @@ fn main() {
     let output = characters_to_xml(input);
 
     println!("{}", output);
+    assert!(output.contains(
+        "<Character name=\"Tam O&apos;Shanter\">Burns: \"When chapman \
+         billies leave the street ...\"</Character>"
+    ));
+    assert!(
+        output.contains("<Character name=\"April\">Bubbly: I'm > Tam and &lt;= Emily</Character>")
+    );
+    assert!(output.contains("<Character name=\"Emily\">Short &amp; shrift</Character>"));
 }
