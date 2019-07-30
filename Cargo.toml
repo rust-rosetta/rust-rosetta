@@ -914,6 +914,9 @@ members = [
     # http://rosettacode.org/wiki/Pascal%27s_triangle
     "tasks/pascals-triangle",
 
+    # http://rosettacode.org/wiki/Password_generator
+    "tasks/password-generator",
+
     # http://rosettacode.org/wiki/Penney%27s_game
     "tasks/penneys-game",
 
