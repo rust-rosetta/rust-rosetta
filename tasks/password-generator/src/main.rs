@@ -9,20 +9,35 @@ extern crate rand;
 // invoke them later in the program
 use clap::{App, Arg};
 use rand::distributions::Alphanumeric;
+use rand::prelude::IteratorRandom;
 use rand::{thread_rng, Rng};
 use std::iter;
 
+// the core logic that creates our password
 fn generate_password(length: usize) -> String {
     // cache thread_rng for better performance
     let mut rng = thread_rng();
-    let chars: String = iter::repeat(())
+    let mut base_password: Vec<char> = iter::repeat(())
         // the Alphanumeric struct provides 3/4
         // of the characters for passwords
-        // so we can simply sample from it
+        // so we can sample from it
         .map(|()| rng.sample(Alphanumeric))
         .take(length)
         .collect();
-    chars
+    // create an iterator of required other characters
+    let other_values = "!\"#$%&'()*+,-./:;<=>?@[]^_{|}~";
+    let mut to_add = rng.gen_range(1, 10);
+    loop {
+        let special = other_values.chars().choose(&mut rng).unwrap();
+        to_add -= 1;
+        base_password[to_add] = special;
+        if to_add == 0 {
+            break;
+        }
+    }
+    // you convert the vector of characters into a string
+    // using the turbofish syntax
+    base_password.iter().collect::<String>()
 }
 fn main() {
     // create our new CLI
@@ -72,16 +87,58 @@ mod tests {
     }
     #[test]
     fn generate_password_has_upper_and_lowercase_characters() {
-        assert!(generate_password(50)
-            .chars()
-            .any(|c| c.is_ascii_lowercase()));
+        let password = generate_password(50);
+        // the following line only prints when this test fails
+        // you can see it printed by running `cargo test -- --nocapture`
+        println!("{}", password);
+        assert!(password.chars().any(|c| c.is_ascii_lowercase()));
         assert!(generate_password(50)
             .chars()
             .any(|c| c.is_ascii_uppercase()));
     }
     #[test]
-    fn _generate_password_has_other_charactrs() {
-        // !"#$%&'()*+,-./:;<=>?@[]^_{|}~
-        assert!(generate_password(50).chars().any(|_c| { true }));
+    fn generate_password_has_other_characters() {
+        let password = generate_password(10);
+        println!("{}", password);
+        // TODO the below assertion is quite verbose
+        // make it more idiomatic and terse
+        assert!(
+            password
+                .chars()
+                .filter(|&c| {
+                    c == '!'
+                        || c == '"'
+                        || c == '#'
+                        || c == '$'
+                        || c == '%'
+                        || c == '&'
+                        || c == '\''
+                        || c == '('
+                        || c == ')'
+                        || c == '*'
+                        || c == '+'
+                        || c == ','
+                        || c == '-'
+                        || c == '_'
+                        || c == '.'
+                        || c == '/'
+                        || c == ':'
+                        || c == ';'
+                        || c == '<'
+                        || c == '>'
+                        || c == '='
+                        || c == '?'
+                        || c == '@'
+                        || c == '['
+                        || c == ']'
+                        || c == '^'
+                        || c == '{'
+                        || c == '}'
+                        || c == '|'
+                        || c == '~'
+                })
+                .count()
+                >= 1
+        );
     }
 }
