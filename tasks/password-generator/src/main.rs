@@ -42,6 +42,20 @@ fn generate_password(length: usize) -> String {
     // using the turbofish syntax
     base_password.iter().collect::<String>()
 }
+// validator function for our first argument
+// picked 15 as the length must be greater than
+// our randomly generated range above (10)
+fn is_valid_length(value: String) -> Result<(), String> {
+    let length = value.parse::<u32>();
+    // if we cannot parse the string into an i32
+    if length.is_err() {
+        Err(String::from("Please provide valid password"))
+    } else if length.unwrap() < 15 {
+        Err(String::from("Mininum password length is 15"))
+    } else {
+        Ok(())
+    }
+}
 fn main() {
     // create our new CLI
     // clap provides powerful defaults so we don't have to
@@ -56,9 +70,8 @@ fn main() {
              // make it SECURE by default
              // https://cheatsheetseries.owasp.org/cheatsheets/Password_Storage_Cheat_Sheet.html
              .default_value("160")
-             // TODO validate these user provided values
-             // to avoid unexpected behavior
              .required(true)
+             .validator(is_valid_length)
              .index(1)
              .takes_value(true)
             )
