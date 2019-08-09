@@ -58,10 +58,7 @@ fn test_longest_common_subsequence() {
 #[test]
 fn test_unicode() {
     assert_eq!(
-        longest_common_subsequence(
-            "самолетов была отмечена в Японском",
-            "отмечена в"
-        ),
+        longest_common_subsequence("самолетов была отмечена в Японском", "отмечена в"),
         "отмечена в"
     );
 }

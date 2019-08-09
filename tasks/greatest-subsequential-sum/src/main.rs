@@ -22,7 +22,7 @@ fn main() {
 
     let (max, boundaries) = greatest_subsequential_sum(&nums);
 
-    println!("Max subsequence sum: {} for {:?}", max, &nums[boundaries]);;
+    println!("Max subsequence sum: {} for {:?}", max, &nums[boundaries]);
 }
 
 #[test]
