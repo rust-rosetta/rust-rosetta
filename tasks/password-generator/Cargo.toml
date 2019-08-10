@@ -9,4 +9,4 @@ url = "http://rosettacode.org/wiki/Password_generator"
 
 [dependencies]
 rand = "0.7"
-clap = "2.33.0"
+structopt = "0.2.18"

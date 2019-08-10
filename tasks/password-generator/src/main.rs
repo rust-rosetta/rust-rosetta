@@ -1,22 +1,11 @@
-// declare our external dependencies
-// for parsing command line arguments
-extern crate clap;
-// for working with random values
-extern crate rand;
-// why use a library for this CLI? Clap lets us quickly build a CLI and
-// lets us focus the below code on password generation
-// not the intricacies building a CLI in rust.
-// Read more about clap here: https://clap.rs/
-// bring the needed structures into scope so we
-// invoke them later in the program
-use clap::{App, Arg};
 use rand::distributions::Alphanumeric;
 use rand::prelude::IteratorRandom;
 use rand::{thread_rng, Rng};
 use std::iter;
+use structopt::StructOpt;
 
 // the core logic that creates our password
-fn generate_password(length: usize) -> String {
+fn generate_password(length: u8) -> String {
     // cache thread_rng for better performance
     let mut rng = thread_rng();
     let mut base_password: Vec<char> = iter::repeat(())
@@ -24,7 +13,7 @@ fn generate_password(length: usize) -> String {
         // of the characters for passwords
         // so we can sample from it
         .map(|()| rng.sample(Alphanumeric))
-        .take(length)
+        .take(length as usize)
         .collect();
     // create an iterator of required other characters
     const OTHER_VALUES: &str = "!\"#$%&'()*+,-./:;<=>?@[]^_{|}~";
@@ -40,57 +29,31 @@ fn generate_password(length: usize) -> String {
     }
     base_password.iter().collect()
 }
-// validator function for our first argument
-// picked 15 as the length must be greater than
-// our randomly generated range above (10)
-fn is_valid_length(value: String) -> Result<(), String> {
-    let length = value.parse::<u16>();
-    // if we cannot parse the string into a number
-    if length.is_err() {
-        Err(String::from("Please provide valid password"))
-    } else if length.unwrap() < 15 {
-        Err(String::from("Mininum password length is 15"))
-    } else {
-        Ok(())
-    }
-}
-fn main() {
-    // create our new CLI
-    // clap provides powerful defaults so we don't have to
-    // write all the logic here
-    // For example, clap takes care of the help and version flags by default
-    let matches = App::new("password-generator")
-        .version("0.1")
-        .about("generate a password according to the rosetta code rules: http://rosettacode.org/wiki/Password_generator")
-        // configure our first required argument
-        .arg(Arg::with_name("LENGTH")
-             .help("password length")
-             // make it SECURE by default
-             // https://cheatsheetseries.owasp.org/cheatsheets/Password_Storage_Cheat_Sheet.html
-             .default_value("160")
-             .required(true)
-             .validator(is_valid_length)
-             .index(1)
-             .takes_value(true)
-            )
-        // configure our second required argument
-        .arg(Arg::with_name("COUNT")
-             .help("how many passwords to generate")
-             .default_value("1")
-             .required(true)
-             .index(2)
-             .takes_value(true)
-            )
-        .get_matches();
 
-    // It's safe to call unwrap because the value with either be what the user provides
-    // at runtime or our defaults configured above
-    let parsed_count: i32 = matches.value_of("COUNT").unwrap().parse().unwrap();
-    let parsed_length: usize = matches.value_of("LENGTH").unwrap().parse().unwrap();
-    // we don't need the index since we'll print to standard out
-    // in rust, underscores indicate unused variables
-    for _ in 0..parsed_count {
-        println!("{}", generate_password(parsed_length));
+#[derive(StructOpt, Debug)]
+#[structopt(name = "password-generator", about = "A simple password generator.")]
+struct Opt {
+    // make it SECURE by default
+    // https://cheatsheetseries.owasp.org/cheatsheets/Password_Storage_Cheat_Sheet.html
+    /// The password length
+    #[structopt(short = "l", long = "length", default_value = "160")]
+    length: u8,
+    /// How many passwords to generate
+    #[structopt(short = "c", long = "count", default_value = "1")]
+    count: u8,
+}
+
+fn main() {
+    // instantiate the options and use them as
+    // arguments to our password generator
+    let opt = Opt::from_args();
+    for index in 0..opt.count {
+        let password = generate_password(opt.length);
+        // do not print a newline after the last password
+        match index + 1 == opt.count {
+            true => print!("{}", password),
+            _ => println!("{}", password)
+        };
     }
 }
 
@@ -169,4 +132,5 @@ mod tests {
                 >= 1
         );
     }
+
 }
