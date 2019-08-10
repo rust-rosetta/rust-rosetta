@@ -27,27 +27,25 @@ fn generate_password(length: usize) -> String {
         .take(length)
         .collect();
     // create an iterator of required other characters
-    let other_values = "!\"#$%&'()*+,-./:;<=>?@[]^_{|}~";
+    const OTHER_VALUES: &str = "!\"#$%&'()*+,-./:;<=>?@[]^_{|}~";
     // create a random count of how many other characters to add
     let mut to_add = rng.gen_range(1, 10);
     loop {
-        let special = other_values.chars().choose(&mut rng).unwrap();
+        let special = OTHER_VALUES.chars().choose(&mut rng).unwrap();
         to_add -= 1;
         base_password[to_add] = special;
         if to_add == 0 {
             break;
         }
     }
-    // you convert the vector of characters into a string
-    // using the turbofish syntax
-    base_password.iter().collect::<String>()
+    base_password.iter().collect()
 }
 // validator function for our first argument
 // picked 15 as the length must be greater than
 // our randomly generated range above (10)
 fn is_valid_length(value: String) -> Result<(), String> {
-    let length = value.parse::<u32>();
-    // if we cannot parse the string into an i32
+    let length = value.parse::<u16>();
+    // if we cannot parse the string into a number
     if length.is_err() {
         Err(String::from("Please provide valid password"))
     } else if length.unwrap() < 15 {
@@ -96,7 +94,6 @@ fn main() {
     }
 }
 
-// declare a module for testing
 // keep it within this file for convenience
 #[cfg(test)]
 mod tests {
@@ -108,11 +105,13 @@ mod tests {
         let a_password = generate_password(50);
         assert_eq!(a_password.len(), 50);
     }
+
     #[test]
     fn generate_password_has_numerals() {
         // TODO how can I pass in char::is_ascii_digit instead of defining a closure?
         assert!(generate_password(50).chars().any(|c| c.is_ascii_digit()));
     }
+
     #[test]
     fn generate_password_has_upper_and_lowercase_characters() {
         let password = generate_password(50);
@@ -124,6 +123,7 @@ mod tests {
             .chars()
             .any(|c| c.is_ascii_uppercase()));
     }
+
     #[test]
     fn generate_password_has_other_characters() {
         let password = generate_password(10);
