@@ -835,6 +835,10 @@ dependencies = [
 ]
 
 [[package]]
+name = "cramers-rule"
+version = "0.1.0"
+
+[[package]]
 name = "crc-32"
 version = "0.1.0"
 
