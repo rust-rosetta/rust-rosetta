@@ -26,27 +26,33 @@ fn characters_to_xml(characters: HashMap<String, String>) -> String {
     str::from_utf8(&output).unwrap().to_string()
 }
 
-fn main() {
-    let mut input = HashMap::new();
-    input.insert(
-        "April".to_string(),
-        "Bubbly: I'm > Tam and <= Emily".to_string(),
-    );
-    input.insert(
-        "Tam O'Shanter".to_string(),
-        "Burns: \"When chapman billies leave the street ...\"".to_string(),
-    );
-    input.insert("Emily".to_string(), "Short & shrift".to_string());
+#[cfg(test)]
+mod tests {
+    use super::characters_to_xml;
+    use std::collections::HashMap;
 
-    let output = characters_to_xml(input);
+    #[test]
+    fn test_xml_output() {
+        let mut input = HashMap::new();
+        input.insert(
+            "April".to_string(),
+            "Bubbly: I'm > Tam and <= Emily".to_string(),
+        );
+        input.insert(
+            "Tam O'Shanter".to_string(),
+            "Burns: \"When chapman billies leave the street ...\"".to_string(),
+        );
+        input.insert("Emily".to_string(), "Short & shrift".to_string());
 
-    println!("{}", output);
-    assert!(output.contains(
-        "<Character name=\"Tam O&apos;Shanter\">Burns: \"When chapman \
-         billies leave the street ...\"</Character>"
-    ));
-    assert!(
-        output.contains("<Character name=\"April\">Bubbly: I'm > Tam and &lt;= Emily</Character>")
-    );
-    assert!(output.contains("<Character name=\"Emily\">Short &amp; shrift</Character>"));
+        let output = characters_to_xml(input);
+
+        println!("{}", output);
+        assert!(output.contains(
+            "<Character name=\"Tam O&apos;Shanter\">Burns: \"When chapman \
+             billies leave the street ...\"</Character>"
+        ));
+        assert!(output
+            .contains("<Character name=\"April\">Bubbly: I'm > Tam and &lt;= Emily</Character>"));
+        assert!(output.contains("<Character name=\"Emily\">Short &amp; shrift</Character>"));
+    }
 }
