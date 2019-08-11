@@ -4,9 +4,6 @@ extern crate x11;
 #[cfg(windows)]
 extern crate winapi;
 
-#[cfg(windows)]
-extern crate user32;
-
 use std::thread;
 use std::time::Duration;
 
@@ -93,14 +90,15 @@ fn get_mouse_position() -> (usize, usize) {
 
 #[cfg(windows)]
 fn get_mouse_position() -> (i64, i64) {
-    use std::mem;
+    use winapi::shared::windef::POINT;
+    use winapi::um::winuser::{GetCursorPos, GetForegroundWindow, ScreenToClient};
 
-    let h = unsafe { user32::GetForegroundWindow() };
+    let h = unsafe { GetForegroundWindow() };
 
     let (x, y) = unsafe {
-        let mut point = mem::uninitialized();
-        user32::GetCursorPos(&mut point);
-        user32::ScreenToClient(h, &mut point);
+        let mut point = POINT::default();
+        GetCursorPos(&mut point);
+        ScreenToClient(h, &mut point);
         (point.x, point.y)
     };
 
