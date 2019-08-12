@@ -2,6 +2,7 @@ use rand::distributions::Alphanumeric;
 use rand::prelude::IteratorRandom;
 use rand::{thread_rng, Rng};
 use std::iter;
+use std::process;
 use structopt::StructOpt;
 
 // the core logic that creates our password
@@ -53,6 +54,14 @@ fn main() {
     // instantiate the options and use them as
     // arguments to our password generator
     let opt = Opt::from_args();
+    const MINIMUM_LENGTH: u8 = 30;
+    if opt.length < MINIMUM_LENGTH {
+        eprintln!(
+            "Please provide a password length greater than or equal to {}",
+            MINIMUM_LENGTH
+        );
+        process::exit(1);
+    }
     for index in 0..opt.count {
         let password = generate_password(opt.length);
         // do not print a newline after the last password
@@ -77,7 +86,6 @@ mod tests {
 
     #[test]
     fn generate_password_has_numerals() {
-        // TODO how can I pass in char::is_ascii_digit instead of defining a closure?
         assert!(generate_password(50).chars().any(|c| c.is_ascii_digit()));
     }
 
