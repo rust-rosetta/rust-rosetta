@@ -4,6 +4,7 @@ use rand::{thread_rng, Rng};
 use std::iter;
 use std::process;
 use structopt::StructOpt;
+const OTHER_VALUES: &str = "!\"#$%&'()*+,-./:;<=>?@[]^_{|}~";
 
 // the core logic that creates our password
 fn generate_password(length: u8) -> String {
@@ -16,8 +17,6 @@ fn generate_password(length: u8) -> String {
         .map(|()| rng.sample(Alphanumeric))
         .take(length as usize)
         .collect();
-    // create an iterator of required other characters
-    const OTHER_VALUES: &str = "!\"#$%&'()*+,-./:;<=>?@[]^_{|}~";
     let mut end_range = 10;
     // if the user supplies a password length less than 10
     // we need to adjust the random sample range
@@ -27,6 +26,7 @@ fn generate_password(length: u8) -> String {
     // create a random count of how many other characters to add
     let mut to_add = rng.gen_range(1, end_range as usize);
     loop {
+        // create an iterator of required other characters
         let special = OTHER_VALUES.chars().choose(&mut rng).unwrap();
         to_add -= 1;
         base_password[to_add] = special;
@@ -76,6 +76,7 @@ fn main() {
 #[cfg(test)]
 mod tests {
     use super::generate_password;
+    use super::OTHER_VALUES;
 
     // test our core password logic according to the rules described in the wiki
     #[test]
@@ -105,7 +106,6 @@ mod tests {
     fn generate_password_has_other_characters() {
         let password = generate_password(10);
         println!("{}", password);
-        static OTHER_PRINTABLE_CHARS: &str = "!\"#$%&'()*+,-./:;<=>?@[]^_{|}~";
-        assert!(password.chars().any(|c| OTHER_PRINTABLE_CHARS.contains(c)));
+        assert!(password.chars().any(|c| OTHER_VALUES.contains(c)));
     }
 }
