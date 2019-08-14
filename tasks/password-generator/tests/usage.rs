@@ -8,5 +8,8 @@ fn validate_password_length() {
         .output()
         .expect("could not run cargo");
     let output = String::from_utf8_lossy(&output.stderr);
-    assert_eq!("Please provide a password length greater than or equal to 30", output.trim());
+    assert_eq!(
+        "Please provide a password length greater than or equal to 30",
+        output.trim()
+    );
 }
