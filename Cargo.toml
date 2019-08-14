@@ -1289,6 +1289,9 @@ members = [
     # http://rosettacode.org/wiki/Walk_a_directory/Recursively
     "tasks/walk-a-directory/recursively",
 
+    # http://rosettacode.org/wiki/Web_scraping
+    "tasks/web-scraping",
+
     # http://rosettacode.org/wiki/Window_creation
     "tasks/window-creation",
 

@@ -4512,6 +4512,13 @@ dependencies = [
 ]
 
 [[package]]
+name = "web-scraping"
+version = "0.1.0"
+dependencies = [
+ "reqwest 0.9.11 (registry+https://github.com/rust-lang/crates.io-index)",
+]
+
+[[package]]
 name = "web-server"
 version = "0.1.0"
 
