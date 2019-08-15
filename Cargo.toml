@@ -917,6 +917,9 @@ members = [
     # http://rosettacode.org/wiki/Pascal%27s_triangle
     "tasks/pascals-triangle",
 
+    # http://rosettacode.org/wiki/Password_generator
+    "tasks/password-generator",
+
     # http://rosettacode.org/wiki/Penney%27s_game
     "tasks/penneys-game",
 
@@ -1303,6 +1306,9 @@ members = [
 
     # http://rosettacode.org/wiki/Write_entire_file
     "tasks/write-entire-file",
+
+    # https://rosettacode.org/wiki/XML/Output
+    "tasks/xml-output",
 
     # http://rosettacode.org/wiki/Y_combinator
     "tasks/y-combinator",
