@@ -386,6 +386,9 @@ members = [
     # http://rosettacode.org/wiki/Count_occurrences_of_a_substring
     "tasks/count-occurrences-of-a-substring",
 
+    # https://rosettacode.org/wiki/Cramer%27s_rule
+    "tasks/cramers-rule",
+
     # http://rosettacode.org/wiki/CRC-32
     "tasks/crc-32",
 
@@ -1300,6 +1303,9 @@ members = [
 
     # http://rosettacode.org/wiki/Write_entire_file
     "tasks/write-entire-file",
+
+    # https://rosettacode.org/wiki/XML/Output
+    "tasks/xml-output",
 
     # http://rosettacode.org/wiki/Y_combinator
     "tasks/y-combinator",
