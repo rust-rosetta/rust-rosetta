@@ -2,16 +2,6 @@ extern crate validate_isin;
 
 use validate_isin::luhn_test;
 
-fn main() {
-    assert_eq!(validate_isin("US0378331005"), true);
-    assert_eq!(validate_isin("US0373831005"), false);
-    assert_eq!(validate_isin("U50378331005"), false);
-    assert_eq!(validate_isin("US03378331005"), false);
-    assert_eq!(validate_isin("AU0000XVGZA3"), true);
-    assert_eq!(validate_isin("AU0000VXGZA3"), true);
-    assert_eq!(validate_isin("FR0000988040"), true);
-}
-
 fn validate_isin(isin: &str) -> bool {
     if !isin.chars().all(|x| x.is_alphanumeric()) || isin.len() != 12 {
         return false;
@@ -40,4 +30,20 @@ fn validate_isin(isin: &str) -> bool {
     let number = string.parse::<usize>().unwrap();
 
     return luhn_test(number as u64);
+}
+
+#[cfg(test)]
+mod tests {
+    use super::validate_isin;
+
+    #[test]
+    fn test_validate_isin() {
+        assert_eq!(validate_isin("US0378331005"), true);
+        assert_eq!(validate_isin("US0373831005"), false);
+        assert_eq!(validate_isin("U50378331005"), false);
+        assert_eq!(validate_isin("US03378331005"), false);
+        assert_eq!(validate_isin("AU0000XVGZA3"), true);
+        assert_eq!(validate_isin("AU0000VXGZA3"), true);
+        assert_eq!(validate_isin("FR0000988040"), true);
+    }
 }
