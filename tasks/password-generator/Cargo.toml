@@ -1,0 +1,12 @@
+[package]
+name = "password-generator"
+version = "0.1.0"
+authors = ["Eli Flanagan <eli@typedspace.com>"]
+edition = "2018"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Password_generator"
+
+[dependencies]
+rand = "0.7"
+structopt = "0.2.18"
