@@ -1,29 +1,21 @@
+use regex::Regex;
 use std::error::Error;
 /// Create a program that downloads the time from this URL: http://tycho.usno.navy.mil/cgi-bin/timer.pl
 /// and then prints the current UTC time by extracting just the UTC time from the web page's HTML.
+/// For an introduction to the ecosystem of web scraping in Rust,
+/// read https://kadekillary.work/post/webscraping-rust/
 
 const A_URL: &str = "http://tycho.usno.navy.mil/cgi-bin/timer.pl";
-fn extract_timestamp(raw_html: &str) -> Option<String> {
-    // parse the response body by <BR> tags
-    let mut lines = raw_html
-        .split("<BR>")
-        .filter(|line| match line.find("UTC") {
-            Some(_) => true,
-            None => false,
-        })
-        .map(|line| {
-            line.trim()
-                .replace("UTC\t\tUniversal Time", "")
-                .trim()
-                .to_string()
-        });
-    lines.next()
+fn extract_timestamp(raw_html: &str) -> Option<regex::Match> {
+    // unicode below is points for < and >
+    let pattern = Regex::new(r"\u003CBR\u003E(?P<time>.*) UTC").unwrap();
+    pattern.captures(raw_html).unwrap().name("time")
 }
 
 fn main() -> Result<(), Box<dyn Error>> {
     let raw_html = reqwest::get(A_URL)?.text()?;
     if let Some(timestamp) = extract_timestamp(&raw_html) {
-        print!("{}", timestamp);
+        print!("{}", timestamp.as_str());
     } else {
         eprint!("Error: Could not parse URL for getting current time.");
     }
@@ -53,6 +45,9 @@ mod tests {
 
             </body></html>
             "#;
-        assert_eq!(extract_timestamp(&body).unwrap(), "Aug. 12, 23:55:08");
+        assert_eq!(
+            extract_timestamp(&body).unwrap().as_str(),
+            "Aug. 12, 23:55:08"
+        );
     }
 }
