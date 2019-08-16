@@ -2,6 +2,7 @@ use std::error::Error;
 /// Create a program that downloads the time from this URL: http://tycho.usno.navy.mil/cgi-bin/timer.pl
 /// and then prints the current UTC time by extracting just the UTC time from the web page's HTML.
 
+const A_URL: &str = "http://tycho.usno.navy.mil/cgi-bin/timer.pl";
 fn extract_timestamp(raw_html: &str) -> Option<String> {
     // parse the response body by <BR> tags
     let mut lines = raw_html
@@ -20,7 +21,7 @@ fn extract_timestamp(raw_html: &str) -> Option<String> {
 }
 
 fn main() -> Result<(), Box<dyn Error>> {
-    let raw_html = reqwest::get("http://tycho.usno.navy.mil/cgi-bin/timer.pl")?.text()?;
+    let raw_html = reqwest::get(A_URL)?.text()?;
     if let Some(timestamp) = extract_timestamp(&raw_html) {
         print!("{}", timestamp);
     } else {
