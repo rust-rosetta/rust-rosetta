@@ -1247,6 +1247,9 @@ members = [
     # http://rosettacode.org/wiki/Tokenize_a_string
     "tasks/tokenize-a-string",
 
+    # https://rosettacode.org/wiki/Totient_function
+    "tasks/totient-function",
+
     # http://rosettacode.org/wiki/Towers_of_Hanoi
     "tasks/towers-of-hanoi",
 
