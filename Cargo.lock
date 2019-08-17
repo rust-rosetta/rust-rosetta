@@ -4386,6 +4386,9 @@ dependencies = [
 [[package]]
 name = "validate-isin"
 version = "0.1.0"
+dependencies = [
+ "luhn-test-of-credit-card-numbers 0.1.0",
+]
 
 [[package]]
 name = "value-capture"

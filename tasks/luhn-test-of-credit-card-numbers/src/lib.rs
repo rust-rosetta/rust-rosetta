@@ -27,7 +27,7 @@ fn digits(n: u64) -> Digits {
     Digits { m: n }
 }
 
-fn luhn_test(n: u64) -> bool {
+pub fn luhn_test(n: u64) -> bool {
     let odd_even = [LuhnState::Odd, LuhnState::Even];
     let numbers = digits(n).zip(odd_even.iter().cycle().cloned());
     let sum = numbers.fold(0u64, |s, n| {
@@ -37,18 +37,6 @@ fn luhn_test(n: u64) -> bool {
         }
     });
     sum % 10 == 0
-}
-
-fn main() {
-    #[cfg_attr(feature = "cargo-clippy", allow(unreadable_literal))]
-    let nos = [49927398716, 49927398717, 1234567812345678, 1234567812345670];
-    for n in &nos {
-        if luhn_test(*n) {
-            println!("{} passes.", n);
-        } else {
-            println!("{} fails.", n);
-        }
-    }
 }
 
 #[test]

@@ -1,40 +1,49 @@
-struct Digits {
-    m: u64,
-}
+extern crate luhn_test_of_credit_card_numbers;
 
-impl Iterator for Digits {
-    type Item = u64;
+use luhn_test_of_credit_card_numbers::luhn_test;
 
-    fn next(&mut self) -> Option<u64> {
-        match self.m {
-            0 => None,
-            n => {
-                let ret = n % 10;
-                self.m = n / 10;
-                Some(ret)
-            }
-        }
+fn validate_isin(isin: &str) -> bool {
+    if !isin.chars().all(|x| x.is_alphanumeric()) || isin.len() != 12 {
+        return false;
     }
+    if !isin[..2].chars().all(|x| x.is_alphabetic())
+        || !isin[2..12].chars().all(|x| x.is_alphanumeric())
+        || !isin.chars().last().unwrap().is_numeric()
+    {
+        return false;
+    }
+
+    let bytes = isin.as_bytes();
+
+    let s2 = bytes
+        .iter()
+        .flat_map(|&c| {
+            if c.is_ascii_digit() {
+                vec![c]
+            } else {
+                (c + 10 - ('A' as u8)).to_string().into_bytes()
+            }
+        })
+        .collect::<Vec<u8>>();
+
+    let string = std::str::from_utf8(&s2).unwrap();
+    let number = string.parse::<u64>().unwrap();
+
+    return luhn_test(number as u64);
 }
 
-#[derive(Copy, Clone)]
-enum LuhnState {
-    Even,
-    Odd,
-}
+#[cfg(test)]
+mod tests {
+    use super::validate_isin;
 
-fn digits(n: u64) -> Digits {
-    Digits { m: n }
-}
-
-pub fn luhn_test(n: u64) -> bool {
-    let odd_even = [LuhnState::Odd, LuhnState::Even];
-    let numbers = digits(n).zip(odd_even.iter().cycle().cloned());
-    let sum = numbers.fold(0u64, |s, n| {
-        s + match n {
-            (n, LuhnState::Odd) => n,
-            (n, LuhnState::Even) => digits(n * 2).fold(0, |s, n| s + n),
-        }
-    });
-    sum % 10 == 0
+    #[test]
+    fn test_validate_isin() {
+        assert_eq!(validate_isin("US0378331005"), true);
+        assert_eq!(validate_isin("US0373831005"), false);
+        assert_eq!(validate_isin("U50378331005"), false);
+        assert_eq!(validate_isin("US03378331005"), false);
+        assert_eq!(validate_isin("AU0000XVGZA3"), true);
+        assert_eq!(validate_isin("AU0000VXGZA3"), true);
+        assert_eq!(validate_isin("FR0000988040"), true);
+    }
 }
