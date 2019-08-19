@@ -7,8 +7,7 @@ use std::error::Error;
 
 const A_URL: &str = "http://tycho.usno.navy.mil/cgi-bin/timer.pl";
 fn extract_timestamp(raw_html: &str) -> Option<regex::Match> {
-    // unicode below is points for < and >
-    let pattern = Regex::new(r"\u003CBR\u003E(?P<time>.*) UTC").unwrap();
+    let pattern = Regex::new(r"<BR>(?P<time>.*) UTC").unwrap();
     pattern.captures(raw_html).unwrap().name("time")
 }
 
