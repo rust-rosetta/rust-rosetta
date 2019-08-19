@@ -1,0 +1,11 @@
+[package]
+name = "validate-isin"
+version = "0.1.0"
+authors = ["Polochon-street <polochonstreet@gmx.fr>"]
+edition = "2018"
+
+[package.metadata.rosettacode]
+url = "https://rosettacode.org/wiki/Validate_International_Securities_Identification_Number"
+
+[dependencies]
+luhn-test-of-credit-card-numbers = { path = "../luhn-test-of-credit-card-numbers/" }

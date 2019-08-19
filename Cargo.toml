@@ -1280,6 +1280,9 @@ members = [
     # http://rosettacode.org/wiki/User_input/Text
     "tasks/user-input/text",
 
+    # https://rosettacode.org/wiki/Validate_International_Securities_Identification_Number
+    "tasks/validate-isin",
+
     # http://rosettacode.org/wiki/Vector_products
     "tasks/vector-products",
 
