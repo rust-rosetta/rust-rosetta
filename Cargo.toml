@@ -1302,6 +1302,9 @@ members = [
     # https://rosettacode.org/wiki/Water_collected_between_towers
     "tasks/water-collected-between-towers",
 
+    # http://rosettacode.org/wiki/Web_scraping
+    "tasks/web-scraping",
+
     # http://rosettacode.org/wiki/Window_creation
     "tasks/window-creation",
 
