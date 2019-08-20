@@ -1,0 +1,11 @@
+[package]
+name = "web-scraping"
+version = "0.1.0"
+edition = "2018"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Web_scraping"
+
+[dependencies]
+regex = "1"
+reqwest = "0.9.11"
