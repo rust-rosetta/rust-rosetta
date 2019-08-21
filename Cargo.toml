@@ -71,7 +71,8 @@ authors = [
     "Kunal Tyagi, https://github.com/kunaltyagi",
     "Andrey Lebedev, https://github.com/areinull",
     "J Henry Waugh (psudeonym), https://github.com/jhwgh1968",
-    "Olav de Haas, https://github.com/Olavhaasie"
+    "Olav de Haas, https://github.com/Olavhaasie",
+    "Gary Pennington, https://github.com/garypen"
 ]
 
 [dependencies]
@@ -1297,6 +1298,9 @@ members = [
 
     # http://rosettacode.org/wiki/Walk_a_directory/Recursively
     "tasks/walk-a-directory/recursively",
+
+    # https://rosettacode.org/wiki/Water_collected_between_towers
+    "tasks/water-collected-between-towers",
 
     # http://rosettacode.org/wiki/Web_scraping
     "tasks/web-scraping",
