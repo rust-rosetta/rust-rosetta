@@ -900,6 +900,9 @@ members = [
     # http://rosettacode.org/wiki/OpenGL
     "tasks/opengl",
 
+    # https://rosettacode.org/wiki/Optional_parameters
+    "tasks/optional-parameters",
+
     # http://rosettacode.org/wiki/Ordered_words
     "tasks/ordered-words",
 
