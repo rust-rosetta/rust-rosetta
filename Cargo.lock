@@ -4044,6 +4044,10 @@ dependencies = [
 ]
 
 [[package]]
+name = "substring-top-and-tail"
+version = "0.1.0"
+
+[[package]]
 name = "sudoku"
 version = "0.1.0"
 
