@@ -10,10 +10,8 @@ in
     buildInputs = [
       nixpkgs.latest.rustChannels.nightly.rust
       openssl
+      # needed to correctly populate the
+      # nix specific paths to openssl libraries
+      pkgconfig
     ];
-
-    shellHook = ''
-      export OPENSSL_DIR="${openssl.dev}"
-      export OPENSSL_LIB_DIR="${openssl.out}/lib"
-      '';
   }
