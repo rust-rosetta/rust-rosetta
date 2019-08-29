@@ -72,7 +72,8 @@ authors = [
     "Andrey Lebedev, https://github.com/areinull",
     "J Henry Waugh (psudeonym), https://github.com/jhwgh1968",
     "Olav de Haas, https://github.com/Olavhaasie",
-    "Gary Pennington, https://github.com/garypen"
+    "Gary Pennington, https://github.com/garypen",
+    "Oleksii Filonenko, https://github.com/filalex77"
 ]
 
 [dependencies]
@@ -1193,6 +1194,9 @@ members = [
 
     # http://rosettacode.org/wiki/String_interpolation_(included)
     "tasks/string-interpolation-included",
+
+    # http://rosettacode.org/wiki/String_length
+    "tasks/string-length",
 
     # http://rosettacode.org/wiki/String_matching
     "tasks/string-matching",
