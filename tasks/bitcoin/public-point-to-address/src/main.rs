@@ -1,9 +1,6 @@
-extern crate crypto;
-extern crate hex;
+use ring::digest::{digest, SHA256};
+use ripemd160::{Digest, Ripemd160};
 
-use crypto::digest::Digest;
-use crypto::ripemd160::Ripemd160;
-use crypto::sha2::Sha256;
 use hex::FromHex;
 
 static X: &'static str = "50863AD64A87AE8A2FE83C1AF1A8403CB53F53E486D8511DAD8A04887E5B2352";
@@ -38,20 +35,13 @@ fn base58_encode(bytes: &mut [u8]) -> String {
     string
 }
 
+// stolen from address-validation/src/main.rs
 /// Hashes the input with the SHA-256 algorithm twice, and returns the output.
 fn double_sha256(bytes: &[u8]) -> Vec<u8> {
-    let mut hasher = Sha256::new();
+    let digest_1 = digest(&SHA256, bytes);
 
-    hasher.input(bytes);
-    let mut digest_1 = vec![0; 32];
-    hasher.result(&mut digest_1);
-    hasher.reset();
-
-    hasher.input(&digest_1);
-    let mut digest_2 = vec![0; 32];
-    hasher.result(&mut digest_2);
-
-    digest_2
+    let digest_2 = digest(&SHA256, digest_1.as_ref());
+    digest_2.as_ref().to_vec()
 }
 
 fn point_to_address(x: &str, y: &str) -> String {
@@ -59,17 +49,11 @@ fn point_to_address(x: &str, y: &str) -> String {
     addrv.push(4u8);
     addrv.append(&mut <Vec<u8>>::from_hex(x).unwrap());
     addrv.append(&mut <Vec<u8>>::from_hex(y).unwrap());
-    // create Sha256 hasher
-    let mut sha256 = Sha256::new();
-    sha256.input(&addrv);
-    let mut sha_digest = vec![0; 32];
-    sha256.result(&mut sha_digest);
-    // create Ripemd object
-    let mut ripemd = Ripemd160::new();
-    ripemd.input(&sha_digest);
-    // prepend 0
-    let mut ripemd_digest = vec![0; 21];
-    ripemd.result(&mut ripemd_digest[1..]);
+    // hash the addresses first using SHA256
+    let sha_digest = digest(&SHA256, &addrv);
+    let mut ripemd_digest = Ripemd160::digest(&sha_digest.as_ref()).as_slice().to_vec();
+    // prepend a 0 to the vector
+    ripemd_digest.insert(0, 0);
     // calculate checksum of extended ripemd digest
     let checksum = double_sha256(&ripemd_digest);
     ripemd_digest.extend_from_slice(&checksum[..4]);
