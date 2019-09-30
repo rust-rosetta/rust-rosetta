@@ -1,0 +1,7 @@
+[package]
+name = "exceptions"
+version = "0.1.0"
+authors = ["Polochon-street <polochonstreet@gmx.fr>"]
+edition = "2018"
+
+[dependencies]

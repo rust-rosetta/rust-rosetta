@@ -496,6 +496,9 @@ members = [
     # http://rosettacode.org/wiki/Evolutionary_algorithm
     "tasks/evolutionary-algorithm",
 
+    # https://rosettacode.org/wiki/Exceptions
+    "tasks/exceptions",
+
     # http://rosettacode.org/wiki/Execute_a_Markov_algorithm
     "tasks/execute-a-markov-algorithm",
 
