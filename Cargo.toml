@@ -73,7 +73,8 @@ authors = [
     "J Henry Waugh (psudeonym), https://github.com/jhwgh1968",
     "Olav de Haas, https://github.com/Olavhaasie",
     "Gary Pennington, https://github.com/garypen",
-    "Oleksii Filonenko, https://github.com/filalex77"
+    "Oleksii Filonenko, https://github.com/filalex77",
+    "nyradr, https://github.com/nyradr"
 ]
 
 [dependencies]
@@ -1293,6 +1294,9 @@ members = [
 
     # https://rosettacode.org/wiki/Validate_International_Securities_Identification_Number
     "tasks/validate-isin",
+
+    # rosettacode.org/wiki/Vampire_number
+    "tasks/vampire-number",
 
     # http://rosettacode.org/wiki/Vector_products
     "tasks/vector-products",
