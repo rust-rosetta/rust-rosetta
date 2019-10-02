@@ -1294,6 +1294,9 @@ members = [
     # https://rosettacode.org/wiki/Validate_International_Securities_Identification_Number
     "tasks/validate-isin",
 
+    #http://rosettacode.org/wiki/Van_Eck_sequence
+    "tasks/van-eck-sequence",
+
     # http://rosettacode.org/wiki/Vector_products
     "tasks/vector-products",
 
