@@ -1,3 +1,9 @@
+branches:
+  only:
+    - staging
+    - trying
+    - master
+
 environment:
   RUST_DIR: C:\Rust\
   matrix:
