@@ -12,7 +12,7 @@ fn main() {
     let copies = 100;
     let mutation_rate = 1.0 / 20.0; // = 0.05 = 5%
 
-    let mut rng = SmallRng::from_entropy();
+    let mut rng = thread_rng();
 
     // Generate first sentence, mutating each character
     let start = mutate(&mut rng, target, 1.0); // = 100%

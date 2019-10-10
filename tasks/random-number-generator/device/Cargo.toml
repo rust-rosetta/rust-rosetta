@@ -7,4 +7,4 @@ authors = ["Daniel Watson <danielwatson311@gmail.com>"]
 url = "https://rosettacode.org/wiki/Random_number_generator_(device)"
 
 [dependencies]
-rand = "0.5"
+rand = "0.7.2"

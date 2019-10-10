@@ -1,13 +1,14 @@
 extern crate rand;
 
-use rand::{seq, Rng};
 use std::fmt::{self, Display};
+
+use rand::prelude::*;
 
 const NUMBER_OF_DIGITS: usize = 4;
 
-/// generates a random `NUMBER_OF_DIGITS`
+/// Generates `NUMBER_OF_DIGITS` random unique digits.
 fn generate_digits(rng: &mut impl Rng) -> Vec<u32> {
-    seq::sample_iter(rng, 1..10, NUMBER_OF_DIGITS).unwrap()
+    (1..=9).choose_multiple(rng, NUMBER_OF_DIGITS)
 }
 
 /// types of errors we can have when parsing a malformed guess

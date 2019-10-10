@@ -163,9 +163,7 @@ impl KDTreeNode {
 }
 
 pub fn main() {
-    // We create `rng` from `thread_rng` so that `thread_rng` is already
-    // initialized for `quickselect_by`.
-    let mut rng = SmallRng::from_rng(&mut thread_rng()).unwrap();
+    let mut rng = thread_rng();
 
     // wordpress
     let mut wp_points: Vec<Point> = [

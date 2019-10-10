@@ -8,5 +8,5 @@ edition = "2018"
 url = "http://rosettacode.org/wiki/Password_generator"
 
 [dependencies]
-rand = "0.7"
+rand = "0.7.2"
 structopt = "0.2.18"

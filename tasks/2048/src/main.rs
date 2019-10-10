@@ -86,7 +86,7 @@ impl Grid {
             return Err(GridFullError);
         }
 
-        let mut rng = SmallRng::from_rng(&mut thread_rng()).unwrap();
+        let mut rng = thread_rng();
 
         loop {
             // `GRID_DIMENSION` is a power of two so modulo reduction is

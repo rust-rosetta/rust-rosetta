@@ -24,11 +24,11 @@ fn main() {
     }
 
     // Iterate chaos game
-    let mut rng = SmallRng::from_entropy();
+    let mut rng = thread_rng();
     let mut x = img_side as f32 / 2.0;
     let mut y = img_side as f32 / 2.0;
     for _ in 0..max_iterations {
-        let (choice_x, choice_y) = rng.choose(&vertices).unwrap();
+        let (choice_x, choice_y) = vertices.choose(&mut rng).unwrap();
         x = (x + choice_x) / 2.0;
         y = (y + choice_y) / 2.0;
 

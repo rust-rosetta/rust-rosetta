@@ -4,12 +4,12 @@ extern crate meta;
 
 extern crate rand;
 
-use rand::{thread_rng, Rng};
+use rand::prelude::*;
 
 fn bogo_sort<T: Ord>(v: &mut [T]) {
     let mut rng = thread_rng();
     while !is_sorted(v) {
-        rng.shuffle(v);
+        v.shuffle(&mut rng);
     }
 }
 

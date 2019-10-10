@@ -66,7 +66,7 @@ fn precalculating_method<R: Rng>(rng: &mut R) {
 }
 
 fn main() {
-    let mut rng = SmallRng::from_entropy();
+    let mut rng = thread_rng();
 
     filtering_method(&mut rng);
 
