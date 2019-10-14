@@ -168,8 +168,7 @@ fn get_samples<'a>() -> [RCSample<'a>; 5] {
             expected_result: "I bought a bag of apples with my money from T shop.",
         },
         RCSample {
-            ruleset:
-                r"### Unary Multiplication Engine, for testing Markov Algorithm implementations
+            ruleset: r"### Unary Multiplication Engine, for testing Markov Algorithm implementations
                 ### By Donal Fellows.
                 # Unary addition engine
                 _+1 -> _1+
