@@ -5,7 +5,7 @@ use std::cmp::{min, Ordering};
 use std::env;
 use std::str;
 
-use rand::{thread_rng, Rng};
+use rand::prelude::*;
 
 const WORDS: &[&str] = &["abracadabra", "seesaw", "elk", "grrrrrr", "up", "a"];
 
@@ -88,25 +88,26 @@ fn _best_shuffle_perm(w: &str) -> Solution {
 fn best_shuffle(w: &str) -> Solution {
     let w = String::from(w);
 
-    let w_bytes: Vec<u8> = w.clone().into_bytes();
-    let mut shuffled_bytes: Vec<u8> = w.clone().into_bytes();
-
-    // Shuffle once
-    let sh: &mut [u8] = shuffled_bytes.as_mut_slice();
-    thread_rng().shuffle(sh);
+    let w_bytes = w.clone().into_bytes();
+    let mut shuffled_bytes = w.clone().into_bytes();
+    shuffled_bytes.shuffle(&mut thread_rng());
 
     // Swap wherever it doesn't decrease the score
-    for i in 0..sh.len() {
-        for j in 0..sh.len() {
-            if (i == j) | (sh[i] == w_bytes[j]) | (sh[j] == w_bytes[i]) | (sh[i] == sh[j]) {
+    for i in 0..shuffled_bytes.len() {
+        for j in 0..shuffled_bytes.len() {
+            if (i == j)
+                | (shuffled_bytes[i] == w_bytes[j])
+                | (shuffled_bytes[j] == w_bytes[i])
+                | (shuffled_bytes[i] == shuffled_bytes[j])
+            {
                 continue;
             }
-            sh.swap(i, j);
+            shuffled_bytes.swap(i, j);
             break;
         }
     }
 
-    let res = String::from(str::from_utf8(sh).unwrap());
+    let res = String::from(str::from_utf8(&shuffled_bytes).unwrap());
     let res_bytes: Vec<u8> = res.clone().into_bytes();
     Solution {
         original: w.clone(),

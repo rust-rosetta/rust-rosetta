@@ -15,7 +15,7 @@ enum GameState {
 type Board = [[char; 3]; 3];
 
 fn main() {
-    let mut rng = SmallRng::from_entropy();
+    let mut rng = StdRng::from_entropy();
 
     let mut board: Board = [['1', '2', '3'], ['4', '5', '6'], ['7', '8', '9']];
 
@@ -107,7 +107,7 @@ fn computer_turn<R: Rng>(rng: &mut R, board: &mut Board) {
         .map(|(i, _)| i)
         .collect();
 
-    let choice = rng.choose(&possible_choices).unwrap();
+    let choice = possible_choices.choose(rng).unwrap();
     println!("Computer chose: {}", choice);
     let row = choice / 3;
     let col = choice % 3;

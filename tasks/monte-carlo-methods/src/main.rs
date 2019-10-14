@@ -19,7 +19,7 @@ fn simulate<R: Rng>(rng: &mut R, samples: usize) -> f64 {
 }
 
 fn main() {
-    let mut rng = SmallRng::from_entropy();
+    let mut rng = StdRng::from_entropy();
 
     println!("Real pi: {}", PI);
 

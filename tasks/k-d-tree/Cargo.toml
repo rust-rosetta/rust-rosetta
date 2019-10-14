@@ -7,4 +7,4 @@ url = "http://rosettacode.org/wiki/K-d_tree"
 
 [dependencies]
 time = "0.1"
-rand = "0.5"
+rand = "0.7.2"

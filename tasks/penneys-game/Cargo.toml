@@ -6,4 +6,4 @@ version = "0.1.0"
 url = "http://rosettacode.org/wiki/Penney%27s_game"
 
 [dependencies]
-rand = "0.5"
+rand = "0.7.2"

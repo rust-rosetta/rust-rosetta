@@ -40,7 +40,8 @@ impl Distribution<P15> for Standard {
             *cell = Cell::Card(i);
         }
 
-        rng.shuffle(&mut board);
+        board.shuffle(rng);
+
         if !P15::is_valid(board) {
             // random swap
             // NOTE: because 16 is a power of two, we could use the faster
@@ -150,8 +151,7 @@ impl fmt::Display for P15 {
 }
 
 fn main() {
-    let mut rng = SmallRng::from_rng(&mut thread_rng()).unwrap();
-    let mut p15 = rng.gen::<P15>();
+    let mut p15: P15 = rand::random();
 
     for turns in 1.. {
         println!("{}", p15);
@@ -242,14 +242,13 @@ mod tests {
 
     #[test]
     fn board_creation() {
-        let mut rng = SmallRng::from_rng(&mut thread_rng()).unwrap();
-        let p15: P15 = rng.gen();
+        let p15: P15 = rand::random();
         assert!(P15::is_valid(p15.board));
     }
 
     #[test]
     fn board_validity() {
-        let mut rng = SmallRng::from_rng(&mut thread_rng()).unwrap();
+        let mut rng = thread_rng();
 
         fn assert_is_valid(ints: &[usize; 16]) {
             let board = board_from_ints(ints);

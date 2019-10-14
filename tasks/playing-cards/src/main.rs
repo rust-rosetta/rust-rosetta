@@ -1,7 +1,9 @@
 extern crate rand;
 
-use rand::Rng;
 use std::fmt;
+
+use rand::prelude::*;
+
 use Pip::*;
 use Suit::*;
 
@@ -63,7 +65,7 @@ impl Deck {
     }
 
     fn shuffle(&mut self) {
-        rand::thread_rng().shuffle(&mut self.0)
+        self.0.shuffle(&mut thread_rng());
     }
 }
 

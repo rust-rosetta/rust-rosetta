@@ -1,7 +1,7 @@
 extern crate rand;
 
 use rand::distributions::Standard;
-use rand::Rng;
+use rand::prelude::*;
 
 pub fn mean(data: &[f32]) -> Option<f32> {
     if data.is_empty() {
@@ -55,7 +55,10 @@ fn main() {
     let mut rng = rand::thread_rng();
 
     for &number_of_samples in &[1000, 10_000, 1_000_000] {
-        let data: Vec<f32> = rng.sample_iter(&Standard).take(number_of_samples).collect();
+        let data = Standard
+            .sample_iter(&mut rng)
+            .take(number_of_samples)
+            .collect::<Vec<f32>>();
         println!("  Statistics for sample size {}", number_of_samples);
         println!("Mean:               {:?}", mean(&data));
         println!("Variance:           {:?}", variance(&data));

@@ -6,4 +6,4 @@ version = "0.1.0"
 url = "http://rosettacode.org/wiki/Concurrent_computing"
 
 [dependencies]
-rand = "0.5"
+rand = "0.7.2"

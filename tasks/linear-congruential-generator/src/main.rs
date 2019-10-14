@@ -4,7 +4,7 @@ extern crate rand;
 use linear_congruential_generator::*;
 
 use rand::distributions::Alphanumeric;
-use rand::{FromEntropy, Rng};
+use rand::prelude::*;
 
 fn main() {
     println!("~~~ BSD ~~~");

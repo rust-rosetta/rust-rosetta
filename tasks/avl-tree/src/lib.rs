@@ -13,7 +13,7 @@ use std::cmp::Ordering;
 use std::fmt::{Debug, Display, Formatter, Result};
 
 use rand::distributions::Uniform;
-use rand::Rng;
+use rand::prelude::*;
 use term_painter::Color::*;
 use term_painter::ToStyle;
 
@@ -792,7 +792,8 @@ pub fn random_bal_tree(n: u32) -> AVLTree<i32, f32> {
 
 #[cfg(test)]
 mod tests {
-    use rand::{seq, thread_rng};
+    use rand::distributions::Uniform;
+    use rand::prelude::*;
 
     use super::AVLTree;
     use random_bal_tree;
@@ -1066,8 +1067,7 @@ mod tests {
         let mut rng = thread_rng();
         for _ in 0..100 {
             tree = random_bal_tree(100);
-            let sample = seq::sample_iter(&mut rng, -50..50, 80).unwrap();
-            for i in sample {
+            for i in Uniform::from(-50..50).sample_iter(&mut rng).take(80) {
                 tree.delete_bal(i);
             }
         }

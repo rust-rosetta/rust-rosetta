@@ -11,7 +11,7 @@ use std::path::PathBuf;
 use gnuplot::{Axes2D, AxesCommon, Color, Figure, Fix, PointSize, PointSymbol};
 use nalgebra::DVector;
 use rand::distributions::Uniform;
-use rand::{Rng, SeedableRng, StdRng};
+use rand::prelude::*;
 use structopt::StructOpt;
 
 type Point = DVector<f64>;
@@ -52,7 +52,7 @@ fn nearest(p: &Point, candidates: &[Point]) -> (f64, usize) {
 fn kpp(points: &[Point], k: usize, rng: &mut impl Rng) -> Stats {
     let mut centroids: Vec<Point> = Vec::new();
     // Random point for first centroid guess:
-    centroids.push(rng.choose(&points).unwrap().clone());
+    centroids.push(points.choose(rng).unwrap().clone());
     let mut dists: Vec<f64> = vec![0f64; points.len()];
 
     for _ in 1..k {

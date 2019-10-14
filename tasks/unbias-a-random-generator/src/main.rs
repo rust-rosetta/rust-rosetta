@@ -16,7 +16,7 @@ fn unbiased<R: Rng>(rng: &mut R, n: u32) -> usize {
 
 fn main() {
     const SAMPLES: usize = 100_000;
-    let mut rng = SmallRng::from_entropy();
+    let mut rng = thread_rng();
 
     println!(" Bias    rand_n  unbiased");
     for n in 3..=6 {
@@ -38,7 +38,7 @@ fn main() {
 
 #[test]
 fn test_unbiased() {
-    let mut rng = SmallRng::from_entropy();
+    let mut rng = thread_rng();
     const SAMPLES: usize = 10_000;
 
     for n in 3..=6 {

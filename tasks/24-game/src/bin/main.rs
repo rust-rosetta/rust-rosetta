@@ -11,6 +11,9 @@ use std::f32;
 use std::iter::Peekable;
 use std::str::CharIndices;
 
+use rand::distributions::Uniform;
+use rand::prelude::*;
+
 fn main() {
     use std::io;
 
@@ -18,7 +21,10 @@ fn main() {
     let input = io::stdin();
 
     loop {
-        let mut sample = rand::seq::sample_iter(&mut rng, 1..10, 4).unwrap();
+        let mut sample = Uniform::from(1..=9)
+            .sample_iter(&mut rng)
+            .take(4)
+            .collect::<Vec<_>>();
 
         println!("make 24 by combining the following 4 numbers with + - * / or (q)uit");
         println!("{:?}", sample);
