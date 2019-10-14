@@ -1,7 +1,6 @@
 # rust-rosetta #
-[![Linux Build Status](https://travis-ci.org/Hoverbear/rust-rosetta.png)](https://travis-ci.org/Hoverbear/rust-rosetta)
-[![Windows Build status](https://ci.appveyor.com/api/projects/status/xtm3xu8j4sou5jst/branch/master?svg=true)](https://ci.appveyor.com/project/Hoverbear/rust-rosetta/branch/master)
-[![Coverage Status](https://coveralls.io/repos/Hoverbear/rust-rosetta/badge.svg?branch=master&service=github)](https://coveralls.io/github/Hoverbear/rust-rosetta?branch=master)
+[![Linux Build Status](https://travis-ci.org/rust-rosetta/rust-rosetta.png)](https://travis-ci.org/rust-rosetta/rust-rosetta)
+[![Build status](https://ci.appveyor.com/api/projects/status/b5o4m2023ysex1br?svg=true)](https://ci.appveyor.com/project/euclio/rust-rosetta)
 
 A repository for completing [this issue on rust-lang/rust](https://github.com/rust-lang/rust/issues/10513). This repository contains minimal working code for many simple (and not so simple) tasks. New contributors and learners of the language are welcome. We will try to work with you to make the code more idiomatic if you'd like!
 
