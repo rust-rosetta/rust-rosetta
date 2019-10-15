@@ -1310,6 +1310,9 @@ members = [
     # http://rosettacode.org/wiki/Vigen%C3%A8re_cipher
     "tasks/vigenere-cipher",
 
+    # http://rosettacode.org/wiki/Vigen%C3%A8re_cipher/Cryptanalysis
+    "tasks/vigenere-cipher-cryptanalysis",
+
     # http://rosettacode.org/wiki/Visualize_a_tree
     "tasks/visualize-a-tree",
 
