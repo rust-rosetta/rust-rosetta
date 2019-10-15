@@ -1256,6 +1256,9 @@ members = [
     # http://rosettacode.org/wiki/The_Twelve_Days_of_Christmas
     "tasks/the-twelve-days-of-christmas",
 
+    # http://rosettacode.org/wiki/Thiele%27s_interpolation_formula
+    "tasks/thieles-interpolation-formula",
+
     # http://rosettacode.org/wiki/Tic-tac-toe
     "tasks/tic-tac-toe",
 
