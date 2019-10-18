@@ -74,7 +74,8 @@ authors = [
     "Olav de Haas, https://github.com/Olavhaasie",
     "Gary Pennington, https://github.com/garypen",
     "Oleksii Filonenko, https://github.com/filalex77",
-    "nyradr, https://github.com/nyradr"
+    "nyradr, https://github.com/nyradr",
+    "Sameer Puri, https://github.com/sameer"
 ]
 
 [dependencies]
@@ -1180,6 +1181,9 @@ members = [
 
     # http://rosettacode.org/wiki/Sparkline_in_unicode
     "tasks/sparkline-in-unicode",
+
+    # http://rosettacode.org/wiki/Square-free_integers
+    "tasks/square-free-integers",
 
     # http://rosettacode.org/wiki/Stack
     "tasks/stack",
