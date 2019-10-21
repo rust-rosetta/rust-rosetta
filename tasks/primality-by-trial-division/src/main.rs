@@ -1,5 +1,5 @@
 fn is_prime(number: i32) -> bool {
-    if number % 2 == 0 && number != 2 {
+    if number % 2 == 0 && number != 2 || number == 1 {
         return false;
     }
 
@@ -16,7 +16,8 @@ fn main() {
 
 #[test]
 fn test_one() {
-    assert!(is_prime(1));
+    // https://primes.utm.edu/notes/faq/one.html
+    assert!(!is_prime(1));
 }
 
 #[test]
