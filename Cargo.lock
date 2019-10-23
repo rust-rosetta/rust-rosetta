@@ -3108,6 +3108,10 @@ name = "perfect-numbers"
 version = "0.1.0"
 
 [[package]]
+name = "permutation-test"
+version = "0.1.0"
+
+[[package]]
 name = "permutations-with-repetitions"
 version = "0.1.0"
 

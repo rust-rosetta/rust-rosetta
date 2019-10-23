@@ -1,0 +1,8 @@
+[package]
+name = "permutation-test"
+version = "0.1.0"
+authors = ["David Makray <dmakray@gmail.com>"]
+edition = "2018"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Permutation_test"
