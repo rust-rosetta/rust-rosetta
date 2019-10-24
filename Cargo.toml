@@ -936,6 +936,9 @@ members = [
     # http://rosettacode.org/wiki/Perfect_numbers
     "tasks/perfect-numbers",
 
+    # http://rosettacode.org/wiki/Permutation_test
+    "tasks/permutation-test",
+
     # http://rosettacode.org/wiki/Permutations_with_repetitions
     "tasks/permutations-with-repetitions",
 
