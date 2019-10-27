@@ -10,13 +10,13 @@ fn pancake_sort<T: Ord>(v: &mut [T]) {
     }
     for i in (0..len).rev() {
         // find index of the maximum element within `v[0..i]` (inclusive)
-        let max_index = v.iter()
+        let max_index = v
+            .iter()
             .take(i + 1)
             .enumerate()
             .max_by_key(|&(_, elem)| elem)
             .map(|(idx, _)| idx)
-            // safe because we already checked if `v` is empty
-            .unwrap();
+            .expect("already checked to be non-empty");
         // if `max_index` is not where it's supposed to be
         // do two flips to move it to `i`
         if max_index != i {

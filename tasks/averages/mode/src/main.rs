@@ -38,15 +38,14 @@ where
         *map.entry(item).or_insert(0) += 1;
     }
 
-    let max = map.values()         // Iterate over the counts by reference.
-                 .cloned()         // Convert the `&i32`s to `i32`s.
-                 .max()            // Find the maximum.
-                 .unwrap_or(0); // If there are no items, default 0.
+    // Iterate over the counts, and find the maximum or default to 0.
+    let max = map.values().cloned().max().unwrap_or(0);
 
-    map.into_iter()                // Iterate by `(item, value)` pairs.
-       .filter(|&(_, v)| v == max) // Find all modes (there may be multiple).
-       .map(|(k, _)| k)            // Go from `(item, value)` pairs to `item`s.
-       .collect() // Collect into a `Vec<I::Item>`.
+    // Iterate by (item, value) pairs and find all modes (there may be multiple).
+    map.into_iter()
+        .filter(|&(_, v)| v == max)
+        .map(|(k, _)| k)
+        .collect()
 }
 
 fn main() {

@@ -46,8 +46,8 @@ fn evolve<R: Rng>(
                 // Find the fitness of the new mutation
                 (fitness(target, &sentence), sentence)
             })
-            .min_by_key(|&(f, _)| f) // find the closest mutation to the target
-            .unwrap(); // fails if `copies == 0`
+            .min_by_key(|&(f, _)| f)
+            .expect("copies must be non-zero");
 
         // If the best mutation of this generation is better than `parent` then "the fittest
         // survives" and the next parent becomes the best of this generation.

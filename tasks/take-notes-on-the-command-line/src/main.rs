@@ -8,10 +8,11 @@ use std::io::{self, BufReader, BufWriter};
 const FILENAME: &str = "NOTES.TXT";
 
 fn show_notes() -> Result<(), io::Error> {
+    // Create the file if not found.
     let file = OpenOptions::new()
         .read(true)
-        .create(true) // create the file if not found
-        .write(true) // necessary to create the file
+        .create(true)
+        .write(true)
         .open(FILENAME)?;
     let mut buf_reader = BufReader::new(file);
     let mut contents = String::new();
@@ -21,8 +22,9 @@ fn show_notes() -> Result<(), io::Error> {
 }
 
 fn add_to_notes(note: &str) -> Result<(), io::Error> {
+    // Disable overwriting, instead write to the end of the file.
     let file = OpenOptions::new()
-        .append(true) // disables overwriting, writes to the end of the file
+        .append(true)
         .create(true)
         .open(FILENAME)?;
     let mut buf_writer = BufWriter::new(file);
