@@ -9,20 +9,15 @@ use std::sync::mpsc::channel;
 use std::sync::{Arc, Barrier};
 use std::thread::spawn;
 
+use array_init::array_init;
+
 pub fn checkpoint() {
     const NUM_TASKS: usize = 10;
     const NUM_ITERATIONS: u8 = 10;
 
     let barrier = Barrier::new(NUM_TASKS);
-    let mut events: [AtomicBool; NUM_TASKS];
-    unsafe {
-        // Unsafe because it's hard to initialize arrays whose type is not Clone.
-        events = ::std::mem::uninitialized();
-        for e in &mut events {
-            // Events are initially off
-            *e = AtomicBool::new(false);
-        }
-    }
+    let events: [AtomicBool; NUM_TASKS] = array_init(|_| AtomicBool::new(false));
+
     // Arc for sharing between tasks
     let arc = Arc::new((barrier, events));
     // Channel for communicating when tasks are done

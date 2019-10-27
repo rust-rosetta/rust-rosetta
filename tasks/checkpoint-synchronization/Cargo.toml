@@ -1,7 +1,10 @@
 [package]
 name = "checkpoint-synchronization"
 version = "0.1.0"
+edition = "2018"
 
 [package.metadata.rosettacode]
 url = "http://rosettacode.org/wiki/Checkpoint_synchronization"
 
+[dependencies]
+array-init = "0.1.0"

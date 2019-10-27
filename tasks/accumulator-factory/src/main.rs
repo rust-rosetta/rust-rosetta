@@ -27,6 +27,6 @@ fn test() {
 fn accumulate() -> f32 {
     let mut g = accum(1f32);
     g(5.);
-    accum(3i32);
+    let _ = accum(3i32);
     g(2.3)
 }
