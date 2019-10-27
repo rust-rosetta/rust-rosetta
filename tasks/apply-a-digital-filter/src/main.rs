@@ -18,43 +18,45 @@ impl<'f> IIRFilter<'f> {
         let mut prev_samples = Vec::<f32>::new();
 
         // The actual calculation, done one number at a time
-        samples.enumerate() // (i, sample[i])
-            .map(move |(i, sample)| { // for each sample, apply this function
-                prev_samples.push(*sample);
-                prev_results.push(0f32); // the initial version of the previous result
+        samples.enumerate().map(move |(i, sample)| {
+            prev_samples.push(*sample);
+            prev_results.push(0f32);
 
-                let sum_b: f32 = b_coeff.iter() // for each coefficient in b
-                    .enumerate() // (j, b_coeff[j])
-                    .map(|(j, c)| { // calculate the weight of the coefficient
-                        if i >= j {
-                            (*c) * prev_samples[i-j]
-                        } else {
-                            0f32
-                        }
-                    })
-                    .sum(); // add them all together
+            // For each coefficient in b, calculate the weight and sum them.
+            let sum_b: f32 = b_coeff
+                .iter()
+                .enumerate()
+                .map(|(j, c)| {
+                    if i >= j {
+                        (*c) * prev_samples[i - j]
+                    } else {
+                        0f32
+                    }
+                })
+                .sum();
 
-                let sum_a: f32 = a_coeff.iter() // for each coefficient in a
-                    .enumerate() // (j, a_coeff[j])
-                    .map(|(j, c)| { // calculate the weight of the coefficient
-                        if i >= j {
-                            (*c) * prev_results[i-j]
-                        } else {
-                            0f32
-                        }
-                    })
-                    .sum(); // add them all together
+            // For each coefficient in a, calculate the weight and sum them.
+            let sum_a: f32 = a_coeff
+                .iter()
+                .enumerate()
+                .map(|(j, c)| {
+                    if i >= j {
+                        (*c) * prev_results[i - j]
+                    } else {
+                        0f32
+                    }
+                })
+                .sum();
 
-                // perform the final calculation
-                let result = (sum_b - sum_a) / a_coeff[0];
+            // perform the final calculation
+            let result = (sum_b - sum_a) / a_coeff[0];
 
-                // update the previous result for the next iteration
-                prev_results[i] = result;
+            // update the previous result for the next iteration
+            prev_results[i] = result;
 
-                // return the current result in this iteration
-                result
-            }
-        )
+            // return the current result in this iteration
+            result
+        })
     }
 }
 

@@ -7,8 +7,6 @@
 //! performance (previously I tried, in order, `std::sync::RwLock`, `std::sync::Mutex`, and
 //! `std::sync::Semaphore`) and this type still appears to have quite a bit of overhead.
 
-extern crate rand;
-
 use std::sync::atomic::{AtomicBool, Ordering};
 use std::sync::Arc;
 use std::thread::{self, spawn};
@@ -81,28 +79,13 @@ mod buckets {
     impl Buckets {
         /// Create a new Buckets instance.
         pub fn new(buckets: [usize; N_BUCKETS]) -> Buckets {
-            // The unsafe initialization here is required because Bucket is not Clone (it can't be,
-            // since neither AtomicUsize nor Mutex are) and we would otherwise have to literally
-            // write out N_BUCKETS different values, which would be painful.  As a result, we have
-            // to be careful not to allow any failure here, or we'll segfault (by Drop-ing empty
-            // buckets).
-            let mut buckets_: [Bucket; N_BUCKETS] = unsafe { ::std::mem::uninitialized() };
-            let mut transfers: [AtomicUsize; N_WORKERS] = unsafe { ::std::mem::uninitialized() };
-            for (dest, &src) in buckets_.iter_mut().zip(buckets.iter()) {
-                let bucket = Bucket {
-                    data: AtomicUsize::new(src),
-                    mutex: Mutex::new(()),
-                };
-                // If we don't use an unsafe write(), the uninitialized mutex in the bucket will be
-                // dropped.
-                unsafe { ::std::ptr::write(dest as *mut _, bucket) }
-            }
-            for t in &mut transfers {
-                *t = AtomicUsize::new(0);
-            }
             Buckets {
-                buckets: buckets_,
-                transfers,
+                buckets: array_init::from_iter(buckets.iter().map(|&val| Bucket {
+                    data: AtomicUsize::new(val),
+                    mutex: Mutex::new(()),
+                }))
+                .unwrap(),
+                transfers: array_init::array_init(|_| AtomicUsize::new(0)),
             }
         }
 

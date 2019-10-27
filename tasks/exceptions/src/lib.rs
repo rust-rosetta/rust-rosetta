@@ -5,16 +5,16 @@ use std::io::{Error, ErrorKind};
 // Rust technically doesn't have exception, but different
 // types of error handling. Here are two examples of results.
 
-fn valid_function() -> Result<usize, Error> {
+pub fn valid_function() -> Result<usize, Error> {
     Ok(100)
 }
 
-fn errored_function() -> Result<usize, Error> {
+pub fn errored_function() -> Result<usize, Error> {
     Err(Error::new(ErrorKind::Other, "Something wrong happened."))
 }
 
 // This should happen only when an unrecoverable error happened
-fn panicking_function() {
+pub fn panicking_function() {
     panic!("Unrecoverable state reached");
 }
 

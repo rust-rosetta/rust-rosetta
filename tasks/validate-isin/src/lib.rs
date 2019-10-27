@@ -2,7 +2,7 @@ extern crate luhn_test_of_credit_card_numbers;
 
 use luhn_test_of_credit_card_numbers::luhn_test;
 
-fn validate_isin(isin: &str) -> bool {
+pub fn validate_isin(isin: &str) -> bool {
     if !isin.chars().all(|x| x.is_alphanumeric()) || isin.len() != 12 {
         return false;
     }

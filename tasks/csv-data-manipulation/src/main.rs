@@ -10,20 +10,17 @@ fn check_csv_length(values: &[Vec<String>], line_length: usize) -> Result<(), St
 
 fn csv_sum(csv: &str) -> Result<Vec<Vec<String>>, String> {
     let mut lines: Vec<Vec<String>> = csv
-        .split('\n') // split the string in lines
-        // for each line
-        .map(|line| line.split(',') // split the line into subparts
-                        .map(|value| value.trim().to_string())
-                        // convert every &str into an owned String
-                        .collect::<Vec<String>>()) // transform the iterator into a vector
+        .split('\n')
+        .map(|line| {
+            // Split each line into subparts, and convert them into owned strings.
+            line.split(',')
+                .map(|value| value.trim().to_string())
+                .collect::<Vec<String>>()
+        })
         .filter(|line| {
-            match line.split_first() {
-                None => unreachable!(), // even with an empty string, split will always return
-                // a non-empty vector, hence here split here unreachable
-                Some((string,slice)) if slice.is_empty()
-                                     && string.trim().is_empty() => false,  // filter empty lines
-                _ => true // non-empty line, don't filter it
-            }
+            // Filter empty lines
+            let (string, slice) = line.split_first().unwrap();
+            !(slice.is_empty() && string.trim().is_empty())
         })
         .collect(); // transform the iterator over lines into a vector
     match lines.split_first_mut() {

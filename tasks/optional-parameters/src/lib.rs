@@ -1,6 +1,6 @@
 use std::cmp::Ordering;
 
-struct Table {
+pub struct Table {
     rows: Vec<Vec<String>>,
     ordering_function: fn(&str, &str) -> Ordering,
     ordering_column: usize,
@@ -8,7 +8,7 @@ struct Table {
 }
 
 impl Table {
-    fn new(rows: Vec<Vec<String>>) -> Table {
+    pub fn new(rows: Vec<Vec<String>>) -> Table {
         Table {
             rows: rows,
             ordering_column: 0,
@@ -19,22 +19,22 @@ impl Table {
 }
 
 impl Table {
-    fn with_ordering_column(&mut self, ordering_column: usize) -> &mut Table {
+    pub fn with_ordering_column(&mut self, ordering_column: usize) -> &mut Table {
         self.ordering_column = ordering_column;
         self
     }
 
-    fn with_reverse(&mut self, reverse: bool) -> &mut Table {
+    pub fn with_reverse(&mut self, reverse: bool) -> &mut Table {
         self.reverse = reverse;
         self
     }
 
-    fn with_ordering_fun(&mut self, compare: fn(&str, &str) -> Ordering) -> &mut Table {
+    pub fn with_ordering_fun(&mut self, compare: fn(&str, &str) -> Ordering) -> &mut Table {
         self.ordering_function = compare;
         self
     }
 
-    fn sort(&mut self) {
+    pub fn sort(&mut self) {
         let fun = &mut self.ordering_function;
         let idx = self.ordering_column;
         if self.reverse {

@@ -101,7 +101,7 @@ fn player_turn(board: &mut Board) {
 fn computer_turn<R: Rng>(rng: &mut R, board: &mut Board) {
     let possible_choices: Vec<_> = board
         .iter()
-        .flat_map(|r| r) // turns the 2D array into a 1D iterator
+        .flatten()
         .enumerate()
         .filter(|&(_, c)| is_empty(c))
         .map(|(i, _)| i)
