@@ -1020,6 +1020,9 @@ members = [
     # http://rosettacode.org/wiki/Rename_a_file
     "tasks/rename-a-file",
 
+    # https://rosettacode.org/wiki/Rep-string
+    "tasks/rep-string",
+
     # http://rosettacode.org/wiki/Repeat
     "tasks/repeat",
 

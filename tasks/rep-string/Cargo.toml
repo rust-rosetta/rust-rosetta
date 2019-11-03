@@ -1,0 +1,10 @@
+[package]
+name = "rep-string"
+version = "0.1.0"
+authors = ["Polochon-street <polochonstreet@gmx.fr>"]
+edition = "2018"
+
+[package.metadata.rosettacode]
+url = "https://rosettacode.org/wiki/Rep-string"
+
+[dependencies]
