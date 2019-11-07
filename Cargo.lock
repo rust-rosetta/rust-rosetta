@@ -3673,6 +3673,10 @@ name = "rename-a-file"
 version = "0.1.0"
 
 [[package]]
+name = "rep-string"
+version = "0.1.0"
+
+[[package]]
 name = "repeat"
 version = "0.1.0"
 
