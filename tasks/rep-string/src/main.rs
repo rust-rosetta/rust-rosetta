@@ -1,26 +1,25 @@
 fn main() {
-    let strings = vec![
-        String::from("1001110011"),
-        String::from("1110111011"),
-        String::from("0010010010"),
-        String::from("1010101010"),
-        String::from("1111111111"),
-        String::from("0100101101"),
-        String::from("0100100"),
-        String::from("101"),
-        String::from("11"),
-        String::from("00"),
-        String::from("1"),
-    ];
-    for string in strings {
-        match rep_string(&string) {
-            Some(rep_string) => println!(
+    for a_slice in vec![
+        "1001110011",
+        "1110111011",
+        "0010010010",
+        "1010101010",
+        "1111111111",
+        "0100101101",
+        "0100100",
+        "101",
+        "11",
+        "00",
+        "1",
+    ] {
+        match rep_string(&a_slice) {
+            Some(repeated) => println!(
                 "Longest rep-string for '{}' is '{}' ({} chars)",
-                string,
-                rep_string,
-                rep_string.len(),
+                a_slice,
+                repeated,
+                repeated.len(),
             ),
-            None => println!("No rep-string found for '{}'", string),
+            None => println!("No rep-string found for '{}'", a_slice),
         };
     }
 }
