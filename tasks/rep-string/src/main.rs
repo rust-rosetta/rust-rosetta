@@ -1,5 +1,5 @@
 fn main() {
-    for a_slice in vec![
+    for a_slice in &[
         "1001110011",
         "1110111011",
         "0010010010",
