@@ -15,7 +15,7 @@ fn main() {
     for string in strings {
         match rep_string(&string) {
             Some(rep_string) => println!(
-                "Longuest rep-string for '{}' is '{}' ({} chars)",
+                "Longest rep-string for '{}' is '{}' ({} chars)",
                 string,
                 rep_string,
                 rep_string.len(),
