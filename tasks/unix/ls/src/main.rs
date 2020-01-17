@@ -1,8 +1,7 @@
 //! Works only with correct paths or no arguments at all
 
-use std::env;
-use std::fs;
 use std::path::Path;
+use std::{env, fs};
 
 fn main() -> Result<(), std::io::Error> {
     // ignoring all arguments except the 1st
@@ -18,11 +17,13 @@ fn main() -> Result<(), std::io::Error> {
 
 fn print_files(path: &Path) -> std::io::Result<()> {
     let mut entries: Vec<_> = fs::read_dir(path)?
-        .map(|x| x.unwrap().file_name())
+        .flat_map(|res| res)
+        .map(|f| f.file_name())
         .collect();
+    // read_dir does not guarantee order
     entries.sort();
-    for x in entries {
-        println!("{}", x.to_string_lossy());
-    }
+    entries.iter().for_each(|f| {
+        println!("{}", f.to_string_lossy());
+    });
     Ok(())
 }
