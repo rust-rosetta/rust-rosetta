@@ -16,6 +16,7 @@ fn main() -> Result<(), std::io::Error> {
 }
 
 fn print_files(path: &Path) -> std::io::Result<()> {
+    // flatten entries to avoid calling .unwrap()
     let mut entries: Vec<_> = fs::read_dir(path)?
         .flat_map(|res| res)
         .map(|f| f.file_name())
