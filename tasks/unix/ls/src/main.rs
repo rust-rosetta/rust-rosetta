@@ -18,8 +18,7 @@ fn main() -> Result<(), std::io::Error> {
 fn print_files(path: &Path) -> std::io::Result<()> {
     // flatten entries to avoid calling .unwrap()
     let mut entries: Vec<_> = fs::read_dir(path)?
-        .flat_map(|res| res)
-        .map(|f| f.file_name())
+        .flat_map(|entry| entry.ok().map(|f| f.file_name()))
         .collect();
     // read_dir does not guarantee order
     entries.sort();
