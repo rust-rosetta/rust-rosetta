@@ -1,29 +1,29 @@
 //! Works only with correct paths or no arguments at all
 
-use std::env;
-use std::fs;
 use std::path::Path;
+use std::{env, fs};
 
-fn main() {
+fn main() -> Result<(), std::io::Error> {
     // ignoring all arguments except the 1st
-    match env::args().nth(1) {
+    if let Some(path) = env::args().nth(1) {
         // check if the program received an argument
-        Some(path) => {
-            print_files(Path::new(&path));
-        }
-        _ => {
-            print_files(&env::current_dir().unwrap());
-        } // note that current_dir value might be invalid, so it's a Result
-    }
+        print_files(Path::new(&path))?;
+    } else {
+        // note that current_dir value might be invalid, so it's a Result
+        print_files(&env::current_dir()?)?;
+    };
+    Ok(())
 }
 
-fn print_files(path: &Path) {
-    let mut entries: Vec<_> = fs::read_dir(path)
-        .unwrap()
-        .map(|x| x.unwrap().file_name())
+fn print_files(path: &Path) -> std::io::Result<()> {
+    // flatten entries to avoid calling .unwrap()
+    let mut entries: Vec<_> = fs::read_dir(path)?
+        .flat_map(|entry| entry.ok().map(|f| f.file_name()))
         .collect();
+    // read_dir does not guarantee order
     entries.sort();
-    for x in entries {
-        println!("{}", x.to_string_lossy());
-    }
+    entries.iter().for_each(|f| {
+        println!("{}", f.to_string_lossy());
+    });
+    Ok(())
 }
