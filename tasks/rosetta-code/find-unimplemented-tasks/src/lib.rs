@@ -128,16 +128,12 @@ impl Iterator for Category {
 }
 
 pub fn all_tasks() -> Vec<Task> {
-    Category::new("Programming Tasks")
-        .flatten()
-        .collect()
+    Category::new("Programming Tasks").flatten().collect()
 }
 
 pub fn unimplemented_tasks(lang: &str) -> Vec<Task> {
     let all_tasks = all_tasks().iter().cloned().collect::<HashSet<_>>();
-    let implemented_tasks = Category::new(lang)
-        .flatten()
-        .collect::<HashSet<_>>();
+    let implemented_tasks = Category::new(lang).flatten().collect::<HashSet<_>>();
     let mut unimplemented_tasks = all_tasks
         .difference(&implemented_tasks)
         .cloned()
