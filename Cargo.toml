@@ -1188,6 +1188,9 @@ members = [
     # http://rosettacode.org/wiki/Sorting_algorithms/Stooge_sort
     "tasks/sorting-algorithms/stooge-sort",
 
+    # http://rosettacode.org/wiki/Soundex
+    "tasks/soundex",
+
     # http://rosettacode.org/wiki/Sparkline_in_unicode
     "tasks/sparkline-in-unicode",
 
