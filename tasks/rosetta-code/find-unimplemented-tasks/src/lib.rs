@@ -104,7 +104,7 @@ impl Iterator for Category {
     fn next(&mut self) -> Option<Self::Item> {
         self.continue_params.as_ref()?;
 
-        query_api(&self.name, self.continue_params.as_ref().unwrap())
+        query_api(&self.name, self.continue_params.as_ref()?)
             .and_then(|result| {
                 // If there are more pages of results to request, save them for the next iteration.
                 self.continue_params =
