@@ -102,11 +102,9 @@ impl Iterator for Category {
     type Item = Vec<Task>;
 
     fn next(&mut self) -> Option<Self::Item> {
-        if self.continue_params.is_none() {
-            return None;
-        }
+        self.continue_params.as_ref()?;
 
-        query_api(&self.name, self.continue_params.as_ref().unwrap())
+        query_api(&self.name, self.continue_params.as_ref()?)
             .and_then(|result| {
                 // If there are more pages of results to request, save them for the next iteration.
                 self.continue_params =
@@ -130,16 +128,12 @@ impl Iterator for Category {
 }
 
 pub fn all_tasks() -> Vec<Task> {
-    Category::new("Programming Tasks")
-        .flat_map(|tasks| tasks)
-        .collect()
+    Category::new("Programming Tasks").flatten().collect()
 }
 
 pub fn unimplemented_tasks(lang: &str) -> Vec<Task> {
     let all_tasks = all_tasks().iter().cloned().collect::<HashSet<_>>();
-    let implemented_tasks = Category::new(lang)
-        .flat_map(|tasks| tasks)
-        .collect::<HashSet<_>>();
+    let implemented_tasks = Category::new(lang).flatten().collect::<HashSet<_>>();
     let mut unimplemented_tasks = all_tasks
         .difference(&implemented_tasks)
         .cloned()
