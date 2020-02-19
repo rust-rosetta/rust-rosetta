@@ -1,5 +1,3 @@
-extern crate rand;
-
 use rand::prelude::*;
 use std::f64::consts::PI;
 
@@ -11,10 +9,8 @@ fn is_inside_circle((x, y): (f64, f64)) -> bool {
 
 fn simulate<R: Rng>(rng: &mut R, samples: usize) -> f64 {
     let count = (0..samples).filter(|_| is_inside_circle(rng.gen())).count();
-    // A branchless method might be faster
-    /*for _ in 0..samples {
-        count += is_inside_circle(rng.gen()) as usize;
-    }*/
+    // TODO use cargo bench
+    // to see if a branchless method might be faster
     (count as f64) / (samples as f64)
 }
 
