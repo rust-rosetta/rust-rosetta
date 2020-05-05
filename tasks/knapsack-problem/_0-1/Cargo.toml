@@ -1,5 +1,5 @@
 [package]
-name = "0-1"
+name = "_0-1"
 version = "0.1.0"
 
 [package.metadata.rosettacode]
