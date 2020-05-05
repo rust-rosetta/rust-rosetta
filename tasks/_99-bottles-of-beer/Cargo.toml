@@ -1,5 +1,5 @@
 [package]
-name = "99-bottles-of-beer"
+name = "_99-bottles-of-beer"
 version = "0.1.0"
 
 [package.metadata.rosettacode]

@@ -1,5 +1,5 @@
 [package]
-name = "9-billion-names-of-god-the-integer"
+name = "_9-billion-names-of-god-the-integer"
 version = "0.1.0"
 
 [package.metadata.rosettacode]

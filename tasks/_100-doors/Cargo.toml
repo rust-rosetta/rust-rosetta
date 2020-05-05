@@ -1,5 +1,5 @@
 [package]
-name = "100-doors"
+name = "_100-doors"
 version = "0.1.0"
 
 [package.metadata.rosettacode]
