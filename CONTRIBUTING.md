@@ -47,6 +47,7 @@ Not sure how to help?
 * Create a subcrate in the `tasks` directory that matches the name of the task.
 
     For example, `tasks/fizzbuzz` for [FizzBuzz](http://rosettacode.org/wiki/FizzBuzz) or `tasks/hello-world/text` for [Hello world/Text](http://rosettacode.org/wiki/Hello_world/Text).
+    If the task name begins with a number or symbol that is not allowed for a crate, you should add an underscore character to the start of the name. As an example, the task 2048 would be named _2048
 
     Any resources needed by the task should be added to a [`resources`](./resources) folder in the subcrate's directory.
 
