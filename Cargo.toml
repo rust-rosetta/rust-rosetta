@@ -96,25 +96,25 @@ toml = "0.4"
 
 [workspace]
 members = [
-    # http://rosettacode.org/wiki/_100_doors
+    # http://rosettacode.org/wiki/100_doors
     "tasks/_100-doors",
 
-    # http://rosettacode.org/wiki/_15_Puzzle_Game
+    # http://rosettacode.org/wiki/15_Puzzle_Game
     "tasks/_15-puzzle-game",
 
-    # http://rosettacode.org/wiki/_2048
+    # http://rosettacode.org/wiki/2048
     "tasks/_2048",
 
-    # http://rosettacode.org/wiki/_24_game
+    # http://rosettacode.org/wiki/24_game
     "tasks/_24-game",
 
-    # http://rosettacode.org/wiki/_24_game/Solve
+    # http://rosettacode.org/wiki/24_game/Solve
     "tasks/_24-game/solve",
 
-    # http://rosettacode.org/wiki/_9_billion_names_of_God_the_integer
+    # http://rosettacode.org/wiki/9_billion_names_of_God_the_integer
     "tasks/_9-billion-names-of-god-the-integer",
 
-    # http://rosettacode.org/wiki/_99_Bottles_of_Beer
+    # http://rosettacode.org/wiki/99_Bottles_of_Beer
     "tasks/_99-bottles-of-beer",
 
     # http://rosettacode.org/wiki/A%2BB
