@@ -1,5 +1,5 @@
 [package]
-name = "2048"
+name = "_2048"
 version = "0.1.0"
 
 [package.metadata.rosettacode]

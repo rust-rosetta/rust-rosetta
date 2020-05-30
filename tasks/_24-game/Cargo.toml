@@ -1,5 +1,5 @@
 [package]
-name = "24-game"
+name = "_24-game"
 version = "0.1.0"
 
 [package.metadata.rosettacode]
