@@ -5,12 +5,15 @@ branches:
     - master
 
 environment:
-  RUST_DIR: C:\Rust\
+  RUSTUP_HOME: C:\Rust
+  CARGO_HOME: C:\Rust\Cargo
   matrix:
   - TARGET: x86_64-pc-windows-msvc
     BITS: 64
+    PREFIX: x86_64
   - TARGET: i686-pc-windows-msvc
     BITS: 32
+    PREFIX: i686
 # Disabled due to rust-lang/rust#47029
 # - TARGET: i686-pc-windows-gnu
 #   BITS: 32
@@ -22,9 +25,10 @@ cache:
   - '%USERPROFILE%\.cargo'
 
 install:
-  - ps: Start-FileDownload "https://static.rust-lang.org/dist/rust-nightly-${env:TARGET}.msi"
-  - msiexec /i rust-nightly-%TARGET%.msi /quiet /passive /qn /norestart INSTALLDIR=%RUST_DIR%
-  - SET PATH=%PATH%;%RUST_DIR%\bin
+  - ps: Start-FileDownload "https://win.rustup.rs/${env:PREFIX}" -FileName "rustup-init.exe"
+  - rustup-init --default-toolchain none --default-host ${env:TARGET} -y
+  - SET PATH=%PATH%;%RUSTUP_HOME%;%CARGO_HOME%\bin
+  - rustup toolchain install nightly --allow-downgrade --profile minimal --component rustfmt
   - SET PATH=%PATH%;C:\msys64\mingw%BITS%\bin;C:\msys64\usr\bin
   - rustc -V
   - cargo -V
