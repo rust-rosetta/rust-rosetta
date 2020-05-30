@@ -26,7 +26,7 @@ cache:
 
 install:
   - ps: Start-FileDownload "https://win.rustup.rs/${env:PREFIX}" -FileName "rustup-init.exe"
-  - rustup-init --default-toolchain none --default-host ${env:TARGET} -y
+  - ps: rustup-init --default-toolchain none --default-host ${env:TARGET} -y
   - SET PATH=%PATH%;%RUSTUP_HOME%;%CARGO_HOME%\bin
   - rustup toolchain install nightly --allow-downgrade --profile minimal --component rustfmt
   - SET PATH=%PATH%;C:\msys64\mingw%BITS%\bin;C:\msys64\usr\bin
