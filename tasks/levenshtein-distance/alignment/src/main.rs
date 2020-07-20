@@ -54,7 +54,7 @@ fn levenshtein_distance(s1: &str, s2: &str) -> (usize, String, String) {
         let del = get_val(&mat, cur_row - 1, cur_col, usize::MAX);
         let sub = get_val(&mat, cur_row - 1, cur_col - 1, usize::MAX);
         let min_val = [sub, ins, del];
-        let min_val = min_val.into_iter().min().unwrap();
+        let min_val = min_val.iter().min().unwrap();
         if *min_val == sub {
             cur_row -= 1;
             cur_col -= 1;

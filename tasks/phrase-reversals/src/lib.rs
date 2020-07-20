@@ -1,8 +1,8 @@
-fn reverse_string(string: &str) -> String {
+pub fn reverse_string(string: &str) -> String {
     string.chars().rev().collect::<String>()
 }
 
-fn reverse_words(string: &str) -> String {
+pub fn reverse_words(string: &str) -> String {
     string
         .split_whitespace()
         .map(|x| x.chars().rev().collect::<String>())
@@ -10,7 +10,7 @@ fn reverse_words(string: &str) -> String {
         .join(" ")
 }
 
-fn reverse_word_order(string: &str) -> String {
+pub fn reverse_word_order(string: &str) -> String {
     string
         .split_whitespace()
         .rev()

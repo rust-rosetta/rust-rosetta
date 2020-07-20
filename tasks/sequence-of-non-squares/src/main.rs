@@ -1,6 +1,6 @@
 /// the formula that should produce no perfect squares
 fn non_sq(n: u64) -> u64 {
-    (n + (0.5 + (n as f64).sqrt()) as u64)
+    n + (0.5 + (n as f64).sqrt()) as u64
 }
 
 fn main() {
