@@ -1,18 +1,16 @@
-#![feature(proc_macro_hygiene)]
+use static_assertions::const_assert_eq;
 
-extern crate factorial_macro;
-
-use factorial_macro::factorial;
+const fn factorial(n: u64) -> u64 {
+    match n {
+        0 | 1 => 1,
+        _ => n * factorial(n - 1),
+    }
+}
 
 fn main() {
-    // we can invoke factorial_10! as a regular macro
-    println!("{}", factorial!(10));
+    // We can invoke factorial as a regular function
+    println!("{}", factorial(10));
 }
 
-#[test]
-fn output() {
-    // just testing the output
-    // I can't prove programmatically that factorial_10 is actually
-    // calculated at compile time
-    assert_eq!(factorial!(10), 3628800);
-}
+// This assertion runs at compile time.
+const_assert_eq!(factorial(10), 3628800);
