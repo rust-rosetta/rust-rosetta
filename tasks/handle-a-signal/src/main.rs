@@ -1,11 +1,8 @@
-extern crate libc;
-extern crate time;
-
 #[cfg(unix)]
 fn main() {
     use std::sync::atomic::{AtomicBool, Ordering};
     use std::thread;
-    use std::time::Duration;
+    use std::time::{Duration, Instant};
 
     use libc::{sighandler_t, SIGINT};
 
@@ -29,7 +26,7 @@ fn main() {
     }
 
     // Get the start time...
-    let start = time::precise_time_ns();
+    let start = Instant::now();
 
     // Integer counter
     let mut i = 0u32;
@@ -48,14 +45,11 @@ fn main() {
         println!("{}", i);
     }
 
-    // Get the end time.
-    let end = time::precise_time_ns();
-
-    // Compute the difference
-    let diff = Duration::from_millis((end - start) / 1_000_000);
+    // Get the elapsed time.
+    let elapsed = start.elapsed();
 
     // Print the difference and exit
-    println!("Program has run for {} seconds", diff.as_secs());
+    println!("Program has run for {} seconds", elapsed.as_secs());
 }
 
 #[cfg(not(unix))]

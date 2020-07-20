@@ -1,8 +1,6 @@
-extern crate time;
-
-use time::{at_utc, Timespec};
+use chrono::{TimeZone, Utc};
 
 fn main() {
-    let epoch = at_utc(Timespec::new(0, 0));
-    println!("{}", epoch.asctime());
+    let epoch = Utc.timestamp(0, 0);
+    println!("{}", epoch.to_rfc3339());
 }

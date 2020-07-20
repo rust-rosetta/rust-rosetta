@@ -1,9 +1,10 @@
 [package]
 name = "show-the-epoch"
 version = "0.1.0"
+edition = "2018"
 
 [package.metadata.rosettacode]
 url = "http://rosettacode.org/wiki/Show_the_epoch"
 
 [dependencies]
-time = "0.1"
+chrono = "0.4.13"
