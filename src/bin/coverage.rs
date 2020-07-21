@@ -1,29 +1,18 @@
-#[macro_use]
-extern crate serde_json;
-#[macro_use]
-extern crate clap;
-extern crate difference;
-extern crate meta;
-extern crate serde;
-extern crate structopt;
-extern crate term;
-
 use std::fs::File;
 use std::io;
 use std::io::prelude::*;
 use std::path::PathBuf;
 
 use difference::{Changeset, Difference};
+use serde_json::json;
+use structopt::clap::arg_enum;
 use structopt::StructOpt;
-use term::Terminal;
+use termcolor::{Color, ColorChoice, ColorSpec, StandardStream, WriteColor};
 
 use meta::{Task, TaskIndex};
 
 /// Prints a colored diff of two strings to the terminal.
-fn print_diff<T: ?Sized>(t: &mut T, s1: &str, s2: &str) -> io::Result<()>
-where
-    T: Terminal,
-{
+fn print_diff(t: &mut impl WriteColor, s1: &str, s2: &str) -> io::Result<()> {
     let changeset = Changeset::new(s1, s2, "\n");
 
     for change in changeset.diffs {
@@ -33,13 +22,13 @@ where
                 writeln!(t, " {}", x)?;
             }
             Difference::Add(ref x) => {
-                t.fg(term::color::GREEN)?;
+                t.set_color(ColorSpec::new().set_fg(Some(Color::Green)))?;
                 for line in x.split('\n') {
                     writeln!(t, "+{}", line)?;
                 }
             }
             Difference::Rem(ref x) => {
-                t.fg(term::color::RED)?;
+                t.set_color(ColorSpec::new().set_fg(Some(Color::Red)))?;
                 for line in x.split('\n') {
                     writeln!(t, "-{}", line)?;
                 }
@@ -52,11 +41,8 @@ where
 }
 
 /// Prints a task in a human-readable format.
-fn print_task<T: ?Sized>(t: &mut T, task: &Task, diff: bool) -> io::Result<()>
-where
-    T: Terminal,
-{
-    t.attr(term::Attr::Bold)?;
+fn print_task(t: &mut impl WriteColor, task: &Task, diff: bool) -> io::Result<()> {
+    t.set_color(ColorSpec::new().set_bold(true))?;
     writeln!(t, "{}", task.title())?;
     t.reset()?;
 
@@ -77,17 +63,12 @@ where
 }
 
 /// Writes a boolean as a pretty, human-readable string.
-fn write_status<T: ?Sized>(t: &mut T, boolean: bool) -> io::Result<()>
-where
-    T: Terminal,
-{
-    t.attr(term::Attr::Bold)?;
-
+fn write_status(t: &mut impl WriteColor, boolean: bool) -> io::Result<()> {
     if boolean {
-        t.fg(term::color::GREEN)?;
+        t.set_color(ColorSpec::new().set_fg(Some(Color::Green)).set_bold(true))?;
         write!(t, " ✔ ")?
     } else {
-        t.fg(term::color::RED)?;
+        t.set_color(ColorSpec::new().set_fg(Some(Color::Red)).set_bold(true))?;
         write!(t, " ✘ ")?;
     }
 
@@ -143,7 +124,7 @@ struct Opt {
 fn main() {
     let opt = Opt::from_args();
 
-    let mut t = term::stdout().unwrap();
+    let mut t = StandardStream::stdout(ColorChoice::Auto);
 
     let task_index = TaskIndex::create(env!("CARGO_MANIFEST_DIR")).unwrap();
 
@@ -164,7 +145,7 @@ fn main() {
                 Filter::All | _ => {}
             }
 
-            print_task(&mut *t, &task, opt.diff).unwrap();
+            print_task(&mut t, &task, opt.diff).unwrap();
 
             if opt.json_file.is_some() {
                 let json = json!({
