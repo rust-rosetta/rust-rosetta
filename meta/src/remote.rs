@@ -2,9 +2,11 @@
 
 use std::collections::HashMap;
 
-use percent_encoding::{self, QUERY_ENCODE_SET};
+use lazy_static::lazy_static;
+use percent_encoding::{self, define_encode_set, QUERY_ENCODE_SET};
 use regex::Regex;
 use reqwest::Url;
+use serde::Deserialize;
 
 lazy_static! {
     /// Extracts code from the first Rust section from Rosetta Code wiki markup.

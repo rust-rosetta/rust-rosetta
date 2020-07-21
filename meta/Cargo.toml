@@ -1,10 +1,12 @@
 [package]
 name = "meta"
 version = "0.1.0"
+edition = "2018"
 
 [dependencies]
+anyhow = "1.0.31"
 cargo_metadata = "0.6"
-failure = "0.1"
+find-unimplemented-tasks = { path = "../tasks/rosetta-code/find-unimplemented-tasks" }
 lazy_static = "1"
 pathdiff = "0.1"
 percent-encoding = "1"
@@ -16,5 +18,3 @@ serde_derive = "1"
 serde_json = "1"
 toml = "0.4"
 walkdir = "2"
-
-find-unimplemented-tasks = { path = "../tasks/rosetta-code/find-unimplemented-tasks" }
