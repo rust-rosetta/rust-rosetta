@@ -1,0 +1,29 @@
+on:
+  push:
+    branches:
+      - master
+
+name: Publish Rosetta coverage
+
+jobs:
+  publish:
+    name: Publish coverage
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions-rs/toolchain@v1
+        with:
+          profile: minimal
+          toolchain: nightly
+          override: true
+      - run: mkdir public
+      - uses: actions-rs/cargo@v1
+        with:
+          command: run
+          args: --release --bin coverage -- --json public/coverage.json
+      - uses: crazy-max/ghaction-github-pages@v2
+        with:
+          target_branch: gh-pages
+          build_dir: public
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

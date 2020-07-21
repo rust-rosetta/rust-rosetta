@@ -1,6 +1,5 @@
 # rust-rosetta #
-[![Linux Build Status](https://travis-ci.org/rust-rosetta/rust-rosetta.png)](https://travis-ci.org/rust-rosetta/rust-rosetta)
-[![Build status](https://ci.appveyor.com/api/projects/status/b5o4m2023ysex1br?svg=true)](https://ci.appveyor.com/project/euclio/rust-rosetta)
+![Continuous integration](https://github.com/rust-rosetta/rust-rosetta/workflows/Continuous%20integration/badge.svg)
 
 A repository for completing [this issue on rust-lang/rust](https://github.com/rust-lang/rust/issues/10513). This repository contains minimal working code for many simple (and not so simple) tasks. New contributors and learners of the language are welcome. We will try to work with you to make the code more idiomatic if you'd like!
 
