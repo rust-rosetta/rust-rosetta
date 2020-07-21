@@ -1,9 +1,10 @@
 [package]
 name = "compile-time-calculation"
 version = "0.1.0"
+edition = "2018"
 
 [package.metadata.rosettacode]
 url = "http://rosettacode.org/wiki/Compile-time_calculation"
 
 [dependencies]
-factorial-macro = { path = "factorial-macro" }
+static_assertions = "1.1.0"

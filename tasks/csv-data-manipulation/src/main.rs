@@ -57,10 +57,9 @@ fn csv_sum(csv: &str) -> Result<Vec<Vec<String>>, String> {
                                     sum = sum.and_then(|f64_value| Ok(f64_value + v));
                                 }
                                 Err(e) => {
-                                    use std::error::Error;
                                     sum = Err(format!(
                                         "Error \"{error}\" at line {line}",
-                                        error = e.description(),
+                                        error = e,
                                         line = line_number
                                     ));
                                     // a parsing error has been found

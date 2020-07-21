@@ -4,30 +4,8 @@
 
 #![warn(missing_docs)]
 
-#[macro_use]
-extern crate lazy_static;
-#[macro_use]
-extern crate percent_encoding;
-#[macro_use]
-extern crate serde_derive;
-
-extern crate cargo_metadata;
-extern crate failure;
-extern crate pathdiff;
-extern crate regex;
-extern crate reqwest;
-extern crate serde;
-extern crate serde_json;
-extern crate toml;
-extern crate walkdir;
-
-extern crate find_unimplemented_tasks;
-
-// Used by the test_sort macro.
 #[doc(hidden)]
 pub extern crate rand;
-
-mod remote;
 
 use std::cmp;
 use std::collections::{HashSet, VecDeque};
@@ -37,17 +15,17 @@ use std::iter::FromIterator;
 use std::ops::Sub;
 use std::path::{Path, PathBuf};
 
-use failure::Error;
+use anyhow::Error;
+use lazy_static::lazy_static;
 use regex::Regex;
 use reqwest::{Client, Url};
 
-pub mod local;
-
-#[macro_use]
-pub mod test_utils;
-
 use local::LocalTask;
 use remote::{RemoteTask, Response};
+
+pub mod local;
+mod remote;
+pub mod test_utils;
 
 /// Crate-specific error type.
 pub type Result<T> = std::result::Result<T, Error>;

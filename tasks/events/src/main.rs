@@ -6,11 +6,9 @@
 //! signals are only received if there is actually a task waiting on the signal--see the below
 //! program for an example of how this may be achieved in practice.
 
-extern crate time;
-
 use std::sync::{Arc, Condvar, Mutex};
 use std::thread::{self, spawn};
-use std::time::Duration;
+use std::time::{Duration, Instant};
 
 /// Given a duration to wait before sending an event from one process to another, returns the
 /// elapsed time before the event was actually sent.
@@ -20,7 +18,7 @@ fn handle_event(duration: Duration) -> Duration {
     // 0) but it can be created with an arbitrary number using Mutex::new_with_condvars();
     let pair = Arc::new((Mutex::new(false), Condvar::new()));
     let pair_ = Arc::clone(&pair);
-    let start = time::precise_time_ns();
+    let start = Instant::now();
     // Lock the mutex
     let &(ref mutex, ref cond) = &*pair;
     let mut guard = mutex.lock().unwrap();
@@ -48,11 +46,11 @@ fn handle_event(duration: Duration) -> Duration {
         guard = cond.wait(guard).unwrap();
     }
     // Should be done signaling (i.e. we've waited for `duration`).
-    let end = time::precise_time_ns();
+    let elapsed = start.elapsed();
     // When the guard exits scope, the condvar is reset.
     drop(guard);
     // Return the elapsed time
-    Duration::from_millis((end - start) / 1_000_000)
+    elapsed
 }
 
 pub fn main() {

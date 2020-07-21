@@ -1,12 +1,9 @@
-extern crate rand;
-extern crate time;
-
 use std::cmp::Ordering;
 use std::cmp::Ordering::Less;
 use std::ops::Sub;
+use std::time::Instant;
 
 use rand::prelude::*;
-use time::get_time;
 
 #[derive(Clone, PartialEq, Debug)]
 struct Point {
@@ -196,13 +193,12 @@ pub fn main() {
     };
     let mut random_points: Vec<Point> = (0..n_random).map(|_| make_random_point()).collect();
 
-    let start_cons_time = get_time();
+    let start_cons_time = Instant::now();
     let random_tree = KDTreeNode::new(&mut random_points, 0);
-    let end_cons_time = get_time();
+    let cons_time = start_cons_time.elapsed();
     println!(
         "1,000 3d points (Construction time: {}ms)",
-        ((end_cons_time.sec - start_cons_time.sec) * 1000) as f32
-            + ((end_cons_time.nsec - start_cons_time.nsec) as f32) / 1_000_000f32
+        cons_time.as_millis(),
     );
 
     let random_target = make_random_point();
@@ -217,19 +213,18 @@ pub fn main() {
     let n_searches = 1000;
     let random_targets: Vec<Point> = (0..n_searches).map(|_| make_random_point()).collect();
 
-    let start_search_time = get_time();
+    let start_search_time = Instant::now();
     let mut total_n_visited = 0;
     for target in &random_targets {
         let (_, n_visited) = random_tree.find_nearest_neighbor(target);
         total_n_visited += n_visited;
     }
-    let end_search_time = get_time();
+    let search_time = start_search_time.elapsed();
     println!(
         "Visited an average of {} nodes on {} searches in {} ms",
         total_n_visited as f32 / n_searches as f32,
         n_searches,
-        ((end_search_time.sec - start_search_time.sec) * 1000) as f32
-            + ((end_search_time.nsec - start_search_time.nsec) as f32) / 1_000_000f32
+        search_time.as_millis(),
     );
 }
 

@@ -4,14 +4,14 @@ use std::collections::HashSet;
 use std::fs;
 use std::path::{Path, PathBuf};
 
+use anyhow::{anyhow, Context, Error};
 use cargo_metadata;
-use failure::{self, Error, ResultExt};
 use reqwest::Url;
 use toml::Value;
 use walkdir::WalkDir;
 
-use remote;
-use TASK_URL_RE;
+use crate::remote;
+use crate::TASK_URL_RE;
 
 /// A local (in repository) implementation of a Rosetta Code task.
 #[derive(Debug, Clone)]
@@ -72,10 +72,10 @@ where
 
         let title = {
             let caps = TASK_URL_RE.captures(rosetta_url.as_str()).ok_or_else(|| {
-                failure::err_msg(format!(
+                anyhow!(
                     "task URL does not match rosetta code regex: {}",
                     rosetta_url
-                ))
+                )
             })?;
             remote::decode_title(&caps[1])
         };
@@ -105,7 +105,7 @@ where
         .and_then(|m| m.get("rosettacode"))
         .and_then(|m| m.get("url"))
         .and_then(|u| u.as_str())
-        .ok_or_else(|| failure::err_msg("unexpected metadata format"))?;
+        .ok_or_else(|| anyhow!("unexpected metadata format"))?;
 
     Ok(Url::parse(url)?)
 }

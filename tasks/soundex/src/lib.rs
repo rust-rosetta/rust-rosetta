@@ -1,6 +1,6 @@
 use std::collections::HashMap;
 
-fn soundex(word: &str) -> String {
+pub fn soundex(word: &str) -> String {
     let dropped_vowels = ['a', 'e', 'i', 'o', 'u', 'y'];
     let mut consonants_value = HashMap::new();
 

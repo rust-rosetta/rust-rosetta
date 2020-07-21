@@ -6,4 +6,3 @@ version = "0.1.0"
 url = "http://rosettacode.org/wiki/Events"
 
 [dependencies]
-time = "0.1"
