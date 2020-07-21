@@ -5,7 +5,7 @@ use std::str;
 
 use xml::writer::{EmitterConfig, XmlEvent};
 
-fn characters_to_xml(characters: HashMap<String, String>) -> String {
+pub fn characters_to_xml(characters: HashMap<String, String>) -> String {
     let mut output: Vec<u8> = Vec::new();
     let mut writer = EmitterConfig::new()
         .perform_indent(true)
