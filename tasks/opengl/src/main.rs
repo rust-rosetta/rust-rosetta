@@ -2,14 +2,15 @@
 //!
 //! It is based off the example in the [official tutorial].
 //!
-//! [official tutorial]: http://tomaka.github.io/glium/book/index.html
+//! [official tutorial]: https://github.com/glium/glium/tree/master/book
 
-#![cfg_attr(feature = "cargo-clippy", allow(forget_copy))]
-
-#[macro_use]
-extern crate glium;
-
-use glium::{glutin, Surface};
+use glium::glutin::{
+    event::{Event, WindowEvent},
+    event_loop::{ControlFlow, EventLoop},
+    window::WindowBuilder,
+    ContextBuilder,
+};
+use glium::{implement_vertex, Display, Surface};
 
 /// Define a struct to store vertices. This struct will be used by `glium` directly.
 #[derive(Copy, Clone)]
@@ -20,10 +21,10 @@ struct Vertex {
 implement_vertex!(Vertex, position);
 
 fn main() {
-    let mut events_loop = glutin::EventsLoop::new();
-    let window = glutin::WindowBuilder::new();
-    let context = glutin::ContextBuilder::new();
-    let display = glium::Display::new(window, context, &events_loop).unwrap();
+    let event_loop = EventLoop::new();
+    let window_builder = WindowBuilder::new();
+    let context_builder = ContextBuilder::new();
+    let display = Display::new(window_builder, context_builder, &event_loop).unwrap();
 
     let vertex1 = Vertex {
         position: [0.0, 0.0],
@@ -67,7 +68,7 @@ fn main() {
         glium::Program::from_source(&display, vertex_shader_src, fragment_shader_src, None)
             .unwrap();
 
-    let draw = || {
+    let draw = move || {
         let mut target = display.draw();
         target.clear_color(0.3, 0.3, 0.3, 0.0);
         target
@@ -85,14 +86,21 @@ fn main() {
     // Finally, draw the triangle!
     draw();
 
-    events_loop.run_forever(|event| {
-        if let glutin::Event::WindowEvent { event, .. } = event {
-            match event {
-                glutin::WindowEvent::CloseRequested => return glutin::ControlFlow::Break,
-                glutin::WindowEvent::Resized(..) => draw(),
-                _ => (),
+    event_loop.run(move |event, _, control_flow| {
+        *control_flow = match event {
+            Event::WindowEvent { event, .. } => match event {
+                WindowEvent::CloseRequested => ControlFlow::Exit,
+                WindowEvent::Resized(..) => {
+                    draw();
+                    ControlFlow::Poll
+                }
+                _ => ControlFlow::Poll,
+            },
+            Event::RedrawRequested(..) => {
+                draw();
+                ControlFlow::Poll
             }
+            _ => ControlFlow::Poll,
         }
-        glutin::ControlFlow::Continue
     });
 }
