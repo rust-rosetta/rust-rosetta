@@ -76,7 +76,8 @@ authors = [
     "Gary Pennington, https://github.com/garypen",
     "Oleksii Filonenko, https://github.com/filalex77",
     "nyradr, https://github.com/nyradr",
-    "Sameer Puri, https://github.com/sameer"
+    "Sameer Puri, https://github.com/sameer",
+    "Brian Damitz, https://github.com/bdamitz"
 ]
 
 [dependencies]
@@ -438,6 +439,9 @@ members = [
 
     # http://rosettacode.org/wiki/Discordian_date
     "tasks/discordian-date",
+
+    # http://rosettacode.org/wiki/Display_a_linear_combination
+    "tasks/display-linear-combination",
 
     # http://rosettacode.org/wiki/DNS_query
     "tasks/dns-query",
