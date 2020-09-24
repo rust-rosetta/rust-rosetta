@@ -1,0 +1,6 @@
+[package]
+name = "display-linear-combination"
+version = "0.1.0"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Display_a_linear_combination"
