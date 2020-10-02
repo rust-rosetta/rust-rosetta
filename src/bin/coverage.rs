@@ -142,7 +142,7 @@ fn main() {
                 Filter::LocalOnly if !task.is_local_only() => return None,
                 Filter::RemoteOnly if !task.is_remote_only() => return None,
                 Filter::Unimplemented if !task.is_unimplemented() => return None,
-                Filter::All | _ => {}
+                _ => {}
             }
 
             print_task(&mut t, &task, opt.diff).unwrap();
