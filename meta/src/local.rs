@@ -5,7 +5,6 @@ use std::fs;
 use std::path::{Path, PathBuf};
 
 use anyhow::{anyhow, Context, Error};
-use cargo_metadata;
 use reqwest::Url;
 use toml::Value;
 use walkdir::WalkDir;
