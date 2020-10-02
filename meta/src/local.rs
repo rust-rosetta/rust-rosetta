@@ -56,9 +56,10 @@ where
 
         // If the package has a proc-macro or dylib target, it's probably just a dependency of
         // another task. Skip it.
-        if package.targets.iter().any(|t| {
+        let closure = |t: &cargo_metadata::Target| {
             t.kind.contains(&String::from("dylib")) || t.kind.contains(&String::from("proc-macro"))
-        }) {
+        };
+        if package.targets.iter().any(closure) {
             continue;
         }
 
