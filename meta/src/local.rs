@@ -35,13 +35,6 @@ pub struct LocalTask {
     pub title: String,
 }
 
-/// Return a closure that checks if a package has a proc-macro or dylib target.
-fn is_dylib_or_proc_macro() -> Box<dyn Fn(&cargo_metadata::Target) -> bool> {
-    Box::new(|t| {
-        t.kind.contains(&String::from("dylib")) || t.kind.contains(&String::from("proc-macro"))
-    })
-}
-
 /// Given a path to the root `Cargo.toml`, returns a list of tasks implemented in the rust-rosetta
 /// repository.
 pub fn parse_tasks<P>(manifest_path: P) -> Result<Vec<LocalTask>, Error>
@@ -63,7 +56,10 @@ where
 
         // If the package has a proc-macro or dylib target, it's probably just a dependency of
         // another task. Skip it.
-        if package.targets.iter().any(is_dylib_or_proc_macro()) {
+        let closure = |t: &cargo_metadata::Target| {
+            t.kind.contains(&String::from("dylib")) || t.kind.contains(&String::from("proc-macro"))
+        };
+        if package.targets.iter().any(closure) {
             continue;
         }
 
