@@ -5,7 +5,6 @@ use std::fs;
 use std::path::{Path, PathBuf};
 
 use anyhow::{anyhow, Context, Error};
-use cargo_metadata;
 use reqwest::Url;
 use toml::Value;
 use walkdir::WalkDir;
@@ -36,6 +35,12 @@ pub struct LocalTask {
     pub title: String,
 }
 
+/// Check if the target of a package is of kind dylib or proc-macro.
+fn is_dylib_or_proc_macro(target: &cargo_metadata::Target) -> bool {
+    target.kind.contains(&String::from("dylib"))
+        || target.kind.contains(&String::from("proc-macro"))
+}
+
 /// Given a path to the root `Cargo.toml`, returns a list of tasks implemented in the rust-rosetta
 /// repository.
 pub fn parse_tasks<P>(manifest_path: P) -> Result<Vec<LocalTask>, Error>
@@ -57,9 +62,7 @@ where
 
         // If the package has a proc-macro or dylib target, it's probably just a dependency of
         // another task. Skip it.
-        if package.targets.iter().any(|t| {
-            t.kind.contains(&String::from("dylib")) || t.kind.contains(&String::from("proc-macro"))
-        }) {
+        if package.targets.iter().any(|t| is_dylib_or_proc_macro(t)) {
             continue;
         }
 
