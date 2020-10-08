@@ -14,7 +14,7 @@ fn mul_inv(a: i32, b: i32) -> Option<i32> {
     Some(x % b)
 }
 
-#[cfg_attr(feature = "cargo-clippy", allow(many_single_char_names))]
+#[allow(clippy::many_single_char_names)]
 fn egcd(a: i32, b: i32) -> (i32, i32, i32) {
     if a == 0 {
         return (b, 0, 1);

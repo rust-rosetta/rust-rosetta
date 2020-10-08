@@ -9,7 +9,7 @@ struct TreeNode<T> {
     right: Option<Box<TreeNode<T>>>,
 }
 
-#[cfg_attr(feature = "cargo-clippy", allow(enum_variant_names))]
+#[allow(clippy::enum_variant_names)]
 enum TraversalMethod {
     PreOrder,
     InOrder,

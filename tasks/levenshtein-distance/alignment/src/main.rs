@@ -18,7 +18,7 @@ fn get_val(mat: &[Vec<usize>], r: usize, c: usize, default: usize) -> usize {
 /// to the scoring method to only allow positive ints.
 ///
 /// [Needleman-Wunsch algorithm]: http://en.wikipedia.org/wiki/Needleman%E2%80%93Wunsch_algorithm
-#[cfg_attr(feature = "cargo-clippy", allow(needless_range_loop))]
+#[allow(clippy::needless_range_loop)]
 fn levenshtein_distance(s1: &str, s2: &str) -> (usize, String, String) {
     let l1 = s1.len() + 1;
     let l2 = s2.len() + 1;

@@ -45,7 +45,8 @@ fn main() {
     println!("{}", continued_fraction!(pi_a, pi_b));
 }
 
-#[cfg_attr(feature = "cargo-clippy", allow(float_cmp, approx_constant))]
+#[allow(clippy::approx_constant)]
+#[allow(clippy::float_cmp)]
 #[cfg(test)]
 mod tests {
     use std::iter;
