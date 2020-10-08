@@ -20,7 +20,7 @@
 //!     Here am I
 //!     ```
 
-#![crate_type = "dylib"]
+#![crate_type = "cdylib"]
 
 extern crate libc;
 
@@ -49,9 +49,9 @@ mod tests {
     #[test]
     fn buffer_too_small() {
         unsafe {
-            const BUF_SIZE: usize = 3;
-            let mut buffer = [0; BUF_SIZE];
-            assert_eq!(0, Query(buffer.as_mut_ptr(), &mut BUF_SIZE));
+            let mut buf_size = 3;
+            let mut buffer = vec![0; buf_size];
+            assert_eq!(0, Query(buffer.as_mut_ptr(), &mut buf_size));
         }
     }
 
@@ -60,13 +60,14 @@ mod tests {
         use std::ffi::{CStr, CString};
 
         unsafe {
-            const BUF_SIZE: usize = 1024;
-            let mut buffer = [0; BUF_SIZE];
-            assert_eq!(1, Query(buffer.as_mut_ptr(), &mut BUF_SIZE));
+            let mut buf_size = 1024;
+            let mut buffer = vec![0; buf_size];
+            assert_eq!(1, Query(buffer.as_mut_ptr(), &mut buf_size));
             assert_eq!(
                 CString::new("Here am I").unwrap(),
                 CStr::from_ptr(buffer.as_ptr()).to_owned()
             );
+            assert_eq!(buf_size, 9);
         }
     }
 }
