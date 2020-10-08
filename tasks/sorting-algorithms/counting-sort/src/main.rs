@@ -1,4 +1,4 @@
-#[cfg_attr(feature = "cargo-clippy", allow(needless_range_loop))]
+#[allow(clippy::needless_range_loop)]
 fn counting_sort(array: &mut [i32], min: i32, max: i32) {
     // nothing to do for arrays shorter than 2
     if array.len() < 2 {

@@ -12,7 +12,7 @@ use std::time::{Duration, Instant};
 
 /// Given a duration to wait before sending an event from one process to another, returns the
 /// elapsed time before the event was actually sent.
-#[cfg_attr(feature = "cargo-clippy", allow(mutex_atomic))]
+#[allow(clippy::mutex_atomic)]
 fn handle_event(duration: Duration) -> Duration {
     // Create a Mutex.  By default a Mutex is created with a single condition variable (condvar_id
     // 0) but it can be created with an arbitrary number using Mutex::new_with_condvars();

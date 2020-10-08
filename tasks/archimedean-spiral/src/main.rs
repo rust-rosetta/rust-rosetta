@@ -4,7 +4,7 @@ extern crate bmp;
 use bmp::{Image, Pixel};
 use std::f64;
 
-#[cfg_attr(feature = "cargo-clippy", allow(many_single_char_names))]
+#[allow(clippy::many_single_char_names)]
 fn main() {
     let width = 600u32;
     let half_width = (width / 2) as i32;

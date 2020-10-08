@@ -76,7 +76,7 @@ fn convert_byte_vec_to_u32(mut bytes: Vec<u8>) -> Vec<u32> {
 
 // Returns a 128-bit MD4 hash as an array of four 32-bit words.
 // Based on RFC 1186 from https://www.ietf.org/rfc/rfc1186.txt
-#[cfg_attr(feature = "cargo-clippy", allow(many_single_char_names))]
+#[allow(clippy::many_single_char_names)]
 fn md4<T: Into<Vec<u8>>>(input: T) -> [u32; 4] {
     let mut bytes = input.into().to_vec();
     let initial_bit_len = (bytes.len() << 3) as u64;

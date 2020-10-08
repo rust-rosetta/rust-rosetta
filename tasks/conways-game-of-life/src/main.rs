@@ -25,7 +25,7 @@ impl Cell {
     }
 }
 
-#[cfg_attr(feature = "cargo-clippy", allow(match_same_arms))]
+#[allow(clippy::match_same_arms)]
 fn next_world(input: &[Cell], output: &mut [Cell], w: usize, h: usize) {
     for i in 0..(w * h) {
         match input[i] {

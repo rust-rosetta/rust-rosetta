@@ -1,4 +1,5 @@
-#![cfg_attr(feature = "cargo-clippy", allow(double_parens, type_complexity))]
+#![allow(clippy::double_parens)]
+#![allow(clippy::type_complexity)]
 
 use std::sync::Arc;
 

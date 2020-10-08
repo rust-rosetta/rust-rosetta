@@ -115,7 +115,7 @@ fn to_bytes(val: u64) -> [u8; 8] {
     tmp
 }
 
-#[cfg_attr(feature = "cargo-clippy", allow(many_single_char_names))]
+#[allow(clippy::many_single_char_names)]
 fn md5(initial_msg: &[u8]) -> MD5 {
     let initial_len = initial_msg.len() as u64;
 

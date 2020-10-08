@@ -1,6 +1,6 @@
 use std::f64::consts::*;
 
-#[cfg_attr(feature = "cargo-clippy", allow(float_cmp))]
+#[allow(clippy::float_cmp)]
 fn main() {
     // e (base of the natural logarithm)
     let mut x = E;

@@ -17,7 +17,7 @@ fn remove_app_lock(socket: TcpListener) {
 }
 
 fn main() {
-    #[cfg_attr(feature = "cargo-clippy", allow(unreadable_literal))]
+    #[allow(clippy::unreadable_literal)]
     let lock_socket = create_app_lock(12345);
     // ...
     // your code here

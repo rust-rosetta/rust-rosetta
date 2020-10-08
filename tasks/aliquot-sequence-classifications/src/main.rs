@@ -9,7 +9,7 @@ enum AliquotType {
     NonTerminating,
 }
 
-#[cfg_attr(feature = "clippy", allow(needless_range_loop))]
+#[allow(clippy::needless_range_loop)]
 fn classify_aliquot(num: i64) -> (AliquotType, Vec<i64>) {
     let limit = 1i64 << 47; // 140737488355328
     let mut terms = Some(num).into_iter().collect::<Vec<_>>();

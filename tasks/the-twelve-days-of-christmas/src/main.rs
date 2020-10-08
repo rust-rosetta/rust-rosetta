@@ -19,7 +19,7 @@ fn main() {
         "Twelve Drummers Drumming",
     ];
 
-    #[cfg_attr(feature = "cargo-clippy", allow(needless_range_loop))]
+    #[allow(clippy::needless_range_loop)]
     for i in 0..12 {
         println!("On the {} day of Christmas,", days[i]);
         println!("My true love gave to me:");

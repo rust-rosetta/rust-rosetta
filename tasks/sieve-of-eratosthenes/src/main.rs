@@ -5,7 +5,7 @@ fn int_sqrt(n: usize) -> usize {
 }
 
 /// Return the prime numbers up to limit
-#[cfg_attr(feature = "clippy", allow(needless_range_loop))]
+#[allow(clippy::needless_range_loop)]
 fn simple_sieve(limit: usize) -> Vec<usize> {
     if limit < 2 {
         return vec![];

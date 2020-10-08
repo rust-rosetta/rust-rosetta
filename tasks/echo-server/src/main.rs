@@ -44,7 +44,7 @@ fn echo_session(stream: TcpStream) -> io::Result<()> {
 }
 
 const HOST: &str = "127.0.0.1";
-#[cfg_attr(feature = "cargo-clippy", allow(unreadable_literal))]
+#[allow(clippy::unreadable_literal)]
 const PORT: u16 = 12321;
 
 pub fn main() {

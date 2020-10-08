@@ -49,7 +49,7 @@ fn all_sums(vec: &mut [f32]) -> Vec<f32> {
     res
 }
 
-#[cfg_attr(feature = "cargo-clippy", allow(approx_constant))]
+#[allow(clippy::approx_constant)]
 fn main() {
     let v = vec![10_000f32, 3.14159, 2.71828];
     let sums = all_sums(&mut v.clone());
@@ -59,7 +59,7 @@ fn main() {
 }
 
 #[test]
-#[cfg_attr(feature = "cargo-clippy", allow(approx_constant))]
+#[allow(clippy::approx_constant)]
 fn test_kahansum() {
     let v = vec![10000.0f32, 3.14159, 2.71828];
     let sums = all_sums(&mut v.clone());
