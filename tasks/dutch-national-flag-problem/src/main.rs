@@ -45,7 +45,7 @@ fn main() {
         println!("random flag {}", color_to_string(&color_array));
     }
 
-    color_array.sort();
+    color_array.sort_unstable();
     println!("a dutch flag {}", color_to_string(&color_array));
 }
 

@@ -13,7 +13,7 @@ struct SortIndex {
 
 impl SortIndex {
     fn new(x: usize, y: usize) -> SortIndex {
-        SortIndex { x: x, y: y }
+        SortIndex { x, y }
     }
 }
 

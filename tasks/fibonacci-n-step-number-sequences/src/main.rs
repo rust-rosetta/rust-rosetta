@@ -29,11 +29,7 @@ fn print(buf: Vec<u64>, len: usize) {
         sum += elt;
         print!("\t{}", elt);
     }
-    let iter = GenFibonacci {
-        buf: buf,
-        sum: sum,
-        idx: 0,
-    };
+    let iter = GenFibonacci { buf, sum, idx: 0 };
     for x in iter.take(len) {
         print!("\t{}", x);
     }

@@ -8,4 +8,4 @@ url = "http://rosettacode.org/wiki/Active_object"
 
 [dependencies]
 num = "0.2"
-crossbeam-channel = "0.3.8"
+crossbeam-channel = "0.4.4"

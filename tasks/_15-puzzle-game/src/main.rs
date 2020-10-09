@@ -75,10 +75,7 @@ impl P15 {
         for i in 1..16 {
             let pos = board
                 .iter()
-                .position(|&cell| match cell {
-                    Cell::Card(value) if value == i => true,
-                    _ => false,
-                })
+                .position(|&cell| matches!(cell, Cell::Card(value) if value == i))
                 .unwrap();
 
             if pos + 1 != i {

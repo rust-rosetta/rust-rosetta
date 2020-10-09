@@ -27,7 +27,7 @@ impl CountingSemaphore {
     pub fn new(max: usize, backoff: Duration) -> CountingSemaphore {
         CountingSemaphore {
             count: AtomicUsize::new(max),
-            backoff: backoff,
+            backoff,
         }
     }
 
@@ -76,7 +76,7 @@ fn metered(duration: Duration) {
     for i in 0..NUM_WORKERS {
         let sem = Arc::clone(&sem);
         let tx = tx.clone();
-        spawn(move || -> () {
+        spawn(move || {
             // Acquire the resource
             let guard = sem.acquire();
             let count = sem.count();

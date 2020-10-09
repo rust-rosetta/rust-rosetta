@@ -8,9 +8,9 @@ impl Matrix {
     fn new(elements: Vec<f32>, height: u32, width: u32) -> Matrix {
         // Should check for dimensions but omitting to be succient
         Matrix {
-            elements: elements,
-            height: height,
-            width: width,
+            elements,
+            height,
+            width,
         }
     }
 

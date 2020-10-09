@@ -39,8 +39,8 @@ fn load_pgm(filename: &str) -> ImageGray8 {
     // Create image and allocate buffer
 
     let mut img = ImageGray8 {
-        width: width,
-        height: height,
+        width,
+        height,
         data: repeat(0u8).take(width * height).collect(),
     };
 

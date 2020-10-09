@@ -89,8 +89,8 @@ fn main() {
         mem::swap(&mut world, &mut next);
 
         // Use VT100 cursor control sequences to animate in-place
-        print!("\x1b[{}A", 8);
-        print!("\x1b[{}D", 14);
+        print!("\x1b[8A");
+        print!("\x1b[14D");
         thread::sleep(Duration::from_millis(100));
     }
 }

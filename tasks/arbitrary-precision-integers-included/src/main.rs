@@ -9,7 +9,7 @@ fn big_pow(base: &BigInt, exp: BigInt) -> BigInt {
     }
     let mut tmp = base.clone();
     for _ in num::range(BigInt::from(1), exp) {
-        tmp = tmp * base;
+        tmp *= base;
     }
     tmp
 }

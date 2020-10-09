@@ -62,7 +62,7 @@ fn check_win(board: Board) -> GameState {
     }
 
     // check if it's not a draw
-    let is_draw = board.iter().flat_map(|row| row).any(is_empty);
+    let is_draw = board.iter().flatten().any(is_empty);
     if is_draw {
         Playing
     } else {

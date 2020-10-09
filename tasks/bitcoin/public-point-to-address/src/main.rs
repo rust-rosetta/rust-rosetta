@@ -3,8 +3,8 @@ use ripemd160::{Digest, Ripemd160};
 
 use hex::FromHex;
 
-static X: &'static str = "50863AD64A87AE8A2FE83C1AF1A8403CB53F53E486D8511DAD8A04887E5B2352";
-static Y: &'static str = "2CD470243453A299FA9E77237716103ABC11A1DF38855ED6F2EE187E9C582BA6";
+static X: &str = "50863AD64A87AE8A2FE83C1AF1A8403CB53F53E486D8511DAD8A04887E5B2352";
+static Y: &str = "2CD470243453A299FA9E77237716103ABC11A1DF38855ED6F2EE187E9C582BA6";
 static ALPHABET: [char; 58] = [
     '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'J', 'K',
     'L', 'M', 'N', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'a', 'b', 'c', 'd', 'e',

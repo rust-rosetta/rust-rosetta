@@ -75,7 +75,7 @@ impl KDTreeNode {
         };
 
         KDTreeNode {
-            point: pivot.clone(),
+            point: pivot,
             dim,
             left,
             right,
@@ -238,16 +238,14 @@ where
     // Tried using an unboxed closure to get around this but couldn't get it to work.
     pivot_index = partition_by(arr, pivot_index, &|a: &T, b: &T| cmp(a, b));
     let array_len = arr.len();
-    if position == pivot_index {
-        arr[position].clone()
-    } else if position < pivot_index {
-        quickselect_by(&mut arr[0..pivot_index], position, cmp)
-    } else {
-        quickselect_by(
+    match position.cmp(&pivot_index) {
+        Ordering::Equal => arr[position].clone(),
+        Ordering::Less => quickselect_by(&mut arr[0..pivot_index], position, cmp),
+        Ordering::Greater => quickselect_by(
             &mut arr[pivot_index + 1..array_len],
             position - pivot_index - 1,
             cmp,
-        )
+        ),
     }
 }
 

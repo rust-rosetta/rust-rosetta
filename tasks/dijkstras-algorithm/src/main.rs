@@ -7,13 +7,20 @@ type Cost = usize;
 type Edge = (Node, Node);
 
 /// The `DistPair` struct is for the priority queue.
-#[derive(Eq, PartialEq, PartialOrd)]
+#[derive(Eq, PartialEq)]
 struct DistPair(Node, Cost);
+
 impl Ord for DistPair {
     fn cmp(&self, other: &DistPair) -> Ordering {
         let DistPair(_, dist_a) = *self;
         let DistPair(_, dist_b) = *other;
         dist_b.cmp(&dist_a) // Intentionally reversed
+    }
+}
+
+impl PartialOrd for DistPair {
+    fn partial_cmp(&self, other: &DistPair) -> Option<Ordering> {
+        Some(self.cmp(other))
     }
 }
 

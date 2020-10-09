@@ -1,3 +1,5 @@
+#![allow(clippy::unnecessary_fold)]
+
 fn main() {
     let arr: [i32; 9] = [1i32, 2, 3, 4, 5, 6, 7, 8, 9];
 

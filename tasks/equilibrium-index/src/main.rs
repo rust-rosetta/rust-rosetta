@@ -3,7 +3,7 @@ extern crate num;
 use num::traits::Zero;
 
 fn equilibrium_indices(v: &[i32]) -> Vec<usize> {
-    let mut right = v.iter().fold(0, |a, &b| a + b);
+    let mut right = v.iter().sum();
     let mut left = i32::zero();
 
     v.iter().enumerate().fold(vec![], |mut out, (i, &el)| {

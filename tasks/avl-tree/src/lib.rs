@@ -431,9 +431,7 @@ impl<K: Ord + Copy + Debug + Display, V: Debug + Copy + Display> AVLTree<K, V> {
         // slug: (pointer to parent of deleted node, side of deleted node)
         let slug = self.delete(k);
         let (pdel, side) = slug;
-        if pdel.is_none() {
-            return None;
-        };
+        pdel?;
         let ndel = self.get_node(pdel);
 
         let mut p = pdel;
@@ -447,51 +445,53 @@ impl<K: Ord + Copy + Debug + Display, V: Debug + Copy + Display> AVLTree<K, V> {
             let d_c = get_deletion_constants(is_left);
 
             let b = self.increment_balance(p, d_c.bal_incr);
-            if b.abs() == 1 {
-                break; // No further adjustments necessary
-            } else if b.abs() > 1 {
-                let child_p = self.get_pointer(p, d_c.this_side);
-                match self.get_balance(child_p) * b {
-                    2 => {
-                        // +1/+1 & -1/-1 patterns
-                        self.single_rotation(d_c.this_side, p, child_p);
-                        self.set_balance(p, 0);
-                        p = self.get_pointer(p, Side::Up);
-                        self.set_balance(p, 0);
-                    }
-                    0 => {
-                        // +1/0 & -1/0 patterns
-                        self.single_rotation(d_c.this_side, p, child_p);
-                        self.set_balance(p, d_c.bal_incr);
-                        p = self.get_pointer(p, Side::Up);
-                        self.set_balance(p, -d_c.bal_incr);
-                        break; // No height change
-                    }
-                    -2 => {
-                        // +1/-1/x & -1/+1/x patterns
-                        let grand_p = self.get_pointer(child_p, d_c.that_side);
-                        self.double_rotation(d_c.this_side, p, child_p, grand_p);
-                        // p is now one child, grand_p is the other, child_p is their parent
-                        match self.get_balance(grand_p) {
-                            -1 => {
-                                self.set_balance(p, d_c.gcm1_parent_adj);
-                                self.set_balance(child_p, d_c.gcm1_child_adj);
-                            }
-                            0 => {
-                                self.set_balance(p, 0);
-                                self.set_balance(child_p, 0);
-                            }
-                            1 => {
-                                self.set_balance(p, d_c.gcp1_parent_adj);
-                                self.set_balance(child_p, d_c.gcp1_child_adj);
-                            }
-                            _ => unreachable!(),
+            match b.abs() {
+                1 => break, // No further adjustments necessary
+                abs if abs > 1 => {
+                    let child_p = self.get_pointer(p, d_c.this_side);
+                    match self.get_balance(child_p) * b {
+                        2 => {
+                            // +1/+1 & -1/-1 patterns
+                            self.single_rotation(d_c.this_side, p, child_p);
+                            self.set_balance(p, 0);
+                            p = self.get_pointer(p, Side::Up);
+                            self.set_balance(p, 0);
                         }
-                        self.set_balance(grand_p, 0);
-                        p = self.get_pointer(p, Side::Up);
+                        0 => {
+                            // +1/0 & -1/0 patterns
+                            self.single_rotation(d_c.this_side, p, child_p);
+                            self.set_balance(p, d_c.bal_incr);
+                            p = self.get_pointer(p, Side::Up);
+                            self.set_balance(p, -d_c.bal_incr);
+                            break; // No height change
+                        }
+                        -2 => {
+                            // +1/-1/x & -1/+1/x patterns
+                            let grand_p = self.get_pointer(child_p, d_c.that_side);
+                            self.double_rotation(d_c.this_side, p, child_p, grand_p);
+                            // p is now one child, grand_p is the other, child_p is their parent
+                            match self.get_balance(grand_p) {
+                                -1 => {
+                                    self.set_balance(p, d_c.gcm1_parent_adj);
+                                    self.set_balance(child_p, d_c.gcm1_child_adj);
+                                }
+                                0 => {
+                                    self.set_balance(p, 0);
+                                    self.set_balance(child_p, 0);
+                                }
+                                1 => {
+                                    self.set_balance(p, d_c.gcp1_parent_adj);
+                                    self.set_balance(child_p, d_c.gcp1_child_adj);
+                                }
+                                _ => unreachable!(),
+                            }
+                            self.set_balance(grand_p, 0);
+                            p = self.get_pointer(p, Side::Up);
+                        }
+                        _ => unreachable!(),
                     }
-                    _ => unreachable!(),
                 }
+                _ => (),
             }
 
             let child_p = p;
@@ -562,9 +562,8 @@ impl<K: Ord + Copy + Debug + Display, V: Debug + Copy + Display> AVLTree<K, V> {
             elems[hindex] = DisplayElement::SpaceRight;
             // Prepare trunk element in case there is a left subtree
             tail = DisplayElement::TrunkSpace;
-        } else
-        // if side == Side::Left
-        {
+        } else {
+            // if side == Side::Left
             elems[hindex] = DisplayElement::SpaceLeft;
             let parent_p = self.get_pointer(p, Side::Up);
             let gp_p = self.get_pointer(parent_p, Side::Up);
@@ -593,10 +592,11 @@ impl<K: Ord + Copy + Debug + Display, V: Debug + Copy + Display> AVLTree<K, V> {
             );
             let _ = write!(
                 f,
-                "{bal:<-width$}\n",
+                "{bal:<-width$}",
                 bal = Red.bold().paint(node.balance),
                 width = 2
             );
+            let _ = writeln!(f);
 
             elems[hindex] = tail;
         }
@@ -612,6 +612,7 @@ impl<K: Ord + Copy + Debug + Display, V: Debug + Copy + Display> AVLTree<K, V> {
         (keys, bals)
     }
 
+    #[allow(clippy::many_single_char_names)]
     fn gather_balances_impl(&self, p: NodePtr, k: &mut Vec<K>, b: &mut Vec<i8>) {
         if p.is_none() {
             return;

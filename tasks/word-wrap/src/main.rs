@@ -16,7 +16,7 @@ impl<'a> WordWrap<'a> {
     fn new(text: &'a str, line_length: usize) -> WordWrap {
         WordWrap {
             words: text.split_whitespace(),
-            line_length: line_length,
+            line_length,
             next_line: String::new(),
         }
     }

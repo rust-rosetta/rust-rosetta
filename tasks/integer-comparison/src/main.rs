@@ -1,3 +1,5 @@
+#![allow(clippy::comparison_chain)]
+
 use std::io::{self, BufRead};
 
 fn main() {

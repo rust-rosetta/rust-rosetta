@@ -45,7 +45,7 @@ fn best_match(a: &[f64]) -> u8 {
     best_rotate
 }
 
-fn freq_every_nth(msg: &Vec<u8>, interval: usize) -> (f64, Vec<char>) {
+fn freq_every_nth(msg: &[u8], interval: usize) -> (f64, Vec<char>) {
     let len = msg.len();
     let mut key = vec!['?'; interval];
     let mut out = [0.0; 26];

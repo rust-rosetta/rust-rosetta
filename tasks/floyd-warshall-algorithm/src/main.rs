@@ -100,6 +100,7 @@ fn path(next: &VertexArray<Option<usize>>, (mut u, v): (usize, usize)) -> Vec<us
     path
 }
 
+#[allow(clippy::print_literal)]
 fn main() {
     let weights = vec![
         ((1, 3), -2),

@@ -183,7 +183,7 @@ fn main() {
                 Ok(_) => {
                     input = input.trim().to_string();
                     // Get the first character
-                    let rc: char = match input.chars().nth(0) {
+                    let rc: char = match input.chars().next() {
                         Some(c) => c,
                         None => {
                             println!("Error: No input");

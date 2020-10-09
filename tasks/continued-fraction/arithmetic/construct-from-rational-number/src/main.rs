@@ -22,7 +22,7 @@ impl Iterator for R2cf {
 }
 
 fn r2cf(n1: i64, n2: i64) -> R2cf {
-    R2cf { n1: n1, n2: n2 }
+    R2cf { n1, n2 }
 }
 
 macro_rules! printcf {

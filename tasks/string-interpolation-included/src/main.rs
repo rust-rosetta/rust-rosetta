@@ -2,6 +2,8 @@
 //!
 //! [doc]: https://doc.rust-lang.org/stable/std/fmt/
 
+#![allow(clippy::print_literal)]
+
 fn main() {
     println!("Mary had a {} lamb", "little");
     // You can specify order

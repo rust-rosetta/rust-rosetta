@@ -7,7 +7,7 @@ struct Vector {
 
 impl Vector {
     fn new(x: f32, y: f32, z: f32) -> Vector {
-        Vector { x: x, y: y, z: z }
+        Vector { x, y, z }
     }
 }
 

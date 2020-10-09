@@ -66,8 +66,8 @@ impl ConfigParams {
         };
         let mut params = ConfigParams::new();
         for line in content.lines().filter(is_not_comment) {
-            if line.is_ok() {
-                params.update_config(&line.unwrap());
+            if let Ok(line) = line {
+                params.update_config(&line);
             }
         }
 

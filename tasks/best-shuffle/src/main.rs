@@ -110,7 +110,7 @@ fn best_shuffle(w: &str) -> Solution {
     let res = String::from(str::from_utf8(&shuffled_bytes).unwrap());
     let res_bytes: Vec<u8> = res.clone().into_bytes();
     Solution {
-        original: w.clone(),
+        original: w,
         shuffled: res,
         score: hamming(&w_bytes, &res_bytes),
     }

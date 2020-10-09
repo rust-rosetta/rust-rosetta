@@ -29,7 +29,7 @@ fn sieve(limit: usize) -> Vec<usize> {
 fn square_free(from: u64, to: u64) -> Vec<u64> {
     let limit = ((to as f64).sqrt()) as usize;
     let primes = sieve(limit);
-    let results = (from..=to)
+    (from..=to)
         .filter(|i| {
             primes
                 .iter()
@@ -38,8 +38,7 @@ fn square_free(from: u64, to: u64) -> Vec<u64> {
                 .take_while(|p2| *p2 <= *i)
                 .all(|p2| *i % p2 != 0)
         })
-        .collect();
-    results
+        .collect()
 }
 
 const TRILLION: u64 = 1000000000000;
@@ -68,7 +67,7 @@ fn main() {
 
     println!("\n\nNumber of square-free integers:");
     (2..7).map(|i| (10 as u64).pow(i)).for_each(|n| {
-        println!("  from {} to {} = {}", 1, n, square_free(1, n).len());
+        println!("  from 1 to {} = {}", n, square_free(1, n).len());
     });
 }
 

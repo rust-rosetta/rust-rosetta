@@ -10,7 +10,7 @@ pub struct Table {
 impl Table {
     pub fn new(rows: Vec<Vec<String>>) -> Table {
         Table {
-            rows: rows,
+            rows,
             ordering_column: 0,
             reverse: false,
             ordering_function: |str1, str2| str1.cmp(str2),

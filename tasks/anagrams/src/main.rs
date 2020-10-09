@@ -6,7 +6,7 @@ use std::io::BufReader;
 
 fn sorted_characters(string: &str) -> String {
     let mut chars = string.chars().collect::<Vec<char>>();
-    chars.sort();
+    chars.sort_unstable();
     chars.iter().cloned().collect()
 }
 

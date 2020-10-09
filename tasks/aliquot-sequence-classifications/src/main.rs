@@ -15,9 +15,7 @@ fn classify_aliquot(num: i64) -> (AliquotType, Vec<i64>) {
     let mut terms = Some(num).into_iter().collect::<Vec<_>>();
     for i in 0..16 {
         let n = terms[i];
-        let divsum = (1..(n + 1) / 2 + 1)
-            .filter(|&x| n % x == 0 && n != x)
-            .fold(0, |sum, x| sum + x);
+        let divsum = (1..(n + 1) / 2 + 1).filter(|&x| n % x == 0 && n != x).sum();
         let classification = if divsum == 0 {
             Some(AliquotType::Terminating)
         } else if divsum > limit {

@@ -21,7 +21,7 @@ pub fn validate_isin(isin: &str) -> bool {
             if c.is_ascii_digit() {
                 vec![c]
             } else {
-                (c + 10 - ('A' as u8)).to_string().into_bytes()
+                (c + 10 - (b'A')).to_string().into_bytes()
             }
         })
         .collect::<Vec<u8>>();
@@ -29,7 +29,7 @@ pub fn validate_isin(isin: &str) -> bool {
     let string = std::str::from_utf8(&s2).unwrap();
     let number = string.parse::<u64>().unwrap();
 
-    return luhn_test(number as u64);
+    luhn_test(number as u64)
 }
 
 #[cfg(test)]

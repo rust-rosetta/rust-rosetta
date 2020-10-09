@@ -54,7 +54,7 @@ fn csv_sum(csv: &str) -> Result<Vec<Vec<String>>, String> {
                         'sum: for value in f64_values {
                             match value {
                                 Ok(v) => {
-                                    sum = sum.and_then(|f64_value| Ok(f64_value + v));
+                                    sum = sum.map(|f64_value| f64_value + v);
                                 }
                                 Err(e) => {
                                     sum = Err(format!(
@@ -83,7 +83,7 @@ fn csv_sum(csv: &str) -> Result<Vec<Vec<String>>, String> {
             })
         }
     }
-    .and_then(|_| Ok(lines))
+    .map(|_| lines)
 }
 
 fn vec_csv_to_string(csv: &[Vec<String>]) -> String {

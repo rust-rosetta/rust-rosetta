@@ -104,7 +104,7 @@ fn semi_parallel_n_queens(n: i32) -> usize {
         valid_spots ^= spot;
         receivers.push(rx);
 
-        spawn(move || -> () {
+        spawn(move || {
             tx.send(n_queens_helper(
                 all_ones,
                 (left_diags | spot) << 1,
@@ -115,11 +115,7 @@ fn semi_parallel_n_queens(n: i32) -> usize {
         });
     }
 
-    receivers
-        .iter()
-        .map(|r| r.recv().unwrap())
-        .fold(0, |a, b| a + b)
-        + ((columns == all_ones) as usize)
+    receivers.iter().map(|r| r.recv().unwrap()).sum::<usize>() + ((columns == all_ones) as usize)
 }
 
 #[cfg(test)]

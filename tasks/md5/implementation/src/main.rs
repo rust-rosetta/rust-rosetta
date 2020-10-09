@@ -139,9 +139,8 @@ fn md5(initial_msg: &[u8]) -> MD5 {
     let mut msg = initial_msg.to_vec();
     msg.push(0x80u8); // append the "1" bit; most significant bit is "first"
 
-    for _ in (initial_len + 1)..new_len {
-        msg.push(0); // append "0" bits
-    }
+    // append "0" bits
+    msg.resize(new_len as usize, 0);
 
     // append the len in bits at the end of the buffer.
     msg.extend_from_slice(&to_bytes(initial_len << 3));

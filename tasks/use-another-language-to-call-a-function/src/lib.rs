@@ -30,6 +30,7 @@ use libc::{c_char, c_int, size_t};
 
 #[no_mangle]
 #[allow(non_snake_case)]
+#[allow(clippy::missing_safety_doc)]
 pub unsafe extern "C" fn Query(data: *mut c_char, length: *mut size_t) -> c_int {
     let string = "Here am I";
     if *length + 1 < string.len() {

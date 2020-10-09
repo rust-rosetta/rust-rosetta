@@ -32,7 +32,7 @@ fn fix_tags(languages: &[&str], text: &str) -> String {
             .into_owned();
     }
 
-    replaced_text.to_owned()
+    replaced_text
 }
 
 fn main() {

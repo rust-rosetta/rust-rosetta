@@ -1,7 +1,5 @@
 fn sum_of_divisors(val: u32) -> u32 {
-    (1..val / 2 + 1)
-        .filter(|n| val % n == 0)
-        .fold(0, |sum, n| sum + n)
+    (1..val / 2 + 1).filter(|n| val % n == 0).sum()
 }
 
 fn main() {

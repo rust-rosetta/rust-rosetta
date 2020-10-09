@@ -6,8 +6,8 @@ struct PermutationIterator<'a, T: 'a> {
 
 fn permutations<T>(universe: &[T], size: usize) -> PermutationIterator<T> {
     PermutationIterator {
-        universe: universe,
-        size: size,
+        universe,
+        size,
         prev: None,
     }
 }

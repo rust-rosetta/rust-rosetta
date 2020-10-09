@@ -1,16 +1,12 @@
-use std::borrow::ToOwned;
-use std::env::args;
+use std::env;
+use std::error::Error;
 use std::fs::File;
 use std::io::{BufRead, BufReader};
 
-fn main() {
-    let filename = {
-        if let Some(o_s) = args().nth(1) {
-            o_s.to_owned()
-        } else {
-            panic!("You must enter a filename to read line by line")
-        }
-    };
+fn main() -> Result<(), Box<dyn Error>> {
+    let filename = env::args()
+        .nth(1)
+        .ok_or("You must enter a filename to read line by line")?;
 
     let file = File::open(filename).unwrap();
     let reader = BufReader::new(file);
@@ -23,4 +19,6 @@ fn main() {
         }
     }
     println!();
+
+    Ok(())
 }
