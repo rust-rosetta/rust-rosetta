@@ -4,7 +4,7 @@ use std::str::FromStr;
 
 fn main() {
     if env::args().count() != 3 {
-        println!("Usage: {} <filename> <size>", env::args().nth(0).unwrap());
+        println!("Usage: {} <filename> <size>", env::args().next().unwrap());
     } else {
         let filename = env::args().nth(1).unwrap();
         let size = env::args().nth(2).unwrap();

@@ -17,8 +17,8 @@ impl Philosopher {
     fn new(name: &str, left: usize, right: usize) -> Philosopher {
         Philosopher {
             name: name.to_string(),
-            left: left,
-            right: right,
+            left,
+            right,
         }
     }
 

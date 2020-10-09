@@ -33,7 +33,7 @@ pub fn luhn_test(n: u64) -> bool {
     let sum = numbers.fold(0u64, |s, n| {
         s + match n {
             (n, LuhnState::Odd) => n,
-            (n, LuhnState::Even) => digits(n * 2).fold(0, |s, n| s + n),
+            (n, LuhnState::Even) => digits(n * 2).sum(),
         }
     });
     sum % 10 == 0

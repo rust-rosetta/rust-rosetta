@@ -1,19 +1,24 @@
-fn main() -> Result<(), std::num::ParseFloatError> {
-    let args = std::env::args();
-    if args.len() == 2 {
-        let k: f64 = args.skip(1).next().unwrap().parse()?;
-        if k < 0.0 {
-            println!("{:2.2} K is below absolute zero", k);
-        } else {
-            println!(
-                "K {:2.2}\nC {:2.2}\nF {:2.2}\nR {:2.2}",
-                k,
-                kelvin_to_celsius(k),
-                kelvin_to_fahrenheit(k),
-                kelvin_to_rankine(k)
-            );
-        }
+use std::env;
+use std::error::Error;
+
+fn main() -> Result<(), Box<dyn Error>> {
+    let k: f64 = env::args()
+        .nth(1)
+        .ok_or("must supply a temperature")?
+        .parse()?;
+
+    if k < 0.0 {
+        println!("{:2.2} K is below absolute zero", k);
+    } else {
+        println!(
+            "K {:2.2}\nC {:2.2}\nF {:2.2}\nR {:2.2}",
+            k,
+            kelvin_to_celsius(k),
+            kelvin_to_fahrenheit(k),
+            kelvin_to_rankine(k)
+        );
     }
+
     Ok(())
 }
 

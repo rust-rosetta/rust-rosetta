@@ -16,8 +16,8 @@ impl SumCubes {
     fn new(a: u64, b: u64) -> SumCubes {
         SumCubes {
             value: a.pow(3) + b.pow(3),
-            a: a,
-            b: b,
+            a,
+            b,
         }
     }
 }
@@ -96,7 +96,7 @@ fn main() {
     for (at, ways) in numbers
         .take(2006)
         .enumerate()
-        .filter(|&(at, _)| at + 1 <= 25 || at + 1 >= 2000)
+        .filter(|&(at, _)| at < 25 || at + 1 >= 2000)
     {
         print!("{:>4}:{:>10}", at + 1, ways[0].value);
         for &SumCubes { a, b, .. } in &ways {

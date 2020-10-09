@@ -1,3 +1,5 @@
+use std::cmp::Ordering;
+
 /// Populate input vector with prime numbers < maxvalue
 fn add_more_prime_numbers(v: &mut Vec<usize>, maxvalue: usize) {
     let mut prime: usize = v[v.len() - 1];
@@ -47,7 +49,7 @@ fn find_divisors(primes: &mut Vec<usize>, num: usize) -> Vec<usize> {
             kp += p;
         }
     }
-    kprime_factors.sort();
+    kprime_factors.sort_unstable();
     kprime_factors.dedup();
     kprime_factors
 }
@@ -66,12 +68,14 @@ fn main() {
     let mut max_divs: (usize, Vec<usize>) = (0, Vec::new());
     for n in 1..20_001 {
         let div_q = find_divisors(&mut primes, n).len();
-        if div_q > max_divs.0 {
-            max_divs.0 = div_q;
-            max_divs.1.clear();
-            max_divs.1.push(n);
-        } else if div_q == max_divs.0 {
-            max_divs.1.push(n);
+        match div_q.cmp(&max_divs.0) {
+            Ordering::Greater => {
+                max_divs.0 = div_q;
+                max_divs.1.clear();
+                max_divs.1.push(n);
+            }
+            Ordering::Equal => max_divs.1.push(n),
+            Ordering::Less => (),
         }
     }
     println!(

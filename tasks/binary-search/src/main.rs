@@ -1,3 +1,5 @@
+use std::cmp::Ordering;
+
 fn main() {
     println!("{:?}", binary_search(&[1, 2, 3, 4, 5, 6], &4));
     println!("{:?}", binary_search_rec(&[1, 2, 3, 4, 5, 6], &4));
@@ -16,12 +18,10 @@ fn binary_search<T: Ord>(haystack: &[T], needle: &T) -> Option<usize> {
         // avoid overflow
         let mid = (low + high) >> 1;
 
-        if haystack[mid] > *needle {
-            high = mid - 1
-        } else if haystack[mid] < *needle {
-            low = mid + 1
-        } else {
-            return Some(mid);
+        match haystack[mid].cmp(needle) {
+            Ordering::Greater => high = mid - 1,
+            Ordering::Less => low = mid + 1,
+            Ordering::Equal => return Some(mid),
         }
     }
     None

@@ -12,7 +12,7 @@ impl MovingAverage {
     fn new(period: u32) -> MovingAverage {
         if period > 0 {
             MovingAverage {
-                period: period,
+                period,
                 list: Vec::new(),
             }
         } else {

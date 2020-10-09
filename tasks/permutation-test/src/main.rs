@@ -16,7 +16,7 @@ fn main() {
 fn factorial(x: i64) -> i64 {
     let mut product = 1;
     for a in 1..(x + 1) {
-        product = product * a;
+        product *= a;
     }
     product
 }
@@ -49,7 +49,7 @@ fn combinations(total: i64, number: i64, data: &[i64]) -> i64 {
     }
 
     let tail = &data[1..];
-    return combinations(total - data[0], number - 1, &tail) + combinations(total, number, &tail);
+    combinations(total - data[0], number - 1, &tail) + combinations(total, number, &tail)
 }
 
 #[cfg(test)]

@@ -26,6 +26,7 @@ fn fib_words(amount: usize) -> Vec<(usize, f64)> {
     data
 }
 
+#[allow(clippy::print_literal)]
 fn main() {
     println!("Calculating... This may take a couple of minutes...\n");
 

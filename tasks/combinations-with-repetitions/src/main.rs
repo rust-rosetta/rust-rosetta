@@ -16,9 +16,9 @@ impl<'a, T> CombinationsWithRepetitions<'a, T> {
         let mut counts = vec![0; arr.len()];
         counts[arr.len() - 1] = k;
         CombinationsWithRepetitions {
-            arr: arr,
-            k: k,
-            counts: counts,
+            arr,
+            k,
+            counts,
             remaining: true,
         }
     }

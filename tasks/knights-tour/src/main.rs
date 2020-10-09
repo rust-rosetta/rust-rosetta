@@ -69,7 +69,7 @@ impl fmt::Display for Board {
             for x in row.iter() {
                 write!(f, "{:3} ", x)?;
             }
-            write!(f, "\n")?;
+            writeln!(f)?;
         }
         Ok(())
     }
@@ -77,7 +77,7 @@ impl fmt::Display for Board {
 
 fn knights_tour(x: i32, y: i32) -> Option<Board> {
     let mut board = Board::new();
-    let mut p = Point { x: x, y: y };
+    let mut p = Point { x, y };
     let mut step = 1;
 
     board.field[p.x as usize][p.y as usize] = step;

@@ -1,3 +1,5 @@
+#![allow(clippy::excessive_precision)]
+
 //! Alternate version: uses a more efficient representation of Hamming numbers:
 //! instead of storing them as `BigUint` directly, it stores the three exponents
 //! i, j and k for 2^i * 3^j * 5 ^k and the logarithm of the number for comparisons
@@ -111,9 +113,9 @@ impl ToBigUint for HammingTriple {
 impl HammingTriple {
     fn new(pow_2: usize, pow_3: usize, pow_5: usize) -> HammingTriple {
         HammingTriple {
-            pow_2: pow_2,
-            pow_3: pow_3,
-            pow_5: pow_5,
+            pow_2,
+            pow_3,
+            pow_5,
             ln: (pow_2 as f64) * LN_2 + (pow_3 as f64) * LN_3 + (pow_5 as f64) * LN_5,
         }
     }

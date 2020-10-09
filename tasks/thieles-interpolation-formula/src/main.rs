@@ -3,9 +3,9 @@ const STEP: f64 = 0.05;
 
 fn main() {
     let x: Vec<f64> = (0..N).map(|i| i as f64 * STEP).collect();
-    let sin = x.iter().map(|x| x.sin()).collect();
-    let cos = x.iter().map(|x| x.cos()).collect();
-    let tan = x.iter().map(|x| x.tan()).collect();
+    let sin = x.iter().map(|x| x.sin()).collect::<Vec<_>>();
+    let cos = x.iter().map(|x| x.cos()).collect::<Vec<_>>();
+    let tan = x.iter().map(|x| x.tan()).collect::<Vec<_>>();
 
     println!(
         "{}\n{}\n{}",
@@ -15,7 +15,7 @@ fn main() {
     );
 }
 
-fn thiele(x: &Vec<f64>, y: &Vec<f64>, xin: f64) -> f64 {
+fn thiele(x: &[f64], y: &[f64], xin: f64) -> f64 {
     let mut p: Vec<Vec<f64>> = (0..N).map(|i| (i..N).map(|_| 0.0).collect()).collect();
 
     (0..N).for_each(|i| p[i][0] = y[i]);

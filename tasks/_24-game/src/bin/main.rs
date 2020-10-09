@@ -63,8 +63,8 @@ pub fn check_values(sample: &mut [u32], input: &str) -> bool {
         })
         .collect::<Vec<u32>>();
 
-    numbers_used.sort();
-    sample.sort();
+    numbers_used.sort_unstable();
+    sample.sort_unstable();
     numbers_used == sample
 }
 
@@ -84,10 +84,10 @@ pub enum Token {
 impl Token {
     /// are tokens associated to a binary operation?
     fn is_binary(&self) -> bool {
-        match *self {
-            Token::Plus | Token::Minus | Token::Slash | Token::Star => true,
-            _ => false,
-        }
+        matches!(
+            *self,
+            Token::Plus | Token::Minus | Token::Slash | Token::Star
+        )
     }
 }
 
@@ -121,12 +121,7 @@ impl<'a> Iterator for Lexer<'a> {
     type Item = (usize, Token);
 
     fn next(&mut self) -> Option<(usize, Token)> {
-        if let Some((idx, c)) = self
-            .input
-            .by_ref()
-            .skip_while(|&(_, c)| c.is_whitespace())
-            .next()
-        {
+        if let Some((idx, c)) = self.input.by_ref().find(|&(_, c)| !c.is_whitespace()) {
             let ret = match c {
                 '(' => Token::LParen,
                 ')' => Token::RParen,

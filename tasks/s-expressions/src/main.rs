@@ -113,12 +113,12 @@ impl<'a> Tokens<'a> {
 
         match chars.next() {
             Some(ch) => Tokens {
-                string: string,
+                string,
                 first: Some(ch),
                 rest: chars.as_str(),
             },
             None => Tokens {
-                string: string,
+                string,
                 first: None,
                 rest: string,
             },
@@ -241,7 +241,7 @@ impl<'a> ParseContext<'a> {
     /// Create a new parse context from a given string
     fn new(string: &'a str) -> ParseContext<'a> {
         ParseContext {
-            string: string,
+            string,
             arena: None,
             stack: Vec::new(),
         }
@@ -267,16 +267,16 @@ impl<'a> SExp<'a> {
                 // recursively call encode on each member, and then write a right parenthesis.  The
                 // only reason the logic is as long as it is is to make sure we don't write
                 // unnecessary spaces between parentheses in the zero or one element cases.
-                write!(writer, "{}", '(')?;
+                write!(writer, "(")?;
                 let mut iter = l.iter();
                 if let Some(sexp) = iter.next() {
                     sexp.encode(writer)?;
                     for sexp in iter {
-                        write!(writer, "{}", ' ')?;
+                        write!(writer, " ")?;
                         sexp.encode(writer)?;
                     }
                 }
-                write!(writer, "{}", ')')?;
+                write!(writer, ")")?;
                 Ok(())
             }
             Str(s) => {

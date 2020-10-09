@@ -5,8 +5,8 @@ fn getfill(pattern: &[usize]) -> usize {
     for (idx, val) in pattern.iter().enumerate() {
         let l_peak = pattern[..idx].iter().max();
         let r_peak = pattern[idx + 1..].iter().max();
-        if l_peak.is_some() && r_peak.is_some() {
-            let peak = min(l_peak.unwrap(), r_peak.unwrap());
+        if let (Some(l_peak), Some(r_peak)) = (l_peak, r_peak) {
+            let peak = min(l_peak, r_peak);
             if peak > val {
                 total += peak - val;
             }

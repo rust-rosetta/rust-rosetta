@@ -17,14 +17,12 @@ impl Display for Coefficient {
             " {} {}e({})",
             if c < 0. {
                 "-"
+            } else if f.alternate() {
+                " "
             } else {
-                if f.alternate() {
-                    " "
-                } else {
-                    "+"
-                }
+                "+"
             },
-            if c.abs() == 1. {
+            if (c.abs() - 1.).abs() < f64::EPSILON {
                 "".to_string()
             } else {
                 c.abs().to_string() + "*"
@@ -38,7 +36,7 @@ fn usage() {
     println!("Usage: display-linear-combination a1 [a2 a3 ...]");
 }
 
-fn linear_combination(coefficients: &Vec<f64>) -> String {
+fn linear_combination(coefficients: &[f64]) -> String {
     let mut string = String::new();
 
     let mut iter = coefficients.iter().enumerate();
@@ -84,7 +82,7 @@ fn main() {
     }
 
     // no arguments, print usage and exit
-    if coefficients.len() == 0 {
+    if coefficients.is_empty() {
         usage();
         return;
     }

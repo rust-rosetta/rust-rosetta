@@ -119,7 +119,7 @@ fn compute_stats(clusters: &[Cluster]) -> Stats {
     }
 
     Stats {
-        centroids: centroids,
+        centroids,
         mean_d_from_centroid: DVector::from_row_slice(means_vec.len(), means_vec.as_slice()),
     }
 }
@@ -154,7 +154,7 @@ fn lloyd<'a>(
             print_dvec(cen);
             print!(" {:1.2} | ", mu);
         }
-        print!("{:1.5}\n", err);
+        println!("{:1.5}", err);
     }
 
     println!("Stoppage condition not reached by iteration {}", max_iter);
@@ -282,8 +282,8 @@ fn main() {
     for (i, cluster) in clusters.iter().enumerate() {
         print!(" {:>1}    ", i);
         print_dvec(&stats.centroids[i]);
-        print!(
-            "      {:1.2}       {:>4}\n",
+        println!(
+            "      {:1.2}       {:>4}",
             stats.mean_d_from_centroid[i],
             cluster.members.len()
         );

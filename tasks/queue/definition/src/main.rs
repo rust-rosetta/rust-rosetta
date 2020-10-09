@@ -38,10 +38,7 @@ impl<T> Queue<T> {
     }
 
     pub fn enqueue(&mut self, elem: T) {
-        let mut new_tail = Box::new(Item {
-            elem: elem,
-            next: None,
-        });
+        let mut new_tail = Box::new(Item { elem, next: None });
 
         let raw_tail: *mut _ = &mut *new_tail;
 
@@ -79,13 +76,13 @@ impl<T> Queue<T> {
 
     pub fn iter(&self) -> Iter<T> {
         Iter {
-            next: self.head.as_ref().map(|item| &**item),
+            next: self.head.as_deref(),
         }
     }
 
     pub fn iter_mut(&mut self) -> IterMut<T> {
         IterMut {
-            next: self.head.as_mut().map(|item| &mut **item),
+            next: self.head.as_deref_mut(),
         }
     }
 }
@@ -127,7 +124,7 @@ impl<'a, T> Iterator for Iter<'a, T> {
 
     fn next(&mut self) -> Option<Self::Item> {
         self.next.map(|item| {
-            self.next = item.next.as_ref().map(|item| &**item);
+            self.next = item.next.as_deref();
             &item.elem
         })
     }
@@ -138,7 +135,7 @@ impl<'a, T> Iterator for IterMut<'a, T> {
 
     fn next(&mut self) -> Option<Self::Item> {
         self.next.take().map(|item| {
-            self.next = item.next.as_mut().map(|item| &mut **item);
+            self.next = item.next.as_deref_mut();
             &mut item.elem
         })
     }

@@ -23,14 +23,12 @@ fn main() {
     let line = "riG   rePEAT copies  put mo   rest    types   fup.    6       poweRin";
     let mut words_vec: Vec<String> = vec![];
     for word in line.split_ascii_whitespace() {
-        let split = commands.split_ascii_whitespace();
-        let abbr = split
-            .filter(|x| {
-                x.to_ascii_lowercase()
-                    .starts_with(&word.to_ascii_lowercase())
-                    && word.len() >= *count_hashtable.get(x).unwrap()
-            })
-            .next();
+        let mut split = commands.split_ascii_whitespace();
+        let abbr = split.find(|x| {
+            x.to_ascii_lowercase()
+                .starts_with(&word.to_ascii_lowercase())
+                && word.len() >= *count_hashtable.get(x).unwrap()
+        });
         words_vec.push(match abbr {
             Some(word) => word.to_ascii_uppercase(),
             None => String::from("*error*"),

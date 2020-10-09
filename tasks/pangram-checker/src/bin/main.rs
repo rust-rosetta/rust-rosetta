@@ -40,7 +40,7 @@ pub fn is_pangram_via_sort(s: &str) -> bool {
         .filter(|&chr| chr >= 'a' && chr <= 'z')
         .collect();
 
-    chars.sort();
+    chars.sort_unstable();
     chars.dedup();
 
     chars.len() == 26

@@ -82,7 +82,7 @@ fn print_fangs(x: u64, fangs: Vec<u64>) {
             print!("{} x {}, ", fang, x / fang);
         }
     }
-    print!("\n");
+    println!();
 }
 
 fn main() {

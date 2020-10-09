@@ -1,3 +1,5 @@
+#![allow(clippy::excessive_precision)]
+
 struct IIRFilter<'f>(&'f [f32], &'f [f32]);
 
 impl<'f> IIRFilter<'f> {

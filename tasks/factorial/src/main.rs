@@ -11,7 +11,7 @@ fn factorial_recursive(n: usize) -> usize {
 
 /// Calculate the factorial using a fold
 fn factorial_iterative(n: usize) -> usize {
-    (1..n + 1).fold(1, |p, t| p * t)
+    (1..n + 1).product()
 }
 
 /// Calculate the factorial using a for loop

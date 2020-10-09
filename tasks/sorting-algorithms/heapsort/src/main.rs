@@ -54,7 +54,7 @@ fn sift_down<T: Ord>(a: &mut [T], start: usize, end: usize) {
         let mut child: usize = root * 2 + 1 as usize;
 
         // if the chile has a sibling and the child's value is less that its sibling's...
-        if child + 1 <= end && a[child] < a[child + 1] {
+        if child < end && a[child] < a[child + 1] {
             // .. then point to the right child instead
             child += 1;
         }

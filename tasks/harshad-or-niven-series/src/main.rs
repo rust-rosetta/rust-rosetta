@@ -11,5 +11,5 @@ fn main() {
     for _ in 0u32..20 {
         print!("{} ", harshads.next().unwrap())
     }
-    println!("\n{}", harshads.skip_while(|&h| h <= 1000).next().unwrap());
+    println!("\n{}", harshads.find(|&h| h > 1000).unwrap());
 }

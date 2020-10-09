@@ -8,9 +8,9 @@ struct MarkovRule {
 impl MarkovRule {
     fn new(pattern: String, replacement: String, stop: bool) -> MarkovRule {
         MarkovRule {
-            pattern: pattern,
-            replacement: replacement,
-            stop: stop,
+            pattern,
+            replacement,
+            stop,
         }
     }
 }
@@ -27,10 +27,7 @@ impl MarkovAlgorithm {
         for line in s
             .lines()
             .map(|l| l.trim())
-            .filter(|l| match l.chars().next() {
-                Some(c) if c != '#' => true,
-                _ => false,
-            })
+            .filter(|l| matches!(l.chars().next(), Some(c) if c != '#'))
         {
             // Ignore comments
 
@@ -52,10 +49,7 @@ impl MarkovAlgorithm {
                     let line_end = line[arrow + 3..].trim_start();
 
                     // check for . (stop)
-                    let stop = match line_end.chars().next() {
-                        Some('.') => true,
-                        _ => false,
-                    };
+                    let stop = matches!(line_end.chars().next(), Some('.'));
 
                     // extract replacement
                     let replacement = if stop { &line_end[1..] } else { line_end };
@@ -67,7 +61,7 @@ impl MarkovAlgorithm {
                 }
             }
         }
-        let rule_set = MarkovAlgorithm { rules: rules };
+        let rule_set = MarkovAlgorithm { rules };
         Ok(rule_set)
     }
 

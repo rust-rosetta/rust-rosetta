@@ -26,7 +26,7 @@ pub fn checkpoint() {
         let arc = Arc::clone(&arc);
         let tx = tx.clone();
         // Spawn a new worker
-        spawn(move || -> () {
+        spawn(move || {
             let (ref barrier, ref events) = *arc;
             // Assign an event to this task
             let event = &events[i];
