@@ -21,9 +21,6 @@ enum TaskParseError {
     /// Something went wrong with the HTTP request to the API.
     Http(reqwest::Error),
 
-    /// Could not parse a URL
-    Url(reqwest::UrlError),
-
     /// There was a problem parsing the API response into JSON.
     Json(serde_json::Error),
 
@@ -34,12 +31,6 @@ enum TaskParseError {
 impl From<serde_json::Error> for TaskParseError {
     fn from(err: serde_json::Error) -> Self {
         TaskParseError::Json(err)
-    }
-}
-
-impl From<reqwest::UrlError> for TaskParseError {
-    fn from(err: reqwest::UrlError) -> Self {
-        TaskParseError::Url(err)
     }
 }
 
@@ -73,7 +64,7 @@ fn query_api(
     category_name: &str,
     continue_params: &BTreeMap<String, String>,
 ) -> Result<Value, TaskParseError> {
-    let mut url = Url::parse("http://rosettacode.org/mw/api.php")?;
+    let mut url = Url::parse("http://rosettacode.org/mw/api.php").expect("invalid URL");
     url.query_pairs_mut()
         .append_pair("action", "query")
         .append_pair("list", "categorymembers")
@@ -82,7 +73,7 @@ fn query_api(
         .append_pair("format", "json")
         .extend_pairs(continue_params);
 
-    Ok(reqwest::get(url)?.json()?)
+    Ok(reqwest::blocking::get(url)?.json()?)
 }
 
 /// Given a JSON object, parses the task information from the MediaWiki API response.

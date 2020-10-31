@@ -18,7 +18,8 @@ use std::path::{Path, PathBuf};
 use anyhow::Error;
 use lazy_static::lazy_static;
 use regex::Regex;
-use reqwest::{Client, Url};
+use reqwest::blocking::Client;
+use reqwest::Url;
 
 use local::LocalTask;
 use remote::{RemoteTask, Response};
