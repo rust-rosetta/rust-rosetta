@@ -7,4 +7,4 @@ url = "http://rosettacode.org/wiki/Walk_a_directory/Non-recursively"
 
 [dependencies]
 regex = "1"
-structopt = "0.2"
+structopt = "0.3.20"
