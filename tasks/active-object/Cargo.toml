@@ -7,5 +7,5 @@ edition = "2018"
 url = "http://rosettacode.org/wiki/Active_object"
 
 [dependencies]
-num = "0.2"
+num = "0.3.0"
 crossbeam-channel = "0.4.4"

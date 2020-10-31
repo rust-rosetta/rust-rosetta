@@ -12,7 +12,7 @@ fn extract_timestamp(raw_html: &str) -> Option<regex::Match> {
 }
 
 fn main() -> Result<(), Box<dyn Error>> {
-    let raw_html = reqwest::get(A_URL)?.text()?;
+    let raw_html: String = reqwest::blocking::get(A_URL)?.text()?;
     if let Some(timestamp) = extract_timestamp(&raw_html) {
         print!("{}", timestamp.as_str());
     } else {

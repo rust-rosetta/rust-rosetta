@@ -111,7 +111,8 @@ struct Opt {
     /// Filter tasks printed by the program
     #[structopt(
         long = "filter",
-        raw(possible_values = "&Filter::variants()", case_insensitive = "true"),
+        possible_values = &Filter::variants(),
+        case_insensitive = true,
         default_value = "all"
     )]
     filter: Filter,

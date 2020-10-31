@@ -5,7 +5,7 @@ authors = ["Polochon-street <polochonstreet@gmx.fr>"]
 edition = "2018"
 
 [dependencies]
-num = "0.2"
+num = "0.3.0"
 
 [package.metadata.rosettacode]
 url = "https://rosettacode.org/wiki/Totient_function"

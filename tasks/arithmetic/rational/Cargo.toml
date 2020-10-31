@@ -6,4 +6,4 @@ version = "0.1.0"
 url = "http://rosettacode.org/wiki/Arithmetic/Rational"
 
 [dependencies]
-num = "0.2"
+num = "0.3.0"

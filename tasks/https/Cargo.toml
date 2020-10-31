@@ -6,4 +6,4 @@ version = "0.1.0"
 url = "http://rosettacode.org/wiki/HTTPS"
 
 [dependencies]
-reqwest = "0.9.11"
+reqwest = "0.10.8"

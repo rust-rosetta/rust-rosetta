@@ -66,7 +66,7 @@ fn construct_query_task_content(task_id: &str) -> Url {
 }
 
 fn query_api(url: Url) -> Result<Value, ParseError> {
-    Ok(reqwest::get(url)?.json()?)
+    Ok(reqwest::blocking::get(url)?.json()?)
 }
 
 fn parse_all_tasks(reply: &Value) -> Result<Vec<Task>, ParseError> {
