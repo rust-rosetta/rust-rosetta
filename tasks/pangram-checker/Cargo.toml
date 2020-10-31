@@ -1,9 +1,15 @@
 [package]
 name = "pangram-checker"
 version = "0.1.0"
+edition = "2018"
 authors = ["Ky Waegel <kwaegel@users.noreply.github.com>"]
 
 [package.metadata.rosettacode]
 url = "http://rosettacode.org/wiki/Pangram_checker"
 
-[dependencies]
+[dev-dependencies]
+criterion = "0.3.3"
+
+[[bench]]
+name = "benchmarks"
+harness = false

@@ -1,6 +1,14 @@
 [package]
 name = "n-queens-problem"
 version = "0.1.0"
+edition = "2018"
 
 [package.metadata.rosettacode]
 url = "http://rosettacode.org/wiki/N-queens_problem"
+
+[dev-dependencies]
+criterion = "0.3.3"
+
+[[bench]]
+name = "benchmarks"
+harness = false
