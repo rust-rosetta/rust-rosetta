@@ -1,0 +1,8 @@
+[package]
+name = "spiral-matrix"
+version = "0.1.0"
+authors = ["Bruno Chenoll"]
+edition = "2018"
+
+[package.metadata.rosettacode]
+url = "https://rosettacode.org/wiki/Spiral_matrix"
