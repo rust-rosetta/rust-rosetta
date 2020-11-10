@@ -77,7 +77,8 @@ authors = [
     "Oleksii Filonenko, https://github.com/filalex77",
     "nyradr, https://github.com/nyradr",
     "Sameer Puri, https://github.com/sameer",
-    "Brian Damitz, https://github.com/bdamitz"
+    "Brian Damitz, https://github.com/bdamitz",
+    "Bruno Chenoll, https://github.com/Bechma"
 ]
 
 [dependencies]
@@ -1201,6 +1202,9 @@ members = [
 
     # http://rosettacode.org/wiki/Sparkline_in_unicode
     "tasks/sparkline-in-unicode",
+
+    # https://rosettacode.org/wiki/Spiral_matrix
+    "tasks/spiral-matrix",
 
     # http://rosettacode.org/wiki/Square-free_integers
     "tasks/square-free-integers",
