@@ -1,0 +1,9 @@
+[package]
+name = "topological-sort"
+version = "0.1.0"
+edition = "2018"
+
+[dependencies]
+
+[package.metadata.rosettacode]
+url = "https://rosettacode.org/wiki/Topological_sort"
