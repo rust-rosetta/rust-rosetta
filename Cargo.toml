@@ -78,7 +78,8 @@ authors = [
     "nyradr, https://github.com/nyradr",
     "Sameer Puri, https://github.com/sameer",
     "Brian Damitz, https://github.com/bdamitz",
-    "Bruno Chenoll, https://github.com/Bechma"
+    "Bruno Chenoll, https://github.com/Bechma",
+    "Charles Koll, https://github.com/kollch"
 ]
 
 [dependencies]
@@ -245,6 +246,9 @@ members = [
 
     # http://rosettacode.org/wiki/Balanced_brackets
     "tasks/balanced-brackets",
+
+    # http://rosettacode.org/wiki/Balanced_ternary
+    "tasks/balanced-ternary",
 
     # http://rosettacode.org/wiki/Benford%27s_law
     "tasks/benfords-law",
