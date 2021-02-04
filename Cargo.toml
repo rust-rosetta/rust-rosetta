@@ -228,6 +228,9 @@ members = [
     # http://rosettacode.org/wiki/Averages/Mean_angle
     "tasks/averages/mean-angle",
 
+    # http://rosettacode.org/wiki/Averages/Mean_time_of_day
+    "tasks/averages/mean-time-of-day",
+
     # http://rosettacode.org/wiki/Averages/Median
     "tasks/averages/median",
 

@@ -1,0 +1,6 @@
+[package]
+name = "mean-time-of-day"
+version = "0.1.0"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Averages/Mean_time_of_day"
