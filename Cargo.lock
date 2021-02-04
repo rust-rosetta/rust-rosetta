@@ -381,6 +381,10 @@ dependencies = [
 ]
 
 [[package]]
+name = "balanced-ternary"
+version = "0.1.0"
+
+[[package]]
 name = "base64"
 version = "0.12.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
