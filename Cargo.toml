@@ -1196,6 +1196,9 @@ members = [
 
     # http://rosettacode.org/wiki/Sorting_algorithms/Stooge_sort
     "tasks/sorting-algorithms/stooge-sort",
+    
+    # https://rosettacode.org/wiki/Topological_sort
+    "tasks/sorting-algorithms/topological-sort",
 
     # http://rosettacode.org/wiki/Soundex
     "tasks/soundex",
