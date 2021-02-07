@@ -1,0 +1,10 @@
+[package]
+name = "plasma-effect"
+version = "0.1.0"
+authors = ["9names"]
+
+[dependencies]
+minifb = "0.16"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Plasma_effect"
