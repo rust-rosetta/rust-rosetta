@@ -971,9 +971,6 @@ members = [
     # http://rosettacode.org/wiki/Plasma_effect
     "tasks/plasma-effect",
 
-    # http://rosettacode.org/wiki/Plasma_effect
-    "tasks/plasma-effect",
-
     # http://rosettacode.org/wiki/Playing_cards
     "tasks/playing-cards",
 
