@@ -79,7 +79,8 @@ authors = [
     "Sameer Puri, https://github.com/sameer",
     "Brian Damitz, https://github.com/bdamitz",
     "Bruno Chenoll, https://github.com/Bechma",
-    "Charles Koll, https://github.com/kollch"
+    "Charles Koll, https://github.com/kollch",
+    "Lucas De Angelis, https://github.com/lucas-deangelis"
 ]
 
 [dependencies]
