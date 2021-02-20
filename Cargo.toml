@@ -337,6 +337,9 @@ members = [
     # http://rosettacode.org/wiki/Checkpoint_synchronization
     "tasks/checkpoint-synchronization",
 
+    # http://rosettacode.org/wiki/Cheryl%27s_birthday
+    "tasks/cheryl-birthday",
+
     # http://rosettacode.org/wiki/Chinese_remainder_theorem
     "tasks/chinese-remainder-theorem",
 

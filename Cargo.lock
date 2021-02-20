@@ -719,6 +719,10 @@ dependencies = [
 ]
 
 [[package]]
+name = "cheryl-birthday"
+version = "0.1.0"
+
+[[package]]
 name = "chinese-remainder-theorem"
 version = "0.1.0"
 
