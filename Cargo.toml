@@ -480,6 +480,9 @@ members = [
     # http://rosettacode.org/wiki/Echo_server
     "tasks/echo-server",
 
+    # http://rosettacode.org/wiki/Egyptian_fractions
+    "tasks/egyptian-fractions",
+
     # http://rosettacode.org/wiki/Element-wise_operations
     "tasks/element-wise-operations",
 

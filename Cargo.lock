@@ -1368,6 +1368,15 @@ name = "echo-server"
 version = "0.1.0"
 
 [[package]]
+name = "egyptian-fractions"
+version = "0.1.0"
+dependencies = [
+ "num-bigint",
+ "num-integer",
+ "num-traits",
+]
+
+[[package]]
 name = "either"
 version = "1.6.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
