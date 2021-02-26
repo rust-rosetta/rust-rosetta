@@ -286,6 +286,9 @@ members = [
     # http://rosettacode.org/wiki/Boolean_values
     "tasks/boolean-values",
 
+    # http://rosettacode.org/wiki/Brazilian_numbers
+    "tasks/brazilian-numbers",
+
     # http://rosettacode.org/wiki/Brownian_tree
     "tasks/brownian-tree",
 

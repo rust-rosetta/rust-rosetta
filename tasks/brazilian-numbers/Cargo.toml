@@ -1,0 +1,12 @@
+[package]
+name = "brazilian-numbers"
+version = "0.1.0"
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+primes = "0.3.0"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Brazilian_numbers"
