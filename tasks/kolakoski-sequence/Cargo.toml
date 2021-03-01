@@ -1,0 +1,11 @@
+[package]
+name = "kolakoski-sequence"
+version = "0.1.0"
+edition = "2018"
+
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Kolakoski_sequence"
+
+[dependencies]
+itertools = "0.10.0"
