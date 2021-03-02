@@ -80,7 +80,8 @@ authors = [
     "Brian Damitz, https://github.com/bdamitz",
     "Bruno Chenoll, https://github.com/Bechma",
     "Charles Koll, https://github.com/kollch",
-    "Lucas De Angelis, https://github.com/lucas-deangelis"
+    "Lucas De Angelis, https://github.com/lucas-deangelis",
+    "9names, https://github.com/9names",
 ]
 
 [dependencies]
@@ -286,6 +287,9 @@ members = [
 
     # http://rosettacode.org/wiki/Boolean_values
     "tasks/boolean-values",
+
+    # http://rosettacode.org/wiki/Brazilian_numbers
+    "tasks/brazilian-numbers",
 
     # http://rosettacode.org/wiki/Brownian_tree
     "tasks/brownian-tree",
@@ -773,6 +777,9 @@ members = [
     # http://rosettacode.org/wiki/Knuth_shuffle
     "tasks/knuth-shuffle",
 
+    # http://rosettacode.org/wiki/Kolakoski_sequence
+    "tasks/kolakoski-sequence",
+
     # http://rosettacode.org/wiki/Langton's_ant
     "tasks/langtons-ant",
 
@@ -970,6 +977,9 @@ members = [
 
     # http://rosettacode.org/wiki/Pick_random_element
     "tasks/pick-random-element",
+
+    # http://rosettacode.org/wiki/Plasma_effect
+    "tasks/plasma-effect",
 
     # http://rosettacode.org/wiki/Playing_cards
     "tasks/playing-cards",

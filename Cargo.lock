@@ -488,6 +488,13 @@ name = "boolean-values"
 version = "0.1.0"
 
 [[package]]
+name = "brazilian-numbers"
+version = "0.1.0"
+dependencies = [
+ "primes",
+]
+
+[[package]]
 name = "break"
 version = "0.1.0"
 dependencies = [
@@ -3660,6 +3667,13 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "3831453b3449ceb48b6d9c7ad7c96d5ea673e9b470a1dc578c2ce6521230884c"
 
 [[package]]
+name = "plasma-effect"
+version = "0.1.0"
+dependencies = [
+ "image",
+]
+
+[[package]]
 name = "playing-cards"
 version = "0.1.0"
 dependencies = [
@@ -3715,6 +3729,12 @@ version = "0.1.0"
 [[package]]
 name = "prime-decomposition"
 version = "0.1.0"
+
+[[package]]
+name = "primes"
+version = "0.3.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "68a61082d8bceecd71a3870e9162002bb75f7ba9c7aa8b76227e887782fef9c8"
 
 [[package]]
 name = "probabilistic-choice"
