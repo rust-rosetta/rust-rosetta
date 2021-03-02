@@ -1,4 +1,4 @@
-fn is_narc(x: u32) -> bool {
+fn is_narcissistic(x: u32) -> bool {
     let digits: Vec<u32> = x
         .to_string()
         .chars()
@@ -16,7 +16,7 @@ fn main() {
     let mut counter = 0;
     let mut i = 0;
     while counter < 25 {
-        if is_narc(i) {
+        if is_narcissistic(i) {
             println!("{}", i);
             counter += 1;
         }
@@ -26,29 +26,29 @@ fn main() {
 
 #[cfg(test)]
 mod tests {
-    use super::is_narc;
+    use super::is_narcissistic;
     #[test]
     fn test_is_narc() {
         let input = 0;
-        let output = is_narc(input);
+        let output = is_narcissistic(input);
         assert_eq!(output, true);
 
         let input = 1;
-        let output = is_narc(input);
+        let output = is_narcissistic(input);
         assert_eq!(output, true);
 
         let input = 153;
-        let output = is_narc(input);
+        let output = is_narcissistic(input);
         assert_eq!(output, true);
     }
     #[test]
     fn test_not_is_narc() {
         let input = 10;
-        let output = is_narc(input);
+        let output = is_narcissistic(input);
         assert_eq!(output, false);
 
         let input = 999999999;
-        let output = is_narc(input);
+        let output = is_narcissistic(input);
         assert_eq!(output, false);
     }
 }
