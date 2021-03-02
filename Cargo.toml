@@ -80,7 +80,8 @@ authors = [
     "Brian Damitz, https://github.com/bdamitz",
     "Bruno Chenoll, https://github.com/Bechma",
     "Charles Koll, https://github.com/kollch",
-    "9names, https://github.com/9names"
+    "Lucas De Angelis, https://github.com/lucas-deangelis",
+    "9names, https://github.com/9names",
 ]
 
 [dependencies]
@@ -340,6 +341,9 @@ members = [
 
     # http://rosettacode.org/wiki/Checkpoint_synchronization
     "tasks/checkpoint-synchronization",
+
+    # http://rosettacode.org/wiki/Cheryl%27s_birthday
+    "tasks/cheryl-birthday",
 
     # http://rosettacode.org/wiki/Chinese_remainder_theorem
     "tasks/chinese-remainder-theorem",
