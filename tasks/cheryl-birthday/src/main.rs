@@ -39,7 +39,7 @@ impl Birthday {
 }
 
 fn solution() -> Option<Birthday> {
-    let choices: Vec<Birthday> = vec![
+    let mut choices: Vec<Birthday> = vec![
         Birthday {
             month: Month::May,
             day: 15,
@@ -84,38 +84,26 @@ fn solution() -> Option<Birthday> {
 
     // Albert knows the month but doesn't know the day.
     // So the month can't be unique within the choices.
-    let filtered = choices
-        .clone()
-        .into_iter()
-        .filter(|birthday| !(&birthday.month_unique_in(&choices)))
-        .collect::<Vec<Birthday>>();
+    let choices_copy = choices.clone();
+    choices.retain(|birthday| !(&birthday.month_unique_in(&choices_copy)));
 
     // Albert also knows that Bernard doesn't know the answer.
     // So the month can't have a unique day.
-    let filtered2 = filtered
-        .clone()
-        .into_iter()
-        .filter(|birthday| !(birthday.month_with_unique_day_in(&filtered)))
-        .collect::<Vec<Birthday>>();
+    let choices_copy = choices.clone();
+    choices.retain(|birthday| !(birthday.month_with_unique_day_in(&choices_copy)));
 
     // Bernard now knows the answer.
     // So the day must be unique within the remaining choices.
-    let filtered3 = filtered2
-        .clone()
-        .into_iter()
-        .filter(|birthday| birthday.day_unique_in(&filtered2))
-        .collect::<Vec<Birthday>>();
+    let choices_copy = choices.clone();
+    choices.retain(|birthday| birthday.day_unique_in(&choices_copy));
 
     // Albert now knows the answer too.
     // So the month must be unique within the remaining choices.
-    let filtered4 = filtered3
-        .clone()
-        .into_iter()
-        .filter(|birthday| birthday.month_unique_in(&filtered3))
-        .collect::<Vec<Birthday>>();
+    let choices_copy = choices.clone();
+    choices.retain(|birthday| birthday.month_unique_in(&choices_copy));
 
-    if filtered4.len() == 1 {
-        Some(filtered4[0])
+    if choices.len() == 1 {
+        Some(choices[0])
     } else {
         None
     }
