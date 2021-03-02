@@ -2637,6 +2637,17 @@ dependencies = [
 ]
 
 [[package]]
+<<<<<<< HEAD
+=======
+name = "kronecker-product"
+version = "0.1.0"
+dependencies = [
+ "ndarray",
+ "num 0.3.0",
+]
+
+[[package]]
+>>>>>>> f88ed1f0 (Implement Kronecker product)
 name = "langtons-ant"
 version = "0.1.0"
 
@@ -2833,7 +2844,16 @@ version = "0.1.15"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "dcad67dcec2d58ff56f6292582377e6921afdf3bfbd533e26fb8900ae575e002"
 dependencies = [
- "rawpointer",
+ "rawpointer 0.1.0",
+]
+
+[[package]]
+name = "matrixmultiply"
+version = "0.2.4"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "916806ba0031cd542105d916a97c8572e1fa6dd79c9c51e7eb43a09ec2dd84c1"
+dependencies = [
+ "rawpointer 0.2.1",
 ]
 
 [[package]]
@@ -3097,8 +3117,13 @@ checksum = "ccb86df349ecf5f549f6e12f6de4972cdd912d0bc290c1ca4d34d4b4b21a6f98"
 dependencies = [
  "alga",
  "approx",
+<<<<<<< HEAD
  "generic-array 0.11.2",
  "matrixmultiply",
+=======
+ "generic-array 0.11.1",
+ "matrixmultiply 0.1.15",
+>>>>>>> f88ed1f0 (Implement Kronecker product)
  "num-complex 0.2.4",
  "num-traits",
  "rand 0.5.6",
@@ -3136,6 +3161,19 @@ dependencies = [
  "cc",
  "libc",
  "pkg-config",
+]
+
+[[package]]
+name = "ndarray"
+version = "0.14.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "6c0d5c9540a691d153064dc47a4db2504587a75eae07bf1d73f7a596ebc73c04"
+dependencies = [
+ "matrixmultiply 0.2.4",
+ "num-complex 0.3.1",
+ "num-integer",
+ "num-traits",
+ "rawpointer 0.2.1",
 ]
 
 [[package]]
@@ -4076,6 +4114,12 @@ name = "rawpointer"
 version = "0.1.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "ebac11a9d2e11f2af219b8b8d833b76b1ea0e054aa0e8d8e9e4cbde353bdf019"
+
+[[package]]
+name = "rawpointer"
+version = "0.2.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "60a357793950651c4ed0f3f52338f53b2f809f32d83a07f72909fa13e4c6c1e3"
 
 [[package]]
 name = "rayon"
