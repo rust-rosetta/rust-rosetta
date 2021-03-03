@@ -426,6 +426,9 @@ members = [
     # http://rosettacode.org/wiki/Date_format
     "tasks/date-format",
 
+    # http://rosettacode.org/wiki/Date_manipulation
+    "tasks/date-manipulation",
+
     # http://rosettacode.org/wiki/Day_of_the_week
     "tasks/day-of-the-week",
 

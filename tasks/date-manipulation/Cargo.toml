@@ -1,0 +1,11 @@
+[package]
+name = "date-manipulation"
+version = "0.1.0"
+edition = "2018"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Date_manipulation"
+
+[dependencies]
+chrono = "0.4"
+chrono-tz = "0.5"
