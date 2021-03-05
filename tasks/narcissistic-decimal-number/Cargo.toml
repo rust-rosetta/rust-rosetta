@@ -1,0 +1,12 @@
+[package]
+name = "narcissistic-decimal-number"
+version = "0.1.0"
+authors = ["Peter Budai <peterbudai@hotmail.com>"]
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Narcissistic_decimal_number"

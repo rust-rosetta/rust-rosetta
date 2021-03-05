@@ -915,6 +915,9 @@ members = [
     # http://rosettacode.org/wiki/N-queens_problem
     "tasks/n-queens-problem",
 
+    # http://rosettacode.org/wiki/Narcissistic_decimal_number
+    "tasks/narcissistic-decimal-number",
+    
     # http://rosettacode.org/wiki/N'th
     "tasks/nth",
 
