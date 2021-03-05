@@ -1125,6 +1125,9 @@ members = [
     # http://rosettacode.org/wiki/Search_a_list
     "tasks/search-a-list",
 
+    # http://rosettacode.org/wiki/SEDOLs
+    "tasks/sedols",
+
     # http://rosettacode.org/wiki/Self-describing_numbers
     "tasks/self-describing-numbers",
 
