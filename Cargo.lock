@@ -24,8 +24,8 @@ dependencies = [
 name = "_2048"
 version = "0.1.0"
 dependencies = [
+ "crossterm",
  "rand 0.7.3",
- "termion",
 ]
 
 [[package]]
@@ -618,7 +618,7 @@ version = "0.4.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "7aa2097be53a00de9e8fc349fea6d76221f398f5c4fa550d420669906962d160"
 dependencies = [
- "mio",
+ "mio 0.6.23",
  "mio-extras",
  "nix",
 ]
@@ -1117,6 +1117,31 @@ dependencies = [
  "autocfg",
  "cfg-if 1.0.0",
  "lazy_static 1.4.0",
+]
+
+[[package]]
+name = "crossterm"
+version = "0.19.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "7c36c10130df424b2f3552fcc2ddcd9b28a27b1e54b358b45874f88d1ca6888c"
+dependencies = [
+ "bitflags",
+ "crossterm_winapi",
+ "lazy_static 1.4.0",
+ "libc",
+ "mio 0.7.9",
+ "parking_lot 0.11.1",
+ "signal-hook",
+ "winapi 0.3.9",
+]
+
+[[package]]
+name = "crossterm_winapi"
+version = "0.7.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "0da8964ace4d3e4a044fd027919b2237000b24315a37c916f61809f1ff2140b9"
+dependencies = [
+ "winapi 0.3.9",
 ]
 
 [[package]]
@@ -1988,7 +2013,7 @@ dependencies = [
  "log",
  "objc",
  "osmesa-sys",
- "parking_lot",
+ "parking_lot 0.10.2",
  "wayland-client",
  "winapi 0.3.9",
  "winit",
@@ -2759,6 +2784,15 @@ dependencies = [
 ]
 
 [[package]]
+name = "lock_api"
+version = "0.4.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "dd96ffd135b2fd7b973ac026d28085defbe8983df057ced3eb4f2130b0831312"
+dependencies = [
+ "scopeguard",
+]
+
+[[package]]
 name = "log"
 version = "0.4.14"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -3037,10 +3071,23 @@ dependencies = [
  "kernel32-sys",
  "libc",
  "log",
- "miow",
+ "miow 0.2.2",
  "net2",
  "slab",
  "winapi 0.2.8",
+]
+
+[[package]]
+name = "mio"
+version = "0.7.9"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "a5dede4e2065b3842b8b0af444119f3aa331cc7cc2dd20388bfb0f5d5a38823a"
+dependencies = [
+ "libc",
+ "log",
+ "miow 0.3.6",
+ "ntapi",
+ "winapi 0.3.9",
 ]
 
 [[package]]
@@ -3051,7 +3098,7 @@ checksum = "52403fe290012ce777c4626790c8951324a2b9e3316b3143779c72b029742f19"
 dependencies = [
  "lazycell",
  "log",
- "mio",
+ "mio 0.6.23",
  "slab",
 ]
 
@@ -3065,6 +3112,16 @@ dependencies = [
  "net2",
  "winapi 0.2.8",
  "ws2_32-sys",
+]
+
+[[package]]
+name = "miow"
+version = "0.3.6"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "5a33c1b55807fbed163481b5ba66db4b2fa6cde694a5027be10fb724206c5897"
+dependencies = [
+ "socket2",
+ "winapi 0.3.9",
 ]
 
 [[package]]
@@ -3265,6 +3322,15 @@ dependencies = [
 ]
 
 [[package]]
+name = "ntapi"
+version = "0.3.6"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "3f6bb902e437b6d86e03cce10a7e2af662292c5dfef23b65899ea3ac9354ad44"
+dependencies = [
+ "winapi 0.3.9",
+]
+
+[[package]]
 name = "nth"
 version = "0.1.0"
 
@@ -3432,12 +3498,6 @@ dependencies = [
 [[package]]
 name = "numerical-integration"
 version = "0.1.0"
-
-[[package]]
-name = "numtoa"
-version = "0.1.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "b8f8bdf33df195859076e54ab11ee78a1b208382d3a26ec40d142ffc1ecc49ef"
 
 [[package]]
 name = "objc"
@@ -3621,8 +3681,19 @@ version = "0.10.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "d3a704eb390aafdc107b0e392f56a82b668e3a71366993b5340f5833fd62505e"
 dependencies = [
- "lock_api",
- "parking_lot_core",
+ "lock_api 0.3.4",
+ "parking_lot_core 0.7.2",
+]
+
+[[package]]
+name = "parking_lot"
+version = "0.11.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "6d7744ac029df22dca6284efe4e898991d28e3085c706c972bcd7da4a27a15eb"
+dependencies = [
+ "instant",
+ "lock_api 0.4.2",
+ "parking_lot_core 0.8.3",
 ]
 
 [[package]]
@@ -3635,6 +3706,20 @@ dependencies = [
  "cloudabi",
  "libc",
  "redox_syscall 0.1.57",
+ "smallvec",
+ "winapi 0.3.9",
+]
+
+[[package]]
+name = "parking_lot_core"
+version = "0.8.3"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "fa7a782938e745763fe6907fc6ba86946d72f49fe7e21de074e08128a99fb018"
+dependencies = [
+ "cfg-if 1.0.0",
+ "instant",
+ "libc",
+ "redox_syscall 0.2.5",
  "smallvec",
  "winapi 0.3.9",
 ]
@@ -4208,15 +4293,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "redox_termios"
-version = "0.1.2"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "8440d8acb4fd3d277125b4bd01a6f38aee8d814b3b5fc09b3f2b825d37d3fe8f"
-dependencies = [
- "redox_syscall 0.2.5",
-]
-
-[[package]]
 name = "regex"
 version = "0.1.80"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -4688,6 +4764,26 @@ name = "sieve-of-eratosthenes"
 version = "0.1.0"
 
 [[package]]
+name = "signal-hook"
+version = "0.1.17"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "7e31d442c16f047a671b5a71e2161d6e68814012b7f5379d269ebd915fac2729"
+dependencies = [
+ "libc",
+ "mio 0.7.9",
+ "signal-hook-registry",
+]
+
+[[package]]
+name = "signal-hook-registry"
+version = "1.3.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "16f1d0fef1604ba8f7a073c7e701f213e056707210e9020af4528e0101ce11a6"
+dependencies = [
+ "libc",
+]
+
+[[package]]
 name = "slab"
 version = "0.4.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -5008,18 +5104,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "termion"
-version = "1.5.6"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "077185e2eac69c3f8379a4298e1e07cd36beb962290d4a51199acf0fdc10607e"
-dependencies = [
- "libc",
- "numtoa",
- "redox_syscall 0.2.5",
- "redox_termios",
-]
-
-[[package]]
 name = "text"
 version = "0.1.0"
 
@@ -5131,7 +5215,7 @@ dependencies = [
  "iovec",
  "lazy_static 1.4.0",
  "memchr 2.3.4",
- "mio",
+ "mio 0.6.23",
  "num_cpus",
  "pin-project-lite 0.1.12",
  "slab",
@@ -5557,7 +5641,7 @@ dependencies = [
  "calloop",
  "downcast-rs",
  "libc",
- "mio",
+ "mio 0.6.23",
  "nix",
  "wayland-commons",
  "wayland-scanner",
@@ -5699,13 +5783,13 @@ dependencies = [
  "lazy_static 1.4.0",
  "libc",
  "log",
- "mio",
+ "mio 0.6.23",
  "mio-extras",
  "ndk",
  "ndk-glue",
  "ndk-sys",
  "objc",
- "parking_lot",
+ "parking_lot 0.10.2",
  "percent-encoding 2.1.0",
  "raw-window-handle",
  "smithay-client-toolkit",

@@ -1,8 +1,15 @@
-extern crate rand;
-
-use std::io;
+use std::convert::TryFrom;
+use std::error::Error;
+use std::io::{self, Write};
 use std::ops::{Index, IndexMut};
 
+use crossterm::{
+    cursor::{Hide, MoveTo, Show},
+    event::{self, Event, KeyCode},
+    execute, queue,
+    style::{Attribute, Color, Print, ResetColor, SetAttribute, SetForegroundColor},
+    terminal::{self, Clear, ClearType},
+};
 use rand::prelude::*;
 
 const GRID_DIMENSION: usize = 4;
@@ -250,14 +257,6 @@ impl Grid {
     }
 }
 
-trait Ui {
-    /// Wait for a key press, and report the key.
-    fn wait_key(&mut self) -> Key;
-
-    /// Draw the game.
-    fn draw(&mut self, game: &Game) -> io::Result<()>;
-}
-
 struct Game {
     grid: Grid,
     state: State,
@@ -312,145 +311,109 @@ impl Game {
     }
 }
 
-#[cfg(unix)]
-mod ui_imp {
-    extern crate termion;
-
-    use super::{Game, Key, State, Ui};
-
-    use std::io::prelude::*;
-    use std::io::{self, Stdin, Stdout};
-
-    use self::termion::event::Key as TermKey;
-    use self::termion::input::Keys;
-    use self::termion::raw::{IntoRawMode, RawTerminal};
-    use self::termion::{color, cursor, style};
-
-    pub struct Termion {
-        keys: Keys<Stdin>,
-        stdout: RawTerminal<Stdout>,
-    }
-
-    impl Termion {
-        pub fn new() -> Self {
-            use ui_imp::termion::input::TermRead;
-
-            let mut stdout = io::stdout().into_raw_mode().unwrap();
-            write!(stdout, "{}", termion::clear::All).unwrap();
-
-            Termion {
-                keys: io::stdin().keys(),
-                stdout,
-            }
-        }
-    }
-
-    impl Ui for Termion {
-        fn wait_key(&mut self) -> Key {
-            while let Some(key) = self.keys.next() {
-                let key = match key.unwrap() {
-                    TermKey::Char('q') => Key::Quit,
-                    TermKey::Up => Key::Up,
-                    TermKey::Down => Key::Down,
-                    TermKey::Left => Key::Left,
-                    TermKey::Right => Key::Right,
+fn wait_key() -> crossterm::Result<Key> {
+    loop {
+        match event::read()? {
+            Event::Key(key) => {
+                let key = match key.code {
+                    KeyCode::Char('q') => Key::Quit,
+                    KeyCode::Up => Key::Up,
+                    KeyCode::Down => Key::Down,
+                    KeyCode::Left => Key::Left,
+                    KeyCode::Right => Key::Right,
                     _ => continue,
                 };
 
-                return key;
+                return Ok(key);
             }
-
-            Key::Quit
-        }
-
-        fn draw(&mut self, game: &Game) -> io::Result<()> {
-            write!(self.stdout, "{}{}", cursor::Hide, termion::clear::All)?;
-            write!(self.stdout, "{}Score: {}", cursor::Goto(16, 1), game.score)?;
-
-            const CELL_WIDTH: usize = 10;
-            const CELL_HEIGHT: usize = 5;
-            const GRID_X_OFFSET: usize = 0;
-            const GRID_Y_OFFSET: usize = 2;
-
-            for row in 0..4 {
-                for col in 0..4 {
-                    let tile = game.grid[(row, col)];
-                    let x = 1 + GRID_X_OFFSET + col * CELL_WIDTH;
-                    let y = GRID_Y_OFFSET + row * CELL_HEIGHT;
-
-                    write!(
-                        self.stdout,
-                        "{}┌────────┐",
-                        cursor::Goto(x as u16, y as u16)
-                    )?;
-
-                    for i in 1..=3 {
-                        let y = y + i;
-                        write!(
-                            self.stdout,
-                            "{}│        │",
-                            cursor::Goto(x as u16, y as u16)
-                        )?;
-                    }
-
-                    if let Some(value) = tile {
-                        let text_x = x + CELL_WIDTH / 2 - (1 + value.to_string().len() / 3);
-                        let text_y = y + CELL_HEIGHT / 2;
-
-                        write!(
-                            self.stdout,
-                            "{}{}{}{}{}{}",
-                            cursor::Goto(text_x as u16, text_y as u16),
-                            style::Bold,
-                            color::Fg(color::LightWhite),
-                            value,
-                            color::Fg(color::Reset),
-                            style::Reset
-                        )?;
-                    }
-
-                    write!(
-                        self.stdout,
-                        "{}└────────┘",
-                        cursor::Goto(x as u16, y as u16 + 4)
-                    )?;
-                }
-            }
-
-            match game.state {
-                State::Won => write!(self.stdout, "{}You won!", cursor::Goto(16, 12))?,
-                State::Lost => write!(self.stdout, "{}You lost!", cursor::Goto(16, 12))?,
-                _ => (),
-            }
-
-            write!(self.stdout, "{}←,↑,→,↓ or q", cursor::Goto(14, 22))?;
-
-            self.stdout.flush()?;
-            Ok(())
+            _ => (),
         }
     }
 }
 
-#[cfg(unix)]
-fn main() {
-    use ui_imp::Termion;
+fn draw<W>(w: &mut W, game: &Game) -> crossterm::Result<()>
+where
+    W: Write,
+{
+    queue!(
+        w,
+        Hide,
+        Clear(ClearType::All),
+        MoveTo(16, 1),
+        Print(format!("Score: {}", game.score)),
+    )?;
 
+    const CELL_WIDTH: u16 = 10;
+    const CELL_HEIGHT: u16 = 5;
+    const GRID_X_OFFSET: u16 = 0;
+    const GRID_Y_OFFSET: u16 = 2;
+
+    for row in 0u16..4 {
+        for col in 0u16..4 {
+            let tile = game.grid[(usize::from(row), usize::from(col))];
+            let x = u16::try_from(1 + GRID_X_OFFSET + col * CELL_WIDTH).unwrap();
+            let y = u16::try_from(GRID_Y_OFFSET + row * CELL_HEIGHT).unwrap();
+
+            queue!(w, MoveTo(x, y), Print("┌────────┐"))?;
+
+            for i in 1..=3 {
+                let y = y + i;
+                queue!(w, MoveTo(x, y), Print("│        │"))?;
+            }
+
+            if let Some(value) = tile {
+                let text_x =
+                    x + CELL_WIDTH / 2 - (1 + u16::try_from(value.to_string().len()).unwrap() / 3);
+                let text_y = y + CELL_HEIGHT / 2;
+
+                queue!(
+                    w,
+                    MoveTo(text_x, text_y),
+                    SetAttribute(Attribute::Bold),
+                    SetForegroundColor(Color::White),
+                    Print(value),
+                    ResetColor,
+                )?;
+            }
+
+            queue!(w, MoveTo(x, y + 4), Print("└────────┘"))?;
+        }
+    }
+
+    match game.state {
+        State::Won => queue!(w, MoveTo(16, 12), Print("You won!"))?,
+        State::Lost => queue!(w, MoveTo(16, 12), Print("You lost!"))?,
+        _ => (),
+    }
+
+    queue!(w, MoveTo(14, 22), Print("←,↑,→,↓ or q"))?;
+
+    w.flush()?;
+
+    Ok(())
+}
+
+fn main() -> Result<(), Box<dyn Error>> {
+    let stdout = io::stdout();
+    let mut stdout = stdout.lock();
     let mut game = Game::new();
-    let mut ui = Termion::new();
+
+    terminal::enable_raw_mode()?;
 
     loop {
-        ui.draw(&game).unwrap();
-        let key = ui.wait_key();
+        draw(&mut stdout, &game)?;
+
+        let key = wait_key()?;
         if let Key::Quit = key {
             break;
         }
         game.step(key);
     }
-}
 
-#[cfg(not(unix))]
-fn main() {
-    println!("This solution is not supported on Windows.");
+    execute!(stdout, Show)?;
+    terminal::disable_raw_mode()?;
+
+    Ok(())
 }
 
 #[cfg(test)]
