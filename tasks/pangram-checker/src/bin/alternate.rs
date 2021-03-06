@@ -6,7 +6,7 @@ fn is_pangram(sentence: &str) -> bool {
     sentence
         .chars()
         .map(|c| c.to_lowercase().next().unwrap())
-        .filter(|&c| c >= 'a' && c <= 'z')
+        .filter(|&c| ('a'..='z').contains(&c))
         .collect::<HashSet<char>>()
         .len()
         == 26

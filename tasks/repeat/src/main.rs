@@ -44,7 +44,7 @@ fn main() {
 fn test_closure() {
     let mut x = 1;
 
-    repeat_mut(&mut || x = x + 1, 5);
+    repeat_mut(&mut || x += 1, 5);
 
     assert_eq!(x, 6);
 }

@@ -791,6 +791,7 @@ pub fn random_bal_tree(n: u32) -> AVLTree<i32, f32> {
     tree
 }
 
+#[allow(clippy::float_cmp)]
 #[cfg(test)]
 mod tests {
     use rand::distributions::Uniform;
@@ -1076,11 +1077,9 @@ mod tests {
         res = tree.gather_balances();
         let (_, bals) = res;
 
-        if bals.len() > 0 {
+        if !bals.is_empty() {
             assert!(*bals.iter().max().unwrap() < 2);
             assert!(*bals.iter().min().unwrap() > -2);
         }
-
-        return;
     }
 }

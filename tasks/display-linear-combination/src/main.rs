@@ -98,7 +98,7 @@ mod tests {
     fn test01() {
         assert_eq!(
             "   e(1) + 2*e(2) + 3*e(3)",
-            linear_combination(&vec![1., 2., 3.])
+            linear_combination(&[1., 2., 3.])
         )
     }
 
@@ -106,7 +106,7 @@ mod tests {
     fn test02() {
         assert_eq!(
             "   e(2) + 2*e(3) + 3*e(4)",
-            linear_combination(&vec![0., 1., 2., 3.])
+            linear_combination(&[0., 1., 2., 3.])
         )
     }
 
@@ -114,38 +114,35 @@ mod tests {
     fn test03() {
         assert_eq!(
             "   e(1) + 3*e(3) + 4*e(4)",
-            linear_combination(&vec![1., 0., 3., 4.])
+            linear_combination(&[1., 0., 3., 4.])
         )
     }
 
     #[test]
     fn test04() {
-        assert_eq!("   e(1) + 2*e(2)", linear_combination(&vec![1., 2., 0.]))
+        assert_eq!("   e(1) + 2*e(2)", linear_combination(&[1., 2., 0.]))
     }
 
     #[test]
     fn test05() {
-        assert_eq!("0", linear_combination(&vec![0., 0., 0.]))
+        assert_eq!("0", linear_combination(&[0., 0., 0.]))
     }
 
     #[test]
     fn test06() {
-        assert_eq!("0", linear_combination(&vec![0.]))
+        assert_eq!("0", linear_combination(&[0.]))
     }
 
     #[test]
     fn test07() {
-        assert_eq!(
-            "   e(1) + e(2) + e(3)",
-            linear_combination(&vec![1., 1., 1.])
-        )
+        assert_eq!("   e(1) + e(2) + e(3)", linear_combination(&[1., 1., 1.]))
     }
 
     #[test]
     fn test08() {
         assert_eq!(
             " - e(1) - e(2) - e(3)",
-            linear_combination(&vec![-1., -1., -1.])
+            linear_combination(&[-1., -1., -1.])
         )
     }
 
@@ -153,12 +150,12 @@ mod tests {
     fn test09() {
         assert_eq!(
             " - e(1) - 2*e(2) - 3*e(4)",
-            linear_combination(&vec![-1., -2., 0., -3.])
+            linear_combination(&[-1., -2., 0., -3.])
         )
     }
 
     #[test]
     fn test10() {
-        assert_eq!(" - e(1)", linear_combination(&vec![-1.]))
+        assert_eq!(" - e(1)", linear_combination(&[-1.]))
     }
 }

@@ -57,21 +57,21 @@ fn main() {
 fn simple_tests() {
     let v1 = vec![1, 2, 3, 2, 1];
     let mut m1 = mode(v1);
-    m1.sort();
+    m1.sort_unstable();
     assert_eq!(m1, vec![1, 2]);
 
     let v2: &[u64] = &[0xdeadbeef, 0xba5eba11, 0xdeadbeef];
     let mut m2 = mode(v2.iter().cloned());
-    m2.sort();
+    m2.sort_unstable();
     assert_eq!(m2, vec![0xdeadbeef]);
 
     let v3 = "Eneyi\u{e4}n";
     let mut m3 = mode(v3.chars());
-    m3.sort();
+    m3.sort_unstable();
     assert_eq!(m3, vec!['n']);
 
     let v4 = vec![1, 3, 6, 6, 7, 7, 12, 12, 17];
     let mut m4 = mode(&v4);
-    m4.sort();
+    m4.sort_unstable();
     assert_eq!(m4, &[&6, &7, &12]);
 }

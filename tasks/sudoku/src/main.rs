@@ -7,6 +7,7 @@ const GROUP_WIDTH: usize = 3;
 const GROUP_HEIGHT: usize = 3;
 const MAX_NUMBER: usize = 9;
 
+#[allow(clippy::upper_case_acronyms)]
 type BITS = u16;
 const MASK_ALL: BITS = 0x1ff;
 const INVALID_CELL: u32 = !0;

@@ -18,7 +18,7 @@ fn main() {
 
     let mut entries = Vec::new();
     for l in lines {
-        if &l == "" {
+        if l.is_empty() {
             break;
         }
         let entry = parse_entry(&l);
@@ -32,7 +32,7 @@ fn main() {
                 line = line + word;
             }
         }
-        if line == "" {
+        if line.is_empty() {
             println!("{}", i);
         } else {
             println!("{}", line);

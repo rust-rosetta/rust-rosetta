@@ -27,9 +27,7 @@ fn fix_tags(languages: &[&str], text: &str) -> String {
         let close = "</lang>";
 
         replaced_text = bad_open.replace_all(&replaced_text, &open[..]).into_owned();
-        replaced_text = bad_close
-            .replace_all(&replaced_text, &close[..])
-            .into_owned();
+        replaced_text = bad_close.replace_all(&replaced_text, close).into_owned();
     }
 
     replaced_text

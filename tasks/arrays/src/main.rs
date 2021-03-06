@@ -3,7 +3,7 @@ fn main() {}
 #[test]
 fn create_array() {
     let empty_vec: Vec<i32> = vec![];
-    assert!(empty_vec.len() == 0);
+    assert!(empty_vec.is_empty());
 
     let prepopulated_vec = vec![1i32, 2, 3];
     assert!(prepopulated_vec.len() == 3);
@@ -16,8 +16,7 @@ fn create_array() {
 #[test]
 fn add_to_array() {
     // Mutatable adding.
-    let mut a_vec = vec![];
-    a_vec.push(1i32);
+    let mut a_vec = vec![1i32];
     assert_eq!(a_vec[0], 1);
 
     // Immutable adding.
@@ -33,7 +32,7 @@ fn retrieving_from_array() {
     assert!(a_vec[0] == 1i32);
 
     // A full copy of the vector, but mutable.
-    let mut mut_vec = a_vec.clone();
+    let mut mut_vec = a_vec;
     assert_eq!(mut_vec.pop(), Some(3));
     assert_eq!(mut_vec, [1, 2]);
 }

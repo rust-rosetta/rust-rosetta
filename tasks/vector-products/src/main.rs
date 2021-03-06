@@ -42,6 +42,7 @@ fn main() {
     println!("Vector triple product: {:?}", vector3(a, b, c));
 }
 
+#[allow(clippy::float_cmp)]
 #[test]
 fn vector_dot_product() {
     let a = Vector::new(1.0, 3.0, -5.0);

@@ -56,6 +56,6 @@ fn test_dutch_national_flag() {
 
     let mut color_array = [2, 0, 1];
     assert_eq!(false, check_sorted(&color_array));
-    color_array.sort();
+    color_array.sort_unstable();
     assert_eq!(flag_array, color_array);
 }

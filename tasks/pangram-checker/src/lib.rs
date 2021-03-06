@@ -19,7 +19,7 @@ pub fn is_pangram_via_hashset(s: &str) -> bool {
     let letters = s
         .chars()
         .flat_map(|chr| chr.to_lowercase())
-        .filter(|&chr| chr >= 'a' && chr <= 'z')
+        .filter(|&chr| ('a'..='z').contains(&chr))
         .fold(HashSet::new(), |mut letters, chr| {
             letters.insert(chr);
             letters
@@ -33,7 +33,7 @@ pub fn is_pangram_via_sort(s: &str) -> bool {
     let mut chars: Vec<char> = s
         .chars()
         .flat_map(|chr| chr.to_lowercase())
-        .filter(|&chr| chr >= 'a' && chr <= 'z')
+        .filter(|&chr| ('a'..='z').contains(&chr))
         .collect();
 
     chars.sort_unstable();

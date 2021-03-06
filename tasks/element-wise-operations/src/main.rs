@@ -139,6 +139,7 @@ fn main() {
     matrix_multiplication(&matrix1, &matrix3).unwrap().print();
 }
 
+#[allow(clippy::float_cmp)]
 #[cfg(test)]
 mod tests {
     use super::{

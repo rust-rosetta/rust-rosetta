@@ -73,6 +73,7 @@ impl From<io::Error> for Error {
 }
 
 /// Tokens returned from the token stream.
+#[allow(clippy::upper_case_acronyms)]
 #[derive(PartialEq, Debug)]
 enum Token<'a> {
     /// Left parenthesis
@@ -380,7 +381,7 @@ pub const SEXP_STRING_IN: &str = r#"((data "quoted data" 123 4.5)
 
 #[test]
 fn test_sexp_encode() {
-    const SEXP_STRING: &'static str =
+    const SEXP_STRING: &str =
         r#"(("data" "quoted data" 123 4.5) ("data" ("!@#" (4.5) "(more" "data)")))"#;
     assert_eq!(Ok(SEXP_STRING.to_string()), SEXP_STRUCT.buffer_encode());
 }

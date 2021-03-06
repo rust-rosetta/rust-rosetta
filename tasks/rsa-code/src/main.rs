@@ -59,9 +59,9 @@ mod tests {
     use num::integer::Integer;
     use num::traits::{FromPrimitive, Zero};
 
-    const N: &'static str = "9516311845790656153499716760847001433441357";
-    const E: &'static str = "65537";
-    const D: &'static str = "5617843187844953170308463622230283376298685";
+    const N: &str = "9516311845790656153499716760847001433441357";
+    const E: &str = "65537";
+    const D: &str = "5617843187844953170308463622230283376298685";
 
     fn rsa_numbers() -> (BigUint, BigUint, BigUint) {
         let n = N.parse().unwrap();

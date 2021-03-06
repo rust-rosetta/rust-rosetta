@@ -65,10 +65,8 @@ impl ConfigParams {
             }
         };
         let mut params = ConfigParams::new();
-        for line in content.lines().filter(is_not_comment) {
-            if let Ok(line) = line {
-                params.update_config(&line);
-            }
+        for line in content.lines().filter(is_not_comment).flatten() {
+            params.update_config(&line);
         }
 
         params
@@ -121,7 +119,7 @@ mod tests {
 
     #[test]
     fn main_test() {
-        const CONF: &'static str = "test.conf";
+        const CONF: &str = "test.conf";
         let params = super::ConfigParams::parse(CONF);
         assert_eq!(params.param::<String>("fullname").unwrap(), "Foo Barber");
         assert_eq!(params.param::<String>("favouritefruit").unwrap(), "banana");

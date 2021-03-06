@@ -51,6 +51,7 @@ fn main() {
     println!("{:?}", ma.calculate());
 }
 
+#[allow(clippy::float_cmp)]
 #[test]
 fn test_ma() {
     let mut ma = MovingAverage::new(3);

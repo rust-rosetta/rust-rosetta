@@ -88,6 +88,7 @@ impl IndexMut<usize> for Matrix {
     }
 }
 
+#[allow(clippy::float_cmp)]
 #[test]
 fn test_create_and_access() {
     let m = matrix(vec![1., 2., 3., 4.], 2);
@@ -97,6 +98,7 @@ fn test_create_and_access() {
     assert_eq!(m[1][1], 4.);
 }
 
+#[allow(clippy::float_cmp)]
 #[test]
 fn test_determinant() {
     let dim = 5;

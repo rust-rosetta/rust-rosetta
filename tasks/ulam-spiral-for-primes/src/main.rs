@@ -1,5 +1,6 @@
 use std::fmt;
 
+#[allow(clippy::upper_case_acronyms)]
 enum Direction {
     RIGHT,
     UP,
