@@ -2637,17 +2637,14 @@ dependencies = [
 ]
 
 [[package]]
-<<<<<<< HEAD
-=======
 name = "kronecker-product"
 version = "0.1.0"
 dependencies = [
  "ndarray",
- "num 0.3.0",
+ "num 0.3.1",
 ]
 
 [[package]]
->>>>>>> f88ed1f0 (Implement Kronecker product)
 name = "langtons-ant"
 version = "0.1.0"
 
@@ -3117,13 +3114,8 @@ checksum = "ccb86df349ecf5f549f6e12f6de4972cdd912d0bc290c1ca4d34d4b4b21a6f98"
 dependencies = [
  "alga",
  "approx",
-<<<<<<< HEAD
  "generic-array 0.11.2",
- "matrixmultiply",
-=======
- "generic-array 0.11.1",
  "matrixmultiply 0.1.15",
->>>>>>> f88ed1f0 (Implement Kronecker product)
  "num-complex 0.2.4",
  "num-traits",
  "rand 0.5.6",
