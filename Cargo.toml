@@ -783,6 +783,9 @@ members = [
     # http://rosettacode.org/wiki/Kolakoski_sequence
     "tasks/kolakoski-sequence",
 
+    # http://rosettacode.org/wiki/Kronecker_product
+    "tasks/kronecker-product",
+
     # http://rosettacode.org/wiki/Langton's_ant
     "tasks/langtons-ant",
 
