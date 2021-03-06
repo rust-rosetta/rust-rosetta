@@ -1,98 +1,30 @@
-extern crate ftp;
+use std::error::Error;
+use std::io;
 
-use ftp::types::{FileType, Result};
+use ftp::types::{FileType, FtpError};
 use ftp::FtpStream;
 use std::fs::File;
-use std::io::{Read, Write};
 
-fn write_file(filename: &str) -> impl Fn(&mut dyn Read) -> Result<()> {
-    let filename = filename.to_string();
-    move |stream| {
-        let mut file = File::create(&filename).unwrap();
-        let mut buf = [0; 2048];
-        loop {
-            match stream.read(&mut buf) {
-                Ok(0) => break,
-                Ok(n) => file.write_all(&buf[0..n]).unwrap(),
-                Err(err) => panic!(err),
-            };
-        }
-        Ok(())
-    }
-}
-
-fn main() {
+fn main() -> Result<(), Box<dyn Error>> {
     // connect to the server
-    let mut ftp = FtpStream::connect("kernel.org:21").unwrap();
-    ftp.login("anonymous", "").unwrap();
+    let mut ftp = FtpStream::connect("mirrors.sonic.net:21")?;
+    ftp.login("anonymous", "")?;
 
     // change working directory
-    ftp.cwd("/pub/linux/kernel").unwrap();
+    ftp.cwd("/pub/OpenBSD/doc")?;
 
     // list files in the current directory
-    match ftp.list(None) {
-        Ok(output) => println!("{}", output.join("")),
-        Err(err) => panic!(err),
+    for line in ftp.list(None)? {
+        println!("{}", line);
     }
 
     // download a file a write it on the disk
-    ftp.transfer_type(FileType::Binary).unwrap();
-    ftp.retr("README", write_file("README")).unwrap();
-}
+    let file_name = "README";
+    ftp.transfer_type(FileType::Binary)?;
+    ftp.retr(file_name, move |data| {
+        let mut local_file = File::create(file_name).map_err(FtpError::ConnectionError)?;
+        io::copy(data, &mut local_file).map_err(FtpError::ConnectionError)
+    })?;
 
-#[cfg(test)]
-mod test {
-    use super::write_file;
-    use ftp::types::FileType;
-    use ftp::FtpStream;
-    use std::fs;
-
-    fn connect() -> FtpStream {
-        let mut ftp = FtpStream::connect("kernel.org:21").unwrap();
-        ftp.login("anonymous", "").unwrap();
-        return ftp;
-    }
-
-    #[ignore]
-    #[test]
-    fn test_cwd() {
-        let mut ftp = connect();
-        // make sure the current directory is /
-        assert_eq!(ftp.pwd().unwrap(), "/");
-        ftp.cwd("/pub/linux/kernel").unwrap();
-        assert_eq!(ftp.pwd().unwrap(), "/pub/linux/kernel");
-    }
-
-    #[ignore]
-    #[test]
-    fn test_list_dir() {
-        let mut ftp = connect();
-        assert_eq!(
-            ftp.list(Some("/")).unwrap().join(""),
-            "drwxr-xr-x    9 ftp      ftp          4096 Dec 01  2011 pub"
-        );
-    }
-
-    #[ignore]
-    #[test]
-    fn test_download_file() {
-        let filename = ".test_download_file";
-        let mut ftp = connect();
-        ftp.cwd("/pub/linux/kernel").unwrap();
-        // make sure the file does not already exist
-        match fs::metadata(filename) {
-            Ok(_) => fs::remove_file(filename).unwrap(),
-            Err(_) => {}
-        }
-        ftp.transfer_type(FileType::Binary).unwrap();
-        ftp.retr("README", write_file(filename)).unwrap();
-        match fs::metadata(filename) {
-            Ok(metadata) => {
-                assert_eq!(metadata.is_file(), true);
-                assert_eq!(metadata.len(), 12056);
-                fs::remove_file(filename).unwrap();
-            }
-            Err(_) => panic!("file not downloaded"),
-        }
-    }
+    Ok(())
 }
