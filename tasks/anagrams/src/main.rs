@@ -65,7 +65,7 @@ fn main() {
 fn basic_test() {
     fn to_hash(s: &[&str]) -> HashSet<String> {
         s.iter().map(|s| s.to_string()).collect()
-    };
+    }
 
     fn assert_has_value(map: &HashMap<String, HashSet<String>>, set: &HashSet<String>) {
         assert!(map.values().any(|v| v == set));
