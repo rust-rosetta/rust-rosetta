@@ -73,7 +73,7 @@ mod tests {
             self::rand::random::<i32>(),
         );
         // Can't use try! macro because we want to panic, not return.
-        image.write_ppm(&fname).unwrap_or_else(|e| panic!(e));
+        image.write_ppm(&fname).unwrap();
 
         let file = File::open(&fname).unwrap();
         let mut reader = BufReader::new(file);

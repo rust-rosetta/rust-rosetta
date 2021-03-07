@@ -40,7 +40,12 @@ impl CountingSemaphore {
             let count = self.count.load(SeqCst);
             // The check for 0 is necessary to make sure we don't go negative, which is why this
             // must be a compare-and-swap rather than a straight decrement.
-            if count == 0 || self.count.compare_and_swap(count, count - 1, SeqCst) != count {
+            if count == 0
+                || self
+                    .count
+                    .compare_exchange(count, count - 1, SeqCst, SeqCst)
+                    .is_err()
+            {
                 // Linear backoff a la Servo's spinlock contention.
                 thread::sleep(backoff);
                 backoff += self.backoff;
