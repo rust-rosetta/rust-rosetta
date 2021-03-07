@@ -1,0 +1,9 @@
+[package]
+name = "solve-a-hidato-puzzle"
+version = "0.1.0"
+edition = "2018"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Solve_a_Hidato_puzzle"
+
+[dependencies]

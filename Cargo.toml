@@ -1173,6 +1173,9 @@ members = [
     # http://rosettacode.org/wiki/Sockets
     "tasks/sockets",
 
+    # http://rosettacode.org/wiki/Solve_a_Hidato_puzzle
+    "tasks/solve-a-hidato-puzzle",
+
     # http://rosettacode.org/wiki/Sort_an_array_of_composite_structures
     "tasks/sort-an-array-of-composite-structures",
 
