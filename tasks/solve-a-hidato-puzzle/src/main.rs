@@ -64,15 +64,17 @@ impl fmt::Display for Board {
     }
 }
 
-/// Structure for holding puzzle related information
-/// * `board`: the state of the board
-/// * `fixed`: all the numbers which were given at puzzle setup,
-/// aka all the numbers which cannot be changed during solving the puzzle
-/// * `start`: position of the first number (1)
+/// Structure for holding puzzle related information.
 #[derive(Clone, Debug)]
 struct Puzzle {
+    /// The state of the board.
     board: Board,
+
+    /// All the numbers which were given at puzzle setup:
+    /// the numbers which cannot be changed during solving the puzzle.
     fixed: Vec<u32>,
+
+    /// Position of the first number (1).
     start: (usize, usize),
 }
 
