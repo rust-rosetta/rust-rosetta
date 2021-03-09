@@ -53,8 +53,8 @@ impl ConfigParams {
         }
     }
 
-    fn parse<P: AsRef<Path>>(path: P) -> ConfigParams {
-        let conf_file = File::open(path).unwrap();
+    fn parse<P: AsRef<Path>>(path: P) -> io::Result<ConfigParams> {
+        let conf_file = File::open(path)?;
         let content = BufReader::new(conf_file);
 
         let is_not_comment = |x: &Result<String, io::Error>| match *x {
@@ -65,11 +65,14 @@ impl ConfigParams {
             }
         };
         let mut params = ConfigParams::new();
-        for line in content.lines().filter(is_not_comment).flatten() {
-            params.update_config(&line);
+        for line in content.lines().filter(is_not_comment) {
+            match line {
+                Ok(line) => params.update_config(&line),
+                Err(error) => return Err(error),
+            }
         }
 
-        params
+        Ok(params)
     }
     // Will parse the line and update the internal structure
     fn update_config(&mut self, line: &str) {
@@ -105,7 +108,7 @@ impl ConfigParams {
 
 fn main() {
     const CONF: &str = "test.conf";
-    let params = ConfigParams::parse(CONF);
+    let params = ConfigParams::parse(CONF).unwrap();
 
     println!("{:?}", params.param::<String>("fullname"));
     println!("{:?}", params.param::<String>("favouritefruit"));
@@ -120,7 +123,7 @@ mod tests {
     #[test]
     fn main_test() {
         const CONF: &str = "test.conf";
-        let params = super::ConfigParams::parse(CONF);
+        let params = super::ConfigParams::parse(CONF).unwrap();
         assert_eq!(params.param::<String>("fullname").unwrap(), "Foo Barber");
         assert_eq!(params.param::<String>("favouritefruit").unwrap(), "banana");
         assert!(params.param::<bool>("needspeeling").unwrap());

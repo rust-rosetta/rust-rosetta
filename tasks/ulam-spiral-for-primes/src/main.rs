@@ -1,11 +1,10 @@
 use std::fmt;
 
-#[allow(clippy::upper_case_acronyms)]
 enum Direction {
-    RIGHT,
-    UP,
-    LEFT,
-    DOWN,
+    Right,
+    Up,
+    Left,
+    Down,
 }
 use Direction::*;
 
@@ -42,7 +41,7 @@ impl fmt::Display for Ulam {
 #[allow(clippy::many_single_char_names)]
 fn generate(n: u32, s: u32, c: char) -> Ulam {
     let mut spiral = vec![vec!["".to_string(); n as usize]; n as usize];
-    let mut dir = RIGHT;
+    let mut dir = Right;
     let mut y = (n / 2) as usize;
     let mut x = if n % 2 == 0 { y - 1 } else { y }; // shift left for even n's
     for j in s..n * n + s {
@@ -57,33 +56,33 @@ fn generate(n: u32, s: u32, c: char) -> Ulam {
         };
 
         match dir {
-            RIGHT => {
+            Right => {
                 if (x as u32) < n && spiral[y - 1][x].is_empty() && j > s {
-                    dir = UP;
+                    dir = Up;
                 }
             }
-            UP => {
+            Up => {
                 if spiral[y][x - 1].is_empty() {
-                    dir = LEFT;
+                    dir = Left;
                 }
             }
-            LEFT => {
+            Left => {
                 if x == 0 || spiral[y + 1][x].is_empty() {
-                    dir = DOWN;
+                    dir = Down;
                 }
             }
-            DOWN => {
+            Down => {
                 if spiral[y][x + 1].is_empty() {
-                    dir = RIGHT;
+                    dir = Right;
                 }
             }
         };
 
         match dir {
-            RIGHT => x += 1,
-            UP => y -= 1,
-            LEFT => x -= 1,
-            DOWN => y += 1,
+            Right => x += 1,
+            Up => y -= 1,
+            Left => x -= 1,
+            Down => y += 1,
         };
     }
     Ulam { u: spiral }

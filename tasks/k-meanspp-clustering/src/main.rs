@@ -50,8 +50,8 @@ fn nearest(p: &Point, candidates: &[Point]) -> (f64, usize) {
 
 /// Computes starting centroids and makes initial assignments.
 fn kpp(points: &[Point], k: usize, rng: &mut impl Rng) -> Stats {
-    let mut centroids: Vec<Point> = vec![points.choose(rng).unwrap().clone()];
     // Random point for first centroid guess:
+    let mut centroids: Vec<Point> = vec![points.choose(rng).unwrap().clone()];
     let mut dists: Vec<f64> = vec![0f64; points.len()];
 
     for _ in 1..k {

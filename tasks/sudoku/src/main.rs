@@ -7,14 +7,13 @@ const GROUP_WIDTH: usize = 3;
 const GROUP_HEIGHT: usize = 3;
 const MAX_NUMBER: usize = 9;
 
-#[allow(clippy::upper_case_acronyms)]
-type BITS = u16;
-const MASK_ALL: BITS = 0x1ff;
+type Bits = u16;
+const MASK_ALL: Bits = 0x1ff;
 const INVALID_CELL: u32 = !0;
 
 #[derive(Copy, Clone, Eq, PartialEq, Debug)]
 struct Sudoku {
-    map: [[BITS; BOARD_WIDTH]; BOARD_HEIGHT],
+    map: [[Bits; BOARD_WIDTH]; BOARD_HEIGHT],
 }
 
 impl Sudoku {
@@ -198,7 +197,7 @@ fn solve_sudoku(mut puzzle: Sudoku) -> Vec<Sudoku> {
 
     let it = (0..BOARD_HEIGHT * BOARD_WIDTH)
         .map(|i| (i % BOARD_WIDTH, i / BOARD_WIDTH))
-        .map(|(x, y)| (x, y, puzzle.map[y][x].count_ones() as BITS))
+        .map(|(x, y)| (x, y, puzzle.map[y][x].count_ones() as Bits))
         .collect::<Vec<_>>();
 
     // If some cells have no possible number, there is no answer.
