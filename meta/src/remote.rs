@@ -11,7 +11,7 @@ use serde::Deserialize;
 lazy_static! {
     /// Extracts code from the first Rust section from Rosetta Code wiki markup.
     static ref RUST_WIKI_SECTION_RE: Regex =
-        Regex::new(r"==\{\{header\|Rust\}\}==(?s:.*?)<lang rust>((?s:.*?))</lang>").unwrap();
+        Regex::new(r"==\{\{header\|[Rr]ust\}\}==(?s:.*?)<lang [Rr]ust>((?s:.*?))</lang>").unwrap();
 }
 
 define_encode_set! {
