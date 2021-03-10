@@ -11,7 +11,6 @@ use std::cmp;
 use std::collections::{HashSet, VecDeque};
 use std::fs::File;
 use std::io::prelude::*;
-use std::iter::FromIterator;
 use std::ops::Sub;
 use std::path::{Path, PathBuf};
 
@@ -209,7 +208,7 @@ impl<'a> TaskIterator<'a> {
         } else {
             task_index
                 .all_task_titles
-                .intersection(&HashSet::from_iter(titles.iter().cloned()))
+                .intersection(&titles.iter().cloned().collect::<HashSet<_>>())
                 .cloned()
                 .collect()
         };
