@@ -296,7 +296,6 @@ impl Game {
 
                 if !self.grid.is_move_available() {
                     self.state = State::Lost;
-                    return;
                 }
             }
             _ => (),
@@ -313,20 +312,17 @@ impl Game {
 
 fn wait_key() -> crossterm::Result<Key> {
     loop {
-        match event::read()? {
-            Event::Key(key) => {
-                let key = match key.code {
-                    KeyCode::Char('q') => Key::Quit,
-                    KeyCode::Up => Key::Up,
-                    KeyCode::Down => Key::Down,
-                    KeyCode::Left => Key::Left,
-                    KeyCode::Right => Key::Right,
-                    _ => continue,
-                };
+        if let Event::Key(key) = event::read()? {
+            let key = match key.code {
+                KeyCode::Char('q') => Key::Quit,
+                KeyCode::Up => Key::Up,
+                KeyCode::Down => Key::Down,
+                KeyCode::Left => Key::Left,
+                KeyCode::Right => Key::Right,
+                _ => continue,
+            };
 
-                return Ok(key);
-            }
-            _ => (),
+            return Ok(key);
         }
     }
 }
@@ -351,8 +347,8 @@ where
     for row in 0u16..4 {
         for col in 0u16..4 {
             let tile = game.grid[(usize::from(row), usize::from(col))];
-            let x = u16::try_from(1 + GRID_X_OFFSET + col * CELL_WIDTH).unwrap();
-            let y = u16::try_from(GRID_Y_OFFSET + row * CELL_HEIGHT).unwrap();
+            let x = 1 + GRID_X_OFFSET + col * CELL_WIDTH;
+            let y = GRID_Y_OFFSET + row * CELL_HEIGHT;
 
             queue!(w, MoveTo(x, y), Print("┌────────┐"))?;
 

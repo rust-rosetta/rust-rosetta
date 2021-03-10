@@ -85,6 +85,7 @@ fn _best_shuffle_perm(w: &str) -> Solution {
 }
 
 // Quadratic implementation
+#[allow(clippy::suspicious_operation_groupings)]
 fn best_shuffle(w: &str) -> Solution {
     let w = String::from(w);
 

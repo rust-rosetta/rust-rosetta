@@ -15,14 +15,12 @@ where
         Err(_) => return,
     };
 
-    for subpath in result {
-        if let Ok(subp) = subpath {
-            if let Ok(filename) = subp.path().into_os_string().into_string() {
-                if regex.is_match(&filename) {
-                    println!("{}", filename);
-                }
-                walk(filename, regex);
+    for subp in result.into_iter().flatten() {
+        if let Ok(filename) = subp.path().into_os_string().into_string() {
+            if regex.is_match(&filename) {
+                println!("{}", filename);
             }
+            walk(filename, regex);
         }
     }
 }
