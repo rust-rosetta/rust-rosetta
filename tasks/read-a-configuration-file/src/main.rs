@@ -46,6 +46,11 @@ struct ConfigParams {
     params: HashMap<String, ConfigVariable>,
 }
 
+fn is_comment(line: &str) -> bool {
+    let comment_chars = ['#', ';'];
+    line.starts_with(&comment_chars[..]) || line.is_empty()
+}
+
 impl ConfigParams {
     fn new() -> ConfigParams {
         ConfigParams {
@@ -57,19 +62,13 @@ impl ConfigParams {
         let conf_file = File::open(path)?;
         let content = BufReader::new(conf_file);
 
-        let is_not_comment = |x: &Result<String, io::Error>| match *x {
-            Err(_) => false,
-            Ok(ref line) => {
-                let comment_chars = ['#', ';'];
-                !(line.starts_with(&comment_chars[..]) || line.is_empty())
-            }
-        };
         let mut params = ConfigParams::new();
-        for line in content.lines().filter(is_not_comment) {
-            match line {
-                Ok(line) => params.update_config(&line),
-                Err(error) => return Err(error),
+        for line in content.lines() {
+            let line = line?;
+            if is_comment(&line) {
+                continue;
             }
+            params.update_config(&line)
         }
 
         Ok(params)
