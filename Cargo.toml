@@ -1424,4 +1424,7 @@ members = [
 
     # http://rosettacode.org/wiki/Zig-zag_matrix
     "tasks/zig-zag-matrix",
+
+    # http://rosettacode.org/wiki/Zumkeller_numbers
+    "tasks/zumkeller-numbers",
 ]

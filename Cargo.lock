@@ -4638,6 +4638,10 @@ dependencies = [
 ]
 
 [[package]]
+name = "sedols"
+version = "0.1.0"
+
+[[package]]
 name = "selection-sort"
 version = "0.1.0"
 dependencies = [
@@ -5912,4 +5916,8 @@ version = "0.1.0"
 
 [[package]]
 name = "zig-zag-matrix"
+version = "0.1.0"
+
+[[package]]
+name = "zumkeller-numbers"
 version = "0.1.0"
