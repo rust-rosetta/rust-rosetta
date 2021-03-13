@@ -894,6 +894,12 @@ dependencies = [
 ]
 
 [[package]]
+name = "const-sha1"
+version = "0.2.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "fb58b6451e8c2a812ad979ed1d83378caa5e927eef2622017a45f251457c2c9d"
+
+[[package]]
 name = "constrained-random-points-on-a-circle"
 version = "0.1.0"
 dependencies = [
@@ -4638,6 +4644,10 @@ dependencies = [
 ]
 
 [[package]]
+name = "sedols"
+version = "0.1.0"
+
+[[package]]
 name = "selection-sort"
 version = "0.1.0"
 dependencies = [
@@ -4895,6 +4905,12 @@ version = "0.1.0"
 [[package]]
 name = "square-free-integers"
 version = "0.1.0"
+
+[[package]]
+name = "squote"
+version = "0.1.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "1fccf17fd09e2455ea796d2ad267b64fa2c5cbd8701b2a93b555d2aa73449f7d"
 
 [[package]]
 name = "stack"
@@ -5781,6 +5797,54 @@ dependencies = [
 ]
 
 [[package]]
+name = "windows"
+version = "0.4.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "015de964f21e0b20b9744ebc6f3a3e4dfdd1788f133a4aeec09c035748f88a21"
+dependencies = [
+ "const-sha1",
+ "windows_gen",
+ "windows_macros",
+]
+
+[[package]]
+name = "windows_gen"
+version = "0.4.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "70028758c92f5ed61ce12ab8e7482dce152418bac41dbefe794511b9fb673022"
+dependencies = [
+ "proc-macro2 1.0.24",
+ "quote 1.0.9",
+ "squote",
+ "syn 1.0.60",
+ "windows_gen_macros",
+]
+
+[[package]]
+name = "windows_gen_macros"
+version = "0.4.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "1a4e4aa3c108fc3112bb797662b14958d088d3b989f2560d89335775c566c88d"
+dependencies = [
+ "proc-macro2 1.0.24",
+ "quote 1.0.9",
+ "syn 1.0.60",
+]
+
+[[package]]
+name = "windows_macros"
+version = "0.4.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "87e5b872245607ec18bf35eaa7a6146831c07449c0b724afd7403d732c6da856"
+dependencies = [
+ "proc-macro2 1.0.24",
+ "quote 1.0.9",
+ "squote",
+ "syn 1.0.60",
+ "windows_gen",
+]
+
+[[package]]
 name = "winit"
 version = "0.22.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -5850,6 +5914,13 @@ dependencies = [
 [[package]]
 name = "write-entire-file"
 version = "0.1.0"
+
+[[package]]
+name = "write-to-a-windows-event-log"
+version = "0.1.0"
+dependencies = [
+ "windows",
+]
 
 [[package]]
 name = "ws2_32-sys"
