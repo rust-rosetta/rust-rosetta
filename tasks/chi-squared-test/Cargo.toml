@@ -1,0 +1,10 @@
+[package]
+name = "chi-squared-test"
+version = "0.1.0"
+edition = "2018"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Verify_distribution_uniformity/Chi-squared_test"
+
+[dependencies]
+statrs="0.13.0"
