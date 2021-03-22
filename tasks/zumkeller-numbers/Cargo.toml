@@ -1,0 +1,9 @@
+[package]
+name = "zumkeller-numbers"
+version = "0.1.0"
+edition = "2018"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Zumkeller_numbers"
+
+[dependencies]

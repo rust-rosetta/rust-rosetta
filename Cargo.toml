@@ -306,6 +306,9 @@ members = [
     # http://rosettacode.org/wiki/Call_an_object_method
     "tasks/call-an-object-method",
 
+    # http://rosettacode.org/wiki/Cantor_set
+    "tasks/cantor-set",
+
     # http://rosettacode.org/wiki/Carmichael_3_strong_pseudoprimes
     "tasks/carmichael-3-strong-pseudoprimes",
 
@@ -1424,4 +1427,7 @@ members = [
 
     # http://rosettacode.org/wiki/Zig-zag_matrix
     "tasks/zig-zag-matrix",
+
+    # http://rosettacode.org/wiki/Zumkeller_numbers
+    "tasks/zumkeller-numbers",
 ]

@@ -624,6 +624,13 @@ dependencies = [
 ]
 
 [[package]]
+name = "cantor-set"
+version = "0.1.0"
+dependencies = [
+ "convert-base",
+]
+
+[[package]]
 name = "cargo_metadata"
 version = "0.6.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -911,6 +918,12 @@ version = "0.1.0"
 [[package]]
 name = "continued-fraction"
 version = "0.1.0"
+
+[[package]]
+name = "convert-base"
+version = "1.1.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "34cfb9f164668fdb6f7e5fc49103fb0db399f1ef2c1c33df78be2b3e5f587a23"
 
 [[package]]
 name = "convert-seconds-to-compound-duration"
@@ -5916,4 +5929,8 @@ version = "0.1.0"
 
 [[package]]
 name = "zig-zag-matrix"
+version = "0.1.0"
+
+[[package]]
+name = "zumkeller-numbers"
 version = "0.1.0"
