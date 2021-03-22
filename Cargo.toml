@@ -297,6 +297,9 @@ members = [
     # http://rosettacode.org/wiki/Bulls_and_cows
     "tasks/bulls-and-cows",
 
+    # http://rosettacode.org/wiki/Burrows%E2%80%93Wheeler_transform
+    "tasks/burrows-wheeler-transform",
+
     # http://rosettacode.org/wiki/Caesar_cipher
     "tasks/caesar-cipher",
 
