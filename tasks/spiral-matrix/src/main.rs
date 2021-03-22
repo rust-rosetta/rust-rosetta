@@ -34,42 +34,38 @@ fn empty_spiral() {
 
 #[test]
 fn size_one_spiral() {
-    let mut expected: Vec<Vec<u32>> = Vec::new();
-    expected.push(vec![0]);
+    let expected: Vec<Vec<u32>> = vec![vec![0]];
     assert_eq!(spiral_matrix(1), expected);
 }
 #[test]
 fn size_two_spiral() {
-    let mut expected: Vec<Vec<u32>> = Vec::new();
-    expected.push(vec![0, 1]);
-    expected.push(vec![3, 2]);
+    let expected: Vec<Vec<u32>> = vec![vec![0, 1], vec![3, 2]];
     assert_eq!(spiral_matrix(2), expected);
 }
 
 #[test]
 fn size_three_spiral() {
-    let mut expected: Vec<Vec<u32>> = Vec::new();
-    expected.push(vec![0, 1, 2]);
-    expected.push(vec![7, 8, 3]);
-    expected.push(vec![6, 5, 4]);
+    let expected: Vec<Vec<u32>> = vec![vec![0, 1, 2], vec![7, 8, 3], vec![6, 5, 4]];
     assert_eq!(spiral_matrix(3), expected);
 }
 #[test]
 fn size_four_spiral() {
-    let mut expected: Vec<Vec<u32>> = Vec::new();
-    expected.push(vec![0, 1, 2, 3]);
-    expected.push(vec![11, 12, 13, 4]);
-    expected.push(vec![10, 15, 14, 5]);
-    expected.push(vec![9, 8, 7, 6]);
+    let expected: Vec<Vec<u32>> = vec![
+        vec![0, 1, 2, 3],
+        vec![11, 12, 13, 4],
+        vec![10, 15, 14, 5],
+        vec![9, 8, 7, 6],
+    ];
     assert_eq!(spiral_matrix(4), expected);
 }
 #[test]
 fn size_five_spiral() {
-    let mut expected: Vec<Vec<u32>> = Vec::new();
-    expected.push(vec![0, 1, 2, 3, 4]);
-    expected.push(vec![15, 16, 17, 18, 5]);
-    expected.push(vec![14, 23, 24, 19, 6]);
-    expected.push(vec![13, 22, 21, 20, 7]);
-    expected.push(vec![12, 11, 10, 9, 8]);
+    let expected: Vec<Vec<u32>> = vec![
+        vec![0, 1, 2, 3, 4],
+        vec![15, 16, 17, 18, 5],
+        vec![14, 23, 24, 19, 6],
+        vec![13, 22, 21, 20, 7],
+        vec![12, 11, 10, 9, 8],
+    ];
     assert_eq!(spiral_matrix(5), expected);
 }

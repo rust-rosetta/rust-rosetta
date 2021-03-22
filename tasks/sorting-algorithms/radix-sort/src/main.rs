@@ -33,7 +33,7 @@ mod tests {
 
     fn check_numbers(numbers: &mut [i32]) {
         let mut correct = numbers.to_vec();
-        correct.sort();
+        correct.sort_unstable();
         radix_sort(numbers);
         assert_eq!(correct, numbers);
     }

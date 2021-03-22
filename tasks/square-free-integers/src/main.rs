@@ -66,7 +66,7 @@ fn main() {
     });
 
     println!("\n\nNumber of square-free integers:");
-    (2..7).map(|i| (10 as u64).pow(i)).for_each(|n| {
+    (2..7).map(|i| (10_u64).pow(i)).for_each(|n| {
         println!("  from 1 to {} = {}", n, square_free(1, n).len());
     });
 }

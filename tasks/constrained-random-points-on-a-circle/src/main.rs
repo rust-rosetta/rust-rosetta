@@ -13,7 +13,7 @@ fn generate_point<R: Rng>(rng: &mut R) -> (i32, i32) {
         let y = rng.sample(range);
 
         let r2 = x * x + y * y;
-        if r2 >= 100 && r2 <= 225 {
+        if (100..=225).contains(&r2) {
             return (x, y);
         }
     }
@@ -40,7 +40,7 @@ fn precalculating_method<R: Rng>(rng: &mut R) {
     for y in -15..=15 {
         for x in -15..=15 {
             let r2 = x * x + y * y;
-            if r2 >= 100 && r2 <= 225 {
+            if (100..=225).contains(&r2) {
                 possible_points.push((x, y));
             }
         }

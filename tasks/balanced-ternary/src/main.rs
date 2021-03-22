@@ -17,10 +17,10 @@ fn main() -> Result<(), &'static str> {
     let d = a * (b + -c);
     println!("a * (b - c) = {} = {}", d, i128::try_from(d.clone())?);
 
-    let e = BalancedTernary::from_str(
+    let a = BalancedTernary::from_str(
         "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++",
     )?;
-    assert_eq!(i128::try_from(e).is_err(), true);
+    assert_eq!(i128::try_from(a).is_err(), true);
 
     Ok(())
 }

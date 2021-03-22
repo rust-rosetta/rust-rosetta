@@ -301,6 +301,7 @@ fn _main_for_rosetta() {
     println!("{}", tree);
 }
 
+#[allow(clippy::float_cmp)]
 #[cfg(test)]
 mod tests {
     use random_tree;
@@ -336,7 +337,7 @@ mod tests {
         );
 
         tree = random_tree(100);
-        assert!(tree.store.len() > 0);
+        assert!(!tree.store.is_empty());
     }
 
     #[test]

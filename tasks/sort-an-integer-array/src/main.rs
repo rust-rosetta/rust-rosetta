@@ -9,6 +9,6 @@ fn main() {
 #[test]
 fn test_sort() {
     let mut a = vec![3, 1, 4, 1, 5, 9];
-    a.sort();
+    a.sort_unstable();
     assert!(a == vec![1, 1, 3, 4, 5, 9]);
 }

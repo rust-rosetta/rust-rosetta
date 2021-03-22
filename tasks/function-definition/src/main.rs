@@ -25,8 +25,5 @@ fn test_multiply() {
 fn main() {
     println!("2 multiply 4 = {}", multiply(2i32, 4));
     println!("2.0 multiply 4.0 = {}", multiply_gen(2.0f32, 4.0));
-    println!(
-        "5.0 multiply 7.0 is {}",
-        multiply_gen(5.0 as f32, 7.0 as f32)
-    );
+    println!("5.0 multiply 7.0 is {}", multiply_gen(5.0_f32, 7.0_f32));
 }

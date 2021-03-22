@@ -93,6 +93,7 @@ mod tests {
 
     #[test]
     #[should_panic]
+    #[allow(clippy::no_effect)]
     fn out_of_bounds() {
         let image = Image::new(10, 10);
         image[(10, 11)];

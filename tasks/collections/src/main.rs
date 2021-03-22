@@ -3,6 +3,7 @@
 
 use std::collections::{BTreeMap, BinaryHeap, HashMap, HashSet, LinkedList, VecDeque};
 
+#[allow(clippy::vec_init_then_push)]
 fn main() {
     // Stack-allocated collections
     // ---------------------------

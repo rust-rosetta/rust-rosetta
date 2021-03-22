@@ -34,6 +34,7 @@ fn kelvin_to_rankine(k: f64) -> f64 {
     k * 1.8
 }
 
+#[allow(clippy::float_cmp)]
 #[test]
 fn test() {
     let k = 21.0;

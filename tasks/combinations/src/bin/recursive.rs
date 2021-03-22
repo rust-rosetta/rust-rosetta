@@ -18,7 +18,7 @@ where
     // Extend this last vector with the all the combinations of k elements after from index 1 onward.
     result.extend(comb(&slice[1..], k));
     // Return final vector.
-    return result;
+    result
 }
 
 fn main() {
@@ -35,7 +35,7 @@ mod tests {
 
     #[test]
     fn five_numbers_choose_three() {
-        let computed = comb(&vec![1, 2, 3, 4, 5], 3);
+        let computed = comb(&[1, 2, 3, 4, 5], 3);
         let expected = vec![
             vec![1, 2, 3],
             vec![1, 2, 4],
@@ -54,7 +54,7 @@ mod tests {
 
     #[test]
     fn four_letters_choose_two() {
-        let computed = comb(&vec!["h", "e", "l", "l", "o"], 2);
+        let computed = comb(&["h", "e", "l", "l", "o"], 2);
         let expected = vec![
             vec!["h", "e"],
             vec!["h", "l"],

@@ -50,9 +50,8 @@ fn nearest(p: &Point, candidates: &[Point]) -> (f64, usize) {
 
 /// Computes starting centroids and makes initial assignments.
 fn kpp(points: &[Point], k: usize, rng: &mut impl Rng) -> Stats {
-    let mut centroids: Vec<Point> = Vec::new();
     // Random point for first centroid guess:
-    centroids.push(points.choose(rng).unwrap().clone());
+    let mut centroids: Vec<Point> = vec![points.choose(rng).unwrap().clone()];
     let mut dists: Vec<f64> = vec![0f64; points.len()];
 
     for _ in 1..k {
@@ -306,9 +305,8 @@ mod tests {
         let (clusters, stats) = lloyd(&points, 4, 0.001, 100, &mut rng);
 
         assert!(clusters.len() == 4);
-        for i in 0..clusters.len() {
-            assert!(clusters[i].members.len() > 0);
-        }
+        clusters.iter().for_each(|c| assert!(!c.members.is_empty()));
+
         assert!(stats.mean_d_from_centroid.iter().all(|d| *d > 0f64));
         assert!(stats.centroids.iter().any(|p| p[0] >= 0f64 && p[1] >= 0f64));
         assert!(stats.centroids.iter().any(|p| p[0] >= 0f64 && p[1] < 0f64));

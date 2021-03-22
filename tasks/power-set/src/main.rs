@@ -31,10 +31,7 @@ fn test() {
     let power = power_set(&mut set.iter());
     assert!(power == vec![vec![]]);
 
-    let mut set = Vec::<i32>::new();
-    set.push(1);
-    set.push(2);
-    set.push(3);
+    let set = vec![1, 2, 3];
     let power = power_set(&mut set.iter());
     assert!(
         power
@@ -52,11 +49,7 @@ fn test() {
 }
 
 fn main() {
-    let mut set = Vec::<i32>::new();
-    set.push(1);
-    set.push(2);
-    set.push(3);
-    set.push(4);
+    let set = vec![1, 2, 3, 4];
     let power = power_set(&mut set.iter());
     println!("Set      : {:?}", set);
     println!("Power Set: {:?}", power);

@@ -85,7 +85,7 @@ enum Token<'a> {
     Literal(SExp<'a>),
 
     /// Stream is out of tokens.
-    EOF,
+    Eof,
 }
 
 /// An iterator over a string that yields a stream of Tokens.
@@ -205,7 +205,7 @@ impl<'a> Tokens<'a> {
                     }
                     return Ok(Literal(parse_literal(str)));
                 }
-                None => return Ok(EOF),
+                None => return Ok(Eof),
             }
         }
     }
@@ -309,14 +309,14 @@ impl<'a> SExp<'a> {
         let mut list = match next? {
             ListStart => Vec::new(),
             Literal(s) => {
-                return if tokens.next_token()? == EOF {
+                return if tokens.next_token()? == Eof {
                     Ok(s)
                 } else {
                     Err(ExpectedEOF)
                 };
             }
             ListEnd => return Err(IncorrectCloseDelimiter),
-            EOF => return Err(UnexpectedEOF),
+            Eof => return Err(UnexpectedEOF),
         };
 
         // We know we're in a list if we got this far.
@@ -344,14 +344,14 @@ impl<'a> SExp<'a> {
                         // correctness.
                         None => {
                             return match tokens.next_token()? {
-                                EOF => Ok(List(&*arena.alloc(list))),
+                                Eof => Ok(List(&*arena.alloc(list))),
                                 _ => Err(ExpectedEOF),
                             };
                         }
                     }
                 }
                 // We encountered an EOF before the list ended--that's an error.
-                EOF => return Err(UnexpectedEOF),
+                Eof => return Err(UnexpectedEOF),
             }
         }
     }
@@ -380,7 +380,7 @@ pub const SEXP_STRING_IN: &str = r#"((data "quoted data" 123 4.5)
 
 #[test]
 fn test_sexp_encode() {
-    const SEXP_STRING: &'static str =
+    const SEXP_STRING: &str =
         r#"(("data" "quoted data" 123 4.5) ("data" ("!@#" (4.5) "(more" "data)")))"#;
     assert_eq!(Ok(SEXP_STRING.to_string()), SEXP_STRUCT.buffer_encode());
 }

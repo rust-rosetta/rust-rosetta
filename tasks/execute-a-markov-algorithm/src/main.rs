@@ -77,7 +77,7 @@ impl MarkovAlgorithm {
             let possible_rule = self
                 .rules
                 .iter()
-                .find(|rule| state.find(&rule.pattern[..]).is_some());
+                .find(|rule| state.contains(&rule.pattern[..]));
 
             match possible_rule {
                 // stop if no rule found

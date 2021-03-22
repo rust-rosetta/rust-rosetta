@@ -5,7 +5,7 @@ use std::io::{BufRead, BufReader};
 
 /// Calculate the expected frequency of a digit according to Benford's Law
 fn benford_freq(d: u64) -> f32 {
-    assert!(d >= 1 && d <= 9);
+    assert!((1..=9).contains(&d));
 
     (1.0 + 1.0 / (d as f32)).log10()
 }

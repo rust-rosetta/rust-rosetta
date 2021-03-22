@@ -11,14 +11,8 @@ impl<T> TreeNode<T> {
     {
         TreeNode {
             value: f(&self.value),
-            left: match self.left {
-                None => None,
-                Some(ref n) => Some(Box::new(n.my_map(f))),
-            },
-            right: match self.right {
-                None => None,
-                Some(ref n) => Some(Box::new(n.my_map(f))),
-            },
+            left: self.left.as_ref().map(|n| Box::new(n.my_map(f))),
+            right: self.right.as_ref().map(|n| Box::new(n.my_map(f))),
         }
     }
 }

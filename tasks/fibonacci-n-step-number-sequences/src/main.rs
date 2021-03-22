@@ -47,7 +47,7 @@ mod tests {
         }
         let mut iter = GenFibonacci {
             buf: buf.clone(),
-            sum: sum,
+            sum,
             idx: 0,
         };
         while buf.len() < tgt.len() {

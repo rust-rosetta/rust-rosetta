@@ -15,7 +15,7 @@ enum CustomIntError {
 
 impl CustomInt {
     fn new(v: u8) -> Result<CustomInt, CustomIntError> {
-        if v < 1 || v > 10 {
+        if !(1..=10).contains(&v) {
             Err(CustomIntError::OutOfBoundsAssn)
         } else {
             Ok(CustomInt { value: v as i8 })
