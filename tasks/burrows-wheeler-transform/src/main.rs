@@ -3,6 +3,8 @@ use core::cmp::Ordering;
 const STX: char = '\u{0002}';
 const ETX: char = '\u{0003}';
 
+// this compare uses simple alphabetical sort, but for the special characters (ETX, STX)
+// it sorts them later than alphanumeric characters
 pub fn special_cmp(lhs: &str, rhs: &str) -> Ordering {
     let mut iter1 = lhs.chars();
     let mut iter2 = rhs.chars();
@@ -11,15 +13,15 @@ pub fn special_cmp(lhs: &str, rhs: &str) -> Ordering {
         match (iter1.next(), iter2.next()) {
             (Some(lhs), Some(rhs)) => {
                 if lhs != rhs {
-                    let is_lhs_alnum = lhs.is_alphanumeric();
-                    let is_rhs_alnum = rhs.is_alphanumeric();
+                    let is_lhs_special = lhs == ETX || lhs == STX;
+                    let is_rhs_special = rhs == ETX || rhs == STX;
 
-                    let result = if is_lhs_alnum == is_rhs_alnum {
+                    let result = if is_lhs_special == is_rhs_special {
                         lhs.cmp(&rhs)
-                    } else if is_lhs_alnum {
-                        Ordering::Less
-                    } else {
+                    } else if is_lhs_special {
                         Ordering::Greater
+                    } else {
+                        Ordering::Less
                     };
 
                     return result;
@@ -54,8 +56,6 @@ fn burrows_wheeler_transform(input: &str) -> String {
     table
         .iter()
         .map(|s| s.chars().nth_back(0).unwrap())
-        .collect::<Vec<char>>()
-        .into_iter()
         .collect::<String>()
 }
 
@@ -74,7 +74,7 @@ fn inverse_burrows_wheeler_transform(input: &str) -> String {
     // return the row which has the end marker at the last position
     table
         .into_iter()
-        .filter(|s| s.chars().nth_back(0).unwrap().eq(&ETX))
+        .filter(|s| s.ends_with(ETX))
         .collect::<String>()
         // remove start and markers
         .replace(STX, "")
