@@ -289,6 +289,12 @@ name = "arrays"
 version = "0.1.0"
 
 [[package]]
+name = "assert_approx_eq"
+version = "1.1.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "3c07dab4369547dbe5114677b33fbbf724971019f3818172d59a97a61c774ffd"
+
+[[package]]
 name = "assertions"
 version = "0.1.0"
 
@@ -1607,6 +1613,13 @@ name = "five-weekends"
 version = "0.1.0"
 dependencies = [
  "chrono 0.4.19",
+]
+
+[[package]]
+name = "fivenum"
+version = "0.1.0"
+dependencies = [
+ "assert_approx_eq",
 ]
 
 [[package]]
