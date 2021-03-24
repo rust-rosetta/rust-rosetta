@@ -4,7 +4,7 @@ fn median(samples: &[f64]) -> f64 {
 
     let n = xs.len();
     if n % 2 == 0 {
-        (xs[n / 2] + xs[(n / 2) + 1]) / 2.0
+        (xs[n / 2] + xs[(n / 2) - 1]) / 2.0
     } else {
         xs[n / 2]
     }
@@ -21,6 +21,12 @@ mod tests {
 
     #[test]
     fn median() {
+        let nums = vec![1.];
+        assert!((super::median(&nums) - 1_f64).abs() < f64::EPSILON);
+
+        let nums = vec![1., 2.];
+        assert!((super::median(&nums) - 1.5_f64).abs() < f64::EPSILON);
+
         let nums = vec![2., 3., 5., 0., 9., 82., 353., 32., 12.];
         assert!((super::median(&nums) - 9_f64).abs() < f64::EPSILON);
     }
