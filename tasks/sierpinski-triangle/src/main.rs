@@ -1,6 +1,33 @@
 use std::iter::repeat;
 
+fn sierpinski(order: usize) {
+    let mut triangle = vec!["*".to_string()];
+    for i in 0..order {
+        let space = repeat(' ').take(2_usize.pow(i as u32)).collect::<String>();
+
+        // save original state
+        let mut d = triangle.clone();
+
+        // extend existing lines
+        d.iter_mut().for_each(|r| {
+            let new_row = format!("{}{}{}", space, r, space);
+            *r = new_row;
+        });
+
+        // add new lines
+        triangle.iter().for_each(|r| {
+            let new_row = format!("{}{}{}", r, " ", r);
+            d.push(new_row);
+        });
+
+        triangle = d;
+    }
+
+    triangle.iter().for_each(|r| println!("{}", r));
+}
 fn main() {
+    sierpinski(4);
+
     let order = 4;
     let height = 1 << order;
     let mut state: Vec<bool> = repeat(true).take(height + 1).collect();
