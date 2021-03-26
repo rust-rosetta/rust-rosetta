@@ -1,0 +1,9 @@
+[package]
+name = "tau-number"
+version = "0.1.0"
+edition = "2018"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Tau_number"
+
+[dependencies]
