@@ -2288,6 +2288,13 @@ dependencies = [
 ]
 
 [[package]]
+name = "heronian-triangles"
+version = "0.1.0"
+dependencies = [
+ "num-integer",
+]
+
+[[package]]
 name = "hex"
 version = "0.3.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
