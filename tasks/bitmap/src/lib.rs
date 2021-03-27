@@ -36,11 +36,14 @@ impl Image {
         let mut writer = BufWriter::new(file);
         writeln!(&mut writer, "P6")?;
         writeln!(&mut writer, "{} {} 255", self.width, self.height)?;
-        for color in &self.data {
-            for &channel in &[color.red, color.green, color.blue] {
-                write!(&mut writer, "{}", channel as u8)?;
-            }
-        }
+        writer.write_all(
+            &self
+                .data
+                .iter()
+                .map(|color| vec![color.red, color.green, color.blue])
+                .flatten()
+                .collect::<Vec<u8>>(),
+        )?;
         Ok(())
     }
 }

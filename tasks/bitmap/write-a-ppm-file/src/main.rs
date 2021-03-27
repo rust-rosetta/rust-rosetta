@@ -84,12 +84,12 @@ mod tests {
         reader.read_line(&mut line).unwrap();
         assert_eq!(line, "2 1 255\n");
         let mut bytes = reader.bytes();
-        assert_eq!(bytes.next().unwrap().unwrap(), 49);
-        assert_eq!(bytes.next().unwrap().unwrap(), 50);
-        assert_eq!(bytes.next().unwrap().unwrap(), 51);
-        assert_eq!(bytes.next().unwrap().unwrap(), 52);
-        assert_eq!(bytes.next().unwrap().unwrap(), 53);
-        assert_eq!(bytes.next().unwrap().unwrap(), 54);
+        assert_eq!(bytes.next().unwrap().unwrap(), 1);
+        assert_eq!(bytes.next().unwrap().unwrap(), 2);
+        assert_eq!(bytes.next().unwrap().unwrap(), 3);
+        assert_eq!(bytes.next().unwrap().unwrap(), 4);
+        assert_eq!(bytes.next().unwrap().unwrap(), 5);
+        assert_eq!(bytes.next().unwrap().unwrap(), 6);
         assert!(bytes.next().is_none());
     }
 }
