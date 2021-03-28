@@ -4433,6 +4433,14 @@ name = "read-a-file-line-by-line"
 version = "0.1.0"
 
 [[package]]
+name = "read-a-ppm-file"
+version = "0.1.0"
+dependencies = [
+ "bitmap",
+ "rand 0.7.3",
+]
+
+[[package]]
 name = "read-a-specific-line-from-a-file"
 version = "0.1.0"
 

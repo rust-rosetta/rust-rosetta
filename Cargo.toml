@@ -279,6 +279,9 @@ members = [
     # http://rosettacode.org/wiki/Bitmap
     "tasks/bitmap",
 
+    # http://rosettacode.org/wiki/Bitmap/Read_a_PPM_file"
+    "tasks/bitmap/read-a-ppm-file",
+
     # http://rosettacode.org/wiki/Bitmap/Write_a_PPM_file
     "tasks/bitmap/write-a-ppm-file",
 

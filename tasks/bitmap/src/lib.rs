@@ -1,7 +1,7 @@
-use std::default::Default;
-use std::fs::File;
-use std::io::{BufWriter, Error, Write};
+use std::io::{BufReader, BufWriter, Error, ErrorKind, Write};
 use std::ops::{Index, IndexMut};
+use std::{default::Default, io::BufRead};
+use std::{fs::File, io::Read};
 
 #[derive(Copy, Clone, Default, PartialEq, Debug)]
 pub struct Color {
@@ -44,6 +44,68 @@ impl Image {
                 .flatten()
                 .collect::<Vec<u8>>(),
         )?;
+        Ok(())
+    }
+
+    pub fn read_ppm(&mut self, filename: &str) -> Result<(), Error> {
+        let file = File::open(filename)?;
+        let mut reader = BufReader::new(file);
+
+        let mut buf = String::new();
+        reader.read_line(&mut buf)?;
+
+        // works only with P6 (binary)
+        assert!(buf == "P6\n");
+
+        buf.clear();
+        reader.read_line(&mut buf)?;
+
+        // header parameters assumed to be separated by spaces
+        let mut info_iter = buf.trim().split(' ');
+        let width = info_iter
+            .next()
+            .unwrap_or("0")
+            .parse::<usize>()
+            .map_err(|_| Error::new(ErrorKind::InvalidData, "Invalid dimensions"))?;
+
+        let height = info_iter
+            .next()
+            .unwrap_or("0")
+            .parse::<usize>()
+            .map_err(|_| Error::new(ErrorKind::InvalidData, "Invalid dimensions"))?;
+
+        let max_color = info_iter
+            .next()
+            .unwrap_or("0")
+            .parse::<usize>()
+            .map_err(|_| Error::new(ErrorKind::InvalidData, "Invalid dimensions"))?;
+
+        // check for invalid header values
+        if width < 1 || height < 1 {
+            return Err(Error::new(ErrorKind::InvalidData, "Invalid dimensions"));
+        };
+
+        if max_color != 255 {
+            return Err(Error::new(ErrorKind::InvalidData, "Invalid header"));
+        };
+
+        // read pixel information
+        let mut data = vec![0; height * width * 3];
+        reader.read_exact(&mut data)?;
+
+        self.height = height;
+        self.width = width;
+
+        // reconstruct Color structs from byte array
+        self.data = data
+            .chunks(3)
+            .map(|c| Color {
+                red: c[0],
+                green: c[1],
+                blue: c[2],
+            })
+            .collect();
+
         Ok(())
     }
 }
