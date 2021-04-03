@@ -1044,6 +1044,9 @@ members = [
     # http://rosettacode.org/wiki/Range_extraction
     "tasks/range-extraction",
 
+    # http://rosettacode.org/wiki/Rare_numbers
+    "tasks/rare-numbers",
+
     # http://rosettacode.org/wiki/Read_a_configuration_file
     "tasks/read-a-configuration-file",
 
