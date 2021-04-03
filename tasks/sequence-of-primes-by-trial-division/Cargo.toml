@@ -1,0 +1,10 @@
+[package]
+name = "sequence-of-primes-by-trial-division"
+version = "0.1.0"
+edition = "2018"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Sequence_of_primes_by_trial_division"
+
+
+[dependencies]
