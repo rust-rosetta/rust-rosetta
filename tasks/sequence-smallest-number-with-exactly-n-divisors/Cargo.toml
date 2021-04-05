@@ -1,0 +1,10 @@
+[package]
+name = "sequence-smallest-number-with-exactly-n-divisors"
+version = "0.1.0"
+edition = "2018"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Sequence:_smallest_number_with_exactly_n_divisors"
+
+[dependencies]
+itertools = "0.10.0"
