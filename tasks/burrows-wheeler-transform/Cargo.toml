@@ -1,0 +1,9 @@
+[package]
+name = "burrows-wheeler-transform"
+version = "0.1.0"
+edition = "2018"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Burrows%E2%80%93Wheeler_transform"
+
+[dependencies]
