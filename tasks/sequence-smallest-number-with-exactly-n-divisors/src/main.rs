@@ -166,3 +166,15 @@ fn main() {
         println!("{:>10}{:20}", i + 1, x);
     }
 }
+
+#[cfg(test)]
+mod tests {
+    use super::DivisorSeq;
+
+    #[test]
+    fn test_divisor_seq() {
+        let seq_iter = DivisorSeq::new(10);
+        let result = seq_iter.collect::<Vec<_>>();
+        assert_eq!(result, vec![1, 2, 4, 6, 16, 12, 64, 24, 36, 48]);
+    }
+}

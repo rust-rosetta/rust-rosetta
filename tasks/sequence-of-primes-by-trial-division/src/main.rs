@@ -17,3 +17,18 @@ fn main() {
         })
     );
 }
+
+#[cfg(test)]
+mod tests {
+    use super::is_prime;
+
+    #[test]
+    fn test_is_prime() {
+        assert_eq!(is_prime(1), false);
+        assert_eq!(is_prime(2), true);
+        assert_eq!(is_prime(3), true);
+        assert_eq!(is_prime(4), false);
+        assert_eq!(is_prime(5), true);
+        assert_eq!(is_prime(7919), true);
+    }
+}
