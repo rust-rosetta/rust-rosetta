@@ -1149,6 +1149,12 @@ members = [
     # http://rosettacode.org/wiki/Sequence_of_non-squares
     "tasks/sequence-of-non-squares",
 
+    # http://rosettacode.org/wiki/Sequence_of_primes_by_trial_division
+    "tasks/sequence-of-primes-by-trial-division",
+
+    # http://rosettacode.org/wiki/Sequence:_smallest_number_with_exactly_n_divisors
+    "tasks/sequence-smallest-number-with-exactly-n-divisors",
+
     # http://rosettacode.org/wiki/Set
     "tasks/set",
 

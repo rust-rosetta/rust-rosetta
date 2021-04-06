@@ -4710,6 +4710,17 @@ name = "sequence-of-non-squares"
 version = "0.1.0"
 
 [[package]]
+name = "sequence-of-primes-by-trial-division"
+version = "0.1.0"
+
+[[package]]
+name = "sequence-smallest-number-with-exactly-n-divisors"
+version = "0.1.0"
+dependencies = [
+ "itertools 0.10.0",
+]
+
+[[package]]
 name = "serde"
 version = "1.0.123"
 source = "registry+https://github.com/rust-lang/crates.io-index"
