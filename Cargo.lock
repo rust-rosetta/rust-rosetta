@@ -911,6 +911,12 @@ dependencies = [
 ]
 
 [[package]]
+name = "const-sha1"
+version = "0.2.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "fb58b6451e8c2a812ad979ed1d83378caa5e927eef2622017a45f251457c2c9d"
+
+[[package]]
 name = "constrained-random-points-on-a-circle"
 version = "0.1.0"
 dependencies = [
@@ -4949,6 +4955,12 @@ name = "square-free-integers"
 version = "0.1.0"
 
 [[package]]
+name = "squote"
+version = "0.1.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "1fccf17fd09e2455ea796d2ad267b64fa2c5cbd8701b2a93b555d2aa73449f7d"
+
+[[package]]
 name = "stack"
 version = "0.1.0"
 
@@ -5837,6 +5849,42 @@ dependencies = [
 ]
 
 [[package]]
+name = "windows"
+version = "0.7.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "388ac37f05f32071485db1af226f92ee98432dc6b5ba51ebee121bf01c8e2446"
+dependencies = [
+ "const-sha1",
+ "windows_gen",
+ "windows_macros",
+]
+
+[[package]]
+name = "windows_gen"
+version = "0.7.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "91332e7e62443e735f74b6d701dcc053f26b08fa63cba5b60a6cd8b64b0cf481"
+dependencies = [
+ "proc-macro2 1.0.24",
+ "quote 1.0.9",
+ "squote",
+ "syn 1.0.60",
+]
+
+[[package]]
+name = "windows_macros"
+version = "0.7.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "c9d7c54fe11679c0805051a5dc73b87b7abf13fefd4fdfdea9b888673a498ec8"
+dependencies = [
+ "proc-macro2 1.0.24",
+ "quote 1.0.9",
+ "squote",
+ "syn 1.0.60",
+ "windows_gen",
+]
+
+[[package]]
 name = "winit"
 version = "0.22.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -5906,6 +5954,13 @@ dependencies = [
 [[package]]
 name = "write-entire-file"
 version = "0.1.0"
+
+[[package]]
+name = "write-to-a-windows-event-log"
+version = "0.1.0"
+dependencies = [
+ "windows",
+]
 
 [[package]]
 name = "ws2_32-sys"

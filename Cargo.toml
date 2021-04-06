@@ -1434,6 +1434,9 @@ members = [
     # http://rosettacode.org/wiki/Write_entire_file
     "tasks/write-entire-file",
 
+    # http://rosettacode.org/wiki/Write_to_Windows_event_log
+    "tasks/write-to-a-windows-event-log",
+
     # https://rosettacode.org/wiki/XML/Output
     "tasks/xml-output",
 
