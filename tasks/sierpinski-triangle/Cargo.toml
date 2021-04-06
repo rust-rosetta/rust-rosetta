@@ -1,6 +1,10 @@
 [package]
 name = "sierpinski-triangle"
 version = "0.1.0"
+edition = "2018"
 
 [package.metadata.rosettacode]
 url = "http://rosettacode.org/wiki/Sierpinski_triangle"
+
+[dev-dependencies]
+assert_cmd = "1.0.3"
