@@ -699,6 +699,9 @@ members = [
     # http://rosettacode.org/wiki/Here_document
     "tasks/here-document",
 
+    # http://rosettacode.org/wiki/Heronian_triangles
+    "tasks/heronian-triangles",
+
     # https://rosettacode.org/wiki/Hickerson_series_of_almost_integers
     "tasks/hickerson-series-of-almost-integers",
 
@@ -1325,6 +1328,9 @@ members = [
 
     # https://rosettacode.org/wiki/Take_notes_on_the_command_line
     "tasks/take-notes-on-the-command-line",
+
+    # http://rosettacode.org/wiki/Tau_number
+    "tasks/tau-number",
 
     # http://rosettacode.org/wiki/Taxicab_numbers
     "tasks/taxicab-numbers",
