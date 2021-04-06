@@ -1,7 +1,7 @@
 fn main() {
-    #[cfg(target_os = "windows")]
+    #[cfg(windows)]
     {
-        windows::build!(windows::win32::system_services::{GetCurrentProcess, ReportEventA, OpenEventLogA, EventLogHandle, HANDLE, BOOL, PSTR},
-    windows::win32::security::{OpenProcessToken, GetTokenInformation, TOKEN_INFORMATION_CLASS});
+        windows::build!(Windows::Win32::SystemServices::{GetCurrentProcess, ReportEventA, OpenEventLogA, ReportEvent_wType, HANDLE, PSTR},
+    Windows::Win32::Security::{OpenProcessToken, GetTokenInformation, TOKEN_ACCESS_MASK, TOKEN_INFORMATION_CLASS, TOKEN_USER, PSID});
     }
 }
