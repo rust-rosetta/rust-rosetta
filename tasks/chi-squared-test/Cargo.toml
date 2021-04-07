@@ -8,3 +8,6 @@ url = "http://rosettacode.org/wiki/Verify_distribution_uniformity/Chi-squared_te
 
 [dependencies]
 statrs="0.13.0"
+
+[dev-dependencies]
+assert_approx_eq = "1.1.0"

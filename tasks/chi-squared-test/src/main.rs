@@ -34,3 +34,20 @@ fn main() {
         print!("Uniform? {}\n", chi2_uniform(&ds, 0.05));
     }
 }
+
+#[cfg(test)]
+mod tests {
+    use super::{chi2_probability, chi_distance};
+    use assert_approx_eq::assert_approx_eq;
+
+    #[test]
+    fn test_chi_probability() {
+        let input: Vec<u32> = vec![199809, 200665, 199607, 200270, 199649];
+        assert_approx_eq!(chi_distance(&input), 4.146280);
+
+        assert_approx_eq!(
+            chi2_probability(input.len() as f64 - 1., chi_distance(&input)),
+            0.386571
+        );
+    }
+}
