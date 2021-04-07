@@ -23,10 +23,12 @@ impl fmt::Display for RareResults {
 }
 
 fn print_results(results: Vec<RareResults>) {
-    println!("Results:");
-    println!("digits      time  #. Rare number");
-    for r in results {
-        println!("{}", r);
+    if results.len() != 0 {
+        // println!("Results:");
+        println!("digits      time  #. Rare number");
+        for r in results {
+            println!("{}", r);
+        }
     }
 }
 
@@ -70,7 +72,7 @@ fn is_rare(number: u64) -> bool {
 /// This method is a very simple naive search, using brute-force to check a high amount of numbers
 /// for satisfying the rare number criterias. As such it is rather slow, and above 10 digits it's
 /// not really performant, release version takes ~30 secs to find the first 5 (max 10 digits)
-fn naive(digits: u8) {
+fn naive(digit: u8) -> Vec<RareResults> {
     let bp_equal = (0_u8..=9).zip(0_u8..=9).collect::<Vec<(u8, u8)>>();
     let bp_zero_or_even = (0_u8..=9)
         .cartesian_product(0_u8..=9)
@@ -124,11 +126,31 @@ fn naive(digits: u8) {
     let mut counter = 0_u32;
     let start_time = Instant::now();
 
-    for d in 1..=digits {
-        print!("Digits: {} ", d);
+    let d = digit;
+    print!("Digits: {} ", d);
 
-        if d < 4 {
-            for n in 10_u64.pow((d - 1).into())..10_u64.pow(d.into()) {
+    if d < 4 {
+        for n in 10_u64.pow((d - 1).into())..10_u64.pow(d.into()) {
+            if is_rare(n) {
+                counter += 1;
+                results.push(RareResults {
+                    digits: d,
+                    time_to_find: start_time.elapsed().as_millis(),
+                    counter,
+                    number: n,
+                });
+            }
+        }
+    } else {
+        aq_bp.iter().for_each(|abqp| {
+            let start = abqp[0] as u64 * 10_u64.pow((d - 1).into())
+                + abqp[1] as u64 * 10_u64.pow((d - 2).into())
+                + 10_u64 * abqp[2] as u64
+                + abqp[3] as u64;
+
+            // brute-force checking all numbers which matches the pattern AB...PQ
+            // very slow
+            for n in (start..start + 10_u64.pow((d - 2).into())).step_by(100) {
                 if is_rare(n) {
                     counter += 1;
                     results.push(RareResults {
@@ -139,43 +161,22 @@ fn naive(digits: u8) {
                     });
                 }
             }
-        } else {
-            aq_bp.iter().for_each(|abqp| {
-                let start = abqp[0] as u64 * 10_u64.pow((d - 1).into())
-                    + abqp[1] as u64 * 10_u64.pow((d - 2).into())
-                    + 10_u64 * abqp[2] as u64
-                    + abqp[3] as u64;
-
-                // brute-force checking all numbers which matches the pattern AB...PQ
-                // very slow
-                for n in (start..start + 10_u64.pow((d - 2).into())).step_by(100) {
-                    if is_rare(n) {
-                        counter += 1;
-                        results.push(RareResults {
-                            digits: d,
-                            time_to_find: start_time.elapsed().as_millis(),
-                            counter,
-                            number: n,
-                        });
-                    }
-                }
-            });
-        }
-
-        println!(
-            "Digits: {} done - Elapsed time(ms): {}",
-            d,
-            start_time.elapsed().as_millis()
-        );
+        });
     }
 
-    print_results(results);
+    println!(
+        "Digits: {} done - Elapsed time(ms): {}",
+        d,
+        start_time.elapsed().as_millis()
+    );
+
+    results
 }
 
 /// This algorithm uses an advanced search strategy based on Nigel Galloway's approach,
 /// and can find the first 40 rare numers (16 digits) within reasonable
 /// time in release version
-fn advanced(digits: u8) {
+fn advanced(digit: u8) -> Vec<RareResults> {
     // setup
     let mut results: Vec<RareResults> = Vec::new();
     let mut counter = 0_u32;
@@ -205,21 +206,22 @@ fn advanced(digits: u8) {
     // lookup table for all the remaining diffs
     let lookup_n: HashMap<i8, Vec<_>> = pairs.into_iter().into_group_map_by(|elt| elt[0] - elt[1]);
 
-    for d in 2..=digits {
-        // powers like 1, 10, 100, 1000....
-        let powers = (0..d).map(|x| 10_u64.pow(x.into())).collect::<Vec<u64>>();
+    let d = digit;
 
-        // for n-r (aka L) the required terms, like 9/ 99 / 999 & 90 / 99999 & 9999 & 900 etc
-        let terms = powers
-            .iter()
-            .zip(powers.iter().rev())
-            .map(|(a, b)| b.checked_sub(*a).unwrap_or(0))
-            .filter(|x| *x != 0)
-            .collect::<Vec<u64>>();
+    // powers like 1, 10, 100, 1000....
+    let powers = (0..d).map(|x| 10_u64.pow(x.into())).collect::<Vec<u64>>();
 
-        // create a cartesian product for all potetential diff numbers
-        // for the first use the very short one, for all other the complete 19 element
-        let diff_list_iter = (0_u8..(d / 2))
+    // for n-r (aka L) the required terms, like 9/ 99 / 999 & 90 / 99999 & 9999 & 900 etc
+    let terms = powers
+        .iter()
+        .zip(powers.iter().rev())
+        .map(|(a, b)| b.checked_sub(*a).unwrap_or(0))
+        .filter(|x| *x != 0)
+        .collect::<Vec<u64>>();
+
+    // create a cartesian product for all potetential diff numbers
+    // for the first use the very short one, for all other the complete 19 element
+    let diff_list_iter = (0_u8..(d / 2))
             .map(|i| match i {
                 0 => diffs1.iter(),
                 _ => all_diffs.iter(),
@@ -242,92 +244,108 @@ fn advanced(digits: u8) {
                 }
             });
 
-        #[cfg(debug_assertions)]
-        {
-            println!("  powers: {:?}", powers);
-            println!("  terms: {:?}", terms);
-        }
-
-        diff_list_iter.for_each(|diffs| {
-            // calculate difference of original n and its reverse (aka L = n-r)
-            // which must be a perfect square
-            let l: i64 = diffs
-                .iter()
-                .zip(terms.iter())
-                .map(|(diff, term)| **diff as i64 * *term as i64)
-                .sum();
-
-            if l > 0 && is_square(l.try_into().unwrap()) {
-                // potential candiate, at least L is a perfect square
-                #[cfg(debug_assertions)]
-                println!("  square L: {}, diffs: {:?}", l, diffs);
-
-                // placeholder for the digits
-                let mut dig: Vec<i8> = vec![0_i8; d.into()];
-
-                // generate a cartesian product for each identified diff using the lookup tables
-                let c_iter = (0..(diffs.len() + d as usize % 2))
-                    .map(|i| match i {
-                        0 => lookup_1[*diffs[0] as usize].iter(),
-                        _ if i != diffs.len() => lookup_n.get(diffs[i]).unwrap().iter(),
-                        _ => numeric_digits.iter(), // for the middle digits
-                    })
-                    .multi_cartesian_product();
-
-                // check each H (n+r) by using digit combination
-                c_iter.for_each(|elt| {
-                    // print!("    digits combinations: {:?}", elt);
-                    for (i, digit_pair) in elt.iter().enumerate() {
-                        // print!("  digit pairs: {:?}, len: {}", digit_pair, l.len());
-                        dig[i] = digit_pair[0];
-                        dig[d as usize - 1 - i] = digit_pair[1]
-                    }
-
-                    // for numbers with odd # digits restore the middle digit
-                    // which has been overwritten at the end of the previous cycle
-                    if d % 2 == 1 {
-                        dig[(d as usize - 1) / 2] = elt[elt.len() - 1][0];
-                    }
-
-                    let num = dig
-                        .iter()
-                        .rev()
-                        .enumerate()
-                        .fold(0_u64, |acc, (i, d)| acc + 10_u64.pow(i as u32) * *d as u64);
-
-                    let reverse = dig
-                        .iter()
-                        .enumerate()
-                        .fold(0_u64, |acc, (i, d)| acc + 10_u64.pow(i as u32) * *d as u64);
-
-                    if num > reverse && is_square(num + reverse) {
-                        println!("  FOUND: {}, reverse: {}", num, reverse);
-                        counter += 1;
-                        results.push(RareResults {
-                            digits: d,
-                            time_to_find: start_time.elapsed().as_millis(),
-                            counter,
-                            number: num,
-                        });
-                    }
-                });
-            }
-        });
-
-        println!(
-            "Digits: {} done - Elapsed time(ms): {}",
-            d,
-            start_time.elapsed().as_millis()
-        );
+    #[cfg(debug_assertions)]
+    {
+        println!("  powers: {:?}", powers);
+        println!("  terms: {:?}", terms);
     }
 
-    print_results(results);
+    diff_list_iter.for_each(|diffs| {
+        // calculate difference of original n and its reverse (aka L = n-r)
+        // which must be a perfect square
+        let l: i64 = diffs
+            .iter()
+            .zip(terms.iter())
+            .map(|(diff, term)| **diff as i64 * *term as i64)
+            .sum();
+
+        if l > 0 && is_square(l.try_into().unwrap()) {
+            // potential candiate, at least L is a perfect square
+            #[cfg(debug_assertions)]
+            println!("  square L: {}, diffs: {:?}", l, diffs);
+
+            // placeholder for the digits
+            let mut dig: Vec<i8> = vec![0_i8; d.into()];
+
+            // generate a cartesian product for each identified diff using the lookup tables
+            let c_iter = (0..(diffs.len() + d as usize % 2))
+                .map(|i| match i {
+                    0 => lookup_1[*diffs[0] as usize].iter(),
+                    _ if i != diffs.len() => lookup_n.get(diffs[i]).unwrap().iter(),
+                    _ => numeric_digits.iter(), // for the middle digits
+                })
+                .multi_cartesian_product();
+
+            // check each H (n+r) by using digit combination
+            c_iter.for_each(|elt| {
+                // print!("    digits combinations: {:?}", elt);
+                for (i, digit_pair) in elt.iter().enumerate() {
+                    // print!("  digit pairs: {:?}, len: {}", digit_pair, l.len());
+                    dig[i] = digit_pair[0];
+                    dig[d as usize - 1 - i] = digit_pair[1]
+                }
+
+                // for numbers with odd # digits restore the middle digit
+                // which has been overwritten at the end of the previous cycle
+                if d % 2 == 1 {
+                    dig[(d as usize - 1) / 2] = elt[elt.len() - 1][0];
+                }
+
+                let num = dig
+                    .iter()
+                    .rev()
+                    .enumerate()
+                    .fold(0_u64, |acc, (i, d)| acc + 10_u64.pow(i as u32) * *d as u64);
+
+                let reverse = dig
+                    .iter()
+                    .enumerate()
+                    .fold(0_u64, |acc, (i, d)| acc + 10_u64.pow(i as u32) * *d as u64);
+
+                if num > reverse && is_square(num + reverse) {
+                    println!("  FOUND: {}, reverse: {}", num, reverse);
+                    counter += 1;
+                    results.push(RareResults {
+                        digits: d,
+                        time_to_find: start_time.elapsed().as_millis(),
+                        counter,
+                        number: num,
+                    });
+                }
+            });
+        }
+    });
+
+    println!(
+        "Digits: {} done - Elapsed time(ms): {}",
+        d,
+        start_time.elapsed().as_millis()
+    );
+
+    results
 }
 fn main() {
     println!("Run this program in release mode for measuring performance");
     println!("Naive version:");
-    naive(10);
+    (1..=10).for_each(|x| print_results(naive(x)));
 
     println!("Advanced version:");
-    advanced(15);
+    (1..=15).for_each(|x| print_results(advanced(x)));
+}
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_naive() {
+        let result = naive(6);
+        assert_eq!(result[0].number, 621770);
+    }
+
+    #[test]
+    fn test_advanced() {
+        let result = advanced(10);
+        assert_eq!(result[0].number, 2022652202);
+        assert_eq!(result[1].number, 2042832002);
+    }
 }
