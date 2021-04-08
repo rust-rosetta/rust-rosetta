@@ -143,7 +143,18 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "24bb00eeca59f2986c747b8c2f271d52310ce446be27428fc34705138b155778"
 dependencies = [
  "approx",
- "libm",
+ "libm 0.1.4",
+ "num-complex 0.2.4",
+ "num-traits",
+]
+
+[[package]]
+name = "alga"
+version = "0.9.3"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "4f823d037a7ec6ea2197046bafd4ae150e6bc36f9ca347404f46a46823fa84f2"
+dependencies = [
+ "approx",
  "num-complex 0.2.4",
  "num-traits",
 ]
@@ -753,6 +764,13 @@ dependencies = [
 [[package]]
 name = "cheryl-birthday"
 version = "0.1.0"
+
+[[package]]
+name = "chi-squared-test"
+version = "0.1.0"
+dependencies = [
+ "statrs",
+]
 
 [[package]]
 name = "chinese-remainder-theorem"
@@ -1913,6 +1931,15 @@ dependencies = [
 ]
 
 [[package]]
+name = "generic-array"
+version = "0.13.3"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "f797e67af32588215eaaab8327027ee8e71b9dd0b2b26996aedf20c030fce309"
+dependencies = [
+ "typenum",
+]
+
+[[package]]
 name = "generic-swap"
 version = "0.1.0"
 
@@ -2684,7 +2711,7 @@ version = "0.1.0"
 dependencies = [
  "csv",
  "gnuplot",
- "nalgebra",
+ "nalgebra 0.16.14",
  "rand 0.7.3",
  "structopt",
 ]
@@ -2804,6 +2831,12 @@ name = "libm"
 version = "0.1.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "7fc7aa29613bd6a620df431842069224d8bc9011086b1db4c0e0cd47fa03ec9a"
+
+[[package]]
+name = "libm"
+version = "0.2.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "c7d73b3f436185384286bd8098d17ec07c9a7d2388a6599f824d8502b529702a"
 
 [[package]]
 name = "line-printer"
@@ -3239,13 +3272,31 @@ version = "0.16.14"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "ccb86df349ecf5f549f6e12f6de4972cdd912d0bc290c1ca4d34d4b4b21a6f98"
 dependencies = [
- "alga",
+ "alga 0.7.2",
  "approx",
  "generic-array 0.11.2",
  "matrixmultiply 0.1.15",
  "num-complex 0.2.4",
  "num-traits",
  "rand 0.5.6",
+ "typenum",
+]
+
+[[package]]
+name = "nalgebra"
+version = "0.19.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "0abb021006c01b126a936a8dd1351e0720d83995f4fc942d0d426c654f990745"
+dependencies = [
+ "alga 0.9.3",
+ "approx",
+ "generic-array 0.13.3",
+ "matrixmultiply 0.2.4",
+ "num-complex 0.2.4",
+ "num-rational 0.2.4",
+ "num-traits",
+ "rand 0.7.3",
+ "rand_distr",
  "typenum",
 ]
 
@@ -3496,6 +3547,17 @@ dependencies = [
 
 [[package]]
 name = "num-rational"
+version = "0.2.4"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "5c000134b5dbf44adc5cb772486d335293351644b801551abe8f75c84cfa4aef"
+dependencies = [
+ "autocfg",
+ "num-integer",
+ "num-traits",
+]
+
+[[package]]
+name = "num-rational"
 version = "0.3.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "12ac428b1cb17fce6f731001d307d351ec70a6d202fc2e60f7d4c5e42d8f4f07"
@@ -3513,6 +3575,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "9a64b1ec5cda2586e284722486d802acf1f7dbdc623e2bfc57e65ca1cd099290"
 dependencies = [
  "autocfg",
+ "libm 0.2.1",
 ]
 
 [[package]]
@@ -4977,6 +5040,16 @@ name = "static_assertions"
 version = "1.1.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "a2eb9349b6444b326872e140eb1cf5e7c522154d69e7a0ffb0fb81c06b37543f"
+
+[[package]]
+name = "statrs"
+version = "0.13.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "1e34b58a8f9b7462b6922e0b4e3c83d1b3c2075f7f996a56d6c66afa81590064"
+dependencies = [
+ "nalgebra 0.19.0",
+ "rand 0.7.3",
+]
 
 [[package]]
 name = "stb_truetype"
