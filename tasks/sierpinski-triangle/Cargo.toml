@@ -8,3 +8,4 @@ url = "http://rosettacode.org/wiki/Sierpinski_triangle"
 
 [dev-dependencies]
 assert_cmd = "1.0.3"
+indoc = "1.0"
