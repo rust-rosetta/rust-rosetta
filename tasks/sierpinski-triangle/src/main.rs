@@ -45,10 +45,10 @@ mod tests {
     fn test_outputs() {
         let mut cmd = Command::cargo_bin("sierpinski-triangle").unwrap();
         cmd.arg("2").assert().success().stdout(indoc! {"
-            *   
-           * *  
-          *   * 
-         * * * *
+               *   
+              * *  
+             *   * 
+            * * * *
         "});
 
         let mut cmd = Command::cargo_bin("sierpinski-triangle").unwrap();
