@@ -783,6 +783,7 @@ version = "0.1.0"
 name = "chi-squared-test"
 version = "0.1.0"
 dependencies = [
+ "assert_approx_eq",
  "statrs",
 ]
 
