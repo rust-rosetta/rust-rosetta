@@ -1,7 +1,7 @@
-const MAX_N: u64 = 250;
+const MAX_N: usize = 250;
 
 fn eulers_sum_of_powers() -> (usize, usize, usize, usize, usize) {
-    let pow5: Vec<u64> = (0..MAX_N).map(|i| i.pow(5)).collect();
+    let pow5: Vec<u64> = (0..MAX_N).map(|i| (i as u64).pow(5)).collect();
     let pow5_to_n = |pow| pow5.binary_search(&pow);
 
     for x0 in 1..MAX_N as usize {

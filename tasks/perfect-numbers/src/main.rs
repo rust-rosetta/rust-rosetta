@@ -1,5 +1,5 @@
 fn perfect_number(n: usize) -> bool {
-    (1..(n / 2) + 1).filter(|&i| n % i == 0).sum::<usize>() == n
+    (1..=(n / 2)).filter(|&i| n % i == 0).sum::<usize>() == n
 }
 
 fn main() {

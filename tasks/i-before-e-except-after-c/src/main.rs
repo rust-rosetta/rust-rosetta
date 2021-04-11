@@ -28,7 +28,7 @@ struct Occurrences {
     ie: u32,
     ei: u32,
 }
-
+#[allow(clippy::similar_names)]
 fn count_occurrences(data: &str) -> Occurrences {
     // The counting process is implemented by a state machine. The state variable
     // tracks what pattern prefix was recognized so far (details at MatchState).

@@ -42,12 +42,12 @@ impl<T> Queue<T> {
 
         let raw_tail: *mut _ = &mut *new_tail;
 
-        if !self.tail.is_null() {
+        if self.tail.is_null() {
+            self.head = Some(new_tail);
+        } else {
             unsafe {
                 (*self.tail).next = Some(new_tail);
             }
-        } else {
-            self.head = Some(new_tail);
         }
 
         self.tail = raw_tail;

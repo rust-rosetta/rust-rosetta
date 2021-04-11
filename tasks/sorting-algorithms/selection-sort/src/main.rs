@@ -23,7 +23,7 @@ fn selection_sort<T: Ord>(v: &mut [T]) {
 
 fn main() {
     // Sort numbers
-    let mut numbers = [4i32, 65, 2, -31, 0, 99, 2, 83, 782, 1];
+    let mut numbers = [4_i32, 65, 2, -31, 0, 99, 2, 83, 782, 1];
     println!("Before: {:?}", numbers);
 
     selection_sort(&mut numbers);

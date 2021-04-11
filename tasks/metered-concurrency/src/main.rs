@@ -31,7 +31,7 @@ impl CountingSemaphore {
         }
     }
 
-    /// Acquire a resource, returning a RAII CountingSemaphoreGuard.
+    /// Acquire a resource, returning a RAII `CountingSemaphoreGuard`.
     pub fn acquire(&self) -> CountingSemaphoreGuard {
         // Spinlock until remaining resource count is at least 1
         let mut backoff = self.backoff;
