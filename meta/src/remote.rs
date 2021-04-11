@@ -97,10 +97,13 @@ pub fn parse_tasks(response: &Response) -> Vec<RemoteTask> {
         .pages
         .values()
         .map(|page| {
-            let source = RUST_WIKI_SECTION_RE
-                .captures(&page.revisions[0].content)
-                .map(|captures| captures.get(1).unwrap())
-                .map(|m| m.as_str().to_owned());
+            let mut source = None;
+            if !page.revisions.is_empty() {
+                source = RUST_WIKI_SECTION_RE
+                    .captures(&page.revisions[0].content)
+                    .map(|captures| captures.get(1).unwrap())
+                    .map(|m| m.as_str().to_owned());
+            }
 
             let title = page.title.clone();
             let url = Url::parse(&format!(
