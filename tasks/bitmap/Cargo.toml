@@ -4,3 +4,7 @@ version = "0.1.0"
 
 [package.metadata.rosettacode]
 url = "http://rosettacode.org/wiki/Bitmap"
+
+[dependencies]
+nom = "6.1.2"
+thiserror = "1.0.24"

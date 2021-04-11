@@ -6,6 +6,16 @@ pub fn main() {
     // read a PPM image, which was produced by the write-a-ppm-file task
     let mut image = Image::new(64, 64);
     image.read_ppm("./test_image.ppm").unwrap();
+
+    println!("Read using simple parsing:");
+    println!("Format: {:?}", image.format);
+    println!("Dimensions: {} x {}", image.height, image.width);
+
+    let image = Image::parse_ppm("./test_image.ppm").unwrap();
+
+    println!("Read using nom parsing:");
+    println!("Format: {:?}", image.format);
+    println!("Dimensions: {} x {}", image.height, image.width);
 }
 
 #[cfg(test)]
