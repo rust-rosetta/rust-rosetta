@@ -1,6 +1,7 @@
 //! Contributed by Gavin Baker <gavinb@antonym.org>
 //! Adapted from the Go version
 
+use minifb::{Key, Window, WindowOptions};
 use std::fs::File;
 use std::io::{BufRead, BufReader, BufWriter, Read, Write};
 use std::iter::repeat;
@@ -41,14 +42,18 @@ fn load_pgm(filename: &str) -> ImageGray8 {
     let mut img = ImageGray8 {
         width,
         height,
-        data: repeat(0u8).take(width * height).collect(),
+        // data: repeat(0u8).take(width * height).collect(),
+        data: vec![],
     };
 
     // Read image data
-    let len = img.data.len();
-    match file.read(&mut img.data) {
-        Ok(bytes_read) if bytes_read == len => println!("Read {} bytes", bytes_read),
-        Ok(bytes_read) => println!("Error: read {} bytes, expected {}", bytes_read, len),
+    match file.read_to_end(&mut img.data) {
+        Ok(bytes_read) if bytes_read == width * height => println!("Read {} bytes", bytes_read),
+        Ok(bytes_read) => println!(
+            "Error: read {} bytes, expected {}",
+            bytes_read,
+            width * height
+        ),
         Err(e) => println!("error reading: {}", e),
     }
 
@@ -106,8 +111,8 @@ fn hough(image: &ImageGray8, out_width: usize, out_height: usize) -> ImageGray8 
                 let th = dth * (jtx as f64);
                 let r = (x as f64) * (th.cos()) + (y as f64) * (th.sin());
 
-                let iry = out_height / 2 - (r / (dr as f64) + 0.5).floor() as usize;
-                let out_idx = jtx + iry * out_width;
+                let iry = out_height as i32 / 2 - (r / (dr as f64) + 0.5).floor() as i32;
+                let out_idx = (jtx as i32 + iry * out_width as i32) as usize;
                 let col = accum.data[out_idx];
                 if col > 0 {
                     accum.data[out_idx] = col - 1;
@@ -118,10 +123,34 @@ fn hough(image: &ImageGray8, out_width: usize, out_height: usize) -> ImageGray8 
     accum
 }
 
+fn show_image(image: &ImageGray8, title: &str) {
+    let mut window = Window::new(title, image.width, image.height, WindowOptions::default())
+        .unwrap_or_else(|e| {
+            panic!("{}", e);
+        });
+
+    // Limit to max ~60 fps update rate
+    window.limit_update_rate(Some(std::time::Duration::from_micros(16600)));
+
+    // load image
+    let u32_buffer: Vec<u32> = image
+        .data
+        .iter()
+        // .chunks(3)
+        .map(|v| ((*v as u32) << 16) | ((*v as u32) << 8) | *v as u32)
+        // .map(|v|150_u32 << 16 | 150_u32 << 8 | 150_u32)
+        .collect();
+
+    while window.is_open() && !window.is_key_down(Key::Escape) {
+        window
+            .update_with_buffer(&u32_buffer, image.width as usize, image.height as usize)
+            .unwrap();
+    }
+}
 fn main() {
-    let image = load_pgm("resources/Pentagon.pgm");
-
+    let image = load_pgm("Pentagon.pgm");
+    show_image(&image, "Original image - ESC to continue");
     let accum = hough(&image, 460, 360);
-
+    show_image(&accum, "Hough transform - ESC to continue");
     save_pgm(&accum, "hough.pgm");
 }
