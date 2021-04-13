@@ -2,33 +2,30 @@ use num::BigUint;
 use num::CheckedSub;
 use num_traits::{One, Zero};
 
-fn isqrt(x: &BigUint) -> BigUint {
+fn isqrt(number: &BigUint) -> BigUint {
     let mut q: BigUint = One::one();
-    while q <= *x {
+    while q <= *number {
         q <<= &2;
     }
 
-    let mut z = x.clone();
-    let mut r: BigUint = Zero::zero();
+    let mut z = number.clone();
+    let mut result: BigUint = Zero::zero();
 
     while q > One::one() {
         q >>= &2;
-        let t = z.checked_sub(&r).and_then(|diff| diff.checked_sub(&q));
-        r >>= &1;
+        let t = z.checked_sub(&result).and_then(|diff| diff.checked_sub(&q));
+        result >>= &1;
 
-        match t {
-            Some(t) => {
-                z = t;
-                r += &q;
-            }
-            None => (),
+        if let Some(t) = t {
+            z = t;
+            result += &q;
         }
     }
 
-    r
+    result
 }
 
-fn with_thousand_separator(s: String) -> String {
+fn with_thousand_separator(s: &str) -> String {
     let digits: Vec<_> = s.chars().rev().collect();
     let chunks: Vec<_> = digits
         .chunks(3)
@@ -47,8 +44,8 @@ fn main() {
         println!(
             "7^{:>2}={:>83} ISQRT: {:>42} ",
             exp,
-            with_thousand_separator(BigUint::from(7_u8).pow(exp).to_string()),
-            with_thousand_separator(isqrt(&BigUint::from(7_u8).pow(exp)).to_string())
+            with_thousand_separator(&BigUint::from(7_u8).pow(exp).to_string()),
+            with_thousand_separator(&isqrt(&BigUint::from(7_u8).pow(exp)).to_string())
         )
     });
 }
