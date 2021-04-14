@@ -42,7 +42,6 @@ fn load_pgm(filename: &str) -> ImageGray8 {
     let mut img = ImageGray8 {
         width,
         height,
-        // data: repeat(0u8).take(width * height).collect(),
         data: vec![],
     };
 
@@ -80,6 +79,8 @@ fn save_pgm(img: &ImageGray8, filename: &str) {
     }
 }
 
+#[allow(clippy::cast_precision_loss)]
+#[allow(clippy::clippy::cast_possible_truncation)]
 fn hough(image: &ImageGray8, out_width: usize, out_height: usize) -> ImageGray8 {
     let in_width = image.width;
     let in_height = image.height;
@@ -111,8 +112,9 @@ fn hough(image: &ImageGray8, out_width: usize, out_height: usize) -> ImageGray8 
                 let th = dth * (jtx as f64);
                 let r = (x as f64) * (th.cos()) + (y as f64) * (th.sin());
 
-                let iry = out_height as i32 / 2 - (r / (dr as f64) + 0.5).floor() as i32;
-                let out_idx = (jtx as i32 + iry * out_width as i32) as usize;
+                let iry = out_height as i64 / 2 - (r / (dr as f64) + 0.5).floor() as i64;
+                #[allow(clippy::clippy::cast_sign_loss)]
+                let out_idx = (jtx as i64 + iry * out_width as i64) as usize;
                 let col = accum.data[out_idx];
                 if col > 0 {
                     accum.data[out_idx] = col - 1;
@@ -137,8 +139,7 @@ fn show_image(image: &ImageGray8, title: &str) {
         .data
         .iter()
         // .chunks(3)
-        .map(|v| ((*v as u32) << 16) | ((*v as u32) << 8) | *v as u32)
-        // .map(|v|150_u32 << 16 | 150_u32 << 8 | 150_u32)
+        .map(|v| (u32::from(*v) << 16) | (u32::from(*v) << 8) | u32::from(*v) as u32)
         .collect();
 
     while window.is_open() && !window.is_key_down(Key::Escape) {
@@ -148,7 +149,7 @@ fn show_image(image: &ImageGray8, title: &str) {
     }
 }
 fn main() {
-    let image = load_pgm("Pentagon.pgm");
+    let image = load_pgm("resources/Pentagon.pgm");
     show_image(&image, "Original image - ESC to continue");
     let accum = hough(&image, 460, 360);
     show_image(&accum, "Hough transform - ESC to continue");
