@@ -24,6 +24,7 @@ pub struct CountingSemaphoreGuard<'a> {
 impl CountingSemaphore {
     /// Create a semaphore with `max` available resources and a linearly increasing backoff of
     /// `backoff` (used during spinlock contention).
+    #[must_use]
     pub fn new(max: usize, backoff: Duration) -> CountingSemaphore {
         CountingSemaphore {
             count: AtomicUsize::new(max),
