@@ -714,6 +714,9 @@ members = [
     # http://rosettacode.org/wiki/Hofstadter_Q_sequence
     "tasks/hofstadter-q-sequence",
 
+    # http://rosettacode.org/wiki/Horizontal_sundial_calculation
+    "tasks/horizontal-sundial-calculations",
+
     # http://rosettacode.org/wiki/Horner%27s_rule_for_polynomial_evaluation
     "tasks/horners-rule-for-polynomial-evaluation",
 

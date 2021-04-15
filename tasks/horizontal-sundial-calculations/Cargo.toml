@@ -1,0 +1,11 @@
+[package]
+name = "horizontal-sundial-calculations"
+version = "0.1.0"
+edition = "2018"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Horizontal_sundial_calculation"
+
+
+[dev-dependencies]
+assert_approx_eq = "1.1.0"

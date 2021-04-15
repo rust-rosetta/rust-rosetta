@@ -783,6 +783,7 @@ version = "0.1.0"
 name = "chi-squared-test"
 version = "0.1.0"
 dependencies = [
+ "assert_approx_eq",
  "statrs",
 ]
 
@@ -2385,6 +2386,13 @@ version = "0.1.0"
 [[package]]
 name = "hofstadter-q-sequence"
 version = "0.1.0"
+
+[[package]]
+name = "horizontal-sundial-calculations"
+version = "0.1.0"
+dependencies = [
+ "assert_approx_eq",
+]
 
 [[package]]
 name = "horners-rule-for-polynomial-evaluation"
