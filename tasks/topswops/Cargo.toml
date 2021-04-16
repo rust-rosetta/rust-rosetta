@@ -1,0 +1,10 @@
+[package]
+name = "topswops"
+version = "0.1.0"
+edition = "2018"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Topswops"
+
+[dependencies]
+itertools = "0.10.0"
