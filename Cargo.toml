@@ -963,6 +963,9 @@ members = [
     # https://rosettacode.org/wiki/Optional_parameters
     "tasks/optional-parameters",
 
+    # http://rosettacode.org/wiki/Ordered_partitions
+    "tasks/ordered-partitions",
+
     # http://rosettacode.org/wiki/Ordered_words
     "tasks/ordered-words",
 

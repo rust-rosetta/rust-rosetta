@@ -1,0 +1,11 @@
+[package]
+name = "ordered-partitions"
+version = "0.1.0"
+edition = "2018"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Ordered_partitions"
+
+
+[dependencies]
+itertools = "0.10.0"
