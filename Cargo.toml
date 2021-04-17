@@ -1365,6 +1365,9 @@ members = [
     # http://rosettacode.org/wiki/Tokenize_a_string
     "tasks/tokenize-a-string",
 
+    # http://rosettacode.org/wiki/Topswops
+    "tasks/topswops",
+
     # https://rosettacode.org/wiki/Totient_function
     "tasks/totient-function",
 
