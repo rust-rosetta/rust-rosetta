@@ -2,10 +2,10 @@ extern crate nom;
 extern crate thiserror;
 mod parser;
 
+use std::default::Default;
 use std::fmt;
-use std::io::{BufReader, BufWriter, Error, ErrorKind, Write};
+use std::io::{BufWriter, Error, Write};
 use std::ops::{Index, IndexMut};
-use std::{default::Default, io::BufRead};
 use std::{fs::File, io::Read};
 use thiserror::Error;
 
@@ -132,77 +132,16 @@ impl Image {
     /// # Errors
     ///
     /// Will return `Error` if `filename` does not exist or the user does not have
-    /// permission to read it or the read operation fails.
-    pub fn read_ppm(&mut self, filename: &str) -> Result<(), Error> {
-        let file = File::open(filename)?;
-        let mut reader = BufReader::new(file);
-
-        let mut buf = String::new();
-        reader.read_line(&mut buf)?;
-
-        // works only with P6 (binary) and P3 (ascii)
-        assert!(buf == "P6\n" || buf == "P3\n");
-
-        buf.clear();
-        reader.read_line(&mut buf)?;
-
-        // header parameters assumed to be separated by spaces
-        let mut info_iter = buf.trim().split(' ');
-        let width = info_iter
-            .next()
-            .unwrap_or("0")
-            .parse::<usize>()
-            .map_err(|_| Error::new(ErrorKind::InvalidData, "Invalid dimensions"))?;
-
-        let height = info_iter
-            .next()
-            .unwrap_or("0")
-            .parse::<usize>()
-            .map_err(|_| Error::new(ErrorKind::InvalidData, "Invalid dimensions"))?;
-
-        let max_color = info_iter
-            .next()
-            .unwrap_or("0")
-            .parse::<usize>()
-            .map_err(|_| Error::new(ErrorKind::InvalidData, "Invalid dimensions"))?;
-
-        // check for invalid header values
-        if width < 1 || height < 1 {
-            return Err(Error::new(ErrorKind::InvalidData, "Invalid dimensions"));
-        };
-
-        if max_color != 255 {
-            return Err(Error::new(ErrorKind::InvalidData, "Invalid header"));
-        };
-
-        // read pixel information
-        let mut data = vec![0; height * width * 3];
-        reader.read_exact(&mut data)?;
-
-        self.height = height;
-        self.width = width;
-
-        // reconstruct Color structs from byte array
-        self.data = data
-            .chunks(3)
-            .map(|c| Color {
-                red: c[0],
-                green: c[1],
-                blue: c[2],
-            })
-            .collect();
-
-        Ok(())
-    }
-
-    pub fn parse_ppm(filename: &str) -> Result<Image, ImageError> {
+    /// permission to read it or the read operation fails, or the file format does not
+    /// match the specification
+    pub fn read_ppm(filename: &str) -> Result<Image, ImageError> {
         let mut file = File::open(filename).map_err(|_| ImageError::FileNotFound)?;
         let mut data: Vec<u8> = Vec::new();
         file.read_to_end(&mut data)
             .map_err(|_| ImageError::FileNotReadable)?;
 
         let (i, format) = parser::parse_version(&data).map_err(|_| ImageError::InvalidHeader)?;
-        let (i, (height, width, max_color)) =
+        let (i, (width, height, max_color)) =
             parser::parse_image_attributes(i).map_err(|_| ImageError::InvalidHeader)?;
 
         if max_color != 255 {

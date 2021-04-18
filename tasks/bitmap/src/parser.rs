@@ -62,7 +62,7 @@ pub fn parse_data_binary(input: &[u8]) -> nom::IResult<&[u8], Vec<Color>> {
 }
 
 pub fn parse_color_ascii(input: &[u8]) -> nom::IResult<&[u8], Color> {
-    use nom::character::complete::{digit1, space1, space0};
+    use nom::character::complete::{digit1, space0, space1};
     use nom::sequence::tuple;
 
     tuple((digit1, space1, digit1, space1, digit1, space0))(input).map(|(next_input, res)| {
@@ -154,7 +154,6 @@ mod tests {
 
     #[test]
     fn test_parse_data_binary() {
-
         assert_eq!(
             Ok((
                 &b""[..],
@@ -192,7 +191,6 @@ mod tests {
 
     #[test]
     fn test_parse_data_ascii() {
-
         assert_eq!(
             Ok((
                 &b""[..],
