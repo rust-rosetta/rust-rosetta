@@ -4,7 +4,7 @@ fn main() {
     // Rust let bindings are immutable by default.
     let z = 3;
     // This will raise a compiler error:
-    // z += 2;  //~ ERROR cannot assign to immutable borrowed content `*y`
+    // z += 2; //~ ERROR cannot assign twice to immutable variable `z`
 
     // You must declare a variable mutable explicitly:
     let mut x = 3;
