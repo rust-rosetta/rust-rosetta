@@ -54,5 +54,17 @@ mod tests {
                 vec![vec![3, 4], vec![], vec![1, 2]],
             ],
         );
+
+        itertools::assert_equal(
+            generate_partitions(&[1, 1, 1]),
+            vec![
+                vec![vec![1], vec![2], vec![3]],
+                vec![vec![1], vec![3], vec![2]],
+                vec![vec![2], vec![1], vec![3]],
+                vec![vec![2], vec![3], vec![1]],
+                vec![vec![3], vec![1], vec![2]],
+                vec![vec![3], vec![2], vec![1]],
+            ],
+        );
     }
 }
