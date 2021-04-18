@@ -783,6 +783,7 @@ version = "0.1.0"
 name = "chi-squared-test"
 version = "0.1.0"
 dependencies = [
+ "assert_approx_eq",
  "statrs",
 ]
 
@@ -3760,6 +3761,13 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "88cfece6e95d2e717e0872a7f53a8684712ad13822a7979bc760b9c77ec0013b"
 dependencies = [
  "shared_library",
+]
+
+[[package]]
+name = "p-value-correction"
+version = "0.1.0"
+dependencies = [
+ "assert_approx_eq",
 ]
 
 [[package]]

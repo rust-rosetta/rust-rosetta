@@ -966,6 +966,9 @@ members = [
     # http://rosettacode.org/wiki/Ordered_words
     "tasks/ordered-words",
 
+    # http://rosettacode.org/wiki/P-value_correction
+    "tasks/p-value-correction",
+
     # http://rosettacode.org/wiki/Palindrome_detection
     "tasks/palindrome-detection",
 
