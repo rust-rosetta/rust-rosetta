@@ -1,9 +1,8 @@
 //! Contributed by Gavin Baker <gavinb@antonym.org>
 //! Adapted from the Go version
 
-use minifb::{Key, Window, WindowOptions};
 use std::fs::File;
-use std::io::{BufRead, BufReader, BufWriter, Read, Write};
+use std::io::{self, BufRead, BufReader, BufWriter, Read, Write};
 use std::iter::repeat;
 
 /// Simple 8-bit grayscale image
@@ -13,32 +12,36 @@ struct ImageGray8 {
     data: Vec<u8>,
 }
 
-fn load_pgm(filename: &str) -> ImageGray8 {
+fn load_pgm(filename: &str) -> io::Result<ImageGray8> {
     // Open file
-    let mut file = BufReader::new(File::open(filename).unwrap());
+    let mut file = BufReader::new(File::open(filename)?);
 
     // Read header
     let mut magic_in = String::new();
-    let _ = file.read_line(&mut magic_in).unwrap();
+    let _ = file.read_line(&mut magic_in)?;
     let mut width_in = String::new();
-    let _ = file.read_line(&mut width_in).unwrap();
+    let _ = file.read_line(&mut width_in)?;
     let mut height_in = String::new();
-    let _ = file.read_line(&mut height_in).unwrap();
+    let _ = file.read_line(&mut height_in)?;
     let mut maxval_in = String::new();
-    let _ = file.read_line(&mut maxval_in).unwrap();
+    let _ = file.read_line(&mut maxval_in)?;
 
     assert_eq!(magic_in, "P5\n");
     assert_eq!(maxval_in, "255\n");
 
     // Parse header
-
-    let width = width_in.trim().parse::<usize>().unwrap();
-    let height: usize = height_in.trim().parse::<usize>().unwrap();
+    let width = width_in
+        .trim()
+        .parse::<usize>()
+        .map_err(|_| io::ErrorKind::InvalidData)?;
+    let height: usize = height_in
+        .trim()
+        .parse::<usize>()
+        .map_err(|_| io::ErrorKind::InvalidData)?;
 
     println!("Reading pgm file {}: {} x {}", filename, width, height);
 
     // Create image and allocate buffer
-
     let mut img = ImageGray8 {
         width,
         height,
@@ -46,17 +49,19 @@ fn load_pgm(filename: &str) -> ImageGray8 {
     };
 
     // Read image data
-    match file.read_to_end(&mut img.data) {
-        Ok(bytes_read) if bytes_read == width * height => println!("Read {} bytes", bytes_read),
-        Ok(bytes_read) => println!(
-            "Error: read {} bytes, expected {}",
-            bytes_read,
-            width * height
-        ),
-        Err(e) => println!("error reading: {}", e),
+    let expected_bytes = width * height;
+    let bytes_read = file.read_to_end(&mut img.data)?;
+    if bytes_read != expected_bytes {
+        let kind = if bytes_read < expected_bytes {
+            io::ErrorKind::UnexpectedEof
+        } else {
+            io::ErrorKind::InvalidData
+        };
+        let msg = format!("expected {} bytes", expected_bytes);
+        return Err(io::Error::new(kind, msg));
     }
 
-    img
+    Ok(img)
 }
 
 fn save_pgm(img: &ImageGray8, filename: &str) {
@@ -125,33 +130,9 @@ fn hough(image: &ImageGray8, out_width: usize, out_height: usize) -> ImageGray8 
     accum
 }
 
-fn show_image(image: &ImageGray8, title: &str) {
-    let mut window = Window::new(title, image.width, image.height, WindowOptions::default())
-        .unwrap_or_else(|e| {
-            panic!("{}", e);
-        });
-
-    // Limit to max ~60 fps update rate
-    window.limit_update_rate(Some(std::time::Duration::from_micros(16600)));
-
-    // load image
-    let u32_buffer: Vec<u32> = image
-        .data
-        .iter()
-        // .chunks(3)
-        .map(|v| (u32::from(*v) << 16) | (u32::from(*v) << 8) | u32::from(*v) as u32)
-        .collect();
-
-    while window.is_open() && !window.is_key_down(Key::Escape) {
-        window
-            .update_with_buffer(&u32_buffer, image.width as usize, image.height as usize)
-            .unwrap();
-    }
-}
-fn main() {
-    let image = load_pgm("resources/Pentagon.pgm");
-    show_image(&image, "Original image - ESC to continue");
+fn main() -> io::Result<()> {
+    let image = load_pgm("resources/Pentagon.pgm")?;
     let accum = hough(&image, 460, 360);
-    show_image(&accum, "Hough transform - ESC to continue");
     save_pgm(&accum, "hough.pgm");
+    Ok(())
 }

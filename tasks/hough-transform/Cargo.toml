@@ -8,4 +8,4 @@ url = "http://rosettacode.org/wiki/Hough_transform"
 
 
 [dependencies]
-minifb = "0.19.3"
+
