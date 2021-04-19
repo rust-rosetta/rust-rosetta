@@ -2,7 +2,7 @@
 //! Adapted from the Go version
 
 use std::fs::File;
-use std::io::{BufRead, BufReader, BufWriter, Read, Write};
+use std::io::{self, BufRead, BufReader, BufWriter, Read, Write};
 use std::iter::repeat;
 
 /// Simple 8-bit grayscale image
@@ -12,47 +12,56 @@ struct ImageGray8 {
     data: Vec<u8>,
 }
 
-fn load_pgm(filename: &str) -> ImageGray8 {
+fn load_pgm(filename: &str) -> io::Result<ImageGray8> {
     // Open file
-    let mut file = BufReader::new(File::open(filename).unwrap());
+    let mut file = BufReader::new(File::open(filename)?);
 
     // Read header
     let mut magic_in = String::new();
-    let _ = file.read_line(&mut magic_in).unwrap();
+    let _ = file.read_line(&mut magic_in)?;
     let mut width_in = String::new();
-    let _ = file.read_line(&mut width_in).unwrap();
+    let _ = file.read_line(&mut width_in)?;
     let mut height_in = String::new();
-    let _ = file.read_line(&mut height_in).unwrap();
+    let _ = file.read_line(&mut height_in)?;
     let mut maxval_in = String::new();
-    let _ = file.read_line(&mut maxval_in).unwrap();
+    let _ = file.read_line(&mut maxval_in)?;
 
     assert_eq!(magic_in, "P5\n");
     assert_eq!(maxval_in, "255\n");
 
     // Parse header
-
-    let width = width_in.trim().parse::<usize>().unwrap();
-    let height: usize = height_in.trim().parse::<usize>().unwrap();
+    let width = width_in
+        .trim()
+        .parse::<usize>()
+        .map_err(|_| io::ErrorKind::InvalidData)?;
+    let height: usize = height_in
+        .trim()
+        .parse::<usize>()
+        .map_err(|_| io::ErrorKind::InvalidData)?;
 
     println!("Reading pgm file {}: {} x {}", filename, width, height);
 
     // Create image and allocate buffer
-
     let mut img = ImageGray8 {
         width,
         height,
-        data: repeat(0u8).take(width * height).collect(),
+        data: vec![],
     };
 
     // Read image data
-    let len = img.data.len();
-    match file.read(&mut img.data) {
-        Ok(bytes_read) if bytes_read == len => println!("Read {} bytes", bytes_read),
-        Ok(bytes_read) => println!("Error: read {} bytes, expected {}", bytes_read, len),
-        Err(e) => println!("error reading: {}", e),
+    let expected_bytes = width * height;
+    let bytes_read = file.read_to_end(&mut img.data)?;
+    if bytes_read != expected_bytes {
+        let kind = if bytes_read < expected_bytes {
+            io::ErrorKind::UnexpectedEof
+        } else {
+            io::ErrorKind::InvalidData
+        };
+        let msg = format!("expected {} bytes", expected_bytes);
+        return Err(io::Error::new(kind, msg));
     }
 
-    img
+    Ok(img)
 }
 
 fn save_pgm(img: &ImageGray8, filename: &str) {
@@ -75,6 +84,8 @@ fn save_pgm(img: &ImageGray8, filename: &str) {
     }
 }
 
+#[allow(clippy::cast_precision_loss)]
+#[allow(clippy::clippy::cast_possible_truncation)]
 fn hough(image: &ImageGray8, out_width: usize, out_height: usize) -> ImageGray8 {
     let in_width = image.width;
     let in_height = image.height;
@@ -106,8 +117,9 @@ fn hough(image: &ImageGray8, out_width: usize, out_height: usize) -> ImageGray8 
                 let th = dth * (jtx as f64);
                 let r = (x as f64) * (th.cos()) + (y as f64) * (th.sin());
 
-                let iry = out_height / 2 - (r / (dr as f64) + 0.5).floor() as usize;
-                let out_idx = jtx + iry * out_width;
+                let iry = out_height as i64 / 2 - (r / (dr as f64) + 0.5).floor() as i64;
+                #[allow(clippy::clippy::cast_sign_loss)]
+                let out_idx = (jtx as i64 + iry * out_width as i64) as usize;
                 let col = accum.data[out_idx];
                 if col > 0 {
                     accum.data[out_idx] = col - 1;
@@ -118,10 +130,9 @@ fn hough(image: &ImageGray8, out_width: usize, out_height: usize) -> ImageGray8 
     accum
 }
 
-fn main() {
-    let image = load_pgm("resources/Pentagon.pgm");
-
+fn main() -> io::Result<()> {
+    let image = load_pgm("resources/Pentagon.pgm")?;
     let accum = hough(&image, 460, 360);
-
     save_pgm(&accum, "hough.pgm");
+    Ok(())
 }
