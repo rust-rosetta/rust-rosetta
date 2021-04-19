@@ -1,12 +1,9 @@
-extern crate xml;
-
 use std::collections::HashMap;
-use std::str;
 
 use xml::writer::{EmitterConfig, XmlEvent};
 
 pub fn characters_to_xml(characters: HashMap<String, String>) -> String {
-    let mut output: Vec<u8> = Vec::new();
+    let mut output = Vec::new();
     let mut writer = EmitterConfig::new()
         .perform_indent(true)
         .create_writer(&mut output);
@@ -23,7 +20,7 @@ pub fn characters_to_xml(characters: HashMap<String, String>) -> String {
     }
 
     writer.write(XmlEvent::end_element()).unwrap();
-    str::from_utf8(&output).unwrap().to_string()
+    String::from_utf8(output).unwrap()
 }
 
 #[cfg(test)]
@@ -40,7 +37,8 @@ mod tests {
         );
         input.insert(
             "Tam O'Shanter".to_string(),
-            "Burns: \"When chapman billies leave the street ...\"".to_string(),
+            // Using raw string literals let's us use double quotes without escaping
+            r#"Burns: "When chapman billies leave the street ...""#.to_string(),
         );
         input.insert("Emily".to_string(), "Short & shrift".to_string());
 
@@ -52,7 +50,7 @@ mod tests {
              billies leave the street ...\"</Character>"
         ));
         assert!(output
-            .contains("<Character name=\"April\">Bubbly: I'm > Tam and &lt;= Emily</Character>"));
-        assert!(output.contains("<Character name=\"Emily\">Short &amp; shrift</Character>"));
+            .contains(r#"<Character name="April">Bubbly: I'm > Tam and &lt;= Emily</Character>"#));
+        assert!(output.contains(r#"<Character name="Emily">Short &amp; shrift</Character>"#));
     }
 }
