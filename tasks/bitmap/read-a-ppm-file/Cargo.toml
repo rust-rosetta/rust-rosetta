@@ -1,0 +1,13 @@
+[package]
+name = "read-a-ppm-file"
+version = "0.1.0"
+edition = "2018"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Bitmap/Read_a_PPM_file"
+
+[dependencies]
+bitmap = { path = ".." }
+
+[dev-dependencies]
+rand = "0.7.2"
