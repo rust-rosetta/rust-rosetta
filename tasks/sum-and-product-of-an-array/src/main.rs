@@ -1,11 +1,11 @@
 #![allow(clippy::unnecessary_fold)]
 
 fn main() {
-    let arr: [i32; 9] = [1i32, 2, 3, 4, 5, 6, 7, 8, 9];
+    let arr: [i32; 9] = [1_i32, 2, 3, 4, 5, 6, 7, 8, 9];
 
     // using fold
-    let sum = arr.iter().fold(0i32, |a, &b| a + b);
-    let product = arr.iter().fold(1i32, |a, &b| a * b);
+    let sum = arr.iter().fold(0_i32, |a, &b| a + b);
+    let product = arr.iter().fold(1_i32, |a, &b| a * b);
     println!("the sum is {} and the product is {}", sum, product);
 
     // or using sum and product

@@ -169,7 +169,7 @@ fn knap_01_dp<'a>(xs: &[Want<'a>], max_weight: usize) -> Vec<Want<'a>> {
     // loop over the items
     for i in 0..xs_len {
         // loop over the weights
-        for w in 1..(max_weight + 1) {
+        for w in 1..=max_weight {
             // do we have room in our knapsack?
             if xs[i].weight > w {
                 // if we don't, then we'll say that the value doesn't change
@@ -194,7 +194,7 @@ fn knap_01_dp<'a>(xs: &[Want<'a>], max_weight: usize) -> Vec<Want<'a>> {
 
     // we built up the solution space through a forward pass over the data,
     // now we have to traverse backwards to get the solution
-    for i in (1..xs_len + 1).rev() {
+    for i in (1..=xs_len).rev() {
         // We can check if an item should be added to the knap-sack by comparing
         // best_value with and without this item. If best_value added this
         // item then so should we.

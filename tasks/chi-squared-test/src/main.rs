@@ -19,8 +19,8 @@ fn chi2_uniform(dataset: &[u32], significance: f64) -> bool {
 
 fn main() {
     let dsets = vec![
-        vec![199809, 200665, 199607, 200270, 199649],
-        vec![522573, 244456, 139979, 71531, 21461],
+        vec![199_809, 200_665, 199_607, 200_270, 199_649],
+        vec![522_573, 244_456, 139_979, 71_531, 21_461],
     ];
 
     for ds in dsets {
@@ -31,7 +31,7 @@ fn main() {
             "Chi2 probability: {:.6} ",
             chi2_probability(ds.len() as f64 - 1., d)
         );
-        print!("Uniform? {}\n", chi2_uniform(&ds, 0.05));
+        println!("Uniform? {}", chi2_uniform(&ds, 0.05));
     }
 }
 

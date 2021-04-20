@@ -3,6 +3,7 @@ use std::iter::repeat;
 fn sierpinski(order: usize) {
     let mut triangle = vec!["*".to_string()];
     for i in 0..order {
+        #[allow(clippy::clippy::cast_possible_truncation)]
         let space = repeat(' ').take(2_usize.pow(i as u32)).collect::<String>();
 
         // save original state

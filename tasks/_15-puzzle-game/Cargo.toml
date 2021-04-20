@@ -4,7 +4,7 @@ version = "0.1.0"
 authors = ["Kunal Tyagi <tyagi.kunal@live.com>>"]
 
 [package.metadata.rosettacode]
-url = "http://rosettacode.org/wiki/15_Puzzle_Game"
+url = "http://rosettacode.org/wiki/15_puzzle_game"
 
 [dependencies]
 rand = "0.7.2"

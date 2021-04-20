@@ -105,7 +105,7 @@ members = [
     # http://rosettacode.org/wiki/100_doors
     "tasks/_100-doors",
 
-    # http://rosettacode.org/wiki/15_Puzzle_Game
+    # http://rosettacode.org/wiki/15_puzzle_game
     "tasks/_15-puzzle-game",
 
     # http://rosettacode.org/wiki/2048
@@ -120,7 +120,7 @@ members = [
     # http://rosettacode.org/wiki/9_billion_names_of_God_the_integer
     "tasks/_9-billion-names-of-god-the-integer",
 
-    # http://rosettacode.org/wiki/99_Bottles_of_Beer
+    # http://rosettacode.org/wiki/99_bottles_of_beer
     "tasks/_99-bottles-of-beer",
 
     # http://rosettacode.org/wiki/A%2BB
@@ -129,7 +129,7 @@ members = [
     # https://rosettacode.org/wiki/Abbreviations,_easy
     "tasks/abbreviations-easy",
 
-    # http://rosettacode.org/wiki/ABC_Problem
+    # http://rosettacode.org/wiki/ABC_problem
     "tasks/abc-problem",
 
     # http://rosettacode.org/wiki/Abstract_type
@@ -1290,7 +1290,7 @@ members = [
     # http://rosettacode.org/wiki/Stack
     "tasks/stack",
 
-    # http://rosettacode.org/wiki/Standard_deviation
+    # http://rosettacode.org/wiki/Cumulative_standard_deviation
     "tasks/standard-deviation",
 
     # http://rosettacode.org/wiki/Statistics/Basic

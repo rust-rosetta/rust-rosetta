@@ -23,7 +23,7 @@ impl fmt::Display for RareResults {
 }
 
 fn print_results(results: Vec<RareResults>) {
-    if results.len() != 0 {
+    if !results.is_empty() {
         // println!("Results:");
         println!("digits      time  #. Rare number");
         for r in results {
@@ -52,7 +52,7 @@ fn is_square(n: u64) -> bool {
     }
 }
 
-fn get_reverse(number: &u64) -> u64 {
+fn get_reverse(number: u64) -> u64 {
     number
         .to_string()
         .chars()
@@ -61,7 +61,7 @@ fn get_reverse(number: &u64) -> u64 {
         .fold(0_u64, |a, (i, d)| a + 10_u64.pow(i as u32) * d as u64)
 }
 fn is_rare(number: u64) -> bool {
-    let reverse = get_reverse(&number);
+    let reverse = get_reverse(number);
 
     reverse != number
         && number > reverse
@@ -76,12 +76,12 @@ fn naive(digit: u8) -> Vec<RareResults> {
     let bp_equal = (0_u8..=9).zip(0_u8..=9).collect::<Vec<(u8, u8)>>();
     let bp_zero_or_even = (0_u8..=9)
         .cartesian_product(0_u8..=9)
-        .filter(|pair| (pair.0 == pair.1) || (pair.0 as i32 - pair.1 as i32).abs() % 2 == 0)
+        .filter(|pair| (pair.0 == pair.1) || (i32::from(pair.0) - i32::from(pair.1)).abs() % 2 == 0)
         .collect::<Vec<(u8, u8)>>();
 
     let bp_odd = (0_u8..=9)
         .cartesian_product(0_u8..=9)
-        .filter(|pair| (pair.0 as i32 - pair.1 as i32).abs() % 2 == 1)
+        .filter(|pair| (i32::from(pair.0) - i32::from(pair.1)).abs() % 2 == 1)
         .collect::<Vec<(u8, u8)>>();
 
     let bp_9 = (0_u8..=9)
@@ -91,7 +91,7 @@ fn naive(digit: u8) -> Vec<RareResults> {
 
     let bp_73 = (0_u8..=9)
         .cartesian_product(0_u8..=9)
-        .filter(|pair| [7, 3].contains(&(pair.0 as i8 - pair.1 as i8)))
+        .filter(|pair| [7, 3].contains(&(i16::from(pair.0) - i16::from(pair.1))))
         .collect::<Vec<(u8, u8)>>();
 
     let bp_11 = (0_u8..=9)
@@ -113,13 +113,12 @@ fn naive(digit: u8) -> Vec<RareResults> {
     //generate AB-PQ combinations
     let aq_bp = aq_bp_setup
         .iter()
-        .map(|e| {
+        .flat_map(|e| {
             e.1.iter().fold(vec![], |mut out, b| {
                 out.push(vec![e.0 .0, b.0, b.1, e.0 .1]);
                 out
             })
         })
-        .flatten()
         .collect::<Vec<_>>();
 
     let mut results: Vec<RareResults> = Vec::new();
@@ -143,10 +142,10 @@ fn naive(digit: u8) -> Vec<RareResults> {
         }
     } else {
         aq_bp.iter().for_each(|abqp| {
-            let start = abqp[0] as u64 * 10_u64.pow((d - 1).into())
-                + abqp[1] as u64 * 10_u64.pow((d - 2).into())
-                + 10_u64 * abqp[2] as u64
-                + abqp[3] as u64;
+            let start = u64::from(abqp[0]) * 10_u64.pow((d - 1).into())
+                + u64::from(abqp[1]) * 10_u64.pow((d - 2).into())
+                + 10_u64 * u64::from(abqp[2])
+                + u64::from(abqp[3]);
 
             // brute-force checking all numbers which matches the pattern AB...PQ
             // very slow
@@ -183,14 +182,6 @@ fn advanced(digit: u8) -> Vec<RareResults> {
     let start_time = Instant::now();
 
     let numeric_digits = (0..=9).map(|x| [x, 0]).collect::<Vec<_>>();
-    let diffs1: Vec<i8> = vec![0, 1, 4, 5, 6];
-
-    // all possible digits pairs to calaculate potential diffs
-    let pairs = (0_i8..=9)
-        .cartesian_product(0_i8..=9)
-        .map(|x| [x.0, x.1])
-        .collect::<Vec<_>>();
-    let all_diffs = (-9i8..=9).collect::<Vec<_>>();
 
     // lookup table for the first diff
     let lookup_1 = vec![
@@ -203,13 +194,16 @@ fn advanced(digit: u8) -> Vec<RareResults> {
         vec![[6, 0], [8, 2]], // Diff = 6
     ];
 
-    // lookup table for all the remaining diffs
-    let lookup_n: HashMap<i8, Vec<_>> = pairs.into_iter().into_group_map_by(|elt| elt[0] - elt[1]);
-
-    let d = digit;
+    // lookup table for all possible digits pairs and their diffs
+    let lookup_n: HashMap<i8, Vec<_>> = (0_i8..=9)
+        .cartesian_product(0_i8..=9)
+        .map(|x| [x.0, x.1])
+        .into_group_map_by(|elt| elt[0] - elt[1]);
 
     // powers like 1, 10, 100, 1000....
-    let powers = (0..d).map(|x| 10_u64.pow(x.into())).collect::<Vec<u64>>();
+    let powers = (0..digit)
+        .map(|x| 10_u64.pow(x.into()))
+        .collect::<Vec<u64>>();
 
     // for n-r (aka L) the required terms, like 9/ 99 / 999 & 90 / 99999 & 9999 & 900 etc
     let terms = powers
@@ -221,7 +215,10 @@ fn advanced(digit: u8) -> Vec<RareResults> {
 
     // create a cartesian product for all potetential diff numbers
     // for the first use the very short one, for all other the complete 19 element
-    let diff_list_iter = (0_u8..(d / 2))
+    let diffs1: Vec<i8> = vec![0, 1, 4, 5, 6];
+    let all_diffs = (-9_i8..=9).collect::<Vec<_>>();
+
+    let diff_list_iter = (0_u8..(digit / 2))
             .map(|i| match i {
                 0 => diffs1.iter(),
                 _ => all_diffs.iter(),
@@ -244,12 +241,6 @@ fn advanced(digit: u8) -> Vec<RareResults> {
                 }
             });
 
-    #[cfg(debug_assertions)]
-    {
-        println!("  powers: {:?}", powers);
-        println!("  terms: {:?}", terms);
-    }
-
     diff_list_iter.for_each(|diffs| {
         // calculate difference of original n and its reverse (aka L = n-r)
         // which must be a perfect square
@@ -261,14 +252,12 @@ fn advanced(digit: u8) -> Vec<RareResults> {
 
         if l > 0 && is_square(l.try_into().unwrap()) {
             // potential candiate, at least L is a perfect square
-            #[cfg(debug_assertions)]
-            println!("  square L: {}, diffs: {:?}", l, diffs);
 
             // placeholder for the digits
-            let mut dig: Vec<i8> = vec![0_i8; d.into()];
+            let mut dig: Vec<i8> = vec![0_i8; digit.into()];
 
             // generate a cartesian product for each identified diff using the lookup tables
-            let c_iter = (0..(diffs.len() + d as usize % 2))
+            let c_iter = (0..(diffs.len() + digit as usize % 2))
                 .map(|i| match i {
                     0 => lookup_1[*diffs[0] as usize].iter(),
                     _ if i != diffs.len() => lookup_n.get(diffs[i]).unwrap().iter(),
@@ -282,13 +271,13 @@ fn advanced(digit: u8) -> Vec<RareResults> {
                 for (i, digit_pair) in elt.iter().enumerate() {
                     // print!("  digit pairs: {:?}, len: {}", digit_pair, l.len());
                     dig[i] = digit_pair[0];
-                    dig[d as usize - 1 - i] = digit_pair[1]
+                    dig[digit as usize - 1 - i] = digit_pair[1]
                 }
 
                 // for numbers with odd # digits restore the middle digit
                 // which has been overwritten at the end of the previous cycle
-                if d % 2 == 1 {
-                    dig[(d as usize - 1) / 2] = elt[elt.len() - 1][0];
+                if digit % 2 == 1 {
+                    dig[(digit as usize - 1) / 2] = elt[elt.len() - 1][0];
                 }
 
                 let num = dig
@@ -306,7 +295,7 @@ fn advanced(digit: u8) -> Vec<RareResults> {
                     println!("  FOUND: {}, reverse: {}", num, reverse);
                     counter += 1;
                     results.push(RareResults {
-                        digits: d,
+                        digits: digit,
                         time_to_find: start_time.elapsed().as_millis(),
                         counter,
                         number: num,
@@ -318,7 +307,7 @@ fn advanced(digit: u8) -> Vec<RareResults> {
 
     println!(
         "Digits: {} done - Elapsed time(ms): {}",
-        d,
+        digit,
         start_time.elapsed().as_millis()
     );
 

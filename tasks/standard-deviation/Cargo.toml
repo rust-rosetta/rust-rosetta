@@ -3,4 +3,4 @@ name = "standard-deviation"
 version = "0.1.0"
 
 [package.metadata.rosettacode]
-url = "http://rosettacode.org/wiki/Standard_deviation"
+url = "http://rosettacode.org/wiki/Cumulative_standard_deviation"

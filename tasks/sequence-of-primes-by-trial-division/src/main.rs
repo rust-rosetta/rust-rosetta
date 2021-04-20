@@ -1,5 +1,7 @@
 fn is_prime(number: u32) -> bool {
     #[allow(clippy::cast_precision_loss)]
+    #[allow(clippy::cast_possible_truncation)]
+    #[allow(clippy::clippy::cast_sign_loss)]
     let limit = (number as f32).sqrt() as u32 + 1;
 
     // We test if the number is divisible by any number up to the limit

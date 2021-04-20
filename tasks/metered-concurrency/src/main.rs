@@ -24,6 +24,7 @@ pub struct CountingSemaphoreGuard<'a> {
 impl CountingSemaphore {
     /// Create a semaphore with `max` available resources and a linearly increasing backoff of
     /// `backoff` (used during spinlock contention).
+    #[must_use]
     pub fn new(max: usize, backoff: Duration) -> CountingSemaphore {
         CountingSemaphore {
             count: AtomicUsize::new(max),
@@ -31,7 +32,7 @@ impl CountingSemaphore {
         }
     }
 
-    /// Acquire a resource, returning a RAII CountingSemaphoreGuard.
+    /// Acquire a resource, returning a RAII `CountingSemaphoreGuard`.
     pub fn acquire(&self) -> CountingSemaphoreGuard {
         // Spinlock until remaining resource count is at least 1
         let mut backoff = self.backoff;
