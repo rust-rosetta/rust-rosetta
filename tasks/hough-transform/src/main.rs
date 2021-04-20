@@ -41,7 +41,7 @@ fn load_pgm(filename: &str) -> ImageGray8 {
     let mut img = ImageGray8 {
         width,
         height,
-        data: repeat(0_u8).take(width * height).collect(),
+        data: repeat(0u8).take(width * height).collect(),
     };
 
     // Read image data
