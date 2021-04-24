@@ -1,8 +1,11 @@
 use std::collections::HashMap;
-
+use std::hash::BuildHasher;
 use xml::writer::{EmitterConfig, XmlEvent};
 
-pub fn characters_to_xml(characters: HashMap<String, String>) -> String {
+/// # Panics
+///  In case itt cannot write to the xml
+#[must_use]
+pub fn characters_to_xml<S: BuildHasher>(characters: &HashMap<String, String, S>) -> String {
     let mut output = Vec::new();
     let mut writer = EmitterConfig::new()
         .perform_indent(true)
@@ -12,7 +15,7 @@ pub fn characters_to_xml(characters: HashMap<String, String>) -> String {
         .write(XmlEvent::start_element("CharacterRemarks"))
         .unwrap();
 
-    for (character, line) in &characters {
+    for (character, line) in characters {
         let element = XmlEvent::start_element("Character").attr("name", character);
         writer.write(element).unwrap();
         writer.write(XmlEvent::characters(line)).unwrap();
@@ -42,7 +45,7 @@ mod tests {
         );
         input.insert("Emily".to_string(), "Short & shrift".to_string());
 
-        let output = characters_to_xml(input);
+        let output = characters_to_xml(&input);
 
         println!("{}", output);
         assert!(output.contains(

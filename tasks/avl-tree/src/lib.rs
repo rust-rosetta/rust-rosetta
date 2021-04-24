@@ -94,6 +94,7 @@ pub struct Node<K, V> {
 }
 
 #[derive(Debug)]
+#[allow(clippy::upper_case_acronyms)]
 pub struct AVLTree<K, V> {
     root: NodePtr,
     store: Vec<Node<K, V>>,

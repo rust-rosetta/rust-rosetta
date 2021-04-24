@@ -1,10 +1,11 @@
 use statrs::function::gamma::gamma_li;
 
+#[allow(clippy::cast_precision_loss)]
 fn chi_distance(dataset: &[u32]) -> f64 {
     let expected = f64::from(dataset.iter().sum::<u32>()) / dataset.len() as f64;
     dataset
         .iter()
-        .fold(0., |acc, &elt| acc + (elt as f64 - expected).powf(2.))
+        .fold(0., |acc, &elt| acc + (f64::from(elt) - expected).powf(2.))
         / expected
 }
 
@@ -12,11 +13,13 @@ fn chi2_probability(dof: f64, distance: f64) -> f64 {
     1. - gamma_li(dof * 0.5, distance * 0.5)
 }
 
+#[allow(clippy::cast_precision_loss)]
 fn chi2_uniform(dataset: &[u32], significance: f64) -> bool {
     let d = chi_distance(&dataset);
     chi2_probability(dataset.len() as f64 - 1., d) > significance
 }
 
+#[allow(clippy::cast_precision_loss)]
 fn main() {
     let dsets = vec![
         vec![199_809, 200_665, 199_607, 200_270, 199_649],

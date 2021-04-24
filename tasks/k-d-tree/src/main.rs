@@ -32,6 +32,7 @@ impl Point {
     }
 }
 
+#[allow(clippy::upper_case_acronyms)]
 struct KDTreeNode {
     point: Point,
     dim: usize,
@@ -42,7 +43,7 @@ struct KDTreeNode {
 }
 
 impl KDTreeNode {
-    /// Create a new KDTreeNode around the `dim`th dimension.
+    /// Create a new `KDTreeNode` around the `dim`th dimension.
     /// Alternatively, we could dynamically determine the dimension to
     /// split on by using the longest dimension.
     pub fn new(points: &mut [Point], dim: usize) -> KDTreeNode {
@@ -159,6 +160,7 @@ impl KDTreeNode {
     }
 }
 
+#[allow(clippy::cast_precision_loss)]
 pub fn main() {
     let mut rng = thread_rng();
 
@@ -179,13 +181,14 @@ pub fn main() {
     let wp_target = Point {
         coords: vec![9.0, 2.0],
     };
-    let (point, n_visited) = wp_tree.find_nearest_neighbor(&wp_target);
-    println!("Wikipedia example data:");
-    println!("Point: [9, 2]");
-    println!("Nearest neighbor: {:?}", point);
-    println!("Distance: {}", (point - &wp_target).norm_sq().sqrt());
-    println!("Nodes visited: {}", n_visited);
-
+    {
+        let (point, n_visited) = wp_tree.find_nearest_neighbor(&wp_target);
+        println!("Wikipedia example data:");
+        println!("Point: [9, 2]");
+        println!("Nearest neighbor: {:?}", point);
+        println!("Distance: {}", (point - &wp_target).norm_sq().sqrt());
+        println!("Nodes visited: {}", n_visited);
+    }
     // randomly generated 3D
     let n_random = 1000;
     let mut make_random_point = || Point {
@@ -203,12 +206,13 @@ pub fn main() {
 
     let random_target = make_random_point();
 
-    let (point, n_visited) = random_tree.find_nearest_neighbor(&random_target);
-    println!("Point: {:?}", random_target);
-    println!("Nearest neighbor: {:?}", point);
-    println!("Distance: {}", (point - &random_target).norm_sq().sqrt());
-    println!("Nodes visited: {}", n_visited);
-
+    {
+        let (point, n_visited) = random_tree.find_nearest_neighbor(&random_target);
+        println!("Point: {:?}", random_target);
+        println!("Nearest neighbor: {:?}", point);
+        println!("Distance: {}", (point - &random_target).norm_sq().sqrt());
+        println!("Nodes visited: {}", n_visited);
+    }
     // benchmark search time
     let n_searches = 1000;
     let random_targets: Vec<Point> = (0..n_searches).map(|_| make_random_point()).collect();
