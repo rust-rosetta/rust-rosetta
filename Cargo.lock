@@ -3894,6 +3894,10 @@ dependencies = [
 ]
 
 [[package]]
+name = "padovan-n-step-number-sequences"
+version = "0.1.0"
+
+[[package]]
 name = "palindrome-detection"
 version = "0.1.0"
 
