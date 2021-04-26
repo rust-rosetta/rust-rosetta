@@ -1,0 +1,11 @@
+[package]
+name = "set-puzzle"
+version = "0.1.0"
+edition = "2018"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Set_puzzle"
+
+[dependencies]
+itertools= "0.10.0"
+rand = "0.8.3"

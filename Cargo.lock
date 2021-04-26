@@ -5047,6 +5047,14 @@ name = "set"
 version = "0.1.0"
 
 [[package]]
+name = "set-puzzle"
+version = "0.1.0"
+dependencies = [
+ "itertools 0.10.0",
+ "rand 0.8.3",
+]
+
+[[package]]
 name = "sha-1"
 version = "0.1.0"
 
