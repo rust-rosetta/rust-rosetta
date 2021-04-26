@@ -3887,6 +3887,13 @@ dependencies = [
 ]
 
 [[package]]
+name = "p-value-correction"
+version = "0.1.0"
+dependencies = [
+ "assert_approx_eq",
+]
+
+[[package]]
 name = "palindrome-detection"
 version = "0.1.0"
 
