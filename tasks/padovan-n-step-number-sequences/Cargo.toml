@@ -1,0 +1,9 @@
+[package]
+name = "padovan-n-step-number-sequences"
+version = "0.1.0"
+edition = "2018"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Padovan_n-step_number_sequences"
+
+[dependencies]

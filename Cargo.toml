@@ -981,6 +981,9 @@ members = [
     # http://rosettacode.org/wiki/P-value_correction
     "tasks/p-value-correction",
 
+    # http://rosettacode.org/wiki/Padovan_n-step_number_sequences
+    "tasks/padovan-n-step-number-sequences", 
+
     # http://rosettacode.org/wiki/Palindrome_detection
     "tasks/palindrome-detection",
 
