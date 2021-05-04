@@ -12,30 +12,34 @@ struct HerionanTriangle {
     perimeter: usize,
 }
 
-fn get_area(a: &usize, b: &usize, c: &usize) -> f64 {
-    let s = (a + b + c) as f64 / 2.;
-    (s * (s - *a as f64) * (s - *b as f64) * (s - *c as f64)).sqrt()
+fn get_area(a: f64, b: f64, c: f64) -> f64 {
+    let s = (a + b + c) / 2.;
+    (s * (s - a) * (s - b) * (s - c)).sqrt()
 }
 
-fn is_heronian(a: &usize, b: &usize, c: &usize) -> bool {
-    let area = get_area(a, b, c);
+#[allow(clippy::clippy::cast_precision_loss)]
+fn is_heronian(a: usize, b: usize, c: usize) -> bool {
+    let area = get_area(a as f64, b as f64, c as f64);
     // Heronian if the area is an integer number
     area != 0. && area.fract() == 0.
 }
 
+#[allow(clippy::clippy::cast_precision_loss)]
+#[allow(clippy::clippy::cast_possible_truncation)]
+#[allow(clippy::clippy::cast_sign_loss)]
 fn main() {
     let mut heronians: Vec<HerionanTriangle> = vec![];
 
     (1..=MAXSIZE).into_iter().for_each(|a| {
         (a..=MAXSIZE).into_iter().for_each(|b| {
             (b..=MAXSIZE).into_iter().for_each(|c| {
-                if a + b > c && a.gcd(&b).gcd(&c) == 1 && is_heronian(&a, &b, &c) {
+                if a + b > c && a.gcd(&b).gcd(&c) == 1 && is_heronian(a, b, c) {
                     heronians.push(HerionanTriangle {
                         a,
                         b,
                         c,
                         perimeter: a + b + c,
-                        area: get_area(&a, &b, &c) as usize,
+                        area: get_area(a as f64, b as f64, c as f64) as usize,
                     })
                 }
             })
@@ -71,8 +75,8 @@ mod tests {
 
     #[test]
     fn test_heronian() {
-        assert_eq!(is_heronian(&3, &4, &5), true);
-        assert_eq!(is_heronian(&5, &5, &6), true);
-        assert_eq!(is_heronian(&1, &2, &3), false);
+        assert_eq!(is_heronian(3, 4, 5), true);
+        assert_eq!(is_heronian(5, 5, 6), true);
+        assert_eq!(is_heronian(1, 2, 3), false);
     }
 }

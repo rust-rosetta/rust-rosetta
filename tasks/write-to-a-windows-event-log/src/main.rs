@@ -35,7 +35,7 @@ fn main() -> windows::Result<()> {
     .unwrap_err();
 
     // Retrieve the user token.
-    let mut token_user_bytes = vec![0u8; length as usize];
+    let mut token_user_bytes = vec![0_u8; length as usize];
     unsafe {
         GetTokenInformation(
             th,

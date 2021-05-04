@@ -32,6 +32,9 @@ fn print_results(results: Vec<RareResults>) {
     }
 }
 
+#[allow(clippy::cast_precision_loss)]
+#[allow(clippy::cast_possible_truncation)]
+#[allow(clippy::cast_sign_loss)]
 fn isqrt(n: u64) -> u64 {
     let mut s = (n as f64).sqrt() as u64;
     s = (s + n / s) >> 1;
@@ -58,7 +61,7 @@ fn get_reverse(number: u64) -> u64 {
         .chars()
         .map(|c| c.to_digit(10).unwrap())
         .enumerate()
-        .fold(0_u64, |a, (i, d)| a + 10_u64.pow(i as u32) * d as u64)
+        .fold(0_u64, |a, (i, d)| a + 10_u64.pow(i as u32) * u64::from(d))
 }
 fn is_rare(number: u64) -> bool {
     let reverse = get_reverse(number);

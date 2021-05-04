@@ -21,9 +21,9 @@ extern crate typed_arena;
 
 use typed_arena::Arena;
 
-use self::Error::*;
-use self::SExp::*;
-use self::Token::*;
+use self::Error::{ExpectedEof, IncorrectCloseDelimiter, UnexpectedEof, UnterminatedStringLiteral};
+use self::SExp::{List, Str, F64};
+use self::Token::{Eof, ListEnd, ListStart, Literal};
 use std::io;
 use std::num::FpCategory;
 use std::str::FromStr;
@@ -60,10 +60,10 @@ pub enum Error {
     IncorrectCloseDelimiter,
 
     /// Usually means a missing ), but could also mean there were no tokens at all.
-    UnexpectedEOF,
+    UnexpectedEof,
 
     /// More tokens after the list is finished, or after a literal if there is no list.
-    ExpectedEOF,
+    ExpectedEof,
 }
 
 impl From<io::Error> for Error {
@@ -237,6 +237,7 @@ pub struct ParseContext<'a> {
 
 impl<'a> ParseContext<'a> {
     /// Create a new parse context from a given string
+    #[must_use]
     pub fn new(string: &'a str) -> ParseContext<'a> {
         ParseContext {
             string,
@@ -247,7 +248,7 @@ impl<'a> ParseContext<'a> {
 }
 
 impl<'a> SExp<'a> {
-    /// Serialize a SExp.
+    /// Serialize a `SExp`.
     fn encode<T: io::Write>(&self, writer: &mut T) -> Result<(), Error> {
         match *self {
             F64(f) => {
@@ -284,7 +285,11 @@ impl<'a> SExp<'a> {
         }
     }
 
-    /// Deserialize a SExp.
+    /// Deserialize a `SExp`.
+    /// # Panics
+    /// If allocation fails
+    /// # Errors
+    /// When reaches unexpected EOF or invalid close delimiter
     pub fn parse(ctx: &'a mut ParseContext<'a>) -> Result<SExp<'a>, Error> {
         ctx.arena = Some(Arena::new());
         // Hopefully this unreachable! gets optimized out, because it should literally be
@@ -312,11 +317,11 @@ impl<'a> SExp<'a> {
                 return if tokens.next_token()? == Eof {
                     Ok(s)
                 } else {
-                    Err(ExpectedEOF)
+                    Err(ExpectedEof)
                 };
             }
             ListEnd => return Err(IncorrectCloseDelimiter),
-            Eof => return Err(UnexpectedEOF),
+            Eof => return Err(UnexpectedEof),
         };
 
         // We know we're in a list if we got this far.
@@ -345,18 +350,20 @@ impl<'a> SExp<'a> {
                         None => {
                             return match tokens.next_token()? {
                                 Eof => Ok(List(&*arena.alloc(list))),
-                                _ => Err(ExpectedEOF),
+                                _ => Err(ExpectedEof),
                             };
                         }
                     }
                 }
                 // We encountered an EOF before the list ended--that's an error.
-                Eof => return Err(UnexpectedEOF),
+                Eof => return Err(UnexpectedEof),
             }
         }
     }
 
-    /// Convenience method for the common case where you just want to encode a SExp as a String.
+    /// Convenience method for the common case where you just want to encode a `SExp` as a String.
+    /// # Errors
+    /// In case encode fails
     pub fn buffer_encode(&self) -> Result<String, Error> {
         let mut m = Vec::new();
         self.encode(&mut m)?;

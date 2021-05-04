@@ -30,6 +30,7 @@ pub struct IterMut<'a, T: 'a> {
 }
 
 impl<T> Queue<T> {
+    #[must_use]
     pub fn new() -> Self {
         Queue {
             head: None,
@@ -66,6 +67,7 @@ impl<T> Queue<T> {
         })
     }
 
+    #[must_use]
     pub fn peek(&self) -> Option<&T> {
         self.head.as_ref().map(|item| &item.elem)
     }
@@ -74,6 +76,7 @@ impl<T> Queue<T> {
         self.head.as_mut().map(|item| &mut item.elem)
     }
 
+    #[must_use]
     pub fn iter(&self) -> Iter<T> {
         Iter {
             next: self.head.as_deref(),

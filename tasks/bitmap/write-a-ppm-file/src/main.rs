@@ -5,6 +5,7 @@ use std::fs::File;
 use std::io;
 use std::io::prelude::*;
 
+#[allow(clippy::upper_case_acronyms)]
 trait PPMWritable {
     fn write_ppm(&self, filename: &str) -> Result<(), io::Error>;
 }

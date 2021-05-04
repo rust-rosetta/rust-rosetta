@@ -5,6 +5,7 @@ const ETX: char = '\u{0003}';
 
 // this compare uses simple alphabetical sort, but for the special characters (ETX, STX)
 // it sorts them later than alphanumeric characters
+#[must_use]
 pub fn special_cmp(lhs: &str, rhs: &str) -> Ordering {
     let mut iter1 = lhs.chars();
     let mut iter2 = rhs.chars();
@@ -13,12 +14,12 @@ pub fn special_cmp(lhs: &str, rhs: &str) -> Ordering {
         match (iter1.next(), iter2.next()) {
             (Some(lhs), Some(rhs)) => {
                 if lhs != rhs {
-                    let is_lhs_special = lhs == ETX || lhs == STX;
-                    let is_rhs_special = rhs == ETX || rhs == STX;
+                    let is_left_hs_special = lhs == ETX || lhs == STX;
+                    let is_right_hs_special = rhs == ETX || rhs == STX;
 
-                    let result = if is_lhs_special == is_rhs_special {
+                    let result = if is_left_hs_special == is_right_hs_special {
                         lhs.cmp(&rhs)
-                    } else if is_lhs_special {
+                    } else if is_left_hs_special {
                         Ordering::Greater
                     } else {
                         Ordering::Less
@@ -87,12 +88,12 @@ fn main() {
         "SIX.MIXED.PIXIES.SIFT.SIXTY.PIXIE.DUST.BOXES",
         "TO BE OR NOT TO BE OR WANT TO BE OR NOT?",
     ];
-    for s in input.iter() {
+    for s in &input {
         let bwt = burrows_wheeler_transform(s);
-        let ibwt = inverse_burrows_wheeler_transform(&bwt);
+        let inverse_bwt = inverse_burrows_wheeler_transform(&bwt);
         println!("Input: {}", s);
         println!("\tBWT: {}", bwt.replace(STX, "^").replace(ETX, "|"));
-        println!("\tInverse BWT: {}", ibwt);
+        println!("\tInverse BWT: {}", inverse_bwt);
     }
 }
 

@@ -20,6 +20,7 @@ impl DivisorSeq {
 impl Iterator for DivisorSeq {
     type Item = u64;
 
+    #[allow(clippy::cast_possible_truncation)]
     fn next(&mut self) -> Option<u64> {
         if self.max_number_of_divisors < self.index {
             return None;
@@ -82,7 +83,7 @@ impl Iterator for DivisorSeq {
 fn get_divisors(n: u64) -> Vec<u64> {
     let mut results = Vec::new();
 
-    for i in 1..(n / 2 + 1) {
+    for i in 1..=(n / 2) {
         if n % i == 0 {
             results.push(i);
         }
@@ -91,6 +92,7 @@ fn get_divisors(n: u64) -> Vec<u64> {
     results
 }
 
+#[allow(clippy::cast_possible_truncation)]
 fn main() {
     // simple version using factorizing numbers
     // with rules applied from A005179 so speed up
@@ -111,7 +113,7 @@ fn main() {
 
     let prime_list = (1..15).map(|i| PRIMES[0..=i].to_vec()).collect::<Vec<_>>();
 
-    for pl in prime_list.iter() {
+    for pl in &prime_list {
         // calculate the max exponent a prime can get in a given prime-list
         // to be able to produce the desired number of divisors
         let max_exponent = 1 + MAX_DIVISOR as u32 / 2_u32.pow(pl.len() as u32 - 1);
@@ -142,10 +144,7 @@ fn main() {
             // and calculate the number with those primes and the given exponent set
             let num = pl.iter().zip(exp.iter()).fold(1_u64, |mut acc, (p, e)| {
                 // check for overflow if numbers won't fit into u64
-                acc = match acc.checked_mul(p.pow(*e)) {
-                    Some(z) => z,
-                    _ => 0,
-                };
+                acc = acc.checked_mul(p.pow(*e)).unwrap_or(0);
                 acc
             });
 
