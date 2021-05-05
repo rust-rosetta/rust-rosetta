@@ -142,7 +142,7 @@ version = "0.7.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "24bb00eeca59f2986c747b8c2f271d52310ce446be27428fc34705138b155778"
 dependencies = [
- "approx",
+ "approx 0.3.2",
  "libm 0.1.4",
  "num-complex 0.2.4",
  "num-traits",
@@ -154,7 +154,7 @@ version = "0.9.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "4f823d037a7ec6ea2197046bafd4ae150e6bc36f9ca347404f46a46823fa84f2"
 dependencies = [
- "approx",
+ "approx 0.3.2",
  "num-complex 0.2.4",
  "num-traits",
 ]
@@ -248,6 +248,15 @@ name = "approx"
 version = "0.3.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "f0e60b75072ecd4168020818c0107f2857bb6c4e64252d8d3983f6263b40a5c3"
+dependencies = [
+ "num-traits",
+]
+
+[[package]]
+name = "approx"
+version = "0.4.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "3f2a05fd1bd10b2527e20a2cd32d8873d115b8b39fe219ee25f42a8aca6ba278"
 dependencies = [
  "num-traits",
 ]
@@ -3078,6 +3087,15 @@ dependencies = [
 ]
 
 [[package]]
+name = "matrixmultiply"
+version = "0.3.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "5a8a15b776d9dfaecd44b03c5828c2199cddff5247215858aac14624f8d6b741"
+dependencies = [
+ "rawpointer 0.2.1",
+]
+
+[[package]]
 name = "maximum-triangle-path-sum"
 version = "0.1.0"
 
@@ -3335,6 +3353,14 @@ name = "moving-average"
 version = "0.1.0"
 
 [[package]]
+name = "multiple-regression"
+version = "0.1.0"
+dependencies = [
+ "assert_approx_eq",
+ "nalgebra 0.26.2",
+]
+
+[[package]]
 name = "multiplication-tables"
 version = "0.1.0"
 
@@ -3360,7 +3386,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "ccb86df349ecf5f549f6e12f6de4972cdd912d0bc290c1ca4d34d4b4b21a6f98"
 dependencies = [
  "alga 0.7.2",
- "approx",
+ "approx 0.3.2",
  "generic-array 0.11.2",
  "matrixmultiply 0.1.15",
  "num-complex 0.2.4",
@@ -3376,7 +3402,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "0abb021006c01b126a936a8dd1351e0720d83995f4fc942d0d426c654f990745"
 dependencies = [
  "alga 0.9.3",
- "approx",
+ "approx 0.3.2",
  "generic-array 0.13.3",
  "matrixmultiply 0.2.4",
  "num-complex 0.2.4",
@@ -3384,6 +3410,21 @@ dependencies = [
  "num-traits",
  "rand 0.7.3",
  "rand_distr",
+ "typenum",
+]
+
+[[package]]
+name = "nalgebra"
+version = "0.26.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "476d1d59fe02fe54c86356e91650cd892f392782a1cb9fc524ec84f7aa9e1d06"
+dependencies = [
+ "approx 0.4.0",
+ "matrixmultiply 0.3.1",
+ "num-complex 0.3.1",
+ "num-rational 0.3.2",
+ "num-traits",
+ "simba",
  "typenum",
 ]
 
@@ -4023,6 +4064,12 @@ dependencies = [
  "rand 0.7.3",
  "structopt",
 ]
+
+[[package]]
+name = "paste"
+version = "1.0.5"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "acbf547ad0c65e31259204bd90935776d1c693cec2f4ff7abb7a1bbbd40dfe58"
 
 [[package]]
 name = "pathdiff"
@@ -4877,7 +4924,7 @@ version = "0.8.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "9f61411055101f7b60ecf1041d87fb74205fb20b0c7a723f07ef39174cf6b4c0"
 dependencies = [
- "approx",
+ "approx 0.3.2",
  "ordered-float",
  "stb_truetype",
 ]
@@ -5134,6 +5181,18 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "16f1d0fef1604ba8f7a073c7e701f213e056707210e9020af4528e0101ce11a6"
 dependencies = [
  "libc",
+]
+
+[[package]]
+name = "simba"
+version = "0.4.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "5132a955559188f3d13c9ba831e77c802ddc8782783f050ed0c52f5988b95f4c"
+dependencies = [
+ "approx 0.4.0",
+ "num-complex 0.3.1",
+ "num-traits",
+ "paste",
 ]
 
 [[package]]

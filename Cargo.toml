@@ -939,6 +939,9 @@ members = [
     # http://rosettacode.org/wiki/Move-to-front_algorithm
     "tasks/move-to-front",
 
+    # http://rosettacode.org/wiki/Multiple_regression
+    "tasks/multiple-regression",
+
     # https://rosettacode.org/wiki/Multiplication_tables
     "tasks/multiplication-tables",
 
