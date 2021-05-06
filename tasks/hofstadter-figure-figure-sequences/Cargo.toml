@@ -1,0 +1,9 @@
+[package]
+name = "hofstadter-figure-figure-sequences"
+version = "0.1.0"
+edition = "2018"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Hofstadter_Figure-Figure_sequences"
+
+[dependencies]
