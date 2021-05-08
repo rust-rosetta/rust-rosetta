@@ -717,6 +717,9 @@ members = [
     # http://rosettacode.org/wiki/Hofstadter_Q_sequence
     "tasks/hofstadter-q-sequence",
 
+    # http://rosettacode.org/wiki/Holidays_related_to_Easter
+    "tasks/holidays-related-to-easter",
+
     # http://rosettacode.org/wiki/Horizontal_sundial_calculation
     "tasks/horizontal-sundial-calculations",
 

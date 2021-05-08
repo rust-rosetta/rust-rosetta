@@ -2416,6 +2416,13 @@ name = "hofstadter-q-sequence"
 version = "0.1.0"
 
 [[package]]
+name = "holidays-related-to-easter"
+version = "0.1.0"
+dependencies = [
+ "chrono 0.4.19",
+]
+
+[[package]]
 name = "horizontal-sundial-calculations"
 version = "0.1.0"
 dependencies = [
