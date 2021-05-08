@@ -714,6 +714,12 @@ members = [
     # http://rosettacode.org/wiki/Higher-order_functions
     "tasks/higher-order-functions",
 
+    # http://rosettacode.org/wiki/Hofstadter-Conway_$10,000_sequence
+    "tasks/hofstadter-conway",
+
+    # http://rosettacode.org/wiki/Hofstadter_Figure-Figure_sequences
+    "tasks/hofstadter-figure-figure-sequences",
+
     # http://rosettacode.org/wiki/Hofstadter_Q_sequence
     "tasks/hofstadter-q-sequence",
 

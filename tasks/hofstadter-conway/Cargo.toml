@@ -1,0 +1,9 @@
+[package]
+name = "hofstadter-conway"
+version = "0.1.0"
+edition = "2018"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Hofstadter-Conway_$10,000_sequence"
+
+[dependencies]

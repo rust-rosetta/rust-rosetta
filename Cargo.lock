@@ -2412,6 +2412,14 @@ name = "higher-order-functions"
 version = "0.1.0"
 
 [[package]]
+name = "hofstadter-conway"
+version = "0.1.0"
+
+[[package]]
+name = "hofstadter-figure-figure-sequences"
+version = "0.1.0"
+
+[[package]]
 name = "hofstadter-q-sequence"
 version = "0.1.0"
 
