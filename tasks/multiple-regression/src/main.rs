@@ -24,7 +24,7 @@ fn main() {
     let x = DMatrix::from_fn(x.len(), 3, |row, col| x[row].powi(col as i32));
     let y = DMatrix::from_vec(y.len(), 1, y);
     println!(
-        "\u{3B2} parameters using least squares regression :{}",
+        "β parameters using least squares regression :{}",
         get_coefficients(&x, &y)
     );
 }
