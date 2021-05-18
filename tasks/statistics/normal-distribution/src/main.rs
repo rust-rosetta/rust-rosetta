@@ -8,7 +8,7 @@ fn mean(data: &[f32]) -> Option<f32> {
 }
 
 fn standard_deviation(data: &[f32]) -> Option<f32> {
-    let mean = mean(data).unwrap();
+    let mean = mean(data).expect("invalid mean");
     let sum = data.iter().fold(0.0, |acc, &x| acc + (x - mean).powi(2));
     Some((sum / data.len() as f32).sqrt())
 }
@@ -47,8 +47,8 @@ fn main() {
             .take(number_of_samples)
             .collect();
         println!("Statistics for sample size {}:", number_of_samples);
-        println!("\tMean: {:?}", mean(&data).unwrap());
-        println!("\tStandard deviation: {:?}", standard_deviation(&data).unwrap());
+        println!("\tMean: {:?}", mean(&data).expect("invalid mean"));
+        println!("\tStandard deviation: {:?}", standard_deviation(&data).expect("invalid standard deviation"));
         print_histogram(&data, 80, 40, '-');
     }
 }
@@ -56,7 +56,7 @@ fn main() {
 
 #[cfg(test)]
 mod tests {
-    use super::{mean, standard_deviation};
+    use super::{mean, standard_deviation, print_histogram};
     use std::f32;
 
     fn approx(statistics: Option<f32>, value: f32) -> bool {
@@ -65,8 +65,6 @@ mod tests {
 
     #[test]
     fn test_mean() {
-        // let empty = vec![];
-        // assert_eq!(mean(&empty), None);
         assert!(approx(mean(&[1.0]), 1.0));
         assert!(approx(mean(&[1.0, 3.0]), 2.0));
         assert!(approx(mean(&[1.0, 2.0, 3.0]), 2.0));
@@ -74,13 +72,16 @@ mod tests {
 
     #[test]
     fn test_standard_deviation() {
-        let empty = vec![];
-        // assert_eq!(standard_deviation(&empty), None);
         assert!(approx(standard_deviation(&[0.0]), 0.0));
         assert!(approx(standard_deviation(&[1.0, 1.0, 1.0]), 0.0));
         assert!(approx(
             standard_deviation(&[1.0, 2.0, 3.0]),
             (2f32 / 3f32).sqrt()
         ));
+    }
+
+    #[test]
+    fn test_print_histogram() {
+        print_histogram(&[0.0,1.0,2.0,3.0], 10, 5, '-');
     }
 }
