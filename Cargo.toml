@@ -750,6 +750,9 @@ members = [
     # http://rosettacode.org/wiki/Huffman_coding
     "tasks/huffman-coding",
 
+    # http://rosettacode.org/wiki/Humble_numbers
+    "tasks/humble-numbers",
+
     # http://rosettacode.org/wiki/I_before_E_except_after_C
     "tasks/i-before-e-except-after-c",
 
