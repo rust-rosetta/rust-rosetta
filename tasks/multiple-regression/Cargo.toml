@@ -1,0 +1,14 @@
+[package]
+name = "multiple-regression"
+version = "0.1.0"
+edition = "2018"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Multiple_regression"
+
+
+[dependencies]
+nalgebra= "0.26.2"
+
+[dev-dependencies]
+assert_approx_eq = "1.1.0"
