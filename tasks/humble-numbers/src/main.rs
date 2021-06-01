@@ -1,6 +1,6 @@
 use itertools::Itertools;
 
-struct HumbleNumberSeq {
+struct HumbleNumbers {
     seq: Vec<u64>,
     current_h: u64,
     index: usize,
@@ -14,10 +14,10 @@ struct HumbleNumberSeq {
     last7: usize,
 }
 
-impl HumbleNumberSeq {
-    fn new(max_number_of_numbers: usize) -> HumbleNumberSeq {
-        HumbleNumberSeq {
-            seq: vec![0; max_number_of_numbers],
+impl HumbleNumbers {
+    fn new() -> HumbleNumbers {
+        HumbleNumbers {
+            seq: vec![0; 50],
             current_h: 1,
             index: 0,
             next2: 2,
@@ -32,15 +32,15 @@ impl HumbleNumberSeq {
     }
 }
 
-impl Iterator for HumbleNumberSeq {
+impl Iterator for HumbleNumbers {
     type Item = u64;
 
     fn next(&mut self) -> Option<u64> {
-        // Direct generation, with u64 it's good up to ~19 digits
+        // Direct generation, with u64 it's good up to ~19 digits, ~81000 humble numbers
 
-        // if reached the max # of numbers, return None
+        // if reached the max # of numbers, increase the vector
         if self.index >= self.seq.len() {
-            return None;
+            self.seq.resize(self.seq.len() * 2, 0);
         }
 
         // this wil be returned
@@ -49,7 +49,11 @@ impl Iterator for HumbleNumberSeq {
 
         if self.current_h == self.next2 {
             self.last2 += 1;
-            self.next2 = self.seq[self.last2] * 2;
+            // check for overflow
+            self.next2 = match self.seq[self.last2].checked_mul(2) {
+                Some(n) => n,
+                _ => return None,
+            };
         }
 
         if self.current_h == self.next3 {
@@ -79,7 +83,7 @@ impl Iterator for HumbleNumberSeq {
 }
 
 fn main() {
-    let seq_iter = HumbleNumberSeq::new(50);
+    let seq_iter = HumbleNumbers::new().take(50);
     println!("First 50 Humble number");
     for (i, x) in seq_iter.enumerate() {
         if i % 10 == 9 {
@@ -89,8 +93,8 @@ fn main() {
         }
     }
 
-    let seq_iter = HumbleNumberSeq::new(85000);
-    println!("\nOf the first 85.000 humble numbers");
+    let seq_iter = HumbleNumbers::new();
+    println!("\nOf the first ~81.000 humble numbers");
     for (key, group) in &seq_iter.into_iter().group_by(|e| (*e).to_string().len()) {
         if key < 20 {
             println!("{:>5} have  {:>3} digits", group.count(), key);
@@ -104,7 +108,7 @@ mod tests {
 
     #[test]
     fn test_humble() {
-        let seq_iter = HumbleNumberSeq::new(50);
+        let seq_iter = HumbleNumbers::new();
         let result = seq_iter.skip(10).take(10).collect::<Vec<_>>();
         assert_eq!(result, vec![12, 14, 15, 16, 18, 20, 21, 24, 25, 27])
     }
