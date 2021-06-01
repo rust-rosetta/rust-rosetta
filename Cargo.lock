@@ -2522,6 +2522,13 @@ dependencies = [
 ]
 
 [[package]]
+name = "humble-numbers"
+version = "0.1.0"
+dependencies = [
+ "itertools 0.10.0",
+]
+
+[[package]]
 name = "hyper"
 version = "0.13.10"
 source = "registry+https://github.com/rust-lang/crates.io-index"
