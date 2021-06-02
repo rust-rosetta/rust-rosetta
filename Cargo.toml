@@ -82,6 +82,7 @@ authors = [
     "Charles Koll, https://github.com/kollch",
     "Lucas De Angelis, https://github.com/lucas-deangelis",
     "9names, https://github.com/9names",
+    "Avrosh Kumar, https://github.com/avroshk",
 ]
 
 [dependencies]
@@ -1319,6 +1320,9 @@ members = [
 
     # http://rosettacode.org/wiki/Statistics/Basic
     "tasks/statistics/basic",
+
+    # http://rosettacode.org/wiki/Statistics/Normal_distribution
+    "tasks/statistics/normal-distribution",
 
     # http://rosettacode.org/wiki/String_case
     "tasks/string-case",

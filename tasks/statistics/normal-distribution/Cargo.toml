@@ -1,0 +1,13 @@
+[package]
+name = "normal-distribution"
+version = "0.1.0"
+authors = ["Avrosh K <avroshkumar@gmail.com>"]
+edition = "2018"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Statistics/Normal_distribution"
+
+[dependencies]
+rand = "0.8.3"
+rand_distr = "0.4.0"
+math = "0.10.0"
