@@ -1,7 +1,7 @@
 //! Rust rosetta example for normal distribution
-use rand;
-use rand_distr::{Normal,Distribution};
 use math::{histogram::Histogram, traits::ToIterator};
+use rand;
+use rand_distr::{Distribution, Normal};
 
 /// Returns the mean of the provided samples
 ///
@@ -37,13 +37,15 @@ fn print_histogram(data: &[f32], maxwidth: usize, bincount: usize, ch: char) {
     println!();
     for x in histogram.to_iter() {
         let (bin_min, bin_max, freq) = x;
-        let bar_width = (((freq as f64)/(*max_bin_value as f64))*(maxwidth as f64)) as u32;
+        let bar_width = (((freq as f64) / (*max_bin_value as f64)) * (maxwidth as f64)) as u32;
         let bar_as_string = (1..bar_width).fold(String::new(), |b, _| b + &ch.to_string());
-        println!("({:>6},{:>6}) |{} {:.2}%",
-                 format!("{:.2}", bin_min),
-                 format!("{:.2}", bin_max),
-                 bar_as_string,
-                 (freq as f64)*100.0/(data.len() as f64));
+        println!(
+            "({:>6},{:>6}) |{} {:.2}%",
+            format!("{:.2}", bin_min),
+            format!("{:.2}", bin_max),
+            bar_as_string,
+            (freq as f64) * 100.0 / (data.len() as f64)
+        );
     }
     println!();
 }
@@ -62,15 +64,17 @@ fn main() {
             .collect();
         println!("Statistics for sample size {}:", number_of_samples);
         println!("\tMean: {:?}", mean(&data).expect("invalid mean"));
-        println!("\tStandard deviation: {:?}", standard_deviation(&data).expect("invalid standard deviation"));
+        println!(
+            "\tStandard deviation: {:?}",
+            standard_deviation(&data).expect("invalid standard deviation")
+        );
         print_histogram(&data, 80, 40, '-');
     }
 }
 
-
 #[cfg(test)]
 mod tests {
-    use super::{mean, standard_deviation, print_histogram};
+    use super::{mean, print_histogram, standard_deviation};
     use std::f32;
 
     fn approx(statistics: Option<f32>, value: f32) -> bool {
@@ -96,6 +100,6 @@ mod tests {
 
     #[test]
     fn test_print_histogram() {
-        print_histogram(&[0.0,1.0,2.0,3.0], 10, 5, '-');
+        print_histogram(&[0.0, 1.0, 2.0, 3.0], 10, 5, '-');
     }
 }
