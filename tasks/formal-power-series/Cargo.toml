@@ -1,0 +1,17 @@
+[package]
+name = "formal-power-series"
+version = "0.1.0"
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Formal_power_series"
+
+[features]
+# Some of the tests only work if the program is set to display only the first
+# five terms of power series
+five_terms = []
+
+[dependencies]
+lazy_static = "1.4.0"
+num = "0.4.0"

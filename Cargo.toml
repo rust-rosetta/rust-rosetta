@@ -610,6 +610,9 @@ members = [
     # http://rosettacode.org/wiki/Fork
     "tasks/fork",
 
+    # http://rosettacode.org/wiki/Formal_power_series
+    "tasks/formal-power-series",
+
     # http://rosettacode.org/wiki/Formatted_numeric_output
     "tasks/formatted-numeric-output",
 
