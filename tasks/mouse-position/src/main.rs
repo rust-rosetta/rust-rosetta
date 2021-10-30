@@ -8,9 +8,8 @@ use std::thread;
 use std::time::Duration;
 
 #[cfg(all(target_os = "linux", feature = "x11"))]
-fn get_mouse_position() -> (usize, usize) {
+fn get_mouse_position() -> (i64, i64) {
     use std::ffi::CString;
-    use std::mem;
     use std::ptr;
     use std::slice;
 
@@ -22,49 +21,48 @@ fn get_mouse_position() -> (usize, usize) {
     }
 
     let active_window = unsafe {
-        let mut actual_type_ret = mem::uninitialized();
-        let mut actual_format_ret = mem::uninitialized();
-        let mut n_items_ret = mem::uninitialized();
-        let mut bytes_after_ret = mem::uninitialized();
-        let mut prop_ret = mem::uninitialized();
+        let mut type_ = 0;
+        let mut format = 0;
+        let mut n_items = 0;
+        let mut bytes_after = 0;
+        let mut prop = ptr::null_mut();
+
+        let property_name = CString::new("_NET_ACTIVE_WINDOW").unwrap();
+        let property_name_atom = xlib::XInternAtom(display, property_name.as_ptr(), True);
 
         xlib::XGetWindowProperty(
             display,
             xlib::XDefaultRootWindow(display),
-            xlib::XInternAtom(
-                display,
-                CString::new("_NET_ACTIVE_WINDOW").unwrap().as_ptr(),
-                True,
-            ),
+            property_name_atom,
             0,
             1,
             False,
             AnyPropertyType as u64,
-            &mut actual_type_ret,
-            &mut actual_format_ret,
-            &mut n_items_ret,
-            &mut bytes_after_ret,
-            &mut prop_ret,
+            &mut type_,
+            &mut format,
+            &mut n_items,
+            &mut bytes_after,
+            &mut prop,
         );
         let windows: &[xlib::Window] =
-            slice::from_raw_parts_mut(mem::transmute(prop_ret), n_items_ret as usize);
+            slice::from_raw_parts_mut(prop as *mut xlib::Window, n_items as usize);
         windows[0]
     };
 
     let (x, y) = unsafe {
-        let mut root_x = mem::uninitialized();
-        let mut root_y = mem::uninitialized();
-        let mut win_x = mem::uninitialized();
-        let mut win_y = mem::uninitialized();
-        let mut mask = mem::uninitialized();
-        let mut child_ret = mem::uninitialized();
-        let mut root_ret = mem::uninitialized();
+        let mut root = 0;
+        let mut child = 0;
+        let mut root_x = 0;
+        let mut root_y = 0;
+        let mut win_x = 0;
+        let mut win_y = 0;
+        let mut mask = 0;
 
         xlib::XQueryPointer(
             display,
             active_window,
-            &mut root_ret,
-            &mut child_ret,
+            &mut root,
+            &mut child,
             &mut root_x,
             &mut root_y,
             &mut win_x,
@@ -75,7 +73,11 @@ fn get_mouse_position() -> (usize, usize) {
         (win_x, win_y)
     };
 
-    (x as usize, y as usize)
+    unsafe {
+        xlib::XCloseDisplay(display);
+    }
+
+    (x as i64, y as i64)
 }
 
 #[cfg(all(target_os = "macos"))]
