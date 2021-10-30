@@ -1,7 +1,8 @@
 use std::collections::HashMap;
 use std::fs::File;
-use std::io::{self, BufRead, BufReader};
+use std::io::{self, BufRead, BufReader, Cursor, Read};
 use std::path::Path;
+use std::str::FromStr;
 
 #[derive(Debug)]
 enum ConfigVariable {
@@ -59,20 +60,24 @@ impl ConfigParams {
     }
 
     fn parse<P: AsRef<Path>>(path: P) -> io::Result<ConfigParams> {
-        let conf_file = File::open(path)?;
-        let content = BufReader::new(conf_file);
+        Self::from_reader(File::open(path)?)
+    }
+
+    fn from_reader(reader: impl Read) -> io::Result<ConfigParams> {
+        let reader = BufReader::new(reader);
 
         let mut params = ConfigParams::new();
-        for line in content.lines() {
+        for line in reader.lines() {
             let line = line?;
             if is_comment(&line) {
                 continue;
             }
-            params.update_config(&line)
+            params.update_config(&line);
         }
 
         Ok(params)
     }
+
     // Will parse the line and update the internal structure
     fn update_config(&mut self, line: &str) {
         let mut parts = line.splitn(2, ' ').map(|x| x.to_owned());
@@ -100,8 +105,15 @@ impl ConfigParams {
     }
 
     fn param<T: FromConfig>(&self, key: &str) -> Result<T, String> {
-        key.to_lowercase();
-        FromConfig::from_config(self, key)
+        FromConfig::from_config(self, &key.to_lowercase())
+    }
+}
+
+impl FromStr for ConfigParams {
+    type Err = std::convert::Infallible;
+
+    fn from_str(s: &str) -> Result<Self, Self::Err> {
+        Ok(Self::from_reader(Cursor::new(s.as_bytes())).unwrap())
     }
 }
 
@@ -118,6 +130,9 @@ fn main() {
 
 #[cfg(test)]
 mod tests {
+    use indoc::indoc;
+
+    use super::ConfigParams;
 
     #[test]
     fn main_test() {
@@ -131,5 +146,17 @@ mod tests {
             params.param::<Vec<String>>("otherfamily").unwrap(),
             vec!["Rhu Barber", "Harry Barber"]
         );
+    }
+
+    #[test]
+    fn options_names_are_case_insensitive() {
+        let config = indoc! {"
+            FULLNAME Foo Barber
+        "}
+        .parse::<ConfigParams>()
+        .unwrap();
+
+        assert_eq!(config.param::<String>("FULLNAME").unwrap(), "Foo Barber");
+        assert_eq!(config.param::<String>("fullname").unwrap(), "Foo Barber");
     }
 }

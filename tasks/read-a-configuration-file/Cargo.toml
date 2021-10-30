@@ -1,8 +1,12 @@
 [package]
 name = "read-config-file"
 version = "0.1.0"
+edition = "2021"
 
 [package.metadata.rosettacode]
 url = "http://rosettacode.org/wiki/Read_a_configuration_file"
 
 [dependencies]
+
+[dev-dependencies]
+indoc = "1.0.3"
