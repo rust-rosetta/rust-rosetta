@@ -4721,6 +4721,9 @@ version = "0.1.0"
 [[package]]
 name = "read-config-file"
 version = "0.1.0"
+dependencies = [
+ "indoc",
+]
 
 [[package]]
 name = "read-entire-file"
