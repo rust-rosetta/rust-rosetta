@@ -148,6 +148,10 @@ members = [
     # http://rosettacode.org/wiki/Active_object
     "tasks/active-object",
 
+    # http://rosettacode.org/wiki/Additive_primes
+    "tasks/additive-primes/addit_primes-flat",
+    "tasks/additive-primes/addit_primes-primal",
+
     # http://rosettacode.org/wiki/Address_of_a_variable
     "tasks/address-of-a-variable",
 

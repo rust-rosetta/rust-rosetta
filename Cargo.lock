@@ -83,6 +83,17 @@ dependencies = [
 ]
 
 [[package]]
+name = "addit_primes-flat"
+version = "0.1.0"
+
+[[package]]
+name = "addit_primes-primal"
+version = "0.1.0"
+dependencies = [
+ "primal",
+]
+
+[[package]]
 name = "addr2line"
 version = "0.14.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -2339,6 +2350,12 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "62aca2aba2d62b4a7f5b33f3712cb1b0692779a56fb510499d5c0aa594daeaf3"
 
 [[package]]
+name = "hamming"
+version = "0.1.3"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "65043da274378d68241eb9a8f8f8aa54e349136f7b8e12f63e3ef44043cc30e1"
+
+[[package]]
 name = "hamming-numbers"
 version = "0.1.0"
 dependencies = [
@@ -4354,6 +4371,52 @@ dependencies = [
 [[package]]
 name = "price-fraction"
 version = "0.1.0"
+
+[[package]]
+name = "primal"
+version = "0.3.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "7bf9e0aea92a2e2a931fafb1b5d4c6e438197bbca4943a9984b3327fb8e3b5d0"
+dependencies = [
+ "primal-check",
+ "primal-estimate",
+ "primal-sieve",
+]
+
+[[package]]
+name = "primal-bit"
+version = "0.3.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "2837edc85364907810b0ec880f1010dab1a9cc6e75bacb3655c7fd22e125ec1b"
+dependencies = [
+ "hamming",
+]
+
+[[package]]
+name = "primal-check"
+version = "0.3.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "01419cee72c1a1ca944554e23d83e483e1bccf378753344e881de28b5487511d"
+dependencies = [
+ "num-integer",
+]
+
+[[package]]
+name = "primal-estimate"
+version = "0.3.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "12e07b550a7cbfcaa567bcd28042919548016ad615b5731633fa5239992d853f"
+
+[[package]]
+name = "primal-sieve"
+version = "0.3.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "bd0113d948c8f955a7ae96520023fe1e730eadbf26e67c4452f801a485e9d357"
+dependencies = [
+ "primal-bit",
+ "primal-estimate",
+ "smallvec",
+]
 
 [[package]]
 name = "primality-by-trial-division"
