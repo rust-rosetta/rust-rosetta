@@ -1,0 +1,6 @@
+[package]
+name = "fib_seq-iter_successors"
+version = "0.1.0"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Fibonacci_sequence"

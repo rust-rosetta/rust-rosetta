@@ -570,6 +570,7 @@ members = [
 
     # http://rosettacode.org/wiki/Fibonacci_sequence
     "tasks/fibonacci-sequence",
+    "tasks/fibonacci-sequence/fib_seq-iter_successors",
 
     # http://rosettacode.org/wiki/Fibonacci_word
     "tasks/fibonacci-word",
