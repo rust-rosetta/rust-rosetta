@@ -1239,6 +1239,9 @@ members = [
     # http://rosettacode.org/wiki/Sleep
     "tasks/sleep",
 
+    # http://rosettacode.org/wiki/Snake
+    "tasks/snake",
+
     # http://rosettacode.org/wiki/Sockets
     "tasks/sockets",
 

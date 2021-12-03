@@ -1,0 +1,12 @@
+[package]
+name = "snake"
+version = "0.1.0"
+edition = "2021"
+authors = ["Vladimir Shardinov <vvshard@gmail.com>"]
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Snake"
+
+[dependencies]
+winsafe = "0.0.8"
+rand = "0.8.4"
