@@ -5,18 +5,18 @@
 
 use rand::{thread_rng, Rng};
 use std::{cell::RefCell, rc::Rc};
-use winsafe::{co, gui, prelude::*};
+use winsafe::{co, gui, prelude::*, COLORREF, HPEN, SIZE};
 
+const STEP: i32 = 3; // px, offset per frame. STEP and FPS determine the smoothness and speed of the animation.
 const FPS: u32 = 90;
-const STEP: i32 = 3; // px, offset per frame. FPS and STEP determine the speed and smoothness of the animation.
-
 const CELL: i32 = 21; // px, game grid (logical step). Will be aligned by STEP
-const SNAKE_W: i32 = 16; // px,
+const SNAKE_W: i32 = 20; // px,
+const ROUNDING: SIZE = SIZE::new(SNAKE_W / 2, SNAKE_W / 2);
 /// side of a square fields in CELLs
 const FIELD_W: i32 = 20;
 /// count of STEPs per CELL
 const RATIO: i32 = CELL / STEP;
-/// total width (with overlap for collisions) in STEPs
+/// total field width (with overlap for collisions) in STEPs
 const TW: i32 = (FIELD_W + 2) * RATIO;
 #[derive(Clone, Copy)]
 #[repr(i32)]
@@ -31,25 +31,22 @@ use Direction::*;
 
 struct Context {
     wnd: gui::WindowMain,
-    /// IDs of fillable rect (bg, tail, body, food, head)
+    /// IDs of 5 fillable rect (bg, tail, body, food, head); id_rect = y * TW + x (where x, y: nSTEPs)
     id_r: [i32; 5],
-    /// animation snake: \[id_rect, id_rect, ...]
-    a_snk: Vec<i32>,
-    /// logic snake: \[id_cell as id_rect, ...]  
-    l_snk: Vec<i32>,
-    /// gap in STEPs between  animation and logic (negative - remove tail)
+    /// \[ids_rect] where id_rect = y * TW + x (where x, y: nSTEPs)
+    snake: Vec<i32>,
+    /// gap in STEPs between animation and logic cell (negative - remove tail)
     gap: i32,
     dir: Direction,
     ordered_dir: Direction,
 }
 impl Context {
-    fn new(wnd: gui::WindowMain) -> Self {
+    fn new(wnd: gui::WindowMain, len: usize) -> Self {
         Self {
             wnd,
             id_r: [FIELD_W / 2 * RATIO; 5],
-            a_snk: Vec::with_capacity((FIELD_W * FIELD_W * RATIO) as usize),
-            l_snk: Vec::with_capacity((FIELD_W * FIELD_W) as usize),
-            gap: 1,
+            snake: vec![FIELD_W / 2 * RATIO; 1.max(len as i32 - RATIO) as usize],
+            gap: -1,
             dir: Start,
             ordered_dir: S,
         }
@@ -59,11 +56,11 @@ impl Context {
 fn main() {
     let [bg, tail, body, food, head] = [0usize, 1, 2, 3, 4];
     let brushes = winsafe::COLORREF::new_array(&[
-        (0xFF, 0xF9, 0xD0), // color bg
-        (0x00, 0xB0, 0xA0), // color tail
-        (0x00, 0xB0, 0xA0), // color body
-        (0xFF, 0x20, 0x20), // color food
-        (0x20, 0x60, 0x00), // color head
+        (0x00, 0x50, 0x90), // color bg
+        (0x00, 0xF0, 0xA0), // color tail
+        (0x00, 0xF0, 0xA0), // color body
+        (0xFF, 0x50, 0x00), // color food
+        (0xFF, 0xFF, 0x00), // color head
     ])
     .map(|c| winsafe::HBRUSH::CreateSolidBrush(c).unwrap());
 
@@ -75,17 +72,20 @@ fn main() {
         ..Default::default()
     });
 
-    let context = Rc::new(RefCell::new(Context::new(wnd.clone())));
+    let context = Rc::new(RefCell::new(Context::new(wnd.clone(), 0)));
 
     wnd.on().wm_key_down({
         let context = Rc::clone(&context);
         move |k| {
             let bt = k.char_code as u8;
-            if b"ADSW ".contains(&bt) {
+            if b" ADSW\x71".contains(&bt) {
                 let mut ctx = context.borrow_mut();
                 match (ctx.dir, bt) {
-                    (Start, b' ') => {
-                        *ctx = Context::new(ctx.wnd.clone());
+                    (Start, b' ' | 0x71) => {
+                        *ctx = Context::new(
+                            ctx.wnd.clone(),
+                            if bt == b' ' { ctx.snake.len() } else { 0 },
+                        );
                         ctx.wnd.hwnd().InvalidateRect(None, true)?;
                         ctx.wnd.hwnd().SetTimer(1, 1000 / FPS, None)?;
                     }
@@ -110,31 +110,39 @@ fn main() {
             let new_h = ctx.id_r[head] + ctx.dir as i32;
             ctx.id_r[body] = ctx.id_r[head];
             ctx.id_r[head] = new_h;
-            ctx.a_snk.insert(0, new_h);
+            ctx.snake.insert(0, new_h);
             if ctx.gap < 0 {
-                ctx.id_r[bg] = ctx.a_snk.pop().unwrap();
-                ctx.id_r[tail] = *ctx.a_snk.last().unwrap();
+                ctx.id_r[bg] = ctx.snake.pop().unwrap();
+                ctx.id_r[tail] = *ctx.snake.last().unwrap();
             }
             ctx.gap -= ctx.gap.signum();
             if ctx.gap == 0 {
-                ctx.l_snk.insert(0, new_h);
                 ctx.dir = ctx.ordered_dir;
+                let itr = ctx.snake.iter().step_by(RATIO as usize);
                 if new_h == ctx.id_r[food] {
-                    let title = format!("Snake - Eaten {}", ctx.l_snk.len() - 1);
+                    let mut snake_cells: Vec<_> = itr.collect();
+                    let len = snake_cells.len();
+                    let title = if len == cells.len() {
+                        ctx.id_r[food] = 0;
+                        format!("Snake - EATEN ALL: {} !!!", len - 1)
+                    } else {
+                        snake_cells.sort();
+                        ctx.id_r[food] = *cells
+                            .iter()
+                            .filter(|i| snake_cells.binary_search(i).is_err())
+                            .nth(thread_rng().gen_range(0..1.max(cells.len() - len)))
+                            .unwrap_or(&0);
+                        format!("Snake - Eaten: {}.", len - 1)
+                    };
                     ctx.wnd.hwnd().SetWindowText(&title)?;
-                    ctx.id_r[food] = *cells
-                        .iter()
-                        .filter(|&i| !ctx.l_snk.contains(i))
-                        .nth(thread_rng().gen_range(0..cells.len() - ctx.l_snk.len()))
-                        .unwrap();
                     ctx.gap = RATIO;
-                } else if cells.binary_search(&new_h).is_err() || ctx.l_snk[1..].contains(&new_h) {
-                    let title = ctx.wnd.hwnd().GetWindowText()? + ". Restarting: Space";
+                } else if cells.binary_search(&new_h).is_err() || itr.skip(1).any(|&j| j == new_h) {
+                    let title =
+                        ctx.wnd.hwnd().GetWindowText()? + "  Restarting: F2 (with save - Space)";
                     ctx.wnd.hwnd().SetWindowText(&title)?;
                     ctx.wnd.hwnd().KillTimer(1)?;
                     ctx.dir = Start;
                 } else {
-                    ctx.l_snk.pop();
                     ctx.gap = -RATIO;
                 }
             }
@@ -147,17 +155,19 @@ fn main() {
         let ctx = context.borrow();
         let mut ps = winsafe::PAINTSTRUCT::default();
         let hdc = ctx.wnd.hwnd().BeginPaint(&mut ps)?;
+        hdc.SelectObjectPen(HPEN::CreatePen(co::PS::NULL, 0, COLORREF::new(0, 0, 0))?)?;
         for (&id_rect, &brush) in ctx.id_r.iter().zip(&brushes) {
+            hdc.SelectObjectBrush(brush)?;
             let left = id_rect % TW * STEP - (STEP * RATIO + SNAKE_W) / 2;
             let top = id_rect / TW * STEP - (STEP * RATIO + SNAKE_W) / 2;
-            hdc.FillRect(
+            hdc.RoundRect(
                 winsafe::RECT {
                     left,
                     top,
                     right: left + SNAKE_W,
                     bottom: top + SNAKE_W,
                 },
-                brush,
+                ROUNDING,
             )?;
         }
         ctx.wnd.hwnd().EndPaint(&ps);
