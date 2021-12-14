@@ -5,7 +5,7 @@
 
 use rand::{thread_rng, Rng};
 use std::{cell::RefCell, rc::Rc};
-use winsafe::{co, gui, prelude::*, COLORREF, HPEN, SIZE};
+use winsafe::{co, gui, prelude::*, COLORREF, HBRUSH, HPEN, SIZE};
 
 const STEP: i32 = 3; // px, offset per frame. STEP and FPS determine the smoothness and speed of the animation.
 const FPS: u32 = 90;
@@ -31,8 +31,8 @@ use Direction::*;
 
 struct Context {
     wnd: gui::WindowMain,
-    /// IDs of 5 fillable rect (bg, tail, body, food, head); id_rect = y * TW + x (where x, y: nSTEPs)
-    id_r: [i32; 5],
+    /// IDs of 6 fillable rect (bg, tail, turn, body, food, head); id_rect = y * TW + x (where x, y: nSTEPs)
+    id_r: [i32; 6],
     /// \[ids_rect] where id_rect = y * TW + x (where x, y: nSTEPs)
     snake: Vec<i32>,
     /// gap in STEPs between animation and logic cell (negative - remove tail)
@@ -44,7 +44,7 @@ impl Context {
     fn new(wnd: gui::WindowMain, len: usize) -> Self {
         Self {
             wnd,
-            id_r: [FIELD_W / 2 * RATIO; 5],
+            id_r: [FIELD_W / 2 * RATIO; 6],
             snake: vec![FIELD_W / 2 * RATIO; 1.max(len as i32 - RATIO) as usize],
             gap: -1,
             dir: Start,
@@ -54,15 +54,12 @@ impl Context {
 }
 
 pub fn main() {
-    let [bg, tail, body, food, head] = [0usize, 1, 2, 3, 4];
-    let brushes = winsafe::COLORREF::new_array(&[
-        (0x00, 0x50, 0x90), // color bg
-        (0x00, 0xF0, 0xA0), // color tail
-        (0x00, 0xF0, 0xA0), // color body
-        (0xFF, 0x50, 0x00), // color food
-        (0xFF, 0xFF, 0x00), // color head
-    ])
-    .map(|c| winsafe::HBRUSH::CreateSolidBrush(c).unwrap());
+    let [bg, tail, turn, body, food, head] = [0usize, 1, 2, 3, 4, 5];
+    let mut colors = [(0x00, 0xF0, 0xA0); 6]; // color tail, turn, body
+    colors[bg] = (0x00, 0x50, 0x90);
+    colors[food] = (0xFF, 0x50, 0x00);
+    colors[head] = (0xFF, 0xFF, 0x00);
+    let brushes = COLORREF::new_array(&colors).map(|c| HBRUSH::CreateSolidBrush(c).unwrap());
 
     let wnd = gui::WindowMain::new(gui::WindowMainOpts {
         title: "Snake - Start: Space, then press W-A-S-D".to_string(),
@@ -77,24 +74,19 @@ pub fn main() {
     wnd.on().wm_key_down({
         let context = Rc::clone(&context);
         move |k| {
-            let bt = k.char_code as u8;
-            if b" ADSW\x71".contains(&bt) {
-                let mut ctx = context.borrow_mut();
-                match (ctx.dir, bt) {
-                    (Start, b' ' | 0x71) => {
-                        *ctx = Context::new(
-                            ctx.wnd.clone(),
-                            if bt == b' ' { ctx.snake.len() } else { 0 },
-                        );
-                        ctx.wnd.hwnd().InvalidateRect(None, true)?;
-                        ctx.wnd.hwnd().SetTimer(1, 1000 / FPS, None)?;
-                    }
-                    (W | S, b'A') => ctx.ordered_dir = A,
-                    (W | S, b'D') => ctx.ordered_dir = D,
-                    (A | D, b'S') => ctx.ordered_dir = S,
-                    (A | D, b'W') => ctx.ordered_dir = W,
-                    _ => (),
+            let mut ctx = context.borrow_mut();
+            match (ctx.dir, k.char_code as u8) {
+                (Start, bt @ (b' ' | 113)) => {
+                    let len = ctx.snake.len();
+                    *ctx = Context::new(ctx.wnd.clone(), if bt == b' ' { len } else { 0 });
+                    ctx.wnd.hwnd().InvalidateRect(None, true)?;
+                    ctx.wnd.hwnd().SetTimer(1, 1000 / FPS, None)?;
                 }
+                (W | S, b'A') => ctx.ordered_dir = A,
+                (W | S, b'D') => ctx.ordered_dir = D,
+                (A | D, b'S') => ctx.ordered_dir = S,
+                (A | D, b'W') => ctx.ordered_dir = W,
+                _ => (),
             }
             Ok(())
         }
@@ -114,6 +106,7 @@ pub fn main() {
             if ctx.gap < 0 {
                 ctx.id_r[bg] = ctx.snake.pop().unwrap();
                 ctx.id_r[tail] = *ctx.snake.last().unwrap();
+                ctx.id_r[turn] = ctx.snake[ctx.snake.len().saturating_sub(1 + RATIO as usize / 2)];
             }
             ctx.gap -= ctx.gap.signum();
             if ctx.gap == 0 {
