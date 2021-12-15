@@ -3,19 +3,19 @@
 
 #![cfg(windows)]
 
-use rand::{thread_rng, Rng};
+use rand::Rng;
 use std::{cell::RefCell, rc::Rc};
 use winsafe::{co, gui, prelude::*, COLORREF, HBRUSH, HPEN, SIZE};
 
 const STEP: i32 = 3; // px, offset per frame. STEP and FPS determine the smoothness and speed of the animation.
 const FPS: u32 = 90;
 const CELL: i32 = 21; // px, game grid (logical step). Will be aligned by STEP
-const SNAKE_W: i32 = 20; // px,
+const FIELD_W: i32 = 20; // width of the square field in CELLs
+const SNAKE_W: i32 = 20; // px
 const ROUNDING: SIZE = SIZE::new(SNAKE_W / 2, SNAKE_W / 2);
-/// side of a square fields in CELLs
-const FIELD_W: i32 = 20;
-/// count of STEPs per CELL
+
 const RATIO: i32 = CELL / STEP;
+const START_CELL: i32 = FIELD_W / 2 * RATIO;
 /// total field width (with overlap for collisions) in STEPs
 const TW: i32 = (FIELD_W + 2) * RATIO;
 #[derive(Clone, Copy)]
@@ -31,12 +31,9 @@ use Direction::*;
 
 struct Context {
     wnd: gui::WindowMain,
-    /// IDs of 6 fillable rect (bg, tail, turn, body, food, head); id_rect = y * TW + x (where x, y: nSTEPs)
-    id_r: [i32; 6],
-    /// \[ids_rect] where id_rect = y * TW + x (where x, y: nSTEPs)
-    snake: Vec<i32>,
-    /// gap in STEPs between animation and logic cell (negative - remove tail)
-    gap: i32,
+    snake: Vec<i32>, // [ids_rect] where id_rect = y * TW + x (where x, y: nSTEPs)
+    id_r: [i32; 6],  // ID 6 rectangles to color in next frame (bg, tail, turn, body, food, head)
+    gap: i32,        // gap in STEPs between animation and logic cell (negative - remove tail)
     dir: Direction,
     ordered_dir: Direction,
 }
@@ -44,8 +41,8 @@ impl Context {
     fn new(wnd: gui::WindowMain, len: usize) -> Self {
         Self {
             wnd,
-            id_r: [FIELD_W / 2 * RATIO; 6],
-            snake: vec![FIELD_W / 2 * RATIO; 1.max(len as i32 - RATIO) as usize],
+            snake: vec![START_CELL; 1.max(len as i32 - RATIO) as usize],
+            id_r: [START_CELL; 6],
             gap: -1,
             dir: Start,
             ordered_dir: S,
@@ -82,10 +79,8 @@ pub fn main() {
                     ctx.wnd.hwnd().InvalidateRect(None, true)?;
                     ctx.wnd.hwnd().SetTimer(1, 1000 / FPS, None)?;
                 }
-                (W | S, b'A') => ctx.ordered_dir = A,
-                (W | S, b'D') => ctx.ordered_dir = D,
-                (A | D, b'S') => ctx.ordered_dir = S,
-                (A | D, b'W') => ctx.ordered_dir = W,
+                (W | S, bt @ (b'A' | b'D')) => ctx.ordered_dir = if bt == b'A' { A } else { D },
+                (A | D, bt @ (b'S' | b'W')) => ctx.ordered_dir = if bt == b'S' { S } else { W },
                 _ => (),
             }
             Ok(())
@@ -111,33 +106,31 @@ pub fn main() {
             ctx.gap -= ctx.gap.signum();
             if ctx.gap == 0 {
                 ctx.dir = ctx.ordered_dir;
-                let itr = ctx.snake.iter().step_by(RATIO as usize);
-                if new_h == ctx.id_r[food] {
-                    let mut snake_cells: Vec<_> = itr.collect();
-                    let len = snake_cells.len();
-                    let title = if len == cells.len() {
-                        ctx.id_r[food] = 0;
-                        format!("Snake - EATEN ALL: {} !!!", len - 1)
-                    } else {
-                        snake_cells.sort();
-                        ctx.id_r[food] = *cells
-                            .iter()
-                            .filter(|i| snake_cells.binary_search(i).is_err())
-                            .nth(thread_rng().gen_range(0..1.max(cells.len() - len)))
-                            .unwrap_or(&0);
-                        format!("Snake - Eaten: {}.", len - 1)
-                    };
-                    ctx.wnd.hwnd().SetWindowText(&title)?;
-                    ctx.gap = RATIO;
-                } else if cells.binary_search(&new_h).is_err() || itr.skip(1).any(|&j| j == new_h) {
-                    let title =
-                        ctx.wnd.hwnd().GetWindowText()? + "  Restarting: F2 (with save - Space)";
-                    ctx.wnd.hwnd().SetWindowText(&title)?;
-                    ctx.wnd.hwnd().KillTimer(1)?;
+                let hw = ctx.wnd.hwnd();
+                let mut scells: Vec<_> = ctx.snake.iter().step_by(RATIO as usize).collect();
+                let eat = new_h == ctx.id_r[food];
+                if !eat && (cells.binary_search(&new_h).is_err() || scells[1..].contains(&&new_h)) {
+                    hw.SetWindowText(&(hw.GetWindowText()? + "  Restart: F2 (with save - Space)"))?;
+                    hw.KillTimer(1)?;
                     ctx.dir = Start;
-                } else {
-                    ctx.gap = -RATIO;
+                } else if eat || ctx.id_r[food] == 0 && ctx.id_r[tail] != START_CELL {
+                    let len = scells.len() + if eat { 1 } else { 0 };
+                    if len == cells.len() {
+                        hw.SetWindowText(&format!("Snake - EATEN ALL: {} !!!", len - 2))?
+                    } else {
+                        hw.SetWindowText(&format!("Snake - Eaten: {}.", len - 2))?
+                    }
+                    if ctx.id_r[tail] == START_CELL || len == cells.len() {
+                        ctx.id_r[food] = 0; // hide food if not all of the saved snake has come out or everything is eaten
+                    } else {
+                        scells.sort();
+                        ctx.id_r[food] = *(cells.iter())
+                            .filter(|i| scells.binary_search(i).is_err())
+                            .nth(rand::thread_rng().gen_range(0..cells.len() - scells.len()))
+                            .unwrap();
+                    }
                 }
+                ctx.gap = if eat { RATIO } else { -RATIO }
             }
             ctx.wnd.hwnd().InvalidateRect(None, false)?; // call .wm_paint()
             Ok(())
