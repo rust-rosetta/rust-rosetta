@@ -1,6 +1,6 @@
 // Implemented smooth (per-pixel) animation on Win32 API (tested on Windows 7)
-//Used winsafe - a safe rust bindings library for Win32 GUI: young but very handy, with links to docs.microsoft.com from doc and src for all Win32 entities involved.
-//Along the way, the possibility of restarting while maintaining the length of the snake has been implemented. Now a long snake is available to everyone! 
+// Used winsafe - a safe rust bindings library for Win32 GUI: young but very handy, with links to docs.microsoft.com from doc and src for all Win32 entities involved.
+// Along the way, the possibility of restarting while maintaining the length of the snake has been implemented. Now a long snake is available to everyone!
 
 #![cfg(windows)]
 
