@@ -1,5 +1,6 @@
 // Implemented smooth (per-pixel) animation on Win32 API (tested on Windows 7)
-// Used winsafe - a library of safe rust-bindings for Win32 GUI: young, but with convenient links to docs.microsoft.com from doc and src.
+//Used winsafe - a safe rust bindings library for Win32 GUI: young but very handy, with links to docs.microsoft.com from doc and src for all Win32 entities involved.
+//Along the way, the possibility of restarting while maintaining the length of the snake has been implemented. Now a long snake is available to everyone! 
 
 #![cfg(windows)]
 
@@ -7,7 +8,7 @@ use rand::Rng;
 use std::{cell::RefCell, rc::Rc};
 use winsafe::{co, gui, prelude::*, COLORREF, HBRUSH, HPEN, SIZE};
 
-const STEP: i32 = 3; // px, offset per frame. STEP and FPS determine the smoothness and speed of the animation.
+const STEP: i32 = 3; // px, motion per frame. STEP and FPS determine the smoothness and speed of the animation.
 const FPS: u32 = 90;
 const CELL: i32 = 21; // px, game grid (logical step). Will be aligned by STEP
 const FIELD_W: i32 = 20; // width of the square field in CELLs
@@ -41,9 +42,9 @@ impl Context {
     fn new(wnd: gui::WindowMain, len: usize) -> Self {
         Self {
             wnd,
-            snake: vec![START_CELL; 1.max(len as i32 - RATIO) as usize],
+            snake: vec![START_CELL; len.saturating_sub(RATIO as usize + 1)],
             id_r: [START_CELL; 6],
-            gap: -1,
+            gap: 0,
             dir: Start,
             ordered_dir: S,
         }
@@ -74,9 +75,9 @@ pub fn main() {
             let mut ctx = context.borrow_mut();
             match (ctx.dir, k.char_code as u8) {
                 (Start, bt @ (b' ' | 113)) => {
-                    let len = ctx.snake.len();
+                    let len = ctx.snake.len(); //                              113 == F2 key
                     *ctx = Context::new(ctx.wnd.clone(), if bt == b' ' { len } else { 0 });
-                    ctx.wnd.hwnd().InvalidateRect(None, true)?;
+                    ctx.wnd.hwnd().InvalidateRect(None, true)?; // call .wm_paint() with erase
                     ctx.wnd.hwnd().SetTimer(1, 1000 / FPS, None)?;
                 }
                 (W | S, bt @ (b'A' | b'D')) => ctx.ordered_dir = if bt == b'A' { A } else { D },
@@ -97,42 +98,41 @@ pub fn main() {
             let new_h = ctx.id_r[head] + ctx.dir as i32;
             ctx.id_r[body] = ctx.id_r[head];
             ctx.id_r[head] = new_h;
-            ctx.snake.insert(0, new_h);
             if ctx.gap < 0 {
-                ctx.id_r[bg] = ctx.snake.pop().unwrap();
-                ctx.id_r[tail] = *ctx.snake.last().unwrap();
-                ctx.id_r[turn] = ctx.snake[ctx.snake.len().saturating_sub(1 + RATIO as usize / 2)];
+                ctx.id_r[bg] = ctx.snake.remove(0);
+                ctx.id_r[tail] = ctx.snake[0];
+                ctx.id_r[turn] = ctx.snake[RATIO as usize / 2];
             }
             ctx.gap -= ctx.gap.signum();
             if ctx.gap == 0 {
                 ctx.dir = ctx.ordered_dir;
                 let hw = ctx.wnd.hwnd();
-                let mut scells: Vec<_> = ctx.snake.iter().step_by(RATIO as usize).collect();
                 let eat = new_h == ctx.id_r[food];
-                if !eat && (cells.binary_search(&new_h).is_err() || scells[1..].contains(&&new_h)) {
+                if !eat && (cells.binary_search(&new_h).is_err() || ctx.snake.contains(&&new_h)) {
                     hw.SetWindowText(&(hw.GetWindowText()? + "  Restart: F2 (with save - Space)"))?;
                     hw.KillTimer(1)?;
                     ctx.dir = Start;
                 } else if eat || ctx.id_r[food] == 0 && ctx.id_r[tail] != START_CELL {
-                    let len = scells.len() + if eat { 1 } else { 0 };
-                    if len == cells.len() {
-                        hw.SetWindowText(&format!("Snake - EATEN ALL: {} !!!", len - 2))?
-                    } else {
-                        hw.SetWindowText(&format!("Snake - Eaten: {}.", len - 2))?
+                    let mut snk_cells: Vec<_> = ctx.snake.iter().step_by(RATIO as usize).collect();
+                    if eat && snk_cells.len() == cells.len() - 2 {
+                        hw.SetWindowText(&format!("Snake - EATEN ALL: {} !!!", snk_cells.len()))?
+                    } else if eat {
+                        hw.SetWindowText(&format!("Snake - Eaten: {}.", snk_cells.len()))?
                     }
-                    if ctx.id_r[tail] == START_CELL || len == cells.len() {
+                    if ctx.id_r[tail] == START_CELL || eat && snk_cells.len() == cells.len() - 2 {
                         ctx.id_r[food] = 0; // hide food if not all of the saved snake has come out or everything is eaten
-                    } else {
-                        scells.sort();
+                    } else if snk_cells.len() + 1 < cells.len() {
+                        snk_cells.sort();
                         ctx.id_r[food] = *(cells.iter())
-                            .filter(|i| scells.binary_search(i).is_err())
-                            .nth(rand::thread_rng().gen_range(0..cells.len() - scells.len()))
+                            .filter(|i| **i != new_h && snk_cells.binary_search(i).is_err())
+                            .nth(rand::thread_rng().gen_range(0..cells.len() - snk_cells.len() - 1))
                             .unwrap();
                     }
                 }
                 ctx.gap = if eat { RATIO } else { -RATIO }
             }
-            ctx.wnd.hwnd().InvalidateRect(None, false)?; // call .wm_paint()
+            ctx.snake.push(new_h);
+            ctx.wnd.hwnd().InvalidateRect(None, false)?; // call .wm_paint() without erase
             Ok(())
         }
     });
