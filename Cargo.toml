@@ -148,6 +148,10 @@ members = [
     # http://rosettacode.org/wiki/Active_object
     "tasks/active-object",
 
+    # http://rosettacode.org/wiki/Additive_primes
+    "tasks/additive-primes/addit_primes-flat",
+    "tasks/additive-primes/addit_primes-primal",
+
     # http://rosettacode.org/wiki/Address_of_a_variable
     "tasks/address-of-a-variable",
 
@@ -570,6 +574,7 @@ members = [
 
     # http://rosettacode.org/wiki/Fibonacci_sequence
     "tasks/fibonacci-sequence",
+    "tasks/fibonacci-sequence/fib_seq-iter_successors",
 
     # http://rosettacode.org/wiki/Fibonacci_word
     "tasks/fibonacci-word",
@@ -1233,6 +1238,9 @@ members = [
 
     # http://rosettacode.org/wiki/Sleep
     "tasks/sleep",
+
+    # http://rosettacode.org/wiki/Snake
+    "tasks/snake",
 
     # http://rosettacode.org/wiki/Sockets
     "tasks/sockets",

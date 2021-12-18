@@ -1,0 +1,9 @@
+[package]
+name = "addit_primes-primal"
+version = "0.1.0"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Additive_primes"
+
+[dependencies]
+primal = "0.3.0"

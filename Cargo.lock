@@ -83,6 +83,17 @@ dependencies = [
 ]
 
 [[package]]
+name = "addit_primes-flat"
+version = "0.1.0"
+
+[[package]]
+name = "addit_primes-primal"
+version = "0.1.0"
+dependencies = [
+ "primal",
+]
+
+[[package]]
 name = "addr2line"
 version = "0.14.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1642,6 +1653,10 @@ name = "fasta-format"
 version = "0.1.0"
 
 [[package]]
+name = "fib_seq-iter_successors"
+version = "0.1.0"
+
+[[package]]
 name = "fibonacci-n-step-number-sequences"
 version = "0.1.0"
 
@@ -2333,6 +2348,12 @@ name = "half"
 version = "1.7.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "62aca2aba2d62b4a7f5b33f3712cb1b0692779a56fb510499d5c0aa594daeaf3"
+
+[[package]]
+name = "hamming"
+version = "0.1.3"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "65043da274378d68241eb9a8f8f8aa54e349136f7b8e12f63e3ef44043cc30e1"
 
 [[package]]
 name = "hamming-numbers"
@@ -3612,7 +3633,7 @@ name = "normal-distribution"
 version = "0.1.0"
 dependencies = [
  "math",
- "rand 0.8.3",
+ "rand 0.8.4",
  "rand_distr 0.4.0",
 ]
 
@@ -4352,6 +4373,52 @@ name = "price-fraction"
 version = "0.1.0"
 
 [[package]]
+name = "primal"
+version = "0.3.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "7bf9e0aea92a2e2a931fafb1b5d4c6e438197bbca4943a9984b3327fb8e3b5d0"
+dependencies = [
+ "primal-check",
+ "primal-estimate",
+ "primal-sieve",
+]
+
+[[package]]
+name = "primal-bit"
+version = "0.3.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "2837edc85364907810b0ec880f1010dab1a9cc6e75bacb3655c7fd22e125ec1b"
+dependencies = [
+ "hamming",
+]
+
+[[package]]
+name = "primal-check"
+version = "0.3.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "01419cee72c1a1ca944554e23d83e483e1bccf378753344e881de28b5487511d"
+dependencies = [
+ "num-integer",
+]
+
+[[package]]
+name = "primal-estimate"
+version = "0.3.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "12e07b550a7cbfcaa567bcd28042919548016ad615b5731633fa5239992d853f"
+
+[[package]]
+name = "primal-sieve"
+version = "0.3.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "bd0113d948c8f955a7ae96520023fe1e730eadbf26e67c4452f801a485e9d357"
+dependencies = [
+ "primal-bit",
+ "primal-estimate",
+ "smallvec",
+]
+
+[[package]]
 name = "primality-by-trial-division"
 version = "0.1.0"
 
@@ -4520,9 +4587,9 @@ dependencies = [
 
 [[package]]
 name = "rand"
-version = "0.8.3"
+version = "0.8.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "0ef9e7e66b4468674bfcb0c81af8b7fa0bb154fa9f28eb840da5c447baeb8d7e"
+checksum = "2e7573632e6454cf6b99d7aac4ccca54be06da05aca2ef7423d22d27d4d4bcd8"
 dependencies = [
  "libc",
  "rand_chacha 0.3.0",
@@ -4599,7 +4666,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "da9e8f32ad24fb80d07d2323a9a2ce8b30d68a62b8cb4df88119ff49a698f038"
 dependencies = [
  "num-traits",
- "rand 0.8.3",
+ "rand 0.8.4",
 ]
 
 [[package]]
@@ -5199,7 +5266,7 @@ name = "set-puzzle"
 version = "0.1.0"
 dependencies = [
  "itertools 0.10.0",
- "rand 0.8.3",
+ "rand 0.8.4",
 ]
 
 [[package]]
@@ -5319,6 +5386,14 @@ dependencies = [
  "nix",
  "wayland-client",
  "wayland-protocols",
+]
+
+[[package]]
+name = "snake"
+version = "0.1.0"
+dependencies = [
+ "rand 0.8.4",
+ "winsafe",
 ]
 
 [[package]]
@@ -5601,7 +5676,7 @@ checksum = "dac1c663cfc93810f88aed9b8941d48cabf856a1b111c29a40439018d870eb22"
 dependencies = [
  "cfg-if 1.0.0",
  "libc",
- "rand 0.8.3",
+ "rand 0.8.4",
  "redox_syscall 0.2.5",
  "remove_dir_all",
  "winapi 0.3.9",
@@ -6422,6 +6497,12 @@ checksum = "0120db82e8a1e0b9fb3345a539c478767c0048d842860994d96113d5b667bd69"
 dependencies = [
  "winapi 0.3.9",
 ]
+
+[[package]]
+name = "winsafe"
+version = "0.0.8"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "03aa6344b007345ee372cdf5cef9b0e1541d1ad0dfc63af202b9cde63fc3f5d6"
 
 [[package]]
 name = "wireworld"

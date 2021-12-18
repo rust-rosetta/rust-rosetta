@@ -1,0 +1,6 @@
+[package]
+name = "addit_primes-flat"
+version = "0.1.0"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Additive_primes"
