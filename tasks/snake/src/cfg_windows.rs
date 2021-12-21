@@ -42,7 +42,7 @@ impl Context {
     fn new(wnd: gui::WindowMain, len: usize) -> Self {
         Self {
             wnd,
-            snake: vec![START_CELL; len.saturating_sub(RATIO as usize + 1)],
+            snake: vec![START_CELL; len.saturating_sub(RATIO as usize)],
             id_r: [START_CELL; 6],
             gap: 0,
             dir: Start,
@@ -109,9 +109,10 @@ pub fn main() {
                 let hw = ctx.wnd.hwnd();
                 let eat = new_h == ctx.id_r[food];
                 if !eat && (cells.binary_search(&new_h).is_err() || ctx.snake.contains(&&new_h)) {
-                    hw.SetWindowText(&(hw.GetWindowText()? + "  Restart: F2 (with save - Space)"))?;
                     hw.KillTimer(1)?;
+                    hw.SetWindowText(&(hw.GetWindowText()? + "  Restart: F2 (with save - Space)"))?;
                     ctx.dir = Start;
+                    return Ok(());
                 } else if eat || ctx.id_r[food] == 0 && ctx.id_r[tail] != START_CELL {
                     let mut snk_cells: Vec<_> = ctx.snake.iter().step_by(RATIO as usize).collect();
                     if eat && snk_cells.len() == cells.len() - 2 {
