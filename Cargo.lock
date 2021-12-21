@@ -4508,6 +4508,10 @@ dependencies = [
 ]
 
 [[package]]
+name = "pythagoras-tree"
+version = "0.1.0"
+
+[[package]]
 name = "pythagorean-triples"
 version = "0.1.0"
 
