@@ -28,13 +28,14 @@ fn main() {
         Some(next_vpp)
     };
     std::iter::successors(Some(vec![[(0.0, 0.0), (500.0, 0.0)]]), next_level).nth(6);
-    let attr = format!(
-        "xmlns='http://www.w3.org/2000/svg' xmlns:ev='http://www.w3.org/2001/xml-events'
-viewBox='{:.0} {:.0} {:.0} {:.0}' stroke='#FFFFFF'",
-        vbox[0].0,
-        vbox[0].1,
-        vbox[1].0 - vbox[0].0,
-        vbox[1].1 - vbox[0].1
+    vbox[1] = (vbox[1].0 - vbox[0].0, vbox[1].1 - vbox[0].1);
+    s = format!(
+        "<svg xmlns='http://www.w3.org/2000/svg' xmlns:ev='http://www.w3.org/2001/xml-events'
+viewBox='{:.0} {:.0} {:.0} {:.0}' stroke='#FFFFFF'>{}</svg>",
+        vbox[0].0, vbox[0].1, vbox[1].0, vbox[1].1, s
     );
-    std::fs::write("pythagoras_tree.svg", format!("<svg {}>{}</svg>", attr, s)).unwrap();
+    match std::fs::write("pythagoras_tree.svg", s) {
+        Ok(()) => println!("pythagoras_tree.svg file written successfully!"),
+        Err(e) => println!("failed to write pythagoras_tree.svg: {}", e),
+    }
 }
