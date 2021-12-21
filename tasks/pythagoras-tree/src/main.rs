@@ -28,7 +28,13 @@ fn main() {
         Some(next_vpp)
     };
     std::iter::successors(Some(vec![[(0.0, 0.0), (500.0, 0.0)]]), next_level).nth(6);
-    let attr = format!("viewBox='{:.0} {:.0} {:.0} {:.0}' stroke='#FFFFFF' xmlns='http://www.w3.org/2000/svg' xmlns:ev='http://www.w3.org/2001/xml-events'", 
-    vbox[0].0, vbox[0].1, vbox[1].0 - vbox[0].0, vbox[1].1 - vbox[0].1);
+    let attr = format!(
+        "xmlns='http://www.w3.org/2000/svg' xmlns:ev='http://www.w3.org/2001/xml-events'
+viewBox='{:.0} {:.0} {:.0} {:.0}' stroke='#FFFFFF'",
+        vbox[0].0,
+        vbox[0].1,
+        vbox[1].0 - vbox[0].0,
+        vbox[1].1 - vbox[0].1
+    );
     std::fs::write("pythagoras_tree.svg", format!("<svg {}>{}</svg>", attr, s)).unwrap();
 }
