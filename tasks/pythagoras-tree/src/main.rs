@@ -2,32 +2,26 @@
 
 fn main() {
     let mut s = " xmlns='http://www.w3.org/2000/svg' stroke='#FFFFFF'>".to_string();
-    let mut p0 = (-200f64, 0f64);
-    let mut lvl_base = vec![[p0, (-p0.0, 0.0)]];
+    let mut p: (f64, f64) = (-200.0, 0.0);
+    let mut lvl_base = vec![[p, (-p.0, p.1)]];
     for lvl in 0u8..12 {
-        s += &format!(
-            "<g fill='#{:02X}{:02X}18'>", // level color
-            0x28_u8.wrapping_add(lvl.wrapping_mul(20)),
-            0x18_u8.wrapping_add(lvl.wrapping_mul(30))
-        );
-        let mut next_base = Vec::new();
-        for [a, b] in lvl_base {
-            let xx = b.0 - a.0;
-            let yy = b.1 - a.1;
-            let c = (a.0 + yy, a.1 - xx);
-            let d = (b.0 + yy, b.1 - xx);
-            let e = (c.0 + 0.5 * (xx + yy), c.1 - 0.5 * (xx - yy));
-            p0 = ([c, d, e].iter()).fold(p0, |(x0, y0), &(x, y)| (x0.min(x), y0.min(y)));
+        let rg = |start, step| lvl.wrapping_mul(step).wrapping_add(start);
+        s += &format!("<g fill='#{:02X}{:02X}18'>", rg(0x28, 20), rg(0x18, 30)); // level color
+        let build_segment = |[a, b]: [(f64, f64); 2]| {
+            let v = (b.0 - a.0, b.1 - a.1);
+            let c = (a.0 + v.1, a.1 - v.0);
+            let d = (c.0 + v.0, c.1 + v.1);
+            let e = (c.0 + 0.5 * (v.0 + v.1), c.1 + 0.5 * (v.1 - v.0));
+            p = ([c, d, e].iter()).fold(p, |(p0, p1), (x, y)| (x.min(p0), y.min(p1)));
             s += "<polygon points='";
             ([a, c, e, d, c, d, b].iter()).for_each(|(x, y)| s += &format!(" {:.0} {:.0}", x, y));
             s += "'></polygon>";
-            next_base.push([c, e]);
-            next_base.push([e, d]);
-        }
+            [[c, e], [e, d]]
+        };
+        lvl_base = lvl_base.into_iter().flat_map(build_segment).collect();
         s += "</g>";
-        lvl_base = next_base;
     }
-    s = format!("<svg viewBox='{} {} {} {}'", p0.0, p0.1, -p0.0 * 2.0, -p0.1) + &s + "</svg>";
+    s = format!("<svg viewBox='{} {} {} {}'", p.0, p.1, -p.0 * 2.0, -p.1) + &s + "</svg>";
 
     match std::fs::write("pythagoras_tree.svg", s) {
         Ok(()) => println!("pythagoras_tree.svg file written successfully!"),
