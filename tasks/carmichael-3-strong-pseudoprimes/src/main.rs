@@ -45,7 +45,7 @@ fn main() {
         .filter(|&x| is_prime(x))
         .map(carmichael)
         .filter(|x| !x.is_empty())
-        .flat_map(|x| x)
+        .flatten()
         .inspect(|x| println!("{:?}", x))
         .count(); // Evaluate entire iterator
 }

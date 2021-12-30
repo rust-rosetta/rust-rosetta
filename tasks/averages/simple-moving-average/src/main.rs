@@ -1,3 +1,6 @@
+use std::error::Error;
+use std::fmt;
+
 struct MovingAverage {
     period: u32,
     list: Vec<f32>,
@@ -5,8 +8,21 @@ struct MovingAverage {
 
 #[derive(Debug)]
 struct MovingAverageError {
-    message: String,
+    entries: usize,
+    period: u32,
 }
+
+impl fmt::Display for MovingAverageError {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(
+            f,
+            "currently only have {} entries, but period is {}",
+            self.entries, self.period
+        )
+    }
+}
+
+impl Error for MovingAverageError {}
 
 impl MovingAverage {
     fn new(period: u32) -> MovingAverage {
@@ -30,11 +46,8 @@ impl MovingAverage {
     fn calculate(&self) -> Result<f32, MovingAverageError> {
         if self.list.len() < self.period as usize {
             Err(MovingAverageError {
-                message: format!(
-                    "Currently only have {} entries, period is {}",
-                    self.list.len(),
-                    self.period
-                ),
+                entries: self.list.len(),
+                period: self.period,
             })
         } else {
             Ok(self.list.iter().fold(0.0_f32, |l, r| l + r) / (self.period as f32))

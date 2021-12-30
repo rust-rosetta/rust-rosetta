@@ -288,7 +288,7 @@ mod tests {
     #[test]
     fn directions() {
         fn get_puzzle_moves(ints: &[usize; 16]) -> HashMap<Direction, Cell> {
-            let board = board_from_ints(&ints);
+            let board = board_from_ints(ints);
             let puzzle = P15 { board };
             puzzle.get_moves()
         }

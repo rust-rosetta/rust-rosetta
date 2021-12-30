@@ -17,16 +17,16 @@ fn get_area(a: f64, b: f64, c: f64) -> f64 {
     (s * (s - a) * (s - b) * (s - c)).sqrt()
 }
 
-#[allow(clippy::clippy::cast_precision_loss)]
+#[allow(clippy::cast_precision_loss)]
 fn is_heronian(a: usize, b: usize, c: usize) -> bool {
     let area = get_area(a as f64, b as f64, c as f64);
     // Heronian if the area is an integer number
     area != 0. && area.fract() == 0.
 }
 
-#[allow(clippy::clippy::cast_precision_loss)]
-#[allow(clippy::clippy::cast_possible_truncation)]
-#[allow(clippy::clippy::cast_sign_loss)]
+#[allow(clippy::cast_precision_loss)]
+#[allow(clippy::cast_possible_truncation)]
+#[allow(clippy::cast_sign_loss)]
 fn main() {
     let mut heronians: Vec<HerionanTriangle> = vec![];
 

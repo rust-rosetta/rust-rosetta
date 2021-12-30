@@ -26,8 +26,7 @@ impl Rational {
     fn to_egyptian(&self) -> Vec<Rational> {
         let mut frac: Vec<Rational> = Vec::new();
 
-        let mut current: Rational;
-        if !self.is_proper() {
+        let mut current = if !self.is_proper() {
             // input is grater than 1
             // store the integer part
             frac.push(Rational::new(
@@ -36,13 +35,13 @@ impl Rational {
             ));
 
             // calculate the remainder
-            current = Rational::new(
+            Rational::new(
                 &self.nominator.mod_floor(&self.denominator),
                 &self.denominator,
-            );
+            )
         } else {
-            current = self.clone();
-        }
+            self.clone()
+        };
 
         while !current.nominator.is_one() {
             let div = current.denominator.div_ceil(&current.nominator);

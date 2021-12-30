@@ -83,7 +83,7 @@ fn parse_all_tasks(reply: &Value) -> Result<Vec<Task>, ParseError> {
 
 fn count_number_examples(task: &Value, task_id: u64) -> Result<u32, ParseError> {
     let revisions = task
-        .pointer(&format!("/query/pages/{}/revisions", task_id.to_string()))
+        .pointer(&format!("/query/pages/{}/revisions", task_id))
         .and_then(|content| content.as_array())
         .ok_or(ParseError::UnexpectedFormat)?;
     let content = revisions[0]

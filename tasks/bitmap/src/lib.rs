@@ -93,13 +93,12 @@ impl Image {
     pub fn write_ppm(&self, filename: &str) -> Result<(), Error> {
         let file = File::create(filename)?;
         let mut writer = BufWriter::new(file);
-        writeln!(&mut writer, "{}", self.format.to_string())?;
+        writeln!(&mut writer, "{}", self.format)?;
         writeln!(&mut writer, "{} {} 255", self.width, self.height)?;
         match self.format {
             ImageFormat::P3 => {
                 writer.write_all(
-                    &self
-                        .data
+                    self.data
                         .iter()
                         .flat_map(|color| {
                             vec![

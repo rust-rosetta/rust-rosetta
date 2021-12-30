@@ -72,5 +72,5 @@ fn test_bare_tags() {
         (Some("Perl".to_owned()), 1),
     ];
 
-    assert_eq!(expected, find_bare_lang_tags(&input));
+    assert_eq!(expected, find_bare_lang_tags(input));
 }

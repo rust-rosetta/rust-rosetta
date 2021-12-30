@@ -162,7 +162,7 @@ fn test() {
     let failed = actual
         .zip(expected)
         .inspect(|(act, exp)| {
-            eprintln!("{} <=> {}: {:?}", act, exp, act.partial_cmp(&exp));
+            eprintln!("{} <=> {}: {:?}", act, exp, act.partial_cmp(exp));
         })
         .any(|(act, exp)| act.partial_cmp(&exp) != Some(Ordering::Equal));
     assert!(!failed);

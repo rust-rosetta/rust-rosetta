@@ -45,7 +45,7 @@ impl Nibble {
         Nibble::new([n & 8, n & 4, n & 2, n & 1])
     }
 
-    fn to_u8(&self, carry: bool) -> u8 {
+    fn to_u8(self, carry: bool) -> u8 {
         match u8::from_str_radix(&(format!("{}", self))[..], 2) {
             Ok(n) if carry => n + 16,
             Ok(n) => n,

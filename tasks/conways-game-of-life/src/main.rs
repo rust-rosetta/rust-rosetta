@@ -16,8 +16,8 @@ impl Cell {
             c => Cell::Empty(c),
         }
     }
-    fn to_char(&self) -> char {
-        match *self {
+    fn to_char(self) -> char {
+        match self {
             Cell::Dead => ' ',
             Cell::Alive => '#',
             Cell::Empty(c) => c,

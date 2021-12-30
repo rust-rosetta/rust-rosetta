@@ -19,8 +19,8 @@ impl Cell {
             c => Cell::Empty(c),
         }
     }
-    fn to_char(&self) -> char {
-        match *self {
+    fn to_char(self) -> char {
+        match self {
             Cell::Conductor => '.',
             Cell::Head => 'H',
             Cell::Tail => 't',
