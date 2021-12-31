@@ -102,7 +102,7 @@ fn naive(digit: u8) -> Vec<RareResults> {
         .filter(|pair| pair.0 + pair.1 == 11 || pair.1 + pair.0 == 1)
         .collect::<Vec<(u8, u8)>>();
 
-    let aq_bp_setup: Vec<((u8, u8), &Vec<(u8, u8)>)> = vec![
+    let aq_bp_setup = vec![
         ((2, 2), &bp_equal),
         ((4, 0), &bp_zero_or_even),
         ((6, 0), &bp_odd),
@@ -222,27 +222,26 @@ fn advanced(digit: u8) -> Vec<RareResults> {
     let all_diffs = (-9_i8..=9).collect::<Vec<_>>();
 
     let diff_list_iter = (0_u8..(digit / 2))
-            .map(|i| match i {
-                0 => diffs1.iter(),
-                _ => all_diffs.iter(),
-            })
-            .multi_cartesian_product()
-            // remove invalid first diff/second diff combinations - custom iterator would be probably better
-            .filter(|x| {
-                if x.len() == 1 {
-                    return true;
-                }
-                match (*x[0], *x[1]) {
-                    (a, b) if (a == 0 && b != 0) => false,
-                    (a, b) if (a == 1 && ![-7, -5, -3, -1, 1, 3, 5, 7].contains(&b)) => false,
-                    (a, b) if (a == 4 && ![-8, -6, -4, -2, 0, 2, 4, 6, 8].contains(&b)) => false,
-                    (a, b) if (a == 5 && ![7, -3].contains(&b)) => false,
-                    (a, b) if (a == 6 && ![-9 - 7, -5, -3, -1, 1, 3, 5, 7, 9].contains(&b)) => {
-                        false
-                    }
-                    _ => true,
-                }
-            });
+        .map(|i| match i {
+            0 => diffs1.iter(),
+            _ => all_diffs.iter(),
+        })
+        .multi_cartesian_product()
+        .filter(|x| {
+            // remove invalid first diff/second diff combinations - custom iterator would
+            // probably be better
+            if x.len() == 1 {
+                return true;
+            }
+            match (*x[0], *x[1]) {
+                (a, b) if (a == 0 && b != 0) => false,
+                (a, b) if (a == 1 && ![-7, -5, -3, -1, 1, 3, 5, 7].contains(&b)) => false,
+                (a, b) if (a == 4 && ![-8, -6, -4, -2, 0, 2, 4, 6, 8].contains(&b)) => false,
+                (a, b) if (a == 5 && ![7, -3].contains(&b)) => false,
+                (a, b) if (a == 6 && ![-9 - 7, -5, -3, -1, 1, 3, 5, 7, 9].contains(&b)) => false,
+                _ => true,
+            }
+        });
 
     diff_list_iter.for_each(|diffs| {
         // calculate difference of original n and its reverse (aka L = n-r)

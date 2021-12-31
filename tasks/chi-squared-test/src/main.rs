@@ -15,7 +15,7 @@ fn chi2_probability(dof: f64, distance: f64) -> f64 {
 
 #[allow(clippy::cast_precision_loss)]
 fn chi2_uniform(dataset: &[u32], significance: f64) -> bool {
-    let d = chi_distance(&dataset);
+    let d = chi_distance(dataset);
     chi2_probability(dataset.len() as f64 - 1., d) > significance
 }
 

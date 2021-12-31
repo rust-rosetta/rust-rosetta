@@ -31,9 +31,9 @@ pub fn parse_image_attributes(input: &[u8]) -> nom::IResult<&[u8], (usize, usize
             (
                 next_input,
                 (
-                    usize::from_str_radix(from_utf8(result.0).unwrap(), 10).unwrap(),
-                    usize::from_str_radix(from_utf8(result.2).unwrap(), 10).unwrap(),
-                    usize::from_str_radix(from_utf8(result.4).unwrap(), 10).unwrap(),
+                    from_utf8(result.0).unwrap().parse().unwrap(),
+                    from_utf8(result.2).unwrap().parse().unwrap(),
+                    from_utf8(result.4).unwrap().parse().unwrap(),
                 ),
             )
         },

@@ -70,7 +70,7 @@ fn sift_down<T: Ord>(a: &mut [T], start: usize, end: usize) {
     }
 }
 
-#[allow(clippy::clippy::shadow_unrelated)]
+#[allow(clippy::shadow_unrelated)]
 pub fn main() {
     let mut arr = [1_i32, 5, 2, 7, 3, 9, 4, 6, 8];
     heap_sort(&mut arr);

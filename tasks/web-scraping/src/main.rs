@@ -45,7 +45,7 @@ mod tests {
             </body></html>
             "#;
         assert_eq!(
-            extract_timestamp(&body).unwrap().as_str(),
+            extract_timestamp(body).unwrap().as_str(),
             "Aug. 12, 23:55:08"
         );
     }

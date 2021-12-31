@@ -52,7 +52,7 @@ fn main() {
     let seqs = vec![vec![1, 2], vec![2, 1], vec![1, 3, 1, 2], vec![1, 3, 2, 1]];
 
     for (seq, length) in seqs.iter().zip(&lengths) {
-        let kseq = get_kolakoski_sequence(&seq, length);
+        let kseq = get_kolakoski_sequence(seq, length);
 
         println!("Starting sequence: {:?}", seq);
         println!("Kolakoski sequence: {:?}", kseq);

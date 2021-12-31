@@ -20,7 +20,7 @@ fn is_summable(x: i32, divisors: &[u32]) -> bool {
         if divisors.contains(&(x as u32)) {
             return true;
         } else if let Some((first, t)) = divisors.split_first() {
-            return is_summable(x - *first as i32, &t) || is_summable(x, &t);
+            return is_summable(x - *first as i32, t) || is_summable(x, t);
         }
     }
     false

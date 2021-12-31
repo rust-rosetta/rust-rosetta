@@ -23,7 +23,7 @@ fn generate_partitions(args: &[usize]) -> NArray {
         .collect::<Vec<_>>()
 }
 
-#[allow(clippy::clippy::ptr_arg)]
+#[allow(clippy::ptr_arg)]
 fn print_partitions(result: &NArray) {
     println!("Partitions:");
     for partition in result {

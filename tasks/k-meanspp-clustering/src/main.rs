@@ -268,15 +268,11 @@ fn main() {
 
     println!(
         " k       centroid{}mean dist    pop",
-        std::iter::repeat(" ")
-            .take((points[0].len() - 2) * 7 + 7)
-            .collect::<String>()
+        " ".repeat((points[0].len() - 2) * 7 + 7)
     );
     println!(
         "===  {}  ===========  =====",
-        std::iter::repeat("=")
-            .take(points[0].len() * 7 + 2)
-            .collect::<String>()
+        "=".repeat(points[0].len() * 7 + 2)
     );
     for (i, cluster) in clusters.iter().enumerate() {
         print!(" {:>1}    ", i);

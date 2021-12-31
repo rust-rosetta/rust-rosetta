@@ -30,7 +30,7 @@ pub fn special_cmp(lhs: &str, rhs: &str) -> Ordering {
             }
             (Some(_), None) => return Ordering::Greater,
             (None, Some(_)) => return Ordering::Less,
-            (None, None) => return lhs.cmp(&rhs),
+            (None, None) => return lhs.cmp(rhs),
         }
     }
 }
@@ -51,7 +51,7 @@ fn burrows_wheeler_transform(input: &str) -> String {
     }
 
     // sort rows alphabetically
-    table.sort_unstable_by(|lhs, rhs| special_cmp(&lhs, &rhs));
+    table.sort_unstable_by(|lhs, rhs| special_cmp(lhs, rhs));
 
     // return the last column
     table
@@ -69,7 +69,7 @@ fn inverse_burrows_wheeler_transform(input: &str) -> String {
         }
 
         // sort rows alphabetically
-        table.sort_unstable_by(|lhs, rhs| special_cmp(&lhs, &rhs));
+        table.sort_unstable_by(|lhs, rhs| special_cmp(lhs, rhs));
     }
 
     // return the row which has the end marker at the last position
@@ -77,7 +77,6 @@ fn inverse_burrows_wheeler_transform(input: &str) -> String {
         .into_iter()
         .filter(|s| s.ends_with(ETX))
         .collect::<String>()
-        // remove start and markers
         .replace(STX, "")
         .replace(ETX, "")
 }

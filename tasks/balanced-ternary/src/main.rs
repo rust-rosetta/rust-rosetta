@@ -20,7 +20,7 @@ fn main() -> Result<(), &'static str> {
     let a = BalancedTernary::from_str(
         "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++",
     )?;
-    assert_eq!(i128::try_from(a).is_err(), true);
+    assert!(i128::try_from(a).is_err());
 
     Ok(())
 }

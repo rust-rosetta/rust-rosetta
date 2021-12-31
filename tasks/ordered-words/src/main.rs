@@ -42,6 +42,6 @@ fn main() {
     let longest_ordered = find_longest_ordered_words(lines);
 
     for s in &longest_ordered {
-        println!("{}", s.to_string());
+        println!("{}", s);
     }
 }

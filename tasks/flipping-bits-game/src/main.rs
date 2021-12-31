@@ -217,7 +217,7 @@ fn main() {
                         Err(_) => {
                             println!(
                                 "Error: '{}': Unable to parse row or column number",
-                                input[1..].to_string()
+                                &input[1..]
                             );
                             continue 'userinput;
                         }

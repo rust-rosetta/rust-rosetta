@@ -1,10 +1,8 @@
-use std::iter::repeat;
-
 fn main() {
-    println!("{}", repeat("ha").take(5).collect::<String>());
+    println!("{}", "ha".repeat(5));
 }
 
 #[test]
 fn check_repeat() {
-    assert_eq!(repeat("ha").take(5).collect::<String>(), "hahahahaha");
+    assert_eq!("ha".repeat(5), "hahahahaha");
 }
