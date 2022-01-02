@@ -1,30 +1,30 @@
 //Creates a pythagoras_tree.svg file (12 levels) that can be opened in a browser
 
+use svg::node::element::{Group, Polygon};
+
 fn main() {
-    let mut s = " xmlns='http://www.w3.org/2000/svg' stroke='#FFFFFF'>".to_string();
-    let mut p: (f64, f64) = (-200.0, 0.0);
-    let mut lvl_base = vec![[p, (-p.0, p.1)]];
-    for lvl in 0u8..12 {
-        let rg = |start, step| lvl.wrapping_mul(step).wrapping_add(start);
-        s += &format!("<g fill='#{:02X}{:02X}18'>", rg(0x28, 20), rg(0x18, 30)); // level color
-        let build_segment = |[a, b]: [(f64, f64); 2]| {
+    let mut doc = svg::Document::new().set("stroke", "white");
+    let mut base: Vec<[(f64, f64); 2]> = vec![[(-200.0, 0.0), (200.0, 0.0)]];
+    for lvl in 0..12u8 {
+        let r = lvl.wrapping_mul(20).wrapping_add(0x28);
+        let g = lvl.wrapping_mul(30).wrapping_add(0x18);
+        let mut group = Group::new().set("fill", format!("#{:02X}{:02X}18", r, g)); // level color
+        let mut next_base = Vec::new();
+        for [a, b] in base {
             let v = (b.0 - a.0, b.1 - a.1);
             let c = (a.0 + v.1, a.1 - v.0);
             let d = (c.0 + v.0, c.1 + v.1);
             let e = (c.0 + 0.5 * (v.0 + v.1), c.1 + 0.5 * (v.1 - v.0));
-            p = ([c, d, e].iter()).fold(p, |(p0, p1), (x, y)| (x.min(p0), y.min(p1)));
-            s += "<polygon points='";
-            ([a, c, e, d, c, d, b].iter()).for_each(|(x, y)| s += &format!(" {:.0} {:.0}", x, y));
-            s += "'></polygon>";
-            [[c, e], [e, d]]
-        };
-        lvl_base = lvl_base.into_iter().flat_map(build_segment).collect();
-        s += "</g>";
+            group = group.add(Polygon::new().set("points", vec![a, c, e, d, c, d, b]));
+            next_base.extend([[c, e], [e, d]]);
+        }
+        base = next_base;
+        doc = doc.add(group);
     }
-    s = format!("<svg viewBox='{} {} {} {}'", p.0, p.1, -p.0 * 2.0, -p.1) + &s + "</svg>";
-
-    match std::fs::write("pythagoras_tree.svg", s) {
-        Ok(()) => println!("pythagoras_tree.svg file written successfully!"),
-        Err(e) => println!("failed to write pythagoras_tree.svg: {}", e),
+    let (x0, y0) = (base.iter()).fold((0.0, 0.0), |(x0, y0), [(x, y), _]| (x.min(x0), y.min(y0)));
+    let path = "pythagoras_tree.svg";
+    match svg::save(path, &doc.set("viewBox", (x0, y0, -x0 * 2.0, -y0))) {
+        Ok(_) => println!("{} file written successfully!", path),
+        Err(e) => println!("failed to write {}: {}", path, e),
     }
 }

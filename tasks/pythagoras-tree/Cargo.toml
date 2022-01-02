@@ -5,3 +5,6 @@ edition = "2021"
 
 [package.metadata.rosettacode]
 url = "http://rosettacode.org/wiki/Pythagoras_tree"
+
+[dependencies]
+svg = "0.10.0"
