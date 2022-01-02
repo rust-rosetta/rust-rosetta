@@ -1077,6 +1077,9 @@ members = [
     # http://rosettacode.org/wiki/Proper_divisors
     "tasks/proper-divisors",
 
+    # http://rosettacode.org/wiki/Pythagoras_tree
+    "tasks/pythagoras-tree",
+
     # http://rosettacode.org/wiki/Pythagorean_triples
     "tasks/pythagorean-triples",
 

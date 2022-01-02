@@ -4508,6 +4508,13 @@ dependencies = [
 ]
 
 [[package]]
+name = "pythagoras-tree"
+version = "0.1.0"
+dependencies = [
+ "svg",
+]
+
+[[package]]
 name = "pythagorean-triples"
 version = "0.1.0"
 
@@ -5603,6 +5610,12 @@ version = "0.1.0"
 [[package]]
 name = "sum-of-squares"
 version = "0.1.0"
+
+[[package]]
+name = "svg"
+version = "0.10.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "e72d8b19ab05827afefcca66bf47040c1e66a0901eb814784c77d4ec118bd309"
 
 [[package]]
 name = "syn"
