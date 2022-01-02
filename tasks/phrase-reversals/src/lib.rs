@@ -25,18 +25,18 @@ mod tests {
     #[test]
     fn test_reverse_string() {
         let string = "rosetta code phrase reversal";
-        assert_eq!(reverse_string(&string), "lasrever esarhp edoc attesor");
+        assert_eq!(reverse_string(string), "lasrever esarhp edoc attesor");
     }
 
     #[test]
     fn test_reverse_words() {
         let string = "rosetta code phrase reversal";
-        assert_eq!(reverse_words(&string), "attesor edoc esarhp lasrever");
+        assert_eq!(reverse_words(string), "attesor edoc esarhp lasrever");
     }
 
     #[test]
     fn test_reverse_word_order() {
         let string = "rosetta code phrase reversal";
-        assert_eq!(reverse_word_order(&string), "reversal phrase code rosetta");
+        assert_eq!(reverse_word_order(string), "reversal phrase code rosetta");
     }
 }

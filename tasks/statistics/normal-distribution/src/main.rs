@@ -1,6 +1,6 @@
 //! Rust rosetta example for normal distribution
 use math::{histogram::Histogram, traits::ToIterator};
-use rand;
+
 use rand_distr::{Distribution, Normal};
 
 /// Returns the mean of the provided samples

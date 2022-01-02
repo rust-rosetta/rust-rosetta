@@ -12,7 +12,7 @@ fn main() {
         "00",
         "1",
     ] {
-        match rep_string(&a_slice) {
+        match rep_string(a_slice) {
             Some(repeated) => println!(
                 "Longest rep-string for '{}' is '{}' ({} chars)",
                 a_slice,

@@ -40,7 +40,7 @@ fn main() {
     ];
 
     for input in inputs {
-        println!("{} SEDOL: {:?}", &input, sedol(&input).unwrap());
+        println!("{} SEDOL: {:?}", &input, sedol(input).unwrap());
     }
 }
 

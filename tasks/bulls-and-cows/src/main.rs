@@ -12,6 +12,7 @@ fn generate_digits(rng: &mut impl Rng) -> Vec<u32> {
 }
 
 /// types of errors we can have when parsing a malformed guess
+#[derive(Debug, PartialEq, Eq)]
 enum ParseError {
     NotValidDigit,
     ExpectedNumberOfDigits(usize),
@@ -128,38 +129,18 @@ mod tests {
             _ => panic!("Failed parsing a valid string"),
         }
 
-        match super::parse_guess_string("0123") {
-            Ok(_) => panic!("parsed a string containing a 0"),
-            Err(err) => {
-                if let ParseError::NotValidDigit = err {
-                    ()
-                } else {
-                    panic!("Expected a NotValidDigit error")
-                }
-            }
-        }
-
-        match super::parse_guess_string("1213") {
-            Ok(_) => panic!("parsed a string containing a repeated digit"),
-            Err(err) => {
-                if let ParseError::NoDuplicates = err {
-                    ()
-                } else {
-                    panic!("Expected a NoDuplicates error")
-                }
-            }
-        }
-
-        match super::parse_guess_string("12354") {
-            Ok(_) => panic!("parsed a string longer than 4 digits"),
-            Err(err) => {
-                if let ParseError::ExpectedNumberOfDigits(4) = err {
-                    ()
-                } else {
-                    panic!("Expected a ExpectedNumberOfDigits error")
-                }
-            }
-        }
+        assert_eq!(
+            super::parse_guess_string("0123"),
+            Err(ParseError::NotValidDigit)
+        );
+        assert_eq!(
+            super::parse_guess_string("1213"),
+            Err(ParseError::NoDuplicates)
+        );
+        assert_eq!(
+            super::parse_guess_string("12354"),
+            Err(ParseError::ExpectedNumberOfDigits(4))
+        );
     }
 
     #[test]

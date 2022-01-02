@@ -85,7 +85,7 @@ fn save_pgm(img: &ImageGray8, filename: &str) {
 }
 
 #[allow(clippy::cast_precision_loss)]
-#[allow(clippy::clippy::cast_possible_truncation)]
+#[allow(clippy::cast_possible_truncation)]
 fn hough(image: &ImageGray8, out_width: usize, out_height: usize) -> ImageGray8 {
     let in_width = image.width;
     let in_height = image.height;
@@ -118,7 +118,7 @@ fn hough(image: &ImageGray8, out_width: usize, out_height: usize) -> ImageGray8 
                 let r = (x as f64) * (th.cos()) + (y as f64) * (th.sin());
 
                 let iry = out_height as i64 / 2 - (r / (dr as f64) + 0.5).floor() as i64;
-                #[allow(clippy::clippy::cast_sign_loss)]
+                #[allow(clippy::cast_sign_loss)]
                 let out_idx = (jtx as i64 + iry * out_width as i64) as usize;
                 let col = accum.data[out_idx];
                 if col > 0 {

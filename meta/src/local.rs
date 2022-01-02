@@ -47,7 +47,7 @@ pub fn parse_tasks<P>(manifest_path: P) -> Result<Vec<LocalTask>, Error>
 where
     P: AsRef<Path>,
 {
-    let metadata = cargo_metadata::metadata(Some(&manifest_path.as_ref())).unwrap();
+    let metadata = cargo_metadata::metadata(Some(manifest_path.as_ref())).unwrap();
     let packages = &metadata.packages;
 
     let mut tasks = vec![];
@@ -62,7 +62,7 @@ where
 
         // If the package has a proc-macro or dylib target, it's probably just a dependency of
         // another task. Skip it.
-        if package.targets.iter().any(|t| is_dylib_or_proc_macro(t)) {
+        if package.targets.iter().any(is_dylib_or_proc_macro) {
             continue;
         }
 

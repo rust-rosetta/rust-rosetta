@@ -46,6 +46,6 @@ fn test_getfill() {
     let answers = vec![2, 14, 35, 0, 0, 0, 0];
 
     for (idx, pattern) in patterns.iter().enumerate() {
-        assert_eq!(answers[idx], getfill(&pattern));
+        assert_eq!(answers[idx], getfill(pattern));
     }
 }

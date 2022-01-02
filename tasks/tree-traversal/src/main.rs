@@ -208,8 +208,7 @@ mod tests {
         ];
         let root = TreeNode::<i8>::from_array(&arr_tree);
 
-        let mut res: Vec<i8>;
-        res = trav_values!(root.traverse(&TraversalMethod::PreOrder));
+        let mut res: Vec<i8> = trav_values!(root.traverse(&TraversalMethod::PreOrder));
         assert_eq!(res.as_slice(), &[1, 2, 4, 7, 5, 3, 6, 8, 9]);
         res = trav_values!(root.traverse(&TraversalMethod::InOrder));
         assert_eq!(res.as_slice(), &[7, 4, 2, 5, 1, 8, 6, 9, 3]);

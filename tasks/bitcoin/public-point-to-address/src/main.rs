@@ -51,7 +51,7 @@ fn point_to_address(x: &str, y: &str) -> String {
     addrv.append(&mut <Vec<u8>>::from_hex(y).unwrap());
     // hash the addresses first using SHA256
     let sha_digest = digest(&SHA256, &addrv);
-    let mut ripemd_digest = Ripemd160::digest(&sha_digest.as_ref()).as_slice().to_vec();
+    let mut ripemd_digest = Ripemd160::digest(sha_digest.as_ref()).as_slice().to_vec();
     // prepend a 0 to the vector
     ripemd_digest.insert(0, 0);
     // calculate checksum of extended ripemd digest

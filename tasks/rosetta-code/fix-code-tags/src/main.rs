@@ -62,5 +62,5 @@ fn test_replace() {
 
     let languages = vec!["foo", "bar", "baz"];
 
-    assert_eq!(expected, fix_tags(&languages, &input));
+    assert_eq!(expected, fix_tags(&languages, input));
 }

@@ -194,6 +194,7 @@ impl Mul for FormalPowerSeries {
 impl Div for FormalPowerSeries {
     type Output = Self;
 
+    #[allow(clippy::suspicious_arithmetic_impl)]
     fn div(self, rhs: Self) -> Self::Output {
         self * rhs.inverse()
     }
@@ -249,6 +250,7 @@ impl Mul for &FormalPowerSeries {
 impl Div for &FormalPowerSeries {
     type Output = FormalPowerSeries;
 
+    #[allow(clippy::suspicious_arithmetic_impl)]
     fn div(self, rhs: Self) -> Self::Output {
         self * &rhs.inverse()
     }
