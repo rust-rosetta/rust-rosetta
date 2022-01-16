@@ -1506,6 +1506,9 @@ members = [
     # http://rosettacode.org/wiki/Y_combinator
     "tasks/y-combinator",
 
+    # http://rosettacode.org/wiki/Yin_and_yang
+    "tasks/yin-and-yang",
+
     # http://rosettacode.org/wiki/Zero_to_the_zero_power
     "tasks/zero-to-the-zero-power",
 
