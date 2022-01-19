@@ -1,0 +1,10 @@
+[package]
+name = "yin-and-yang"
+version = "0.1.0"
+edition = "2021"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Yin_and_yang"
+
+[dependencies]
+svg = "0.10.0"

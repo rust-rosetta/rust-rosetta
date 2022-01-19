@@ -6617,6 +6617,13 @@ name = "y-combinator"
 version = "0.1.0"
 
 [[package]]
+name = "yin-and-yang"
+version = "0.1.0"
+dependencies = [
+ "svg",
+]
+
+[[package]]
 name = "zero-to-the-zero-power"
 version = "0.1.0"
 

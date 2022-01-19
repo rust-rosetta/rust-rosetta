@@ -6,9 +6,8 @@ fn main() {
     let mut doc = svg::Document::new().set("stroke", "white");
     let mut base: Vec<[(f64, f64); 2]> = vec![[(-200.0, 0.0), (200.0, 0.0)]];
     for lvl in 0..12u8 {
-        let r = lvl.wrapping_mul(20).wrapping_add(0x28);
-        let g = lvl.wrapping_mul(30).wrapping_add(0x18);
-        let mut group = Group::new().set("fill", format!("#{:02X}{:02X}18", r, g)); // level color
+        let rg = |step| lvl.wrapping_mul(step).wrapping_add(80 - step * 2);
+        let mut group = Group::new().set("fill", format!("#{:02X}{:02X}18", rg(20), rg(30))); // level color
         let mut next_base = Vec::new();
         for [a, b] in base {
             let v = (b.0 - a.0, b.1 - a.1);
@@ -22,9 +21,9 @@ fn main() {
         doc = doc.add(group);
     }
     let (x0, y0) = (base.iter()).fold((0.0, 0.0), |(x0, y0), [(x, y), _]| (x.min(x0), y.min(y0)));
-    let path = "pythagoras_tree.svg";
-    match svg::save(path, &doc.set("viewBox", (x0, y0, -x0 * 2.0, -y0))) {
-        Ok(_) => println!("{} file written successfully!", path),
-        Err(e) => println!("failed to write {}: {}", path, e),
+    let file = "pythagoras_tree.svg";
+    match svg::save(file, &doc.set("viewBox", (x0, y0, -x0 * 2.0, -y0))) {
+        Ok(_) => println!("{file} file written successfully!"),
+        Err(e) => println!("failed to write {file}: {e}"),
     }
 }
