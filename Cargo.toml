@@ -1517,4 +1517,7 @@ members = [
 
     # http://rosettacode.org/wiki/Zumkeller_numbers
     "tasks/zumkeller-numbers",
+
+    # http://rosettacode.org/wiki/Calculating_the_value_of_e
+    "tasks/calculating-the-value-of-e",
 ]
