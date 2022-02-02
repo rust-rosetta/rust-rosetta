@@ -311,6 +311,9 @@ members = [
     # http://rosettacode.org/wiki/Caesar_cipher
     "tasks/caesar-cipher",
 
+    # http://rosettacode.org/wiki/Calculating_the_value_of_e
+    "tasks/calculating-the-value-of-e",
+
     # http://rosettacode.org/wiki/Call_a_foreign-language_function
     "tasks/call-a-foreign-language-function",
 
@@ -1517,7 +1520,4 @@ members = [
 
     # http://rosettacode.org/wiki/Zumkeller_numbers
     "tasks/zumkeller-numbers",
-
-    # http://rosettacode.org/wiki/Calculating_the_value_of_e
-    "tasks/calculating-the-value-of-e",
 ]
