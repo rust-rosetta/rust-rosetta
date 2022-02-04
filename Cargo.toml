@@ -990,6 +990,9 @@ members = [
     # http://rosettacode.org/wiki/Numerical_integration
     "tasks/numerical-integration",
 
+    # http://rosettacode.org/wiki/One-dimensional_cellular_automata
+    "tasks/one-dimensional-cellular-automata",
+
     # http://rosettacode.org/wiki/One_of_n_lines_in_a_file
     "tasks/one-of-n-lines-in-a-file",
 

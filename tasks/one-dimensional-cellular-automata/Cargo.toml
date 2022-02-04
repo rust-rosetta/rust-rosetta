@@ -1,0 +1,12 @@
+[package]
+name = "one-dimensional-cellular-automata"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+rand = "0.8.0"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/One-dimensional_cellular_automata"
