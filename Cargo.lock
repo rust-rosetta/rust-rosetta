@@ -1033,6 +1033,10 @@ name = "copy-a-string"
 version = "0.1.0"
 
 [[package]]
+name = "copy-stdin-to-stdout"
+version = "0.1.0"
+
+[[package]]
 name = "core-foundation"
 version = "0.7.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
