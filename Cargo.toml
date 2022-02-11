@@ -425,6 +425,9 @@ members = [
     # http://rosettacode.org/wiki/Copy_a_string
     "tasks/copy-a-string",
 
+    # http://rosettacode.org/wiki/Copy_stdin_to_stdout
+    "tasks/copy-stdin-to-stdout",
+
     # http://rosettacode.org/wiki/Count_in_octal
     "tasks/count-in-octal",
 
