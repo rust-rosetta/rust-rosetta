@@ -173,6 +173,9 @@ members = [
     # http://rosettacode.org/wiki/Anagrams
     "tasks/anagrams",
 
+    # http://rosettacode.org/wiki/Angle_difference_between_two_bearings
+    "tasks/angle-difference-between-two-bearings",
+
     # http://rosettacode.org/wiki/Animation
     "tasks/animation",
 

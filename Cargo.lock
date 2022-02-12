@@ -221,6 +221,10 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "b8052e2d8aabbb8d556d6abbcce2a22b9590996c5f849b9c7ce4544a2e3b984e"
 
 [[package]]
+name = "angle-difference-between-two-bearings"
+version = "0.1.0"
+
+[[package]]
 name = "animation"
 version = "0.1.0"
 dependencies = [
