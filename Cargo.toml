@@ -278,6 +278,9 @@ members = [
     # http://rosettacode.org/wiki/Binary_search
     "tasks/binary-search",
 
+    # http://rosettacode.org/wiki/Bioinformatics/base_count
+    "tasks/bioinformatics/base-count",
+
     # http://rosettacode.org/wiki/Bitcoin/address_validation
     "tasks/bitcoin/address-validation",
 
