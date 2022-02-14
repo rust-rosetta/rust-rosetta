@@ -1475,6 +1475,9 @@ members = [
 
     # rosettacode.org/wiki/Vampire_number
     "tasks/vampire-number",
+    
+    # http://rosettacode.org/wiki/Vector
+    "tasks/vector",
 
     # http://rosettacode.org/wiki/Vector_products
     "tasks/vector-products",
