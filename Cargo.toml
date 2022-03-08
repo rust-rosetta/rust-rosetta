@@ -229,6 +229,9 @@ members = [
 
     # http://rosettacode.org/wiki/Atomic_updates
     "tasks/atomic-updates",
+    
+    # http://rosettacode.org/wiki/Attractive_numbers
+    "tasks/attractive-numbers",
 
     # http://rosettacode.org/wiki/Average_loop_length
     "tasks/average-loop-length",
