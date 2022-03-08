@@ -385,6 +385,9 @@ dependencies = [
 [[package]]
 name = "attractive-numbers"
 version = "0.1.0"
+dependencies = [
+ "primal",
+]
 
 [[package]]
 name = "atty"
