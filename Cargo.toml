@@ -263,6 +263,9 @@ members = [
     # http://rosettacode.org/wiki/Balanced_ternary
     "tasks/balanced-ternary",
 
+    # http://rosettacode.org/wiki/Barnsley_fern
+    "tasks/barnsley-fern",
+
     # http://rosettacode.org/wiki/Benford%27s_law
     "tasks/benfords-law",
 
