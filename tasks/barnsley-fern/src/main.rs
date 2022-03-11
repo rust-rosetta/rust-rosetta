@@ -3,44 +3,57 @@ extern crate raster;
 
 use rand::Rng;
 
-fn main() {
-    let max_iterations = 200_000u32;
-    let height = 640i32;
-    let width = 640i32;
+const MAX_ITER: u32 = 200_000;
+const HEIGHT: i32 = 640;
+const WIDTH: i32 = 640;
+const OUTPUT: &str = "fractal.png";
 
-    let mut rng = rand::thread_rng();
-    let mut image = raster::Image::blank(width, height);
-    raster::editor::fill(&mut image, raster::Color::white()).unwrap();
+fn transform(x: f64, y: f64) -> (f64, f64) {
+    let cx: f64;
+    let cy: f64;
 
-    let mut x = 0.;
-    let mut y = 0.;
-    for _ in 0..max_iterations {
-        let r = rng.gen::<f32>();
-        let cx: f64;
-        let cy: f64;
-
-        if r <= 0.01 {
-            cx = 0f64;
-            cy = 0.16 * y as f64;
-        } else if r <= 0.08 {
-            cx = 0.2 * x as f64 - 0.26 * y as f64;
-            cy = 0.23 * x as f64 + 0.22 * y as f64 + 1.6;
-        } else if r <= 0.15 {
-            cx = -0.15 * x as f64 + 0.28 * y as f64;
-            cy = 0.26 * x as f64 + 0.26 * y as f64 + 0.44;
-        } else {
-            cx = 0.85 * x as f64 + 0.04 * y as f64;
-            cy = -0.04 * x as f64 + 0.85 * y as f64 + 1.6;
+    match rand::thread_rng().gen::<f32>() {
+        r if r <= 0.01 => {
+            cx = 0.0;
+            cy = 0.16 * y;
         }
-        x = cx;
-        y = cy;
-
-        let _ = image.set_pixel(
-            ((width as f64) / 2. + x * (width as f64) / 11.).round() as i32,
-            ((height as f64) - y * (height as f64) / 11.).round() as i32,
-            raster::Color::rgb(50, 205, 50),
-        );
+        r if r <= 0.08 => {
+            cx = 0.2 * x - 0.26 * y;
+            cy = 0.23 * x + 0.22 * y + 1.6;
+        }
+        r if r <= 0.15 => {
+            cx = -0.15 * x + 0.28 * y;
+            cy = 0.26 * x + 0.26 * y + 0.44;
+        }
+        _ => {
+            cx = 0.85 * x + 0.04 * y;
+            cy = -0.04 * x + 0.85 * y + 1.6;
+        }
     }
 
-    raster::save(&image, "fractal.png").unwrap();
+    (cx, cy)
+}
+
+fn main() {
+    let mut image = raster::Image::blank(WIDTH, HEIGHT);
+
+    raster::editor::fill(&mut image, raster::Color::white()).unwrap();
+
+    let mut x = 0.0;
+    let mut y = 0.0;
+
+    for _ in 0..MAX_ITER {
+        let (cx, cy) = transform(x, y);
+
+        let target_x = (WIDTH as f64 / 2.0 + cx * (WIDTH as f64) / 11.0).round() as i32;
+        let target_y = (HEIGHT as f64 - cy * (HEIGHT as f64) / 11.0).round() as i32;
+        let color = raster::Color::rgb(50, 205, 50);
+
+        image.set_pixel(target_x, target_y, color).unwrap();
+
+        x = cx;
+        y = cy;
+    }
+
+    raster::save(&image, OUTPUT).unwrap();
 }
