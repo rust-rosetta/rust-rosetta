@@ -455,6 +455,10 @@ name = "balanced-ternary"
 version = "0.1.0"
 
 [[package]]
+name = "barnsley-fern"
+version = "0.1.0"
+
+[[package]]
 name = "base-count"
 version = "0.1.0"
 
