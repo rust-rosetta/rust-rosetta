@@ -308,6 +308,9 @@ members = [
     # http://rosettacode.org/wiki/Boolean_values
     "tasks/boolean-values",
 
+    # http://rosettacode.org/wiki/Brace_expansion
+    "tasks/brace-expansion",
+
     # http://rosettacode.org/wiki/Brazilian_numbers
     "tasks/brazilian-numbers",
 
