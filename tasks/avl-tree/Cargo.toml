@@ -7,5 +7,5 @@ url = "http://rosettacode.org/wiki/AVL_tree"
 
 [dependencies]
 rand = "0.7.2"
-structopt = "0.3.20"
+structopt = "0.3.26"
 term-painter = "0.2"

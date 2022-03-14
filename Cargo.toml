@@ -94,7 +94,7 @@ meta = { path = "meta" }
 reqwest = "0.10.8"
 serde = "1"
 serde_json = "1"
-structopt = "0.3.20"
+structopt = "0.3.26"
 termcolor = "1.1.0"
 
 [dev-dependencies]
