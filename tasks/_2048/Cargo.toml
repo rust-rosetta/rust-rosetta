@@ -8,4 +8,4 @@ url = "http://rosettacode.org/wiki/2048"
 
 [dependencies]
 rand = "0.7.2"
-crossterm = "0.19.0"
+crossterm = "0.21.0"
