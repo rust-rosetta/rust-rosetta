@@ -119,7 +119,7 @@ fn compute_stats(clusters: &[Cluster]) -> Stats {
 
     Stats {
         centroids,
-        mean_d_from_centroid: DVector::from_row_slice(means_vec.len(), means_vec.as_slice()),
+        mean_d_from_centroid: DVector::from_row_slice(&means_vec),
     }
 }
 
@@ -169,7 +169,7 @@ fn generate_points(n: u32, rng: &mut impl Rng) -> Vec<Point> {
         .map(|_| {
             let root_r = rng.gen::<f64>();
             let theta = rng.sample(range);
-            DVector::<f64>::from_row_slice(2, &[root_r * theta.cos(), root_r * theta.sin()])
+            DVector::<f64>::from_row_slice(&[root_r * theta.cos(), root_r * theta.sin()])
         })
         .collect()
 }
@@ -249,10 +249,7 @@ fn main() {
         let mut rdr = csv::Reader::from_reader(File::open(&filename).unwrap());
         for row in rdr.deserialize() {
             let floats: Vec<f64> = row.unwrap();
-            points.push(DVector::<f64>::from_row_slice(
-                floats.len(),
-                floats.as_slice(),
-            ));
+            points.push(DVector::<f64>::from_row_slice(&floats));
         }
         assert!(points.iter().all(|v| v.len() == points[0].len()));
         opt.points = points.len() as u32;
