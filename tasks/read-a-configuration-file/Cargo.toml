@@ -9,4 +9,4 @@ url = "http://rosettacode.org/wiki/Read_a_configuration_file"
 [dependencies]
 
 [dev-dependencies]
-indoc = "1.0.3"
+indoc = "1.0.4"
