@@ -6,4 +6,4 @@ version = "0.1.0"
 url = "http://rosettacode.org/wiki/Remove_lines_from_a_file"
 
 [dependencies]
-structopt = "0.3.20"
+structopt = "0.3.26"
