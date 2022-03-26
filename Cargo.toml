@@ -1464,6 +1464,9 @@ members = [
     # http://rosettacode.org/wiki/Unicode_variable_names
     "tasks/unicode-variable-names",
 
+    # http://rosettacode.org/wiki/Universal_Turing_machine
+    "tasks/universal-turing-machine",
+
     # http://rosettacode.org/wiki/Unix/ls
     "tasks/unix/ls",
 
