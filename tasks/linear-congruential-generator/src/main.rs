@@ -1,9 +1,6 @@
-extern crate linear_congruential_generator;
-extern crate rand;
-
 use linear_congruential_generator::*;
 
-use rand::distributions::Alphanumeric;
+use rand::distributions::{Alphanumeric, DistString};
 use rand::prelude::*;
 
 fn main() {
@@ -28,8 +25,5 @@ fn main() {
     println!("~~~ Others ~~~");
     println!("{:?}", rng.gen::<[f32; 5]>());
     println!("{}", rng.gen::<bool>());
-    println!(
-        "{}",
-        rng.sample_iter(&Alphanumeric).take(15).collect::<String>()
-    );
+    println!("{}", Alphanumeric.sample_string(&mut rng, 15));
 }
