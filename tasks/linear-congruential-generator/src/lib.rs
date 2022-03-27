@@ -1,5 +1,3 @@
-extern crate rand_core;
-
 use std::mem::size_of;
 
 use rand_core::{impls, le, Error, RngCore, SeedableRng};
