@@ -589,6 +589,10 @@ name = "boolean-values"
 version = "0.1.0"
 
 [[package]]
+name = "brace-expansion"
+version = "0.1.0"
+
+[[package]]
 name = "brazilian-numbers"
 version = "0.1.0"
 dependencies = [
