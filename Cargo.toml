@@ -290,6 +290,9 @@ members = [
     # http://rosettacode.org/wiki/Bioinformatics/base_count
     "tasks/bioinformatics/base-count",
 
+    # http://rosettacode.org/wiki/Bioinformatics/Sequence_mutation
+    "tasks/bioinformatics/sequence-mutation",
+
     # http://rosettacode.org/wiki/Bitcoin/address_validation
     "tasks/bitcoin/address-validation",
 
