@@ -8,4 +8,4 @@ url = "http://rosettacode.org/wiki/Kronecker_product"
 
 [dependencies]
 num = "0.3.0"
-ndarray = "0.14.0"
+ndarray = "0.15.3"

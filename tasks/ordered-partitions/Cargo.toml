@@ -8,4 +8,4 @@ url = "http://rosettacode.org/wiki/Ordered_partitions"
 
 
 [dependencies]
-itertools = "0.10.0"
+itertools = "0.10.3"

@@ -7,4 +7,4 @@ edition = "2018"
 url = "http://rosettacode.org/wiki/Rare_numbers"
 
 [dependencies]
-itertools = "0.10.0"
+itertools = "0.10.3"

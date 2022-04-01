@@ -7,4 +7,4 @@ edition = "2018"
 url = "http://rosettacode.org/wiki/Checkpoint_synchronization"
 
 [dependencies]
-array-init = "0.1.0"
+array-init = "2.0.0"
