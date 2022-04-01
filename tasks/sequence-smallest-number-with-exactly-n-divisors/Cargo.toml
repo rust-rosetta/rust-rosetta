@@ -7,4 +7,4 @@ edition = "2018"
 url = "http://rosettacode.org/wiki/Sequence:_smallest_number_with_exactly_n_divisors"
 
 [dependencies]
-itertools = "0.10.0"
+itertools = "0.10.3"

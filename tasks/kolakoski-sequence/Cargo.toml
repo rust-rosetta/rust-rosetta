@@ -8,4 +8,4 @@ edition = "2018"
 url = "http://rosettacode.org/wiki/Kolakoski_sequence"
 
 [dependencies]
-itertools = "0.10.0"
+itertools = "0.10.3"
