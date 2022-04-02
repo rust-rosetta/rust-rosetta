@@ -96,3 +96,70 @@ impl Display for Seq<'_> {
         )
     }
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn base_consists_of_alphabet_only() {
+        let alphabet = vec!["A", "B"];
+        let seq = Seq::new(alphabet.clone(), 5);
+
+        let consists_of_alphabet_only = seq.seq.iter().all(|s| alphabet.contains(s));
+
+        assert!(consists_of_alphabet_only);
+    }
+
+    #[test]
+    fn length_is_equal_to_given_value() {
+        let seq_1 = Seq::new(vec!["A", "B", "C"], 15);
+        let seq_2 = Seq::new(vec!["X", "Y", "Z"], 1);
+        let seq_3 = Seq::new(vec!["X"], 10);
+
+        assert_eq!(seq_1.seq.len(), 15);
+        assert_eq!(seq_2.seq.len(), 1);
+        assert_eq!(seq_3.seq.len(), 10);
+    }
+
+    #[test]
+    fn insertion_increases_length() {
+        let mut seq = Seq::new(vec!["A", "B", "C"], 15);
+        let prev_length = seq.seq.len();
+
+        seq.insert();
+
+        assert_eq!(seq.seq.len(), prev_length + 1);
+    }
+
+    #[test]
+    fn deletion_decreases_length() {
+        let mut seq = Seq::new(vec!["A", "B", "C"], 20);
+        let prev_length = seq.seq.len();
+
+        seq.delete();
+
+        assert_eq!(seq.seq.len(), prev_length - 1);
+    }
+
+    #[test]
+    #[should_panic]
+    fn cannot_make_deletion_on_empty_sequence() {
+        let mut seq = Seq::new(vec!["X", "Y", "Z"], 1);
+
+        seq.delete();
+        seq.delete();
+
+        assert_eq!(seq.seq.len(), 0);
+    }
+
+    #[test]
+    fn swapping_does_not_change_length() {
+        let mut seq = Seq::new(vec!["X", "Y", "Z"], 1);
+        let prev_length = seq.seq.len();
+
+        seq.swap();
+
+        assert_eq!(seq.seq.len(), prev_length);
+    }
+}
