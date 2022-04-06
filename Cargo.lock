@@ -6773,9 +6773,9 @@ dependencies = [
 
 [[package]]
 name = "winsafe"
-version = "0.0.8"
+version = "0.0.9"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "03aa6344b007345ee372cdf5cef9b0e1541d1ad0dfc63af202b9cde63fc3f5d6"
+checksum = "35299c1fa85ff3e059ab407c74b549834b012c6c17d45c7a6488e5d117e49ec5"
 
 [[package]]
 name = "wireworld"
