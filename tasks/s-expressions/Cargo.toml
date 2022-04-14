@@ -7,7 +7,7 @@ edition = "2018"
 url = "http://rosettacode.org/wiki/S-Expressions"
 
 [dependencies]
-typed-arena = "1.1.0"
+typed-arena = "2.0.1"
 
 [dev-dependencies]
 criterion = "0.3.5"
