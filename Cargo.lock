@@ -2343,9 +2343,12 @@ dependencies = [
 
 [[package]]
 name = "gnuplot"
-version = "0.0.26"
+version = "0.0.37"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "94ced719051688349bcae457d79b0bb7a4f154ff53b5afef67be4c300651d913"
+checksum = "8de437277a7ec10de5f34e3147c7da4c6d8b279c5d8ae1e33e842fd9432bb0f3"
+dependencies = [
+ "byteorder 1.4.2",
+]
 
 [[package]]
 name = "gobject-sys"
