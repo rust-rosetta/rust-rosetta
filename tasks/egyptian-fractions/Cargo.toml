@@ -8,7 +8,7 @@ edition = "2018"
 [dependencies]
 num-integer= "0.1.44"
 num-bigint = "0.3.1"
-num-traits = "0.2.14"
+num-traits = "0.2.15"
 
 [package.metadata.rosettacode]
 url = "http://rosettacode.org/wiki/Egyptian_fractions"
