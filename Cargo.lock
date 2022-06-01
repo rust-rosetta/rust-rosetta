@@ -1070,9 +1070,9 @@ version = "0.1.0"
 
 [[package]]
 name = "convert-base"
-version = "1.1.0"
+version = "1.1.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "34cfb9f164668fdb6f7e5fc49103fb0db399f1ef2c1c33df78be2b3e5f587a23"
+checksum = "e56a404f2112d00ba80a516b60ca3744ef6bd776baa14126eb7d7c11b42cac8a"
 
 [[package]]
 name = "convert-seconds-to-compound-duration"

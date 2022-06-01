@@ -7,4 +7,4 @@ edition = "2018"
 url = "http://rosettacode.org/wiki/Cantor_set"
 
 [dependencies]
-convert-base = "1.1.0"
+convert-base = "1.1.2"
