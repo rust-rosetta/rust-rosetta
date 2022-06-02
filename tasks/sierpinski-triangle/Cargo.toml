@@ -7,5 +7,5 @@ edition = "2018"
 url = "http://rosettacode.org/wiki/Sierpinski_triangle"
 
 [dev-dependencies]
-assert_cmd = "1.0.3"
+assert_cmd = "2.0.4"
 indoc = "1.0"
