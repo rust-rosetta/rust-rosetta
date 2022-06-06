@@ -4,7 +4,7 @@ version = "0.1.0"
 authors = ["9names"]
 
 [dependencies]
-image = "0.19"
+image = "0.23"
 
 [package.metadata.rosettacode]
 url = "http://rosettacode.org/wiki/Plasma_effect"
