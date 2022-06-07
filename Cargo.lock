@@ -136,11 +136,11 @@ dependencies = [
 
 [[package]]
 name = "aho-corasick"
-version = "0.7.15"
+version = "0.7.18"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "7404febffaa47dac81aa44dba71523c9d069b1bdc50a77db41195149e17f68e5"
+checksum = "1e37cfd5e7657ada45f742d6e99ca5788580b5c529dc78faf11ece6dc702656f"
 dependencies = [
- "memchr 2.3.4",
+ "memchr 2.5.0",
 ]
 
 [[package]]
@@ -621,7 +621,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "a40b47ad93e1a5404e6c18dec46b628214fee441c70f4ab5d6942142cc268a3d"
 dependencies = [
  "lazy_static 1.4.0",
- "memchr 2.3.4",
+ "memchr 2.5.0",
  "regex-automata",
  "serde",
 ]
@@ -1200,7 +1200,7 @@ dependencies = [
  "oorandom",
  "plotters",
  "rayon",
- "regex 1.4.6",
+ "regex 1.5.5",
  "serde",
  "serde_cbor",
  "serde_derive",
@@ -1317,7 +1317,7 @@ version = "0.1.10"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "2b2466559f260f48ad25fe6317b3c8dac77b5bdb5763ac7d9d6103530663bc90"
 dependencies = [
- "memchr 2.3.4",
+ "memchr 2.5.0",
 ]
 
 [[package]]
@@ -1621,7 +1621,7 @@ dependencies = [
  "atty",
  "humantime",
  "log",
- "regex 1.4.6",
+ "regex 1.5.5",
  "termcolor",
 ]
 
@@ -1762,7 +1762,7 @@ version = "0.1.0"
 name = "find-bare-lang-tags"
 version = "0.1.0"
 dependencies = [
- "regex 1.4.6",
+ "regex 1.5.5",
 ]
 
 [[package]]
@@ -1796,7 +1796,7 @@ dependencies = [
 name = "fix-code-tags"
 version = "0.1.0"
 dependencies = [
- "regex 1.4.6",
+ "regex 1.5.5",
 ]
 
 [[package]]
@@ -1995,7 +1995,7 @@ dependencies = [
  "futures-core",
  "futures-io",
  "futures-task",
- "memchr 2.3.4",
+ "memchr 2.5.0",
  "pin-project-lite 0.2.5",
  "pin-utils",
  "slab",
@@ -3103,7 +3103,7 @@ version = "0.7.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "5cc7ad3d82c845bdb5dde34ffdcc7a5fb4d2996e1e1ee0f19c33bc80e15196b9"
 dependencies = [
- "num-traits 0.1.43",
+ "num-traits 0.2.15",
 ]
 
 [[package]]
@@ -3310,9 +3310,9 @@ dependencies = [
 
 [[package]]
 name = "memchr"
-version = "2.3.4"
+version = "2.5.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "0ee1c47aaa256ecabcaea351eae4a9b01ef39ed810004e298d2511ed284b1525"
+checksum = "2dffe52ecf27772e601905b7522cb4ef790d2cc203488bbd0e2fe85fcb74566d"
 
 [[package]]
 name = "memmap"
@@ -3365,7 +3365,7 @@ dependencies = [
  "pathdiff",
  "percent-encoding 1.0.1",
  "rand 0.7.3",
- "regex 1.4.6",
+ "regex 1.5.5",
  "reqwest",
  "serde",
  "serde_derive",
@@ -3723,7 +3723,7 @@ dependencies = [
  "bitvec",
  "funty",
  "lexical-core",
- "memchr 2.3.4",
+ "memchr 2.5.0",
  "version_check",
 ]
 
@@ -3731,7 +3731,7 @@ dependencies = [
 name = "non-recursively"
 version = "0.1.0"
 dependencies = [
- "regex 1.4.6",
+ "regex 1.5.5",
  "structopt",
 ]
 
@@ -4279,7 +4279,7 @@ version = "0.3.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "c705f256449c60da65e11ff6626e0c16a0a0b96aaa348de61376b249bc340f41"
 dependencies = [
- "regex 1.4.6",
+ "regex 1.5.5",
 ]
 
 [[package]]
@@ -4873,7 +4873,7 @@ dependencies = [
 name = "range-expansion"
 version = "0.1.0"
 dependencies = [
- "regex 1.4.6",
+ "regex 1.5.5",
 ]
 
 [[package]]
@@ -4991,7 +4991,7 @@ version = "0.1.0"
 name = "recursively"
 version = "0.1.0"
 dependencies = [
- "regex 1.4.6",
+ "regex 1.5.5",
 ]
 
 [[package]]
@@ -5024,13 +5024,13 @@ dependencies = [
 
 [[package]]
 name = "regex"
-version = "1.4.6"
+version = "1.5.5"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "2a26af418b574bd56588335b3a3659a65725d4e636eb1016c2f9e3b38c7cc759"
+checksum = "1a11647b6b25ff05a515cb92c365cec08801e83423a235b51e231e1808747286"
 dependencies = [
- "aho-corasick 0.7.15",
- "memchr 2.3.4",
- "regex-syntax 0.6.22",
+ "aho-corasick 0.7.18",
+ "memchr 2.5.0",
+ "regex-syntax 0.6.26",
 ]
 
 [[package]]
@@ -5050,9 +5050,9 @@ checksum = "f9ec002c35e86791825ed294b50008eea9ddfc8def4420124fbc6b08db834957"
 
 [[package]]
 name = "regex-syntax"
-version = "0.6.22"
+version = "0.6.26"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "b5eb417147ba9860a96cfe72a0b93bf88fee1744b5636ec99ab20c1aa9376581"
+checksum = "49b3de9ec5dc0a3417da371aab17d729997c15010e7fd24ff707773a33bddb64"
 
 [[package]]
 name = "remove-duplicate-elements"
@@ -5666,7 +5666,7 @@ version = "0.1.0"
 name = "sparkline-in-unicode"
 version = "0.1.0"
 dependencies = [
- "regex 1.4.6",
+ "regex 1.5.5",
 ]
 
 [[package]]
@@ -6057,7 +6057,7 @@ dependencies = [
  "futures-core",
  "iovec",
  "lazy_static 1.4.0",
- "memchr 2.3.4",
+ "memchr 2.5.0",
  "mio 0.6.23",
  "num_cpus",
  "pin-project-lite 0.1.12",
@@ -6583,7 +6583,7 @@ dependencies = [
 name = "web-scraping"
 version = "0.1.0"
 dependencies = [
- "regex 1.4.6",
+ "regex 1.5.5",
  "reqwest",
 ]
 
