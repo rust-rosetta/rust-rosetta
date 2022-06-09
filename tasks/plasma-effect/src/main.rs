@@ -1,5 +1,3 @@
-extern crate image;
-
 use image::ColorType;
 use std::path::Path;
 
@@ -72,7 +70,7 @@ fn main() {
         framebuffer.as_slice(),
         WIDTH as u32,
         HEIGHT as u32,
-        ColorType::RGB(8),
+        ColorType::Rgb8,
     ) {
         Err(e) => println!("Error writing output image:\n{}", e),
         Ok(_) => println!("Output written to:\n{}", output_path.to_str().unwrap()),

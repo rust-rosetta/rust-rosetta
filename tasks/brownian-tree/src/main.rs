@@ -1,6 +1,3 @@
-extern crate image;
-extern crate rand;
-
 use std::cmp::min;
 use std::env;
 use std::path::Path;
@@ -51,7 +48,7 @@ fn main() {
         &balanced,
         width as u32,
         height as u32,
-        ColorType::Gray(8),
+        ColorType::L8,
     ) {
         Err(e) => println!("Error writing output image:\n{}", e),
         Ok(_) => println!("Output written to:\n{}", output_path.to_str().unwrap()),

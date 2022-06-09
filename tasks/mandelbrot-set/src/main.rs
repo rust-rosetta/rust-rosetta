@@ -1,6 +1,4 @@
-extern crate image;
-extern crate num_complex;
-
+use image::DynamicImage::ImageLuma8;
 use num_complex::Complex;
 
 fn main() {
@@ -36,5 +34,5 @@ fn main() {
         *pixel = image::Luma([i as u8]);
     }
 
-    image::ImageLuma8(imgbuf).save("fractal.png").unwrap();
+    ImageLuma8(imgbuf).save("fractal.png").unwrap();
 }
