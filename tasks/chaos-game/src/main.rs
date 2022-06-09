@@ -1,8 +1,6 @@
-extern crate image;
-extern crate rand;
-
 use std::f32::consts::PI;
 
+use image::DynamicImage::ImageLuma8;
 use rand::prelude::*;
 
 fn main() {
@@ -35,5 +33,5 @@ fn main() {
         imgbuf.put_pixel(x as u32, y as u32, image::Luma([255]));
     }
 
-    image::ImageLuma8(imgbuf).save("fractal.png").unwrap();
+    ImageLuma8(imgbuf).save("fractal.png").unwrap();
 }

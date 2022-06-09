@@ -1,10 +1,11 @@
 [package]
 name = "brownian-tree"
 version = "0.1.0"
+edition = "2021"
 
 [package.metadata.rosettacode]
 url = "http://rosettacode.org/wiki/Brownian_tree"
 
 [dependencies]
-image = "0.19"
+image = { version = "0.24.2", default-features = false, features = ["png"] }
 rand = "0.7.2"
