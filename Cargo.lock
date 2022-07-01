@@ -1786,6 +1786,13 @@ dependencies = [
 ]
 
 [[package]]
+name = "finite-state-machine"
+version = "0.1.0"
+dependencies = [
+ "methods-enum",
+]
+
+[[package]]
 name = "five-weekends"
 version = "0.1.0"
 dependencies = [
@@ -3366,6 +3373,12 @@ version = "0.1.0"
 [[package]]
 name = "metered-concurrency"
 version = "0.1.0"
+
+[[package]]
+name = "methods-enum"
+version = "0.2.3"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "f250633f5029e2f37b34f89f40a7d8db15a7632c87b1042efc18d1ab0c4b8424"
 
 [[package]]
 name = "middle-three-digits"

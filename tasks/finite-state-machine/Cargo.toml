@@ -1,0 +1,12 @@
+[package]
+name = "finite-state-machine"
+version = "0.1.0"
+edition = "2021"
+authors = ["Vladimir Shardinov <vvshard@gmail.com>"]
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Finite_state_machine"
+
+
+[dependencies]
+methods-enum = "0.2.3"

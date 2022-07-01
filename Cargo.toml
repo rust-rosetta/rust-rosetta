@@ -618,6 +618,9 @@ members = [
     # http://rosettacode.org/wiki/Find_limit_of_recursion
     "tasks/find-limit-of-recursion",
 
+    # http://rosettacode.org/wiki/Finite_state_machine
+    "tasks/finite-state-machine",
+
     # http://rosettacode.org/wiki/Five_weekends
     "tasks/five-weekends",
 
