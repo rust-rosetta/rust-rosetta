@@ -64,6 +64,6 @@ fn main() {
 
 fn char_entered() -> char {
     let mut text = String::new();
-    std::io::stdin().read_line(&mut text).unwrap_or(0);
+    (std::io::stdin().read_line(&mut text)).unwrap_or(0);
     text.chars().next().unwrap_or('\x0d')
 }
