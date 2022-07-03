@@ -13,7 +13,7 @@ fn main() {
         .primes_from(2)
         .filter(|&p| p < limit && sieve_primes.is_prime(sum_digits(p)))
         .zip(["\n"].iter().chain(&[""; 9]).cycle())
-        .inspect(|(u, sn)| print!("{}{:2$}", sn, u, column_width))
+        .inspect(|(u, sn)| print!("{sn}{u:column_width$}"))
         .count();
-    println!("\n---\nFound {} additive primes less than {}", count, limit);
+    println!("\n---\nFound {count} additive primes less than {limit}");
 }
