@@ -6,4 +6,4 @@ version = "0.1.0"
 url = "http://rosettacode.org/wiki/System_time"
 
 [dependencies]
-time = "0.1"
+time = "0.3"
