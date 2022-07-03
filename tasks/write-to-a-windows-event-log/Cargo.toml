@@ -7,7 +7,7 @@ edition = "2018"
 url = "http://rosettacode.org/wiki/Write_to_Windows_event_log"
 
 [target.'cfg(windows)'.dependencies]
-windows = "0.7.0"
+windows = "0.38.0"
 
 [target.'cfg(windows)'.build-dependencies]
-windows = "0.7.0"
+windows = "0.38.0"
