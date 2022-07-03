@@ -1,9 +1,3 @@
-#[cfg(all(target_os = "linux", feature = "x11"))]
-extern crate x11;
-
-#[cfg(windows)]
-extern crate winapi;
-
 use std::thread;
 use std::time::Duration;
 
@@ -92,8 +86,11 @@ fn get_mouse_position() -> (usize, usize) {
 
 #[cfg(windows)]
 fn get_mouse_position() -> (i64, i64) {
-    use winapi::shared::windef::POINT;
-    use winapi::um::winuser::{GetCursorPos, GetForegroundWindow, ScreenToClient};
+    use windows::Win32::{
+        Foundation::POINT,
+        Graphics::Gdi::ScreenToClient,
+        UI::WindowsAndMessaging::{GetCursorPos, GetForegroundWindow},
+    };
 
     let h = unsafe { GetForegroundWindow() };
 
