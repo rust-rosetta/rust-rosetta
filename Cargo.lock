@@ -10,7 +10,7 @@ version = "0.1.0"
 name = "_100-doors"
 version = "0.1.0"
 dependencies = [
- "num 0.3.1",
+ "num 0.4.0",
 ]
 
 [[package]]
@@ -39,7 +39,7 @@ dependencies = [
 name = "_9-billion-names-of-god-the-integer"
 version = "0.1.0"
 dependencies = [
- "num 0.3.1",
+ "num 0.4.0",
 ]
 
 [[package]]
@@ -79,7 +79,7 @@ name = "active-object"
 version = "0.1.0"
 dependencies = [
  "crossbeam-channel",
- "num 0.3.1",
+ "num 0.4.0",
 ]
 
 [[package]]
@@ -248,7 +248,7 @@ dependencies = [
 name = "arbitrary-precision-integers-included"
 version = "0.1.0"
 dependencies = [
- "num 0.3.1",
+ "num 0.4.0",
 ]
 
 [[package]]
@@ -456,7 +456,7 @@ name = "bernoulli-numbers"
 version = "0.1.0"
 dependencies = [
  "criterion",
- "num 0.3.1",
+ "num 0.4.0",
 ]
 
 [[package]]
@@ -926,7 +926,7 @@ dependencies = [
 name = "closest-pair-problem"
 version = "0.1.0"
 dependencies = [
- "num 0.3.1",
+ "num 0.4.0",
 ]
 
 [[package]]
@@ -1015,7 +1015,7 @@ dependencies = [
 name = "complex"
 version = "0.1.0"
 dependencies = [
- "num 0.3.1",
+ "num 0.4.0",
 ]
 
 [[package]]
@@ -1559,7 +1559,7 @@ checksum = "fea41bba32d969b513997752735605054bc0dfa92b4c56bf1189f2e174be7a10"
 name = "dot-product"
 version = "0.1.0"
 dependencies = [
- "num 0.3.1",
+ "num 0.4.0",
 ]
 
 [[package]]
@@ -1681,7 +1681,7 @@ version = "0.1.0"
 name = "equilibrium-index"
 version = "0.1.0"
 dependencies = [
- "num 0.3.1",
+ "num 0.4.0",
 ]
 
 [[package]]
@@ -1706,7 +1706,7 @@ version = "0.1.0"
 name = "evaluate-binomial-coefficients"
 version = "0.1.0"
 dependencies = [
- "num 0.3.1",
+ "num 0.4.0",
 ]
 
 [[package]]
@@ -1768,7 +1768,7 @@ version = "0.1.0"
 name = "fast-fourier-transform"
 version = "0.1.0"
 dependencies = [
- "num 0.3.1",
+ "num 0.4.0",
 ]
 
 [[package]]
@@ -2407,7 +2407,7 @@ version = "0.1.0"
 name = "greatest-common-divisor"
 version = "0.1.0"
 dependencies = [
- "num 0.3.1",
+ "num 0.4.0",
 ]
 
 [[package]]
@@ -2509,7 +2509,7 @@ checksum = "65043da274378d68241eb9a8f8f8aa54e349136f7b8e12f63e3ef44043cc30e1"
 name = "hamming-numbers"
 version = "0.1.0"
 dependencies = [
- "num 0.3.1",
+ "num 0.4.0",
 ]
 
 [[package]]
@@ -2629,7 +2629,7 @@ dependencies = [
 name = "horners-rule-for-polynomial-evaluation"
 version = "0.1.0"
 dependencies = [
- "num 0.3.1",
+ "num 0.4.0",
 ]
 
 [[package]]
@@ -2749,7 +2749,7 @@ version = "0.1.0"
 name = "iban"
 version = "0.1.0"
 dependencies = [
- "num 0.3.1",
+ "num 0.4.0",
 ]
 
 [[package]]
@@ -2893,7 +2893,7 @@ version = "0.1.0"
 name = "integer-sequence"
 version = "0.1.0"
 dependencies = [
- "num 0.3.1",
+ "num 0.4.0",
 ]
 
 [[package]]
@@ -3010,7 +3010,7 @@ dependencies = [
 name = "kahan-summation"
 version = "0.1.0"
 dependencies = [
- "num 0.3.1",
+ "num 0.4.0",
  "permutohedron",
 ]
 
@@ -3053,7 +3053,7 @@ name = "kronecker-product"
 version = "0.1.0"
 dependencies = [
  "ndarray",
- "num 0.3.1",
+ "num 0.4.0",
 ]
 
 [[package]]
@@ -3180,7 +3180,7 @@ version = "0.1.0"
 name = "lychrel-numbers"
 version = "0.1.0"
 dependencies = [
- "num 0.3.1",
+ "num 0.4.0",
 ]
 
 [[package]]
@@ -3515,7 +3515,7 @@ version = "0.1.0"
 name = "modular-exponentiation"
 version = "0.1.0"
 dependencies = [
- "num 0.3.1",
+ "num 0.4.0",
 ]
 
 [[package]]
@@ -3846,20 +3846,6 @@ dependencies = [
 
 [[package]]
 name = "num"
-version = "0.3.1"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "8b7a8e9be5e039e2ff869df49155f1c06bd01ade2117ec783e56ab0932b67a8f"
-dependencies = [
- "num-bigint 0.3.1",
- "num-complex 0.3.1",
- "num-integer",
- "num-iter",
- "num-rational 0.3.2",
- "num-traits 0.2.15",
-]
-
-[[package]]
-name = "num"
 version = "0.4.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "43db66d1170d347f9a065114077f7dccb00c1b9478c89384490a3425279a4606"
@@ -3929,15 +3915,6 @@ dependencies = [
 
 [[package]]
 name = "num-complex"
-version = "0.3.1"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "747d632c0c558b87dbabbe6a82f3b4ae03720d0646ac5b7b4dae89394be5f2c5"
-dependencies = [
- "num-traits 0.2.15",
-]
-
-[[package]]
-name = "num-complex"
 version = "0.4.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "26873667bbbb7c5182d4a37c1add32cdf09f841af72da53318fdb81543c15085"
@@ -3986,18 +3963,6 @@ checksum = "5c000134b5dbf44adc5cb772486d335293351644b801551abe8f75c84cfa4aef"
 dependencies = [
  "autocfg",
  "num-bigint 0.2.6",
- "num-integer",
- "num-traits 0.2.15",
-]
-
-[[package]]
-name = "num-rational"
-version = "0.3.2"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "12ac428b1cb17fce6f731001d307d351ec70a6d202fc2e60f7d4c5e42d8f4f07"
-dependencies = [
- "autocfg",
- "num-bigint 0.3.1",
  "num-integer",
  "num-traits 0.2.15",
 ]
@@ -4875,7 +4840,7 @@ dependencies = [
 name = "range-extraction"
 version = "0.1.0"
 dependencies = [
- "num 0.3.1",
+ "num 0.4.0",
 ]
 
 [[package]]
@@ -4900,7 +4865,7 @@ dependencies = [
 name = "rational"
 version = "0.1.0"
 dependencies = [
- "num 0.3.1",
+ "num 0.4.0",
 ]
 
 [[package]]
@@ -5177,14 +5142,14 @@ version = "0.1.0"
 name = "roots-of-a-function"
 version = "0.1.0"
 dependencies = [
- "num 0.3.1",
+ "num 0.4.0",
 ]
 
 [[package]]
 name = "roots-of-unity"
 version = "0.1.0"
 dependencies = [
- "num 0.3.1",
+ "num 0.4.0",
 ]
 
 [[package]]
@@ -5195,7 +5160,7 @@ version = "0.1.0"
 name = "rsa-code"
 version = "0.1.0"
 dependencies = [
- "num 0.3.1",
+ "num 0.4.0",
 ]
 
 [[package]]
@@ -5606,7 +5571,7 @@ version = "0.1.0"
 name = "solve"
 version = "0.1.0"
 dependencies = [
- "num 0.3.1",
+ "num 0.4.0",
  "permutohedron",
 ]
 
@@ -6083,7 +6048,7 @@ dependencies = [
 name = "totient-function"
 version = "0.1.0"
 dependencies = [
- "num 0.3.1",
+ "num 0.4.0",
 ]
 
 [[package]]
