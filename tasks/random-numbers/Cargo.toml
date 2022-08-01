@@ -8,4 +8,4 @@ url = "http://rosettacode.org/wiki/Random_numbers"
 
 [dependencies]
 rand = "0.7.2"
-rand_distr = "0.2.2"
+rand_distr = "0.4.0"
