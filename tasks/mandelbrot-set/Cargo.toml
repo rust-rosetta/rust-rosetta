@@ -8,4 +8,4 @@ url = "http://rosettacode.org/wiki/Mandelbrot_set"
 
 [dependencies]
 image = { version = "0.24.2", default-features = false, features = ["png"] }
-num-complex = "0.2"
+num-complex = "0.4"
