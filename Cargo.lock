@@ -1208,7 +1208,7 @@ dependencies = [
  "oorandom",
  "plotters",
  "rayon",
- "regex 1.5.5",
+ "regex 1.6.0",
  "serde",
  "serde_cbor",
  "serde_derive",
@@ -1658,7 +1658,7 @@ dependencies = [
  "atty",
  "humantime",
  "log",
- "regex 1.5.5",
+ "regex 1.6.0",
  "termcolor",
 ]
 
@@ -1799,7 +1799,7 @@ version = "0.1.0"
 name = "find-bare-lang-tags"
 version = "0.1.0"
 dependencies = [
- "regex 1.5.5",
+ "regex 1.6.0",
 ]
 
 [[package]]
@@ -1840,7 +1840,7 @@ dependencies = [
 name = "fix-code-tags"
 version = "0.1.0"
 dependencies = [
- "regex 1.5.5",
+ "regex 1.6.0",
 ]
 
 [[package]]
@@ -3333,7 +3333,7 @@ dependencies = [
  "pathdiff",
  "percent-encoding 1.0.1",
  "rand 0.7.3",
- "regex 1.5.5",
+ "regex 1.6.0",
  "reqwest",
  "serde",
  "serde_derive",
@@ -3700,7 +3700,7 @@ dependencies = [
 name = "non-recursively"
 version = "0.1.0"
 dependencies = [
- "regex 1.5.5",
+ "regex 1.6.0",
  "structopt",
 ]
 
@@ -4183,7 +4183,7 @@ version = "0.3.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "c705f256449c60da65e11ff6626e0c16a0a0b96aaa348de61376b249bc340f41"
 dependencies = [
- "regex 1.5.5",
+ "regex 1.6.0",
 ]
 
 [[package]]
@@ -4734,7 +4734,7 @@ dependencies = [
 name = "range-expansion"
 version = "0.1.0"
 dependencies = [
- "regex 1.5.5",
+ "regex 1.6.0",
 ]
 
 [[package]]
@@ -4852,7 +4852,7 @@ version = "0.1.0"
 name = "recursively"
 version = "0.1.0"
 dependencies = [
- "regex 1.5.5",
+ "regex 1.6.0",
 ]
 
 [[package]]
@@ -4879,13 +4879,13 @@ dependencies = [
 
 [[package]]
 name = "regex"
-version = "1.5.5"
+version = "1.6.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "1a11647b6b25ff05a515cb92c365cec08801e83423a235b51e231e1808747286"
+checksum = "4c4eb3267174b8c6c2f654116623910a0fef09c4753f8dd83db29c48a0df988b"
 dependencies = [
  "aho-corasick 0.7.18",
  "memchr 2.5.0",
- "regex-syntax 0.6.26",
+ "regex-syntax 0.6.27",
 ]
 
 [[package]]
@@ -4905,9 +4905,9 @@ checksum = "f9ec002c35e86791825ed294b50008eea9ddfc8def4420124fbc6b08db834957"
 
 [[package]]
 name = "regex-syntax"
-version = "0.6.26"
+version = "0.6.27"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "49b3de9ec5dc0a3417da371aab17d729997c15010e7fd24ff707773a33bddb64"
+checksum = "a3f87b73ce11b1619a3c6332f45341e0047173771e8b8b73f87bfeefb7b56244"
 
 [[package]]
 name = "remove-duplicate-elements"
@@ -5515,7 +5515,7 @@ version = "0.1.0"
 name = "sparkline-in-unicode"
 version = "0.1.0"
 dependencies = [
- "regex 1.5.5",
+ "regex 1.6.0",
 ]
 
 [[package]]
@@ -6424,7 +6424,7 @@ dependencies = [
 name = "web-scraping"
 version = "0.1.0"
 dependencies = [
- "regex 1.5.5",
+ "regex 1.6.0",
  "reqwest",
 ]
 
