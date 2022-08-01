@@ -7,6 +7,6 @@ edition = "2018"
 url = "http://rosettacode.org/wiki/Bitcoin/public_point_to_address"
 
 [dependencies]
-hex = "0.3"
+hex = "0.4"
 ring = "0.14"
 ripemd160 = "^0.8.0"
