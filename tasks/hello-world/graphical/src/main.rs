@@ -1,33 +1,29 @@
-#[cfg(feature = "gtk")]
-mod graphical {
-    extern crate gtk;
+use iced::{executor, Application, Command, Element, Settings, Text};
 
-    use self::gtk::traits::*;
-    use self::gtk::{Inhibit, Window, WindowPosition, WindowType};
+struct Goodbye;
 
-    pub fn hello_world() {
-        gtk::init().unwrap();
-        let window = Window::new(WindowType::Toplevel);
+impl Application for Goodbye {
+    type Executor = executor::Default;
+    type Message = ();
+    type Flags = ();
 
-        window.set_title("Hello World!");
-        window.set_border_width(10);
-        window.set_position(WindowPosition::Center);
-        window.set_default_size(350, 70);
+    fn new(_flags: ()) -> (Goodbye, Command<Self::Message>) {
+        (Goodbye, Command::none())
+    }
 
-        window.connect_delete_event(|_, _| {
-            gtk::main_quit();
-            Inhibit(false)
-        });
+    fn title(&self) -> String {
+        String::from("Hello, World!")
+    }
 
-        window.show_all();
-        gtk::main();
+    fn update(&mut self, _message: Self::Message) -> Command<Self::Message> {
+        Command::none()
+    }
+
+    fn view(&mut self) -> Element<Self::Message> {
+        Text::new("Goodbye, World!").into()
     }
 }
 
-#[cfg(feature = "gtk")]
-fn main() {
-    graphical::hello_world();
+fn main() -> iced::Result {
+    Goodbye::run(Settings::default())
 }
-
-#[cfg(not(feature = "gtk"))]
-fn main() {}

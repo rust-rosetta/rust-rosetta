@@ -1,29 +1,25 @@
-// http://rosettacode.org/wiki/Window_creation
+use winit::{
+    event::{Event, WindowEvent},
+    event_loop::{ControlFlow, EventLoop},
+    window::WindowBuilder,
+};
 
-#[cfg(feature = "gtk")]
-mod graphical {
-    extern crate gtk;
-
-    use self::gtk::traits::*;
-    use self::gtk::{Inhibit, Window, WindowType};
-
-    pub fn create_window() {
-        gtk::init().expect("Failed to initialize GTK");
-
-        let window = Window::new(WindowType::Toplevel);
-        window.connect_delete_event(|_, _| {
-            gtk::main_quit();
-            Inhibit(false)
-        });
-        window.show_all();
-        gtk::main();
-    }
-}
-
-#[cfg(feature = "gtk")]
 fn main() {
-    graphical::create_window();
-}
+    let event_loop = EventLoop::new();
+    let window = WindowBuilder::new()
+        .with_title("Window")
+        .build(&event_loop)
+        .unwrap();
 
-#[cfg(not(feature = "gtk"))]
-fn main() {}
+    event_loop.run(move |event, _, control_flow| {
+        *control_flow = ControlFlow::Wait;
+
+        match event {
+            Event::WindowEvent {
+                event: WindowEvent::CloseRequested,
+                window_id,
+            } if window_id == window.id() => *control_flow = ControlFlow::Exit,
+            _ => (),
+        }
+    });
+}

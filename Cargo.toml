@@ -1,7 +1,7 @@
 [package]
 name = "rust-rosetta"
 version = "0.0.1"
-edition = "2018"
+edition = "2021"
 authors = [
     "Andrew Hobden, https://github.com/Hoverbear",
     "Adolfo Ochagavía, https://github.com/aochagavia",
