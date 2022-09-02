@@ -3347,7 +3347,7 @@ version = "0.1.0"
 dependencies = [
  "csv",
  "gnuplot",
- "nalgebra 0.30.1",
+ "nalgebra 0.31.1",
  "rand 0.7.3",
  "structopt",
 ]
@@ -3904,7 +3904,7 @@ name = "multiple-regression"
 version = "0.1.0"
 dependencies = [
  "assert_approx_eq",
- "nalgebra 0.30.1",
+ "nalgebra 0.31.1",
 ]
 
 [[package]]
@@ -3970,9 +3970,9 @@ dependencies = [
 
 [[package]]
 name = "nalgebra"
-version = "0.30.1"
+version = "0.31.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "4fb2d0de08694bed883320212c18ee3008576bfe8c306f4c3c4a58b4876998be"
+checksum = "e9e0a04ce089f9401aac565c740ed30c46291260f27d4911fdbaa6ca65fa3044"
 dependencies = [
  "approx 0.5.1",
  "matrixmultiply 0.3.2",
