@@ -68,7 +68,7 @@ impl FormalPowerSeries {
             return String::from('\u{2070}');
         }
         let mut digits = Vec::new();
-        let num_digits = (exp.log10() + 1) as usize; // obviously safe
+        let num_digits = (exp.ilog10() + 1) as usize; // obviously safe
         digits.resize(num_digits, '\0');
         for i in 0..num_digits {
             let digit = (exp % 10) as usize; // obviously safe
