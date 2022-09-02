@@ -640,7 +640,7 @@ dependencies = [
 name = "brownian-tree"
 version = "0.1.0"
 dependencies = [
- "image 0.24.2",
+ "image 0.24.3",
  "rand 0.7.3",
 ]
 
@@ -852,7 +852,7 @@ dependencies = [
 name = "chaos-game"
 version = "0.1.0"
 dependencies = [
- "image 0.24.2",
+ "image 0.24.3",
  "rand 0.7.3",
 ]
 
@@ -3154,14 +3154,13 @@ dependencies = [
 
 [[package]]
 name = "image"
-version = "0.24.2"
+version = "0.24.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "28edd9d7bc256be2502e325ac0628bde30b7001b9b52e0abe31a1a9dc2701212"
+checksum = "7e30ca2ecf7666107ff827a8e481de6a132a9b687ed3bb20bb1c144a36c00964"
 dependencies = [
  "bytemuck",
  "byteorder 1.4.2",
  "color_quant",
- "num-iter",
  "num-rational 0.4.0",
  "num-traits 0.2.15",
  "png 0.17.5",
@@ -3607,7 +3606,7 @@ version = "0.1.0"
 name = "mandelbrot-set"
 version = "0.1.0"
 dependencies = [
- "image 0.24.2",
+ "image 0.24.3",
  "num-complex 0.4.0",
 ]
 
@@ -4884,7 +4883,7 @@ checksum = "3831453b3449ceb48b6d9c7ad7c96d5ea673e9b470a1dc578c2ce6521230884c"
 name = "plasma-effect"
 version = "0.1.0"
 dependencies = [
- "image 0.24.2",
+ "image 0.24.3",
 ]
 
 [[package]]
