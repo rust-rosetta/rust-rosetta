@@ -6,6 +6,6 @@ version = "0.1.0"
 url = "http://rosettacode.org/wiki/AVL_tree"
 
 [dependencies]
-rand = "0.7.2"
+rand = "0.8.5"
 structopt = "0.3.26"
 term-painter = "0.2"

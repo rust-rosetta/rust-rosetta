@@ -17,7 +17,7 @@ dependencies = [
 name = "_15-puzzle-game"
 version = "0.1.0"
 dependencies = [
- "rand 0.7.3",
+ "rand 0.8.5",
 ]
 
 [[package]]
@@ -25,14 +25,14 @@ name = "_2048"
 version = "0.1.0"
 dependencies = [
  "crossterm",
- "rand 0.7.3",
+ "rand 0.8.5",
 ]
 
 [[package]]
 name = "_24-game"
 version = "0.1.0"
 dependencies = [
- "rand 0.7.3",
+ "rand 0.8.5",
 ]
 
 [[package]]
@@ -376,7 +376,7 @@ name = "atomic-updates"
 version = "0.1.0"
 dependencies = [
  "array-init",
- "rand 0.7.3",
+ "rand 0.8.5",
 ]
 
 [[package]]
@@ -414,14 +414,14 @@ checksum = "d468802bab17cbc0cc575e9b053f41e72aa36bfa6b7f55e3529ffa43161b97fa"
 name = "average-loop-length"
 version = "0.1.0"
 dependencies = [
- "rand 0.7.3",
+ "rand 0.8.5",
 ]
 
 [[package]]
 name = "avl-tree"
 version = "0.1.0"
 dependencies = [
- "rand 0.7.3",
+ "rand 0.8.5",
  "structopt",
  "term-painter",
 ]
@@ -444,7 +444,7 @@ dependencies = [
 name = "balanced-brackets"
 version = "0.1.0"
 dependencies = [
- "rand 0.7.3",
+ "rand 0.8.5",
 ]
 
 [[package]]
@@ -473,7 +473,7 @@ checksum = "904dfeac50f3cdaba28fc6f57fdcddb75f49ed61346676a78c4ffe55877802fd"
 name = "basic"
 version = "0.1.0"
 dependencies = [
- "rand 0.7.3",
+ "rand 0.8.5",
 ]
 
 [[package]]
@@ -493,7 +493,7 @@ name = "best-shuffle"
 version = "0.1.0"
 dependencies = [
  "permutohedron",
- "rand 0.7.3",
+ "rand 0.8.5",
 ]
 
 [[package]]
@@ -605,7 +605,7 @@ name = "bogosort"
 version = "0.1.0"
 dependencies = [
  "meta",
- "rand 0.7.3",
+ "rand 0.8.5",
 ]
 
 [[package]]
@@ -627,7 +627,7 @@ dependencies = [
 name = "break"
 version = "0.1.0"
 dependencies = [
- "rand 0.7.3",
+ "rand 0.8.5",
 ]
 
 [[package]]
@@ -635,7 +635,7 @@ name = "brownian-tree"
 version = "0.1.0"
 dependencies = [
  "image 0.24.3",
- "rand 0.7.3",
+ "rand 0.8.5",
 ]
 
 [[package]]
@@ -661,7 +661,7 @@ dependencies = [
 name = "bulls-and-cows"
 version = "0.1.0"
 dependencies = [
- "rand 0.7.3",
+ "rand 0.8.5",
 ]
 
 [[package]]
@@ -847,7 +847,7 @@ name = "chaos-game"
 version = "0.1.0"
 dependencies = [
  "image 0.24.3",
- "rand 0.7.3",
+ "rand 0.8.5",
 ]
 
 [[package]]
@@ -1127,14 +1127,14 @@ version = "0.1.0"
 name = "concurrent-computing"
 version = "0.1.0"
 dependencies = [
- "rand 0.7.3",
+ "rand 0.8.5",
 ]
 
 [[package]]
 name = "constrained-random-points-on-a-circle"
 version = "0.1.0"
 dependencies = [
- "rand 0.7.3",
+ "rand 0.8.5",
 ]
 
 [[package]]
@@ -1617,7 +1617,7 @@ version = "0.1.0"
 name = "device"
 version = "0.1.0"
 dependencies = [
- "rand 0.7.3",
+ "rand 0.8.5",
 ]
 
 [[package]]
@@ -1732,7 +1732,7 @@ version = "0.1.0"
 name = "dutch-national-flag-problem"
 version = "0.1.0"
 dependencies = [
- "rand 0.7.3",
+ "rand 0.8.5",
 ]
 
 [[package]]
@@ -1902,7 +1902,7 @@ version = "0.1.0"
 name = "evolutionary-algorithm"
 version = "0.1.0"
 dependencies = [
- "rand 0.7.3",
+ "rand 0.8.5",
 ]
 
 [[package]]
@@ -2067,7 +2067,7 @@ version = "0.1.0"
 name = "flipping-bits-game"
 version = "0.1.0"
 dependencies = [
- "rand 0.7.3",
+ "rand 0.8.5",
 ]
 
 [[package]]
@@ -2139,7 +2139,7 @@ name = "forest-fire"
 version = "0.1.0"
 dependencies = [
  "ansi_term",
- "rand 0.7.3",
+ "rand 0.8.5",
 ]
 
 [[package]]
@@ -2666,7 +2666,7 @@ version = "0.1.0"
 name = "guess-the-number"
 version = "0.1.0"
 dependencies = [
- "rand 0.7.3",
+ "rand 0.8.5",
 ]
 
 [[package]]
@@ -3338,7 +3338,7 @@ dependencies = [
 name = "k-d-tree"
 version = "0.1.0"
 dependencies = [
- "rand 0.7.3",
+ "rand 0.8.5",
 ]
 
 [[package]]
@@ -3348,7 +3348,7 @@ dependencies = [
  "csv",
  "gnuplot",
  "nalgebra 0.31.1",
- "rand 0.7.3",
+ "rand 0.8.5",
  "structopt",
 ]
 
@@ -3403,7 +3403,7 @@ version = "0.1.0"
 name = "knuth-shuffle"
 version = "0.1.0"
 dependencies = [
- "rand 0.7.3",
+ "rand 0.8.5",
 ]
 
 [[package]]
@@ -3880,7 +3880,7 @@ version = "0.1.0"
 name = "monte-carlo-methods"
 version = "0.1.0"
 dependencies = [
- "rand 0.7.3",
+ "rand 0.8.5",
 ]
 
 [[package]]
@@ -4137,7 +4137,7 @@ dependencies = [
 name = "nested"
 version = "0.1.0"
 dependencies = [
- "rand 0.7.3",
+ "rand 0.8.5",
 ]
 
 [[package]]
@@ -4230,7 +4230,7 @@ version = "0.1.0"
 name = "nth-root"
 version = "0.1.0"
 dependencies = [
- "rand 0.7.3",
+ "rand 0.8.5",
 ]
 
 [[package]]
@@ -4529,7 +4529,7 @@ dependencies = [
 name = "one-of-n-lines-in-a-file"
 version = "0.1.0"
 dependencies = [
- "rand 0.7.3",
+ "rand 0.8.5",
 ]
 
 [[package]]
@@ -4738,7 +4738,7 @@ version = "0.1.0"
 name = "password-generator"
 version = "0.1.0"
 dependencies = [
- "rand 0.7.3",
+ "rand 0.8.5",
  "structopt",
 ]
 
@@ -4758,7 +4758,7 @@ checksum = "a3bf70094d203e07844da868b634207e71bfab254fe713171fae9a6e751ccf31"
 name = "penneys-game"
 version = "0.1.0"
 dependencies = [
- "rand 0.7.3",
+ "rand 0.8.5",
 ]
 
 [[package]]
@@ -4845,7 +4845,7 @@ version = "0.1.0"
 name = "pick-random-element"
 version = "0.1.0"
 dependencies = [
- "rand 0.7.3",
+ "rand 0.8.5",
 ]
 
 [[package]]
@@ -4877,7 +4877,7 @@ dependencies = [
 name = "playing-cards"
 version = "0.1.0"
 dependencies = [
- "rand 0.7.3",
+ "rand 0.8.5",
 ]
 
 [[package]]
@@ -5041,7 +5041,7 @@ checksum = "68a61082d8bceecd71a3870e9162002bb75f7ba9c7aa8b76227e887782fef9c8"
 name = "probabilistic-choice"
 version = "0.1.0"
 dependencies = [
- "rand 0.7.3",
+ "rand 0.8.5",
 ]
 
 [[package]]
@@ -5163,7 +5163,7 @@ checksum = "941ba9d78d8e2f7ce474c015eea4d9c6d25b6a3327f9832ee29a4de27f91bbb8"
 name = "radix-sort"
 version = "0.1.0"
 dependencies = [
- "rand 0.7.3",
+ "rand 0.8.5",
 ]
 
 [[package]]
@@ -5413,7 +5413,7 @@ name = "read-a-ppm-file"
 version = "0.1.0"
 dependencies = [
  "bitmap",
- "rand 0.7.3",
+ "rand 0.8.5",
 ]
 
 [[package]]
@@ -5626,7 +5626,7 @@ dependencies = [
 name = "rock-paper-scissors"
 version = "0.1.0"
 dependencies = [
- "rand 0.7.3",
+ "rand 0.8.5",
 ]
 
 [[package]]
@@ -6533,7 +6533,7 @@ dependencies = [
 name = "tic-tac-toe"
 version = "0.1.0"
 dependencies = [
- "rand 0.7.3",
+ "rand 0.8.5",
 ]
 
 [[package]]
@@ -6755,7 +6755,7 @@ version = "1.6.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "97fee6b57c6a41524a810daee9286c02d7752c4253064d0b05472833a438f675"
 dependencies = [
- "cfg-if 1.0.0",
+ "cfg-if 0.1.10",
  "rand 0.8.5",
  "static_assertions",
 ]
@@ -6780,7 +6780,7 @@ version = "0.1.0"
 name = "unbias-a-random-generator"
 version = "0.1.0"
 dependencies = [
- "rand 0.7.3",
+ "rand 0.8.5",
 ]
 
 [[package]]
@@ -6944,7 +6944,7 @@ version = "0.1.0"
 name = "visualize-a-tree"
 version = "0.1.0"
 dependencies = [
- "rand 0.7.3",
+ "rand 0.8.5",
  "serde",
  "serde_derive",
  "serde_json",
@@ -7562,7 +7562,7 @@ version = "0.1.0"
 name = "with-feedback"
 version = "0.1.0"
 dependencies = [
- "rand 0.7.3",
+ "rand 0.8.5",
 ]
 
 [[package]]
@@ -7578,7 +7578,7 @@ name = "write-a-ppm-file"
 version = "0.1.0"
 dependencies = [
  "bitmap",
- "rand 0.7.3",
+ "rand 0.8.5",
 ]
 
 [[package]]
