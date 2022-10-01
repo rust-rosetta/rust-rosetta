@@ -1757,7 +1757,7 @@ version = "0.1.0"
 name = "egyptian-fractions"
 version = "0.1.0"
 dependencies = [
- "num-bigint 0.3.1",
+ "num-bigint 0.4.0",
  "num-integer",
  "num-traits 0.2.15",
 ]
@@ -4293,17 +4293,6 @@ name = "num-bigint"
 version = "0.2.6"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "090c7f9998ee0ff65aa5b723e4009f7b217707f1fb5ea551329cc4d6231fb304"
-dependencies = [
- "autocfg",
- "num-integer",
- "num-traits 0.2.15",
-]
-
-[[package]]
-name = "num-bigint"
-version = "0.3.1"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "5e9a41747ae4633fce5adffb4d2e81ffc5e89593cb19917f8fb2cc5ff76507bf"
 dependencies = [
  "autocfg",
  "num-integer",
