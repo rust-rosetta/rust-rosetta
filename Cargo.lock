@@ -3777,9 +3777,9 @@ version = "0.1.0"
 
 [[package]]
 name = "methods-enum"
-version = "0.2.3"
+version = "0.2.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "f250633f5029e2f37b34f89f40a7d8db15a7632c87b1042efc18d1ab0c4b8424"
+checksum = "302250ab75b23d31a0f93f600a73f9269161a2e5d1802d0adc63e18eba8a505e"
 
 [[package]]
 name = "middle-three-digits"
