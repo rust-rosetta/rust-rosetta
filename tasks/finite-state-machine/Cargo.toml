@@ -9,4 +9,4 @@ url = "http://rosettacode.org/wiki/Finite_state_machine"
 
 
 [dependencies]
-methods-enum = "0.2.3"
+methods-enum = "0.2.4"

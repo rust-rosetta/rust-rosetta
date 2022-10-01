@@ -1757,7 +1757,7 @@ version = "0.1.0"
 name = "egyptian-fractions"
 version = "0.1.0"
 dependencies = [
- "num-bigint 0.3.1",
+ "num-bigint 0.4.0",
  "num-integer",
  "num-traits 0.2.15",
 ]
@@ -3777,9 +3777,9 @@ version = "0.1.0"
 
 [[package]]
 name = "methods-enum"
-version = "0.2.3"
+version = "0.2.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "f250633f5029e2f37b34f89f40a7d8db15a7632c87b1042efc18d1ab0c4b8424"
+checksum = "302250ab75b23d31a0f93f600a73f9269161a2e5d1802d0adc63e18eba8a505e"
 
 [[package]]
 name = "middle-three-digits"
@@ -4293,17 +4293,6 @@ name = "num-bigint"
 version = "0.2.6"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "090c7f9998ee0ff65aa5b723e4009f7b217707f1fb5ea551329cc4d6231fb304"
-dependencies = [
- "autocfg",
- "num-integer",
- "num-traits 0.2.15",
-]
-
-[[package]]
-name = "num-bigint"
-version = "0.3.1"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "5e9a41747ae4633fce5adffb4d2e81ffc5e89593cb19917f8fb2cc5ff76507bf"
 dependencies = [
  "autocfg",
  "num-integer",
@@ -7656,9 +7645,9 @@ dependencies = [
 
 [[package]]
 name = "xml-rs"
-version = "0.8.3"
+version = "0.8.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "b07db065a5cf61a7e4ba64f29e67db906fb1787316516c4e6e5ff0fea1efcd8a"
+checksum = "d2d7d3948613f75c98fd9328cfdcc45acc4d360655289d0a7d4ec931392200a3"
 
 [[package]]
 name = "y-combinator"
