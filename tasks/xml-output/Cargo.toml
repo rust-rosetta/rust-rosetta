@@ -8,4 +8,4 @@ edition = "2018"
 url = "https://rosettacode.org/wiki/XML/Output"
 
 [dependencies]
-xml-rs = "0.8.0"
+xml-rs = "0.8.4"
