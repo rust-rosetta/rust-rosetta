@@ -1,6 +1,4 @@
-extern crate rand;
-
-use rand::distributions::{weighted::alias_method::WeightedIndex, Distribution};
+use rand::distributions::{Distribution, WeightedIndex};
 use rand::prelude::*;
 
 const DATA: [(&str, f64); 8] = [
@@ -18,7 +16,7 @@ const SAMPLES: usize = 1_000_000;
 
 /// Generate a weighted distribution for choosing an index.
 fn distribution() -> impl Distribution<usize> {
-    WeightedIndex::new(DATA.iter().map(|(_, p)| *p).collect()).unwrap()
+    WeightedIndex::new(DATA.iter().map(|(_, p)| *p)).unwrap()
 }
 
 fn take_samples<R: Rng>(rng: &mut R, wc: &impl Distribution<usize>) -> [usize; 8] {

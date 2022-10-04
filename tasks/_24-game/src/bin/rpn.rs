@@ -11,7 +11,7 @@ fn main() {
     let mut stdout = io::stdout();
 
     // generating 4 numbers
-    let choices: Vec<u32> = (0..4).map(|_| rng.gen_range(1, 10)).collect();
+    let choices: Vec<u32> = (0..4).map(|_| rng.gen_range(1..10)).collect();
     println!("Make 24 with the following numbers");
 
     // start the game loop

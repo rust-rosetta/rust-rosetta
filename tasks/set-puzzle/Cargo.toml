@@ -8,4 +8,4 @@ url = "http://rosettacode.org/wiki/Set_puzzle"
 
 [dependencies]
 itertools= "0.10.3"
-rand = "0.8.3"
+rand = "0.8.5"

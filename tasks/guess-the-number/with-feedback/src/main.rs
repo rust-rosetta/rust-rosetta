@@ -10,7 +10,7 @@ fn main() {
     let mut rng = thread_rng();
 
     loop {
-        let number: isize = rng.gen_range(LOWEST, HIGHEST + 1);
+        let number: isize = rng.gen_range(LOWEST..=HIGHEST);
         let mut num_guesses = 0;
 
         println!(

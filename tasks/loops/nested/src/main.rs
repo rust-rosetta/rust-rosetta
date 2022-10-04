@@ -8,7 +8,7 @@ fn main() {
 
     for row in &mut matrix {
         for item in &mut *row {
-            *item = rng.gen_range(0, 21);
+            *item = rng.gen_range(0..=20);
         }
     }
 

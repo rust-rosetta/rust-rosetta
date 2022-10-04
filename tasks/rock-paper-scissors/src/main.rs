@@ -33,7 +33,7 @@ fn beats(c1: Choice, c2: Choice) -> bool {
 
 fn ai_move<R: Rng>(rng: &mut R, v: [usize; 3]) -> Choice {
     // weighted random choice, a dynamic version of `rand::distributions::WeightedChoice`
-    let rand = rng.gen_range(0, v[0] + v[1] + v[2]);
+    let rand = rng.gen_range(0..(v[0] + v[1] + v[2]));
     if rand < v[0] {
         Paper
     } else if rand < v[0] + v[1] {

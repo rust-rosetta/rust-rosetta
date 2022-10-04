@@ -49,7 +49,7 @@ fn precalculating_method<R: Rng>(rng: &mut R) {
     // A truncated Fisher-Yates shuffle
     let len = possible_points.len();
     for i in (len - POINTS_N..len).rev() {
-        let j = rng.gen_range(0, i + 1);
+        let j = rng.gen_range(0..=i);
         possible_points.swap(i, j);
     }
 

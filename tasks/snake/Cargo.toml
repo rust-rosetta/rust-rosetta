@@ -9,4 +9,4 @@ url = "http://rosettacode.org/wiki/Snake"
 
 [target.'cfg(windows)'.dependencies]
 winsafe = { version = "0.0.9", features = ["gui", "user"] }
-rand = "0.8.4"
+rand = "0.8.5"

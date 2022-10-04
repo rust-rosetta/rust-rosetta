@@ -47,10 +47,10 @@ impl Distribution<P15> for Standard {
             // NOTE: because 16 is a power of two, we could use the faster
             // modulo reduction (`n % 16`) without bias; `gen_range` is
             // presented here for the general case.
-            let i = rng.gen_range(0, 16);
-            let mut j = rng.gen_range(0, 16);
+            let i = rng.gen_range(0..16);
+            let mut j = rng.gen_range(0..16);
             while j == i {
-                j = rng.gen_range(0, 16);
+                j = rng.gen_range(0..16);
             }
             board.swap(i, j);
         }

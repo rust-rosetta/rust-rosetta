@@ -209,7 +209,7 @@ fn randomize(bl: &buckets::Buckets, running: &AtomicBool, worker: usize) {
     while running.load(Ordering::Relaxed) {
         let b1 = rng.sample(range);
         let b2 = rng.sample(range);
-        bl.transfer(b1, b2, rng.gen_range(0, bl.get(b1).unwrap() + 1), worker);
+        bl.transfer(b1, b2, rng.gen_range(0..=bl.get(b1).unwrap()), worker);
     }
 }
 

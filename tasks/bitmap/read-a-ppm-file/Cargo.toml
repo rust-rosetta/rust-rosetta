@@ -10,4 +10,4 @@ url = "http://rosettacode.org/wiki/Bitmap/Read_a_PPM_file"
 bitmap = { path = ".." }
 
 [dev-dependencies]
-rand = "0.7.2"
+rand = "0.8.5"
