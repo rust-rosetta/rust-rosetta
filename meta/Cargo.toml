@@ -10,7 +10,7 @@ find-unimplemented-tasks = { path = "../tasks/rosetta-code/find-unimplemented-ta
 lazy_static = "1"
 pathdiff = "0.1"
 percent-encoding = "1"
-rand = "0.7.2"
+rand = "0.8.5"
 regex = "1"
 reqwest = "0.11.11"
 serde = "1"

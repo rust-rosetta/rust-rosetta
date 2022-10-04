@@ -237,7 +237,7 @@ where
     T: Clone,
 {
     // We use `thread_rng` here because it was already initialized in `main`.
-    let mut pivot_index = thread_rng().gen_range(0, arr.len());
+    let mut pivot_index = thread_rng().gen_range(0..arr.len());
     // Need to wrap in another closure or we get ownership complaints.
     // Tried using an unboxed closure to get around this but couldn't get it to work.
     pivot_index = partition_by(arr, pivot_index, &|a: &T, b: &T| cmp(a, b));

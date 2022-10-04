@@ -3,7 +3,7 @@ extern crate rand;
 use rand::prelude::*;
 
 fn rand_n<R: Rng>(rng: &mut R, n: u32) -> usize {
-    (rng.gen_range(0, n) == 0) as usize // maps `false` to 0 and `true` to 1
+    (rng.gen_range(0..n) == 0).into() // maps `false` to 0 and `true` to 1
 }
 
 fn unbiased<R: Rng>(rng: &mut R, n: u32) -> usize {

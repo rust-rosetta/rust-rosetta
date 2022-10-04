@@ -8,7 +8,7 @@ fn knuth_shuffle<T>(rng: &mut impl Rng, v: &mut [T]) {
     let l = v.len();
 
     for n in 0..l {
-        let i = rng.gen_range(0, l - n);
+        let i = rng.gen_range(0..(l - n));
         v.swap(i, l - n - 1);
     }
 }

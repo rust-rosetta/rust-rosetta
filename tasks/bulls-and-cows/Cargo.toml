@@ -6,4 +6,4 @@ version = "0.1.0"
 url = "http://rosettacode.org/wiki/Bulls_and_cows"
 
 [dependencies]
-rand = "0.7.2"
+rand = "0.8.5"

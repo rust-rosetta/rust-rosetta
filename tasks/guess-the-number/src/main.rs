@@ -5,7 +5,7 @@ use std::io::stdin;
 use rand::{thread_rng, Rng};
 
 fn main() {
-    let mystery_number = thread_rng().gen_range(0u8, 10) + 1;
+    let mystery_number = thread_rng().gen_range(1u8..=10);
     println!("Guess my number between 1 and 10");
 
     let input = stdin();

@@ -2,9 +2,10 @@
 name = "probabilistic-choice"
 version = "0.1.0"
 authors = ["Daniel Watson <danielwatson311@gmail.com>"]
+edition = "2021"
 
 [package.metadata.rosettacode]
 url = "https://rosettacode.org/wiki/Probabilistic_choice"
 
 [dependencies]
-rand = "0.7.2"
+rand = "0.8.5"

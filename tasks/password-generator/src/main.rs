@@ -7,14 +7,14 @@ use structopt::StructOpt;
 const OTHER_VALUES: &str = "!\"#$%&'()*+,-./:;<=>?@[]^_{|}~";
 
 // the core logic that creates our password
-fn generate_password(length: u8) -> String {
+fn generate_password(length: usize) -> String {
     // cache thread_rng for better performance
     let mut rng = thread_rng();
     // the Alphanumeric struct provides 3/4
     // of the characters for passwords
     // so we can sample from it
-    let mut base_password: Vec<char> = iter::repeat(())
-        .map(|()| rng.sample(Alphanumeric))
+    let mut base_password: Vec<_> = iter::repeat(())
+        .map(|()| rng.sample(Alphanumeric) as char)
         .take(length as usize)
         .collect();
     let mut end_range = 10;
@@ -24,7 +24,7 @@ fn generate_password(length: u8) -> String {
         end_range = length;
     }
     // create a random count of how many other characters to add
-    let mut to_add = rng.gen_range(1, end_range as usize);
+    let mut to_add = rng.gen_range(1..end_range);
     loop {
         // create an iterator of required other characters
         let special = OTHER_VALUES.chars().choose(&mut rng).unwrap();
@@ -44,7 +44,7 @@ struct Opt {
     // https://cheatsheetseries.owasp.org/cheatsheets/Password_Storage_Cheat_Sheet.html
     /// The password length
     #[structopt(default_value = "160")]
-    length: u8,
+    length: usize,
     /// How many passwords to generate
     #[structopt(default_value = "1")]
     count: u8,
@@ -54,7 +54,7 @@ fn main() {
     // instantiate the options and use them as
     // arguments to our password generator
     let opt = Opt::from_args();
-    const MINIMUM_LENGTH: u8 = 30;
+    const MINIMUM_LENGTH: usize = 30;
     if opt.length < MINIMUM_LENGTH {
         eprintln!(
             "Please provide a password length greater than or equal to {}",

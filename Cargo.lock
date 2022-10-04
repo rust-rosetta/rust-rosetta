@@ -17,7 +17,7 @@ dependencies = [
 name = "_15-puzzle-game"
 version = "0.1.0"
 dependencies = [
- "rand 0.7.3",
+ "rand 0.8.5",
 ]
 
 [[package]]
@@ -25,14 +25,14 @@ name = "_2048"
 version = "0.1.0"
 dependencies = [
  "crossterm",
- "rand 0.7.3",
+ "rand 0.8.5",
 ]
 
 [[package]]
 name = "_24-game"
 version = "0.1.0"
 dependencies = [
- "rand 0.7.3",
+ "rand 0.8.5",
 ]
 
 [[package]]
@@ -147,7 +147,7 @@ version = "0.7.6"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "fcb51a0695d8f838b1ee009b3fbf66bda078cd64590202a864a8f3e8c4315c47"
 dependencies = [
- "getrandom 0.2.6",
+ "getrandom 0.2.7",
  "once_cell",
  "version_check",
 ]
@@ -376,7 +376,7 @@ name = "atomic-updates"
 version = "0.1.0"
 dependencies = [
  "array-init",
- "rand 0.7.3",
+ "rand 0.8.5",
 ]
 
 [[package]]
@@ -414,14 +414,14 @@ checksum = "d468802bab17cbc0cc575e9b053f41e72aa36bfa6b7f55e3529ffa43161b97fa"
 name = "average-loop-length"
 version = "0.1.0"
 dependencies = [
- "rand 0.7.3",
+ "rand 0.8.5",
 ]
 
 [[package]]
 name = "avl-tree"
 version = "0.1.0"
 dependencies = [
- "rand 0.7.3",
+ "rand 0.8.5",
  "structopt",
  "term-painter",
 ]
@@ -444,7 +444,7 @@ dependencies = [
 name = "balanced-brackets"
 version = "0.1.0"
 dependencies = [
- "rand 0.7.3",
+ "rand 0.8.5",
 ]
 
 [[package]]
@@ -473,7 +473,7 @@ checksum = "904dfeac50f3cdaba28fc6f57fdcddb75f49ed61346676a78c4ffe55877802fd"
 name = "basic"
 version = "0.1.0"
 dependencies = [
- "rand 0.7.3",
+ "rand 0.8.5",
 ]
 
 [[package]]
@@ -493,7 +493,7 @@ name = "best-shuffle"
 version = "0.1.0"
 dependencies = [
  "permutohedron",
- "rand 0.7.3",
+ "rand 0.8.5",
 ]
 
 [[package]]
@@ -605,7 +605,7 @@ name = "bogosort"
 version = "0.1.0"
 dependencies = [
  "meta",
- "rand 0.7.3",
+ "rand 0.8.5",
 ]
 
 [[package]]
@@ -627,7 +627,7 @@ dependencies = [
 name = "break"
 version = "0.1.0"
 dependencies = [
- "rand 0.7.3",
+ "rand 0.8.5",
 ]
 
 [[package]]
@@ -635,7 +635,7 @@ name = "brownian-tree"
 version = "0.1.0"
 dependencies = [
  "image 0.24.3",
- "rand 0.7.3",
+ "rand 0.8.5",
 ]
 
 [[package]]
@@ -661,7 +661,7 @@ dependencies = [
 name = "bulls-and-cows"
 version = "0.1.0"
 dependencies = [
- "rand 0.7.3",
+ "rand 0.8.5",
 ]
 
 [[package]]
@@ -847,7 +847,7 @@ name = "chaos-game"
 version = "0.1.0"
 dependencies = [
  "image 0.24.3",
- "rand 0.7.3",
+ "rand 0.8.5",
 ]
 
 [[package]]
@@ -1127,14 +1127,14 @@ version = "0.1.0"
 name = "concurrent-computing"
 version = "0.1.0"
 dependencies = [
- "rand 0.7.3",
+ "rand 0.8.5",
 ]
 
 [[package]]
 name = "constrained-random-points-on-a-circle"
 version = "0.1.0"
 dependencies = [
- "rand 0.7.3",
+ "rand 0.8.5",
 ]
 
 [[package]]
@@ -1617,7 +1617,7 @@ version = "0.1.0"
 name = "device"
 version = "0.1.0"
 dependencies = [
- "rand 0.7.3",
+ "rand 0.8.5",
 ]
 
 [[package]]
@@ -1732,7 +1732,7 @@ version = "0.1.0"
 name = "dutch-national-flag-problem"
 version = "0.1.0"
 dependencies = [
- "rand 0.7.3",
+ "rand 0.8.5",
 ]
 
 [[package]]
@@ -1902,7 +1902,7 @@ version = "0.1.0"
 name = "evolutionary-algorithm"
 version = "0.1.0"
 dependencies = [
- "rand 0.7.3",
+ "rand 0.8.5",
 ]
 
 [[package]]
@@ -2067,7 +2067,7 @@ version = "0.1.0"
 name = "flipping-bits-game"
 version = "0.1.0"
 dependencies = [
- "rand 0.7.3",
+ "rand 0.8.5",
 ]
 
 [[package]]
@@ -2139,7 +2139,7 @@ name = "forest-fire"
 version = "0.1.0"
 dependencies = [
  "ansi_term",
- "rand 0.7.3",
+ "rand 0.8.5",
 ]
 
 [[package]]
@@ -2401,13 +2401,13 @@ dependencies = [
 
 [[package]]
 name = "getrandom"
-version = "0.2.6"
+version = "0.2.7"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "9be70c98951c83b8d2f8f60d7065fa6d5146873094452a1008da8c2f1e4205ad"
+checksum = "4eb1a864a501629691edf6c15a593b7a51eebaa1e8468e9ddc623de7c9b58ec6"
 dependencies = [
  "cfg-if 1.0.0",
  "libc",
- "wasi 0.10.0+wasi-snapshot-preview1",
+ "wasi 0.11.0+wasi-snapshot-preview1",
 ]
 
 [[package]]
@@ -2666,7 +2666,7 @@ version = "0.1.0"
 name = "guess-the-number"
 version = "0.1.0"
 dependencies = [
- "rand 0.7.3",
+ "rand 0.8.5",
 ]
 
 [[package]]
@@ -3338,7 +3338,7 @@ dependencies = [
 name = "k-d-tree"
 version = "0.1.0"
 dependencies = [
- "rand 0.7.3",
+ "rand 0.8.5",
 ]
 
 [[package]]
@@ -3348,7 +3348,7 @@ dependencies = [
  "csv",
  "gnuplot",
  "nalgebra 0.31.1",
- "rand 0.7.3",
+ "rand 0.8.5",
  "structopt",
 ]
 
@@ -3403,7 +3403,7 @@ version = "0.1.0"
 name = "knuth-shuffle"
 version = "0.1.0"
 dependencies = [
- "rand 0.7.3",
+ "rand 0.8.5",
 ]
 
 [[package]]
@@ -3464,9 +3464,9 @@ dependencies = [
 
 [[package]]
 name = "libc"
-version = "0.2.126"
+version = "0.2.132"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "349d5a591cd28b49e1d1037471617a32ddcda5731b99419008085f72d5a53836"
+checksum = "8371e4e5341c3a96db127eb2465ac681ced4c433e01dd0e938adbef26ba93ba5"
 
 [[package]]
 name = "libloading"
@@ -3743,7 +3743,7 @@ dependencies = [
  "lazy_static 1.4.0",
  "pathdiff",
  "percent-encoding 1.0.1",
- "rand 0.7.3",
+ "rand 0.8.5",
  "regex 1.6.0",
  "reqwest",
  "serde",
@@ -3880,7 +3880,7 @@ version = "0.1.0"
 name = "monte-carlo-methods"
 version = "0.1.0"
 dependencies = [
- "rand 0.7.3",
+ "rand 0.8.5",
 ]
 
 [[package]]
@@ -4137,7 +4137,7 @@ dependencies = [
 name = "nested"
 version = "0.1.0"
 dependencies = [
- "rand 0.7.3",
+ "rand 0.8.5",
 ]
 
 [[package]]
@@ -4230,7 +4230,7 @@ version = "0.1.0"
 name = "nth-root"
 version = "0.1.0"
 dependencies = [
- "rand 0.7.3",
+ "rand 0.8.5",
 ]
 
 [[package]]
@@ -4518,7 +4518,7 @@ dependencies = [
 name = "one-of-n-lines-in-a-file"
 version = "0.1.0"
 dependencies = [
- "rand 0.7.3",
+ "rand 0.8.5",
 ]
 
 [[package]]
@@ -4727,7 +4727,7 @@ version = "0.1.0"
 name = "password-generator"
 version = "0.1.0"
 dependencies = [
- "rand 0.7.3",
+ "rand 0.8.5",
  "structopt",
 ]
 
@@ -4747,7 +4747,7 @@ checksum = "a3bf70094d203e07844da868b634207e71bfab254fe713171fae9a6e751ccf31"
 name = "penneys-game"
 version = "0.1.0"
 dependencies = [
- "rand 0.7.3",
+ "rand 0.8.5",
 ]
 
 [[package]]
@@ -4834,7 +4834,7 @@ version = "0.1.0"
 name = "pick-random-element"
 version = "0.1.0"
 dependencies = [
- "rand 0.7.3",
+ "rand 0.8.5",
 ]
 
 [[package]]
@@ -4866,7 +4866,7 @@ dependencies = [
 name = "playing-cards"
 version = "0.1.0"
 dependencies = [
- "rand 0.7.3",
+ "rand 0.8.5",
 ]
 
 [[package]]
@@ -4931,9 +4931,9 @@ version = "0.1.0"
 
 [[package]]
 name = "ppv-lite86"
-version = "0.2.10"
+version = "0.2.16"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "ac74c624d6b2d21f425f752262f42188365d7b8ff1aff74c82e45136510a4857"
+checksum = "eb9f9e6e233e5c4a35559a617bf40a4ec447db2e84c20b55a6f83167b7e57872"
 
 [[package]]
 name = "predicates"
@@ -5030,7 +5030,7 @@ checksum = "68a61082d8bceecd71a3870e9162002bb75f7ba9c7aa8b76227e887782fef9c8"
 name = "probabilistic-choice"
 version = "0.1.0"
 dependencies = [
- "rand 0.7.3",
+ "rand 0.8.5",
 ]
 
 [[package]]
@@ -5152,7 +5152,7 @@ checksum = "941ba9d78d8e2f7ce474c015eea4d9c6d25b6a3327f9832ee29a4de27f91bbb8"
 name = "radix-sort"
 version = "0.1.0"
 dependencies = [
- "rand 0.7.3",
+ "rand 0.8.5",
 ]
 
 [[package]]
@@ -5188,7 +5188,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "34af8d1a0e25924bc5b7c43c079c942339d8f0a8b57c39049bef581b46327404"
 dependencies = [
  "libc",
- "rand_chacha 0.3.0",
+ "rand_chacha 0.3.1",
  "rand_core 0.6.3",
 ]
 
@@ -5204,9 +5204,9 @@ dependencies = [
 
 [[package]]
 name = "rand_chacha"
-version = "0.3.0"
+version = "0.3.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "e12735cf05c9e10bf21534da50a147b924d555dc7a547c42e6bb2d5b6017ae0d"
+checksum = "e6c10a63a0fa32252be49d21e7709d4d4baf8d231c2dbce1eaa8141b9b127d88"
 dependencies = [
  "ppv-lite86",
  "rand_core 0.6.3",
@@ -5242,7 +5242,7 @@ version = "0.6.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "d34f1408f55294453790c48b2f1ebbb1c5b4b7563eb1f418bcfcfdbb06ebb4e7"
 dependencies = [
- "getrandom 0.2.6",
+ "getrandom 0.2.7",
 ]
 
 [[package]]
@@ -5402,7 +5402,7 @@ name = "read-a-ppm-file"
 version = "0.1.0"
 dependencies = [
  "bitmap",
- "rand 0.7.3",
+ "rand 0.8.5",
 ]
 
 [[package]]
@@ -5615,7 +5615,7 @@ dependencies = [
 name = "rock-paper-scissors"
 version = "0.1.0"
 dependencies = [
- "rand 0.7.3",
+ "rand 0.8.5",
 ]
 
 [[package]]
@@ -6522,7 +6522,7 @@ dependencies = [
 name = "tic-tac-toe"
 version = "0.1.0"
 dependencies = [
- "rand 0.7.3",
+ "rand 0.8.5",
 ]
 
 [[package]]
@@ -6744,7 +6744,7 @@ version = "1.6.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "97fee6b57c6a41524a810daee9286c02d7752c4253064d0b05472833a438f675"
 dependencies = [
- "cfg-if 1.0.0",
+ "cfg-if 0.1.10",
  "rand 0.8.5",
  "static_assertions",
 ]
@@ -6769,7 +6769,7 @@ version = "0.1.0"
 name = "unbias-a-random-generator"
 version = "0.1.0"
 dependencies = [
- "rand 0.7.3",
+ "rand 0.8.5",
 ]
 
 [[package]]
@@ -6933,7 +6933,7 @@ version = "0.1.0"
 name = "visualize-a-tree"
 version = "0.1.0"
 dependencies = [
- "rand 0.7.3",
+ "rand 0.8.5",
  "serde",
  "serde_derive",
  "serde_json",
@@ -7551,7 +7551,7 @@ version = "0.1.0"
 name = "with-feedback"
 version = "0.1.0"
 dependencies = [
- "rand 0.7.3",
+ "rand 0.8.5",
 ]
 
 [[package]]
@@ -7567,7 +7567,7 @@ name = "write-a-ppm-file"
 version = "0.1.0"
 dependencies = [
  "bitmap",
- "rand 0.7.3",
+ "rand 0.8.5",
 ]
 
 [[package]]

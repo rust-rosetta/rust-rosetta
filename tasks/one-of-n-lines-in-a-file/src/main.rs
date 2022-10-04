@@ -5,7 +5,7 @@ use rand::{thread_rng, Rng};
 fn one_of_n<R: Rng>(rng: &mut R, n: usize) -> usize {
     (1..n).fold(0, |keep, cand| {
         // Note that this will break if n is larger than u32::MAX
-        if rng.gen_range(0, cand as u32 + 1) == 0 {
+        if rng.gen_range(0..=cand) == 0 {
             cand
         } else {
             keep

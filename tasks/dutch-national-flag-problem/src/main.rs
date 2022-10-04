@@ -1,5 +1,3 @@
-extern crate rand;
-
 use rand::Rng;
 
 // if you use an enum you will have to implement a lot of traits for it before you can
@@ -33,7 +31,7 @@ fn main() {
     let mut color_array = [0u8; 20];
 
     for color in &mut color_array {
-        *color = rng.gen_range(0, 3);
+        *color = rng.gen_range(0..3);
     }
 
     if check_sorted(&color_array) {

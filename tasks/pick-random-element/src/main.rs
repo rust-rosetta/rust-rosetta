@@ -6,7 +6,7 @@ fn pick_random_e(a: &[u8]) -> u8 {
     // thread-local random number generator
     let mut rng = thread_rng();
 
-    let ri = rng.gen_range(0, a.len());
+    let ri = rng.gen_range(0..a.len());
 
     a[ri]
 }
