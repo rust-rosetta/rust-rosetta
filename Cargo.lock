@@ -2733,6 +2733,13 @@ name = "happy-numbers"
 version = "0.1.0"
 
 [[package]]
+name = "harmonic-series"
+version = "0.1.0"
+dependencies = [
+ "num 0.4.0",
+]
+
+[[package]]
 name = "harshad-or-niven-series"
 version = "0.1.0"
 
