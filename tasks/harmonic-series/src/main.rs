@@ -8,9 +8,9 @@ fn main() {
 
     println!("Harmonic number 100 = {}", harmonic_number(100));
 
-    //In order to avoid recomputing all the terms in the sum for every harmonic number
-    //we save the value of the harmonic series between loop iterations
-    //and just add 1/iter to it.
+    // In order to avoid recomputing all the terms in the sum for every harmonic number
+    // we save the value of the harmonic series between loop iterations
+    // and just add 1/iter to it.
 
     let mut target = 1;
     let mut iter = 1;
@@ -22,15 +22,15 @@ fn main() {
             target += 1;
         }
 
-        //Compute the next term in the harmonic series
+        // Compute the next term in the harmonic series
         iter += 1;
         harmonic_number += Ratio::from_integer(iter.into()).recip();
     }
 }
 
 fn harmonic_number(n: u64) -> Ratio<BigInt> {
-    //Convert each integer from 1 to n into an arbitrary precision rational number
-    //and sum their reciprocals
+    // Convert each integer from 1 to n into an arbitrary precision rational number
+    // and sum their reciprocals
     (1..=n).map(|i| Ratio::from_integer(i.into()).recip()).sum()
 }
 
