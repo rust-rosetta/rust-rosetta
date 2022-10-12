@@ -78,7 +78,7 @@ mod tests {
         ];
         for (i, [numerator, denominator]) in CORRECT_FIRST_TWENTY.into_iter().enumerate() {
             assert_eq!(
-                harmonic_number((i + 1).try_into().unwrap()),
+                harmonic_number(NonZeroU64::new((i + 1).try_into().unwrap()).unwrap()),
                 Ratio::new(numerator.into(), denominator.into())
             );
         }
@@ -87,6 +87,6 @@ mod tests {
             BigInt::parse_bytes(b"14466636279520351160221518043104131447711", 10).unwrap(),
             BigInt::parse_bytes(b"2788815009188499086581352357412492142272", 10).unwrap(),
         );
-        assert_eq!(harmonic_number(100), correct_hundred);
+        assert_eq!(harmonic_number(100.try_into().unwrap()), correct_hundred);
     }
 }
