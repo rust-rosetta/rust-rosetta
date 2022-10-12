@@ -14,7 +14,7 @@ fn main() {
         );
     }
 
-    // the unwrap here is likewise okay because 100 is not 0.
+    // The unwrap here is likewise okay because 100 is not 0.
     println!(
         "Harmonic number 100 = {}",
         harmonic_number(100.try_into().unwrap())
