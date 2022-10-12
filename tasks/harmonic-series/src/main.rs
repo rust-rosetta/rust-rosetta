@@ -8,11 +8,17 @@ fn main() {
         // which is just a normal u64 which is guaranteed at compile time to never be 0.
         // We convert n into this type with `n.try_into().unwrap()`,
         // where the unwrap is okay because n is never 0.
-        println!("Harmonic number {n} = {}", harmonic_number(n.try_into().unwrap()));
+        println!(
+            "Harmonic number {n} = {}",
+            harmonic_number(n.try_into().unwrap())
+        );
     }
 
     // the unwrap here is likewise okay because 100 is not 0.
-    println!("Harmonic number 100 = {}", harmonic_number(100.try_into().unwrap()));
+    println!(
+        "Harmonic number 100 = {}",
+        harmonic_number(100.try_into().unwrap())
+    );
 
     // In order to avoid recomputing all the terms in the sum for every harmonic number
     // we save the value of the harmonic series between loop iterations
@@ -37,7 +43,9 @@ fn main() {
 fn harmonic_number(n: NonZeroU64) -> Ratio<BigInt> {
     // Convert each integer from 1 to n into an arbitrary precision rational number
     // and sum their reciprocals
-    (1..=n.get()).map(|i| Ratio::from_integer(i.into()).recip()).sum()
+    (1..=n.get())
+        .map(|i| Ratio::from_integer(i.into()).recip())
+        .sum()
 }
 
 #[cfg(test)]
