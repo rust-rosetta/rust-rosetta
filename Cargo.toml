@@ -83,6 +83,7 @@ authors = [
     "Lucas De Angelis, https://github.com/lucas-deangelis",
     "9names, https://github.com/9names",
     "Avrosh Kumar, https://github.com/avroshk",
+    "Johanna Sörngård, https://github.com/JSorngard",
 ]
 
 [dependencies]
@@ -710,6 +711,9 @@ members = [
 
     # http://rosettacode.org/wiki/Happy_numbers
     "tasks/happy-numbers",
+
+    # http://rosettacode.org/wiki/Harmonic_series
+    "tasks/harmonic-series",
 
     # http://rosettacode.org/wiki/Harshad_or_Niven_series
     "tasks/harshad-or-niven-series",
