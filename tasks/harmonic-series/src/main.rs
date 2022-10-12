@@ -34,7 +34,7 @@ fn main() {
             target += 1;
         }
 
-        // Compute the next term in the harmonic series
+        // Compute the next term in the harmonic series.
         iter += 1;
         harmonic_number += Ratio::from_integer(iter.into()).recip();
     }
@@ -42,7 +42,7 @@ fn main() {
 
 fn harmonic_number(n: NonZeroU64) -> Ratio<BigInt> {
     // Convert each integer from 1 to n into an arbitrary precision rational number
-    // and sum their reciprocals
+    // and sum their reciprocals.
     (1..=n.get())
         .map(|i| Ratio::from_integer(i.into()).recip())
         .sum()
