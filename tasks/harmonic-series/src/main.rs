@@ -4,7 +4,7 @@ use std::num::NonZeroU64;
 
 fn main() {
     for n in 1..=20 {
-        // harmonic_number takes the type `NonZeroU64`,
+        // `harmonic_number` takes the type `NonZeroU64`,
         // which is just a normal u64 which is guaranteed at compile time to never be 0.
         // We convert n into this type with `n.try_into().unwrap()`,
         // where the unwrap is okay because n is never 0.
