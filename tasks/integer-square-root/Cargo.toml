@@ -9,4 +9,4 @@ url = "http://rosettacode.org/wiki/Isqrt_(integer_square_root)_of_X"
 [dependencies]
 num = "0.4.0"
 num-traits = "0.2.15"
-num-bigint = "0.4.0"
+num-bigint = "0.4.3"
