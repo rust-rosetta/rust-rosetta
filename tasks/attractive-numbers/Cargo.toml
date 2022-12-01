@@ -6,7 +6,7 @@ edition = "2021"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-primal = "0.3.0"
+primal = "0.3.1"
 
 [package.metadata.rosettacode]
 url = "http://rosettacode.org/wiki/Attractive_numbers"
