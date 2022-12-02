@@ -6,4 +6,4 @@ version = "0.1.0"
 url = "http://rosettacode.org/wiki/Additive_primes"
 
 [dependencies]
-primal = "0.3.0"
+primal = "0.3.1"
