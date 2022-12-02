@@ -3601,7 +3601,7 @@ name = "mandelbrot-set"
 version = "0.1.0"
 dependencies = [
  "image 0.24.3",
- "num-complex 0.4.0",
+ "num-complex 0.4.2",
 ]
 
 [[package]]
@@ -3984,7 +3984,7 @@ dependencies = [
  "approx 0.5.1",
  "matrixmultiply 0.3.2",
  "nalgebra-macros",
- "num-complex 0.4.0",
+ "num-complex 0.4.2",
  "num-rational 0.4.0",
  "num-traits 0.2.15",
  "simba",
@@ -4042,7 +4042,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "dec23e6762830658d2b3d385a75aa212af2f67a4586d4442907144f3bb6a1ca8"
 dependencies = [
  "matrixmultiply 0.3.2",
- "num-complex 0.4.0",
+ "num-complex 0.4.2",
  "num-integer",
  "num-traits 0.2.15",
  "rawpointer",
@@ -4276,7 +4276,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "43db66d1170d347f9a065114077f7dccb00c1b9478c89384490a3425279a4606"
 dependencies = [
  "num-bigint 0.4.3",
- "num-complex 0.4.0",
+ "num-complex 0.4.2",
  "num-integer",
  "num-iter",
  "num-rational 0.4.0",
@@ -4329,9 +4329,9 @@ dependencies = [
 
 [[package]]
 name = "num-complex"
-version = "0.4.0"
+version = "0.4.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "26873667bbbb7c5182d4a37c1add32cdf09f841af72da53318fdb81543c15085"
+checksum = "7ae39348c8bc5fbd7f40c727a9925f03517afd2ab27d46702108b6a7e5414c19"
 dependencies = [
  "num-traits 0.2.15",
 ]
@@ -6032,7 +6032,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "13a2609e876d4f77f6ab7ff5254fc39b4f1927ba8e6db3d18be7c32534d3725e"
 dependencies = [
  "approx 0.5.1",
- "num-complex 0.4.0",
+ "num-complex 0.4.2",
  "num-traits 0.2.15",
  "paste",
  "wide",
