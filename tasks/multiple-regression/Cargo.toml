@@ -8,7 +8,7 @@ url = "http://rosettacode.org/wiki/Multiple_regression"
 
 
 [dependencies]
-nalgebra= "0.31.1"
+nalgebra= "0.31.4"
 
 [dev-dependencies]
 assert_approx_eq = "1.1.0"
