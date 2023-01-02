@@ -9,4 +9,4 @@ url = "http://rosettacode.org/wiki/Heronian_triangles"
 
 
 [dependencies]
-num-integer= "0.1.44"
+num-integer= "0.1.45"
