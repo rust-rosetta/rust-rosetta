@@ -6633,19 +6633,19 @@ version = "0.1.0"
 
 [[package]]
 name = "tokio"
-version = "1.19.2"
+version = "1.24.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "c51a52ed6686dd62c320f9b89299e9dfb46f730c7a48e635c19f21d116cb1439"
+checksum = "1d9f76183f91ecfb55e1d7d5602bd1d979e38a3a522fe900241cf195624d67ae"
 dependencies = [
+ "autocfg",
  "bytes",
  "libc",
  "memchr 2.5.0",
  "mio 0.8.4",
  "num_cpus",
- "once_cell",
  "pin-project-lite",
  "socket2 0.4.4",
- "winapi 0.3.9",
+ "windows-sys 0.42.0",
 ]
 
 [[package]]
