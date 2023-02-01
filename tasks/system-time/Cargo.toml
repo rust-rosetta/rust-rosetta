@@ -7,4 +7,4 @@ edition = "2021"
 url = "http://rosettacode.org/wiki/System_time"
 
 [dependencies]
-time = { version = "0.3.11", features = ["formatting", "macros"] }
+time = { version = "0.3.17", features = ["formatting", "macros"] }
