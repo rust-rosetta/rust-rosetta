@@ -1,6 +1,3 @@
-#![feature(int_log)]
-#![feature(once_cell)]
-
 mod fps;
 
 #[cfg(test)]

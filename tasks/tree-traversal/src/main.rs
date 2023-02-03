@@ -1,5 +1,3 @@
-#![feature(box_syntax, box_patterns)]
-
 use std::collections::VecDeque;
 
 #[derive(Debug)]
@@ -58,11 +56,11 @@ impl<T> TreeNode<T> {
             res.push(node);
             match node.right {
                 None => {}
-                Some(box ref n) => stack.push(n),
+                Some(ref n) => stack.push(n),
             }
             match node.left {
                 None => {}
-                Some(box ref n) => stack.push(n),
+                Some(ref n) => stack.push(n),
             }
         }
         res
@@ -79,12 +77,12 @@ impl<T> TreeNode<T> {
             loop {
                 match p.right {
                     None => {}
-                    Some(box ref n) => stack.push(n),
+                    Some(ref n) => stack.push(n),
                 }
                 stack.push(p);
                 match p.left {
                     None => break,
-                    Some(box ref n) => p = n,
+                    Some(ref n) => p = n,
                 }
             }
             // Visit the nodes with no right child
@@ -115,11 +113,11 @@ impl<T> TreeNode<T> {
             res.push(node);
             match node.left {
                 None => {}
-                Some(box ref n) => stack.push(n),
+                Some(ref n) => stack.push(n),
             }
-            match node.right {
+            match &node.right {
                 None => {}
-                Some(box ref n) => stack.push(n),
+                Some(n) => stack.push(n),
             }
         }
         let rev_iter = res.iter().rev();
@@ -140,11 +138,11 @@ impl<T> TreeNode<T> {
             res.push(node);
             match node.left {
                 None => {}
-                Some(box ref n) => queue.push_back(n),
+                Some(ref n) => queue.push_back(n),
             }
             match node.right {
                 None => {}
-                Some(box ref n) => queue.push_back(n),
+                Some(ref n) => queue.push_back(n),
             }
         }
         res

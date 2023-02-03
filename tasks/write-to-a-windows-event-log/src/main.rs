@@ -1,5 +1,3 @@
-#![feature(maybe_uninit_as_bytes)]
-
 #[cfg(windows)]
 use std::ffi::CString;
 #[cfg(windows)]
