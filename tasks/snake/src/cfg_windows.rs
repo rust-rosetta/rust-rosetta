@@ -6,7 +6,9 @@
 
 use rand::Rng;
 use std::{cell::RefCell, rc::Rc};
-use winsafe::{co, gui, prelude::*, COLORREF, HBRUSH, HPEN, SIZE};
+use winsafe::co::VK;
+use winsafe::gui::{self, Brush};
+use winsafe::{co, prelude::*, COLORREF, HBRUSH, HPEN, SIZE};
 
 const STEP: i32 = 3; // px, motion per frame. STEP and FPS determine the smoothness and speed of the animation.
 const FPS: u32 = 90;
@@ -61,9 +63,12 @@ pub fn main() {
 
     let wnd = gui::WindowMain::new(gui::WindowMainOpts {
         title: "Snake - Start: Space, then press W-A-S-D".to_string(),
-        size: winsafe::SIZE::new(FIELD_W * RATIO * STEP, FIELD_W * RATIO * STEP),
+        size: (
+            (FIELD_W * RATIO * STEP) as u32,
+            (FIELD_W * RATIO * STEP) as u32,
+        ),
         ex_style: co::WS_EX::CLIENTEDGE,
-        class_bg_brush: brushes[bg],
+        class_bg_brush: Brush::Handle(unsafe { brushes[bg].raw_copy() }),
         ..Default::default()
     });
 
@@ -73,15 +78,19 @@ pub fn main() {
         let context = Rc::clone(&context);
         move |k| {
             let mut ctx = context.borrow_mut();
-            match (ctx.dir, k.char_code as u8) {
-                (Start, bt @ (b' ' | 113)) => {
+            match (ctx.dir, k.vkey_code) {
+                (Start, bt @ (VK::SPACE | VK::F2)) => {
                     let len = ctx.snake.len(); //                              113 == F2 key
-                    *ctx = Context::new(ctx.wnd.clone(), if bt == b' ' { len } else { 0 });
+                    *ctx = Context::new(ctx.wnd.clone(), if bt == VK::SPACE { len } else { 0 });
                     ctx.wnd.hwnd().InvalidateRect(None, true)?; // call .wm_paint() with erase
                     ctx.wnd.hwnd().SetTimer(1, 1000 / FPS, None)?;
                 }
-                (W | S, bt @ (b'A' | b'D')) => ctx.ordered_dir = if bt == b'A' { A } else { D },
-                (A | D, bt @ (b'S' | b'W')) => ctx.ordered_dir = if bt == b'S' { S } else { W },
+                (W | S, bt @ (VK::CHAR_A | VK::CHAR_D)) => {
+                    ctx.ordered_dir = if bt == VK::CHAR_A { A } else { D }
+                }
+                (A | D, bt @ (VK::CHAR_S | VK::CHAR_W)) => {
+                    ctx.ordered_dir = if bt == VK::CHAR_S { S } else { W }
+                }
                 _ => (),
             }
             Ok(())
@@ -108,7 +117,7 @@ pub fn main() {
                 ctx.dir = ctx.ordered_dir;
                 let hw = ctx.wnd.hwnd();
                 let eat = new_h == ctx.id_r[food];
-                if !eat && (cells.binary_search(&new_h).is_err() || ctx.snake.contains(&&new_h)) {
+                if !eat && (cells.binary_search(&new_h).is_err() || ctx.snake.contains(&new_h)) {
                     hw.KillTimer(1)?;
                     hw.SetWindowText(&(hw.GetWindowText()? + "  Restart: F2 (with save - Space)"))?;
                     ctx.dir = Start;
@@ -140,11 +149,13 @@ pub fn main() {
 
     wnd.on().wm_paint(move || {
         let ctx = context.borrow();
-        let mut ps = winsafe::PAINTSTRUCT::default();
-        let hdc = ctx.wnd.hwnd().BeginPaint(&mut ps)?;
-        hdc.SelectObjectPen(HPEN::CreatePen(co::PS::NULL, 0, COLORREF::new(0, 0, 0))?)?;
-        for (&id_rect, &brush) in ctx.id_r.iter().zip(&brushes) {
-            hdc.SelectObjectBrush(brush)?;
+        let hdc = ctx.wnd.hwnd().BeginPaint()?;
+
+        let hpen = HPEN::CreatePen(co::PS::NULL, 0, COLORREF::new(0, 0, 0))?;
+
+        let _pen_guard = hdc.SelectObject(&*hpen)?;
+        for (&id_rect, brush) in ctx.id_r.iter().zip(&brushes) {
+            let _pen_guard = hdc.SelectObject(&**brush)?;
             let left = id_rect % TW * STEP - (STEP * RATIO + SNAKE_W) / 2;
             let top = id_rect / TW * STEP - (STEP * RATIO + SNAKE_W) / 2;
             hdc.RoundRect(
@@ -157,7 +168,6 @@ pub fn main() {
                 ROUNDING,
             )?;
         }
-        ctx.wnd.hwnd().EndPaint(&ps);
         Ok(())
     });
 

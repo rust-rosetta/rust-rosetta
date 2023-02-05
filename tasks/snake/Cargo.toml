@@ -8,5 +8,5 @@ authors = ["Vladimir Shardinov <vvshard@gmail.com>"]
 url = "http://rosettacode.org/wiki/Snake"
 
 [target.'cfg(windows)'.dependencies]
-winsafe = { version = "0.0.9", features = ["gui", "user"] }
+winsafe = { version = "0.0.13", features = ["gui", "user"] }
 rand = "0.8.5"
