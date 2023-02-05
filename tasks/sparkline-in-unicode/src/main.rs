@@ -1,5 +1,3 @@
-extern crate regex;
-
 use std::f64;
 
 use regex::Regex;
@@ -9,8 +7,8 @@ const BARS: &str = "▁▂▃▄▅▆▇█";
 fn read_samples(input: &str) -> Vec<f64> {
     let regex = Regex::new(r"[\s,]+").unwrap();
 
-    input
-        .split(&regex)
+    regex
+        .split(input)
         .map(|value| value.parse().unwrap())
         .collect()
 }

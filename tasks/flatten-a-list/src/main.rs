@@ -1,5 +1,3 @@
-#![feature(box_syntax)]
-
 use Tree::{Leaf, Node};
 
 #[derive(Debug)]

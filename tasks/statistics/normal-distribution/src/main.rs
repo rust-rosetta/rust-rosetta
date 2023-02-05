@@ -1,5 +1,4 @@
 //! Rust rosetta example for normal distribution
-use math::{histogram::Histogram, traits::ToIterator};
 
 use rand_distr::{Distribution, Normal};
 
@@ -32,12 +31,29 @@ fn standard_deviation(data: &[f32]) -> Option<f32> {
 fn print_histogram(data: &[f32], maxwidth: usize, bincount: usize, ch: char) {
     let min_val = data.iter().cloned().fold(f32::NAN, f32::min);
     let max_val = data.iter().cloned().fold(f32::NAN, f32::max);
-    let histogram = Histogram::new(Some(&data.to_vec()), bincount, min_val, max_val).unwrap();
-    let max_bin_value = histogram.get_counters().iter().max().unwrap();
+
+    let delta = (max_val - min_val) / bincount as f32;
+
+    let mut bins = vec![0; bincount];
+
+    for sample in data {
+        let bin = ((sample - min_val) / delta) as usize;
+
+        if bin < bincount {
+            bins[bin] += 1;
+        }
+    }
+
+    let max_bin_value = *bins.iter().max().unwrap();
+
     println!();
-    for x in histogram.to_iter() {
-        let (bin_min, bin_max, freq) = x;
-        let bar_width = (((freq as f64) / (*max_bin_value as f64)) * (maxwidth as f64)) as u32;
+    for (i, freq) in bins.into_iter().enumerate() {
+        let i = i as f32;
+
+        let bin_min = min_val + i * delta;
+        let bin_max = min_val + (i + 1.0) * delta;
+
+        let bar_width = (((freq as f64) / (max_bin_value as f64)) * (maxwidth as f64)) as u32;
         let bar_as_string = (1..bar_width).fold(String::new(), |b, _| b + &ch.to_string());
         println!(
             "({:>6},{:>6}) |{} {:.2}%",
