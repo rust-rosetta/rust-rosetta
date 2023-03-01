@@ -9,4 +9,4 @@ url = "http://rosettacode.org/wiki/Statistics/Normal_distribution"
 
 [dependencies]
 rand = "0.8.5"
-rand_distr = "0.4.0"
+rand_distr = "0.4.3"
