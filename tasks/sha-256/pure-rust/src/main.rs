@@ -1,3 +1,5 @@
+use std::convert::TryInto;
+
 const HASH_VALUES: [u32; 8] = [
     0x6a09e667, 0xbb67ae85, 0x3c6ef372, 0xa54ff53a, 0x510e527f, 0x9b05688c, 0x1f83d9ab, 0x5be0cd19,
 ];
@@ -13,17 +15,22 @@ const ROUND_CONSTANTS: [u32; 64] = [
     0x748f82ee, 0x78a5636f, 0x84c87814, 0x8cc70208, 0x90befffa, 0xa4506ceb, 0xbef9a3f7, 0xc67178f2,
 ];
 
-const INPUT: &str = "Rosetta code";
-
 fn main() {
-    let mut bytes = INPUT.as_bytes().to_vec();
+    println!("{}", sha_256("Rosetta code"));
+}
+
+fn sha_256(input: &str) -> String {
+    let mut bytes = input.as_bytes().to_vec();
 
     let mut hash_values = HASH_VALUES.to_vec();
 
-    let input_len = bytes.len(); // Bytes
-    let input_len_byte = (input_len * 8).to_be_bytes(); // Bits
+    let input_len = bytes.len();
+    // Bytes
+    let input_len_byte = (input_len * 8).to_be_bytes();
+    // Bits
 
-    let padding = ((64 * ((input_len + 72) / 64)) - input_len) - 9; // Bytes
+    let padding = ((64 * ((input_len + 72) / 64)) - input_len) - 9;
+    // Bytes
 
     bytes.push(128);
     bytes.append(&mut vec![0; padding]);
@@ -94,10 +101,13 @@ fn main() {
         .collect::<Vec<String>>()
         .join("");
 
+    return output;
+}
+
+#[test]
+fn test_rosetta() {
     assert_eq!(
-        output,
+        sha_256("Rosetta code"),
         "764faf5c61ac315f1497f9dfa542713965b785e5cc2f707d6468d7d1124cdfcf"
     );
-
-    println!("{}", output);
 }
