@@ -136,12 +136,6 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "f26201604c87b1e01bd3d98f8d5d9a8fcbb815e8cedb41ffccbeb4bf593a35fe"
 
 [[package]]
-name = "adler32"
-version = "1.2.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "aae1277d39aeec15cb388266ecc24b11c80469deae6067e17a1a7aa9e5c1f234"
-
-[[package]]
 name = "ahash"
 version = "0.7.6"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -622,7 +616,7 @@ dependencies = [
 name = "brownian-tree"
 version = "0.1.0"
 dependencies = [
- "image 0.24.3",
+ "image 0.24.6",
  "rand 0.8.5",
 ]
 
@@ -834,7 +828,7 @@ dependencies = [
 name = "chaos-game"
 version = "0.1.0"
 dependencies = [
- "image 0.24.3",
+ "image 0.24.6",
  "rand 0.8.5",
 ]
 
@@ -1581,15 +1575,6 @@ name = "definition"
 version = "0.1.0"
 
 [[package]]
-name = "deflate"
-version = "1.0.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "c86f7e25f518f4b81808a2cf1c50996a61f5c2eb394b2393bd87f2a4780a432f"
-dependencies = [
- "adler32",
-]
-
-[[package]]
 name = "delete-a-file"
 version = "0.1.0"
 
@@ -2066,6 +2051,16 @@ checksum = "e6234dd4468ae5d1e2dbb06fe2b058696fdc50a339c68a393aefbf00bc81e423"
 dependencies = [
  "libc",
  "miniz-sys",
+]
+
+[[package]]
+name = "flate2"
+version = "1.0.25"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "a8a2db397cb1c8772f31494cb8917e48cd1e64f0fa7efac59fbd741a0a8ce841"
+dependencies = [
+ "crc32fast",
+ "miniz_oxide 0.6.2",
 ]
 
 [[package]]
@@ -3160,16 +3155,16 @@ dependencies = [
 
 [[package]]
 name = "image"
-version = "0.24.3"
+version = "0.24.6"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "7e30ca2ecf7666107ff827a8e481de6a132a9b687ed3bb20bb1c144a36c00964"
+checksum = "527909aa81e20ac3a44803521443a765550f09b5130c2c2fa1ea59c2f8f50a3a"
 dependencies = [
  "bytemuck",
  "byteorder 1.4.2",
  "color_quant",
  "num-rational 0.4.0",
  "num-traits 0.2.15",
- "png 0.17.5",
+ "png 0.17.7",
 ]
 
 [[package]]
@@ -3627,7 +3622,7 @@ version = "0.1.0"
 name = "mandelbrot-set"
 version = "0.1.0"
 dependencies = [
- "image 0.24.3",
+ "image 0.24.6",
  "num-complex 0.4.2",
 ]
 
@@ -3841,9 +3836,9 @@ dependencies = [
 
 [[package]]
 name = "miniz_oxide"
-version = "0.5.3"
+version = "0.6.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "6f5c75688da582b8ffc1f1799e9db273f32133c49e048f614d22ec3256773ccc"
+checksum = "b275950c28b37e794e8c55d88aeb5e139d0ce23fdbbeda68f8d7174abdf9e8fa"
 dependencies = [
  "adler",
 ]
@@ -4843,7 +4838,7 @@ checksum = "6ac9a59f73473f1b8d852421e59e64809f025994837ef743615c6d0c5b305160"
 name = "plasma-effect"
 version = "0.1.0"
 dependencies = [
- "image 0.24.3",
+ "image 0.24.6",
 ]
 
 [[package]]
@@ -4888,21 +4883,21 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "06208e2ee243e3118a55dda9318f821f206d8563fb8d4df258767f8e62bb0997"
 dependencies = [
  "bitflags 0.7.0",
- "flate2",
+ "flate2 0.2.20",
  "inflate",
  "num-iter",
 ]
 
 [[package]]
 name = "png"
-version = "0.17.5"
+version = "0.17.7"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "dc38c0ad57efb786dd57b9864e5b18bae478c00c824dc55a38bbc9da95dde3ba"
+checksum = "5d708eaf860a19b19ce538740d2b4bdeeb8337fa53f7738455e706623ad5c638"
 dependencies = [
  "bitflags 1.2.1",
  "crc32fast",
- "deflate",
- "miniz_oxide 0.5.3",
+ "flate2 1.0.25",
+ "miniz_oxide 0.6.2",
 ]
 
 [[package]]
@@ -6559,7 +6554,7 @@ dependencies = [
  "arrayvec 0.5.2",
  "bytemuck",
  "cfg-if 1.0.0",
- "png 0.17.5",
+ "png 0.17.7",
  "safe_arch 0.5.2",
 ]
 
@@ -6739,7 +6734,7 @@ version = "1.6.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "97fee6b57c6a41524a810daee9286c02d7752c4253064d0b05472833a438f675"
 dependencies = [
- "cfg-if 0.1.10",
+ "cfg-if 1.0.0",
  "rand 0.8.5",
  "static_assertions",
 ]
