@@ -7,4 +7,4 @@ authors = ["nyradr <nyradr@protonmail.com>"]
 url = "http://rosettacode.org/wiki/Five_weekends"
 
 [dependencies]
-chrono = "0.4.2"
+chrono = "0.4.24"
