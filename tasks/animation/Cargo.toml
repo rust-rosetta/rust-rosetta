@@ -7,4 +7,4 @@ edition = "2021"
 url = "http://rosettacode.org/wiki/Animation"
 
 [dependencies]
-iced = { version = "0.4.2", features = ["tokio"] }
+iced = { version = "0.8.0", features = ["tokio"] }
