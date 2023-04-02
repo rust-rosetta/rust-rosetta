@@ -7,4 +7,4 @@ url = "http://rosettacode.org/wiki/Bitmap"
 
 [dependencies]
 nom = "7.1.1"
-thiserror = "1.0.24"
+thiserror = "1.0.40"
