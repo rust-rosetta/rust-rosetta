@@ -1,10 +1,10 @@
 use iced::{
-    button::{self, Button},
-    executor, Application, Command, Element, Settings, Subscription, Text,
+    executor,
+    widget::{button, text},
+    Application, Command, Element, Settings, Subscription, Theme,
 };
 
 struct Animation {
-    button: button::State,
     text: String,
     reverse: bool,
 }
@@ -12,7 +12,6 @@ struct Animation {
 impl Default for Animation {
     fn default() -> Self {
         Animation {
-            button: button::State::default(),
             text: String::from("Hello, world! "),
             reverse: false,
         }
@@ -27,8 +26,9 @@ enum Message {
 
 impl Application for Animation {
     type Executor = executor::Default;
-    type Message = Message;
     type Flags = ();
+    type Message = Message;
+    type Theme = Theme;
 
     fn new(_flags: ()) -> (Self, Command<Self::Message>) {
         (Animation::default(), Command::none())
@@ -59,10 +59,8 @@ impl Application for Animation {
         iced::time::every(std::time::Duration::from_millis(100)).map(|_| Message::Tick)
     }
 
-    fn view(&mut self) -> Element<Message> {
-        Button::new(&mut self.button, Text::new(&self.text))
-            .on_press(Message::Reverse)
-            .into()
+    fn view(&self) -> Element<Message> {
+        button(text(&self.text)).on_press(Message::Reverse).into()
     }
 }
 
