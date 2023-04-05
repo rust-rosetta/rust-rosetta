@@ -5929,11 +5929,15 @@ name = "sha-1"
 version = "0.1.0"
 
 [[package]]
-name = "sha-256"
+name = "sha-256-library"
 version = "0.1.0"
 dependencies = [
  "ring",
 ]
+
+[[package]]
+name = "sha_256-pure_rust"
+version = "0.1.0"
 
 [[package]]
 name = "shared_library"

@@ -1,9 +1,8 @@
 [package]
-name = "sha-256"
+name = "sha_256-pure_rust"
 version = "0.1.0"
 
 [package.metadata.rosettacode]
 url = "http://rosettacode.org/wiki/SHA-256"
 
 [dependencies]
-ring = "0.14"

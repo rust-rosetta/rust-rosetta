@@ -1,0 +1,9 @@
+[package]
+name = "sha-256-library"
+version = "0.1.0"
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/SHA-256"
+
+[dependencies]
+ring = "0.14"

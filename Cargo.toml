@@ -84,6 +84,7 @@ authors = [
     "9names, https://github.com/9names",
     "Avrosh Kumar, https://github.com/avroshk",
     "Johanna Sörngård, https://github.com/JSorngard",
+    "p0rtL, https://github.com/p0rtL6",
 ]
 
 [dependencies]
@@ -1253,7 +1254,8 @@ members = [
     "tasks/sha-1",
 
     # http://rosettacode.org/wiki/SHA-256
-    "tasks/sha-256",
+    "tasks/sha-256/library",
+    "tasks/sha-256/pure-rust",
 
     # http://rosettacode.org/wiki/Short-circuit_evaluation
     "tasks/short-circuit-evaluation",
