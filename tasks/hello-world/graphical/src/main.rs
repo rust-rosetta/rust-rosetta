@@ -1,26 +1,22 @@
-use iced::{executor, Application, Command, Element, Settings, Text};
+use iced::{Element, Sandbox, Settings};
 
 struct Goodbye;
 
-impl Application for Goodbye {
-    type Executor = executor::Default;
+impl Sandbox for Goodbye {
     type Message = ();
-    type Flags = ();
 
-    fn new(_flags: ()) -> (Goodbye, Command<Self::Message>) {
-        (Goodbye, Command::none())
+    fn new() -> Goodbye {
+        Goodbye
     }
 
     fn title(&self) -> String {
         String::from("Hello, World!")
     }
 
-    fn update(&mut self, _message: Self::Message) -> Command<Self::Message> {
-        Command::none()
-    }
+    fn update(&mut self, _message: Self::Message) {}
 
-    fn view(&mut self) -> Element<Self::Message> {
-        Text::new("Goodbye, World!").into()
+    fn view(&self) -> Element<Self::Message> {
+        "Goodbye, World!".into()
     }
 }
 
