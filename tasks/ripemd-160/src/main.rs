@@ -1,4 +1,4 @@
-use ripemd160::{Digest, Ripemd160};
+use ripemd::{Digest, Ripemd160};
 
 /// Create a lowercase hexadecimal string using the
 /// RIPEMD160 hashing algorithm

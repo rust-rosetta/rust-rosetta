@@ -6,4 +6,4 @@ version = "0.1.0"
 url = "http://rosettacode.org/wiki/SHA-256"
 
 [dependencies]
-ring = "0.14"
+ring = "0.16"
