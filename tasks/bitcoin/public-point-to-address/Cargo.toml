@@ -8,5 +8,5 @@ url = "http://rosettacode.org/wiki/Bitcoin/public_point_to_address"
 
 [dependencies]
 hex = "0.4"
-ring = "0.14"
+ring = "0.16"
 ripemd160 = "^0.8.0"
