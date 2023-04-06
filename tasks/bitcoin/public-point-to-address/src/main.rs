@@ -1,5 +1,5 @@
 use ring::digest::{digest, SHA256};
-use ripemd160::{Digest, Ripemd160};
+use ripemd::{Digest, Ripemd160};
 
 use hex::FromHex;
 
