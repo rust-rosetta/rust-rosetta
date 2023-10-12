@@ -1,8 +1,6 @@
 use core::num::NonZeroU64;
 
 /// Returns the value of the Möbius function at the input.
-///
-/// This example has been made `const` by switching the for loop to a while loop
 const fn moebius(x: NonZeroU64) -> i8 {
     let mut x = x.get();
     let mut prime_count = 0;
@@ -43,7 +41,7 @@ const fn moebius(x: NonZeroU64) -> i8 {
         prime_count += 1;
     }
 
-    // Return 1 or -1 according to how many prime factors the input has.
+    // Return 1 or -1 depending on whether `x` has an even or odd number of prime factors.
     if prime_count % 2 == 0 {
         1
     } else {
