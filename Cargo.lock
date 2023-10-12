@@ -3903,6 +3903,10 @@ name = "modular-inverse"
 version = "0.1.0"
 
 [[package]]
+name = "moebius-function"
+version = "0.1.0"
+
+[[package]]
 name = "monte-carlo-methods"
 version = "0.1.0"
 dependencies = [
