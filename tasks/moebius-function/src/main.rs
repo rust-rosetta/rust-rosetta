@@ -67,7 +67,7 @@ fn main() {
     const COLS: u64 = 20;
     println!(
         "Values of the Möbius function, μ(x), for x between 0 and {}:",
-        ROWS * COLS
+        COLS * ROWS + COLS
     );
     for i in 0..=ROWS {
         for j in 0..=COLS {
