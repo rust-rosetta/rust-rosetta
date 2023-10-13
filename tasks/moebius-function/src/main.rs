@@ -46,7 +46,7 @@ const fn isqrt(n: u64) -> u64 {
     if n <= 1 {
         n
     } else {
-        let mut x0 = 2_u64.pow(n.trailing_zeros() / 2 + 1);
+        let mut x0 = u64::pow(2, n.ilog2() / 2 + 1);
         let mut x1 = (x0 + n / x0) / 2;
         while x1 < x0 {
             x0 = x1;
