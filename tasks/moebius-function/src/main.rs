@@ -43,6 +43,7 @@ fn moebius(mut x: u64) -> i8 {
 ///
 /// This is the integer `i` such that `i^2 <= n < (i + 1)^2`.
 const fn isqrt(n: u64) -> u64 {
+    // Special case to avoid overflow
     if n == u64::MAX {
         return 4_294_967_296;
     }
