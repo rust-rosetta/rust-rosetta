@@ -71,7 +71,7 @@ fn main() {
     );
     for i in 0..=ROWS {
         for j in 0..=COLS {
-            let x = i + j;
+            let x = COLS * i + j;
             let μ = moebius(x);
             if μ >= 0 {
                 // Print an extra space if there's no minus sign in front of the output
