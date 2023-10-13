@@ -74,7 +74,8 @@ fn main() {
             let x = i + j;
             let μ = moebius(x);
             if μ >= 0 {
-                // Print an extra space if there's no minus sign in front of the output.
+                // Print an extra space if there's no minus sign in front of the output
+                // in order to align the numbers in a nice grid.
                 print!(" ");
             }
             print!("{μ}, ");
