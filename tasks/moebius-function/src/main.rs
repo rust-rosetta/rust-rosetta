@@ -26,8 +26,8 @@ fn moebius(mut x: u64) -> i8 {
         divide_x_by!(i + 2);
     }
 
-    // If x is a prime it will never be divided by any factor <= its square root.
-    // In that case we can check if x is still larger than one, and then count it.
+    // There can exist one prime factor larger than √x,
+    // in that case we can check if x is still larger than one, and then count it.
     if x > 1 {
         prime_count += 1;
     }
