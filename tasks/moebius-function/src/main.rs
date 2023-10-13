@@ -78,7 +78,7 @@ fn main() {
                 // in order to align the numbers in a nice grid.
                 print!(" ");
             }
-            print!("{μ}, ");
+            print!("{μ} ");
         }
         println!();
     }
