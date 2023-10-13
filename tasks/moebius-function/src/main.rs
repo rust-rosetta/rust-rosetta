@@ -39,28 +39,21 @@ fn moebius(mut x: u64) -> i8 {
     }
 }
 
-/// Computes the integer square root of `n` through a binary search.
+/// Computes the integer square root of `n` through Newton's method.
 ///
 /// This is the integer `i` such that `i^2 <= n < (i + 1)^2`.
 const fn isqrt(n: u64) -> u64 {
-    // Special case to avoid overflow
-    if n == u64::MAX {
-        return 4_294_967_296;
-    }
-
-    let mut left = 0;
-    let mut right = n + 1;
-
-    while left != right - 1 {
-        let mid = left + (right - left) / 2;
-        if mid as u128 * mid as u128 <= n as u128 {
-            left = mid;
-        } else {
-            right = mid;
+    if n <= 1 {
+        n
+    } else {
+        let mut x0 = 2_u64.pow(n.ilog2() / 2 + 1);
+        let mut x1 = (x0 + n / x0) / 2;
+        while x1 < x0 {
+            x0 = x1;
+            x1 = (x0 + n / x0) / 2;
         }
+        x0
     }
-
-    left
 }
 
 fn main() {
