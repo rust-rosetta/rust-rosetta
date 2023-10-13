@@ -1,37 +1,30 @@
-use core::num::NonZeroU64;
-
 /// Returns the value of the Möbius function at the input.
-const fn moebius(x: NonZeroU64) -> i8 {
-    let mut x = x.get();
+const fn moebius(mut x: u64) -> i8 {
     let mut prime_count = 0;
 
     // This macro lets us avoid some code repetition when we implement the wheel factorization.
     macro_rules! handle_factor {
-        ($factor:expr) => {
-            if x % $factor == 0 {
-                // If the input is divisible by the factor we divide it out
-                x /= $factor;
-                // count it as a prime
-                prime_count += 1;
-                // and check if the input is still divisible by the factor
+        ($($factor:expr),+) => {
+            $(
                 if x % $factor == 0 {
-                    // if it is we return 0
-                    return 0;
+                    x /= $factor;
+                    prime_count += 1;
+                    // If x is still divisible by the factor then x has
+                    // a square (or more) prime factor, and we return 0.
+                    if x % $factor == 0 { return 0; }
                 }
-            }
+            )+
         };
     }
 
-    // Handle 2 and 3 separately
-    handle_factor!(2);
-    handle_factor!(3);
+    // Handle 2 and 3 separately, as they are not found by the wheel.
+    handle_factor!(2, 3);
 
-    // Then use a wheel to check the remaining factors <= √x
+    // Then use the wheel to check the remaining factors <= √x.
     let mut i = 5;
     let bound = isqrt(x);
     while i <= bound {
-        handle_factor!(i);
-        handle_factor!(i + 2);
+        handle_factor!(i, i + 2);
         i += 6;
     }
 
@@ -41,7 +34,6 @@ const fn moebius(x: NonZeroU64) -> i8 {
         prime_count += 1;
     }
 
-    // Return 1 or -1 depending on whether `x` has an even or odd number of prime factors.
     if prime_count % 2 == 0 {
         1
     } else {
@@ -50,7 +42,7 @@ const fn moebius(x: NonZeroU64) -> i8 {
 }
 
 /// Computes the integer square root of `n` through a binary search.
-/// 
+///
 /// This is the integer `i` such that `i^2 <= n < (i + 1)^2`.
 const fn isqrt(n: u64) -> u64 {
     if n == u64::MAX {
@@ -76,12 +68,12 @@ fn main() {
     const ROWS: u64 = 10;
     const COLS: u64 = 20;
     println!(
-        "Values of the Möbius function, μ(x), for x between 1 and {}:",
+        "Values of the Möbius function, μ(x), for x between 0 and {}:",
         ROWS * COLS
     );
     for i in 0..=ROWS {
         for j in 0..=COLS {
-            let x = NonZeroU64::new(i + j + 1).unwrap();
+            let x = i + j;
             let μ = moebius(x);
             if μ >= 0 {
                 print!(" ");
@@ -90,7 +82,7 @@ fn main() {
         }
         println!();
     }
-    let x = NonZeroU64::new(u64::MAX).unwrap();
+    let x = u64::MAX;
     println!("\nμ({x}) = {}", moebius(x));
 }
 
@@ -101,9 +93,9 @@ mod test {
     #[test]
     fn verify_möbius_function_for_small_inputs() {
         #[rustfmt::skip]
-        const TEST_CASES: [i8; 50] = [1, -1, -1, 0, -1, 1, -1, 0, 0, 1, -1, 0, -1, 1, 1, 0, -1, 0, -1, 0, 1, 1, -1, 0, 0, 1, 0, 0, -1, -1, -1, 0, 1, 1, 1, 0, -1, 1, 1, 0, -1, -1, -1, 0, 0, 1, -1, 0, 0, 0];
+        const TEST_CASES: [i8; 51] = [0, 1, -1, -1, 0, -1, 1, -1, 0, 0, 1, -1, 0, -1, 1, 1, 0, -1, 0, -1, 0, 1, 1, -1, 0, 0, 1, 0, 0, -1, -1, -1, 0, 1, 1, 1, 0, -1, 1, 1, 0, -1, -1, -1, 0, 0, 1, -1, 0, 0, 0];
         for (n, ans) in TEST_CASES.into_iter().enumerate() {
-            assert_eq!(moebius(NonZeroU64::new(n as u64 + 1).unwrap()), ans);
+            assert_eq!(moebius(n as u64), ans);
         }
     }
 
@@ -112,7 +104,7 @@ mod test {
         #[rustfmt::skip]
         const KILO_TEST_CASES: [i8; 50] = [0, -1, -1, 1, 0, -1, 1, 1, 0, -1, -1, 1, 0, -1, 0, -1, 0, 0, 1, -1, 0, -1, -1, -1, 0, 0, 0, 1, 0, 0, -1, -1, 0, -1, -1, 0, 0, 1, -1, -1, 0, 1, 1, 1, 0, -1, 1, 1, 0, -1];
         for (n, ans) in KILO_TEST_CASES.into_iter().enumerate() {
-            assert_eq!(moebius(NonZeroU64::new(n as u64 + 1000).unwrap()), ans);
+            assert_eq!(moebius(n as u64 + 1000), ans);
         }
     }
 
@@ -122,7 +114,7 @@ mod test {
     //     const ENORMOUS_TEST_CASES: [i8; 6] = [-1, 1, 0, -1, 0, -1];
     //     for (n, ans) in ENORMOUS_TEST_CASES.into_iter().enumerate() {
     //         assert_eq!(
-    //             moebius(NonZeroU64::new(u64::MAX - 5 + n as u64).unwrap()),
+    //             moebius(u64::MAX - 5 + n as u64),
     //             ans
     //         );
     //     }
