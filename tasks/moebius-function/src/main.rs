@@ -1,31 +1,29 @@
 /// Returns the value of the Möbius function at the input.
-const fn moebius(mut x: u64) -> i8 {
+fn moebius(mut x: u64) -> i8 {
     let mut prime_count = 0;
 
-    // This macro lets us avoid some code repetition when we implement the wheel factorization.
-    macro_rules! handle_factor {
-        ($($factor:expr),+) => {
-            $(
+    // If x is divisible by the given factor this macro counts the factor and divides it out.
+    // It then returns zero if x is still divisible by the factor.
+    macro_rules! divide_x_by {
+        ($factor:expr) => {
+            if x % $factor == 0 {
+                x /= $factor;
+                prime_count += 1;
                 if x % $factor == 0 {
-                    x /= $factor;
-                    prime_count += 1;
-                    // If x is still divisible by the factor then x has
-                    // a square (or more) prime factor, and we return 0.
-                    if x % $factor == 0 { return 0; }
+                    return 0;
                 }
-            )+
+            }
         };
     }
 
     // Handle 2 and 3 separately, as they are not found by the wheel.
-    handle_factor!(2, 3);
+    divide_x_by!(2);
+    divide_x_by!(3);
 
     // Then use the wheel to check the remaining factors <= √x.
-    let mut i = 5;
-    let bound = isqrt(x);
-    while i <= bound {
-        handle_factor!(i, i + 2);
-        i += 6;
+    for i in (5..=isqrt(x)).step_by(6) {
+        divide_x_by!(i);
+        divide_x_by!(i + 2);
     }
 
     // If x is a prime it will never be divided by any factor <= its square root.
