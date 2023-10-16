@@ -39,9 +39,7 @@ fn moebius(mut x: u64) -> i8 {
     }
 }
 
-/// Computes the integer square root of `n` through Newton's method.
-///
-/// This is the integer `i` such that `i^2 <= n <= (i + 1)^2`.
+/// Returns the largest integer smaller than or equal to `√n`
 const fn isqrt(n: u64) -> u64 {
     if n <= 1 {
         n
