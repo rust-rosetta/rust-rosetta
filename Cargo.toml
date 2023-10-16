@@ -1003,6 +1003,9 @@ members = [
     # http://rosettacode.org/wiki/Mutual_recursion
     "tasks/mutual-recursion",
 
+    # https://www.rosettacode.org/wiki/M%C3%B6bius_function
+    "tasks/moebius-function",
+
     # http://rosettacode.org/wiki/N-queens_problem
     "tasks/n-queens-problem",
 
