@@ -1,0 +1,9 @@
+[package]
+name = "golden-ratio"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+
+[package.metadata.rosettacode]
+url = "http://rosettacode.org/wiki/Golden_ratio/Convergence"

@@ -2888,6 +2888,10 @@ dependencies = [
 ]
 
 [[package]]
+name = "golden-ratio"
+version = "0.1.0"
+
+[[package]]
 name = "gpu-alloc"
 version = "0.6.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
