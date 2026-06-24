@@ -679,6 +679,9 @@ members = [
     # http://rosettacode.org/wiki/Globally_replace_text_in_several_files
     "tasks/globally-replace-text-in-several-files",
 
+    # http://rosettacode.org/wiki/Golden_ratio/Convergence
+    "tasks/golden-ratio",
+
     # http://rosettacode.org/wiki/Gray_code
     "tasks/gray-code",
 
