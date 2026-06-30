@@ -1,10 +1,10 @@
 fn main() {
     // Get the memory address of a variable
-    let var = 1_i32;
+    let mut var = 1_i32;
     println!("address of var: {:p}", &var);
 
     // Get the value at a certain memory address
-    let address = &var as *const i32;
+    let address: *mut i32 = &mut var;
     println!("value at {:p}: {:?}", address, var);
 
     // Set the value at a certain memory address
