@@ -4,13 +4,8 @@
 //!
 //! [official tutorial]: https://github.com/glium/glium/tree/master/book
 
-use glium::glutin::{
-    event::{Event, WindowEvent},
-    event_loop::{ControlFlow, EventLoop},
-    window::WindowBuilder,
-    ContextBuilder,
-};
-use glium::{implement_vertex, Display, Surface};
+use glium::winit;
+use glium::{implement_vertex, Surface};
 
 /// Define a struct to store vertices. This struct will be used by `glium` directly.
 #[derive(Copy, Clone)]
@@ -21,10 +16,8 @@ struct Vertex {
 implement_vertex!(Vertex, position);
 
 fn main() {
-    let event_loop = EventLoop::new();
-    let window_builder = WindowBuilder::new();
-    let context_builder = ContextBuilder::new();
-    let display = Display::new(window_builder, context_builder, &event_loop).unwrap();
+    let event_loop = winit::event_loop::EventLoop::new().unwrap();
+    let (_window, display) = glium::backend::glutin::SimpleWindowBuilder::new().build(&event_loop);
 
     let vertex1 = Vertex {
         position: [0.0, 0.0],
@@ -86,21 +79,17 @@ fn main() {
     // Finally, draw the triangle!
     draw();
 
-    event_loop.run(move |event, _, control_flow| {
-        *control_flow = match event {
-            Event::WindowEvent { event, .. } => match event {
-                WindowEvent::CloseRequested => ControlFlow::Exit,
-                WindowEvent::Resized(..) => {
+    #[allow(deprecated)]
+    event_loop
+        .run(move |event, window_target| match event {
+            winit::event::Event::WindowEvent { event, .. } => match event {
+                winit::event::WindowEvent::CloseRequested => window_target.exit(),
+                winit::event::WindowEvent::Resized(..) => {
                     draw();
-                    ControlFlow::Poll
                 }
-                _ => ControlFlow::Poll,
+                _ => (),
             },
-            Event::RedrawRequested(..) => {
-                draw();
-                ControlFlow::Poll
-            }
-            _ => ControlFlow::Poll,
-        }
-    });
+            _ => (),
+        })
+        .unwrap();
 }

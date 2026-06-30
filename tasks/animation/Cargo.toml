@@ -1,10 +1,10 @@
 [package]
 name = "animation"
 version = "0.1.0"
-edition = "2021"
+edition = "2024"
 
 [package.metadata.rosettacode]
 url = "http://rosettacode.org/wiki/Animation"
 
 [dependencies]
-iced = { version = "0.8.0", features = ["tokio"] }
+iced = { version = "0.14.0", features = ["tokio"] }

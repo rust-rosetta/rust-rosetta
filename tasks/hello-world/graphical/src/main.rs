@@ -1,25 +1,13 @@
-use iced::{Element, Sandbox, Settings};
+use iced::Element;
 
-struct Goodbye;
+fn update(_state: &mut (), _message: ()) {}
 
-impl Sandbox for Goodbye {
-    type Message = ();
-
-    fn new() -> Goodbye {
-        Goodbye
-    }
-
-    fn title(&self) -> String {
-        String::from("Hello, World!")
-    }
-
-    fn update(&mut self, _message: Self::Message) {}
-
-    fn view(&self) -> Element<Self::Message> {
-        "Goodbye, World!".into()
-    }
+fn view(_state: &()) -> Element<'_, ()> {
+    "Goodbye, World!".into()
 }
 
 fn main() -> iced::Result {
-    Goodbye::run(Settings::default())
+    iced::application(|| (), update, view)
+        .title("Hello, World!")
+        .run()
 }
