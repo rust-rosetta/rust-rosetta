@@ -5,6 +5,7 @@ use std::fs;
 use std::path::{Path, PathBuf};
 
 use anyhow::{anyhow, Context, Error};
+use cargo_metadata::{MetadataCommand, TargetKind};
 use reqwest::Url;
 use toml::Value;
 use walkdir::WalkDir;
@@ -37,28 +38,32 @@ pub struct LocalTask {
 
 /// Check if the target of a package is of kind dylib or proc-macro.
 fn is_dylib_or_proc_macro(target: &cargo_metadata::Target) -> bool {
-    target.kind.contains(&String::from("dylib"))
-        || target.kind.contains(&String::from("proc-macro"))
+    target.kind.contains(&TargetKind::DyLib) || target.kind.contains(&TargetKind::ProcMacro)
 }
 
 /// Given a path to the root `Cargo.toml`, returns a list of tasks implemented in the rust-rosetta
 /// repository.
 pub fn parse_tasks<P>(manifest_path: P) -> Result<Vec<LocalTask>, Error>
 where
-    P: AsRef<Path>,
+    P: Into<PathBuf>,
 {
-    let metadata = cargo_metadata::metadata(Some(manifest_path.as_ref())).unwrap();
+    let metadata = MetadataCommand::new().manifest_path(manifest_path).exec()?;
     let packages = &metadata.packages;
 
     let mut tasks = vec![];
 
     for member in &metadata.workspace_members {
+        let member = &metadata[member];
+
         // Skip if we encounter known non-task crates.
-        if member.name() == "rust-rosetta" || member.name() == "meta" {
+        if member.name == "rust-rosetta" || member.name == "meta" {
             continue;
         }
 
-        let package = packages.iter().find(|p| p.name == member.name()).unwrap();
+        let package = packages
+            .iter()
+            .find(|p| p.name == member.name)
+            .unwrap_or_else(|| panic!("unable to find member {} in package metadata", member.name));
 
         // If the package has a proc-macro or dylib target, it's probably just a dependency of
         // another task. Skip it.
@@ -84,7 +89,7 @@ where
         };
 
         tasks.push(LocalTask {
-            package_name: member.name().to_owned(),
+            package_name: member.name.to_string(),
             manifest_path: manifest_path.to_owned(),
             source: find_sources(manifest_path.parent().unwrap())?,
             url: rosetta_url,
