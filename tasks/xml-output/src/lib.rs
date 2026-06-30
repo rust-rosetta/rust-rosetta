@@ -52,8 +52,9 @@ mod tests {
             "<Character name=\"Tam O&apos;Shanter\">Burns: \"When chapman \
              billies leave the street ...\"</Character>"
         ));
-        assert!(output
-            .contains(r#"<Character name="April">Bubbly: I'm > Tam and &lt;= Emily</Character>"#));
+        assert!(output.contains(
+            r#"<Character name="April">Bubbly: I'm &gt; Tam and &lt;= Emily</Character>"#
+        ));
         assert!(output.contains(r#"<Character name="Emily">Short &amp; shrift</Character>"#));
     }
 }
