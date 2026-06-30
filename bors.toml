@@ -1,8 +1,0 @@
-status = [
-  "rustfmt",
-  "check (macos-latest)",
-  "check (windows-latest)",
-  "check (ubuntu-latest)",
-]
-
-timeout_sec = 7200
