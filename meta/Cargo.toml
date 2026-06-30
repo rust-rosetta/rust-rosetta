@@ -5,7 +5,7 @@ edition = "2018"
 
 [dependencies]
 anyhow = "1.0.31"
-cargo_metadata = "0.6"
+cargo_metadata = "0.23.1"
 find-unimplemented-tasks = { path = "../tasks/rosetta-code/find-unimplemented-tasks" }
 lazy_static = "1"
 pathdiff = "0.1"
