@@ -187,7 +187,7 @@ mod tests {
 
     macro_rules! trav_values {
         ($x:expr) => {
-            $x.iter().map(|n| n.value).collect();
+            $x.iter().map(|n| n.value).collect()
         };
     }
 
