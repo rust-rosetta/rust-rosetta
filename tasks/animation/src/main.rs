@@ -1,7 +1,8 @@
+use std::time::Duration;
+
 use iced::{
-    executor,
+    Element,
     widget::{button, text},
-    Application, Command, Element, Settings, Subscription, Theme,
 };
 
 struct Animation {
@@ -24,46 +25,28 @@ enum Message {
     Reverse,
 }
 
-impl Application for Animation {
-    type Executor = executor::Default;
-    type Flags = ();
-    type Message = Message;
-    type Theme = Theme;
-
-    fn new(_flags: ()) -> (Self, Command<Self::Message>) {
-        (Animation::default(), Command::none())
-    }
-
-    fn title(&self) -> String {
-        String::from("Animation")
-    }
-
-    fn update(&mut self, message: Message) -> Command<Message> {
-        match message {
-            Message::Tick => {
-                if self.reverse {
-                    let begin = self.text.split_off(1);
-                    self.text.insert_str(0, &begin);
-                } else {
-                    let end = self.text.split_off(self.text.len() - 1);
-                    self.text.insert_str(0, &end);
-                }
+fn update(state: &mut Animation, message: Message) {
+    match message {
+        Message::Tick => {
+            if state.reverse {
+                let begin = state.text.split_off(1);
+                state.text.insert_str(0, &begin);
+            } else {
+                let end = state.text.split_off(state.text.len() - 1);
+                state.text.insert_str(0, &end);
             }
-            Message::Reverse => self.reverse = !self.reverse,
         }
-
-        Command::none()
-    }
-
-    fn subscription(&self) -> Subscription<Message> {
-        iced::time::every(std::time::Duration::from_millis(100)).map(|_| Message::Tick)
-    }
-
-    fn view(&self) -> Element<Message> {
-        button(text(&self.text)).on_press(Message::Reverse).into()
+        Message::Reverse => state.reverse = !state.reverse,
     }
 }
 
+fn view(state: &Animation) -> Element<'_, Message> {
+    button(text(&state.text)).on_press(Message::Reverse).into()
+}
+
 fn main() -> iced::Result {
-    Animation::run(Settings::default())
+    iced::application(Animation::default, update, view)
+        .title("Animation")
+        .subscription(|_| iced::time::every(Duration::from_millis(100)).map(|_| Message::Tick))
+        .run()
 }

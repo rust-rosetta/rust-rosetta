@@ -1,10 +1,10 @@
 [package]
 name = "hello-world-graphical"
 version = "0.1.0"
-edition = "2021"
+edition = "2024"
 
 [package.metadata.rosettacode]
 url = "http://rosettacode.org/wiki/Hello_world/Graphical"
 
 [dependencies]
-iced = "0.8.0"
+iced = "0.14.0"
