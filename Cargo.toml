@@ -84,6 +84,7 @@ authors = [
     "9names, https://github.com/9names",
     "Avrosh Kumar, https://github.com/avroshk",
     "Johanna Sörngård, https://github.com/JSorngard",
+    "S. Tabrez Ahmed, https://github.com/seucra" ,
 ]
 
 [dependencies]
@@ -972,6 +973,9 @@ members = [
 
     # http://rosettacode.org/wiki/Menu
     "tasks/menu",
+
+    # https://rosettacode.org/wiki/Metallic_ratios
+    "tasks/metallic-ratios",
 
     # https://rosettacode.org/wiki/Metaprogramming
     "tasks/metaprogramming",
