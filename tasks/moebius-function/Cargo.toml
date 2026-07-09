@@ -1,0 +1,9 @@
+[package]
+name = "moebius-function"
+version = "0.1.0"
+edition = "2021"
+
+[package.metadata.rosettacode]
+url = "https://www.rosettacode.org/wiki/M%C3%B6bius_function"
+
+[dependencies]
