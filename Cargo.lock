@@ -690,6 +690,19 @@ dependencies = [
 ]
 
 [[package]]
+name = "bigdecimal"
+version = "0.4.10"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "4d6867f1565b3aad85681f1015055b087fcfd840d6aeee6eee7f2da317603695"
+dependencies = [
+ "autocfg",
+ "libm",
+ "num-bigint 0.4.6",
+ "num-integer",
+ "num-traits 0.2.19",
+]
+
+[[package]]
 name = "binary-digits"
 version = "0.1.0"
 
@@ -4368,6 +4381,13 @@ dependencies = [
  "log",
  "objc",
  "paste",
+]
+
+[[package]]
+name = "metallic-ratios"
+version = "0.1.0"
+dependencies = [
+ "bigdecimal",
 ]
 
 [[package]]
